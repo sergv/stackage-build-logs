@@ -1,0 +1,48 @@
+Build profile: -w ghc-9.6.5 -O1
+In order, the following will be built (use -v for more details):
+ - kdt-0.2.5 (lib) (first run)
+ - kdt-0.2.5 (test:StaticTest) (first run)
+ - kdt-0.2.5 (test:DynamicTest) (first run)
+Configuring library for kdt-0.2.5...
+Preprocessing library for kdt-0.2.5...
+Building library for kdt-0.2.5...
+[1 of 4] Compiling Data.KdMap.Static
+
+lib-src/Data/KdMap/Static.hs:221:15: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘([a], (p, v))’ not matched: ([], _)
+    |
+221 |               (medianAxisVal : _, _) =
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^...
+[2 of 4] Compiling Data.KdMap.Dynamic
+[3 of 4] Compiling Data.KdTree.Dynamic
+[4 of 4] Compiling Data.KdTree.Static
+Configuring test suite 'StaticTest' for kdt-0.2.5...
+Preprocessing test suite 'StaticTest' for kdt-0.2.5...
+Building test suite 'StaticTest' for kdt-0.2.5...
+[1 of 2] Compiling Data.Point2d
+[2 of 2] Compiling Main
+
+app-src/Tests/StaticTest.hs:122:32: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[Point2d]’ not matched: []
+    |
+122 |   forAll (listOf1 arbitrary) $ \xs@(Point2d x y : _) ->
+    |                                ^^^^^^^^^^^^^^^^^^^^^^^^...
+
+app-src/Tests/StaticTest.hs:127:32: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[Point2d]’ not matched: []
+    |
+127 |   forAll (listOf1 arbitrary) $ \xs@(Point2d x y : _) ->
+    |                                ^^^^^^^^^^^^^^^^^^^^^^^^...
+[3 of 3] Linking /tmp/workdir-kdt/kdt-0.2.5/dist-newstyle/build/x86_64-linux/ghc-9.6.5/kdt-0.2.5/t/StaticTest/build/StaticTest/StaticTest
+Configuring test suite 'DynamicTest' for kdt-0.2.5...
+Preprocessing test suite 'DynamicTest' for kdt-0.2.5...
+Building test suite 'DynamicTest' for kdt-0.2.5...
+[1 of 2] Compiling Data.Point2d
+[2 of 2] Compiling Main
+[3 of 3] Linking /tmp/workdir-kdt/kdt-0.2.5/dist-newstyle/build/x86_64-linux/ghc-9.6.5/kdt-0.2.5/t/DynamicTest/build/DynamicTest/DynamicTest

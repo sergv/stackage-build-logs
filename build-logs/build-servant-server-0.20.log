@@ -1,0 +1,463 @@
+Build profile: -w ghc-9.6.5 -O1
+In order, the following will be built (use -v for more details):
+ - servant-server-0.20 (lib) (first run)
+ - servant-server-0.20 (test:spec) (first run)
+ - servant-server-0.20 (exe:greet) (first run)
+Configuring library for servant-server-0.20...
+Preprocessing library for servant-server-0.20...
+Building library for servant-server-0.20...
+[ 1 of 18] Compiling Servant.Server.Internal.Context
+
+src/Servant/Server/Internal/Context.hs:54:27: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+54 | type family (.++) (l1 :: [*]) (l2 :: [*]) where
+   |                           ^
+
+src/Servant/Server/Internal/Context.hs:54:39: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+54 | type family (.++) (l1 :: [*]) (l2 :: [*]) where
+   |                                       ^
+
+src/Servant/Server/Internal/Context.hs:76:36: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+76 | class HasContextEntry (context :: [*]) (val :: *) where
+   |                                    ^
+
+src/Servant/Server/Internal/Context.hs:76:48: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+76 | class HasContextEntry (context :: [*]) (val :: *) where
+   |                                                ^
+
+src/Servant/Server/Internal/Context.hs:93:52: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+93 | data NamedContext (name :: Symbol) (subContext :: [*])
+   |                                                    ^
+[ 2 of 18] Compiling Servant.Server.Internal.ServerError
+[ 3 of 18] Compiling Servant.Server.Internal.RouteResult
+
+src/Servant/Server/Internal/RouteResult.hs:31:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative RouteResult’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+31 |     pure = return
+   |     ^^^^^^^^^^^^^
+
+src/Servant/Server/Internal/RouteResult.hs:35:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad RouteResult’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+35 |     return = Route
+   |     ^^^^^^^^^^^^^^
+
+src/Servant/Server/Internal/RouteResult.hs:47:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative (RouteResultT m)’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+47 |     pure  = return
+   |     ^^^^^^^^^^^^^^
+
+src/Servant/Server/Internal/RouteResult.hs:51:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad (RouteResultT m)’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+51 |     return = RouteResultT . return . Route
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 4 of 18] Compiling Servant.Server.Internal.RoutingApplication
+[ 5 of 18] Compiling Servant.Server.Internal.Handler
+[ 6 of 18] Compiling Servant.Server.Internal.ErrorFormatter
+
+src/Servant/Server/Internal/ErrorFormatter.hs:70:43: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+70 | type MkContextWithErrorFormatter (ctx :: [*]) = ctx .++ DefaultErrorFormatters
+   |                                           ^
+
+src/Servant/Server/Internal/ErrorFormatter.hs:72:48: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+72 | mkContextWithErrorFormatter :: forall (ctx :: [*]). Context ctx -> Context (MkContextWithErrorFormatter ctx)
+   |                                                ^
+[ 7 of 18] Compiling Servant.Server.Internal.Router
+[ 8 of 18] Compiling Servant.Server.Internal.DelayedIO
+[ 9 of 18] Compiling Servant.Server.Internal.Delayed
+[10 of 18] Compiling Servant.Server.Internal.BasicAuth
+[11 of 18] Compiling Servant.Server.Internal
+
+src/Servant/Server/Internal.hs:115:38: warning: [-Wunused-imports]
+    The import of ‘TypeError’ from module ‘GHC.TypeLits’ is redundant
+    |
+115 |                  (ErrorMessage (..), TypeError)
+    |                                      ^^^^^^^^^
+
+src/Servant/Server/Internal.hs:124:26: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+    |
+124 |   type ServerT api (m :: * -> *) :: *
+    |                          ^
+
+src/Servant/Server/Internal.hs:124:31: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+    |
+124 |   type ServerT api (m :: * -> *) :: *
+    |                               ^
+
+src/Servant/Server/Internal.hs:124:37: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+    |
+124 |   type ServerT api (m :: * -> *) :: *
+    |                                     ^
+
+src/Servant/Server/Internal.hs:903:79: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+    |
+903 |     type ServerT (arr :> sub) _ = TypeError (PartialApplication (HasServer :: * -> [*] -> Constraint) arr)
+    |                                                                               ^
+
+src/Servant/Server/Internal.hs:903:85: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+    |
+903 |     type ServerT (arr :> sub) _ = TypeError (PartialApplication (HasServer :: * -> [*] -> Constraint) arr)
+    |                                                                                     ^
+
+src/Servant/Server/Internal.hs:945:1: warning: [GHC-08585] [-Wmissing-methods]
+    • No explicit associated type or default declaration for ‘ServerT’
+    • In the instance declaration for ‘HasServer (ty :> sub) context’
+    |
+945 | instance {-# OVERLAPPABLE #-} TypeError (NoInstanceForSub 
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+src/Servant/Server/Internal.hs:945:31: warning: [GHC-06201] [-Wmissing-methods]
+    • No explicit implementation for
+        ‘route’ and ‘hoistServerWithContext’
+    • In the instance declaration for ‘HasServer (ty :> sub) context’
+    |
+945 | instance {-# OVERLAPPABLE #-} TypeError (NoInstanceForSub 
+    |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+src/Servant/Server/Internal.hs:951:1: warning: [GHC-08585] [-Wmissing-methods]
+    • No explicit associated type or default declaration for ‘ServerT’
+    • In the instance declaration for ‘HasServer api context’
+    |
+951 | instance {-# OVERLAPPABLE #-} TypeError (NoInstanceFor (HasServer api context)) => HasServer api context
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Servant/Server/Internal.hs:951:31: warning: [GHC-06201] [-Wmissing-methods]
+    • No explicit implementation for
+        ‘route’ and ‘hoistServerWithContext’
+    • In the instance declaration for ‘HasServer api context’
+    |
+951 | instance {-# OVERLAPPABLE #-} TypeError (NoInstanceFor (HasServer api context)) => HasServer api context
+    |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Servant/Server/Internal.hs:976:22: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+    |
+976 | data AsServerT (m :: * -> *)
+    |                      ^
+
+src/Servant/Server/Internal.hs:976:27: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+    |
+976 | data AsServerT (m :: * -> *)
+    |                           ^
+
+src/Servant/Server/Internal.hs:1002:23: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+     |
+1002 | class GServer (api :: * -> *) (m :: * -> *) where
+     |                       ^
+
+src/Servant/Server/Internal.hs:1002:28: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+     |
+1002 | class GServer (api :: * -> *) (m :: * -> *) where
+     |                            ^
+
+src/Servant/Server/Internal.hs:1002:37: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+     |
+1002 | class GServer (api :: * -> *) (m :: * -> *) where
+     |                                     ^
+
+src/Servant/Server/Internal.hs:1002:42: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+     |
+1002 | class GServer (api :: * -> *) (m :: * -> *) where
+     |                                          ^
+[12 of 18] Compiling Servant.Server.UVerb
+
+src/Servant/Server/UVerb.hs:42:16: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+42 |   forall (x :: *) (xs :: [*]) (f :: * -> *).
+   |                ^
+
+src/Servant/Server/UVerb.hs:42:27: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+42 |   forall (x :: *) (xs :: [*]) (f :: * -> *).
+   |                           ^
+
+src/Servant/Server/UVerb.hs:42:37: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+42 |   forall (x :: *) (xs :: [*]) (f :: * -> *).
+   |                                     ^
+
+src/Servant/Server/UVerb.hs:42:42: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+42 |   forall (x :: *) (xs :: [*]) (f :: * -> *).
+   |                                          ^
+
+src/Servant/Server/UVerb.hs:48:33: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+48 | class IsServerResource (cts :: [*]) a where
+   |                                 ^
+[13 of 18] Compiling Servant.Server
+[14 of 18] Compiling Servant.Server.StaticFiles
+[15 of 18] Compiling Servant.Server.Generic
+
+src/Servant/Server/Generic.hs:40:24: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+40 |   :: forall (routes :: * -> *) (m :: * -> *).
+   |                        ^
+
+src/Servant/Server/Generic.hs:40:29: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+40 |   :: forall (routes :: * -> *) (m :: * -> *).
+   |                             ^
+
+src/Servant/Server/Generic.hs:40:38: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+40 |   :: forall (routes :: * -> *) (m :: * -> *).
+   |                                      ^
+
+src/Servant/Server/Generic.hs:40:43: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+40 |   :: forall (routes :: * -> *) (m :: * -> *).
+   |                                           ^
+
+src/Servant/Server/Generic.hs:58:24: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+58 |   :: forall (routes :: * -> *) (m :: * -> *) (ctx :: [*]).
+   |                        ^
+
+src/Servant/Server/Generic.hs:58:29: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+58 |   :: forall (routes :: * -> *) (m :: * -> *) (ctx :: [*]).
+   |                             ^
+
+src/Servant/Server/Generic.hs:58:38: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+58 |   :: forall (routes :: * -> *) (m :: * -> *) (ctx :: [*]).
+   |                                      ^
+
+src/Servant/Server/Generic.hs:58:43: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+58 |   :: forall (routes :: * -> *) (m :: * -> *) (ctx :: [*]).
+   |                                           ^
+
+src/Servant/Server/Generic.hs:58:55: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+58 |   :: forall (routes :: * -> *) (m :: * -> *) (ctx :: [*]).
+   |                                                       ^
+[16 of 18] Compiling Servant
+[17 of 18] Compiling Servant.Server.Experimental.Auth
+
+src/Servant/Server/Experimental/Auth.hs:41:33: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+41 | type family AuthServerData a :: *
+   |                                 ^
+[18 of 18] Compiling Servant.Utils.StaticFiles
+Configuring test suite 'spec' for servant-server-0.20...
+Preprocessing test suite 'spec' for servant-server-0.20...
+Building test suite 'spec' for servant-server-0.20...
+[ 1 of 12] Compiling Servant.ArbitraryMonadServerSpec
+[ 2 of 12] Compiling Servant.HoistSpec
+[ 3 of 12] Compiling Servant.Server.ErrorSpec
+[ 4 of 12] Compiling Servant.Server.Internal.ContextSpec
+[ 5 of 12] Compiling Servant.Server.Internal.RoutingApplicationSpec
+[ 6 of 12] Compiling Servant.Server.RouterSpec
+[ 7 of 12] Compiling Servant.Server.StreamingSpec
+
+test/Servant/Server/StreamingSpec.hs:62:11: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘requestBody’ (imported from Network.Wai.Internal):
+    Deprecated: "requestBody's name is misleading because it only gets a partial chunk of the body. Use getRequestBodyChunk instead when getting the field, and setRequestBodyChunks when setting the field."
+   |
+62 |           requestBody = streamTestData,
+   |           ^^^^^^^^^^^
+
+test/Servant/Server/StreamingSpec.hs:84:7: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘respond’ shadows the existing binding
+      imported from ‘Servant’ at test/Servant/Server/StreamingSpec.hs:22:1-24
+      (and originally defined in ‘Servant.Server.UVerb’)
+   |
+84 |   let respond response = do
+   |       ^^^^^^^
+[ 8 of 12] Compiling Servant.Server.UsingContextSpec.TestCombinators
+
+test/Servant/Server/UsingContextSpec/TestCombinators.hs:40:7: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘inject’ shadows the existing binding
+      imported from ‘Servant’ at test/Servant/Server/UsingContextSpec/TestCombinators.hs:22:1-24
+      (and originally defined in ‘Servant.API.UVerb.Union’)
+   |
+40 |       inject f = f (getContextEntry context)
+   |       ^^^^^^
+
+test/Servant/Server/UsingContextSpec/TestCombinators.hs:61:64: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+61 | data NamedContextWithBirdface (name :: Symbol) (subContext :: [*])
+   |                                                                ^
+[ 9 of 12] Compiling Servant.Server.UsingContextSpec
+[10 of 12] Compiling Servant.ServerSpec
+
+test/Servant/ServerSpec.hs:269:10: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[Char]’ not matched:
+            []
+            (p:_) where p is not one of {'c'}
+            ['c']
+            ('c':p:_) where p is not one of {'a'}
+            ...
+    |
+269 |         (\ "captured" -> Tagged $ \request_ sendResponse ->
+    |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+[11 of 12] Compiling Servant.Server.StaticFilesSpec
+[12 of 12] Compiling Main
+[13 of 13] Linking /tmp/workdir-servant-server/servant-server-0.20/dist-newstyle/build/x86_64-linux/ghc-9.6.5/servant-server-0.20/t/spec/build/spec/spec
+Configuring executable 'greet' for servant-server-0.20...
+Preprocessing executable 'greet' for servant-server-0.20...
+Building executable 'greet' for servant-server-0.20...
+[1 of 1] Compiling Main
+[2 of 2] Linking /tmp/workdir-servant-server/servant-server-0.20/dist-newstyle/build/x86_64-linux/ghc-9.6.5/servant-server-0.20/x/greet/build/greet/greet

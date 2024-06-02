@@ -1,0 +1,47 @@
+Build profile: -w ghc-9.6.5 -O1
+In order, the following will be built (use -v for more details):
+ - servant-foreign-0.16 (lib) (first run)
+ - servant-foreign-0.16 (test:spec) (first run)
+Configuring library for servant-foreign-0.16...
+Preprocessing library for servant-foreign-0.16...
+Building library for servant-foreign-0.16...
+[1 of 3] Compiling Servant.Foreign.Internal
+
+src/Servant/Foreign/Internal.hs:277:37: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+    |
+277 | class HasForeign lang ftype (api :: *) where
+    |                                     ^
+
+src/Servant/Foreign/Internal.hs:278:29: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+    |
+278 |   type Foreign ftype api :: *
+    |                             ^
+[2 of 3] Compiling Servant.Foreign.Inflections
+[3 of 3] Compiling Servant.Foreign
+Configuring test suite 'spec' for servant-foreign-0.16...
+Preprocessing test suite 'spec' for servant-foreign-0.16...
+Building test suite 'spec' for servant-foreign-0.16...
+[1 of 2] Compiling Servant.ForeignSpec
+
+test/Servant/ForeignSpec.hs:85:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[Req String]’ not matched:
+            []
+            [_]
+            [_, _]
+            [_, _, _]
+            ...
+   |
+85 |   let [getReq, postReq, putReq, deleteReq, captureAllReq] = testApi
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2 of 2] Compiling Main
+[3 of 3] Linking /tmp/workdir-servant-foreign/servant-foreign-0.16/dist-newstyle/build/x86_64-linux/ghc-9.6.5/servant-foreign-0.16/t/spec/build/spec/spec

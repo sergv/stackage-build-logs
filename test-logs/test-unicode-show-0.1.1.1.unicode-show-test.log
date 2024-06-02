@@ -1,0 +1,47 @@
+Build profile: -w ghc-9.6.5 -O1
+In order, the following will be built (use -v for more details):
+ - unicode-show-0.1.1.1 (test:unicode-show-test) (ephemeral targets)
+Preprocessing test suite 'unicode-show-test' for unicode-show-0.1.1.1...
+Building test suite 'unicode-show-test' for unicode-show-0.1.1.1...
+Running 1 test suites...
+Test suite unicode-show-test: RUNNING...
+
+individual representations test
+  ushow "\1589\1576\1575\1581 \1575\1604\1582\1610\1585" == "صباح الخير" [✔]
+  ushow "\128518\128149>\955\\=\128024" == "😆💕>λ\\=🐘" [✔]
+  ushow "\28450\&6" == "漢6" [✔]
+  ushow " 7" == " 7" [✔]
+  ushow "\25913\n\34892" == "改\n行" [✔]
+  ushow "\19979\19968\31449\na\ri\ta\22269\38469\26426\22330" == "下一站\na\ri\ta国际机场" [✔]
+  ushow "\SOH\SO\&H" == "\SOH\SO\&H" [✔]
+  ushow "\"\"" == "\"\"" [✔]
+  ushow "\"" == "\"" [✔]
+  ushow "\"unterminated" == "\"unterminated" [✔]
+read . ushow == id
+  read . ushow == id, for String [✔]
+    +++ OK, passed 100 tests.
+  read . ushow == id, for Char [✔]
+    +++ OK, passed 100 tests.
+  read . ushow == id, for [(Char,())] [✔]
+    +++ OK, passed 100 tests.
+  read . read . ushow . ushow == id, for String [✔]
+    +++ OK, passed 100 tests.
+  read . ushow == id, for some crazy Unicode type: T試6験 [✔]
+    +++ OK, passed 100 tests.
+  read . ushow == id, for some crazy Unicode type: T試7験 [✔]
+    +++ OK, passed 100 tests.
+  read . ushow == id, for some crazy Unicode type: T試8験 [✔]
+    +++ OK, passed 100 tests.
+  read . ushow == id, for some crazy Unicode type: T試9験 [✔]
+    +++ OK, passed 100 tests.
+  read . ushow == id, for some crazy Unicode type: T試10験 [✔]
+    +++ OK, passed 100 tests.
+  read . ushow == id, for compound type [✔]
+    +++ OK, passed 100 tests.
+
+Finished in 0.2310 seconds
+20 examples, 0 failures
+Test suite unicode-show-test: PASS
+Test suite logged to:
+/tmp/workdir-unicode-show/unicode-show-0.1.1.1/dist-newstyle/build/x86_64-linux/ghc-9.6.5/unicode-show-0.1.1.1/t/unicode-show-test/test/unicode-show-0.1.1.1-unicode-show-test.log
+1 of 1 test suites (1 of 1 test cases) passed.
