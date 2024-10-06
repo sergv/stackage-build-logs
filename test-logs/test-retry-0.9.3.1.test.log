@@ -1,0 +1,104 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - retry-0.9.3.1 (test:test) (ephemeral targets)
+Preprocessing test suite 'test' for retry-0.9.3.1...
+Building test suite 'test' for retry-0.9.3.1...
+Running 1 test suites...
+Test suite test: RUNNING...
+retry
+  Control.Retry
+    recovering
+      recovering test without quadratic retry delay:                                 OK (0.79s)
+test: user interrupt
+          ✓ <interactive> passed 100 tests.
+      exception hierarchy semantics
+        does not catch async exceptions:                                             OK
+        recovers from custom exceptions:                                             OK (0.01s)
+        fails beyond policy using custom exceptions:                                 OK (0.01s)
+        recoverAll won't catch exceptions which are not decendants of SomeException: OK (0.02s)
+        does not recover from unhandled exceptions:                                  OK
+        recovers in presence of multiple handlers:                                   OK (0.01s)
+        general exceptions catch specific ones:                                      OK (0.01s)
+        (redundant) even general catchers don't go beyond policy:                    OK (0.01s)
+        rethrows in presence of failed exception casts:                              OK (0.01s)
+    Policy is a monoid
+      left identity:                                                                 OK
+          ✓ <interactive> passed 100 tests.
+      right identity:                                                                OK
+          ✓ <interactive> passed 100 tests.
+      associativity:                                                                 OK
+          ✓ <interactive> passed 100 tests.
+    retry status
+      passes the correct retry status each time:                                     OK
+    quadratic delay
+      recovering test with quadratic retry delay:                                    OK (0.16s)
+          ✓ <interactive> passed 100 tests.
+    policy transformers
+      always produces positive delay with positive constants (no rollover):          OK (0.02s)
+          ✓ <interactive> passed 100 tests.
+      positive, nonzero exponential backoff is always incrementing:                  OK (0.02s)
+          ✓ <interactive> passed 100 tests.
+    masking state
+      shouldn't change masking state in a recovered action:                          OK (0.25s)
+      should mask asynchronous exceptions in exception handlers:                     OK (0.25s)
+    capDelay
+      respects limitRetries:                                                         OK
+          ✓ <interactive> passed 100 tests.
+      does not allow any delays higher than the given delay:                         OK
+          ✓ <interactive> passed 100 tests.
+    limitRetriesByCumulativeDelay
+      never exceeds the given cumulative delay:                                      OK
+          ✓ <interactive> passed 100 tests.
+    overriding delay
+      actual delays don't exceed specified delays
+        retryingDynamic:                                                             OK (0.31s)
+            ✓ <interactive> passed 100 tests.
+        recoveringDynamic:                                                           OK (0.39s)
+            ✓ <interactive> passed 100 tests.
+    resumable
+      resumeRetrying
+        can resume:                                                                  OK
+      resumeRetryingDynamic
+        can resume:                                                                  OK
+      resumeRecovering
+        can resume:                                                                  OK
+      resumeRecoveringDynamic
+        can resume:                                                                  OK
+      resumeRecoverAll
+        can resume:                                                                  OK
+    retryOnError
+      passes in the error type:                                                      OK
+  UnliftIO.Retry
+    recovering
+      recovering test without quadratic retry delay:                                 OK (0.86s)
+test: user interrupt
+          ✓ <interactive> passed 100 tests.
+      exception hierarchy semantics
+        does not catch async exceptions:                                             OK
+        recovers from custom exceptions:                                             OK (0.01s)
+        fails beyond policy using custom exceptions:                                 OK (0.01s)
+        recoverAll won't catch exceptions which are not decendants of SomeException: OK (0.02s)
+        does not recover from unhandled exceptions:                                  OK
+        recovers in presence of multiple handlers:                                   OK (0.01s)
+        general exceptions catch specific ones:                                      OK (0.01s)
+        (redundant) even general catchers don't go beyond policy:                    OK (0.01s)
+        rethrows in presence of failed exception casts:                              OK (0.01s)
+    masking state
+      shouldn't change masking state in a recovered action:                          OK (0.25s)
+      should mask asynchronous exceptions in exception handlers:                     OK (0.25s)
+    quadratic delay
+      recovering test with quadratic retry delay:                                    OK (0.15s)
+          ✓ <interactive> passed 100 tests.
+    resumable
+      resumeRecovering
+        can resume:                                                                  OK
+      resumeRecoveringDynamic
+        can resume:                                                                  OK
+      resumeRecoverAll
+        can resume:                                                                  OK
+
+All 46 tests passed (3.89s)
+Test suite test: PASS
+Test suite logged to:
+/tmp/workdir-retry/retry-0.9.3.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/retry-0.9.3.1/t/test/test/retry-0.9.3.1-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

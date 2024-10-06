@@ -1,0 +1,85 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - servant-auth-server-0.4.9.0 (test:spec) (ephemeral targets)
+Preprocessing test suite 'spec' for servant-auth-server-0.4.9.0...
+Building test suite 'spec' for servant-auth-server-0.4.9.0...
+Running 1 test suites...
+Test suite spec: RUNNING...
+
+Servant.Auth.Server
+  The Auth combinator
+    returns a 401 if all authentications are Indefinite [✔]
+    succeeds if one authentication suceeds [✔]
+      +++ OK, passed 100 tests.
+    fails (403) if one authentication fails [‐]
+      # PENDING: Authentications don't yet fail, only are Indefinite
+    doesn't clobber pre-existing response headers [✔]
+      +++ OK, passed 100 tests.
+    Raw
+      gets the response body [✔]
+        +++ OK, passed 100 tests.
+      doesn't clobber pre-existing reponse headers [✔]
+        +++ OK, passed 100 tests.
+    Setting cookies
+      sets cookies that it itself accepts [✔]
+        +++ OK, passed 100 tests.
+      uses the Expiry from the configuration [✔]
+        +++ OK, passed 100 tests.
+      sets the token cookie as HttpOnly [✔]
+        +++ OK, passed 100 tests.
+  The Auth combinator
+    With XSRF check
+      fails if XSRF header and cookie don't match [✔]
+        +++ OK, passed 100 tests.
+      fails with no XSRF header or cookie [✔]
+        +++ OK, passed 100 tests.
+      succeeds if XSRF header and cookie match, and JWT is valid [✔]
+        +++ OK, passed 100 tests.
+      sets and clears the right cookies [✔]
+        +++ OK, passed 100 tests.
+    With no XSRF check for GET requests
+      succeeds with no XSRF header or cookie for GET [✔]
+        +++ OK, passed 100 tests.
+      fails with no XSRF header or cookie for POST [✔]
+        +++ OK, passed 100 tests.
+    With no XSRF check at all
+      succeeds with no XSRF header or cookie for GET [✔]
+        +++ OK, passed 100 tests.
+      succeeds with no XSRF header or cookie for POST [✔]
+        +++ OK, passed 100 tests.
+      sets and clears the right cookies [✔]
+        +++ OK, passed 100 tests.
+  The JWT combinator
+    fails if 'aud' does not match predicate [✔]
+      +++ OK, passed 100 tests.
+    succeeds if 'aud' does match predicate [✔]
+      +++ OK, passed 100 tests.
+    fails if 'nbf' is set to a future date [✔]
+      +++ OK, passed 100 tests.
+    fails if 'exp' is set to a past date [✔]
+      +++ OK, passed 100 tests.
+    succeeds if 'exp' is set to a future date [✔]
+      +++ OK, passed 100 tests.
+    fails if JWT is not signed [✔]
+      +++ OK, passed 100 tests.
+    fails if JWT does not use expected algorithm [‐]
+      # PENDING: Need https://github.com/frasertweedale/hs-jose/issues/19
+    fails if data is not valid JSON [✔]
+    suceeds as wreq's oauth2Bearer [✔]
+      +++ OK, passed 100 tests.
+  throwAll
+    works for plain values [✔]
+    works for function types [✔]
+      +++ OK, passed 100 tests.
+  The BasicAuth combinator
+    succeeds with the correct password and username [✔]
+    fails with non-existent user [✔]
+    fails with incorrect password [✔]
+    fails with no auth header [✔]
+
+Finished in 10.4404 seconds
+33 examples, 0 failures, 2 pending
+Test suite spec: PASS
+Test suite logged to:
+/tmp/workdir-servant-auth-server/servant-auth-server-0.4.9.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/servant-auth-server-0.4.9.0/t/spec/test/servant-auth-server-0.4.9.0-spec.log
+1 of 1 test suites (1 of 1 test cases) passed.

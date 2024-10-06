@@ -1,0 +1,46 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - boltzmann-samplers-0.1.1.0 (lib) (first run)
+Configuring library for boltzmann-samplers-0.1.1.0...
+Preprocessing library for boltzmann-samplers-0.1.1.0...
+Building library for boltzmann-samplers-0.1.1.0...
+[1 of 7] Compiling Boltzmann.Data.Common
+[2 of 7] Compiling Boltzmann.Data.Types
+[3 of 7] Compiling Boltzmann.Solver
+
+src/Boltzmann/Solver.hs:46:35: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+46 |   -> (forall a. (Mode a, Scalar a ~ R) => V.Vector a -> V.Vector a)
+   |                                   ^
+[4 of 7] Compiling Boltzmann.Data.Oracle
+
+src/Boltzmann/Data/Oracle.hs:380:35: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+380 |         phi' :: (Mode a, Scalar a ~ Double) => V.Vector a -> V.Vector a
+    |                                   ^
+[5 of 7] Compiling Boltzmann.Data.Data
+[6 of 7] Compiling Boltzmann.Data
+[7 of 7] Compiling Boltzmann.Species
+
+src/Boltzmann/Species.hs:43:20: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+43 |   type Scalar f :: *
+   |                    ^
+
+src/Boltzmann/Species.hs:93:47: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+93 |     phi' :: forall a. (AD.Mode a, AD.Scalar a ~ Double) => Endo (Vector a)
+   |                                               ^

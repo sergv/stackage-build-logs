@@ -1,0 +1,76 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - heatshrink-0.1.0.0 (lib) (first run)
+ - heatshrink-0.1.0.0 (test:heatshrink-test) (first run)
+Configuring library for heatshrink-0.1.0.0...
+Preprocessing library for heatshrink-0.1.0.0...
+Building library for heatshrink-0.1.0.0...
+[1 of 2] Compiling Codec.Compression.Heatshrink.Internal
+[2 of 2] Compiling Codec.Compression.Heatshrink
+
+src/Codec/Compression/Heatshrink.hs:89:10: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘d’ shadows the existing binding
+      bound at src/Codec/Compression/Heatshrink.hs:85:13
+   |
+89 |       go d bs acc = if bs == B.empty then
+   |          ^
+
+src/Codec/Compression/Heatshrink.hs:89:12: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘bs’ shadows the existing binding
+      bound at src/Codec/Compression/Heatshrink.hs:85:15
+   |
+89 |       go d bs acc = if bs == B.empty then
+   |            ^^
+
+src/Codec/Compression/Heatshrink.hs:95:38: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘rem’ shadows the existing binding
+      imported from ‘Prelude’ at src/Codec/Compression/Heatshrink.hs:5:8-35
+      (and originally defined in ‘GHC.Real’)
+   |
+95 |                                  let rem = B.drop n bs
+   |                                      ^^^
+
+src/Codec/Compression/Heatshrink.hs:124:20: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘d’ shadows the existing binding
+      bound at src/Codec/Compression/Heatshrink.hs:121:9
+    |
+124 |       pollAll' acc d sz = do
+    |                    ^
+
+src/Codec/Compression/Heatshrink.hs:124:22: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘sz’ shadows the existing binding
+      bound at src/Codec/Compression/Heatshrink.hs:121:11
+    |
+124 |       pollAll' acc d sz = do
+    |                      ^^
+Configuring test suite 'heatshrink-test' for heatshrink-0.1.0.0...
+Preprocessing test suite 'heatshrink-test' for heatshrink-0.1.0.0...
+Building test suite 'heatshrink-test' for heatshrink-0.1.0.0...
+[1 of 2] Compiling Codec.Compression.Heatshrink.Tests
+
+tests/Codec/Compression/Heatshrink/Tests.hs:42:1: warning: [GHC-62161] [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In an equation for ‘createTest’:
+        Patterns of type ‘[(String, [String])]’ not matched:
+            []
+            ((_, []):_)
+            ((_, [_]):_)
+            ((_, [_, _]):_)
+            ...
+   |
+42 | createTest [(f, [noext, dir, base, sw, sl])] = goldenVsFile f f dstFile (decodeFile params srcFile dstFile)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+tests/Codec/Compression/Heatshrink/Tests.hs:42:25: warning: [-Wunused-matches]
+    Defined but not used: ‘dir’
+   |
+42 | createTest [(f, [noext, dir, base, sw, sl])] = goldenVsFile f f dstFile (decodeFile params srcFile dstFile)
+   |                         ^^^
+
+tests/Codec/Compression/Heatshrink/Tests.hs:42:30: warning: [-Wunused-matches]
+    Defined but not used: ‘base’
+   |
+42 | createTest [(f, [noext, dir, base, sw, sl])] = goldenVsFile f f dstFile (decodeFile params srcFile dstFile)
+   |                              ^^^^
+[2 of 2] Compiling Main
+[3 of 3] Linking /tmp/workdir-heatshrink/heatshrink-0.1.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/heatshrink-0.1.0.0/t/heatshrink-test/build/heatshrink-test/heatshrink-test

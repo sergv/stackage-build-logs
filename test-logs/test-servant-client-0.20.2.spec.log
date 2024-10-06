@@ -1,0 +1,107 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - servant-client-0.20.2 (test:spec) (ephemeral targets)
+Preprocessing test suite 'spec' for servant-client-0.20.2...
+Building test suite 'spec' for servant-client-0.20.2...
+Running 1 test suites...
+Test suite spec: RUNNING...
+
+Servant.BasicAuth
+  Servant.BasicAuthSpec
+    Authentication works when requests are properly authenticated
+      Authenticates a BasicAuth protected server appropriately [✔]
+    Authentication is rejected when requests are not authenticated properly
+      Authenticates a BasicAuth protected server appropriately [✔]
+Servant.Broken
+  Servant.BrokenSpec
+    client returns errors for inconsistencies between client and server api
+      reports FailureResponse with wrong 2xx status code [✔]
+      reports FailureResponse with wrong 3xx status code [✔]
+Servant.ConnectionError
+  Servant.ConnectionErrorSpec
+    Servant.Client.ClientError
+      correctly catches ConnectionErrors when the HTTP request can't go through [✔]
+Servant.Fail
+  Servant.FailSpec
+    client returns errors appropriately
+      reports FailureResponse [✔]
+      reports DecodeFailure [✔]
+      reports ConnectionError [✔]
+      reports UnsupportedContentType [✔]
+      reports UnsupportedContentType when there are response headers [✔]
+      reports InvalidContentTypeHeader [✔]
+Servant.GenAuth
+  Servant.GenAuthSpec
+    Authentication works when requests are properly authenticated
+      Authenticates a AuthProtect protected server appropriately [✔]
+    Authentication is rejected when requests are not authenticated properly
+      Authenticates a AuthProtect protected server appropriately [✔]
+Servant.Generic
+  Servant.GenericSpec
+    Record clients work as expected
+      Client functions return expected values [✔]
+      Clients can be nested [✔]
+Servant.HoistClient
+  Servant.HoistClientSpec
+    Servant.Client.hoistClient
+      allows us to GET/POST/... requests in IO instead of ClientM [✔]
+Servant.Middleware
+  Raw request and response can be accessed in middleware [✔]
+  errors can be thrown in middleware [✔]
+  runs in the expected order [✔]
+Servant.Stream
+  Servant.Client.Streaming
+    works with Servant.API.StreamGet.Newline [✔]
+    works with Servant.API.StreamGet.Netstring [✔]
+    works with Servant.API.StreamBody [✔]
+Servant.Success
+  Servant.SuccessSpec
+    Servant.API.Get
+      get root endpoint [✔]
+      get simple endpoint [✔]
+      get redirection endpoint [✔]
+    Servant.API.Delete
+      allows empty content type [✔]
+      allows content type [✔]
+    Servant.API.Capture [✔]
+    Servant.API.CaptureAll [✔]
+    Servant.API.ReqBody [✔]
+    Servant.API FailureResponse [✔]
+    Servant.API.QueryParam [✔]
+    Servant.API.QueryParam.QueryParams [✔]
+    Servant.API.QueryParam.QueryFlag
+      False [✔]
+      True [✔]
+    Servant.API.QueryParam.QueryString [✔]
+    Servant.API.QueryParam.DeepQuery [✔]
+    Servant.API.Fragment [✔]
+    Servant.API.Raw on success [✔]
+    Servant.API.Raw should return a Left in case of failure [✔]
+    Returns headers appropriately [✔]
+    Returns headers on UVerb requests [✔]
+    Returns multiple Set-Cookie headers appropriately [✔]
+    Stores Cookie in CookieJar after a redirect [✔]
+    Can modify the outgoing Request using the ClientEnv [✔]
+    works for a combination of Capture, QueryParam, QueryFlag and ReqBody [✔]
+      +++ OK, passed 20 tests.
+    With a route that can either return success or redirect
+      Redirects when appropriate [✔]
+      Returns a proper response when appropriate [✔]
+    with a route that uses uverb but only has a single response
+      returns the expected response [✔]
+    encodes URL pieces following ToHttpApiData instance [✔]
+Servant.WrappedApi
+  Servant.WrappedApiSpec
+    error status codes
+      are correctly handled by the client
+        Delete [✔]
+        Get [✔]
+        Post [✔]
+        Put [✔]
+
+Finished in 0.4980 seconds
+54 examples, 0 failures
+Test suite spec: PASS
+Test suite logged to:
+/tmp/workdir-servant-client/servant-client-0.20.2/dist-newstyle/build/x86_64-linux/ghc-9.6.6/servant-client-0.20.2/t/spec/test/servant-client-0.20.2-spec.log
+1 of 1 test suites (1 of 1 test cases) passed.

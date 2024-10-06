@@ -1,0 +1,22 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - servant-auth-0.4.2.0 (lib) (first run)
+Configuring library for servant-auth-0.4.2.0...
+Preprocessing library for servant-auth-0.4.2.0...
+Building library for servant-auth-0.4.2.0...
+[1 of 2] Compiling Servant.Auth
+[2 of 2] Compiling Servant.Auth.JWT
+
+src/Servant/Auth/JWT.hs:27:44: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘unregisteredClaims’ (imported from Crypto.JWT):
+    Deprecated: "use a [subtype](#g:subtypes) to define additional claims"
+   |
+27 |   decodeJWT m = case KM.lookup "dat" (m ^. Jose.unregisteredClaims) of
+   |                                            ^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Servant/Auth/JWT.hs:40:17: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘addClaim’ (imported from Crypto.JWT):
+    Deprecated: "use a [subtype](#g:subtypes) to define additional claims"
+   |
+40 |   encodeJWT a = Jose.addClaim "dat" (toJSON a) Jose.emptyClaimsSet
+   |                 ^^^^^^^^^^^^^

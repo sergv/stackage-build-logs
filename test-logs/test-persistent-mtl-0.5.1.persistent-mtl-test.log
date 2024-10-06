@@ -1,0 +1,181 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - persistent-mtl-0.5.1 (test:persistent-mtl-test) (ephemeral targets)
+Preprocessing test suite 'persistent-mtl-test' for persistent-mtl-0.5.1...
+Building test suite 'persistent-mtl-test' for persistent-mtl-0.5.1...
+Running 1 test suites...
+Test suite persistent-mtl-test: RUNNING...
+persistent-mtl
+  Integration
+    Sqlite
+      withTransaction
+        it uses the same transaction:          OK
+        retries transactions:                  OK
+        throws error when retry hits limit:    OK
+        Runs retryCallback:                    OK
+      catchSqlTransaction
+        catches errors:                        OK
+        does not catch retry errors:           OK
+      Operations can be composed:              OK
+      Persistent API
+        get:                                   OK
+        getMany:                               OK
+        getJust:                               OK
+        getJustEntity:                         OK
+        getEntity:                             OK
+        belongsTo:                             OK
+        belongsToJust:                         OK
+        insert:                                OK
+        insert_:                               OK
+        insertMany:                            OK
+        insertMany_:                           OK
+        insertEntityMany:                      OK
+        insertKey:                             OK
+        repsert:                               OK
+        repsertMany:                           OK
+        replace:                               OK
+        delete:                                OK
+        update:                                OK
+        updateGet:                             OK
+        insertEntity:                          OK
+        insertRecord:                          OK
+        getBy:                                 OK
+        getByValue:                            OK
+        checkUnique:                           OK
+        checkUniqueUpdateable:                 OK
+        deleteBy:                              OK
+        insertUnique:                          OK
+        upsert:                                OK
+        upsertBy:                              OK
+        putMany:                               OK
+        insertBy:                              OK
+        insertUniqueEntity:                    OK
+        replaceUnique:                         OK
+        onlyUnique:                            OK
+        selectSourceRes:                       OK
+        selectFirst:                           OK
+        selectKeysRes:                         OK
+        count:                                 OK
+        exists:                                OK
+        selectSource:                          OK
+        selectKeys:                            OK
+        selectList:                            OK
+        selectKeysList:                        OK
+        updateWhere:                           OK
+        deleteWhere:                           OK
+        updateWhereCount:                      OK
+        deleteWhereCount:                      OK
+        parseMigration:                        OK
+        parseMigration':                       OK
+        printMigration:                        CREATE TEMP TABLE "person_backup"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL,"age" INTEGER NOT NULL,CONSTRAINT "unique_name" UNIQUE ("name"));
+INSERT INTO "person_backup"("id","name","age") SELECT "id","name","age" FROM "person";
+DROP TABLE "person";
+CREATE TABLE "person"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL,"age" INTEGER NOT NULL,CONSTRAINT "unique_name" UNIQUE ("name"));
+INSERT INTO "person" SELECT "id","name","age" FROM "person_backup";
+DROP TABLE "person_backup";
+OK
+        showMigration:                         OK
+        getMigration:                          OK
+        runMigration:                          Migrating: CREATE TEMP TABLE "person_backup"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL,"age" INTEGER NOT NULL,CONSTRAINT "unique_name" UNIQUE ("name"))
+Migrating: INSERT INTO "person_backup"("id","name","age") SELECT "id","name","age" FROM "person"
+Migrating: DROP TABLE "person"
+Migrating: CREATE TABLE "person"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL,"age" INTEGER NOT NULL,CONSTRAINT "unique_name" UNIQUE ("name"))
+Migrating: INSERT INTO "person" SELECT "id","name","age" FROM "person_backup"
+Migrating: DROP TABLE "person_backup"
+OK
+        runMigrationQuiet:                     OK
+        runMigrationSilent:                    OK
+        runMigrationUnsafe:                    Migrating: CREATE TEMP TABLE "person_backup"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL,"age" INTEGER NOT NULL,CONSTRAINT "unique_name" UNIQUE ("name"))
+Migrating: INSERT INTO "person_backup"("id","name","age") SELECT "id","name","age" FROM "person"
+Migrating: DROP TABLE "person"
+Migrating: CREATE TABLE "person"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL,"age" INTEGER NOT NULL,CONSTRAINT "unique_name" UNIQUE ("name"))
+Migrating: INSERT INTO "person" SELECT "id","name","age" FROM "person_backup"
+Migrating: DROP TABLE "person_backup"
+OK
+        runMigrationUnsafeQuiet:               OK
+        getFieldName:                          OK
+        getTableName:                          OK
+        withRawQuery:                          OK
+        rawQueryRes:                           OK
+        rawQuery:                              OK
+        rawExecute:                            OK
+        rawExecuteCount:                       OK
+        rawSql:                                OK
+        transactionSave:                       OK
+        transactionSaveWithIsolation:          OK
+        transactionUndo:                       OK
+        transactionUndoWithIsolation:          OK
+      Interop with third-party Persistent libraries
+        unsafeLiftSql:                         OK
+  Mocked
+    withTransaction
+      it doesn't error with MockSqlQueryT:     OK
+    MockSqlQueryT
+      it errors if it could not find a mock:   OK
+      it continues after a mock doesn't match: OK
+    Persistent API
+      get:                                     OK
+      getMany:                                 OK
+      getJust:                                 OK
+      getJustEntity:                           OK
+      getEntity:                               OK
+      belongsTo:                               OK
+      belongsToJust:                           OK
+      insert:                                  OK
+      insert_:                                 OK
+      insertMany:                              OK
+      insertMany_:                             OK
+      insertEntityMany:                        OK
+      insertKey:                               OK
+      repsert:                                 OK
+      repsertMany:                             OK
+      replace:                                 OK
+      delete:                                  OK
+      update:                                  OK
+      updateGet:                               OK
+      insertEntity:                            OK
+      insertRecord:                            OK
+      getBy:                                   OK
+      getByValue:                              OK
+      checkUnique:                             OK
+      checkUniqueUpdateable:                   OK
+      deleteBy:                                OK
+      insertUnique:                            OK
+      upsert:                                  OK
+      upsertBy:                                OK
+      putMany:                                 OK
+      insertBy:                                OK
+      insertUniqueEntity:                      OK
+      replaceUnique:                           OK
+      onlyUnique:                              OK
+      selectSourceRes:                         OK
+      selectFirst:                             OK
+      selectKeysRes:                           OK
+      count:                                   OK
+      exists:                                  OK
+      selectSource:                            OK
+      selectKeys:                              OK
+      selectList:                              OK
+      selectKeysList:                          OK
+      updateWhere:                             OK
+      deleteWhere:                             OK
+      updateWhereCount:                        OK
+      deleteWhereCount:                        OK
+      getFieldName:                            OK
+      getTableName:                            OK
+      withRawQuery:                            OK
+      rawQueryRes:                             OK
+      rawQuery:                                OK
+      rawExecute:                              OK
+      rawExecuteCount:                         OK
+      rawSql:                                  OK
+  README
+    withTransaction example works:             OK
+  SqlQueryRep
+    Show representation:                       OK
+
+All 137 tests passed (0.15s)
+Test suite persistent-mtl-test: PASS
+Test suite logged to:
+/tmp/workdir-persistent-mtl/persistent-mtl-0.5.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/persistent-mtl-0.5.1/t/persistent-mtl-test/test/persistent-mtl-0.5.1-persistent-mtl-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

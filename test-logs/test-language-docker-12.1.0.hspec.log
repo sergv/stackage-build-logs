@@ -1,0 +1,328 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - language-docker-12.1.0 (test:hspec) (ephemeral targets)
+Preprocessing test suite 'hspec' for language-docker-12.1.0...
+Building test suite 'hspec' for language-docker-12.1.0...
+Running 1 test suites...
+Test suite hspec: RUNNING...
+
+Language.Docker.Integration
+  parse file
+FROM foo:7-slim
+#  An extra space after the env value should be no problem
+ENV container="false container2=true"
+ENV A="a.sh" \
+    D="c B=installDBBinaries.sh"
+ENV X="\"Y\" Z"
+ENV DOG="Rex The Dog CAT=Top Cat"
+ENV DOCKER_TLS_CERTDIR=""
+ENV foo a="afoo bar bazqu\"z"
+ENV BASE_PATH="/var/spool/apt-mirror"
+    1.Dockerfile [✔]
+FROM scratch
+RUN set -ex; apt-get update; if ! which gpg; then apt-get install -y --no-install-recommends gnupg; fi; if ! gpg --version | grep -q '^gpg (GnuPG) 1\.'; then apt-get install -y --no-install-recommends dirmngr; fi; rm -rf /var/lib/apt/lists/*
+ONBUILD ENV RUNNER_CMD_EXEC="${RUNNER_CMD_EXEC:-java \$JAVA_OPTS -jar /runtime/server.jar \$JAR_OPTS}"
+ENV BUNDLE_WITHOUT="${bundle_without:-development test}"
+    2.Dockerfile [✔]
+# escape = `
+FROM debian:10
+RUN first cmd `
+ && second cmd
+    3.Dockerfile [✔]
+# syntax = docker/dockerfile:1.0
+# escape = `
+FROM debian:10
+RUN first cmd `
+ && second cmd `
+ && command C:\some\windows\style\path
+    4.Dockerfile [✔]
+#  this will prevent the pragma from taking effect
+# syntax = docker/dockerfile:1.0
+# escape = `
+FROM debian:10
+RUN first cmd \
+ && second cmd
+    5.Dockerfile [✔]
+  escape character detection logic
+    ensure the pretty printer respects escape pragmas [✔]
+    ensure escape character '\' is used as default [✔]
+    ensure the printer ignores escape pragmas in the wrong place [✔]
+  parse text
+    1.Dockerfile [✔]
+    2.Dockerfile [✔]
+    3.Dockerfile [✔]
+    4.Dockerfile [✔]
+    5.Dockerfile [✔]
+    1.Dockerfile crlf [✔]
+    2.Dockerfile crlf [✔]
+    3.Dockerfile crlf [✔]
+    4.Dockerfile crlf [✔]
+    5.Dockerfile crlf [✔]
+  parse utf encoded files with byte order mark
+    Dockerfile UTF-8 with BOM [✔]
+    Dockerfile UTF-16 Little Endian with BOM [✔]
+    Dockerfile UTF-16 Big Endian with BOM [✔]
+    Dockerfile UTF-32 Little Endian with BOM [✔]
+    Dockerfile UTF-32 Big Endian with BOM [✔]
+Language.Docker.ParseAdd
+  ADD
+    simple ADD [✔]
+    multifiles ADD [✔]
+    list of quoted files [✔]
+    with chown flag [✔]
+    with chmod flag [✔]
+    with link flag [✔]
+    with chown and chmod flag [✔]
+    with chown and chmod flag other order [✔]
+    with all flags [✔]
+    list of quoted files and chown [✔]
+Language.Docker.ParseCmd
+  parse CMD instructions
+    one line cmd [✔]
+    cmd over several lines [✔]
+    quoted command params [✔]
+    Parses commas correctly [✔]
+    parse exec style CMD with long broken lines [✔]
+    parse exec style CMD with long broken lines [✔]
+    parse exec style CMD with escaped characters [✔]
+    parse exec style CMD with windows style escaped characters [✔]
+Language.Docker.ParseCopy
+  regular Copy
+    simple COPY [✔]
+    multifiles COPY [✔]
+    list of quoted files [✔]
+    supports windows paths [✔]
+    does not get confused with trailing whitespace [✔]
+  Copy with flags
+    with chown flag [✔]
+    with chmod flag [✔]
+    with link flag [✔]
+    with from flag [✔]
+    with all flags [✔]
+    with all flags in different order [✔]
+  Copy with Heredocs
+    empty heredoc [✔]
+    foo heredoc [✔]
+    foo heredoc lowercase +extensions [✔]
+    foo heredoc single quoted marker [✔]
+    foo heredoc double quoted marker [✔]
+    foo heredoc +dash [✔]
+    foo heredoc single quoted marker +dash [✔]
+    foo heredoc double quoted marker +dash [✔]
+    multiple heredocs [✔]
+    multiple heredocs with single/double quotes and dash mixed [✔]
+    foo heredoc with line continuations [✔]
+Language.Docker.ParseExpose
+  parse EXPOSE
+    should handle number ports [✔]
+    should handle many number ports [✔]
+    should handle ports with protocol [✔]
+    should handle ports with protocol and variables [✔]
+    should handle port ranges [✔]
+    should handle udp port ranges [✔]
+    should handle one variable port ranges 1 [✔]
+    should handle one variable port ranges 2 [✔]
+    should handle two variables port ranges [✔]
+    should handle multiline variables [✔]
+    should fail with wrong protocol [✔]
+Language.Docker.ParseHealthcheck
+  parse HEALTHCHECK
+    parse healthcheck with interval [✔]
+    parse healthcheck with retries [✔]
+    parse healthcheck with timeout [✔]
+    parse healthcheck with start-period [✔]
+    parse healthcheck with all flags [✔]
+    parse healthcheck with no flags [✔]
+    fractional arguments to flags [✔]
+Language.Docker.ParsePragma
+  parse # pragma
+    # escape = \ [✔]
+    #escape=` [✔]
+    # escape=` [✔]
+    #escape =` [✔]
+    #escape= ` [✔]
+    # escape =` [✔]
+    #escape = ` [✔]
+    # escape = ` [✔]
+    # Escape = ` [✔]
+    # ESCAPE = ` [✔]
+    #syntax=docker/dockerfile:1.0 [✔]
+    # syntax=docker/dockerfile:1.0 [✔]
+    #syntax =docker/dockerfile:1.0 [✔]
+    #syntax= docker/dockerfile:1.0 [✔]
+    # syntax =docker/dockerfile:1.0 [✔]
+    #syntax = docker/dockerfile:1.0 [✔]
+    # syntax= docker/dockerfile:1.0 [✔]
+    # syntax = docker/dockerfile:1.0 [✔]
+    # Syntax = docker/dockerfile:1.0 [✔]
+    # SYNTAX = docker/dockerfile:1.0 [✔]
+Language.Docker.ParseRun
+  parse RUN instructions
+    escaped with space before [✔]
+    escaped linebreak, indented [✔]
+    does not choke on unmatched brackets [✔]
+    Distinguishes between text and a list [✔]
+    Accepts spaces inside the brackets [✔]
+  RUN with experimental flags
+    --mount=type=bind and target [✔]
+    --mount default to bind [✔]
+    --mount=type=bind all modifiers [✔]
+    --mount=type=cache with target [✔]
+    --mount=type=cache with all modifiers [✔]
+    --mount=type=tmpfs [✔]
+    --mount=type=ssh [✔]
+    --mount=type=ssh,required=false [✔]
+    --mount=type=ssh,required=False [✔]
+    --mount=type=secret,required=true [✔]
+    --mount=type=secret,required=True [✔]
+    --mount=type=ssh all modifiers [✔]
+    --mount=type=ssh all modifiers, required explicit [✔]
+    --mount=type=secret all modifiers [✔]
+    --mount=type=secret all modifiers, required explicit [✔]
+    --mount=type=cache uid/gid=$var [✔]
+    multiple --mount=type=cache flags [✔]
+    multiple different --mount flags [✔]
+    --network=none [✔]
+    --network=host [✔]
+    --network=default [✔]
+    --security=insecure [✔]
+    --security=sandbox [✔]
+    allows all flags [✔]
+  RUN with --mount flag and different ways to write ro/rw
+    --mount=type=bind,ro [✔]
+    --mount=type=bind,RO [✔]
+    --mount=type=bind,readonly [✔]
+    --mount=type=bind,Readonly [✔]
+    --mount=type=bind,ro=true [✔]
+    --mount=type=bind,RO=TRUE [✔]
+    --mount=type=bind,readonly=true [✔]
+    --mount=type=bind,Readonly=True [✔]
+    --mount=type=bind,ro=True [✔]
+    --mount=type=bind,readonly=True [✔]
+    --mount=type=bind,rw=false [✔]
+    --mount=type=bind,readwrite=false [✔]
+    --mount=type=bind,rw=False [✔]
+    --mount=type=bind,readwrite=False [✔]
+    --mount=type=bind,rw [✔]
+    --mount=type=bind,readwrite [✔]
+    --mount=type=bind,rw=true [✔]
+    --mount=type=bind,readwrite=true [✔]
+    --mount=type=bind,rw=True [✔]
+    --mount=type=bind,readwrite=True [✔]
+    --mount=type=bind,ro=false [✔]
+    --mount=type=bind,readonly=false [✔]
+    --mount=type=bind,ro=False [✔]
+    --mount=type=bind,readonly=False [✔]
+  parse RUN in heredocs format
+    foo heredoc [✔]
+    foo heredoc without newline at end [✔]
+    foo heredoc marker [✔]
+    foo heredoc quoted marker [✔]
+    foo heredoc single quoted marker [✔]
+    foo heredoc +dash [✔]
+    foo heredoc quoted +dash [✔]
+    foo heredoc single quoted +dash [✔]
+    multiline foo heredoc [✔]
+    heredoc with shebang/commend [✔]
+    empty heredoc [✔]
+    empty heredoc not followed by newline [✔]
+    evil heredoc [✔]
+    heredoc with redirection to file [✔]
+    heredoc to program stdin [✔]
+    heredoc to program stdin with redirect to file with '>' [✔]
+    heredoc to program stdin with redirect to file with '>>' [✔]
+    heredoc pipe to program [✔]
+    heredoc with line continuation in the heredoc [✔]
+    heredoc correct termination [✔]
+    heredoc correct termination without newline [✔]
+    heredoc no overzealous parsing [✔]
+    heredoc in command chain with escaped newlines after redirect [✔]
+    heredoc in command chain with escaped newlines before heredoc [✔]
+    heredoc in command chain with escaped newlines before and after heredoc [✔]
+Language.Docker.Parser
+  parse ARG
+    no default [✔]
+    no default with = [✔]
+    with default [✔]
+  parse FROM
+    parse untagged image [✔]
+    parse tagged image [✔]
+    parse digested image [✔]
+    parse digested image with tag [✔]
+    parse image with spaces at the end [✔]
+  parse aliased FROM
+    parse untagged image [✔]
+    parse tagged image [✔]
+    parse diggested image [✔]
+  parse FROM with platform
+    parse untagged image with platform [✔]
+    parse tagged image with platform [✔]
+  parse FROM with registry
+    registry without port [✔]
+    parse with port and tag [✔]
+    Not a registry if no TLD [✔]
+  parse LABEL
+    parse label [✔]
+    parse space separated label [✔]
+    parse quoted labels [✔]
+    parses multiline labels [✔]
+  parse ENV
+    parses unquoted pair [✔]
+    parse with space between key and value [✔]
+    parse with more then one (white)space between key and value [✔]
+    parse quoted value pair [✔]
+    parse multiple unquoted pairs [✔]
+    parse multiple quoted pairs [✔]
+    env works before cmd [✔]
+    parse with two spaces between [✔]
+    have envs on multiple lines [✔]
+    parses long env over multiple lines [✔]
+    parse single var list [✔]
+    parses many env lines with an equal sign in the value [✔]
+    parses many env lines in mixed style [✔]
+    parses many env with backslashes [✔]
+    parses env with % in them [✔]
+    parses env with % in them [✔]
+  parse SHELL
+    quoted shell params [✔]
+  parse MAINTAINER
+    maintainer of untagged scratch image [✔]
+    maintainer with mail [✔]
+    maintainer only mail after from [✔]
+  parse # comment 
+    multiple comments before run [✔]
+    multiple comments after run [✔]
+    empty comment [✔]
+    many escaped lines [✔]
+    accepts backslash inside string [✔]
+    tolerates spaces after a newline escape [✔]
+    Correctly joins blank lines starting with comments [✔]
+  syntax
+    should handle lowercase instructions (#7 - https://github.com/beijaflor-io/haskell-language-dockerfile/issues/7) [✔]
+Language.Docker.PrettyPrint
+  pretty print ADD
+    with just copy [✔]
+    with just chown [✔]
+    with just chmod [✔]
+    with just link [✔]
+    with chown, chmod and link [✔]
+  pretty print COPY
+    with just copy [✔]
+    with just chown [✔]
+    with just chmod [✔]
+    with just link [✔]
+    with source baseimage [✔]
+    with both chown and chmod [✔]
+    with all flags [✔]
+  pretty print # escape
+    # escape = \ [✔]
+    # escape = ` [✔]
+  pretty print # syntax
+    # syntax = docker/dockerfile:1.0 [✔]
+
+Finished in 0.0094 seconds
+242 examples, 0 failures
+Test suite hspec: PASS
+Test suite logged to:
+/tmp/workdir-language-docker/language-docker-12.1.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/language-docker-12.1.0/t/hspec/test/language-docker-12.1.0-hspec.log
+1 of 1 test suites (1 of 1 test cases) passed.

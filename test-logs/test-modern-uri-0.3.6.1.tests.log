@@ -1,0 +1,186 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - modern-uri-0.3.6.1 (test:tests) (ephemeral targets)
+Preprocessing test suite 'tests' for modern-uri-0.3.6.1...
+Building test suite 'tests' for modern-uri-0.3.6.1...
+Running 1 test suites...
+Test suite tests: RUNNING...
+
+Text.QQ
+  uri
+    works as an expression [✔]
+    works as a pattern [✔]
+  scheme
+    works as an expression [✔]
+    works as a pattern [✔]
+  host
+    works as an expression [✔]
+    works as a pattern [✔]
+  username
+    works as an expression [✔]
+    works as a pattern [✔]
+  password
+    works as an expression [✔]
+    works as a pattern [✔]
+  pathPiece
+    works as an expression [✔]
+    works as a pattern [✔]
+  queryKey
+    works as an expression [✔]
+    works as a pattern [✔]
+  queryValue
+    works as an expression [✔]
+    works as a pattern [✔]
+  fragment
+    works as an expression [✔]
+    works as a pattern [✔]
+Text.URI
+  mkURI
+    accepts valid URIs [✔]
+    accepts a URI with an underscore in host name [✔]
+    rejects invalid URIs [✔]
+  mkURIBs
+    accepts valid URIs [✔]
+  emptyURI
+    parsing of empty input produces emptyURI [✔]
+    rendering of emptyURI produces empty output
+      with render [✔]
+      with renderBs [✔]
+      with renderStr [✔]
+  makeAbsolute
+    when given URI already has scheme
+      returns that URI unchanged [✔]
+        +++ OK, passed 100 tests; 33 discarded.
+    when given URI has no scheme
+      sets the specified scheme [✔]
+        +++ OK, passed 100 tests; 345 discarded.
+  isPathAbsolute
+    when URI has authority component
+      returns True [✔]
+        +++ OK, passed 100 tests.
+    when URI has no authority component
+      return what is inside of Left in uriAuthority [✔]
+        +++ OK, passed 100 tests.
+  mkScheme
+    accepts valid schemes [✔]
+    rejects invalid schemes [✔]
+  mkHost
+    accepts valid IPv4 literals [✔]
+    accepts valid IPv6 literals [✔]
+    rejects invalid IPv6 literals [✔]
+    accepts valid IP future literals [✔]
+    rejects invalid IP future literals [✔]
+    accepts valid domain names [✔]
+    rejects invalid hosts [✔]
+  mkUsername
+    accepts valid usernames [✔]
+      +++ OK, passed 100 tests; 13 discarded.
+    rejects invalid usernames [✔]
+  mkPassword
+    lifts any text into password [✔]
+      +++ OK, passed 100 tests.
+  mkPathPiece
+    accepts valid path pieces [✔]
+      +++ OK, passed 100 tests; 13 discarded.
+    rejects invalid path pieces [✔]
+  mkQueryKey
+    accepts valid query keys [✔]
+      +++ OK, passed 100 tests; 13 discarded.
+    rejects invalid query keys [✔]
+  mkQueryValue
+    lifts any text into query value [✔]
+      +++ OK, passed 100 tests.
+  mkFragment
+    lifts any text into fragment [✔]
+      +++ OK, passed 100 tests.
+  parse and render
+    parser and render are consistent [✔]
+      +++ OK, passed 100 tests.
+  parseBs and renderBs
+    parser and render are consistent [✔]
+      +++ OK, passed 100 tests.
+  parse
+    rejects Unicode in scheme [✔]
+    rejects Unicode in host [✔]
+    rejects Unicode in path [✔]
+    parses URIs with sub-domains that look like IPv4 [✔]
+    parses URIs with empty authority [✔]
+    parses URIs with superfluous '&' before query parameters [✔]
+    treats gracefully percent-encoded sequences that are not UTF-8 encoded Text [✔]
+  render
+    sort of works [✔]
+    when URI has scheme
+      does not escape colon in path components [✔]
+    when URI is a network-path reference
+      does not escape colon in path components [✔]
+    when URI is a relative-path reference
+      escapes colon but only in the first path segment [✔]
+    when URI has no path
+      is rendered without trailing slash [✔]
+    when the scheme is mailto
+      does not escape @ in the path [✔]
+  renderBs
+    sort of works [✔]
+  renderStr
+    sort of works [✔]
+  relativeTo
+    when reference URI has no scheme
+      resolves reference path "g:h" [✔]
+      resolves reference path "g" [✔]
+      resolves reference path "./g" [✔]
+      resolves reference path "g/" [✔]
+      resolves reference path "/g" [✔]
+      resolves reference path "//g" [✔]
+      resolves reference path "?y" [✔]
+      resolves reference path "g?y" [✔]
+      resolves reference path "#s" [✔]
+      resolves reference path "g#s" [✔]
+      resolves reference path "g?y#s" [✔]
+      resolves reference path ";x" [✔]
+      resolves reference path "g;x" [✔]
+      resolves reference path "g;x?y#s" [✔]
+      resolves reference path "" [✔]
+      resolves reference path "." [✔]
+      resolves reference path "./" [✔]
+      resolves reference path ".." [✔]
+      resolves reference path "../" [✔]
+      resolves reference path "../g" [✔]
+      resolves reference path "../.." [✔]
+      resolves reference path "../../" [✔]
+      resolves reference path "../../g" [✔]
+      resolves reference path "../../../g" [✔]
+      resolves reference path "../../../../g" [✔]
+      resolves reference path "/./g" [✔]
+      resolves reference path "/../g" [✔]
+      resolves reference path "g." [✔]
+      resolves reference path ".g" [✔]
+      resolves reference path "g.." [✔]
+      resolves reference path "..g" [✔]
+      resolves reference path "./../g" [✔]
+      resolves reference path "./g/." [✔]
+      resolves reference path "g/./h" [✔]
+      resolves reference path "g/../h" [✔]
+      resolves reference path "g;x=1/./y" [✔]
+      resolves reference path "g;x=1/../y" [✔]
+      resolves reference path "g?y/./x" [✔]
+      resolves reference path "g?y/../x" [✔]
+      resolves reference path "g#s/./x" [✔]
+      resolves reference path "g#s/../x" [✔]
+    when reference URI has scheme
+      when the scheme is the same as the scheme of base URI
+        reference URI is preserved intact [✔]
+      when the scheme is different from the scheme of base URI
+        reference URI is preserved intact [✔]
+    when base URI has no scheme
+      returns Nothing [✔]
+        +++ OK, passed 100 tests; 345 discarded.
+    when base URI has scheme
+      the resulting URI always has scheme [✔]
+        +++ OK, passed 100 tests; 33 discarded.
+
+Finished in 0.1450 seconds
+110 examples, 0 failures
+Test suite tests: PASS
+Test suite logged to:
+/tmp/workdir-modern-uri/modern-uri-0.3.6.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/modern-uri-0.3.6.1/t/tests/test/modern-uri-0.3.6.1-tests.log
+1 of 1 test suites (1 of 1 test cases) passed.

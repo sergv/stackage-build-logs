@@ -1,0 +1,42 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - yesod-auth-hashdb-1.7.1.7 (test:integration) (ephemeral targets)
+Preprocessing test suite 'integration' for yesod-auth-hashdb-1.7.1.7...
+Building test suite 'integration' for yesod-auth-hashdb-1.7.1.7...
+Running 1 test suites...
+Test suite integration: RUNNING...
+Migrating: CREATE TABLE "user"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL,"password" VARCHAR NULL,CONSTRAINT "unique_user" UNIQUE ("name"))
+[Debug#SQL] CREATE TABLE "user"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL,"password" VARCHAR NULL,CONSTRAINT "unique_user" UNIQUE ("name")); []
+[Debug#SQL] INSERT INTO "user"("name","password") VALUES(?,?); [PersistText "paul",PersistText "sha256|17|uA9Cs19VG6I8vsbpFAWIVg==|zZjz0bXBD8xkmndYU5RjI6L5FH6Sj/8tDyPfjFBdaXU="]
+
+The home page
+  can be accessed [✔]
+The protected page
+  requires login [✔]
+[Debug#SQL] SELECT "id","name","password" FROM "user" WHERE "name"=?; [PersistText "paul"]
+[Debug#SQL] SELECT "id","name","password" FROM "user" WHERE "name"=?; [PersistText "paul"]
+[Debug#SQL] SELECT "id", "name", "password" FROM "user" WHERE "id"=? ; [PersistInt64 1]
+[Debug#SQL] SELECT "id", "name", "password" FROM "user" WHERE "id"=? ; [PersistInt64 1]
+  looks right after login by a valid user [✔]
+[Debug#SQL] SELECT "id","name","password" FROM "user" WHERE "name"=?; [PersistText "paul"]
+[Debug#SQL] SELECT "id","name","password" FROM "user" WHERE "name"=?; [PersistText "paul"]
+[Debug#SQL] SELECT "id", "name", "password" FROM "user" WHERE "id"=? ; [PersistInt64 1]
+  can't be accessed after login then logout [✔]
+Login
+[Debug#SQL] SELECT "id","name","password" FROM "user" WHERE "name"=?; [PersistText "paul"]
+  fails when incorrect password given [✔]
+[Debug#SQL] SELECT "id","name","password" FROM "user" WHERE "name"=?; [PersistText "xyzzy"]
+  fails when unknown user name given [✔]
+JSON Login
+  JSON access to protected page gives JSON object with auth URL [✔]
+  Custom loginHandler using submitRouteHashDB has correct URL in JSON [✔]
+[Debug#SQL] SELECT "id","name","password" FROM "user" WHERE "name"=?; [PersistText "paul"]
+[Debug#SQL] SELECT "id","name","password" FROM "user" WHERE "name"=?; [PersistText "paul"]
+  Sending JSON username and password produces JSON success message [✔]
+
+Finished in 0.3445 seconds
+9 examples, 0 failures
+Test suite integration: PASS
+Test suite logged to:
+/tmp/workdir-yesod-auth-hashdb/yesod-auth-hashdb-1.7.1.7/dist-newstyle/build/x86_64-linux/ghc-9.6.6/yesod-auth-hashdb-1.7.1.7/t/integration/test/yesod-auth-hashdb-1.7.1.7-integration.log
+1 of 1 test suites (1 of 1 test cases) passed.

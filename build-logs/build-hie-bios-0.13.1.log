@@ -1,0 +1,150 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - hie-bios-0.13.1 (lib) (first run)
+ - hie-bios-0.13.1 (test:parser-tests) (first run)
+ - hie-bios-0.13.1 (exe:hie-bios) (first run)
+ - hie-bios-0.13.1 (test:bios-tests) (first run)
+Configuring library for hie-bios-0.13.1...
+Preprocessing library for hie-bios-0.13.1...
+Building library for hie-bios-0.13.1...
+[ 1 of 16] Compiling HIE.Bios.Config.YAML
+[ 2 of 16] Compiling HIE.Bios.Config
+[ 3 of 16] Compiling HIE.Bios.Ghc.Gap
+
+src/HIE/Bios/Ghc/Gap.hs:134:1: warning: [-Wunused-imports]
+    The qualified import of ‘GHC.Driver.Main’ is redundant
+      except perhaps to import instances from ‘GHC.Driver.Main’
+    To import instances alone, use: import GHC.Driver.Main()
+    |
+134 | import qualified GHC.Driver.Main as G
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 4 of 16] Compiling HIE.Bios.Ghc.Doc
+
+src/HIE/Bios/Ghc/Doc.hs:17:1: warning: [-Wunused-imports]
+    The import of ‘GHC.Utils.Outputable’ is redundant
+      except perhaps to import instances from ‘GHC.Utils.Outputable’
+    To import instances alone, use: import GHC.Utils.Outputable()
+   |
+17 | import GHC.Utils.Outputable (PprStyle, SDoc, runSDoc, neverQualify, )
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 5 of 16] Compiling HIE.Bios.Ghc.Load
+
+src/HIE/Bios/Ghc/Load.hs:14:1: warning: [-Wdeprecations]
+    Module ‘Data.Text.Prettyprint.Doc’ is deprecated:
+      "Use \"Prettyprinter\" instead."
+   |
+14 | import Data.Text.Prettyprint.Doc
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/HIE/Bios/Ghc/Load.hs:22:1: warning: [-Wunused-imports]
+    The qualified import of ‘GHC.Driver.Make’ is redundant
+      except perhaps to import instances from ‘GHC.Driver.Make’
+    To import instances alone, use: import GHC.Driver.Make()
+   |
+22 | import qualified GHC.Driver.Make as G
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/HIE/Bios/Ghc/Load.hs:122:3: warning: [-Wunused-matches]
+    Defined but not used: ‘cur_time’
+    |
+122 |   cur_time <- getCurrentTime
+    |   ^^^^^^^^
+[ 6 of 16] Compiling HIE.Bios.Types
+
+src/HIE/Bios/Types.hs:16:1: warning: [-Wdeprecations]
+    Module ‘Data.Text.Prettyprint.Doc’ is deprecated:
+      "Use \"Prettyprinter\" instead."
+   |
+16 | import Data.Text.Prettyprint.Doc
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/HIE/Bios/Types.hs:186:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad (CradleLoadResultT m)’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+186 |   return = CradleLoadResultT . return . CradleSuccess
+    |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 7 of 16] Compiling HIE.Bios.Flags
+[ 8 of 16] Compiling HIE.Bios.Environment
+[ 9 of 16] Compiling HIE.Bios.Ghc.Api
+
+src/HIE/Bios/Ghc/Api.hs:17:1: warning: [-Wunused-imports]
+    The qualified import of ‘GHC.Driver.Make’ is redundant
+      except perhaps to import instances from ‘GHC.Driver.Make’
+    To import instances alone, use: import GHC.Driver.Make()
+   |
+17 | import qualified GHC.Driver.Make as G
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[10 of 16] Compiling HIE.Bios.Ghc.Logger
+
+src/HIE/Bios/Ghc/Logger.hs:64:1: warning: [GHC-62161] [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In an equation for ‘appendLogRef’:
+        Patterns of type ‘DynFlags’, ‘Gap.PprStyle’, ‘LogRef’, ‘LogFlags’,
+                         ‘MessageClass’, ‘SrcSpan’, ‘SDoc’ not matched:
+            _ _ (LogRef _) _ MCOutput _ _
+            _ _ (LogRef _) _ MCFatal _ _
+            _ _ (LogRef _) _ MCInteractive _ _
+            _ _ (LogRef _) _ MCDump _ _
+            ...
+   |
+64 | appendLogRef df style (LogRef ref)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+[11 of 16] Compiling HIE.Bios.Ghc.Check
+
+src/HIE/Bios/Ghc/Check.hs:17:1: warning: [-Wdeprecations]
+    Module ‘Data.Text.Prettyprint.Doc’ is deprecated:
+      "Use \"Prettyprinter\" instead."
+   |
+17 | import Data.Text.Prettyprint.Doc
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[12 of 16] Compiling HIE.Bios.Wrappers
+[13 of 16] Compiling HIE.Bios.Cradle
+
+src/HIE/Bios/Cradle.hs:146:4: warning: [-Wunused-top-binds]
+    Defined but not used: ‘cradleRoot’
+    |
+146 |  { cradleRoot :: FilePath
+    |    ^^^^^^^^^^
+
+src/HIE/Bios/Cradle.hs:147:4: warning: [-Wunused-top-binds]
+    Defined but not used: ‘resolvedCradles’
+    |
+147 |  , resolvedCradles :: [ResolvedCradle a] -- ^ In order of decreasing specificity
+    |    ^^^^^^^^^^^^^^^
+
+src/HIE/Bios/Cradle.hs:148:4: warning: [-Wunused-top-binds]
+    Defined but not used: ‘cradleProgramVersions’
+    |
+148 |  , cradleProgramVersions :: ProgramVersions
+    |    ^^^^^^^^^^^^^^^^^^^^^
+[14 of 16] Compiling HIE.Bios.Internal.Debug
+[15 of 16] Compiling HIE.Bios
+[16 of 16] Compiling Paths_hie_bios
+Configuring test suite 'parser-tests' for hie-bios-0.13.1...
+Preprocessing test suite 'parser-tests' for hie-bios-0.13.1...
+Building test suite 'parser-tests' for hie-bios-0.13.1...
+[1 of 1] Compiling Main
+[2 of 2] Linking /tmp/workdir-hie-bios/hie-bios-0.13.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/hie-bios-0.13.1/t/parser-tests/build/parser-tests/parser-tests
+Configuring executable 'hie-bios' for hie-bios-0.13.1...
+Preprocessing executable 'hie-bios' for hie-bios-0.13.1...
+Building executable 'hie-bios' for hie-bios-0.13.1...
+[1 of 2] Compiling Paths_hie_bios
+[2 of 2] Compiling Main
+
+exe/Main.hs:9:1: warning: [-Wdeprecations]
+    Module ‘Data.Text.Prettyprint.Doc’ is deprecated:
+      "Use \"Prettyprinter\" instead."
+  |
+9 | import Data.Text.Prettyprint.Doc
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[3 of 3] Linking /tmp/workdir-hie-bios/hie-bios-0.13.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/hie-bios-0.13.1/x/hie-bios/build/hie-bios/hie-bios
+Configuring test suite 'bios-tests' for hie-bios-0.13.1...
+Preprocessing test suite 'bios-tests' for hie-bios-0.13.1...
+Building test suite 'bios-tests' for hie-bios-0.13.1...
+[1 of 2] Compiling Utils
+[2 of 2] Compiling Main
+[3 of 3] Linking /tmp/workdir-hie-bios/hie-bios-0.13.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/hie-bios-0.13.1/t/bios-tests/build/bios-tests/bios-tests

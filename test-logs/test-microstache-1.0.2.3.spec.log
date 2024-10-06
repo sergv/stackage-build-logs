@@ -1,0 +1,108 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - microstache-1.0.2.3 (test:spec) (ephemeral targets)
+Preprocessing test suite 'spec' for microstache-1.0.2.3...
+Building test suite 'spec' for microstache-1.0.2.3...
+Running 1 test suites...
+Test suite spec: RUNNING...
+X
+  parseMustache
+    parses text:                                                   OK
+    when parsing a variable
+      with white space
+        parses escaped {{ variable }}:                             OK
+        parses unescaped {{{ variable }}}:                         OK
+        parses unescaped {{& variable }}:                          OK
+      without white space
+        parses escaped {{variable}}:                               OK
+        parses unescaped {{{variable}}}:                           OK
+        parses unescaped {{& variable }}:                          OK
+      allows '-' in variable names:                                OK
+      allows '_' in variable names:                                OK
+    when parsing a section
+      parses empty section:                                        OK
+      parses non-empty section:                                    OK
+    when parsing an inverted section
+      parses empty inverted section:                               OK
+      parses non-empty inverted section:                           OK
+    when parsing a partial
+      parses a partial with white space:                           OK
+      parses a partial without white space:                        OK
+      handles indented partial correctly:                          OK
+    when running into delimiter change
+      has effect:                                                  OK
+      handles whitespace just as well:                             OK
+      affects {{{s:                                                OK
+      parses two subsequent delimiter changes:                     OK
+      propagates delimiter change from a nested scope:             OK
+    when given malformed input
+      rejects unclosed tags:                                       OK
+      rejects unknown tags:                                        OK
+  renderMustache
+    leaves text block “as is”:                                     OK
+    renders escaped variables correctly:                           OK
+    renders unescaped variables “as is”:                           OK
+    when rendering a variable
+      warns when variable doesn't exist:                           OK
+      warns when variable is non-scalar:                           OK
+    when rendering a section
+      when the key is not present
+        warns with the correct warning:                            OK
+      when the key is not present inside a section
+        warns with the correct warning:                            OK
+      when the key is present
+        when the key is a “false” value
+          skips the Null value:                                    OK
+          skips false Boolean:                                     OK
+          skips empty list:                                        OK
+          skips empty object:                                      OK
+          skips empty string:                                      OK
+        when the key is a Boolean true
+          renders the section without interpolation:               OK
+        when the key is an object
+          uses it to render section once:                          OK
+        when the key is a singleton list
+          uses it to render section once:                          OK
+        when the key is a list of Boolean trues
+          renders the section as many times as there are elements: OK
+        when the key is a list of objects
+          renders the section many times changing context:         OK
+        when the key is a number
+          renders the section:                                     OK
+          uses the key as context:                                 OK
+        when the key is a non-empty string
+          renders the section:                                     OK
+          uses the key as context:                                 OK
+    when rendering an inverted section
+      when the key is not present
+        warns the correct warning:                                 OK
+      when the key is present
+        when the key is a “false” value
+          renders with Null value:                                 OK
+          renders with false Boolean:                              OK
+          renders with empty list:                                 OK
+          renders with empty object:                               OK
+        when the key is a “true” value
+          skips true Boolean:                                      OK
+          skips non-empty object:                                  OK
+          skips non-empty list:                                    OK
+    when rendering a partial
+      skips missing partial:                                       OK
+      renders partial correctly:                                   OK
+    when using dotted keys inside a section
+      it should be equivalent to access via one more section:      OK
+  Template instances
+    the Semigroup instance
+      the resulting template inherits focus of the left one:       OK
+      the resulting template merges caches with left bias:         OK
+  showKey
+    when the key has no elements in it
+      is rendered correctly:                                       OK
+    when the key has some elements
+      is rendered correctly:                                       OK
+
+All 59 tests passed (0.00s)
+Test suite spec: PASS
+Test suite logged to:
+/tmp/workdir-microstache/microstache-1.0.2.3/dist-newstyle/build/x86_64-linux/ghc-9.6.6/microstache-1.0.2.3/t/spec/test/microstache-1.0.2.3-spec.log
+1 of 1 test suites (1 of 1 test cases) passed.

@@ -1,0 +1,318 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - chan-0.0.4.1 (lib) (first run)
+ - chan-0.0.4.1 (test:chan-test) (first run)
+Configuring library for chan-0.0.4.1...
+Preprocessing library for chan-0.0.4.1...
+Building library for chan-0.0.4.1...
+[1 of 5] Compiling Control.Concurrent.Chan.Scope
+[2 of 5] Compiling Control.Concurrent.Chan.Typed
+[3 of 5] Compiling Control.Concurrent.STM.TChan.Typed
+[4 of 5] Compiling Control.Concurrent.Chan.Extra
+
+src/Control/Concurrent/Chan/Extra.hs:30:33: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+30 | class ChanScoped (c :: Scope -> * -> *) where
+   |                                 ^
+
+src/Control/Concurrent/Chan/Extra.hs:30:38: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+30 | class ChanScoped (c :: Scope -> * -> *) where
+   |                                      ^
+
+src/Control/Concurrent/Chan/Extra.hs:41:28: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+41 | class ChanExtra (inputC :: * -> *) (outputC :: * -> *)
+   |                            ^
+
+src/Control/Concurrent/Chan/Extra.hs:41:33: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+41 | class ChanExtra (inputC :: * -> *) (outputC :: * -> *)
+   |                                 ^
+
+src/Control/Concurrent/Chan/Extra.hs:41:48: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+41 | class ChanExtra (inputC :: * -> *) (outputC :: * -> *)
+   |                                                ^
+
+src/Control/Concurrent/Chan/Extra.hs:41:53: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+41 | class ChanExtra (inputC :: * -> *) (outputC :: * -> *)
+   |                                                     ^
+
+src/Control/Concurrent/Chan/Extra.hs:58:94: warning: [GHC-88464] [-Wpartial-type-signatures]
+    • Found type wildcard ‘_’ standing for ‘a’
+      Where: ‘a’ is a rigid type variable bound by
+               the type signature for:
+                 debounceStatic :: forall a.
+                                   DiffNanosec -> Chan a -> IO (Chan a, Async ())
+               at src/Control/Concurrent/Chan/Extra.hs:57:3-16
+    • In the second argument of ‘ChanRW’, namely ‘_’
+      In an expression type signature: ChanRW 'Read _
+      In the second argument of ‘debounceStatic’, namely
+        ‘(ChanRW outputChan :: ChanRW 'Read _)’
+    • Relevant bindings include
+        outputChan :: Chan a
+          (bound at src/Control/Concurrent/Chan/Extra.hs:57:32)
+        toWaitFurther :: DiffNanosec
+          (bound at src/Control/Concurrent/Chan/Extra.hs:57:18)
+        debounceStatic :: DiffNanosec -> Chan a -> IO (Chan a, Async ())
+          (bound at src/Control/Concurrent/Chan/Extra.hs:57:3)
+   |
+58 |     (ChanRW inputChan, t) <- debounceStatic toWaitFurther (ChanRW outputChan :: ChanRW 'Read _)
+   |                                                                                              ^
+
+src/Control/Concurrent/Chan/Extra.hs:61:94: warning: [GHC-88464] [-Wpartial-type-signatures]
+    • Found type wildcard ‘_’ standing for ‘a’
+      Where: ‘a’ is a rigid type variable bound by
+               the type signature for:
+                 throttleStatic :: forall a.
+                                   DiffNanosec -> Chan a -> IO (Chan a, Async ())
+               at src/Control/Concurrent/Chan/Extra.hs:60:3-16
+    • In the second argument of ‘ChanRW’, namely ‘_’
+      In an expression type signature: ChanRW 'Read _
+      In the second argument of ‘throttleStatic’, namely
+        ‘(ChanRW outputChan :: ChanRW 'Read _)’
+    • Relevant bindings include
+        outputChan :: Chan a
+          (bound at src/Control/Concurrent/Chan/Extra.hs:60:32)
+        toWaitFurther :: DiffNanosec
+          (bound at src/Control/Concurrent/Chan/Extra.hs:60:18)
+        throttleStatic :: DiffNanosec -> Chan a -> IO (Chan a, Async ())
+          (bound at src/Control/Concurrent/Chan/Extra.hs:60:3)
+   |
+61 |     (ChanRW inputChan, t) <- throttleStatic toWaitFurther (ChanRW outputChan :: ChanRW 'Read _)
+   |                                                                                              ^
+
+src/Control/Concurrent/Chan/Extra.hs:64:113: warning: [GHC-88464] [-Wpartial-type-signatures]
+    • Found type wildcard ‘_’ standing for ‘a’
+      Where: ‘a’ is a rigid type variable bound by
+               the type signature for:
+                 intersperseStatic :: forall a.
+                                      DiffNanosec
+                                      -> IO a -> Chan a -> IO (Chan a, Async (), Async ())
+               at src/Control/Concurrent/Chan/Extra.hs:63:3-19
+    • In the second argument of ‘ChanRW’, namely ‘_’
+      In an expression type signature: ChanRW 'Read _
+      In the third argument of ‘intersperseStatic’, namely
+        ‘(ChanRW outputChan :: ChanRW 'Read _)’
+    • Relevant bindings include
+        outputChan :: Chan a
+          (bound at src/Control/Concurrent/Chan/Extra.hs:63:36)
+        xM :: IO a (bound at src/Control/Concurrent/Chan/Extra.hs:63:33)
+        timeBetween :: DiffNanosec
+          (bound at src/Control/Concurrent/Chan/Extra.hs:63:21)
+        intersperseStatic :: DiffNanosec
+                             -> IO a -> Chan a -> IO (Chan a, Async (), Async ())
+          (bound at src/Control/Concurrent/Chan/Extra.hs:63:3)
+   |
+64 |     (ChanRW inputChan, writer, listener) <- intersperseStatic timeBetween xM (ChanRW outputChan :: ChanRW 'Read _)
+   |                                                                                                                 ^
+
+src/Control/Concurrent/Chan/Extra.hs:70:99: warning: [GHC-88464] [-Wpartial-type-signatures]
+    • Found type wildcard ‘_’ standing for ‘a’
+      Where: ‘a’ is a rigid type variable bound by
+               the type signature for:
+                 debounceStatic :: forall a.
+                                   DiffNanosec -> TChan a -> IO (TChan a, Async ())
+               at src/Control/Concurrent/Chan/Extra.hs:69:3-16
+    • In the second argument of ‘TChanRW’, namely ‘_’
+      In an expression type signature: TChanRW 'Read _
+      In the second argument of ‘debounceStatic’, namely
+        ‘(TChanRW outputTChan :: TChanRW 'Read _)’
+    • Relevant bindings include
+        outputTChan :: TChan a
+          (bound at src/Control/Concurrent/Chan/Extra.hs:69:32)
+        toWaitFurther :: DiffNanosec
+          (bound at src/Control/Concurrent/Chan/Extra.hs:69:18)
+        debounceStatic :: DiffNanosec -> TChan a -> IO (TChan a, Async ())
+          (bound at src/Control/Concurrent/Chan/Extra.hs:69:3)
+   |
+70 |     (TChanRW inputTChan, t) <- debounceStatic toWaitFurther (TChanRW outputTChan :: TChanRW 'Read _)
+   |                                                                                                   ^
+
+src/Control/Concurrent/Chan/Extra.hs:73:99: warning: [GHC-88464] [-Wpartial-type-signatures]
+    • Found type wildcard ‘_’ standing for ‘a’
+      Where: ‘a’ is a rigid type variable bound by
+               the type signature for:
+                 throttleStatic :: forall a.
+                                   DiffNanosec -> TChan a -> IO (TChan a, Async ())
+               at src/Control/Concurrent/Chan/Extra.hs:72:3-16
+    • In the second argument of ‘TChanRW’, namely ‘_’
+      In an expression type signature: TChanRW 'Read _
+      In the second argument of ‘throttleStatic’, namely
+        ‘(TChanRW outputTChan :: TChanRW 'Read _)’
+    • Relevant bindings include
+        outputTChan :: TChan a
+          (bound at src/Control/Concurrent/Chan/Extra.hs:72:32)
+        toWaitFurther :: DiffNanosec
+          (bound at src/Control/Concurrent/Chan/Extra.hs:72:18)
+        throttleStatic :: DiffNanosec -> TChan a -> IO (TChan a, Async ())
+          (bound at src/Control/Concurrent/Chan/Extra.hs:72:3)
+   |
+73 |     (TChanRW inputTChan, t) <- throttleStatic toWaitFurther (TChanRW outputTChan :: TChanRW 'Read _)
+   |                                                                                                   ^
+
+src/Control/Concurrent/Chan/Extra.hs:76:118: warning: [GHC-88464] [-Wpartial-type-signatures]
+    • Found type wildcard ‘_’ standing for ‘a’
+      Where: ‘a’ is a rigid type variable bound by
+               the type signature for:
+                 intersperseStatic :: forall a.
+                                      DiffNanosec
+                                      -> IO a -> TChan a -> IO (TChan a, Async (), Async ())
+               at src/Control/Concurrent/Chan/Extra.hs:75:3-19
+    • In the second argument of ‘TChanRW’, namely ‘_’
+      In an expression type signature: TChanRW 'Read _
+      In the third argument of ‘intersperseStatic’, namely
+        ‘(TChanRW outputTChan :: TChanRW 'Read _)’
+    • Relevant bindings include
+        outputTChan :: TChan a
+          (bound at src/Control/Concurrent/Chan/Extra.hs:75:36)
+        xM :: IO a (bound at src/Control/Concurrent/Chan/Extra.hs:75:33)
+        timeBetween :: DiffNanosec
+          (bound at src/Control/Concurrent/Chan/Extra.hs:75:21)
+        intersperseStatic :: DiffNanosec
+                             -> IO a -> TChan a -> IO (TChan a, Async (), Async ())
+          (bound at src/Control/Concurrent/Chan/Extra.hs:75:3)
+   |
+76 |     (TChanRW inputTChan, writer, listener) <- intersperseStatic timeBetween xM (TChanRW outputTChan :: TChanRW 'Read _)
+   |                                                                                                                      ^
+[5 of 5] Compiling Paths_chan
+Configuring test suite 'chan-test' for chan-0.0.4.1...
+Preprocessing test suite 'chan-test' for chan-0.0.4.1...
+Building test suite 'chan-test' for chan-0.0.4.1...
+[1 of 2] Compiling Main
+
+test/Spec.hs:22:5: warning: [GHC-18042] [-Wtype-defaults]
+    • Defaulting the type variable ‘a0’ to type ‘Integer’ in the following constraints
+        (Show a0) arising from a use of ‘print’ at test/Spec.hs:22:5-9
+        (Num a0) arising from the literal ‘1’ at test/Spec.hs:26:22
+    • In a stmt of a 'do' block: print x
+      In the second argument of ‘($)’, namely
+        ‘do x <- readChan outgoing
+            print x
+            putMVar lock ()’
+      In the second argument of ‘($)’, namely
+        ‘forever
+           $ do x <- readChan outgoing
+                print x
+                putMVar lock ()’
+   |
+22 |     print x
+   |     ^^^^^
+
+test/Spec.hs:48:5: warning: [GHC-18042] [-Wtype-defaults]
+    • Defaulting the type variable ‘a0’ to type ‘Integer’ in the following constraints
+        (Show a0) arising from a use of ‘print’ at test/Spec.hs:48:5-9
+        (Num a0) arising from the literal ‘1’ at test/Spec.hs:52:22
+    • In a stmt of a 'do' block: print x
+      In the second argument of ‘($)’, namely
+        ‘do x <- readChan outgoing
+            print x
+            writeChan lock ()’
+      In the second argument of ‘($)’, namely
+        ‘forever
+           $ do x <- readChan outgoing
+                print x
+                writeChan lock ()’
+   |
+48 |     print x
+   |     ^^^^^
+
+test/Spec.hs:74:5: warning: [GHC-18042] [-Wtype-defaults]
+    • Defaulting the type variable ‘a0’ to type ‘Integer’ in the following constraints
+        (Show a0) arising from a use of ‘print’ at test/Spec.hs:74:5-9
+        (Num a0) arising from the literal ‘0’ at test/Spec.hs:68:55
+    • In a stmt of a 'do' block: print x
+      In the second argument of ‘($)’, namely
+        ‘do x <- readChan outgoing
+            print x
+            putMVar lock ()’
+      In the second argument of ‘($)’, namely
+        ‘forever
+           $ do x <- readChan outgoing
+                print x
+                putMVar lock ()’
+   |
+74 |     print x
+   |     ^^^^^
+
+test/Spec.hs:105:5: warning: [GHC-18042] [-Wtype-defaults]
+    • Defaulting the type variable ‘a0’ to type ‘Integer’ in the following constraints
+        (Show a0) arising from a use of ‘print’ at test/Spec.hs:105:5-9
+        (Num a0) arising from the literal ‘1’ at test/Spec.hs:109:36
+    • In a stmt of a 'do' block: print x
+      In the second argument of ‘($)’, namely
+        ‘do x <- atomically $ readTChan outgoing
+            print x
+            atomically $ putTMVar lock ()’
+      In the second argument of ‘($)’, namely
+        ‘forever
+           $ do x <- atomically $ readTChan outgoing
+                print x
+                atomically $ putTMVar lock ()’
+    |
+105 |     print x
+    |     ^^^^^
+
+test/Spec.hs:131:5: warning: [GHC-18042] [-Wtype-defaults]
+    • Defaulting the type variable ‘a0’ to type ‘Integer’ in the following constraints
+        (Show a0) arising from a use of ‘print’ at test/Spec.hs:131:5-9
+        (Num a0) arising from the literal ‘1’ at test/Spec.hs:135:36
+    • In a stmt of a 'do' block: print x
+      In the second argument of ‘($)’, namely
+        ‘do x <- atomically $ readTChan outgoing
+            print x
+            atomically $ writeTChan lock ()’
+      In the second argument of ‘($)’, namely
+        ‘forever
+           $ do x <- atomically $ readTChan outgoing
+                print x
+                atomically $ writeTChan lock ()’
+    |
+131 |     print x
+    |     ^^^^^
+
+test/Spec.hs:158:5: warning: [GHC-18042] [-Wtype-defaults]
+    • Defaulting the type variable ‘a0’ to type ‘Integer’ in the following constraints
+        (Show a0) arising from a use of ‘print’ at test/Spec.hs:158:5-9
+        (Num a0) arising from the literal ‘0’ at test/Spec.hs:152:55
+    • In a stmt of a 'do' block: print x
+      In the second argument of ‘($)’, namely
+        ‘do x <- atomically $ readTChan outgoing
+            print x
+            atomically $ putTMVar lock ()’
+      In the second argument of ‘($)’, namely
+        ‘forever
+           $ do x <- atomically $ readTChan outgoing
+                print x
+                atomically $ putTMVar lock ()’
+    |
+158 |     print x
+    |     ^^^^^
+[2 of 2] Compiling Paths_chan
+[3 of 3] Linking /tmp/workdir-chan/chan-0.0.4.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/chan-0.0.4.1/t/chan-test/build/chan-test/chan-test

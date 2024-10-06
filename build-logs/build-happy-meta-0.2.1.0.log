@@ -1,0 +1,50 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - happy-meta-0.2.1.0 (lib) (first run)
+Configuring library for happy-meta-0.2.1.0...
+Preprocessing library for happy-meta-0.2.1.0...
+Building library for happy-meta-0.2.1.0...
+[ 1 of 18] Compiling AbsSyn
+[ 2 of 18] Compiling GenUtils
+[ 3 of 18] Compiling NameSet
+[ 4 of 18] Compiling ParamRules
+[ 5 of 18] Compiling ParseMonad
+
+src/ParseMonad.lhs:30:9: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad P’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+30 | >       return m = P $ \ _ _ -> OkP m
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/ParseMonad.lhs:43:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative P’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+43 | >   pure = return
+   |     ^^^^^^^^^^^^^
+[ 6 of 18] Compiling Lexer
+[ 7 of 18] Compiling AttrGrammar
+[ 8 of 18] Compiling AttrGrammarParser
+[ 9 of 18] Compiling Grammar
+[10 of 18] Compiling LALR
+[11 of 18] Compiling First
+[12 of 18] Compiling Parser
+[13 of 18] Compiling ProduceGLRCode
+[14 of 18] Compiling Target
+[15 of 18] Compiling ProduceCode
+[16 of 18] Compiling Text.Happy
+
+src/Text/Happy.hs:33:15: warning: [GHC-94817] [-Wtabs]
+    Tab character found here, and in 91 further locations.
+    Suggested fix: Please use spaces instead.
+   |
+33 |         items2  = {-# SCC "Merge" #-} (mergeLookaheadInfo la sets)
+   |               ^^
+[17 of 18] Compiling Text.Happy.HappyTemplate
+[18 of 18] Compiling Text.Happy.Quote

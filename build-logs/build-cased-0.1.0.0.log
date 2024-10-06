@@ -1,0 +1,43 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - cased-0.1.0.0 (lib) (first run)
+Warning: cased.cabal:26:3: The field "other-extensions" is available only
+since the Cabal specification version 1.10.
+Configuring library for cased-0.1.0.0...
+Preprocessing library for cased-0.1.0.0...
+Building library for cased-0.1.0.0...
+[1 of 1] Compiling Data.Cased
+
+Data/Cased.hs:47:31: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+47 | type family IsLowerCased a :: *
+   |                               ^
+
+Data/Cased.hs:48:31: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+48 | type family IsUpperCased a :: *
+   |                               ^
+
+Data/Cased.hs:64:41: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+64 | upperCased :: (Casing b, IsUpperCased a ~ No) => Cased a b -> Cased Upper b
+   |                                         ^
+
+Data/Cased.hs:67:41: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+67 | lowerCased :: (Casing b, IsLowerCased a ~ No) => Cased a b -> Cased Lower b
+   |                                         ^

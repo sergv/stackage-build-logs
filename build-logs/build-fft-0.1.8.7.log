@@ -1,0 +1,81 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - fft-0.1.8.7 (lib) (first run)
+ - fft-0.1.8.7 (test:test-fft) (first run)
+Configuring library for fft-0.1.8.7...
+Preprocessing library for fft-0.1.8.7...
+Building library for fft-0.1.8.7...
+[1 of 5] Compiling Math.FFT.FFI
+[2 of 5] Compiling Math.FFT.Base
+
+src/Math/FFT/Base.hs:20:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+20 | import Control.Applicative ((<$>))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Math/FFT/Base.hs:422:37: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction: Patterns of type ‘[a]’ not matched: []
+    |
+422 | adjust f i = uncurry (++) . second (\(x:xs) -> f x : xs) . splitAt i
+    |                                     ^^^^^^^^^^^^^^^^^^^
+[3 of 5] Compiling Math.FFT
+[4 of 5] Compiling Math.FFT.Mask
+
+src/Math/FFT/Mask.hs:16:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+16 | import Control.Applicative (liftA2)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Math/FFT/Mask.hs:93:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘(([IODim], Complex), [IODim])’ not matched:
+            (([], _), _)
+   |
+93 |          (\((d:dims, Complex), hdims) ->
+   |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+[5 of 5] Compiling Math.FFT.MaskTF
+
+src/Math/FFT/MaskTF.hs:17:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+17 | import Control.Applicative (Applicative, liftA2)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Math/FFT/MaskTF.hs:67:23: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+67 |    (Combine typ0 typ1 ~ typ0) =>
+   |                       ^
+
+src/Math/FFT/MaskTF.hs:72:23: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+72 |    (Combine typ0 typ1 ~ typ1) =>
+   |                       ^
+
+src/Math/FFT/MaskTF.hs:77:23: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+77 |    (Combine typ0 typ1 ~ Invalid) =>
+   |                       ^
+Configuring test suite 'test-fft' for fft-0.1.8.7...
+Preprocessing test suite 'test-fft' for fft-0.1.8.7...
+Building test suite 'test-fft' for fft-0.1.8.7...
+[1 of 1] Compiling Main
+[2 of 2] Linking /tmp/workdir-fft/fft-0.1.8.7/dist-newstyle/build/x86_64-linux/ghc-9.6.6/fft-0.1.8.7/t/test-fft/build/test-fft/test-fft

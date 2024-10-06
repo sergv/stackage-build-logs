@@ -1,0 +1,317 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - snap-core-1.0.5.1 (lib) (first run)
+ - snap-core-1.0.5.1 (test:testsuite) (first run)
+Configuring library for snap-core-1.0.5.1...
+Preprocessing library for snap-core-1.0.5.1...
+Building library for snap-core-1.0.5.1...
+[ 1 of 18] Compiling Snap.Internal.Debug
+[ 2 of 18] Compiling Snap.Types.Headers
+[ 3 of 18] Compiling Snap.Internal.Http.Types
+[ 4 of 18] Compiling Snap.Internal.Test.Assertions
+[ 5 of 18] Compiling Snap.Internal.Parsing
+[ 6 of 18] Compiling Snap.Internal.Core
+[ 7 of 18] Compiling Snap.Internal.Routing
+
+src/Snap/Internal/Routing.hs:28:1: warning: [-Wunused-imports]
+    The import of ‘Data.Semigroup’ is redundant
+      except perhaps to import instances from ‘Data.Semigroup’
+    To import instances alone, use: import Data.Semigroup()
+   |
+28 | import           Data.Semigroup           (Semigroup (..))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 8 of 18] Compiling Snap.Internal.Instances
+[ 9 of 18] Compiling Snap.Core
+[10 of 18] Compiling Snap.Internal.Util.FileUploads
+[11 of 18] Compiling Snap.Internal.Util.FileServe
+[12 of 18] Compiling Snap.Internal.Test.RequestBuilder
+[13 of 18] Compiling Snap.Test
+[14 of 18] Compiling Snap.Util.CORS
+[15 of 18] Compiling Snap.Util.FileServe
+[16 of 18] Compiling Snap.Util.FileUploads
+[17 of 18] Compiling Snap.Util.GZip
+[18 of 18] Compiling Snap.Util.Proxy
+Configuring test suite 'testsuite' for snap-core-1.0.5.1...
+Preprocessing test suite 'testsuite' for snap-core-1.0.5.1...
+Building test suite 'testsuite' for snap-core-1.0.5.1...
+[ 1 of 31] Compiling Snap.Internal.Debug
+[ 2 of 31] Compiling Snap.Test.Common
+[ 3 of 31] Compiling Snap.Types.Headers
+[ 4 of 31] Compiling Snap.Internal.Http.Types
+[ 5 of 31] Compiling Snap.Internal.Test.Assertions
+[ 6 of 31] Compiling Snap.Internal.Parsing
+[ 7 of 31] Compiling Snap.Internal.Parsing.Tests
+
+test/Snap/Internal/Parsing/Tests.hs:53:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe [Cookie]’ not matched:
+            Nothing
+            Just []
+            Just (_:_:_)
+   |
+53 |         let (Just [c]) = cv2
+   |             ^^^^^^^^^^^^^^^^
+
+test/Snap/Internal/Parsing/Tests.hs:156:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Either
+                            String
+                            bytestring-0.11.5.3:Data.ByteString.Internal.Type.ByteString’ not matched:
+            Right _
+    |
+156 |     let (Left a) = fullyParse "foo" ((string "bar" <?> "foo") <?> "bar")
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/Snap/Internal/Parsing/Tests.hs:157:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Either
+                            String ghc-prim:GHC.Types.Any’ not matched:
+            Right _
+    |
+157 |     let (Left b) = fullyParse "foo" (fail "bar")
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/Snap/Internal/Parsing/Tests.hs:158:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Either
+                            String
+                            bytestring-0.11.5.3:Data.ByteString.Internal.Type.ByteString’ not matched:
+            Right _
+    |
+158 |     let (Left c) = fullyParse "aaaaa" (many (char 'a') >> string "b")
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/Snap/Internal/Parsing/Tests.hs:160:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Either
+                            String
+                            bytestring-0.11.5.3:Data.ByteString.Internal.Type.ByteString’ not matched:
+            Right _
+    |
+160 |     let (Left d) = fullyParse' (const f) (const f) "aaaaa" (string "b")
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/Snap/Internal/Parsing/Tests.hs:161:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe [Char]’ not matched:
+            Nothing
+            Just []
+            Just (p:_) where p is not one of {'a'}
+            Just ['a']
+            ...
+    |
+161 |     let e@(Just "aaaa") = parseToCompletion (many (char 'a')) "aaaa"
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/Snap/Internal/Parsing/Tests.hs:162:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Either
+                            String
+                            bytestring-0.11.5.3:Data.ByteString.Internal.Type.ByteString’ not matched:
+            Right _
+    |
+162 |     let (Left g) = fullyParse "\x09" crlf
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/Snap/Internal/Parsing/Tests.hs:163:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘IResult
+                            bytestring-0.11.5.3:Data.ByteString.Internal.Type.ByteString
+                            Int’ not matched:
+            Fail _ _ _
+            Partial _
+            Done _ p where p is not one of {0}
+    |
+163 |     let (Done z (0::Int)) = finish $! Partial $! \s ->
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+[ 8 of 31] Compiling Snap.Internal.Core
+[ 9 of 31] Compiling Snap.Internal.Routing
+
+src/Snap/Internal/Routing.hs:28:1: warning: [-Wunused-imports]
+    The import of ‘Data.Semigroup’ is redundant
+      except perhaps to import instances from ‘Data.Semigroup’
+    To import instances alone, use: import Data.Semigroup()
+   |
+28 | import           Data.Semigroup           (Semigroup (..))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[10 of 31] Compiling Snap.Internal.Instances
+[11 of 31] Compiling Snap.Core
+[12 of 31] Compiling Snap.Internal.Util.FileUploads
+[13 of 31] Compiling Snap.Internal.Util.FileServe
+[14 of 31] Compiling Snap.Internal.Test.RequestBuilder
+[15 of 31] Compiling Snap.Test
+[16 of 31] Compiling Snap.Internal.Routing.Tests
+[17 of 31] Compiling Snap.Internal.Http.Types.Tests
+
+test/Snap/Internal/Http/Types/Tests.hs:155:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[bytestring-0.11.5.3:Data.ByteString.Internal.Type.ByteString]’ not matched:
+            []
+            [_]
+            [_, _]
+            (_:_:_:_:_)
+    |
+155 |     let [b0, b1, b2] = map cookieToBS [cookie0, cookie1, cookie2]
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[18 of 31] Compiling Snap.Core.Tests
+
+test/Snap/Core/Tests.hs:435:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Either
+                            Response ghc-prim:GHC.Types.Any’ not matched:
+            Right _
+    |
+435 |     let (Left resp) = x
+    |         ^^^^^^^^^^^^^^^
+
+test/Snap/Core/Tests.hs:441:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Either Response ()’ not matched: Left _
+    |
+441 |     let (Right val) = y
+    |         ^^^^^^^^^^^^^^^
+[19 of 31] Compiling Snap.Types.Headers.Tests
+[20 of 31] Compiling Snap.Util.CORS
+[21 of 31] Compiling Snap.Util.CORS.Tests
+[22 of 31] Compiling Snap.Util.FileServe
+[23 of 31] Compiling Snap.Util.FileServe.Tests
+[24 of 31] Compiling Snap.Util.FileUploads
+[25 of 31] Compiling Snap.Test.Tests
+
+test/Snap/Test/Tests.hs:21:1: warning: [-Wunused-imports]
+    The import of ‘Request(rqContentLength), Request(rqContextPath),
+                   Request(rqIsSecure), Request(rqMethod), Request(rqParams),
+                   Request(rqPathInfo), Request(rqPostParams), Request(rqQueryParams),
+                   Request(rqQueryString), Request(rqURI), Request(rqVersion)’
+    from module ‘Snap.Core’ is redundant
+   |
+21 | import           Snap.Core                         (Cookie (Cookie, cookieExpires), Method (DELETE, GET, HEAD, Method, PATCH, POST, PUT), Request (rqContentLength, rqContextPath, rqIsSecure, rqMethod, rqParams, rqPathInfo, rqPostParams, rqQueryParams, rqQueryString, rqURI, rqVersion), Snap, expireCookie, extendTimeout, getCookie, getHeader, getParam, logError, readCookie, redirect, runSnap, terminateConnection, writeBS)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[26 of 31] Compiling Snap.Util.FileUploads.Tests
+
+test/Snap/Util/FileUploads/Tests.hs:93:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[Snap.Internal.Util.FileUploads.FormParam]’ not matched:
+            []
+            [_]
+            (_:_:_:_)
+   |
+93 |         let [p1, p2] = params
+   |             ^^^^^^^^^^^^^^^^^
+
+test/Snap/Util/FileUploads/Tests.hs:96:17: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe
+                            (ByteString, ByteString, H.Headers)’ not matched:
+            Nothing
+   |
+96 |             let Just (a1, a2, a3) = Map.lookup "file1.txt" fileMap
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/Snap/Util/FileUploads/Tests.hs:97:17: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe
+                            (ByteString, ByteString, H.Headers)’ not matched:
+            Nothing
+   |
+97 |             let Just (b1, b2, b3) = Map.lookup "file2.gif" fileMap
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/Snap/Util/FileUploads/Tests.hs:214:14: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[FormFile L.ByteString]’ not matched:
+            []
+            [_]
+            (_:_:_:_)
+    |
+214 |          let [f1, f2] = files
+    |              ^^^^^^^^^^^^^^^^
+
+test/Snap/Util/FileUploads/Tests.hs:255:18: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[FormFile FilePath]’ not matched:
+            []
+            [(FormFile _ _)]
+            ((FormFile _ _):(FormFile _ _):_:_)
+    |
+255 |              let [FormFile name1 fn1, FormFile name2 fn2] = files
+    |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/Snap/Util/FileUploads/Tests.hs:287:18: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[FormFile FilePath]’ not matched:
+            []
+            [(FormFile _ _)]
+            ((FormFile _ _):(FormFile _ _):_:_)
+    |
+287 |              let [FormFile _ fn1, FormFile _ fn2] = files
+    |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/Snap/Util/FileUploads/Tests.hs:314:17: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe
+                            (ByteString, ByteString, H.Headers)’ not matched:
+            Nothing
+    |
+314 |             let Just (a1, a2, a3) = Map.lookup "file1.txt" fileMap
+    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/Snap/Util/FileUploads/Tests.hs:315:17: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe
+                            (ByteString, ByteString, H.Headers)’ not matched:
+            Nothing
+    |
+315 |             let Just (b1, b2, b3) = Map.lookup "file2.gif" fileMap
+    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/Snap/Util/FileUploads/Tests.hs:531:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Either e b’ not matched: Right _
+    |
+531 |         let (Left !x) = e
+    |             ^^^^^^^^^^^^^
+
+test/Snap/Util/FileUploads/Tests.hs:672:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘EscapeSnap’ not matched:
+            Snap.Internal.Core.EscapeHttp _
+    |
+672 |         let (TerminateConnection se) = e
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/Snap/Util/FileUploads/Tests.hs:698:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘EscapeSnap’ not matched:
+            Snap.Internal.Core.EscapeHttp _
+    |
+698 |         let (TerminateConnection se) = e
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[27 of 31] Compiling Snap.Util.GZip
+[28 of 31] Compiling Snap.Util.GZip.Tests
+[29 of 31] Compiling Snap.Util.Proxy
+[30 of 31] Compiling Snap.Util.Proxy.Tests
+[31 of 31] Compiling Main
+[32 of 32] Linking /tmp/workdir-snap-core/snap-core-1.0.5.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/snap-core-1.0.5.1/t/testsuite/build/testsuite/testsuite

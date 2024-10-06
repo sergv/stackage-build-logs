@@ -1,0 +1,208 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - HasBigDecimal-0.2.0.0 (test:HasBigDecimal-test) (ephemeral targets)
+Preprocessing test suite 'HasBigDecimal-test' for HasBigDecimal-0.2.0.0...
+Building test suite 'HasBigDecimal-test' for HasBigDecimal-0.2.0.0...
+Running 1 test suites...
+Test suite HasBigDecimal-test: RUNNING...
+
+Data.BigDecimal
+  toBD
+    reads BigDecimals from strings [✔]
+    is inverse of toString [✔]
+      +++ OK, passed 1000 tests.
+  show
+    converts BigDecimals to string [✔]
+    adds leading 0s if required [✔]
+    can handle integer values [✔]
+    is inverse of toBD [✔]
+      +++ OK, passed 1000 tests.
+  read
+    reads BigDecimals from strings in constructor notation [✔]
+    is inverse of show [✔]
+      +++ OK, passed 1000 tests.
+  show
+    converts BigDecimals to strings in constructor notation [✔]
+    is inverse of read [✔]
+      +++ OK, passed 1000 tests.
+  (+)
+    adds two BigDecimals [✔]
+    has 0 as neutral element [✔]
+      +++ OK, passed 1000 tests.
+    adds x to (-x) yielding 0 [✔]
+      +++ OK, passed 1000 tests.
+    uses the max scale of the summands [✔]
+      +++ OK, passed 1000 tests.
+    uses Integer addition when summands have same scale [✔]
+      +++ OK, passed 1000 tests.
+    matches values when scaling [✔]
+      +++ OK, passed 1000 tests.
+  (*)
+    multiplies BigDecimals [✔]
+    has 1 as neutral element [✔]
+      +++ OK, passed 1000 tests.
+    has 0 as zero element [✔]
+      +++ OK, passed 1000 tests.
+    Uses Integer multiplication [✔]
+      +++ OK, passed 1000 tests.
+    adds the scales of the multiplicands [✔]
+      +++ OK, passed 1000 tests.
+  abs
+    determines the absolute value of a BigDecimal [✔]
+    is idempotent [✔]
+      +++ OK, passed 1000 tests.
+    is based on abs for Integers [✔]
+      +++ OK, passed 1000 tests.
+    negates for input < 0 [✔]
+      +++ OK, passed 1000 tests.
+  signum
+    determines the signature a BigDecimal [✔]
+    returns 1 if input > 0, zero if input == 0 and -1 if input < 0 [✔]
+      +++ OK, passed 1000 tests.
+    is based on signum for Integers [✔]
+      +++ OK, passed 1000 tests.
+  fromInteger
+    constructs a BigDecimal from an Integer [✔]
+    works for any Integer [✔]
+      +++ OK, passed 1000 tests.
+  negate
+    negates a BigDecimal [✔]
+    works for any BigDecimal [✔]
+      +++ OK, passed 1000 tests.
+    is the same as *(-1) [✔]
+      +++ OK, passed 1000 tests.
+    is its own inverse [✔]
+      +++ OK, passed 1000 tests.
+  (/)
+    divides two BigDecimals [✔]
+    yields x for x/1 for any x [✔]
+      +++ OK, passed 1000 tests.
+    yields 1 for x/x any non-zero x [✔]
+      +++ OK, passed 1000 tests.
+    throws an Arithmetic exception when dividing by 0 [✔]
+      +++ OK, passed 1000 tests.
+    yields y for (x*y)/x for any nonzero x [✔]
+      +++ OK, passed 1000 tests.
+    rounds up if next decimal would be > 5 [✔]
+    rounds up if next decimal would be = 5 [✔]
+    rounds down if next decimal would be < 5 [✔]
+  fromRational
+    constructs a BigDecimal from a Ratio [✔]
+    works for any non-zero divisors [✔]
+      +++ OK, passed 1000 tests.
+  toRational
+    converts a BigDecimal to a Ratio [✔]
+    is inverse to fromRational [✔]
+      +++ OK, passed 1000 tests.
+  divide +/+
+    divides BigDecimals applying RoundingMode and precision [✔]
+    always rounds down when using DOWN [✔]
+    always rounds down when using FLOOR [✔]
+    rounds up when using UP when there is a remainder [✔]
+    does not round when there is no remainder when using UP [✔]
+    rounds up when using UP when there is a remainder [✔]
+    does not round when there is no remainder when using UP [✔]
+    rounds down if next decimal would be <= 5 when using HALF_DOWN [✔]
+    rounds up if next decimal would be > 5 when using HALF_DOWN [✔]
+    rounds up if next decimal would be >= 5 when using HALF_UP [✔]
+    rounds to next even number if next decimal would be == 5 when using HALF_EVEN [✔]
+    rounds to next even number if next decimal would be == 5 when using HALF_EVEN [✔]
+    rounds to next even number if next decimal would be == 5 when using HALF_EVEN [✔]
+    rounds up if next decimal would be > 5 when using HALF_EVEN [✔]
+    throws an exception when PRECISE is used and a non-terminating decimal expansion is detected [✔]
+    gives a precise value when using PRECISE and no max precision [✔]
+    gives a precise value when using PRECISE and a sufficient precision [✔]
+    gives a precise value when using PRECISE and a to small precision [✔]
+  divide -/+
+    divides BigDecimals applying RoundingMode and precision [✔]
+    always rounds down when using DOWN [✔]
+    always rounds towards -INF when using FLOOR [✔]
+    rounds up when using UP when there is a remainder [✔]
+    does not round when there is no remainder when using UP [✔]
+    rounds towards +INF when using CEILING when there is a remainder [✔]
+    does not round when there is no remainder when using UP [✔]
+    rounds down if next decimal would be <= 5 when using HALF_DOWN [✔]
+    rounds up if next decimal would be > 5 when using HALF_DOWN [✔]
+    rounds up if next decimal would be >= 5 when using HALF_UP [✔]
+    rounds to next even number if next decimal would be == 5 when using HALF_EVEN [✔]
+    rounds to next even number if next decimal would be == 5 when using HALF_EVEN [✔]
+    rounds to next even number if next decimal would be == 5 when using HALF_EVEN [✔]
+    rounds up if next decimal would be > 5 when using HALF_EVEN [✔]
+    throws an exception when PRECISE is used and a non-terminating decimal expansion is detected [✔]
+    gives a precise value when using PRECISE and no max precision [✔]
+    gives a precise value when using PRECISE and a sufficient precision [✔]
+    gives a precise value when using PRECISE and a to small precision [✔]
+  divide +/-
+    divides BigDecimals applying RoundingMode and precision [✔]
+    always rounds down when using DOWN [✔]
+    always rounds towards -INF when using FLOOR [✔]
+    rounds up when using UP when there is a remainder [✔]
+    does not round when there is no remainder when using UP [✔]
+    rounds towards +INF when using CEILING when there is a remainder [✔]
+    does not round when there is no remainder when using UP [✔]
+    rounds down if next decimal would be <= 5 when using HALF_DOWN [✔]
+    rounds up if next decimal would be > 5 when using HALF_DOWN [✔]
+    rounds up if next decimal would be >= 5 when using HALF_UP [✔]
+    rounds to next even number if next decimal would be == 5 when using HALF_EVEN [✔]
+    rounds to next even number if next decimal would be == 5 when using HALF_EVEN [✔]
+    rounds to next even number if next decimal would be == 5 when using HALF_EVEN [✔]
+    rounds up if next decimal would be > 5 when using HALF_EVEN [✔]
+    throws an exception when PRECISE is used and a non-terminating decimal expansion is detected [✔]
+    gives a precise value when using PRECISE and no max precision [✔]
+    gives a precise value when using PRECISE and a sufficient precision [✔]
+    gives a precise value when using PRECISE and a to small precision [✔]
+  divide -/-
+    divides BigDecimals applying RoundingMode and precision [✔]
+    always rounds down when using DOWN [✔]
+    always rounds towards -INF when using FLOOR [✔]
+    rounds up when using UP when there is a remainder [✔]
+    does not round when there is no remainder when using UP [✔]
+    rounds towards +INF when using CEILING when there is a remainder [✔]
+    does not round when there is no remainder when using UP [✔]
+    rounds down if next decimal would be <= 5 when using HALF_DOWN [✔]
+    rounds up if next decimal would be > 5 when using HALF_DOWN [✔]
+    rounds up if next decimal would be >= 5 when using HALF_UP [✔]
+    rounds to next even number if next decimal would be == 5 when using HALF_EVEN [✔]
+    rounds to next even number if next decimal would be == 5 when using HALF_EVEN [✔]
+    rounds to next even number if next decimal would be == 5 when using HALF_EVEN [✔]
+    rounds up if next decimal would be > 5 when using HALF_EVEN [✔]
+    throws an exception when PRECISE is used and a non-terminating decimal expansion is detected [✔]
+    gives a precise value when using PRECISE and no max precision [✔]
+    gives a precise value when using PRECISE and a sufficient precision [✔]
+    gives a precise value when using PRECISE and a to small precision [✔]
+  shrink
+    removes trailing zeros while taking care of the scale [✔]
+    does not eliminate more 0s than requested [✔]
+    does not eliminate more 0s than possible [✔]
+    does not change the value of a BigDecimal [✔]
+      +++ OK, passed 1000 tests.
+  matchScales
+    adjusts a pair of BigDecimals to use the same scale [✔]
+      +++ OK, passed 1000 tests.
+  roundBD
+    rounds a BigDecimal  [✔]
+    reject negative scales in MathContext [✔]
+    ignores MathContext with scale higher than in input value [✔]
+  handle values > 10^308
+    divides 2 * 10 ^ 307 [✔]
+    divides 2 * 10 ^ 308 [✔]
+Data.BigFloating
+  sqr
+    computes the square root of any non-negative BigDecimal [✔]
+      +++ OK, passed 1000 tests.
+    throws an exception if applied to a negative number [✔]
+  nthRoot
+    computes the nth root of any non-negative BigDecimal [✔]
+      +++ OK, passed 1000 tests.
+    throws an exception if trying to get even root of a negative number [✔]
+  pi
+    computes pi with a default precision of 100 decimal digits [✔]
+  piChudnovsky
+    computes pi with arbitrary precision (demonstrating it with 1000 digits) [✔]
+
+Finished in 4.3640 seconds
+134 examples, 0 failures
+Test suite HasBigDecimal-test: PASS
+Test suite logged to:
+/tmp/workdir-HasBigDecimal/HasBigDecimal-0.2.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/HasBigDecimal-0.2.0.0/t/HasBigDecimal-test/test/HasBigDecimal-0.2.0.0-HasBigDecimal-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

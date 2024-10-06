@@ -1,0 +1,182 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - sydtest-hedgehog-0.4.0.0 (test:sydtest-hedgehog-test) (ephemeral targets)
+Preprocessing test suite 'sydtest-hedgehog-test' for sydtest-hedgehog-0.4.0.0...
+Building test suite 'sydtest-hedgehog-test' for sydtest-hedgehog-0.4.0.0...
+Running 1 test suites...
+Test suite sydtest-hedgehog-test: RUNNING...
+[34mTests:[m
+
+[33mTest.Syd.HedgehogSpec[m
+  [33mreverse[m
+    [32m✓ [m[32mreversing twice is the same as not reversing[m                   [33m     16.96 ms[m
+      passed for all of [32m100[m inputs.
+  [33mAdapter[m
+    [33mtest group name[m
+      [32m✓ [m[32mprop_add_distributive_int[m                                    [33m     14.98 ms[m
+        passed for all of [32m100[m inputs.
+        Labels
+           0.00% "False"
+           1.00% "a == 0"
+           1.00% "all zero"
+           1.00% "b == 0"
+           1.00% "c == 0"
+           1.00% "left == 0"
+           1.00% "right == 0"
+      [32m✓ [m[32mprop_add_distributive_double[m                                 [33m     14.52 ms[m
+        passed for all of [32m100[m inputs.
+      [31m✗ [m[31mprop_undefined[m                                               [33m     12.76 ms[m
+        Retries: 3 (does not look flaky)
+      [31m✗ [m[31mprop_equal[m                                                   [33m     18.36 ms[m
+        Retries: 3 (does not look flaky)
+  [33mreverse with setup[m
+    [32m✓ [m[32mreversing twice is the same as not reversing[m                   [33m     20.09 ms[m
+      passed for all of [32m100[m inputs.
+  [33mreverse with beforeAll[m
+    [32m✓ [m[32mreversing twice is the same as not reversing[m                   [33m     19.78 ms[m
+      passed for all of [32m100[m inputs.
+ 
+[34mFailures:[m
+
+  [36m  src/Test/Syd/Hedgehog.hs:31[m
+  [31m✗ [m[31m1 [m[31mTest.Syd.HedgehogSpec.Adapter.test group name.prop_undefined[m
+      Retries: 3 (does not look flaky)
+      Failed after 1 tests
+        [91m✗[0m [91m<interactive> failed at test/Test/Syd/HedgehogSpec.hs:64:9
+          after 1 test.
+          shrink path: 1:[0m
+        
+             [m┏━━[0m [mtest/Test/Syd/HedgehogSpec.hs[0m [m━━━[0m
+          [m32[0m [m┃[0m [mexampleHedgehogGroup :: Hedgehog.Group[0m
+          [m33[0m [m┃[0m [mexampleHedgehogGroup =[0m
+          [m34[0m [m┃[0m [m  Hedgehog.Group[0m
+          [m35[0m [m┃[0m [m    "test group name"[0m
+          [m36[0m [m┃[0m [m    [ ( "prop_add_distributive_int",[0m
+          [m37[0m [m┃[0m [m        property $ do[0m
+          [m38[0m [m┃[0m [m          let genInt :: Gen Int[0m
+          [m39[0m [m┃[0m [m              genInt = Gen.int Range.linearBounded[0m
+          [m40[0m [m┃[0m [m          a <- forAll genInt[0m
+          [m41[0m [m┃[0m [m          b <- forAll genInt[0m
+          [m42[0m [m┃[0m [m          c <- forAll genInt[0m
+          [m43[0m [m┃[0m [m          classify "all zero" $ a == 0 && b == 0 && c == 0[0m
+          [m44[0m [m┃[0m [m          classify "False" False[0m
+          [m45[0m [m┃[0m [m          classify "a == 0" $ a == 0[0m
+          [m46[0m [m┃[0m [m          classify "b == 0" $ b == 0[0m
+          [m47[0m [m┃[0m [m          classify "c == 0" $ c == 0[0m
+          [m48[0m [m┃[0m [m          let left = a * (b + c)[0m
+          [m49[0m [m┃[0m [m          let right = (a * b) + (a * c)[0m
+          [m50[0m [m┃[0m [m          classify "left == 0" $ left == 0[0m
+          [m51[0m [m┃[0m [m          classify "right == 0" $ right == 0[0m
+          [m52[0m [m┃[0m [m          left === right[0m
+          [m53[0m [m┃[0m [m      ),[0m
+          [m54[0m [m┃[0m [m      ( "prop_add_distributive_double",[0m
+          [m55[0m [m┃[0m [m        property $ do[0m
+          [m56[0m [m┃[0m [m          let genDouble :: Gen Double[0m
+          [m57[0m [m┃[0m [m              genDouble = Gen.double $ Range.exponentialFloat (-1E1024) 1E1024[0m
+          [m58[0m [m┃[0m [m          a <- forAll genDouble[0m
+          [m59[0m [m┃[0m [m          b <- forAll genDouble[0m
+          [m60[0m [m┃[0m [m          c <- forAll genDouble[0m
+          [m61[0m [m┃[0m [m          a * (b + c) === (a * b) + (a * c)[0m
+          [m62[0m [m┃[0m [m      ),[0m
+          [m63[0m [m┃[0m [m      ( "prop_undefined",[0m
+          [91m64[0m [m┃[0m [91;1m        property $ do[0m
+          [91m  [0m [m┃[0m         [91m^^^^^^^^^^^^^[0m
+          [91m  [0m [m┃[0m         [m│ [0m[m━━━ Exception (ErrorCall) ━━━[0m
+          [91m  [0m [m┃[0m         [m│ [0m[mPrelude.undefined[0m
+          [91m  [0m [m┃[0m         [m│ [0m[mCallStack (from HasCallStack):[0m
+          [91m  [0m [m┃[0m         [m│ [0m[m  undefined, called at test/Test/Syd/HedgehogSpec.hs:66:11 in sydtest-hedgehog-0.4.0.0-inplace-sydtest-hedgehog-test:Test.Syd.HedgehogSpec[0m
+          [m65[0m [m┃[0m [m          _ <- forAll $ Gen.int Range.linearBounded[0m
+          [m66[0m [m┃[0m [m          undefined[0m
+          [m67[0m [m┃[0m [m      ),[0m
+          [m68[0m [m┃[0m [m      ( "prop_equal",[0m
+          [m69[0m [m┃[0m [m        property $ do[0m
+          [m70[0m [m┃[0m [m          a <- forAll $ Gen.int Range.linearBounded[0m
+          [m71[0m [m┃[0m [m          b <- forAll $ Gen.int Range.linearBounded[0m
+          [m72[0m [m┃[0m [m          footnote "foobar"[0m
+          [m73[0m [m┃[0m [m          a === b[0m
+          [m74[0m [m┃[0m [m      )[0m
+          [m75[0m [m┃[0m [m    ][0m
+        
+          [mThis failure can be reproduced by running:[0m
+          [m>[0m [mrecheckAt (Seed 9297814886316923340 13679457532755275413) "1:" <property>[0m
+        
+  
+  [36m  src/Test/Syd/Hedgehog.hs:31[m
+  [31m✗ [m[31m2 [m[31mTest.Syd.HedgehogSpec.Adapter.test group name.prop_equal[m
+      Retries: 3 (does not look flaky)
+      Failed after 2 tests and 56 shrinks
+      Generated: [33m-1[m
+      Generated: [33m0[m
+        [91m✗[0m [91m<interactive> failed at test/Test/Syd/HedgehogSpec.hs:73:13
+          after 2 tests and 56 shrinks.
+          shrink path: 2:aBa54[0m
+        
+             [m┏━━[0m [mtest/Test/Syd/HedgehogSpec.hs[0m [m━━━[0m
+          [m32[0m [m┃[0m [mexampleHedgehogGroup :: Hedgehog.Group[0m
+          [m33[0m [m┃[0m [mexampleHedgehogGroup =[0m
+          [m34[0m [m┃[0m [m  Hedgehog.Group[0m
+          [m35[0m [m┃[0m [m    "test group name"[0m
+          [m36[0m [m┃[0m [m    [ ( "prop_add_distributive_int",[0m
+          [m37[0m [m┃[0m [m        property $ do[0m
+          [m38[0m [m┃[0m [m          let genInt :: Gen Int[0m
+          [m39[0m [m┃[0m [m              genInt = Gen.int Range.linearBounded[0m
+          [m40[0m [m┃[0m [m          a <- forAll genInt[0m
+          [m41[0m [m┃[0m [m          b <- forAll genInt[0m
+          [m42[0m [m┃[0m [m          c <- forAll genInt[0m
+          [m43[0m [m┃[0m [m          classify "all zero" $ a == 0 && b == 0 && c == 0[0m
+          [m44[0m [m┃[0m [m          classify "False" False[0m
+          [m45[0m [m┃[0m [m          classify "a == 0" $ a == 0[0m
+          [m46[0m [m┃[0m [m          classify "b == 0" $ b == 0[0m
+          [m47[0m [m┃[0m [m          classify "c == 0" $ c == 0[0m
+          [m48[0m [m┃[0m [m          let left = a * (b + c)[0m
+          [m49[0m [m┃[0m [m          let right = (a * b) + (a * c)[0m
+          [m50[0m [m┃[0m [m          classify "left == 0" $ left == 0[0m
+          [m51[0m [m┃[0m [m          classify "right == 0" $ right == 0[0m
+          [m52[0m [m┃[0m [m          left === right[0m
+          [m53[0m [m┃[0m [m      ),[0m
+          [m54[0m [m┃[0m [m      ( "prop_add_distributive_double",[0m
+          [m55[0m [m┃[0m [m        property $ do[0m
+          [m56[0m [m┃[0m [m          let genDouble :: Gen Double[0m
+          [m57[0m [m┃[0m [m              genDouble = Gen.double $ Range.exponentialFloat (-1E1024) 1E1024[0m
+          [m58[0m [m┃[0m [m          a <- forAll genDouble[0m
+          [m59[0m [m┃[0m [m          b <- forAll genDouble[0m
+          [m60[0m [m┃[0m [m          c <- forAll genDouble[0m
+          [m61[0m [m┃[0m [m          a * (b + c) === (a * b) + (a * c)[0m
+          [m62[0m [m┃[0m [m      ),[0m
+          [m63[0m [m┃[0m [m      ( "prop_undefined",[0m
+          [m64[0m [m┃[0m [m        property $ do[0m
+          [m65[0m [m┃[0m [m          _ <- forAll $ Gen.int Range.linearBounded[0m
+          [m66[0m [m┃[0m [m          undefined[0m
+          [m67[0m [m┃[0m [m      ),[0m
+          [m68[0m [m┃[0m [m      ( "prop_equal",[0m
+          [m69[0m [m┃[0m [m        property $ do[0m
+          [35m70[0m [m┃[0m [m          a <- forAll $ Gen.int Range.linearBounded[0m
+          [35m  [0m [m┃[0m           [35m│ [0m[35m0[0m
+          [35m71[0m [m┃[0m [m          b <- forAll $ Gen.int Range.linearBounded[0m
+          [35m  [0m [m┃[0m           [35m│ [0m[35m-1[0m
+          [m72[0m [m┃[0m [m          footnote "foobar"[0m
+          [91m73[0m [m┃[0m [91;1m          a === b[0m
+          [91m  [0m [m┃[0m           [91m^^^^^^^[0m
+          [91m  [0m [m┃[0m           [m│ [0m[m━━━ Failed ([0m[31m- lhs[0m[m) ([0m[32m+ rhs[0m[m) ━━━[0m
+          [91m  [0m [m┃[0m           [m│ [0m[31m- 0[0m
+          [91m  [0m [m┃[0m           [m│ [0m[32m+ -1[0m
+          [m74[0m [m┃[0m [m      )[0m
+          [m75[0m [m┃[0m [m    ][0m
+        
+          foobar
+        
+          [mThis failure can be reproduced by running:[0m
+          [m>[0m [mrecheckAt (Seed 9297814886316923340 13679457532755275413) "2:aBa54" <property>[0m
+        
+  
+ 
+  Examples:                     [32m677[m
+  Passed:                       [32m5[m
+  Failed:                       [31m2[m
+  Sum of test runtimes:[33m         0.12 seconds[m
+  Test suite took:     [33m         0.02 seconds[m
+ 
+Test suite sydtest-hedgehog-test: PASS
+Test suite logged to:
+/tmp/workdir-sydtest-hedgehog/sydtest-hedgehog-0.4.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/sydtest-hedgehog-0.4.0.0/t/sydtest-hedgehog-test/test/sydtest-hedgehog-0.4.0.0-sydtest-hedgehog-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

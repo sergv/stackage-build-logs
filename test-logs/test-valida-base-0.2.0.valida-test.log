@@ -1,0 +1,188 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - valida-base-0.2.0 (test:valida-test) (ephemeral targets)
+Preprocessing test suite 'valida-test' for valida-base-0.2.0...
+Building test suite 'valida-test' for valida-base-0.2.0...
+Running 1 test suites...
+Test suite valida-test: RUNNING...
+Test suite
+  Test ValidationRule combinators
+    Test primitive NonEmpty combinators
+      failureIf fails with expected error when predicate yields true:                         OK
+      failureIf succeeds when predicate yields false:                                         OK
+      failureUnless succeeds when predicate yields true:                                      OK
+      failureUnless fails with expected error when predicate yields false:                    OK
+    Test primitive Unit combinators
+      failureIf fails with expected error when predicate yields true:                         OK
+      failueIf succeeds when predicate yields false:                                          OK
+      failureUnless succeeds when predicate yields true:                                      OK
+      failureUnless fails with expected error when predicate yields false:                    OK
+    Test primitive Unit combinators with labeled error
+      failureIf fails with expected error when predicate yields true:                         OK
+      failureUnless fails with expected error when predicate yields false:                    OK
+    Test relationship between primitive NonEmpty and Unit combinators
+      (QC) failureIf p err = label (const (neSingleton err)) (failureIf' p):                  OK
+        +++ OK, passed 100 tests:
+        52% Trivial
+        48% Significant
+      (SC) failureIf p err = label (const (neSingleton err)) (failureIf' p):                  OK
+        88 tests completed
+      (QC) failureUnless p err = label (const (neSingleton err)) (failureUnless' p):          OK
+        +++ OK, passed 100 tests:
+        54% Trivial
+        46% Significant
+      (SC) failureUnless p err = label (const (neSingleton err)) (failureUnless' p):          OK
+        88 tests completed
+    Test relationship between primitive 'if' and 'unless' combinators
+      (QC) failureIf' p = failureUnless' (not . p):                                           OK
+        +++ OK, passed 100 tests.
+      (SC) failureIf' p = failureUnless' (not . p):                                           OK
+        8 tests completed
+      (QC) failureIf p err = negateRule (neSingleton err) (failureUnless' p):                 OK (0.01s)
+        +++ OK, passed 100 tests.
+      (SC) failureIf p err = negateRule (neSingleton err) (failureUnless' p):                 OK
+        40 tests completed
+      (QC) failureIf' p = negateRule' (failureUnless' p):                                     OK
+        +++ OK, passed 100 tests.
+      (SC) failureIf' p = negateRule' (failureUnless' p):                                     OK
+        8 tests completed
+  Test negateRule function
+    (QC) negateRule . negateRule = id (assuming errors are unchanged):                        OK (0.01s)
+      +++ OK, passed 100 tests.
+    (SC) negateRule . negateRule = id (assuming errors are unchanged):                        OK
+      120 tests completed
+  Test ValidationRule combining functions
+    Test `orElse` function
+      (QC) falseRule always fails:                                                            OK
+        +++ OK, passed 100 tests.
+      (SC) falseRule always fails:                                                            OK
+        6 tests completed
+      (QC) Associativity: rule1 </> (rule2 </> rule3) = (rule1 </> rule2) </> rule3:          OK
+        +++ OK, passed 100 tests.
+      (SC) Associativity: rule1 </> (rule2 </> rule3) = (rule1 </> rule2) </> rule3:          OK (0.04s)
+        8192 tests completed
+      (QC) Identity: rule </> falseRule = falseRule </> rule = rule:                          OK
+        +++ OK, passed 100 tests.
+      (SC) Identity: rule </> falseRule = falseRule </> rule = rule:                          OK
+        120 tests completed
+      (QC) Annihilator: rule </> mempty = mempty </> rule = mempty:                           OK
+        +++ OK, passed 100 tests.
+      (SC) Annihilator: rule </> mempty = mempty </> rule = mempty:                           OK
+        120 tests completed
+      (QC) Complement: rule </> (negateRule e rule) = (negateRule e rule) </> rule = Success: OK
+        +++ OK, passed 100 tests.
+      (SC) Complement: rule </> (negateRule e rule) = (negateRule e rule) </> rule = Success: OK (0.05s)
+        1800 tests completed
+    Test `andAlso` function
+      (QC) mempty always succeeds:                                                            OK
+        +++ OK, passed 100 tests.
+      (SC) mempty always succeeds:                                                            OK
+        6 tests completed
+      (QC) Associativity: rule1 <> (rule2 <> rule3) = (rule1 <> rule2) <> rule3:              OK
+        +++ OK, passed 100 tests.
+      (SC) Associativity: rule1 <> (rule2 <> rule3) = (rule1 <> rule2) <> rule3:              OK (0.05s)
+        8192 tests completed
+      (QC) Identity: rule <> mempty = mempty <> rule = rule:                                  OK
+        +++ OK, passed 100 tests.
+      (SC) Identity: rule <> mempty = mempty <> rule = rule:                                  OK
+        120 tests completed
+      (QC) Annihilator: rule <> falseRule = falseRule <> rule = falseRule:                    OK
+        +++ OK, passed 100 tests.
+      (SC) Annihilator: rule <> falseRule = falseRule <> rule = falseRule:                    OK
+        120 tests completed
+      (QC) Complement: rule <> (negateRule e rule) = (negateRule e rule) <> rule = Failure:   OK
+        +++ OK, passed 100 tests.
+      (SC) Complement: rule <> (negateRule e rule) = (negateRule e rule) <> rule = Failure:   OK (0.05s)
+        1800 tests completed
+      (QC) Idempotence: rule <> rule = rule:                                                  OK
+        +++ OK, passed 100 tests.
+      (SC) Idempotence: rule <> rule = rule:                                                  OK
+        120 tests completed
+    Test `satisfyAny` function
+      satisfyAny = foldl1 orElse:                                                             OK
+        +++ OK, passed 100 tests.
+      satisfyAny = foldl1 orElse:                                                             OK
+        80 tests completed
+      satisfyAny = foldr1 orElse:                                                             OK
+        +++ OK, passed 100 tests.
+      satisfyAny = foldr1 orElse:                                                             OK
+        80 tests completed
+      satisfyAny = foldl orElse falseRule:                                                    OK
+        +++ OK, passed 100 tests.
+      satisfyAny = foldl orElse falseRule:                                                    OK
+        80 tests completed
+      satisfyAny = foldr orElse falseRule:                                                    OK
+        +++ OK, passed 100 tests.
+      satisfyAny = foldr orElse falseRule:                                                    OK
+        80 tests completed
+    Test `satisfyAll` function
+      satisfyAll = fold:                                                                      OK
+        +++ OK, passed 100 tests.
+      satisfyAll = fold:                                                                      OK
+        80 tests completed
+      satisfyAll = foldl1 andAlso:                                                            OK
+        +++ OK, passed 100 tests.
+      satisfyAll = foldl1 andAlso:                                                            OK
+        80 tests completed
+      satisfyAll = foldr1 andAlso:                                                            OK
+        +++ OK, passed 100 tests.
+      satisfyAll = foldr1 andAlso:                                                            OK
+        80 tests completed
+      satisfyAll = foldl andAlso mempty:                                                      OK
+        +++ OK, passed 100 tests.
+      satisfyAll = foldl andAlso mempty:                                                      OK
+        80 tests completed
+      satisfyAll = foldr andAlso mempty:                                                      OK
+        +++ OK, passed 100 tests.
+      satisfyAll = foldr andAlso mempty:                                                      OK
+        80 tests completed
+  Test validation of a collection of Validators
+    Applicative validation fails if at least one validator fails:                             OK
+    Applicative validation succeeds if all validators suceed:                                 OK
+  Test Validation utilities
+    (QC) fromEither . toEither = id:                                                          OK
+      +++ OK, passed 100 tests.
+    (SC) fromEither . toEither = id:                                                          OK
+      10 tests completed
+    (QC) toEither . fromEither = id:                                                          OK
+      +++ OK, passed 100 tests.
+    (SC) toEither . fromEither = id:                                                          OK
+      18 tests completed
+    (QC) either f g (toEither v) = validation f g v:                                          OK
+      +++ OK, passed 100 tests.
+    (QC) validation f g (fromEither v) = either f g v:                                        OK
+      +++ OK, passed 100 tests.
+    (QC) either (const f) (const g) (toEither v) == validationConst f g v:                    OK
+      +++ OK, passed 100 tests.
+    (SC) either (const f) (const g) (toEither v) == validationConst f g v:                    OK (2.97s)
+      297052 tests completed
+    (QC) validationConst f g (fromEither e) == either (const f) (const g) e:                  OK
+      +++ OK, passed 100 tests.
+    (SC) validationConst f g (fromEither e) == either (const f) (const g) e:                  OK (3.02s)
+      297052 tests completed
+    (QC) validationConst f g v == validation (const f) (const g) v:                           OK
+      +++ OK, passed 100 tests.
+    (SC) validationConst f g v == validation (const f) (const g) v:                           OK (2.99s)
+      297052 tests completed
+    (QC) partitionValidations xs = (failures xs, successes xs):                               OK
+      +++ OK, passed 100 tests.
+    (SC) partitionValidations xs = (failures xs, successes xs):                               OK
+      157 tests completed
+  Test Validator relabeling
+    (QC) Validator should yield relabeled ValidationRule error upon failure:                  OK
+      +++ OK, passed 100 tests.
+    (SC) Validator should yield relabeled ValidationRule error upon failure:                  OK (0.10s)
+      15996 tests completed
+    (QC) Validator should yield relabeled Bool error upon failure:                            OK
+      +++ OK, passed 100 tests.
+    (SC) Validator should yield relabeled Bool error upon failure:                            OK (0.10s)
+      15996 tests completed
+  Test Validator error grouping
+    (SC) All errors from all validators should be combined upon failure:                      OK (0.06s)
+      1500 tests completed
+
+All 83 tests passed (3.02s)
+Test suite valida-test: PASS
+Test suite logged to:
+/tmp/workdir-valida-base/valida-base-0.2.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/valida-base-0.2.0/t/valida-test/test/valida-base-0.2.0-valida-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

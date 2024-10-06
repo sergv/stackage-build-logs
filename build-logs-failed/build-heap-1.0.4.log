@@ -1,0 +1,156 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - heap-1.0.4 (lib) (first run)
+ - heap-1.0.4 (test:heap-tests) (first run)
+Configuring library for heap-1.0.4...
+Preprocessing library for heap-1.0.4...
+Building library for heap-1.0.4...
+[1 of 3] Compiling Data.Heap.Internal
+
+Data/Heap/Internal.hs:75:5: warning: [-Wnoncanonical-monoid-instances]
+    Noncanonical ‘mappend’ definition detected
+    in the instance declaration for ‘Monoid (HeapT prio val)’.
+    ‘mappend’ will eventually be removed in favour of ‘(<>)’
+    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+   |
+75 |     mappend = union
+   |     ^^^^^^^^^^^^^^^
+[2 of 3] Compiling Data.Heap.Item
+
+Data/Heap/Item.hs:92:27: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+92 |     data Prio pol item :: *
+   |                           ^
+
+Data/Heap/Item.hs:94:27: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+94 |     type Val  pol item :: *
+   |                           ^
+
+Data/Heap/Item.hs:100:11: warning: [GHC-87502] [-Winline-rule-shadowing]
+    Rule "split/merge" may never fire
+      because rule "Class op merge" for ‘merge’ might fire first
+    Suggested fix: Add phase [n] or [~n] to the competing rule
+    |
+100 | {-# RULES "split/merge" forall x. split (merge x) = x #-}
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Data/Heap/Item.hs:188:11: warning: [GHC-87502] [-Winline-rule-shadowing]
+    Rule "splitF/split" may never fire
+      because rule "Class op split" for ‘split’ might fire first
+    Suggested fix: Add phase [n] or [~n] to the competing rule
+    |
+188 | {-# RULES "splitF/split" forall f x. splitF f (split x) = f x #-}
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[3 of 3] Compiling Data.Heap
+Configuring test suite 'heap-tests' for heap-1.0.4...
+Preprocessing test suite 'heap-tests' for heap-1.0.4...
+Building test suite 'heap-tests' for heap-1.0.4...
+[1 of 8] Compiling Data.Heap.Internal
+
+Data/Heap/Internal.hs:75:5: warning: [-Wnoncanonical-monoid-instances]
+    Noncanonical ‘mappend’ definition detected
+    in the instance declaration for ‘Monoid (HeapT prio val)’.
+    ‘mappend’ will eventually be removed in favour of ‘(<>)’
+    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+   |
+75 |     mappend = union
+   |     ^^^^^^^^^^^^^^^
+[2 of 8] Compiling Data.Heap.Item
+
+Data/Heap/Item.hs:92:27: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+92 |     data Prio pol item :: *
+   |                           ^
+
+Data/Heap/Item.hs:94:27: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+94 |     type Val  pol item :: *
+   |                           ^
+
+Data/Heap/Item.hs:100:11: warning: [GHC-87502] [-Winline-rule-shadowing]
+    Rule "split/merge" may never fire
+      because rule "Class op merge" for ‘merge’ might fire first
+    Suggested fix: Add phase [n] or [~n] to the competing rule
+    |
+100 | {-# RULES "split/merge" forall x. split (merge x) = x #-}
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Data/Heap/Item.hs:188:11: warning: [GHC-87502] [-Winline-rule-shadowing]
+    Rule "splitF/split" may never fire
+      because rule "Class op split" for ‘split’ might fire first
+    Suggested fix: Add phase [n] or [~n] to the competing rule
+    |
+188 | {-# RULES "splitF/split" forall f x. splitF f (split x) = f x #-}
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[3 of 8] Compiling Data.Heap
+[4 of 8] Compiling Test.Heap.Common
+[5 of 8] Compiling Test.Heap.Internal
+
+Test/Heap/Internal.hs:35:1: warning: [GHC-90177] [-Worphans]
+    Orphan instance: instance (Arbitrary prio, Arbitrary val,
+                               Ord prio) =>
+                              Arbitrary (HeapT prio val)
+    Suggested fix:
+      Move the instance declaration to the module of the class or of the type, or
+      wrap the type with a newtype and declare the instance on the new type.
+   |
+35 | instance (Arbitrary prio, Arbitrary val, Ord prio) => Arbitrary (HeapT prio val) where
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+[6 of 8] Compiling Test.Heap.Item
+
+Test/Heap/Item.hs:66:1: warning: [GHC-90177] [-Worphans]
+    Orphan instance: instance (Arbitrary item, HeapItem pol item) =>
+                              Arbitrary (Prio pol item)
+    Suggested fix:
+      Move the instance declaration to the module of the class or of the type, or
+      wrap the type with a newtype and declare the instance on the new type.
+   |
+66 | instance (Arbitrary item, HeapItem pol item) => Arbitrary (Prio pol item) where
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+[7 of 8] Compiling Test.Heap
+[8 of 8] Compiling Main
+
+Test.hs:15:10: error:
+    • The constructor ‘Success’ should have 6 arguments, but has been given 3
+    • In the pattern: Success _ _ _
+      In a case alternative:
+          (Success _ _ _)
+            -> do putStrLn "Tests for Data.Heap.Internal:" >> Internal.runTests
+                    >> putStrLn ""
+                  putStrLn "Tests for Data.Heap.Item:" >> Item.runTests
+                    >> putStrLn ""
+                  putStrLn "Tests for Data.Heap:" >> Heap.runTests
+      In a stmt of a 'do' block:
+        case result of
+          (Success _ _ _)
+            -> do putStrLn "Tests for Data.Heap.Internal:" >> Internal.runTests
+                    >> putStrLn ""
+                  putStrLn "Tests for Data.Heap.Item:" >> Item.runTests
+                    >> putStrLn ""
+                  ....
+          _ -> return ()
+   |
+15 |         (Success _ _ _) -> do
+   |          ^^^^^^^^^^^^^
+Error: [Cabal-7125]
+Failed to build test:heap-tests from heap-1.0.4.
+

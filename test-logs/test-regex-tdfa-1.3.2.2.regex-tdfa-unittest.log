@@ -1,0 +1,2257 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - regex-tdfa-1.3.2.2 (test:regex-tdfa-unittest) (ephemeral targets)
+Preprocessing test suite 'regex-tdfa-unittest' for regex-tdfa-1.3.2.2...
+Building test suite 'regex-tdfa-unittest' for regex-tdfa-1.3.2.2...
+Running 1 test suites...
+Test suite regex-tdfa-unittest: RUNNING...
+Testing Text.Regex.TDFA version: Version {versionBranch = [1,3,2,2], versionTags = []}
+Explanation and discussion of these tests on the wiki at http://www.haskell.org/haskellwiki/Regex_Posix including comparing results from different operating systems
+Questions about this package to the author at email <TextRegexLazy@personal.mightyreason.com>
+The type of both the pattern and test is [Char]
+Without extactly two arguments:
+    This program runs all test files listed in test/data-dir/test-manifest.txt
+    Lines with negative number are expected to fail, others are expected to pass.
+With exactly two arguments:
+    The first argument is the text to be searched.
+    The second argument is the regular expression pattern to search with.
+
+Using Tests from: basic3.txt
+
+Expected Pass #1
+text and pattern: "()"
+Regex pattern: "\\)"
+Outputs agree: "(1,2)"
+
+Expected Pass #2
+text and pattern: "}"
+Regex pattern: "\\}"
+Outputs agree: "(0,1)"
+
+Expected Pass #3
+text and pattern: "]"
+Regex pattern: "]"
+Outputs agree: "(0,1)"
+
+Expected Pass #4
+text and pattern: ""
+Regex pattern: "$^"
+Outputs agree: "(0,0)"
+
+Expected Pass #5
+text and pattern: "aa"
+Regex pattern: "a($)"
+Outputs agree: "(1,2)(2,2)"
+
+Expected Pass #6
+text and pattern: "aa"
+Regex pattern: "a*(^a)"
+Outputs agree: "(0,1)(0,1)"
+
+Expected Pass #7
+text and pattern: "a"
+Regex pattern: "(..)*(...)*"
+Outputs agree: "(0,0)(-1,-1)(-1,-1)"
+
+Expected Pass #8
+text and pattern: "abcd"
+Regex pattern: "(..)*(...)*"
+Outputs agree: "(0,4)(2,4)(-1,-1)"
+
+Expected Pass #9
+text and pattern: "abc"
+Regex pattern: "(ab|a)(bc|c)"
+Outputs agree: "(0,3)(0,2)(2,3)"
+
+Expected Pass #10
+text and pattern: "abc"
+Regex pattern: "(ab)c|abc"
+Outputs agree: "(0,3)(0,2)"
+
+Expected Pass #11
+text and pattern: "ab"
+Regex pattern: "a{0}b"
+Outputs agree: "(1,2)"
+
+Expected Pass #12
+text and pattern: "aaabbbbbbb"
+Regex pattern: "(a*)(b?)(b+)b{3}"
+Outputs agree: "(0,10)(0,3)(3,4)(4,7)"
+
+Expected Pass #13
+text and pattern: "aaabbbbbbb"
+Regex pattern: "(a*)(b{0,1})(b{1,})b{3}"
+Outputs agree: "(0,10)(0,3)(3,4)(4,7)"
+
+Expected Pass #15
+text and pattern: "a"
+Regex pattern: "((a|a)|a)"
+Outputs agree: "(0,1)(0,1)(0,1)"
+
+Expected Pass #16
+text and pattern: "aaaa"
+Regex pattern: "(a*)(a|aa)"
+Outputs agree: "(0,4)(0,3)(3,4)"
+
+Expected Pass #17
+text and pattern: "aaaa"
+Regex pattern: "a*(a.|aa)"
+Outputs agree: "(0,4)(2,4)"
+
+Expected Pass #18
+text and pattern: "aef"
+Regex pattern: "a(b)|c(d)|a(e)f"
+Outputs agree: "(0,3)(-1,-1)(-1,-1)(1,2)"
+
+Expected Pass #19
+text and pattern: "b"
+Regex pattern: "(a|b)?.*"
+Outputs agree: "(0,1)(0,1)"
+
+Expected Pass #20
+text and pattern: "ac"
+Regex pattern: "(a|b)c|a(b|c)"
+Outputs agree: "(0,2)(0,1)(-1,-1)"
+
+Expected Pass #21
+text and pattern: "ab"
+Regex pattern: "(a|b)c|a(b|c)"
+Outputs agree: "(0,2)(-1,-1)(1,2)"
+
+Expected Pass #22
+text and pattern: "abc"
+Regex pattern: "(a|b)*c|(a|ab)*c"
+Outputs agree: "(0,3)(1,2)(-1,-1)"
+
+Expected Pass #23
+text and pattern: "xc"
+Regex pattern: "(a|b)*c|(a|ab)*c"
+Outputs agree: "(1,2)(-1,-1)(-1,-1)"
+
+Expected Pass #24
+text and pattern: "xa"
+Regex pattern: "(.a|.b).*|.*(.a|.b)"
+Outputs agree: "(0,2)(0,2)(-1,-1)"
+
+Expected Pass #25
+text and pattern: "abab"
+Regex pattern: "a?(ab|ba)ab"
+Outputs agree: "(0,4)(0,2)"
+
+Expected Pass #26
+text and pattern: "abab"
+Regex pattern: "a?(ac{0}b|ba)ab"
+Outputs agree: "(0,4)(0,2)"
+
+Expected Pass #27
+text and pattern: "abbabab"
+Regex pattern: "ab|abab"
+Outputs agree: "(0,2)"
+
+Expected Pass #28
+text and pattern: "baaabbbaba"
+Regex pattern: "aba|bab|bba"
+Outputs agree: "(5,8)"
+
+Expected Pass #29
+text and pattern: "baaabbbaba"
+Regex pattern: "aba|bab"
+Outputs agree: "(6,9)"
+
+Expected Pass #30
+text and pattern: "aa"
+Regex pattern: "(aa|aaa)*|(a|aaaaa)"
+Outputs agree: "(0,2)(0,2)(-1,-1)"
+
+Expected Pass #31
+text and pattern: "aa"
+Regex pattern: "(a.|.a.)*|(a|.a...)"
+Outputs agree: "(0,2)(0,2)(-1,-1)"
+
+Expected Pass #32
+text and pattern: "xabc"
+Regex pattern: "ab|a"
+Outputs agree: "(1,3)"
+
+Expected Pass #33
+text and pattern: "xxabc"
+Regex pattern: "ab|a"
+Outputs agree: "(2,4)"
+
+Expected Pass #34
+text and pattern: "aBcD"
+Regex pattern: "(Ab|cD)*"
+Outputs agree: "(0,4)(2,4)"
+
+Expected Pass #35
+text and pattern: ":::0:::1:::1:::0:"
+Regex pattern: ":::1:::0:|:::1:1:0:"
+Outputs agree: "(8,17)"
+
+Expected Pass #36
+text and pattern: ":::0:::1:::1:::0:"
+Regex pattern: ":::1:::0:|:::1:1:1:"
+Outputs agree: "(8,17)"
+
+Expected Pass #37
+text and pattern: "`az{"
+Regex pattern: "[[:lower:]]+"
+Outputs agree: "(1,3)"
+
+Expected Pass #38
+text and pattern: "@AZ["
+Regex pattern: "[[:upper:]]+"
+Outputs agree: "(1,3)"
+
+Expected Pass #39
+text and pattern: "abc"
+Regex pattern: "(a)(b)(c)"
+Outputs agree: "(0,3)(0,1)(1,2)(2,3)"
+
+Expected Pass #43
+text and pattern: "x"
+Regex pattern: "((((((((((((((((((((((((((((((x))))))))))))))))))))))))))))))"
+Outputs agree: "(0,1)(0,1)(0,1)(0,1)(0,1)(0,1)(0,1)(0,1)(0,1)(0,1)(0,1)(0,1)(0,1)(0,1)(0,1)(0,1)(0,1)(0,1)(0,1)(0,1)(0,1)(0,1)(0,1)(0,1)(0,1)(0,1)(0,1)(0,1)(0,1)(0,1)(0,1)"
+
+Expected Pass #44
+text and pattern: "xx"
+Regex pattern: "((((((((((((((((((((((((((((((x))))))))))))))))))))))))))))))*"
+Outputs agree: "(0,2)(1,2)(1,2)(1,2)(1,2)(1,2)(1,2)(1,2)(1,2)(1,2)(1,2)(1,2)(1,2)(1,2)(1,2)(1,2)(1,2)(1,2)(1,2)(1,2)(1,2)(1,2)(1,2)(1,2)(1,2)(1,2)(1,2)(1,2)(1,2)(1,2)(1,2)"
+
+Expected Pass #45
+text and pattern: "ababababababababababababababababababababababababababababababababababababababababa"
+Regex pattern: "a?(ab|ba)*"
+Outputs agree: "(0,81)(79,81)"
+
+Expected Pass #46
+text and pattern: "ababbabbbabbbabbbbabbbbaa"
+Regex pattern: "abaa|abbaa|abbbaa|abbbbaa"
+Outputs agree: "(18,25)"
+
+Expected Pass #47
+text and pattern: "ababbabbbabbbabbbbabaa"
+Regex pattern: "abaa|abbaa|abbbaa|abbbbaa"
+Outputs agree: "(18,22)"
+
+Expected Pass #48
+text and pattern: "baaabbbabac"
+Regex pattern: "aaac|aabc|abac|abbc|baac|babc|bbac|bbbc"
+Outputs agree: "(7,11)"
+
+Expected Pass #49
+text and pattern: "XaaaXbbbXcccXdddXeeeXfffXgggXhhhXiiiXjjjXkkkXlllXcbaXaaaa"
+Regex pattern: "aaaa|bbbb|cccc|ddddd|eeeeee|fffffff|gggg|hhhh|iiiii|jjjjj|kkkkk|llll"
+Outputs agree: "(53,57)"
+
+Expected Pass #50
+text and pattern: "aaaaaaaaab"
+Regex pattern: "a*a*a*a*a*b"
+Outputs agree: "(0,10)"
+
+Expected Pass #51
+text and pattern: "abbc"
+Regex pattern: "ab+bc"
+Outputs agree: "(0,4)"
+
+Expected Pass #52
+text and pattern: "abbbbc"
+Regex pattern: "ab+bc"
+Outputs agree: "(0,6)"
+
+Expected Pass #53
+text and pattern: "abbc"
+Regex pattern: "ab?bc"
+Outputs agree: "(0,4)"
+
+Expected Pass #54
+text and pattern: "abc"
+Regex pattern: "ab?bc"
+Outputs agree: "(0,3)"
+
+Expected Pass #55
+text and pattern: "abc"
+Regex pattern: "ab?c"
+Outputs agree: "(0,3)"
+
+Expected Pass #56
+text and pattern: "abc"
+Regex pattern: "ab|cd"
+Outputs agree: "(0,2)"
+
+Expected Pass #57
+text and pattern: "abcd"
+Regex pattern: "ab|cd"
+Outputs agree: "(0,2)"
+
+Expected Pass #58
+text and pattern: "a(b"
+Regex pattern: "a\\(b"
+Outputs agree: "(0,3)"
+
+Expected Pass #59
+text and pattern: "ab"
+Regex pattern: "a\\(*b"
+Outputs agree: "(0,2)"
+
+Expected Pass #60
+text and pattern: "a((b"
+Regex pattern: "a\\(*b"
+Outputs agree: "(0,4)"
+
+Expected Pass #61
+text and pattern: "abc"
+Regex pattern: "((a))"
+Outputs agree: "(0,1)(0,1)(0,1)"
+
+Expected Pass #62
+text and pattern: "abc"
+Regex pattern: "(a)b(c)"
+Outputs agree: "(0,3)(0,1)(2,3)"
+
+Expected Pass #63
+text and pattern: "aabbabc"
+Regex pattern: "a+b+c"
+Outputs agree: "(4,7)"
+
+Expected Pass #64
+text and pattern: "aaa"
+Regex pattern: "a*"
+Outputs agree: "(0,3)"
+
+Expected Pass #65
+text and pattern: "-"
+Regex pattern: "(a*)*"
+Outputs agree: "(0,0)(0,0)"
+
+Expected Pass #66
+text and pattern: "-"
+Regex pattern: "(a*)+"
+Outputs agree: "(0,0)(0,0)"
+
+Expected Pass #67
+text and pattern: "-"
+Regex pattern: "(a*|b)*"
+Outputs agree: "(0,0)(0,0)"
+
+Expected Pass #68
+text and pattern: "ab"
+Regex pattern: "(a+|b)*"
+Outputs agree: "(0,2)(1,2)"
+
+Expected Pass #69
+text and pattern: "ab"
+Regex pattern: "(a+|b)+"
+Outputs agree: "(0,2)(1,2)"
+
+Expected Pass #70
+text and pattern: "ab"
+Regex pattern: "(a+|b)?"
+Outputs agree: "(0,1)(0,1)"
+
+Expected Pass #71
+text and pattern: "-"
+Regex pattern: "(^)*"
+Outputs agree: "(0,0)(0,0)"
+
+Expected Pass #72
+text and pattern: "abbbcd"
+Regex pattern: "([abc])*d"
+Outputs agree: "(0,6)(4,5)"
+
+Expected Pass #73
+text and pattern: "abcd"
+Regex pattern: "([abc])*bcd"
+Outputs agree: "(0,4)(0,1)"
+
+Expected Pass #74
+text and pattern: "e"
+Regex pattern: "a|b|c|d|e"
+Outputs agree: "(0,1)"
+
+Expected Pass #75
+text and pattern: "ef"
+Regex pattern: "(a|b|c|d|e)f"
+Outputs agree: "(0,2)(0,1)"
+
+Expected Pass #76
+text and pattern: "-"
+Regex pattern: "((a*|b))*"
+Outputs agree: "(0,0)(0,0)(0,0)"
+
+Expected Pass #77
+text and pattern: "abcde"
+Regex pattern: "(ab|cd)e"
+Outputs agree: "(2,5)(2,4)"
+
+Expected Pass #78
+text and pattern: "abcd"
+Regex pattern: "(a|b)c*d"
+Outputs agree: "(1,4)(1,2)"
+
+Expected Pass #79
+text and pattern: "abc"
+Regex pattern: "(ab|ab*)bc"
+Outputs agree: "(0,3)(0,1)"
+
+Expected Pass #80
+text and pattern: "abc"
+Regex pattern: "a([bc]*)c*"
+Outputs agree: "(0,3)(1,3)"
+
+Expected Pass #81
+text and pattern: "abcd"
+Regex pattern: "a([bc]*)(c*d)"
+Outputs agree: "(0,4)(1,3)(3,4)"
+
+Expected Pass #82
+text and pattern: "abcd"
+Regex pattern: "a([bc]+)(c*d)"
+Outputs agree: "(0,4)(1,3)(3,4)"
+
+Expected Pass #83
+text and pattern: "abcd"
+Regex pattern: "a([bc]*)(c+d)"
+Outputs agree: "(0,4)(1,2)(2,4)"
+
+Expected Pass #84
+text and pattern: "adcdcde"
+Regex pattern: "a[bcd]*dcdcde"
+Outputs agree: "(0,7)"
+
+Expected Pass #85
+text and pattern: "abc"
+Regex pattern: "(ab|a)b*c"
+Outputs agree: "(0,3)(0,2)"
+
+Expected Pass #86
+text and pattern: "abcd"
+Regex pattern: "((a)(b)c)(d)"
+Outputs agree: "(0,4)(0,3)(0,1)(1,2)(3,4)"
+
+Expected Pass #87
+text and pattern: "abh"
+Regex pattern: "^a(bc+|b[eh])g|.h$"
+Outputs agree: "(1,3)(-1,-1)"
+
+Expected Pass #88
+text and pattern: "effgz"
+Regex pattern: "(bc+d$|ef*g.|h?i(j|k))"
+Outputs agree: "(0,5)(0,5)(-1,-1)"
+
+Expected Pass #89
+text and pattern: "ij"
+Regex pattern: "(bc+d$|ef*g.|h?i(j|k))"
+Outputs agree: "(0,2)(0,2)(1,2)"
+
+Expected Pass #90
+text and pattern: "reffgz"
+Regex pattern: "(bc+d$|ef*g.|h?i(j|k))"
+Outputs agree: "(1,6)(1,6)(-1,-1)"
+
+Expected Pass #91
+text and pattern: "a"
+Regex pattern: "(((((((((a)))))))))"
+Outputs agree: "(0,1)(0,1)(0,1)(0,1)(0,1)(0,1)(0,1)(0,1)(0,1)(0,1)"
+
+Expected Pass #92
+text and pattern: "abcde"
+Regex pattern: "(.*)c(.*)"
+Outputs agree: "(0,5)(0,2)(3,5)"
+
+Expected Pass #93
+text and pattern: "abcd"
+Regex pattern: "a(bc)d"
+Outputs agree: "(0,4)(1,3)"
+
+Expected Pass #94
+text and pattern: "a\STXc"
+Regex pattern: "a[\SOH-\ETX]?c"
+Outputs agree: "(0,3)"
+
+Expected Pass #95
+text and pattern: "Muammar_Qaddafi"
+Regex pattern: "M[ou]'?am+[ae]r_.*([AEae]l[-_])?[GKQ]h?[aeu]+([dtz][dhz]?)+af[iy]"
+Outputs agree: "(0,15)(-1,-1)(10,12)"
+
+Expected Pass #96
+text and pattern: "Mo'ammar_Gadhafi"
+Regex pattern: "M[ou]'?am+[ae]r_.*([AEae]l[-_])?[GKQ]h?[aeu]+([dtz][dhz]?)+af[iy]"
+Outputs agree: "(0,16)(-1,-1)(11,13)"
+
+Expected Pass #97
+text and pattern: "Muammar_Kaddafi"
+Regex pattern: "M[ou]'?am+[ae]r_.*([AEae]l[-_])?[GKQ]h?[aeu]+([dtz][dhz]?)+af[iy]"
+Outputs agree: "(0,15)(-1,-1)(10,12)"
+
+Expected Pass #98
+text and pattern: "Muammar_Qadhafi"
+Regex pattern: "M[ou]'?am+[ae]r_.*([AEae]l[-_])?[GKQ]h?[aeu]+([dtz][dhz]?)+af[iy]"
+Outputs agree: "(0,15)(-1,-1)(10,12)"
+
+Expected Pass #99
+text and pattern: "Muammar_Gadafi"
+Regex pattern: "M[ou]'?am+[ae]r_.*([AEae]l[-_])?[GKQ]h?[aeu]+([dtz][dhz]?)+af[iy]"
+Outputs agree: "(0,14)(-1,-1)(10,11)"
+
+Expected Pass #100
+text and pattern: "Mu'ammar_Qadafi"
+Regex pattern: "M[ou]'?am+[ae]r_.*([AEae]l[-_])?[GKQ]h?[aeu]+([dtz][dhz]?)+af[iy]"
+Outputs agree: "(0,15)(-1,-1)(11,12)"
+
+Expected Pass #101
+text and pattern: "Moamar_Gaddafi"
+Regex pattern: "M[ou]'?am+[ae]r_.*([AEae]l[-_])?[GKQ]h?[aeu]+([dtz][dhz]?)+af[iy]"
+Outputs agree: "(0,14)(-1,-1)(9,11)"
+
+Expected Pass #102
+text and pattern: "Mu'ammar_Qadhdhafi"
+Regex pattern: "M[ou]'?am+[ae]r_.*([AEae]l[-_])?[GKQ]h?[aeu]+([dtz][dhz]?)+af[iy]"
+Outputs agree: "(0,18)(-1,-1)(13,15)"
+
+Expected Pass #103
+text and pattern: "Muammar_Khaddafi"
+Regex pattern: "M[ou]'?am+[ae]r_.*([AEae]l[-_])?[GKQ]h?[aeu]+([dtz][dhz]?)+af[iy]"
+Outputs agree: "(0,16)(-1,-1)(11,13)"
+
+Expected Pass #104
+text and pattern: "Muammar_Ghaddafy"
+Regex pattern: "M[ou]'?am+[ae]r_.*([AEae]l[-_])?[GKQ]h?[aeu]+([dtz][dhz]?)+af[iy]"
+Outputs agree: "(0,16)(-1,-1)(11,13)"
+
+Expected Pass #105
+text and pattern: "Muammar_Ghadafi"
+Regex pattern: "M[ou]'?am+[ae]r_.*([AEae]l[-_])?[GKQ]h?[aeu]+([dtz][dhz]?)+af[iy]"
+Outputs agree: "(0,15)(-1,-1)(11,12)"
+
+Expected Pass #106
+text and pattern: "Muammar_Ghaddafi"
+Regex pattern: "M[ou]'?am+[ae]r_.*([AEae]l[-_])?[GKQ]h?[aeu]+([dtz][dhz]?)+af[iy]"
+Outputs agree: "(0,16)(-1,-1)(11,13)"
+
+Expected Pass #107
+text and pattern: "Muamar_Kaddafi"
+Regex pattern: "M[ou]'?am+[ae]r_.*([AEae]l[-_])?[GKQ]h?[aeu]+([dtz][dhz]?)+af[iy]"
+Outputs agree: "(0,14)(-1,-1)(9,11)"
+
+Expected Pass #108
+text and pattern: "Muammar_Quathafi"
+Regex pattern: "M[ou]'?am+[ae]r_.*([AEae]l[-_])?[GKQ]h?[aeu]+([dtz][dhz]?)+af[iy]"
+Outputs agree: "(0,16)(-1,-1)(11,13)"
+
+Expected Pass #109
+text and pattern: "Muammar_Gheddafi"
+Regex pattern: "M[ou]'?am+[ae]r_.*([AEae]l[-_])?[GKQ]h?[aeu]+([dtz][dhz]?)+af[iy]"
+Outputs agree: "(0,16)(-1,-1)(11,13)"
+
+Expected Pass #110
+text and pattern: "Moammar_Khadafy"
+Regex pattern: "M[ou]'?am+[ae]r_.*([AEae]l[-_])?[GKQ]h?[aeu]+([dtz][dhz]?)+af[iy]"
+Outputs agree: "(0,15)(-1,-1)(11,12)"
+
+Expected Pass #111
+text and pattern: "Moammar_Qudhafi"
+Regex pattern: "M[ou]'?am+[ae]r_.*([AEae]l[-_])?[GKQ]h?[aeu]+([dtz][dhz]?)+af[iy]"
+Outputs agree: "(0,15)(-1,-1)(10,12)"
+
+Expected Pass #112
+text and pattern: "aabcdd"
+Regex pattern: "a+(b|c)*d+"
+Outputs agree: "(0,6)(3,4)"
+
+Expected Pass #113
+text and pattern: "vivi"
+Regex pattern: "^.+$"
+Outputs agree: "(0,4)"
+
+Expected Pass #114
+text and pattern: "vivi"
+Regex pattern: "^(.+)$"
+Outputs agree: "(0,4)(0,4)"
+
+Expected Pass #115
+text and pattern: "gryphon.att.com!eby"
+Regex pattern: "^([^!.]+).att.com!(.+)$"
+Outputs agree: "(0,19)(0,7)(16,19)"
+
+Expected Pass #116
+text and pattern: "bas"
+Regex pattern: "^([^!]+!)?([^!]+)$"
+Outputs agree: "(0,3)(-1,-1)(0,3)"
+
+Expected Pass #117
+text and pattern: "bar!bas"
+Regex pattern: "^([^!]+!)?([^!]+)$"
+Outputs agree: "(0,7)(0,4)(4,7)"
+
+Expected Pass #118
+text and pattern: "foo!bas"
+Regex pattern: "^([^!]+!)?([^!]+)$"
+Outputs agree: "(0,7)(0,4)(4,7)"
+
+Expected Pass #119
+text and pattern: "foo!bar!bas"
+Regex pattern: "^.+!([^!]+!)([^!]+)$"
+Outputs agree: "(0,11)(4,8)(8,11)"
+
+Expected Pass #120
+text and pattern: "bar!bas"
+Regex pattern: "((foo)|(bar))!bas"
+Outputs agree: "(0,7)(0,3)(-1,-1)(0,3)"
+
+Expected Pass #121
+text and pattern: "foo!bar!bas"
+Regex pattern: "((foo)|(bar))!bas"
+Outputs agree: "(4,11)(4,7)(-1,-1)(4,7)"
+
+Expected Pass #122
+text and pattern: "foo!bas"
+Regex pattern: "((foo)|(bar))!bas"
+Outputs agree: "(0,7)(0,3)(0,3)(-1,-1)"
+
+Expected Pass #123
+text and pattern: "bar!bas"
+Regex pattern: "((foo)|bar)!bas"
+Outputs agree: "(0,7)(0,3)(-1,-1)"
+
+Expected Pass #124
+text and pattern: "foo!bar!bas"
+Regex pattern: "((foo)|bar)!bas"
+Outputs agree: "(4,11)(4,7)(-1,-1)"
+
+Expected Pass #125
+text and pattern: "foo!bas"
+Regex pattern: "((foo)|bar)!bas"
+Outputs agree: "(0,7)(0,3)(0,3)"
+
+Expected Pass #126
+text and pattern: "bar!bas"
+Regex pattern: "(foo|(bar))!bas"
+Outputs agree: "(0,7)(0,3)(0,3)"
+
+Expected Pass #127
+text and pattern: "foo!bar!bas"
+Regex pattern: "(foo|(bar))!bas"
+Outputs agree: "(4,11)(4,7)(4,7)"
+
+Expected Pass #128
+text and pattern: "foo!bas"
+Regex pattern: "(foo|(bar))!bas"
+Outputs agree: "(0,7)(0,3)(-1,-1)"
+
+Expected Pass #129
+text and pattern: "bar!bas"
+Regex pattern: "(foo|bar)!bas"
+Outputs agree: "(0,7)(0,3)"
+
+Expected Pass #130
+text and pattern: "foo!bar!bas"
+Regex pattern: "(foo|bar)!bas"
+Outputs agree: "(4,11)(4,7)"
+
+Expected Pass #131
+text and pattern: "foo!bas"
+Regex pattern: "(foo|bar)!bas"
+Outputs agree: "(0,7)(0,3)"
+
+Expected Pass #132
+text and pattern: "foo!bar!bas"
+Regex pattern: "^(([^!]+!)?([^!]+)|.+!([^!]+!)([^!]+))$"
+Outputs agree: "(0,11)(0,11)(-1,-1)(-1,-1)(4,8)(8,11)"
+
+Expected Pass #133
+text and pattern: "bas"
+Regex pattern: "^([^!]+!)?([^!]+)$|^.+!([^!]+!)([^!]+)$"
+Outputs agree: "(0,3)(-1,-1)(0,3)(-1,-1)(-1,-1)"
+
+Expected Pass #134
+text and pattern: "bar!bas"
+Regex pattern: "^([^!]+!)?([^!]+)$|^.+!([^!]+!)([^!]+)$"
+Outputs agree: "(0,7)(0,4)(4,7)(-1,-1)(-1,-1)"
+
+Expected Pass #135
+text and pattern: "foo!bar!bas"
+Regex pattern: "^([^!]+!)?([^!]+)$|^.+!([^!]+!)([^!]+)$"
+Outputs agree: "(0,11)(-1,-1)(-1,-1)(4,8)(8,11)"
+
+Expected Pass #136
+text and pattern: "foo!bas"
+Regex pattern: "^([^!]+!)?([^!]+)$|^.+!([^!]+!)([^!]+)$"
+Outputs agree: "(0,7)(0,4)(4,7)(-1,-1)(-1,-1)"
+
+Expected Pass #137
+text and pattern: "bas"
+Regex pattern: "^(([^!]+!)?([^!]+)|.+!([^!]+!)([^!]+))$"
+Outputs agree: "(0,3)(0,3)(-1,-1)(0,3)(-1,-1)(-1,-1)"
+
+Expected Pass #138
+text and pattern: "bar!bas"
+Regex pattern: "^(([^!]+!)?([^!]+)|.+!([^!]+!)([^!]+))$"
+Outputs agree: "(0,7)(0,7)(0,4)(4,7)(-1,-1)(-1,-1)"
+
+Expected Pass #139
+text and pattern: "foo!bar!bas"
+Regex pattern: "^(([^!]+!)?([^!]+)|.+!([^!]+!)([^!]+))$"
+Outputs agree: "(0,11)(0,11)(-1,-1)(-1,-1)(4,8)(8,11)"
+
+Expected Pass #140
+text and pattern: "foo!bas"
+Regex pattern: "^(([^!]+!)?([^!]+)|.+!([^!]+!)([^!]+))$"
+Outputs agree: "(0,7)(0,7)(0,4)(4,7)(-1,-1)(-1,-1)"
+
+Expected Pass #141
+text and pattern: "/XXX"
+Regex pattern: ".*(/XXX).*"
+Outputs agree: "(0,4)(0,4)"
+
+Expected Pass #142
+text and pattern: "\\XXX"
+Regex pattern: ".*(\\\\XXX).*"
+Outputs agree: "(0,4)(0,4)"
+
+Expected Pass #143
+text and pattern: "\\XXX"
+Regex pattern: "\\\\XXX"
+Outputs agree: "(0,4)"
+
+Expected Pass #144
+text and pattern: "/000"
+Regex pattern: ".*(/000).*"
+Outputs agree: "(0,4)(0,4)"
+
+Expected Pass #145
+text and pattern: "\\000"
+Regex pattern: ".*(\\\\000).*"
+Outputs agree: "(0,4)(0,4)"
+
+Expected Pass #146
+text and pattern: "\\000"
+Regex pattern: "\\\\000"
+Outputs agree: "(0,4)"
+
+Using Tests from: class.txt
+
+Expected Pass #1
+text and pattern: "xaxaax"
+Regex pattern: "aa*"
+Outputs agree: "(1,2)"
+
+Expected Pass #2
+text and pattern: "abc"
+Regex pattern: "(a*)(ab)*(b*)"
+Outputs agree: "(0,2)(0,1)(-1,-1)(1,2)"
+
+Expected Fail #-2
+
+Searched text: "abc"
+Regex pattern: "(a*)(ab)*(b*)"
+Expected output: "(0,2)(0,0)(0,2)(2,2)"
+Actual result  : "(0,2)(0,1)(-1,-1)(1,2)"
+
+Expected Pass #3
+text and pattern: "aba"
+Regex pattern: "((a*)(ab)*)((b*)(a*))"
+Outputs agree: "(0,3)(0,2)(0,0)(0,2)(2,3)(2,2)(2,3)"
+
+Expected Pass #4
+text and pattern: "xxxxxx"
+Regex pattern: "(...?.?)*"
+Outputs agree: "(0,6)(4,6)"
+
+Expected Pass #5
+text and pattern: "abcabc"
+Regex pattern: "(a|ab)(bc|c)"
+Outputs agree: "(0,3)(0,2)(2,3)"
+
+Expected Pass #6
+text and pattern: "ababa"
+Regex pattern: "(aba|a*b)(aba|a*b)"
+Outputs agree: "(0,5)(0,2)(2,5)"
+
+Expected Pass #7
+text and pattern: "xxxxx"
+Regex pattern: "(a*){2}"
+Outputs agree: "(0,0)(0,0)"
+
+Expected Pass #8
+text and pattern: "a"
+Regex pattern: "(a*)*"
+Outputs agree: "(0,1)(0,1)"
+
+Expected Pass #9
+text and pattern: "ababa"
+Regex pattern: "(aba|a*b)*"
+Outputs agree: "(0,5)(2,5)"
+
+Expected Pass #10
+text and pattern: "aba"
+Regex pattern: "(a(b)?)+"
+Outputs agree: "(0,3)(2,3)(-1,-1)"
+
+Expected Pass #11
+text and pattern: "ab"
+Regex pattern: ".*(.*)"
+Outputs agree: "(0,2)(2,2)"
+
+Expected Pass #12
+text and pattern: "abab"
+Regex pattern: "(a?)((ab)?)(b?)a?(ab)?b?"
+Outputs agree: "(0,4)(0,1)(1,1)(-1,-1)(1,2)(-1,-1)"
+
+Expected Fail #-12
+
+Searched text: "abab"
+Regex pattern: "(a?)((ab)?)(b?)a?(ab)?b?"
+Expected output: "(0,4)(0,1)(1,1)(-1,-1)(1,2)(2,4)"
+Actual result  : "(0,4)(0,1)(1,1)(-1,-1)(1,2)(-1,-1)"
+
+Using Tests from: forced-assoc.txt
+
+Expected Pass #1
+text and pattern: "abcd"
+Regex pattern: "(a|ab)(c|bcd)"
+Outputs agree: "(0,4)(0,1)(1,4)"
+
+Expected Pass #2
+text and pattern: "abcd"
+Regex pattern: "(a|ab)(bcd|c)"
+Outputs agree: "(0,4)(0,1)(1,4)"
+
+Expected Pass #3
+text and pattern: "abcd"
+Regex pattern: "(ab|a)(c|bcd)"
+Outputs agree: "(0,4)(0,1)(1,4)"
+
+Expected Pass #4
+text and pattern: "abcd"
+Regex pattern: "(ab|a)(bcd|c)"
+Outputs agree: "(0,4)(0,1)(1,4)"
+
+Expected Pass #5
+text and pattern: "abcd"
+Regex pattern: "((a|ab)(c|bcd))(d*)"
+Outputs agree: "(0,4)(0,4)(0,1)(1,4)(4,4)"
+
+Expected Pass #6
+text and pattern: "abcd"
+Regex pattern: "((a|ab)(bcd|c))(d*)"
+Outputs agree: "(0,4)(0,4)(0,1)(1,4)(4,4)"
+
+Expected Pass #7
+text and pattern: "abcd"
+Regex pattern: "((ab|a)(c|bcd))(d*)"
+Outputs agree: "(0,4)(0,4)(0,1)(1,4)(4,4)"
+
+Expected Pass #8
+text and pattern: "abcd"
+Regex pattern: "((ab|a)(bcd|c))(d*)"
+Outputs agree: "(0,4)(0,4)(0,1)(1,4)(4,4)"
+
+Expected Pass #9
+text and pattern: "abcd"
+Regex pattern: "(a|ab)((c|bcd)(d*))"
+Outputs agree: "(0,4)(0,2)(2,4)(2,3)(3,4)"
+
+Expected Pass #10
+text and pattern: "abcd"
+Regex pattern: "(a|ab)((bcd|c)(d*))"
+Outputs agree: "(0,4)(0,2)(2,4)(2,3)(3,4)"
+
+Expected Pass #11
+text and pattern: "abcd"
+Regex pattern: "(ab|a)((c|bcd)(d*))"
+Outputs agree: "(0,4)(0,2)(2,4)(2,3)(3,4)"
+
+Expected Pass #12
+text and pattern: "abcd"
+Regex pattern: "(ab|a)((bcd|c)(d*))"
+Outputs agree: "(0,4)(0,2)(2,4)(2,3)(3,4)"
+
+Expected Pass #13
+text and pattern: "abc"
+Regex pattern: "(a*)(b|abc)"
+Outputs agree: "(0,3)(0,0)(0,3)"
+
+Expected Pass #14
+text and pattern: "abc"
+Regex pattern: "(a*)(abc|b)"
+Outputs agree: "(0,3)(0,0)(0,3)"
+
+Expected Pass #15
+text and pattern: "abc"
+Regex pattern: "((a*)(b|abc))(c*)"
+Outputs agree: "(0,3)(0,3)(0,0)(0,3)(3,3)"
+
+Expected Pass #16
+text and pattern: "abc"
+Regex pattern: "((a*)(abc|b))(c*)"
+Outputs agree: "(0,3)(0,3)(0,0)(0,3)(3,3)"
+
+Expected Pass #17
+text and pattern: "abc"
+Regex pattern: "(a*)((b|abc)(c*))"
+Outputs agree: "(0,3)(0,1)(1,3)(1,2)(2,3)"
+
+Expected Pass #18
+text and pattern: "abc"
+Regex pattern: "(a*)((abc|b)(c*))"
+Outputs agree: "(0,3)(0,1)(1,3)(1,2)(2,3)"
+
+Expected Pass #19
+text and pattern: "abc"
+Regex pattern: "(a*)(b|abc)"
+Outputs agree: "(0,3)(0,0)(0,3)"
+
+Expected Pass #20
+text and pattern: "abc"
+Regex pattern: "(a*)(abc|b)"
+Outputs agree: "(0,3)(0,0)(0,3)"
+
+Expected Pass #21
+text and pattern: "abc"
+Regex pattern: "((a*)(b|abc))(c*)"
+Outputs agree: "(0,3)(0,3)(0,0)(0,3)(3,3)"
+
+Expected Pass #22
+text and pattern: "abc"
+Regex pattern: "((a*)(abc|b))(c*)"
+Outputs agree: "(0,3)(0,3)(0,0)(0,3)(3,3)"
+
+Expected Pass #23
+text and pattern: "abc"
+Regex pattern: "(a*)((b|abc)(c*))"
+Outputs agree: "(0,3)(0,1)(1,3)(1,2)(2,3)"
+
+Expected Pass #24
+text and pattern: "abc"
+Regex pattern: "(a*)((abc|b)(c*))"
+Outputs agree: "(0,3)(0,1)(1,3)(1,2)(2,3)"
+
+Expected Pass #25
+text and pattern: "ab"
+Regex pattern: "(a|ab)"
+Outputs agree: "(0,2)(0,2)"
+
+Expected Pass #26
+text and pattern: "ab"
+Regex pattern: "(ab|a)"
+Outputs agree: "(0,2)(0,2)"
+
+Expected Pass #27
+text and pattern: "ab"
+Regex pattern: "(a|ab)(b*)"
+Outputs agree: "(0,2)(0,2)(2,2)"
+
+Expected Pass #28
+text and pattern: "ab"
+Regex pattern: "(ab|a)(b*)"
+Outputs agree: "(0,2)(0,2)(2,2)"
+
+Using Tests from: left-assoc.txt
+
+Expected Fail #-1
+
+Searched text: "abcd"
+Regex pattern: "(a|ab)(c|bcd)(d*)"
+Expected output: "(0,4)(0,1)(1,4)(4,4)"
+Actual result  : "(0,4)(0,2)(2,3)(3,4)"
+
+Expected Fail #-2
+
+Searched text: "abcd"
+Regex pattern: "(a|ab)(bcd|c)(d*)"
+Expected output: "(0,4)(0,1)(1,4)(4,4)"
+Actual result  : "(0,4)(0,2)(2,3)(3,4)"
+
+Expected Fail #-3
+
+Searched text: "abcd"
+Regex pattern: "(ab|a)(c|bcd)(d*)"
+Expected output: "(0,4)(0,1)(1,4)(4,4)"
+Actual result  : "(0,4)(0,2)(2,3)(3,4)"
+
+Expected Fail #-4
+
+Searched text: "abcd"
+Regex pattern: "(ab|a)(bcd|c)(d*)"
+Expected output: "(0,4)(0,1)(1,4)(4,4)"
+Actual result  : "(0,4)(0,2)(2,3)(3,4)"
+
+Expected Fail #-5
+
+Searched text: "abc"
+Regex pattern: "(a*)(b|abc)(c*)"
+Expected output: "(0,3)(0,0)(0,3)(3,3)"
+Actual result  : "(0,3)(0,1)(1,2)(2,3)"
+
+Expected Fail #-6
+
+Searched text: "abc"
+Regex pattern: "(a*)(abc|b)(c*)"
+Expected output: "(0,3)(0,0)(0,3)(3,3)"
+Actual result  : "(0,3)(0,1)(1,2)(2,3)"
+
+Expected Fail #-7
+
+Searched text: "abc"
+Regex pattern: "(a*)(b|abc)(c*)"
+Expected output: "(0,3)(0,0)(0,3)(3,3)"
+Actual result  : "(0,3)(0,1)(1,2)(2,3)"
+
+Expected Fail #-8
+
+Searched text: "abc"
+Regex pattern: "(a*)(abc|b)(c*)"
+Expected output: "(0,3)(0,0)(0,3)(3,3)"
+Actual result  : "(0,3)(0,1)(1,2)(2,3)"
+
+Expected Fail #-9
+
+Searched text: "abcd"
+Regex pattern: "(a|ab)(c|bcd)(d|.*)"
+Expected output: "(0,4)(0,1)(1,4)(4,4)"
+Actual result  : "(0,4)(0,2)(2,3)(3,4)"
+
+Expected Fail #-10
+
+Searched text: "abcd"
+Regex pattern: "(a|ab)(bcd|c)(d|.*)"
+Expected output: "(0,4)(0,1)(1,4)(4,4)"
+Actual result  : "(0,4)(0,2)(2,3)(3,4)"
+
+Expected Fail #-11
+
+Searched text: "abcd"
+Regex pattern: "(ab|a)(c|bcd)(d|.*)"
+Expected output: "(0,4)(0,1)(1,4)(4,4)"
+Actual result  : "(0,4)(0,2)(2,3)(3,4)"
+
+Expected Fail #-12
+
+Searched text: "abcd"
+Regex pattern: "(ab|a)(bcd|c)(d|.*)"
+Expected output: "(0,4)(0,1)(1,4)(4,4)"
+Actual result  : "(0,4)(0,2)(2,3)(3,4)"
+
+Using Tests from: nullsub3.txt
+
+Expected Pass #1
+text and pattern: "a"
+Regex pattern: "(a*)*"
+Outputs agree: "(0,1)(0,1)"
+
+Expected Pass #2
+text and pattern: "x"
+Regex pattern: "(a*)*"
+Outputs agree: "(0,0)(0,0)"
+
+Expected Pass #3
+text and pattern: "aaaaaa"
+Regex pattern: "(a*)*"
+Outputs agree: "(0,6)(0,6)"
+
+Expected Pass #4
+text and pattern: "aaaaaax"
+Regex pattern: "(a*)*"
+Outputs agree: "(0,6)(0,6)"
+
+Expected Pass #5
+text and pattern: "a"
+Regex pattern: "(a*)+"
+Outputs agree: "(0,1)(0,1)"
+
+Expected Pass #6
+text and pattern: "x"
+Regex pattern: "(a*)+"
+Outputs agree: "(0,0)(0,0)"
+
+Expected Pass #7
+text and pattern: "aaaaaa"
+Regex pattern: "(a*)+"
+Outputs agree: "(0,6)(0,6)"
+
+Expected Pass #8
+text and pattern: "aaaaaax"
+Regex pattern: "(a*)+"
+Outputs agree: "(0,6)(0,6)"
+
+Expected Pass #9
+text and pattern: "a"
+Regex pattern: "(a+)*"
+Outputs agree: "(0,1)(0,1)"
+
+Expected Pass #10
+text and pattern: "x"
+Regex pattern: "(a+)*"
+Outputs agree: "(0,0)(-1,-1)"
+
+Expected Pass #11
+text and pattern: "aaaaaa"
+Regex pattern: "(a+)*"
+Outputs agree: "(0,6)(0,6)"
+
+Expected Pass #12
+text and pattern: "aaaaaax"
+Regex pattern: "(a+)*"
+Outputs agree: "(0,6)(0,6)"
+
+Expected Pass #13
+text and pattern: "a"
+Regex pattern: "(a+)+"
+Outputs agree: "(0,1)(0,1)"
+
+Expected Pass #14
+text and pattern: "x"
+Regex pattern: "(a+)+"
+Outputs agree: "NOMATCH"
+
+Expected Pass #15
+text and pattern: "aaaaaa"
+Regex pattern: "(a+)+"
+Outputs agree: "(0,6)(0,6)"
+
+Expected Pass #16
+text and pattern: "aaaaaax"
+Regex pattern: "(a+)+"
+Outputs agree: "(0,6)(0,6)"
+
+Expected Pass #17
+text and pattern: "a"
+Regex pattern: "([a]*)*"
+Outputs agree: "(0,1)(0,1)"
+
+Expected Pass #18
+text and pattern: "x"
+Regex pattern: "([a]*)*"
+Outputs agree: "(0,0)(0,0)"
+
+Expected Pass #19
+text and pattern: "aaaaaa"
+Regex pattern: "([a]*)*"
+Outputs agree: "(0,6)(0,6)"
+
+Expected Pass #20
+text and pattern: "aaaaaax"
+Regex pattern: "([a]*)*"
+Outputs agree: "(0,6)(0,6)"
+
+Expected Pass #21
+text and pattern: "a"
+Regex pattern: "([a]*)+"
+Outputs agree: "(0,1)(0,1)"
+
+Expected Pass #22
+text and pattern: "x"
+Regex pattern: "([a]*)+"
+Outputs agree: "(0,0)(0,0)"
+
+Expected Pass #23
+text and pattern: "aaaaaa"
+Regex pattern: "([a]*)+"
+Outputs agree: "(0,6)(0,6)"
+
+Expected Pass #24
+text and pattern: "aaaaaax"
+Regex pattern: "([a]*)+"
+Outputs agree: "(0,6)(0,6)"
+
+Expected Pass #25
+text and pattern: "a"
+Regex pattern: "([^b]*)*"
+Outputs agree: "(0,1)(0,1)"
+
+Expected Pass #26
+text and pattern: "b"
+Regex pattern: "([^b]*)*"
+Outputs agree: "(0,0)(0,0)"
+
+Expected Pass #27
+text and pattern: "aaaaaa"
+Regex pattern: "([^b]*)*"
+Outputs agree: "(0,6)(0,6)"
+
+Expected Pass #28
+text and pattern: "aaaaaab"
+Regex pattern: "([^b]*)*"
+Outputs agree: "(0,6)(0,6)"
+
+Expected Pass #29
+text and pattern: "a"
+Regex pattern: "([ab]*)*"
+Outputs agree: "(0,1)(0,1)"
+
+Expected Pass #30
+text and pattern: "aaaaaa"
+Regex pattern: "([ab]*)*"
+Outputs agree: "(0,6)(0,6)"
+
+Expected Pass #31
+text and pattern: "ababab"
+Regex pattern: "([ab]*)*"
+Outputs agree: "(0,6)(0,6)"
+
+Expected Pass #32
+text and pattern: "bababa"
+Regex pattern: "([ab]*)*"
+Outputs agree: "(0,6)(0,6)"
+
+Expected Pass #33
+text and pattern: "b"
+Regex pattern: "([ab]*)*"
+Outputs agree: "(0,1)(0,1)"
+
+Expected Pass #34
+text and pattern: "bbbbbb"
+Regex pattern: "([ab]*)*"
+Outputs agree: "(0,6)(0,6)"
+
+Expected Pass #35
+text and pattern: "aaaabcde"
+Regex pattern: "([ab]*)*"
+Outputs agree: "(0,5)(0,5)"
+
+Expected Pass #36
+text and pattern: "b"
+Regex pattern: "([^a]*)*"
+Outputs agree: "(0,1)(0,1)"
+
+Expected Pass #37
+text and pattern: "bbbbbb"
+Regex pattern: "([^a]*)*"
+Outputs agree: "(0,6)(0,6)"
+
+Expected Pass #38
+text and pattern: "aaaaaa"
+Regex pattern: "([^a]*)*"
+Outputs agree: "(0,0)(0,0)"
+
+Expected Pass #39
+text and pattern: "ccccxx"
+Regex pattern: "([^ab]*)*"
+Outputs agree: "(0,6)(0,6)"
+
+Expected Pass #40
+text and pattern: "ababab"
+Regex pattern: "([^ab]*)*"
+Outputs agree: "(0,0)(0,0)"
+
+Expected Pass #41
+text and pattern: "zabcde"
+Regex pattern: "((z)+|a)*"
+Outputs agree: "(0,2)(1,2)(-1,-1)"
+
+Expected Pass #42
+text and pattern: "aaa"
+Regex pattern: "(a)"
+Outputs agree: "(0,1)(0,1)"
+
+Expected Pass #46
+text and pattern: "x"
+Regex pattern: "(a*)*(x)"
+Outputs agree: "(0,1)(0,0)(0,1)"
+
+Expected Pass #47
+text and pattern: "ax"
+Regex pattern: "(a*)*(x)"
+Outputs agree: "(0,2)(0,1)(1,2)"
+
+Expected Pass #48
+text and pattern: "axa"
+Regex pattern: "(a*)*(x)"
+Outputs agree: "(0,2)(0,1)(1,2)"
+
+Expected Pass #49
+text and pattern: "x"
+Regex pattern: "(a*)+(x)"
+Outputs agree: "(0,1)(0,0)(0,1)"
+
+Expected Pass #50
+text and pattern: "ax"
+Regex pattern: "(a*)+(x)"
+Outputs agree: "(0,2)(0,1)(1,2)"
+
+Expected Pass #51
+text and pattern: "axa"
+Regex pattern: "(a*)+(x)"
+Outputs agree: "(0,2)(0,1)(1,2)"
+
+Expected Pass #52
+text and pattern: "x"
+Regex pattern: "(a*){2}(x)"
+Outputs agree: "(0,1)(0,0)(0,1)"
+
+Expected Pass #53
+text and pattern: "ax"
+Regex pattern: "(a*){2}(x)"
+Outputs agree: "(0,2)(1,1)(1,2)"
+
+Expected Pass #54
+text and pattern: "axa"
+Regex pattern: "(a*){2}(x)"
+Outputs agree: "(0,2)(1,1)(1,2)"
+
+Using Tests from: osx-bsd-critical.txt
+
+Expected Pass #1
+text and pattern: "ab"
+Regex pattern: "(()|.)(b)"
+Outputs agree: "(0,2)(0,1)(-1,-1)(1,2)"
+
+Expected Fail #-1
+
+Searched text: "ab"
+Regex pattern: "(()|.)(b)"
+Expected output: "(1,2)(1,1)(1,1)(1,2)"
+Actual result  : "(0,2)(0,1)(-1,-1)(1,2)"
+
+Expected Pass #2
+text and pattern: "ab"
+Regex pattern: "(()|[ab])(b)"
+Outputs agree: "(0,2)(0,1)(-1,-1)(1,2)"
+
+Expected Fail #-2
+
+Searched text: "ab"
+Regex pattern: "(()|[ab])(b)"
+Expected output: "(1,2)(1,1)(1,1)(1,2)"
+Actual result  : "(0,2)(0,1)(-1,-1)(1,2)"
+
+Expected Pass #3
+text and pattern: "aaab"
+Regex pattern: "(()|[ab])+b"
+Outputs agree: "(0,4)(2,3)(-1,-1)"
+
+Expected Fail #-3
+
+Searched text: "aaab"
+Regex pattern: "(()|[ab])+b"
+Expected output: "(3,4)(3,3)(3,3)"
+Actual result  : "(0,4)(2,3)(-1,-1)"
+
+Expected Pass #11
+text and pattern: "ab"
+Regex pattern: "(.|())(b)"
+Outputs agree: "(0,2)(0,1)(-1,-1)(1,2)"
+
+Expected Pass #12
+text and pattern: "ab"
+Regex pattern: "([ab]|())(b)"
+Outputs agree: "(0,2)(0,1)(-1,-1)(1,2)"
+
+Expected Pass #14
+text and pattern: "aaab"
+Regex pattern: "([ab]|())+b"
+Outputs agree: "(0,4)(2,3)(-1,-1)"
+
+Expected Fail #-14
+
+Searched text: "aaab"
+Regex pattern: "([ab]|())+b"
+Expected output: "(0,4)(3,3)(3,3)"
+Actual result  : "(0,4)(2,3)(-1,-1)"
+
+Expected Pass #20
+text and pattern: "ab"
+Regex pattern: "(.?)(b)"
+Outputs agree: "(0,2)(0,1)(1,2)"
+
+Using Tests from: repetition2.txt
+
+Expected Pass #1
+text and pattern: ""
+Regex pattern: "((..)|(.))"
+Outputs agree: "NOMATCH"
+
+Expected Pass #2
+text and pattern: ""
+Regex pattern: "((..)|(.))((..)|(.))"
+Outputs agree: "NOMATCH"
+
+Expected Pass #3
+text and pattern: ""
+Regex pattern: "((..)|(.))((..)|(.))((..)|(.))"
+Outputs agree: "NOMATCH"
+
+Expected Pass #4
+text and pattern: ""
+Regex pattern: "((..)|(.)){1}"
+Outputs agree: "NOMATCH"
+
+Expected Pass #5
+text and pattern: ""
+Regex pattern: "((..)|(.)){2}"
+Outputs agree: "NOMATCH"
+
+Expected Pass #6
+text and pattern: ""
+Regex pattern: "((..)|(.)){3}"
+Outputs agree: "NOMATCH"
+
+Expected Pass #7
+text and pattern: ""
+Regex pattern: "((..)|(.))*"
+Outputs agree: "(0,0)(-1,-1)(-1,-1)(-1,-1)"
+
+Expected Pass #8
+text and pattern: "a"
+Regex pattern: "((..)|(.))"
+Outputs agree: "(0,1)(0,1)(-1,-1)(0,1)"
+
+Expected Pass #9
+text and pattern: "a"
+Regex pattern: "((..)|(.))((..)|(.))"
+Outputs agree: "NOMATCH"
+
+Expected Pass #10
+text and pattern: "a"
+Regex pattern: "((..)|(.))((..)|(.))((..)|(.))"
+Outputs agree: "NOMATCH"
+
+Expected Pass #11
+text and pattern: "a"
+Regex pattern: "((..)|(.)){1}"
+Outputs agree: "(0,1)(0,1)(-1,-1)(0,1)"
+
+Expected Pass #12
+text and pattern: "a"
+Regex pattern: "((..)|(.)){2}"
+Outputs agree: "NOMATCH"
+
+Expected Pass #13
+text and pattern: "a"
+Regex pattern: "((..)|(.)){3}"
+Outputs agree: "NOMATCH"
+
+Expected Pass #14
+text and pattern: "a"
+Regex pattern: "((..)|(.))*"
+Outputs agree: "(0,1)(0,1)(-1,-1)(0,1)"
+
+Expected Pass #15
+text and pattern: "aa"
+Regex pattern: "((..)|(.))"
+Outputs agree: "(0,2)(0,2)(0,2)(-1,-1)"
+
+Expected Pass #16
+text and pattern: "aa"
+Regex pattern: "((..)|(.))((..)|(.))"
+Outputs agree: "(0,2)(0,1)(-1,-1)(0,1)(1,2)(-1,-1)(1,2)"
+
+Expected Pass #17
+text and pattern: "aa"
+Regex pattern: "((..)|(.))((..)|(.))((..)|(.))"
+Outputs agree: "NOMATCH"
+
+Expected Pass #18
+text and pattern: "aa"
+Regex pattern: "((..)|(.)){1}"
+Outputs agree: "(0,2)(0,2)(0,2)(-1,-1)"
+
+Expected Pass #19
+text and pattern: "aa"
+Regex pattern: "((..)|(.)){2}"
+Outputs agree: "(0,2)(1,2)(-1,-1)(1,2)"
+
+Expected Pass #20
+text and pattern: "aa"
+Regex pattern: "((..)|(.)){3}"
+Outputs agree: "NOMATCH"
+
+Expected Pass #21
+text and pattern: "aa"
+Regex pattern: "((..)|(.))*"
+Outputs agree: "(0,2)(0,2)(0,2)(-1,-1)"
+
+Expected Pass #22
+text and pattern: "aaa"
+Regex pattern: "((..)|(.))"
+Outputs agree: "(0,2)(0,2)(0,2)(-1,-1)"
+
+Expected Pass #23
+text and pattern: "aaa"
+Regex pattern: "((..)|(.))((..)|(.))"
+Outputs agree: "(0,3)(0,2)(0,2)(-1,-1)(2,3)(-1,-1)(2,3)"
+
+Expected Pass #24
+text and pattern: "aaa"
+Regex pattern: "((..)|(.))((..)|(.))((..)|(.))"
+Outputs agree: "(0,3)(0,1)(-1,-1)(0,1)(1,2)(-1,-1)(1,2)(2,3)(-1,-1)(2,3)"
+
+Expected Pass #25
+text and pattern: "aaa"
+Regex pattern: "((..)|(.)){1}"
+Outputs agree: "(0,2)(0,2)(0,2)(-1,-1)"
+
+Expected Pass #26
+text and pattern: "aaa"
+Regex pattern: "((..)|(.)){2}"
+Outputs agree: "(0,3)(2,3)(-1,-1)(2,3)"
+
+Expected Pass #27
+text and pattern: "aaa"
+Regex pattern: "((..)|(.)){3}"
+Outputs agree: "(0,3)(2,3)(-1,-1)(2,3)"
+
+Expected Pass #28
+text and pattern: "aaa"
+Regex pattern: "((..)|(.))*"
+Outputs agree: "(0,3)(2,3)(-1,-1)(2,3)"
+
+Expected Pass #29
+text and pattern: "aaaa"
+Regex pattern: "((..)|(.))"
+Outputs agree: "(0,2)(0,2)(0,2)(-1,-1)"
+
+Expected Pass #30
+text and pattern: "aaaa"
+Regex pattern: "((..)|(.))((..)|(.))"
+Outputs agree: "(0,4)(0,2)(0,2)(-1,-1)(2,4)(2,4)(-1,-1)"
+
+Expected Pass #31
+text and pattern: "aaaa"
+Regex pattern: "((..)|(.))((..)|(.))((..)|(.))"
+Outputs agree: "(0,4)(0,2)(0,2)(-1,-1)(2,3)(-1,-1)(2,3)(3,4)(-1,-1)(3,4)"
+
+Expected Pass #32
+text and pattern: "aaaa"
+Regex pattern: "((..)|(.)){1}"
+Outputs agree: "(0,2)(0,2)(0,2)(-1,-1)"
+
+Expected Pass #33
+text and pattern: "aaaa"
+Regex pattern: "((..)|(.)){2}"
+Outputs agree: "(0,4)(2,4)(2,4)(-1,-1)"
+
+Expected Pass #34
+text and pattern: "aaaa"
+Regex pattern: "((..)|(.)){3}"
+Outputs agree: "(0,4)(3,4)(-1,-1)(3,4)"
+
+Expected Pass #35
+text and pattern: "aaaa"
+Regex pattern: "((..)|(.))*"
+Outputs agree: "(0,4)(2,4)(2,4)(-1,-1)"
+
+Expected Pass #36
+text and pattern: "aaaaa"
+Regex pattern: "((..)|(.))"
+Outputs agree: "(0,2)(0,2)(0,2)(-1,-1)"
+
+Expected Pass #37
+text and pattern: "aaaaa"
+Regex pattern: "((..)|(.))((..)|(.))"
+Outputs agree: "(0,4)(0,2)(0,2)(-1,-1)(2,4)(2,4)(-1,-1)"
+
+Expected Pass #38
+text and pattern: "aaaaa"
+Regex pattern: "((..)|(.))((..)|(.))((..)|(.))"
+Outputs agree: "(0,5)(0,2)(0,2)(-1,-1)(2,4)(2,4)(-1,-1)(4,5)(-1,-1)(4,5)"
+
+Expected Pass #39
+text and pattern: "aaaaa"
+Regex pattern: "((..)|(.)){1}"
+Outputs agree: "(0,2)(0,2)(0,2)(-1,-1)"
+
+Expected Pass #40
+text and pattern: "aaaaa"
+Regex pattern: "((..)|(.)){2}"
+Outputs agree: "(0,4)(2,4)(2,4)(-1,-1)"
+
+Expected Pass #41
+text and pattern: "aaaaa"
+Regex pattern: "((..)|(.)){3}"
+Outputs agree: "(0,5)(4,5)(-1,-1)(4,5)"
+
+Expected Pass #42
+text and pattern: "aaaaa"
+Regex pattern: "((..)|(.))*"
+Outputs agree: "(0,5)(4,5)(-1,-1)(4,5)"
+
+Expected Pass #43
+text and pattern: "aaaaaa"
+Regex pattern: "((..)|(.))"
+Outputs agree: "(0,2)(0,2)(0,2)(-1,-1)"
+
+Expected Pass #44
+text and pattern: "aaaaaa"
+Regex pattern: "((..)|(.))((..)|(.))"
+Outputs agree: "(0,4)(0,2)(0,2)(-1,-1)(2,4)(2,4)(-1,-1)"
+
+Expected Pass #45
+text and pattern: "aaaaaa"
+Regex pattern: "((..)|(.))((..)|(.))((..)|(.))"
+Outputs agree: "(0,6)(0,2)(0,2)(-1,-1)(2,4)(2,4)(-1,-1)(4,6)(4,6)(-1,-1)"
+
+Expected Pass #46
+text and pattern: "aaaaaa"
+Regex pattern: "((..)|(.)){1}"
+Outputs agree: "(0,2)(0,2)(0,2)(-1,-1)"
+
+Expected Pass #47
+text and pattern: "aaaaaa"
+Regex pattern: "((..)|(.)){2}"
+Outputs agree: "(0,4)(2,4)(2,4)(-1,-1)"
+
+Expected Pass #48
+text and pattern: "aaaaaa"
+Regex pattern: "((..)|(.)){3}"
+Outputs agree: "(0,6)(4,6)(4,6)(-1,-1)"
+
+Expected Pass #49
+text and pattern: "aaaaaa"
+Regex pattern: "((..)|(.))*"
+Outputs agree: "(0,6)(4,6)(4,6)(-1,-1)"
+
+Expected Pass #100
+text and pattern: "X1234567Y"
+Regex pattern: "X(.?){0,}Y"
+Outputs agree: "(0,9)(7,8)"
+
+Expected Pass #101
+text and pattern: "X1234567Y"
+Regex pattern: "X(.?){1,}Y"
+Outputs agree: "(0,9)(7,8)"
+
+Expected Pass #102
+text and pattern: "X1234567Y"
+Regex pattern: "X(.?){2,}Y"
+Outputs agree: "(0,9)(7,8)"
+
+Expected Pass #103
+text and pattern: "X1234567Y"
+Regex pattern: "X(.?){3,}Y"
+Outputs agree: "(0,9)(7,8)"
+
+Expected Pass #104
+text and pattern: "X1234567Y"
+Regex pattern: "X(.?){4,}Y"
+Outputs agree: "(0,9)(7,8)"
+
+Expected Pass #105
+text and pattern: "X1234567Y"
+Regex pattern: "X(.?){5,}Y"
+Outputs agree: "(0,9)(7,8)"
+
+Expected Pass #106
+text and pattern: "X1234567Y"
+Regex pattern: "X(.?){6,}Y"
+Outputs agree: "(0,9)(7,8)"
+
+Expected Pass #107
+text and pattern: "X1234567Y"
+Regex pattern: "X(.?){7,}Y"
+Outputs agree: "(0,9)(7,8)"
+
+Expected Pass #108
+text and pattern: "X1234567Y"
+Regex pattern: "X(.?){8,}Y"
+Outputs agree: "(0,9)(8,8)"
+
+Expected Pass #110
+text and pattern: "X1234567Y"
+Regex pattern: "X(.?){0,8}Y"
+Outputs agree: "(0,9)(7,8)"
+
+Expected Pass #111
+text and pattern: "X1234567Y"
+Regex pattern: "X(.?){1,8}Y"
+Outputs agree: "(0,9)(7,8)"
+
+Expected Pass #112
+text and pattern: "X1234567Y"
+Regex pattern: "X(.?){2,8}Y"
+Outputs agree: "(0,9)(7,8)"
+
+Expected Pass #113
+text and pattern: "X1234567Y"
+Regex pattern: "X(.?){3,8}Y"
+Outputs agree: "(0,9)(7,8)"
+
+Expected Pass #114
+text and pattern: "X1234567Y"
+Regex pattern: "X(.?){4,8}Y"
+Outputs agree: "(0,9)(7,8)"
+
+Expected Pass #115
+text and pattern: "X1234567Y"
+Regex pattern: "X(.?){5,8}Y"
+Outputs agree: "(0,9)(7,8)"
+
+Expected Pass #116
+text and pattern: "X1234567Y"
+Regex pattern: "X(.?){6,8}Y"
+Outputs agree: "(0,9)(7,8)"
+
+Expected Pass #117
+text and pattern: "X1234567Y"
+Regex pattern: "X(.?){7,8}Y"
+Outputs agree: "(0,9)(7,8)"
+
+Expected Pass #118
+text and pattern: "X1234567Y"
+Regex pattern: "X(.?){8,8}Y"
+Outputs agree: "(0,9)(8,8)"
+
+Expected Pass #260
+text and pattern: "ababcd"
+Regex pattern: "(a|ab|c|bcd){0,}(d*)"
+Outputs agree: "(0,6)(3,6)(6,6)"
+
+Expected Pass #261
+text and pattern: "ababcd"
+Regex pattern: "(a|ab|c|bcd){1,}(d*)"
+Outputs agree: "(0,6)(3,6)(6,6)"
+
+Expected Pass #262
+text and pattern: "ababcd"
+Regex pattern: "(a|ab|c|bcd){2,}(d*)"
+Outputs agree: "(0,6)(3,6)(6,6)"
+
+Expected Pass #263
+text and pattern: "ababcd"
+Regex pattern: "(a|ab|c|bcd){3,}(d*)"
+Outputs agree: "(0,6)(3,6)(6,6)"
+
+Expected Pass #264
+text and pattern: "ababcd"
+Regex pattern: "(a|ab|c|bcd){4,}(d*)"
+Outputs agree: "NOMATCH"
+
+Expected Pass #265
+text and pattern: "ababcd"
+Regex pattern: "(a|ab|c|bcd){0,10}(d*)"
+Outputs agree: "(0,6)(3,6)(6,6)"
+
+Expected Pass #266
+text and pattern: "ababcd"
+Regex pattern: "(a|ab|c|bcd){1,10}(d*)"
+Outputs agree: "(0,6)(3,6)(6,6)"
+
+Expected Pass #267
+text and pattern: "ababcd"
+Regex pattern: "(a|ab|c|bcd){2,10}(d*)"
+Outputs agree: "(0,6)(3,6)(6,6)"
+
+Expected Pass #268
+text and pattern: "ababcd"
+Regex pattern: "(a|ab|c|bcd){3,10}(d*)"
+Outputs agree: "(0,6)(3,6)(6,6)"
+
+Expected Pass #269
+text and pattern: "ababcd"
+Regex pattern: "(a|ab|c|bcd){4,10}(d*)"
+Outputs agree: "NOMATCH"
+
+Expected Pass #270
+text and pattern: "ababcd"
+Regex pattern: "(a|ab|c|bcd)*(d*)"
+Outputs agree: "(0,6)(3,6)(6,6)"
+
+Expected Pass #271
+text and pattern: "ababcd"
+Regex pattern: "(a|ab|c|bcd)+(d*)"
+Outputs agree: "(0,6)(3,6)(6,6)"
+
+Using Tests from: right-assoc.txt
+
+Expected Pass #1
+text and pattern: "abcd"
+Regex pattern: "(a|ab)(c|bcd)(d*)"
+Outputs agree: "(0,4)(0,2)(2,3)(3,4)"
+
+Expected Pass #2
+text and pattern: "abcd"
+Regex pattern: "(a|ab)(bcd|c)(d*)"
+Outputs agree: "(0,4)(0,2)(2,3)(3,4)"
+
+Expected Pass #3
+text and pattern: "abcd"
+Regex pattern: "(ab|a)(c|bcd)(d*)"
+Outputs agree: "(0,4)(0,2)(2,3)(3,4)"
+
+Expected Pass #4
+text and pattern: "abcd"
+Regex pattern: "(ab|a)(bcd|c)(d*)"
+Outputs agree: "(0,4)(0,2)(2,3)(3,4)"
+
+Expected Pass #5
+text and pattern: "abc"
+Regex pattern: "(a*)(b|abc)(c*)"
+Outputs agree: "(0,3)(0,1)(1,2)(2,3)"
+
+Expected Pass #6
+text and pattern: "abc"
+Regex pattern: "(a*)(abc|b)(c*)"
+Outputs agree: "(0,3)(0,1)(1,2)(2,3)"
+
+Expected Pass #7
+text and pattern: "abc"
+Regex pattern: "(a*)(b|abc)(c*)"
+Outputs agree: "(0,3)(0,1)(1,2)(2,3)"
+
+Expected Pass #8
+text and pattern: "abc"
+Regex pattern: "(a*)(abc|b)(c*)"
+Outputs agree: "(0,3)(0,1)(1,2)(2,3)"
+
+Expected Pass #9
+text and pattern: "abcd"
+Regex pattern: "(a|ab)(c|bcd)(d|.*)"
+Outputs agree: "(0,4)(0,2)(2,3)(3,4)"
+
+Expected Pass #10
+text and pattern: "abcd"
+Regex pattern: "(a|ab)(bcd|c)(d|.*)"
+Outputs agree: "(0,4)(0,2)(2,3)(3,4)"
+
+Expected Pass #11
+text and pattern: "abcd"
+Regex pattern: "(ab|a)(c|bcd)(d|.*)"
+Outputs agree: "(0,4)(0,2)(2,3)(3,4)"
+
+Expected Pass #12
+text and pattern: "abcd"
+Regex pattern: "(ab|a)(bcd|c)(d|.*)"
+Outputs agree: "(0,4)(0,2)(2,3)(3,4)"
+
+Using Tests from: totest.txt
+
+Expected Pass #1
+text and pattern: "xaax"
+Regex pattern: "a+"
+Outputs agree: "(1,3)"
+
+Expected Pass #3
+text and pattern: "ab"
+Regex pattern: "(a?)((ab)?)"
+Outputs agree: "(0,2)(0,0)(0,2)(0,2)"
+
+Expected Pass #4
+text and pattern: "ab"
+Regex pattern: "(a?)((ab)?)(b?)"
+Outputs agree: "(0,2)(0,1)(1,1)(-1,-1)(1,2)"
+
+Expected Pass #5
+text and pattern: "ab"
+Regex pattern: "((a?)((ab)?))(b?)"
+Outputs agree: "(0,2)(0,2)(0,0)(0,2)(0,2)(2,2)"
+
+Expected Pass #6
+text and pattern: "ab"
+Regex pattern: "(a?)(((ab)?)(b?))"
+Outputs agree: "(0,2)(0,1)(1,2)(1,1)(-1,-1)(1,2)"
+
+Expected Pass #7
+text and pattern: "x"
+Regex pattern: "(.?)"
+Outputs agree: "(0,1)(0,1)"
+
+Expected Pass #8
+text and pattern: "x"
+Regex pattern: "(.?){1}"
+Outputs agree: "(0,1)(0,1)"
+
+Expected Pass #9
+text and pattern: "x"
+Regex pattern: "(.?)(.?)"
+Outputs agree: "(0,1)(0,1)(1,1)"
+
+Expected Pass #10
+text and pattern: "x"
+Regex pattern: "(.?){2}"
+Outputs agree: "(0,1)(1,1)"
+
+Expected Pass #11
+text and pattern: "x"
+Regex pattern: "(.?)*"
+Outputs agree: "(0,1)(0,1)"
+
+Expected Pass #12
+text and pattern: "xxx"
+Regex pattern: "(.?.?)"
+Outputs agree: "(0,2)(0,2)"
+
+Expected Pass #13
+text and pattern: "xxx"
+Regex pattern: "(.?.?){1}"
+Outputs agree: "(0,2)(0,2)"
+
+Expected Pass #14
+text and pattern: "xxx"
+Regex pattern: "(.?.?)(.?.?)"
+Outputs agree: "(0,3)(0,2)(2,3)"
+
+Expected Pass #15
+text and pattern: "xxx"
+Regex pattern: "(.?.?){2}"
+Outputs agree: "(0,3)(2,3)"
+
+Expected Pass #16
+text and pattern: "xxx"
+Regex pattern: "(.?.?)(.?.?)(.?.?)"
+Outputs agree: "(0,3)(0,2)(2,3)(3,3)"
+
+Expected Pass #17
+text and pattern: "xxx"
+Regex pattern: "(.?.?){3}"
+Outputs agree: "(0,3)(3,3)"
+
+Expected Pass #18
+text and pattern: "xxx"
+Regex pattern: "(.?.?)*"
+Outputs agree: "(0,3)(2,3)"
+
+Expected Pass #19
+text and pattern: "ab"
+Regex pattern: "a?((ab)?)(b?)"
+Outputs agree: "(0,2)(1,1)(-1,-1)(1,2)"
+
+Expected Pass #20
+text and pattern: "ab"
+Regex pattern: "(a?)((ab)?)b?"
+Outputs agree: "(0,2)(0,1)(1,1)(-1,-1)"
+
+Expected Pass #21
+text and pattern: "ab"
+Regex pattern: "a?((ab)?)b?"
+Outputs agree: "(0,2)(1,1)(-1,-1)"
+
+Expected Pass #22
+text and pattern: "xxxxx"
+Regex pattern: "(a*){2}"
+Outputs agree: "(0,0)(0,0)"
+
+Expected Pass #23
+text and pattern: "aba"
+Regex pattern: "(ab?)(b?a)"
+Outputs agree: "(0,3)(0,2)(2,3)"
+
+Expected Pass #24
+text and pattern: "aba"
+Regex pattern: "(a|ab)(ba|a)"
+Outputs agree: "(0,3)(0,2)(2,3)"
+
+Expected Pass #25
+text and pattern: "aba"
+Regex pattern: "(a|ab|ba)"
+Outputs agree: "(0,2)(0,2)"
+
+Expected Pass #26
+text and pattern: "aba"
+Regex pattern: "(a|ab|ba)(a|ab|ba)"
+Outputs agree: "(0,3)(0,2)(2,3)"
+
+Expected Pass #27
+text and pattern: "aba"
+Regex pattern: "(a|ab|ba)*"
+Outputs agree: "(0,3)(2,3)"
+
+Expected Pass #28
+text and pattern: "ababa"
+Regex pattern: "(aba|a*b)"
+Outputs agree: "(0,3)(0,3)"
+
+Expected Pass #29
+text and pattern: "ababa"
+Regex pattern: "(aba|a*b)(aba|a*b)"
+Outputs agree: "(0,5)(0,2)(2,5)"
+
+Expected Pass #1029
+text and pattern: "ababa"
+Regex pattern: "(aba|a*b)(aba|a*b)(aba|a*b)"
+Outputs agree: "NOMATCH"
+
+Expected Pass #30
+text and pattern: "ababa"
+Regex pattern: "(aba|a*b)*"
+Outputs agree: "(0,5)(2,5)"
+
+Expected Pass #31
+text and pattern: "ababa"
+Regex pattern: "(aba|ab|a)"
+Outputs agree: "(0,3)(0,3)"
+
+Expected Pass #32
+text and pattern: "ababa"
+Regex pattern: "(aba|ab|a)(aba|ab|a)"
+Outputs agree: "(0,5)(0,2)(2,5)"
+
+Expected Pass #1032
+text and pattern: "ababa"
+Regex pattern: "(aba|ab|a)(aba|ab|a)(aba|ab|a)"
+Outputs agree: "(0,5)(0,2)(2,4)(4,5)"
+
+Expected Pass #33
+text and pattern: "ababa"
+Regex pattern: "(aba|ab|a)*"
+Outputs agree: "(0,5)(2,5)"
+
+Expected Pass #34
+text and pattern: "aba"
+Regex pattern: "(a(b)?)"
+Outputs agree: "(0,2)(0,2)(1,2)"
+
+Expected Pass #35
+text and pattern: "aba"
+Regex pattern: "(a(b)?)(a(b)?)"
+Outputs agree: "(0,3)(0,2)(1,2)(2,3)(-1,-1)"
+
+Expected Pass #36
+text and pattern: "aba"
+Regex pattern: "(a(b)?)+"
+Outputs agree: "(0,3)(2,3)(-1,-1)"
+
+Expected Pass #37
+text and pattern: "xx"
+Regex pattern: "(.*)(.*)"
+Outputs agree: "(0,2)(0,2)(2,2)"
+
+Expected Pass #38
+text and pattern: "xx"
+Regex pattern: ".*(.*)"
+Outputs agree: "(0,2)(2,2)"
+
+Expected Pass #39
+text and pattern: "azbazby"
+Regex pattern: "(a.*z|b.*y)"
+Outputs agree: "(0,5)(0,5)"
+
+Expected Pass #40
+text and pattern: "azbazby"
+Regex pattern: "(a.*z|b.*y)(a.*z|b.*y)"
+Outputs agree: "(0,7)(0,5)(5,7)"
+
+Expected Pass #41
+text and pattern: "azbazby"
+Regex pattern: "(a.*z|b.*y)*"
+Outputs agree: "(0,7)(5,7)"
+
+Expected Pass #42
+text and pattern: "ab"
+Regex pattern: "(.|..)(.*)"
+Outputs agree: "(0,2)(0,2)(2,2)"
+
+Expected Pass #43
+text and pattern: "xxx"
+Regex pattern: "((..)*(...)*)"
+Outputs agree: "(0,3)(0,3)(-1,-1)(0,3)"
+
+Expected Pass #44
+text and pattern: "xxx"
+Regex pattern: "((..)*(...)*)((..)*(...)*)"
+Outputs agree: "(0,3)(0,3)(-1,-1)(0,3)(3,3)(-1,-1)(-1,-1)"
+
+Expected Pass #45
+text and pattern: "xxx"
+Regex pattern: "((..)*(...)*)*"
+Outputs agree: "(0,3)(0,3)(-1,-1)(0,3)"
+
+Expected Pass #83
+text and pattern: "aabbaa"
+Regex pattern: "(aa(b(b))?)+"
+Outputs agree: "(0,6)(4,6)(-1,-1)(-1,-1)"
+
+Expected Pass #84
+text and pattern: "aba"
+Regex pattern: "(a(b)?)+"
+Outputs agree: "(0,3)(2,3)(-1,-1)"
+
+Expected Pass #85
+text and pattern: "abcd"
+Regex pattern: "([ab]+)([bc]+)([cd]*)"
+Outputs agree: "(0,4)(0,2)(2,3)(3,4)"
+
+Expected Pass #90
+text and pattern: "Aa"
+Regex pattern: "^(A([^B]*))?(B(.*))?"
+Outputs agree: "(0,2)(0,2)(1,2)(-1,-1)(-1,-1)"
+
+Expected Pass #91
+text and pattern: "Bb"
+Regex pattern: "^(A([^B]*))?(B(.*))?"
+Outputs agree: "(0,2)(-1,-1)(-1,-1)(0,2)(1,2)"
+
+Expected Pass #110
+text and pattern: "a"
+Regex pattern: "(^){0,3}"
+Outputs agree: "(0,0)(0,0)"
+
+Expected Pass #111
+text and pattern: "a"
+Regex pattern: "($){0,3}"
+Outputs agree: "(0,0)(-1,-1)"
+
+Expected Pass #112
+text and pattern: "a"
+Regex pattern: "(^){1,3}"
+Outputs agree: "(0,0)(0,0)"
+
+Expected Pass #113
+text and pattern: "a"
+Regex pattern: "($){1,3}"
+Outputs agree: "(1,1)(1,1)"
+
+Expected Pass #200
+text and pattern: "searchme"
+Regex pattern: "((s^)|(s)|(^)|($)|(^.))*"
+Outputs agree: "(0,1)(0,1)(-1,-1)(0,1)(-1,-1)(-1,-1)(-1,-1)"
+
+Expected Pass #201
+text and pattern: "searchme"
+Regex pattern: "s(()|^)e"
+Outputs agree: "(0,2)(1,1)(1,1)"
+
+Expected Pass #202
+text and pattern: "searchme"
+Regex pattern: "s(^|())e"
+Outputs agree: "(0,2)(1,1)(1,1)"
+
+Expected Pass #203
+text and pattern: "searchme"
+Regex pattern: "s(^|())e"
+Outputs agree: "(0,2)(1,1)(1,1)"
+
+Expected Pass #204
+text and pattern: "searchme"
+Regex pattern: "s()?e"
+Outputs agree: "(0,2)(1,1)"
+
+Expected Pass #205
+text and pattern: "searchme"
+Regex pattern: "s(^)?e"
+Outputs agree: "(0,2)(-1,-1)"
+
+Expected Pass #206
+text and pattern: "searchme"
+Regex pattern: "((s)|(e)|(a))*"
+Outputs agree: "(0,3)(2,3)(-1,-1)(-1,-1)(2,3)"
+
+Expected Pass #207
+text and pattern: "searchme"
+Regex pattern: "((s)|(e)|())*"
+Outputs agree: "(0,2)(1,2)(-1,-1)(1,2)(-1,-1)"
+
+Expected Pass #208
+text and pattern: "cbb"
+Regex pattern: "((b*)|c(c*))*"
+Outputs agree: "(0,3)(1,3)(1,3)(-1,-1)"
+
+Expected Pass #209
+text and pattern: "yyyyyy"
+Regex pattern: "(yyy|(x?)){2,4}"
+Outputs agree: "(0,6)(3,6)(-1,-1)"
+
+Expected Pass #210
+text and pattern: "xxx"
+Regex pattern: "($)|()"
+Outputs agree: "(0,0)(-1,-1)(0,0)"
+
+Expected Pass #211
+text and pattern: "ac\\n"
+Regex pattern: "$()|^()"
+Outputs agree: "(0,0)(-1,-1)(0,0)"
+
+Expected Pass #212
+text and pattern: "ac\\n"
+Regex pattern: "^()|$()"
+Outputs agree: "(0,0)(0,0)(-1,-1)"
+
+Expected Pass #213
+text and pattern: "__"
+Regex pattern: "($)?(.)"
+Outputs agree: "(0,1)(-1,-1)(0,1)"
+
+Expected Pass #214
+text and pattern: "c"
+Regex pattern: "(.|()|())*"
+Outputs agree: "(0,1)(0,1)(-1,-1)(-1,-1)"
+
+Expected Pass #215
+text and pattern: "ab"
+Regex pattern: "((a)|(b)){2,}"
+Outputs agree: "(0,2)(1,2)(-1,-1)(1,2)"
+
+Expected Pass #216
+text and pattern: ""
+Regex pattern: ".()|((.)?)"
+Outputs agree: "(0,0)(-1,-1)(0,0)(-1,-1)"
+
+Expected Pass #217
+text and pattern: "xx"
+Regex pattern: "(.|$){2,}"
+Outputs agree: "(0,2)(1,2)"
+
+Expected Pass #218
+text and pattern: "xx"
+Regex pattern: "(.|$){2,2}"
+Outputs agree: "(0,2)(1,2)"
+
+Expected Pass #219
+text and pattern: "xx"
+Regex pattern: "(.){2,}"
+Outputs agree: "(0,2)(1,2)"
+
+Expected Pass #220
+text and pattern: "abc"
+Regex pattern: "(a|())(b|())(c|())"
+Outputs agree: "(0,3)(0,1)(-1,-1)(1,2)(-1,-1)(2,3)(-1,-1)"
+
+Expected Pass #220
+text and pattern: "abc"
+Regex pattern: "ab()c|ab()c()"
+Outputs agree: "(0,3)(2,2)(-1,-1)(-1,-1)"
+
+Expected Pass #250
+text and pattern: "bcde"
+Regex pattern: "(b(c)|d(e))*"
+Outputs agree: "(0,4)(2,4)(-1,-1)(3,4)"
+
+Expected Pass #251
+text and pattern: "aba"
+Regex pattern: "(a(b)*)*"
+Outputs agree: "(0,3)(2,3)(-1,-1)"
+
+Expected Pass #260
+text and pattern: "]"
+Regex pattern: "[]]"
+Outputs agree: "(0,1)"
+
+Expected Pass #261
+text and pattern: "]"
+Regex pattern: "[^]]"
+Outputs agree: "NOMATCH"
+
+Expected Pass #262
+text and pattern: "-"
+Regex pattern: "[-]"
+Outputs agree: "(0,1)"
+
+Expected Pass #263
+text and pattern: "-"
+Regex pattern: "[^-]"
+Outputs agree: "NOMATCH"
+
+Expected Pass #260
+text and pattern: "a"
+Regex pattern: "[]]"
+Outputs agree: "NOMATCH"
+
+Expected Pass #261
+text and pattern: "a"
+Regex pattern: "[^]]"
+Outputs agree: "(0,1)"
+
+Expected Pass #262
+text and pattern: "a"
+Regex pattern: "[-]"
+Outputs agree: "NOMATCH"
+
+Expected Pass #263
+text and pattern: "a"
+Regex pattern: "[^-]"
+Outputs agree: "(0,1)"
+
+Wow, all the tests passed!
+Test suite regex-tdfa-unittest: PASS
+Test suite logged to:
+/tmp/workdir-regex-tdfa/regex-tdfa-1.3.2.2/dist-newstyle/build/x86_64-linux/ghc-9.6.6/regex-tdfa-1.3.2.2/t/regex-tdfa-unittest/test/regex-tdfa-1.3.2.2-regex-tdfa-unittest.log
+1 of 1 test suites (1 of 1 test cases) passed.

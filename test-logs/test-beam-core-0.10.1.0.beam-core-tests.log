@@ -1,0 +1,73 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - beam-core-0.10.1.0 (test:beam-core-tests) (ephemeral targets)
+Preprocessing test suite 'beam-core-tests' for beam-core-0.10.1.0...
+Building test suite 'beam-core-tests' for beam-core-0.10.1.0...
+Running 1 test suites...
+Test suite beam-core-tests: RUNNING...
+beam-core tests
+  Schema Tests
+    Basic Schema Generation:                                          OK
+    Rule based renaming works correctly:                              OK
+    Parametric schema generation:                                     OK
+    Parametric and fixed nested beams are equivalent:                 OK
+    Underscores in field names are handled gracefully:                OK
+    Embedded databases
+      Databases can be embedded:                                      OK
+      Databases can be customized when embedded:                      OK
+  SQL generation tests
+    All fields are present in a simple all_ query:                    OK
+    guard_ clauses are successfully translated into WHERE statements: OK
+    Introducing multiple tables results in an inner join:             OK
+    Table names are unique and properly used in self joins:           OK
+    leftJoin_ generates the right join:                               OK
+    leftJoin_ generates the right join (single return value):         OK
+    Aggregate support
+      Basic aggregate support:                                        OK
+      Basic HAVING support:                                           OK
+      Aggregate in JOIN:                                              OK
+      Aggregate in JOIN (reverse order):                              OK
+      Aggregate over top-level:                                       OK
+      Filter after top-level aggregate:                               OK
+      Join against top-level aggregate:                               OK
+      Join against top-level aggregate (places reversed):             OK
+    ORDER BY tests
+      Simple Ordering:                                                OK
+      Order combined query:                                           OK
+      Order after LIMIT/OFFSET:                                       OK
+      Order join:                                                     OK
+      Order join (reversed):                                          OK
+    HAVING clause should not be floated out of a join:                OK
+    Simple maybe field types:                                         OK
+    Equality comparisions among table expressions and table literals
+      Equality comparison between two table expressions:              OK
+      Equality comparison between table expression and table literal: OK
+    related_ generate the correct ON conditions:                      OK
+    UNION, INTERSECT, EXCEPT support
+      Basic UNION support:                                            OK
+      UNION field names are propagated correctly:                     OK
+      intersect_ generates INTERSECT combination:                     OK
+      except_ generates EXCEPT combination:                           OK
+      Equal projections dont have sub-selects:                        OK
+      UNION with guards:                                              OK
+    LIMIT/OFFSET support
+      Basic LIMIT support:                                            OK
+      Basic OFFSET support:                                           OK
+      Basic LIMIT .. OFFSET .. support:                               OK
+      LIMIT placed on UNION:                                          OK
+    EXISTS() tests
+      EXISTS() in WHERE:                                              OK
+    UPDATE can use current value:                                     OK
+    UPDATE can correctly set a nullable field:                        OK
+    Empty INs are transformed to FALSE:                               OK
+    Regression tests
+      #70: ORDER BY as first join causes incorrect projection
+        Simple:                                                       OK
+        Grouping:                                                     OK
+        Top-level OFFSET 0:                                           OK
+
+All 48 tests passed (0.00s)
+Test suite beam-core-tests: PASS
+Test suite logged to:
+/tmp/workdir-beam-core/beam-core-0.10.1.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/beam-core-0.10.1.0/t/beam-core-tests/test/beam-core-0.10.1.0-beam-core-tests.log
+1 of 1 test suites (1 of 1 test cases) passed.

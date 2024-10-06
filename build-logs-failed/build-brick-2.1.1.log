@@ -1,0 +1,89 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - brick-2.1.1 (lib) (first run)
+ - brick-2.1.1 (test:brick-tests) (first run)
+Configuring library for brick-2.1.1...
+Preprocessing library for brick-2.1.1...
+Building library for brick-2.1.1...
+[ 1 of 32] Compiling Brick.AttrMap
+[ 2 of 32] Compiling Brick.BChan
+[ 3 of 32] Compiling Brick.Keybindings.KeyEvents
+[ 4 of 32] Compiling Brick.Keybindings.KeyConfig
+[ 5 of 32] Compiling Brick.Keybindings.KeyDispatcher
+[ 6 of 32] Compiling Brick.Keybindings.Parse
+[ 7 of 32] Compiling Brick.Types.TH
+[ 8 of 32] Compiling Brick.Types.Common
+[ 9 of 32] Compiling Brick.Themes
+[10 of 32] Compiling Brick.Widgets.Border.Style
+[11 of 32] Compiling Data.IMap
+[12 of 32] Compiling Brick.BorderMap
+
+src/Brick/BorderMap.hs:20:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+20 | import Control.Applicative (liftA2)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[13 of 32] Compiling Brick.Types.Internal
+[14 of 32] Compiling Brick.Util
+[15 of 32] Compiling Brick.Types.EventM
+[16 of 32] Compiling Brick.Types
+[17 of 32] Compiling Brick.Widgets.Internal
+[18 of 32] Compiling Brick.Widgets.Core
+[19 of 32] Compiling Brick.Widgets.ProgressBar
+[20 of 32] Compiling Brick.Widgets.Edit
+[21 of 32] Compiling Brick.Widgets.Center
+[22 of 32] Compiling Brick.Widgets.Border
+[23 of 32] Compiling Brick.Widgets.Table
+[24 of 32] Compiling Brick.Focus
+[25 of 32] Compiling Brick.Widgets.Dialog
+[26 of 32] Compiling Brick.Main
+[27 of 32] Compiling Brick.Widgets.List
+[28 of 32] Compiling Brick.Widgets.FileBrowser
+[29 of 32] Compiling Brick
+[30 of 32] Compiling Brick.Keybindings.Pretty
+[31 of 32] Compiling Brick.Keybindings
+[32 of 32] Compiling Brick.Forms
+Configuring test suite 'brick-tests' for brick-2.1.1...
+Preprocessing test suite 'brick-tests' for brick-2.1.1...
+Building test suite 'brick-tests' for brick-2.1.1...
+[1 of 3] Compiling List
+[2 of 3] Compiling Render
+
+tests/Render.hs:23:13: error: [GHC-83865]
+    • Couldn't match type: VU.UnixSettings -> IO V.Output
+                     with: IO V.Output
+      Expected: V.VtyUserConfig -> IO V.Output
+        Actual: V.VtyUserConfig -> VU.UnixSettings -> IO V.Output
+    • Probable cause: ‘VU.buildOutput’ is applied to too few arguments
+      In the first argument of ‘(=<<)’, namely ‘VU.buildOutput’
+      In a stmt of a 'do' block:
+        outp <- VU.buildOutput =<< VU.defaultSettings
+      In the expression:
+        do outp <- VU.buildOutput =<< VU.defaultSettings
+           ctx <- V.displayContext outp region
+           V.outputPicture ctx (renderWidget Nothing ws region)
+           V.releaseDisplay outp
+   |
+23 |     outp <- VU.buildOutput =<< VU.defaultSettings
+   |             ^^^^^^^^^^^^^^
+
+tests/Render.hs:23:32: error: [GHC-83865]
+    • Couldn't match type ‘VU.UnixSettings’ with ‘V.VtyUserConfig’
+      Expected: IO V.VtyUserConfig
+        Actual: IO VU.UnixSettings
+    • In the second argument of ‘(=<<)’, namely ‘VU.defaultSettings’
+      In a stmt of a 'do' block:
+        outp <- VU.buildOutput =<< VU.defaultSettings
+      In the expression:
+        do outp <- VU.buildOutput =<< VU.defaultSettings
+           ctx <- V.displayContext outp region
+           V.outputPicture ctx (renderWidget Nothing ws region)
+           V.releaseDisplay outp
+   |
+23 |     outp <- VU.buildOutput =<< VU.defaultSettings
+   |                                ^^^^^^^^^^^^^^^^^^
+Error: [Cabal-7125]
+Failed to build test:brick-tests from brick-2.1.1.
+

@@ -1,0 +1,64 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - HaskellNet-0.6.1.2 (lib) (first run)
+Configuring library for HaskellNet-0.6.1.2...
+Preprocessing library for HaskellNet-0.6.1.2...
+Building library for HaskellNet-0.6.1.2...
+[ 1 of 15] Compiling Network.Compat
+[ 2 of 15] Compiling Network.HaskellNet.Auth
+[ 3 of 15] Compiling Network.HaskellNet.BSStream
+[ 4 of 15] Compiling Network.HaskellNet.Debug
+[ 5 of 15] Compiling Network.HaskellNet.POP3.Connection
+[ 6 of 15] Compiling Network.HaskellNet.POP3.Types
+[ 7 of 15] Compiling Network.HaskellNet.POP3
+
+src/Network/HaskellNet/POP3.hs:162:26: warning: [GHC-53633] [-Woverlapping-patterns]
+    Pattern match is redundant
+    In a case alternative: (AUTH _ _ _) -> ...
+    |
+162 |                          (AUTH _ _ _) -> error "BUG: AUTH should not get matched here"
+    |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Network/HaskellNet/POP3.hs:163:26: warning: [GHC-53633] [-Woverlapping-patterns]
+    Pattern match is redundant
+    In a case alternative: (RETR _) -> ...
+    |
+163 |                          (RETR _) -> error "BUG: RETR should not get matched here"
+    |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Network/HaskellNet/POP3.hs:164:26: warning: [GHC-53633] [-Woverlapping-patterns]
+    Pattern match is redundant
+    In a case alternative: (TOP _ _) -> ...
+    |
+164 |                          (TOP _ _) -> error "BUG: TOP should not get matched here"
+    |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 8 of 15] Compiling Network.HaskellNet.SMTP.Internal
+
+src/Network/HaskellNet/SMTP/Internal.hs:305:23: warning: [GHC-53633] [-Woverlapping-patterns]
+    Pattern match is redundant
+    In a case alternative: (DATA _) -> ...
+    |
+305 |                       (DATA _)     ->
+    |                       ^^^^^^^^^^^^^^^...
+
+src/Network/HaskellNet/SMTP/Internal.hs:307:23: warning: [GHC-53633] [-Woverlapping-patterns]
+    Pattern match is redundant
+    In a case alternative: (AUTH {}) -> ...
+    |
+307 |                       (AUTH {})     ->
+    |                       ^^^^^^^^^^^^^^^^...
+[ 9 of 15] Compiling Network.HaskellNet.SMTP
+[10 of 15] Compiling Text.Packrat.Pos
+[11 of 15] Compiling Text.Packrat.Parse
+
+src/Text/Packrat/Parse.hs:15:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+15 | import           Control.Applicative (Applicative(..))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[12 of 15] Compiling Network.HaskellNet.IMAP.Types
+[13 of 15] Compiling Network.HaskellNet.IMAP.Connection
+[14 of 15] Compiling Network.HaskellNet.IMAP.Parsers
+[15 of 15] Compiling Network.HaskellNet.IMAP

@@ -1,0 +1,99 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - jose-jwt-0.9.6 (test:tests) (ephemeral targets)
+Preprocessing test suite 'tests' for jose-jwt-0.9.6...
+Building test suite 'tests' for jose-jwt-0.9.6...
+Running 1 test suites...
+Test suite tests: RUNNING...
+
+JWS encoding and decoding
+  when using JWS Appendix A.1 data
+    decodes the JWT to the expected header and payload [✔]
+    encodes the payload to the expected JWT [✔]
+    decodes the payload using the JWK [✔]
+    encodes/decodes using HS512 [✔]
+    encodes/decodes using HS384 [✔]
+  when using JWS Appendix A.2 data
+    decodes the JWT to the expected header and payload [✔]
+    decodes the JWT to the expected header and payload with the JWK [✔]
+    decodes the successfully without verification [✔]
+    encodes the payload to the expected JWT [✔]
+    encodes/decodes using RS256 [✔]
+    encodes/decodes using RS384 [✔]
+    encodes/decodes using RS512 [✔]
+  when using JWS Appendix A.3 data
+    decodes the JWT to the expected header and payload [✔]
+  when using an unsecured JWT
+    returns an error if chosen alg is unset [✔]
+    returns an error if chosen alg is not 'none' [✔]
+    decodes the JWT to the expected header and payload if chosen alg is 'none' [✔]
+Ed25519 signing and verification
+  When using RFC8037 Appendix A data
+    decodes the JWT to the expected header and payload [✔]
+    encodes the payload to the exected JWT [✔]
+    roundtrip encode/decode [✔]
+    encoding rejects invalid alg for Ed25519 key [✔]
+    verification fails with invalid alg in header [✔]
+Ed448 signing and verification
+  Tests.JwsSpec[126:7]
+    JWT is encoded to the expected value [✔]
+    roundtrip encode/decode [✔]
+JWE encoding and decoding
+  when using JWE Appendix 1 data
+    generates the expected IV and CMK from the RNG [✔]
+    generates the expected RSA-encrypted content key [✔]
+    encrypts the payload to the expected ciphertext and authentication tag [✔]
+    encodes the payload to the expected JWT, leaving the RNG empty [✔]
+    decodes the JWT to the expected header and payload [✔]
+    decodes the JWK to the correct RSA key values [✔]
+    decodes the JWT using the JWK [✔]
+    a truncated CEK returns BadCrypto [✔]
+    a truncated payload returns BadCrypto [✔]
+    a truncated auth tag returns BadCrypto [✔]
+    a truncated IV returns BadCrypto [✔]
+  when using JWE Appendix 2 data
+    generates the expected RSA-encrypted content key [✔]
+    encrypts the payload to the expected ciphertext and authentication tag [✔]
+    encodes the payload to the expected JWT [✔]
+    decrypts the ciphertext to the correct payload [✔]
+    decodes the JWT to the expected header and payload [✔]
+    a truncated CEK returns BadCrypto [✔]
+    a truncated payload returns BadCrypto [✔]
+    a truncated IV returns BadCrypto [✔]
+  when using JWE Appendix 3 data
+    encodes the payload to the expected JWT [✔]
+    decodes the JWT using the JWK [✔]
+  when used with quickcheck
+    padded msg is always a multiple of 16 [✔]
+      +++ OK, passed 100 tests.
+    unpad is the inverse of pad [✔]
+      +++ OK, passed 100 tests.
+    jwe decode/decode returns the original payload [✔]
+      +++ OK, passed 100 tests.
+  miscellaneous tests
+    Padding byte larger than 16 is rejected [✔]
+    Padding byte which doesn't match padding length is rejected [✔]
+    Padding byte which matches padding length is OK [✔]
+    Rejects invalid Base64 JWT [✔]
+JWK encoding and decoding
+  decodes and encodes an entire key set successfully [✔]
+  shameless Show and Eq coverage boosting [✔]
+Errors in JWK data
+  invalid Base64 returns an error [✔]
+JWK Algorithm matching
+  finds one key for RS256 encoding [✔]
+  finds 3 keys for RS256 decoding with no kid [✔]
+  finds one key for RS256 decoding with kid specified [✔]
+  finds an RS1_5 key for encoding [✔]
+RSA Key generation
+  keys generated with same RNG are equal [✔]
+  isPublic and isPrivate are correct for RSA keys [✔]
+  keys have supplied ID [✔]
+  keys have supplied use [✔]
+
+Finished in 0.9723 seconds
+62 examples, 0 failures
+Test suite tests: PASS
+Test suite logged to:
+/tmp/workdir-jose-jwt/jose-jwt-0.9.6/dist-newstyle/build/x86_64-linux/ghc-9.6.6/jose-jwt-0.9.6/t/tests/test/jose-jwt-0.9.6-tests.log
+1 of 1 test suites (1 of 1 test cases) passed.

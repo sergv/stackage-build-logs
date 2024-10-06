@@ -1,0 +1,1239 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - DBFunctor-0.1.2.1 (test:dbfunctor-test) (ephemeral targets)
+Preprocessing test suite 'dbfunctor-test' for DBFunctor-0.1.2.1...
+Building test suite 'dbfunctor-test' for DBFunctor-0.1.2.1...
+Running 1 test suites...
+Test suite dbfunctor-test: RUNNING...
+*** test CSV to RTable conversion
+*** test RFilter & RProjection operation
+Name,MyDate,MyTime,Number,DNumber
+Karagiannidis,01/01/2090,01/01/2090 23:15:45,50,
+nkarag,01/12/1990,01/12/1990 05:01:04,,
+nkarag,1/12/1991,01/12/1990 05:01:04,,
+Nikos,31/5/2018,31/05/2018 15:01:34,10,
+Θεοδώρου,2/3/1975,02/03/1975 15:01:34,10,
+Karagiannidis,,01/01/2090 23:15:46,,1.00
+Karagiannidis,,01/01/2090 23:15:45,10,1.00
+nkarag,1/12/1999,01/12/1992 15:21:04,30,
+,01/01/2090,01/01/2090 23:15:45,,2.00
+Karagiannidis,,01/01/2090 23:15:46,,3.00
+Nikos,31/5/2018,31/05/2018 15:01:34,10,
+Π,31/5/2018,31/05/2018 15:01:34,10,
+Χ,31/5/2018,31/05/2018 15:01:34,10,
+nkarag,1/12/1999,01/12/1993 05:01:04,10,
+--------------------------------------------------------------------------------
+MyDate         MyTime                  DNumber     Name              Number     
+~~~~~~         ~~~~~~                  ~~~~~~~     ~~~~              ~~~~~~     
+01/01/2090     01/01/2090 23:15:45     NULL        Karagiannidis     50         
+01/12/1990     01/12/1990 05:01:04     NULL        nkarag            NULL       
+1/12/1991      01/12/1990 05:01:04     NULL        nkarag            NULL       
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos             10         
+2/3/1975       02/03/1975 15:01:34     NULL        Θεοδώρου          10         
+NULL           01/01/2090 23:15:46     1.00        Karagiannidis     NULL       
+NULL           01/01/2090 23:15:45     1.00        Karagiannidis     10         
+1/12/1999      01/12/1992 15:21:04     NULL        nkarag            30         
+01/01/2090     01/01/2090 23:15:45     2.00        NULL              NULL       
+NULL           01/01/2090 23:15:46     3.00        Karagiannidis     NULL       
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos             10         
+31/5/2018      31/05/2018 15:01:34     NULL        Π                 10         
+31/5/2018      31/05/2018 15:01:34     NULL        Χ                 10         
+1/12/1999      01/12/1993 05:01:04     NULL        nkarag            10         
+
+
+14 rows returned
+--------------------------------------------------------------------------------
+Name,Number
+Karagiannidis,50
+Karagiannidis,
+Karagiannidis,
+Name,Number
+Karagiannidis,50
+Karagiannidis,
+Karagiannidis,
+-----------------------------
+Name              Number     
+~~~~              ~~~~~~     
+Karagiannidis     50         
+Karagiannidis     NULL       
+Karagiannidis     NULL       
+
+
+3 rows returned
+-----------------------------
+*** test Column Mapping
+Name,Number,NewNumber
+Karagiannidis,50,100
+Karagiannidis,,
+Karagiannidis,,
+Name,Number,NewNumber
+Karagiannidis,50,100
+Karagiannidis,,
+Karagiannidis,,
+-------------------------------------------
+NewNumber     Name              Number     
+~~~~~~~~~     ~~~~              ~~~~~~     
+100           Karagiannidis     50         
+NULL          Karagiannidis     NULL       
+NULL          Karagiannidis     NULL       
+
+
+3 rows returned
+-------------------------------------------
+*** test inner join operation
+Name,MyDate,MyTime,Number,DNumber,NewNumber
+Karagiannidis,01/01/2090,01/01/2090 23:15:45,50,,100
+Name,MyDate,MyTime,Number,DNumber,NewNumber
+Karagiannidis,01/01/2090,01/01/2090 23:15:45,50,,100
+-----------------------------------------------------------------------------------------------------------------------------
+NewNumber     MyDate         Number_1     MyTime                  DNumber     Name_1            Name              Number     
+~~~~~~~~~     ~~~~~~         ~~~~~~~~     ~~~~~~                  ~~~~~~~     ~~~~~~            ~~~~              ~~~~~~     
+100           01/01/2090     50           01/01/2090 23:15:45     NULL        Karagiannidis     Karagiannidis     50         
+
+
+1 row returned
+-----------------------------------------------------------------------------------------------------------------------------
+*** Test union, interesection, diff
+-----------------------------------------------------------------------------------------------------------------------------
+NewNumber     MyDate         Number_1     MyTime                  DNumber     Name_1            Name              Number     
+~~~~~~~~~     ~~~~~~         ~~~~~~~~     ~~~~~~                  ~~~~~~~     ~~~~~~            ~~~~              ~~~~~~     
+100           01/01/2090     50           01/01/2090 23:15:45     NULL        Karagiannidis     Karagiannidis     50         
+200           01/01/2090     50           01/01/2090 23:15:45     NULL        Karagiannidis     Karagiannidis     50         
+
+
+2 rows returned
+-----------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------
+NewNumber     MyDate         Number_1     MyTime                  DNumber     Name_1            Name              Number     
+~~~~~~~~~     ~~~~~~         ~~~~~~~~     ~~~~~~                  ~~~~~~~     ~~~~~~            ~~~~              ~~~~~~     
+100           01/01/2090     50           01/01/2090 23:15:45     NULL        Karagiannidis     Karagiannidis     50         
+
+
+1 row returned
+-----------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------
+NewNumber     MyDate         Number_1     MyTime                  DNumber     Name_1            Name              Number     
+~~~~~~~~~     ~~~~~~         ~~~~~~~~     ~~~~~~                  ~~~~~~~     ~~~~~~            ~~~~              ~~~~~~     
+200           01/01/2090     50           01/01/2090 23:15:45     NULL        Karagiannidis     Karagiannidis     50         
+
+
+1 row returned
+-----------------------------------------------------------------------------------------------------------------------------
+*** test Intermediate named results
+Name,MyDate,MyTime,Number,DNumber,NewNumber
+Karagiannidis,01/01/2090,01/01/2090 23:15:45,50,,200
+-----------------------------------------------------------------------------------------------------------------------------
+NewNumber     MyDate         Number_1     MyTime                  DNumber     Name_1            Name              Number     
+~~~~~~~~~     ~~~~~~         ~~~~~~~~     ~~~~~~                  ~~~~~~~     ~~~~~~            ~~~~              ~~~~~~     
+200           01/01/2090     50           01/01/2090 23:15:45     NULL        Karagiannidis     Karagiannidis     50         
+
+
+1 row returned
+-----------------------------------------------------------------------------------------------------------------------------
+Name,MyDate,MyTime,Number,DNumber,NewNumber
+Karagiannidis,01/01/2090,01/01/2090 23:15:45,50,,100
+Karagiannidis,01/01/2090,01/01/2090 23:15:45,50,,200
+Name,MyDate,MyTime,Number,DNumber,NewNumber
+Karagiannidis,01/01/2090,01/01/2090 23:15:45,50,,100
+Name,MyDate,MyTime,Number,DNumber,NewNumber
+Karagiannidis,01/01/2090,01/01/2090 23:15:45,50,,200
+Name,MyDate,MyTime,Number,DNumber,NewNumber
+Karagiannidis,01/01/2090,01/01/2090 23:15:45,50,,200
+Name,MyDate,MyTime,Number,DNumber,NewNumber
+Karagiannidis,01/01/2090,01/01/2090 23:15:45,50,,200
+Name,MyDate,MyTime,Number,DNumber,NewNumber
+Karagiannidis,01/01/2090,01/01/2090 23:15:45,50,,200
+*** Change existing column name
+Name,MyDate,MyTime,Number,DNumber,NewNewNumber
+Karagiannidis,01/01/2090,01/01/2090 23:15:45,50,,100
+Karagiannidis,01/01/2090,01/01/2090 23:15:45,50,,200
+Name,MyDate,MyTime,Number,DNumber,NewNewNumber
+Karagiannidis,01/01/2090,01/01/2090 23:15:45,50,,100
+Karagiannidis,01/01/2090,01/01/2090 23:15:45,50,,200
+--------------------------------------------------------------------------------------------------------------------------------
+MyDate         Number_1     MyTime                  DNumber     Name_1            Name              Number     NewNewNumber     
+~~~~~~         ~~~~~~~~     ~~~~~~                  ~~~~~~~     ~~~~~~            ~~~~              ~~~~~~     ~~~~~~~~~~~~     
+01/01/2090     50           01/01/2090 23:15:45     NULL        Karagiannidis     Karagiannidis     50         100              
+01/01/2090     50           01/01/2090 23:15:45     NULL        Karagiannidis     Karagiannidis     50         200              
+
+
+2 rows returned
+--------------------------------------------------------------------------------------------------------------------------------
+*** Test a RMapNx1 column mapping
+New_Nx1_Col,MyDate,Number,DNumber,NewNewNumber
+Karagiannidis<---->01/01/2090 23:15:45,01/01/2090,50,,100
+Karagiannidis<---->01/01/2090 23:15:45,01/01/2090,50,,200
+New_Nx1_Col,MyDate,Number,DNumber,NewNewNumber
+Karagiannidis<---->01/01/2090 23:15:45,01/01/2090,50,,100
+Karagiannidis<---->01/01/2090 23:15:45,01/01/2090,50,,200
+---------------------------------------------------------------------------------------------------------------------------------
+MyDate         Number_1     DNumber     Name_1            Number     New_Nx1_Col                                NewNewNumber     
+~~~~~~         ~~~~~~~~     ~~~~~~~     ~~~~~~            ~~~~~~     ~~~~~~~~~~~                                ~~~~~~~~~~~~     
+01/01/2090     50           NULL        Karagiannidis     50         Karagiannidis<---->01/01/2090 23:15:45     100              
+01/01/2090     50           NULL        Karagiannidis     50         Karagiannidis<---->01/01/2090 23:15:45     200              
+
+
+2 rows returned
+---------------------------------------------------------------------------------------------------------------------------------
+*** Test a RMap1xN column mapping
+New_Nx1_Col,MyDate,Number,DNumber,NewNewNumber,1xN_A,1xN_B,1xN_C
+Karagiannidis<---->01/01/2090 23:15:45,01/01/2090,50,,100,Karag,<-|-|-|->,0 23:15:45
+Karagiannidis<---->01/01/2090 23:15:45,01/01/2090,50,,200,Karag,<-|-|-|->,0 23:15:45
+New_Nx1_Col,MyDate,Number,DNumber,NewNewNumber,1xN_A,1xN_B,1xN_C
+Karagiannidis<---->01/01/2090 23:15:45,01/01/2090,50,,100,Karag,<-|-|-|->,0 23:15:45
+Karagiannidis<---->01/01/2090 23:15:45,01/01/2090,50,,200,Karag,<-|-|-|->,0 23:15:45
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+MyDate         Number_1     DNumber     1xN_B         1xN_C          Name_1            1xN_A     Number     New_Nx1_Col                                NewNewNumber     
+~~~~~~         ~~~~~~~~     ~~~~~~~     ~~~~~         ~~~~~          ~~~~~~            ~~~~~     ~~~~~~     ~~~~~~~~~~~                                ~~~~~~~~~~~~     
+01/01/2090     50           NULL        <-|-|-|->     0 23:15:45     Karagiannidis     Karag     50         Karagiannidis<---->01/01/2090 23:15:45     100              
+01/01/2090     50           NULL        <-|-|-|->     0 23:15:45     Karagiannidis     Karag     50         Karagiannidis<---->01/01/2090 23:15:45     200              
+
+
+2 rows returned
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*** Test a RMapNxM column mapping
+New_Nx1_Col,MyDate,Number,DNumber,NewNewNumber,ColNew1,ColNew2
+Karagiannidis<---->01/01/2090 23:15:45,01/01/2090,50,,100,Karag0 23:15:45,<-|-|-|->
+Karagiannidis<---->01/01/2090 23:15:45,01/01/2090,50,,200,Karag0 23:15:45,<-|-|-|->
+New_Nx1_Col,MyDate,Number,DNumber,NewNewNumber,ColNew1,ColNew2
+Karagiannidis<---->01/01/2090 23:15:45,01/01/2090,50,,100,Karag0 23:15:45,<-|-|-|->
+Karagiannidis<---->01/01/2090 23:15:45,01/01/2090,50,,200,Karag0 23:15:45,<-|-|-|->
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+MyDate         Number_1     ColNew2       DNumber     ColNew1             Name_1            Number     New_Nx1_Col                                NewNewNumber     
+~~~~~~         ~~~~~~~~     ~~~~~~~       ~~~~~~~     ~~~~~~~             ~~~~~~            ~~~~~~     ~~~~~~~~~~~                                ~~~~~~~~~~~~     
+01/01/2090     50           <-|-|-|->     NULL        Karag0 23:15:45     Karagiannidis     50         Karagiannidis<---->01/01/2090 23:15:45     100              
+01/01/2090     50           <-|-|-|->     NULL        Karag0 23:15:45     Karagiannidis     50         Karagiannidis<---->01/01/2090 23:15:45     200              
+
+
+2 rows returned
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*** Test removeColumn operation
+New_Nx1_Col,Number,DNumber,ColNew1,ColNew2
+Karagiannidis<---->01/01/2090 23:15:45,50,,Karag0 23:15:45,<-|-|-|->
+Karagiannidis<---->01/01/2090 23:15:45,50,,Karag0 23:15:45,<-|-|-|->
+New_Nx1_Col,Number,DNumber,ColNew1,ColNew2
+Karagiannidis<---->01/01/2090 23:15:45,50,,Karag0 23:15:45,<-|-|-|->
+Karagiannidis<---->01/01/2090 23:15:45,50,,Karag0 23:15:45,<-|-|-|->
+[fromList [("Number_1",RInt {rint = 50}),("ColNew2",RText {rtext = "<-|-|-|->"}),("DNumber",Null),("ColNew1",RText {rtext = "Karag0 23:15:45"}),("Name_1",RText {rtext = "Karagiannidis"}),("Number",RInt {rint = 50}),("New_Nx1_Col",RText {rtext = "Karagiannidis<---->01/01/2090 23:15:45"})],fromList [("Number_1",RInt {rint = 50}),("ColNew2",RText {rtext = "<-|-|-|->"}),("DNumber",Null),("ColNew1",RText {rtext = "Karag0 23:15:45"}),("Name_1",RText {rtext = "Karagiannidis"}),("Number",RInt {rint = 50}),("New_Nx1_Col",RText {rtext = "Karagiannidis<---->01/01/2090 23:15:45"})]]
+[fromList [("Number_1",RInt {rint = 50}),("ColNew2",RText {rtext = "<-|-|-|->"}),("DNumber",Null),("ColNew1",RText {rtext = "Karag0 23:15:45"}),("Name_1",RText {rtext = "Karagiannidis"}),("Number",RInt {rint = 50}),("New_Nx1_Col",RText {rtext = "Karagiannidis<---->01/01/2090 23:15:45"})],fromList [("Number_1",RInt {rint = 50}),("ColNew2",RText {rtext = "<-|-|-|->"}),("DNumber",Null),("ColNew1",RText {rtext = "Karag0 23:15:45"}),("Name_1",RText {rtext = "Karagiannidis"}),("Number",RInt {rint = 50}),("New_Nx1_Col",RText {rtext = "Karagiannidis<---->01/01/2090 23:15:45"})]]
+-----------------------------------------------------------------------------------------------------------------------------------
+Number_1     ColNew2       DNumber     ColNew1             Name_1            Number     New_Nx1_Col                                
+~~~~~~~~     ~~~~~~~       ~~~~~~~     ~~~~~~~             ~~~~~~            ~~~~~~     ~~~~~~~~~~~                                
+50           <-|-|-|->     NULL        Karag0 23:15:45     Karagiannidis     50         Karagiannidis<---->01/01/2090 23:15:45     
+50           <-|-|-|->     NULL        Karag0 23:15:45     Karagiannidis     50         Karagiannidis<---->01/01/2090 23:15:45     
+
+
+2 rows returned
+-----------------------------------------------------------------------------------------------------------------------------------
+*** Test combined Roperations
+Name,MyTime,Number,ColNew2
+Karagiannidis,01/01/2090 23:15:45,50,<-|-|-|->
+Karagiannidis,01/01/2090 23:15:45,50,<-|-|-|->
+Name,MyTime,Number,ColNew2
+Karagiannidis,01/01/2090 23:15:45,50,<-|-|-|->
+Karagiannidis,01/01/2090 23:15:45,50,<-|-|-|->
+[fromList [("MyTime",RTime {rtime = RTimestampVal {year = 2090, month = 1, day = 1, hours24 = 23, minutes = 15, seconds = 45}}),("ColNew2",RText {rtext = "<-|-|-|->"}),("Name",RText {rtext = "Karagiannidis"}),("Number",RInt {rint = 50})],fromList [("MyTime",RTime {rtime = RTimestampVal {year = 2090, month = 1, day = 1, hours24 = 23, minutes = 15, seconds = 45}}),("ColNew2",RText {rtext = "<-|-|-|->"}),("Name",RText {rtext = "Karagiannidis"}),("Number",RInt {rint = 50})]]
+[fromList [("MyTime",RTime {rtime = RTimestampVal {year = 2090, month = 1, day = 1, hours24 = 23, minutes = 15, seconds = 45}}),("ColNew2",RText {rtext = "<-|-|-|->"}),("Name",RText {rtext = "Karagiannidis"}),("Number",RInt {rint = 50})],fromList [("MyTime",RTime {rtime = RTimestampVal {year = 2090, month = 1, day = 1, hours24 = 23, minutes = 15, seconds = 45}}),("ColNew2",RText {rtext = "<-|-|-|->"}),("Name",RText {rtext = "Karagiannidis"}),("Number",RInt {rint = 50})]]
+-------------------------------------------------------------------
+MyTime                  ColNew2       Name              Number     
+~~~~~~                  ~~~~~~~       ~~~~              ~~~~~~     
+01/01/2090 23:15:45     <-|-|-|->     Karagiannidis     50         
+01/01/2090 23:15:45     <-|-|-|->     Karagiannidis     50         
+
+
+2 rows returned
+-------------------------------------------------------------------
+*** Test Left Outer Join
+Name,MyDate,MyTime,Number,DNumber,NewNumber
+Karagiannidis,01/01/2090,01/01/2090 23:15:45,50,,100
+nkarag,01/12/1990,01/12/1990 05:01:04,,,
+nkarag,1/12/1991,01/12/1990 05:01:04,,,
+Nikos,31/5/2018,31/05/2018 15:01:34,10,,
+Θεοδώρου,2/3/1975,02/03/1975 15:01:34,10,,
+Karagiannidis,,01/01/2090 23:15:46,,1.00,
+Karagiannidis,,01/01/2090 23:15:45,10,1.00,
+nkarag,1/12/1999,01/12/1992 15:21:04,30,,
+,01/01/2090,01/01/2090 23:15:45,,2.00,
+Karagiannidis,,01/01/2090 23:15:46,,3.00,
+Nikos,31/5/2018,31/05/2018 15:01:34,10,,
+Π,31/5/2018,31/05/2018 15:01:34,10,,
+Χ,31/5/2018,31/05/2018 15:01:34,10,,
+nkarag,1/12/1999,01/12/1993 05:01:04,10,,
+Name,MyDate,MyTime,Number,DNumber,NewNumber
+Karagiannidis,01/01/2090,01/01/2090 23:15:45,50,,100
+Name,MyDate,MyTime,Number,DNumber
+Karagiannidis,01/01/2090,01/01/2090 23:15:45,50,
+Name,MyDate,MyTime,Number,DNumber
+nkarag,1/12/1999,01/12/1993 05:01:04,10,
+Χ,31/5/2018,31/05/2018 15:01:34,10,
+Π,31/5/2018,31/05/2018 15:01:34,10,
+Nikos,31/5/2018,31/05/2018 15:01:34,10,
+Karagiannidis,,01/01/2090 23:15:46,,3.00
+,01/01/2090,01/01/2090 23:15:45,,2.00
+nkarag,1/12/1999,01/12/1992 15:21:04,30,
+Karagiannidis,,01/01/2090 23:15:45,10,1.00
+Karagiannidis,,01/01/2090 23:15:46,,1.00
+Θεοδώρου,2/3/1975,02/03/1975 15:01:34,10,
+Nikos,31/5/2018,31/05/2018 15:01:34,10,
+nkarag,1/12/1991,01/12/1990 05:01:04,,
+nkarag,01/12/1990,01/12/1990 05:01:04,,
+Name,MyDate,MyTime,Number,DNumber,NewNumber
+nkarag,1/12/1999,01/12/1993 05:01:04,10,,
+Χ,31/5/2018,31/05/2018 15:01:34,10,,
+Π,31/5/2018,31/05/2018 15:01:34,10,,
+Nikos,31/5/2018,31/05/2018 15:01:34,10,,
+Karagiannidis,,01/01/2090 23:15:46,,3.00,
+,01/01/2090,01/01/2090 23:15:45,,2.00,
+nkarag,1/12/1999,01/12/1992 15:21:04,30,,
+Karagiannidis,,01/01/2090 23:15:45,10,1.00,
+Karagiannidis,,01/01/2090 23:15:46,,1.00,
+Θεοδώρου,2/3/1975,02/03/1975 15:01:34,10,,
+Nikos,31/5/2018,31/05/2018 15:01:34,10,,
+nkarag,1/12/1991,01/12/1990 05:01:04,,,
+nkarag,01/12/1990,01/12/1990 05:01:04,,,
+Name,MyDate,MyTime,Number,DNumber,NewNumber
+Karagiannidis,01/01/2090,01/01/2090 23:15:45,50,,100
+nkarag,01/12/1990,01/12/1990 05:01:04,,,
+nkarag,1/12/1991,01/12/1990 05:01:04,,,
+Nikos,31/5/2018,31/05/2018 15:01:34,10,,
+Θεοδώρου,2/3/1975,02/03/1975 15:01:34,10,,
+Karagiannidis,,01/01/2090 23:15:46,,1.00,
+Karagiannidis,,01/01/2090 23:15:45,10,1.00,
+nkarag,1/12/1999,01/12/1992 15:21:04,30,,
+,01/01/2090,01/01/2090 23:15:45,,2.00,
+Karagiannidis,,01/01/2090 23:15:46,,3.00,
+Nikos,31/5/2018,31/05/2018 15:01:34,10,,
+Π,31/5/2018,31/05/2018 15:01:34,10,,
+Χ,31/5/2018,31/05/2018 15:01:34,10,,
+nkarag,1/12/1999,01/12/1993 05:01:04,10,,
+Name,MyDate,MyTime,Number,DNumber,NewNumber
+Karagiannidis,01/01/2090,01/01/2090 23:15:45,50,,100
+nkarag,01/12/1990,01/12/1990 05:01:04,,,
+nkarag,1/12/1991,01/12/1990 05:01:04,,,
+Nikos,31/5/2018,31/05/2018 15:01:34,10,,
+Θεοδώρου,2/3/1975,02/03/1975 15:01:34,10,,
+Karagiannidis,,01/01/2090 23:15:46,,1.00,
+Karagiannidis,,01/01/2090 23:15:45,10,1.00,
+nkarag,1/12/1999,01/12/1992 15:21:04,30,,
+,01/01/2090,01/01/2090 23:15:45,,2.00,
+Karagiannidis,,01/01/2090 23:15:46,,3.00,
+Nikos,31/5/2018,31/05/2018 15:01:34,10,,
+Π,31/5/2018,31/05/2018 15:01:34,10,,
+Χ,31/5/2018,31/05/2018 15:01:34,10,,
+nkarag,1/12/1999,01/12/1993 05:01:04,10,,
+Test LEFT JOIN
+-----------------------------------------------------------------------------------------------------------------------------
+NewNumber     MyDate         Number_1     MyTime                  DNumber     Name_1            Name              Number     
+~~~~~~~~~     ~~~~~~         ~~~~~~~~     ~~~~~~                  ~~~~~~~     ~~~~~~            ~~~~              ~~~~~~     
+100           01/01/2090     50           01/01/2090 23:15:45     NULL        Karagiannidis     Karagiannidis     50         
+NULL          01/12/1990     NULL         01/12/1990 05:01:04     NULL        NULL              nkarag            NULL       
+NULL          1/12/1991      NULL         01/12/1990 05:01:04     NULL        NULL              nkarag            NULL       
+NULL          31/5/2018      NULL         31/05/2018 15:01:34     NULL        NULL              Nikos             10         
+NULL          2/3/1975       NULL         02/03/1975 15:01:34     NULL        NULL              Θεοδώρου          10         
+NULL          NULL           NULL         01/01/2090 23:15:46     1.00        NULL              Karagiannidis     NULL       
+NULL          NULL           NULL         01/01/2090 23:15:45     1.00        NULL              Karagiannidis     10         
+NULL          1/12/1999      NULL         01/12/1992 15:21:04     NULL        NULL              nkarag            30         
+NULL          01/01/2090     NULL         01/01/2090 23:15:45     2.00        NULL              NULL              NULL       
+NULL          NULL           NULL         01/01/2090 23:15:46     3.00        NULL              Karagiannidis     NULL       
+NULL          31/5/2018      NULL         31/05/2018 15:01:34     NULL        NULL              Nikos             10         
+NULL          31/5/2018      NULL         31/05/2018 15:01:34     NULL        NULL              Π                 10         
+NULL          31/5/2018      NULL         31/05/2018 15:01:34     NULL        NULL              Χ                 10         
+NULL          1/12/1999      NULL         01/12/1993 05:01:04     NULL        NULL              nkarag            10         
+
+
+14 rows returned
+-----------------------------------------------------------------------------------------------------------------------------
+*** Test Right Outer Join
+Name,MyDate,MyTime,Number,DNumber,NewNumber
+Karagiannidis,01/01/2090,01/01/2090 23:15:45,50,,100
+Karagiannidis,,,,,
+Karagiannidis,,,,,
+Name,MyDate,MyTime,Number,DNumber,NewNumber
+Karagiannidis,01/01/2090,01/01/2090 23:15:45,50,,100
+Karagiannidis,,,,,
+Karagiannidis,,,,,
+Test RIGHT JOIN
+-----------------------------------------------------------------------------------------------------------------------------
+NewNumber     MyDate         Number_1     MyTime                  DNumber     Name_1            Name              Number     
+~~~~~~~~~     ~~~~~~         ~~~~~~~~     ~~~~~~                  ~~~~~~~     ~~~~~~            ~~~~              ~~~~~~     
+100           01/01/2090     50           01/01/2090 23:15:45     NULL        Karagiannidis     Karagiannidis     50         
+NULL          NULL           NULL         NULL                    NULL        NULL              Karagiannidis     NULL       
+NULL          NULL           NULL         NULL                    NULL        NULL              Karagiannidis     NULL       
+
+
+3 rows returned
+-----------------------------------------------------------------------------------------------------------------------------
+*** Test Full Outer Join
+Name,MyDate,MyTime,Number,DNumber,NewNumber
+Karagiannidis,01/01/2090,01/01/2090 23:15:45,50,,100
+nkarag,01/12/1990,01/12/1990 05:01:04,,,
+nkarag,1/12/1991,01/12/1990 05:01:04,,,
+Nikos,31/5/2018,31/05/2018 15:01:34,10,,
+Θεοδώρου,2/3/1975,02/03/1975 15:01:34,10,,
+Karagiannidis,,01/01/2090 23:15:46,,1.00,
+Karagiannidis,,01/01/2090 23:15:45,10,1.00,
+nkarag,1/12/1999,01/12/1992 15:21:04,30,,
+,01/01/2090,01/01/2090 23:15:45,,2.00,
+Karagiannidis,,01/01/2090 23:15:46,,3.00,
+Nikos,31/5/2018,31/05/2018 15:01:34,10,,
+Π,31/5/2018,31/05/2018 15:01:34,10,,
+Χ,31/5/2018,31/05/2018 15:01:34,10,,
+nkarag,1/12/1999,01/12/1993 05:01:04,10,,
+,,,,,
+,,,,,
+Name,MyDate,MyTime,Number,DNumber,NewNumber
+Karagiannidis,01/01/2090,01/01/2090 23:15:45,50,,100
+Karagiannidis,,,,,
+Karagiannidis,,,,,
+,1/12/1999,01/12/1993 05:01:04,,,
+,31/5/2018,31/05/2018 15:01:34,,,
+,31/5/2018,31/05/2018 15:01:34,,,
+,31/5/2018,31/05/2018 15:01:34,,,
+,,01/01/2090 23:15:46,,3.00,
+,01/01/2090,01/01/2090 23:15:45,,2.00,
+,1/12/1999,01/12/1992 15:21:04,,,
+,,01/01/2090 23:15:45,,1.00,
+,,01/01/2090 23:15:46,,1.00,
+,2/3/1975,02/03/1975 15:01:34,,,
+,31/5/2018,31/05/2018 15:01:34,,,
+,1/12/1991,01/12/1990 05:01:04,,,
+,01/12/1990,01/12/1990 05:01:04,,,
+Name,MyDate,MyTime,Number,DNumber,NewNumber
+Karagiannidis,01/01/2090,01/01/2090 23:15:45,50,,100
+nkarag,01/12/1990,01/12/1990 05:01:04,,,
+nkarag,1/12/1991,01/12/1990 05:01:04,,,
+Nikos,31/5/2018,31/05/2018 15:01:34,10,,
+Θεοδώρου,2/3/1975,02/03/1975 15:01:34,10,,
+Karagiannidis,,01/01/2090 23:15:46,,1.00,
+Karagiannidis,,01/01/2090 23:15:45,10,1.00,
+nkarag,1/12/1999,01/12/1992 15:21:04,30,,
+,01/01/2090,01/01/2090 23:15:45,,2.00,
+Karagiannidis,,01/01/2090 23:15:46,,3.00,
+Nikos,31/5/2018,31/05/2018 15:01:34,10,,
+Π,31/5/2018,31/05/2018 15:01:34,10,,
+Χ,31/5/2018,31/05/2018 15:01:34,10,,
+nkarag,1/12/1999,01/12/1993 05:01:04,10,,
+,,,,,
+,,,,,
+Name,MyDate,MyTime,Number,DNumber,NewNumber
+Karagiannidis,01/01/2090,01/01/2090 23:15:45,50,,100
+Karagiannidis,,,,,
+Karagiannidis,,,,,
+,1/12/1999,01/12/1993 05:01:04,,,
+,31/5/2018,31/05/2018 15:01:34,,,
+,31/5/2018,31/05/2018 15:01:34,,,
+,31/5/2018,31/05/2018 15:01:34,,,
+,,01/01/2090 23:15:46,,3.00,
+,01/01/2090,01/01/2090 23:15:45,,2.00,
+,1/12/1999,01/12/1992 15:21:04,,,
+,,01/01/2090 23:15:45,,1.00,
+,,01/01/2090 23:15:46,,1.00,
+,2/3/1975,02/03/1975 15:01:34,,,
+,31/5/2018,31/05/2018 15:01:34,,,
+,1/12/1991,01/12/1990 05:01:04,,,
+,01/12/1990,01/12/1990 05:01:04,,,
+Test FULL OUTER JOIN
+-----------------------------------------------------------------------------------------------------------------------------
+NewNumber     MyDate         Number_1     MyTime                  DNumber     Name_1            Name              Number     
+~~~~~~~~~     ~~~~~~         ~~~~~~~~     ~~~~~~                  ~~~~~~~     ~~~~~~            ~~~~              ~~~~~~     
+100           01/01/2090     50           01/01/2090 23:15:45     NULL        Karagiannidis     Karagiannidis     50         
+NULL          NULL           NULL         NULL                    NULL        NULL              Karagiannidis     NULL       
+NULL          NULL           NULL         NULL                    NULL        NULL              Karagiannidis     NULL       
+NULL          1/12/1999      10           01/12/1993 05:01:04     NULL        nkarag            NULL              NULL       
+NULL          31/5/2018      10           31/05/2018 15:01:34     NULL        Χ                 NULL              NULL       
+NULL          31/5/2018      10           31/05/2018 15:01:34     NULL        Π                 NULL              NULL       
+NULL          31/5/2018      10           31/05/2018 15:01:34     NULL        Nikos             NULL              NULL       
+NULL          NULL           NULL         01/01/2090 23:15:46     3.00        Karagiannidis     NULL              NULL       
+NULL          01/01/2090     NULL         01/01/2090 23:15:45     2.00        NULL              NULL              NULL       
+NULL          1/12/1999      30           01/12/1992 15:21:04     NULL        nkarag            NULL              NULL       
+NULL          NULL           10           01/01/2090 23:15:45     1.00        Karagiannidis     NULL              NULL       
+NULL          NULL           NULL         01/01/2090 23:15:46     1.00        Karagiannidis     NULL              NULL       
+NULL          2/3/1975       10           02/03/1975 15:01:34     NULL        Θεοδώρου          NULL              NULL       
+NULL          31/5/2018      10           31/05/2018 15:01:34     NULL        Nikos             NULL              NULL       
+NULL          1/12/1991      NULL         01/12/1990 05:01:04     NULL        nkarag            NULL              NULL       
+NULL          01/12/1990     NULL         01/12/1990 05:01:04     NULL        nkarag            NULL              NULL       
+
+
+16 rows returned
+-----------------------------------------------------------------------------------------------------------------------------
+*** Test Aggregation
+SumNumber,CountNumber,AvgNumber,SumName,maxDNumber,maxNumber,maxName,minDNumber,minNumber,minName,AvgName,CountNumberDist,CountNameDist,CountStar
+150,9,16.67,,3.00,50,Χ,1.00,10,Karagiannidis,,3,6,14
+SumNumber,CountNumber,AvgNumber,SumName,maxDNumber,maxNumber,maxName,minDNumber,minNumber,minName,AvgName,CountNumberDist,CountNameDist,CountStar
+150,9,16.67,,3.00,50,Χ,1.00,10,Karagiannidis,,3,6,14
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+SumNumber     minNumber     minDNumber     AvgNumber     maxName     minName           CountNumber     maxNumber     SumName     CountNumberDist     maxDNumber     AvgName     CountNameDist     CountStar     
+~~~~~~~~~     ~~~~~~~~~     ~~~~~~~~~~     ~~~~~~~~~     ~~~~~~~     ~~~~~~~           ~~~~~~~~~~~     ~~~~~~~~~     ~~~~~~~     ~~~~~~~~~~~~~~~     ~~~~~~~~~~     ~~~~~~~     ~~~~~~~~~~~~~     ~~~~~~~~~     
+150           10            1.00           16.67         Χ           Karagiannidis     9               50            NULL        3                   3.00           NULL        6                 14            
+
+
+1 row returned
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+SumNumber     minNumber     minDNumber     AvgNumber     maxName     minName           CountNumber     maxNumber     SumName     CountNumberDist     maxDNumber     AvgName     CountNameDist     CountStar     
+~~~~~~~~~     ~~~~~~~~~     ~~~~~~~~~~     ~~~~~~~~~     ~~~~~~~     ~~~~~~~           ~~~~~~~~~~~     ~~~~~~~~~     ~~~~~~~     ~~~~~~~~~~~~~~~     ~~~~~~~~~~     ~~~~~~~     ~~~~~~~~~~~~~     ~~~~~~~~~     
+150           10            1.00           16.67         Χ           Karagiannidis     9               50            NULL        3                   3.00           NULL        6                 14            
+
+
+1 row returned
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*** Test GroupBy
+Name,MyTime,SumNumber,CountName,SumName,CountDNumber,maxDNumber,maxName
+Karagiannidis,01/01/2090 23:15:45,60,2,,1,1.00,Karagiannidis
+Nikos,31/05/2018 15:01:34,20,2,,,,Nikos
+nkarag,01/12/1992 15:21:04,30,1,,,,nkarag
+Θεοδώρου,02/03/1975 15:01:34,10,1,,,,Θεοδώρου
+Χ,31/05/2018 15:01:34,10,1,,,,Χ
+,01/01/2090 23:15:45,,,,1,2.00,
+Π,31/05/2018 15:01:34,10,1,,,,Π
+nkarag,01/12/1993 05:01:04,10,1,,,,nkarag
+nkarag,01/12/1990 05:01:04,,2,,,,nkarag
+Karagiannidis,01/01/2090 23:15:46,,2,,2,3.00,Karagiannidis
+Name,MyTime,SumNumber,CountName,SumName,CountDNumber,maxDNumber,maxName
+Karagiannidis,01/01/2090 23:15:45,60,2,,1,1.00,Karagiannidis
+Nikos,31/05/2018 15:01:34,20,2,,,,Nikos
+nkarag,01/12/1992 15:21:04,30,1,,,,nkarag
+Θεοδώρου,02/03/1975 15:01:34,10,1,,,,Θεοδώρου
+Χ,31/05/2018 15:01:34,10,1,,,,Χ
+,01/01/2090 23:15:45,,,,1,2.00,
+Π,31/05/2018 15:01:34,10,1,,,,Π
+nkarag,01/12/1993 05:01:04,10,1,,,,nkarag
+nkarag,01/12/1990 05:01:04,,2,,,,nkarag
+Karagiannidis,01/01/2090 23:15:46,,2,,2,3.00,Karagiannidis
+--------------------------------------------------------------------------------
+MyDate         MyTime                  DNumber     Name              Number     
+~~~~~~         ~~~~~~                  ~~~~~~~     ~~~~              ~~~~~~     
+01/01/2090     01/01/2090 23:15:45     NULL        Karagiannidis     50         
+01/12/1990     01/12/1990 05:01:04     NULL        nkarag            NULL       
+1/12/1991      01/12/1990 05:01:04     NULL        nkarag            NULL       
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos             10         
+2/3/1975       02/03/1975 15:01:34     NULL        Θεοδώρου          10         
+NULL           01/01/2090 23:15:46     1.00        Karagiannidis     NULL       
+NULL           01/01/2090 23:15:45     1.00        Karagiannidis     10         
+1/12/1999      01/12/1992 15:21:04     NULL        nkarag            30         
+01/01/2090     01/01/2090 23:15:45     2.00        NULL              NULL       
+NULL           01/01/2090 23:15:46     3.00        Karagiannidis     NULL       
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos             10         
+31/5/2018      31/05/2018 15:01:34     NULL        Π                 10         
+31/5/2018      31/05/2018 15:01:34     NULL        Χ                 10         
+1/12/1999      01/12/1993 05:01:04     NULL        nkarag            10         
+
+
+14 rows returned
+--------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------
+SumNumber     maxName           MyTime                  CountDNumber     CountName     SumName     Name              maxDNumber     
+~~~~~~~~~     ~~~~~~~           ~~~~~~                  ~~~~~~~~~~~~     ~~~~~~~~~     ~~~~~~~     ~~~~              ~~~~~~~~~~     
+60            Karagiannidis     01/01/2090 23:15:45     1                2             NULL        Karagiannidis     1.00           
+20            Nikos             31/05/2018 15:01:34     NULL             2             NULL        Nikos             NULL           
+30            nkarag            01/12/1992 15:21:04     NULL             1             NULL        nkarag            NULL           
+10            Θεοδώρου          02/03/1975 15:01:34     NULL             1             NULL        Θεοδώρου          NULL           
+10            Χ                 31/05/2018 15:01:34     NULL             1             NULL        Χ                 NULL           
+NULL          NULL              01/01/2090 23:15:45     1                NULL          NULL        NULL              2.00           
+10            Π                 31/05/2018 15:01:34     NULL             1             NULL        Π                 NULL           
+10            nkarag            01/12/1993 05:01:04     NULL             1             NULL        nkarag            NULL           
+NULL          nkarag            01/12/1990 05:01:04     NULL             2             NULL        nkarag            NULL           
+NULL          Karagiannidis     01/01/2090 23:15:46     2                2             NULL        Karagiannidis     3.00           
+
+
+10 rows returned
+------------------------------------------------------------------------------------------------------------------------------------
+*** GroupBy with [] AggOp list
+------------------------------------------
+MyTime                  Name              
+~~~~~~                  ~~~~              
+01/01/2090 23:15:45     Karagiannidis     
+31/05/2018 15:01:34     Nikos             
+01/12/1992 15:21:04     nkarag            
+02/03/1975 15:01:34     Θεοδώρου          
+31/05/2018 15:01:34     Χ                 
+01/01/2090 23:15:45     NULL              
+31/05/2018 15:01:34     Π                 
+01/12/1993 05:01:04     nkarag            
+01/12/1990 05:01:04     nkarag            
+01/01/2090 23:15:46     Karagiannidis     
+
+
+10 rows returned
+------------------------------------------
+*** Test groupNoAgg function
+--------------------------------------------------------------------------------
+MyDate         MyTime                  DNumber     Name              Number     
+~~~~~~         ~~~~~~                  ~~~~~~~     ~~~~              ~~~~~~     
+01/01/2090     01/01/2090 23:15:45     NULL        Karagiannidis     50         
+NULL           01/01/2090 23:15:45     1.00        Karagiannidis     10         
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos             10         
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos             10         
+1/12/1999      01/12/1992 15:21:04     NULL        nkarag            30         
+2/3/1975       02/03/1975 15:01:34     NULL        Θεοδώρου          10         
+31/5/2018      31/05/2018 15:01:34     NULL        Χ                 10         
+01/01/2090     01/01/2090 23:15:45     2.00        NULL              NULL       
+31/5/2018      31/05/2018 15:01:34     NULL        Π                 10         
+1/12/1999      01/12/1993 05:01:04     NULL        nkarag            10         
+1/12/1991      01/12/1990 05:01:04     NULL        nkarag            NULL       
+01/12/1990     01/12/1990 05:01:04     NULL        nkarag            NULL       
+NULL           01/01/2090 23:15:46     3.00        Karagiannidis     NULL       
+NULL           01/01/2090 23:15:46     1.00        Karagiannidis     NULL       
+
+
+14 rows returned
+--------------------------------------------------------------------------------
+*** Test groupNoAggList function
+--------------------------------------------------------------------------------
+MyDate         MyTime                  DNumber     Name              Number     
+~~~~~~         ~~~~~~                  ~~~~~~~     ~~~~              ~~~~~~     
+01/01/2090     01/01/2090 23:15:45     NULL        Karagiannidis     50         
+NULL           01/01/2090 23:15:45     1.00        Karagiannidis     10         
+
+
+2 rows returned
+--------------------------------------------------------------------------------
+----------------------------------------------------------------------------
+MyDate     MyTime                  DNumber     Name              Number     
+~~~~~~     ~~~~~~                  ~~~~~~~     ~~~~              ~~~~~~     
+NULL       01/01/2090 23:15:46     1.00        Karagiannidis     NULL       
+NULL       01/01/2090 23:15:46     3.00        Karagiannidis     NULL       
+
+
+2 rows returned
+----------------------------------------------------------------------------
+-----------------------------------------------------------------------
+MyDate        MyTime                  DNumber     Name      Number     
+~~~~~~        ~~~~~~                  ~~~~~~~     ~~~~      ~~~~~~     
+31/5/2018     31/05/2018 15:01:34     NULL        Nikos     10         
+31/5/2018     31/05/2018 15:01:34     NULL        Nikos     10         
+
+
+2 rows returned
+-----------------------------------------------------------------------
+-------------------------------------------------------------------------
+MyDate         MyTime                  DNumber     Name       Number     
+~~~~~~         ~~~~~~                  ~~~~~~~     ~~~~       ~~~~~~     
+01/12/1990     01/12/1990 05:01:04     NULL        nkarag     NULL       
+1/12/1991      01/12/1990 05:01:04     NULL        nkarag     NULL       
+
+
+2 rows returned
+-------------------------------------------------------------------------
+------------------------------------------------------------------------
+MyDate        MyTime                  DNumber     Name       Number     
+~~~~~~        ~~~~~~                  ~~~~~~~     ~~~~       ~~~~~~     
+1/12/1999     01/12/1992 15:21:04     NULL        nkarag     30         
+
+
+1 row returned
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+MyDate        MyTime                  DNumber     Name       Number     
+~~~~~~        ~~~~~~                  ~~~~~~~     ~~~~       ~~~~~~     
+1/12/1999     01/12/1993 05:01:04     NULL        nkarag     10         
+
+
+1 row returned
+------------------------------------------------------------------------
+-------------------------------------------------------------------------
+MyDate       MyTime                  DNumber     Name         Number     
+~~~~~~       ~~~~~~                  ~~~~~~~     ~~~~         ~~~~~~     
+2/3/1975     02/03/1975 15:01:34     NULL        Θεοδώρου     10         
+
+
+1 row returned
+-------------------------------------------------------------------------
+----------------------------------------------------------------------
+MyDate        MyTime                  DNumber     Name     Number     
+~~~~~~        ~~~~~~                  ~~~~~~~     ~~~~     ~~~~~~     
+31/5/2018     31/05/2018 15:01:34     NULL        Π        10         
+
+
+1 row returned
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+MyDate        MyTime                  DNumber     Name     Number     
+~~~~~~        ~~~~~~                  ~~~~~~~     ~~~~     ~~~~~~     
+31/5/2018     31/05/2018 15:01:34     NULL        Χ        10         
+
+
+1 row returned
+----------------------------------------------------------------------
+-----------------------------------------------------------------------
+MyDate         MyTime                  DNumber     Name     Number     
+~~~~~~         ~~~~~~                  ~~~~~~~     ~~~~     ~~~~~~     
+01/01/2090     01/01/2090 23:15:45     2.00        NULL     NULL       
+
+
+1 row returned
+-----------------------------------------------------------------------
+*** TEST CUSTOM Aggregation
+Implement a custom listagg()
+------------------
+Name              
+~~~~              
+Karagiannidis     
+nkarag            
+nkarag            
+Nikos             
+Θεοδώρου          
+Karagiannidis     
+Karagiannidis     
+nkarag            
+NULL              
+Karagiannidis     
+Nikos             
+Π                 
+Χ                 
+nkarag            
+
+
+14 rows returned
+------------------
+--------------------------------------------------------------------------------------------
+Name              ListAggName                                                 CountName     
+~~~~              ~~~~~~~~~~~                                                 ~~~~~~~~~     
+Karagiannidis     Karagiannidis;Karagiannidis;Karagiannidis;Karagiannidis     4             
+nkarag            nkarag;nkarag;nkarag;nkarag                                 4             
+Π                 Π                                                           1             
+NULL              NULL                                                        NULL          
+Χ                 Χ                                                           1             
+Θεοδώρου          Θεοδώρου                                                    1             
+Nikos             Nikos;Nikos                                                 2             
+
+
+7 rows returned
+--------------------------------------------------------------------------------------------
+*** Test StrAgg aggregation
+--------------------------------------------------------------------------------------------
+Name              ListAggName                                                 CountName     
+~~~~              ~~~~~~~~~~~                                                 ~~~~~~~~~     
+Karagiannidis     Karagiannidis;Karagiannidis;Karagiannidis;Karagiannidis     4             
+nkarag            nkarag;nkarag;nkarag;nkarag                                 4             
+Π                 Π                                                           1             
+NULL              NULL                                                        NULL          
+Χ                 Χ                                                           1             
+Θεοδώρου          Θεοδώρου                                                    1             
+Nikos             Nikos;Nikos                                                 2             
+
+
+7 rows returned
+--------------------------------------------------------------------------------------------
+*** Test RTable update
+--------------------------------------------------------------------------------
+MyDate         MyTime                  DNumber     Name              Number     
+~~~~~~         ~~~~~~                  ~~~~~~~     ~~~~              ~~~~~~     
+01/01/2090     01/01/2090 23:15:45     NULL        Karagiannidis     50         
+01/12/1990     01/12/1990 05:01:04     NULL        nkarag            NULL       
+1/12/1991      01/12/1990 05:01:04     NULL        nkarag            NULL       
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos             10         
+2/3/1975       02/03/1975 15:01:34     NULL        Θεοδώρου          10         
+NULL           01/01/2090 23:15:46     1.00        Karagiannidis     NULL       
+NULL           01/01/2090 23:15:45     1.00        Karagiannidis     10         
+1/12/1999      01/12/1992 15:21:04     NULL        nkarag            30         
+01/01/2090     01/01/2090 23:15:45     2.00        NULL              NULL       
+NULL           01/01/2090 23:15:46     3.00        Karagiannidis     NULL       
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos             10         
+31/5/2018      31/05/2018 15:01:34     NULL        Π                 10         
+31/5/2018      31/05/2018 15:01:34     NULL        Χ                 10         
+1/12/1999      01/12/1993 05:01:04     NULL        nkarag            10         
+
+
+14 rows returned
+--------------------------------------------------------------------------------
+----------------------------------------------------------------------------
+MyDate         MyTime                  DNumber     Name          Number     
+~~~~~~         ~~~~~~                  ~~~~~~~     ~~~~          ~~~~~~     
+01/01/2090     01/01/2090 23:15:45     NULL        Mr. Smith     50         
+NULL           01/01/2090 23:15:46     1.00        Mr. Smith     NULL       
+NULL           01/01/2090 23:15:45     1.00        Mr. Smith     10         
+NULL           01/01/2090 23:15:46     3.00        Mr. Smith     NULL       
+1/12/1999      01/12/1993 05:01:04     NULL        nkarag        10         
+31/5/2018      31/05/2018 15:01:34     NULL        Χ             10         
+31/5/2018      31/05/2018 15:01:34     NULL        Π             10         
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos         10         
+01/01/2090     01/01/2090 23:15:45     2.00        NULL          NULL       
+1/12/1999      01/12/1992 15:21:04     NULL        nkarag        30         
+2/3/1975       02/03/1975 15:01:34     NULL        Θεοδώρου      10         
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos         10         
+1/12/1991      01/12/1990 05:01:04     NULL        nkarag        NULL       
+01/12/1990     01/12/1990 05:01:04     NULL        nkarag        NULL       
+
+
+14 rows returned
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+MyDate         MyTime                  DNumber     Name          Number     
+~~~~~~         ~~~~~~                  ~~~~~~~     ~~~~          ~~~~~~     
+01/01/2090     01/01/2090 23:15:45     NULL        Mr. Smith     50         
+NULL           01/01/2090 23:15:46     1.00        Mr. Smith     NULL       
+NULL           01/01/2090 23:15:45     1.00        Mr. Smith     10         
+NULL           01/01/2090 23:15:46     3.00        Mr. Smith     NULL       
+1/12/1999      01/12/1993 05:01:04     NULL        nkarag        10         
+31/5/2018      31/05/2018 15:01:34     NULL        Χ             10         
+31/5/2018      31/05/2018 15:01:34     NULL        Π             10         
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos         10         
+01/01/2090     01/01/2090 23:15:45     2.00        NULL          NULL       
+1/12/1999      01/12/1992 15:21:04     NULL        nkarag        30         
+2/3/1975       02/03/1975 15:01:34     NULL        Θεοδώρου      10         
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos         10         
+1/12/1991      01/12/1990 05:01:04     NULL        nkarag        NULL       
+01/12/1990     01/12/1990 05:01:04     NULL        nkarag        NULL       
+
+
+14 rows returned
+----------------------------------------------------------------------------
+*** Test Union All operation
+--------------------------------------------------------------------------------
+MyDate         MyTime                  DNumber     Name              Number     
+~~~~~~         ~~~~~~                  ~~~~~~~     ~~~~              ~~~~~~     
+2/3/1975       02/03/1975 15:01:34     NULL        Θεοδώρου          10         
+2/3/1975       02/03/1975 15:01:34     NULL        Θεοδώρου          10         
+01/12/1990     01/12/1990 05:01:04     NULL        nkarag            NULL       
+01/12/1990     01/12/1990 05:01:04     NULL        nkarag            NULL       
+1/12/1991      01/12/1990 05:01:04     NULL        nkarag            NULL       
+1/12/1991      01/12/1990 05:01:04     NULL        nkarag            NULL       
+1/12/1999      01/12/1992 15:21:04     NULL        nkarag            30         
+1/12/1999      01/12/1992 15:21:04     NULL        nkarag            30         
+1/12/1999      01/12/1993 05:01:04     NULL        nkarag            10         
+1/12/1999      01/12/1993 05:01:04     NULL        nkarag            10         
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos             10         
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos             10         
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos             10         
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos             10         
+31/5/2018      31/05/2018 15:01:34     NULL        Π                 10         
+31/5/2018      31/05/2018 15:01:34     NULL        Π                 10         
+31/5/2018      31/05/2018 15:01:34     NULL        Χ                 10         
+31/5/2018      31/05/2018 15:01:34     NULL        Χ                 10         
+NULL           01/01/2090 23:15:45     1.00        Karagiannidis     10         
+NULL           01/01/2090 23:15:45     1.00        Karagiannidis     10         
+01/01/2090     01/01/2090 23:15:45     2.00        NULL              NULL       
+01/01/2090     01/01/2090 23:15:45     2.00        NULL              NULL       
+01/01/2090     01/01/2090 23:15:45     NULL        Karagiannidis     50         
+01/01/2090     01/01/2090 23:15:45     NULL        Karagiannidis     50         
+NULL           01/01/2090 23:15:46     1.00        Karagiannidis     NULL       
+NULL           01/01/2090 23:15:46     1.00        Karagiannidis     NULL       
+NULL           01/01/2090 23:15:46     3.00        Karagiannidis     NULL       
+NULL           01/01/2090 23:15:46     3.00        Karagiannidis     NULL       
+
+
+28 rows returned
+--------------------------------------------------------------------------------
+*** Test insertRTabToRTab function
+--------------------------------------------------------------------------------
+MyDate         MyTime                  DNumber     Name              Number     
+~~~~~~         ~~~~~~                  ~~~~~~~     ~~~~              ~~~~~~     
+01/01/2090     01/01/2090 23:15:45     NULL        Karagiannidis     50         
+01/12/1990     01/12/1990 05:01:04     NULL        nkarag            NULL       
+1/12/1991      01/12/1990 05:01:04     NULL        nkarag            NULL       
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos             10         
+2/3/1975       02/03/1975 15:01:34     NULL        Θεοδώρου          10         
+NULL           01/01/2090 23:15:46     1.00        Karagiannidis     NULL       
+NULL           01/01/2090 23:15:45     1.00        Karagiannidis     10         
+1/12/1999      01/12/1992 15:21:04     NULL        nkarag            30         
+01/01/2090     01/01/2090 23:15:45     2.00        NULL              NULL       
+NULL           01/01/2090 23:15:46     3.00        Karagiannidis     NULL       
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos             10         
+31/5/2018      31/05/2018 15:01:34     NULL        Π                 10         
+31/5/2018      31/05/2018 15:01:34     NULL        Χ                 10         
+1/12/1999      01/12/1993 05:01:04     NULL        nkarag            10         
+01/01/2090     01/01/2090 23:15:45     NULL        Karagiannidis     50         
+01/12/1990     01/12/1990 05:01:04     NULL        nkarag            NULL       
+1/12/1991      01/12/1990 05:01:04     NULL        nkarag            NULL       
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos             10         
+2/3/1975       02/03/1975 15:01:34     NULL        Θεοδώρου          10         
+NULL           01/01/2090 23:15:46     1.00        Karagiannidis     NULL       
+NULL           01/01/2090 23:15:45     1.00        Karagiannidis     10         
+1/12/1999      01/12/1992 15:21:04     NULL        nkarag            30         
+01/01/2090     01/01/2090 23:15:45     2.00        NULL              NULL       
+NULL           01/01/2090 23:15:46     3.00        Karagiannidis     NULL       
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos             10         
+31/5/2018      31/05/2018 15:01:34     NULL        Π                 10         
+31/5/2018      31/05/2018 15:01:34     NULL        Χ                 10         
+1/12/1999      01/12/1993 05:01:04     NULL        nkarag            10         
+
+
+28 rows returned
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+MyDate         MyTime                  DNumber     Name              Number     
+~~~~~~         ~~~~~~                  ~~~~~~~     ~~~~              ~~~~~~     
+01/01/2090     01/01/2090 23:15:45     NULL        Karagiannidis     50         
+01/12/1990     01/12/1990 05:01:04     NULL        nkarag            NULL       
+1/12/1991      01/12/1990 05:01:04     NULL        nkarag            NULL       
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos             10         
+2/3/1975       02/03/1975 15:01:34     NULL        Θεοδώρου          10         
+NULL           01/01/2090 23:15:46     1.00        Karagiannidis     NULL       
+NULL           01/01/2090 23:15:45     1.00        Karagiannidis     10         
+1/12/1999      01/12/1992 15:21:04     NULL        nkarag            30         
+01/01/2090     01/01/2090 23:15:45     2.00        NULL              NULL       
+NULL           01/01/2090 23:15:46     3.00        Karagiannidis     NULL       
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos             10         
+31/5/2018      31/05/2018 15:01:34     NULL        Π                 10         
+31/5/2018      31/05/2018 15:01:34     NULL        Χ                 10         
+1/12/1999      01/12/1993 05:01:04     NULL        nkarag            10         
+2/3/1975       02/03/1975 15:01:34     NULL        Θεοδώρου          10         
+
+
+15 rows returned
+--------------------------------------------------------------------------------
+------------------
+Name              
+~~~~              
+Karagiannidis     
+nkarag            
+nkarag            
+Nikos             
+Θεοδώρου          
+Karagiannidis     
+Karagiannidis     
+nkarag            
+NULL              
+Karagiannidis     
+Nikos             
+Π                 
+Χ                 
+nkarag            
+
+
+14 rows returned
+------------------
+------------------
+Name              
+~~~~              
+Karagiannidis     
+nkarag            
+nkarag            
+Nikos             
+Θεοδώρου          
+Karagiannidis     
+Karagiannidis     
+nkarag            
+NULL              
+Karagiannidis     
+Nikos             
+Π                 
+Χ                 
+nkarag            
+Karagiannidis     
+nkarag            
+nkarag            
+Nikos             
+Θεοδώρου          
+Karagiannidis     
+Karagiannidis     
+nkarag            
+NULL              
+Karagiannidis     
+Nikos             
+Π                 
+Χ                 
+nkarag            
+
+
+28 rows returned
+------------------
+*** Test Insert Into Values clause
+---------------------------------------------------------------------------------
+MyDate         MyTime                  DNumber     Name               Number     
+~~~~~~         ~~~~~~                  ~~~~~~~     ~~~~               ~~~~~~     
+01/01/2090     01/01/2090 23:15:45     NULL        Karagiannidis      50         
+01/12/1990     01/12/1990 05:01:04     NULL        nkarag             NULL       
+1/12/1991      01/12/1990 05:01:04     NULL        nkarag             NULL       
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos              10         
+2/3/1975       02/03/1975 15:01:34     NULL        Θεοδώρου           10         
+NULL           01/01/2090 23:15:46     1.00        Karagiannidis      NULL       
+NULL           01/01/2090 23:15:45     1.00        Karagiannidis      10         
+1/12/1999      01/12/1992 15:21:04     NULL        nkarag             30         
+01/01/2090     01/01/2090 23:15:45     2.00        NULL               NULL       
+NULL           01/01/2090 23:15:46     3.00        Karagiannidis      NULL       
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos              10         
+31/5/2018      31/05/2018 15:01:34     NULL        Π                  10         
+31/5/2018      31/05/2018 15:01:34     NULL        Χ                  10         
+1/12/1999      01/12/1993 05:01:04     NULL        nkarag             10         
+31/10/2018     31/10/2018 17:24:00     23.89       Michael J. Fox     58         
+
+
+15 rows returned
+---------------------------------------------------------------------------------
+*** Test Insert Into RTuples clause
+-------------------------------------------------------------------------
+MyDate         MyTime                  DNumber     Name       Number     
+~~~~~~         ~~~~~~                  ~~~~~~~     ~~~~       ~~~~~~     
+01/12/1990     01/12/1990 05:01:04     NULL        nkarag     NULL       
+1/12/1991      01/12/1990 05:01:04     NULL        nkarag     NULL       
+1/12/1999      01/12/1992 15:21:04     NULL        nkarag     30         
+1/12/1999      01/12/1993 05:01:04     NULL        nkarag     10         
+
+
+4 rows returned
+-------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+MyDate         MyTime                  DNumber     Name              Number     
+~~~~~~         ~~~~~~                  ~~~~~~~     ~~~~              ~~~~~~     
+01/01/2090     01/01/2090 23:15:45     NULL        Karagiannidis     50         
+NULL           01/01/2090 23:15:46     1.00        Karagiannidis     NULL       
+NULL           01/01/2090 23:15:45     1.00        Karagiannidis     10         
+NULL           01/01/2090 23:15:46     3.00        Karagiannidis     NULL       
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos             10         
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos             10         
+01/12/1990     01/12/1990 05:01:04     NULL        nkarag            NULL       
+1/12/1991      01/12/1990 05:01:04     NULL        nkarag            NULL       
+1/12/1999      01/12/1992 15:21:04     NULL        nkarag            30         
+1/12/1999      01/12/1993 05:01:04     NULL        nkarag            10         
+01/12/1990     01/12/1990 05:01:04     NULL        nkarag            NULL       
+1/12/1991      01/12/1990 05:01:04     NULL        nkarag            NULL       
+1/12/1999      01/12/1992 15:21:04     NULL        nkarag            30         
+1/12/1999      01/12/1993 05:01:04     NULL        nkarag            10         
+2/3/1975       02/03/1975 15:01:34     NULL        Θεοδώρου          10         
+31/5/2018      31/05/2018 15:01:34     NULL        Π                 10         
+31/5/2018      31/05/2018 15:01:34     NULL        Χ                 10         
+01/01/2090     01/01/2090 23:15:45     2.00        NULL              NULL       
+
+
+18 rows returned
+--------------------------------------------------------------------------------
+*** Test Upsert Operation
+srcTab
+-----------------------------------------------------------------------------------
+MyDate         MyTime                  DNumber     Name          SK     Number     
+~~~~~~         ~~~~~~                  ~~~~~~~     ~~~~          ~~     ~~~~~~     
+01/01/2090     01/01/2090 23:15:45     NULL        Mr. Smith     0      50         
+NULL           01/01/2090 23:15:46     1.00        Mr. Smith     5      NULL       
+NULL           01/01/2090 23:15:45     1.00        Mr. Smith     6      10         
+NULL           01/01/2090 23:15:46     3.00        Mr. Smith     9      NULL       
+22/12/2018     22/12/2018 21:22:00     34.67       Filippos      14     15         
+
+
+5 rows returned
+-----------------------------------------------------------------------------------
+trgTab
+---------------------------------------------------------------------------------------
+MyDate         MyTime                  DNumber     Name              SK     Number     
+~~~~~~         ~~~~~~                  ~~~~~~~     ~~~~              ~~     ~~~~~~     
+01/01/2090     01/01/2090 23:15:45     NULL        Karagiannidis     0      50         
+01/12/1990     01/12/1990 05:01:04     NULL        nkarag            1      NULL       
+1/12/1991      01/12/1990 05:01:04     NULL        nkarag            2      NULL       
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos             3      10         
+2/3/1975       02/03/1975 15:01:34     NULL        Θεοδώρου          4      10         
+NULL           01/01/2090 23:15:46     1.00        Karagiannidis     5      NULL       
+NULL           01/01/2090 23:15:45     1.00        Karagiannidis     6      10         
+1/12/1999      01/12/1992 15:21:04     NULL        nkarag            7      30         
+01/01/2090     01/01/2090 23:15:45     2.00        NULL              8      NULL       
+NULL           01/01/2090 23:15:46     3.00        Karagiannidis     9      NULL       
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos             10     10         
+31/5/2018      31/05/2018 15:01:34     NULL        Π                 11     10         
+31/5/2018      31/05/2018 15:01:34     NULL        Χ                 12     10         
+1/12/1999      01/12/1993 05:01:04     NULL        nkarag            13     10         
+
+
+14 rows returned
+---------------------------------------------------------------------------------------
+upsertRTab
+---------------------------------------------------------------------------------------
+MyDate         MyTime                  DNumber     Name              SK     Number     
+~~~~~~         ~~~~~~                  ~~~~~~~     ~~~~              ~~     ~~~~~~     
+01/01/2090     01/01/2090 23:15:45     NULL        Karagiannidis     0      50         
+01/12/1990     01/12/1990 05:01:04     NULL        nkarag            1      NULL       
+1/12/1991      01/12/1990 05:01:04     NULL        nkarag            2      NULL       
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos             3      10         
+2/3/1975       02/03/1975 15:01:34     NULL        Θεοδώρου          4      10         
+NULL           01/01/2090 23:15:46     1.00        Mr. Smith         5      NULL       
+NULL           01/01/2090 23:15:45     1.00        Mr. Smith         6      10         
+1/12/1999      01/12/1992 15:21:04     NULL        nkarag            7      30         
+01/01/2090     01/01/2090 23:15:45     2.00        NULL              8      NULL       
+NULL           01/01/2090 23:15:46     3.00        Mr. Smith         9      NULL       
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos             10     10         
+31/5/2018      31/05/2018 15:01:34     NULL        Π                 11     10         
+31/5/2018      31/05/2018 15:01:34     NULL        Χ                 12     10         
+1/12/1999      01/12/1993 05:01:04     NULL        nkarag            13     10         
+22/12/2018     22/12/2018 21:22:00     34.67       Filippos          14     15         
+
+
+15 rows returned
+---------------------------------------------------------------------------------------
+Test Upsert Julius clause
+---------------------------------------------------------------------------------------
+MyDate         MyTime                  DNumber     Name              SK     Number     
+~~~~~~         ~~~~~~                  ~~~~~~~     ~~~~              ~~     ~~~~~~     
+01/01/2090     01/01/2090 23:15:45     NULL        Karagiannidis     0      50         
+01/12/1990     01/12/1990 05:01:04     NULL        nkarag            1      NULL       
+1/12/1991      01/12/1990 05:01:04     NULL        nkarag            2      NULL       
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos             3      10         
+2/3/1975       02/03/1975 15:01:34     NULL        Θεοδώρου          4      10         
+NULL           01/01/2090 23:15:46     1.00        Mr. Smith         5      NULL       
+NULL           01/01/2090 23:15:45     1.00        Mr. Smith         6      10         
+1/12/1999      01/12/1992 15:21:04     NULL        nkarag            7      30         
+01/01/2090     01/01/2090 23:15:45     2.00        NULL              8      NULL       
+NULL           01/01/2090 23:15:46     3.00        Mr. Smith         9      NULL       
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos             10     10         
+31/5/2018      31/05/2018 15:01:34     NULL        Π                 11     10         
+31/5/2018      31/05/2018 15:01:34     NULL        Χ                 12     10         
+1/12/1999      01/12/1993 05:01:04     NULL        nkarag            13     10         
+22/12/2018     22/12/2018 21:22:00     34.67       Filippos          14     15         
+
+
+15 rows returned
+---------------------------------------------------------------------------------------
+*** Test anti-join and semi-join
+trgTab <anti-join> srcTab (t1 <!> "SK" == t2 <!> "SK")
+----------------------------------------------------------------------------------
+MyDate         MyTime                  DNumber     Name         SK     Number     
+~~~~~~         ~~~~~~                  ~~~~~~~     ~~~~         ~~     ~~~~~~     
+01/12/1990     01/12/1990 05:01:04     NULL        nkarag       1      NULL       
+1/12/1991      01/12/1990 05:01:04     NULL        nkarag       2      NULL       
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos        3      10         
+2/3/1975       02/03/1975 15:01:34     NULL        Θεοδώρου     4      10         
+1/12/1999      01/12/1992 15:21:04     NULL        nkarag       7      30         
+01/01/2090     01/01/2090 23:15:45     2.00        NULL         8      NULL       
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos        10     10         
+31/5/2018      31/05/2018 15:01:34     NULL        Π            11     10         
+31/5/2018      31/05/2018 15:01:34     NULL        Χ            12     10         
+1/12/1999      01/12/1993 05:01:04     NULL        nkarag       13     10         
+
+
+10 rows returned
+----------------------------------------------------------------------------------
+AntiJoin Julius clause
+----------------------------------------------------------------------------------
+MyDate         MyTime                  DNumber     Name         SK     Number     
+~~~~~~         ~~~~~~                  ~~~~~~~     ~~~~         ~~     ~~~~~~     
+01/12/1990     01/12/1990 05:01:04     NULL        nkarag       1      NULL       
+1/12/1991      01/12/1990 05:01:04     NULL        nkarag       2      NULL       
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos        3      10         
+2/3/1975       02/03/1975 15:01:34     NULL        Θεοδώρου     4      10         
+1/12/1999      01/12/1992 15:21:04     NULL        nkarag       7      30         
+01/01/2090     01/01/2090 23:15:45     2.00        NULL         8      NULL       
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos        10     10         
+31/5/2018      31/05/2018 15:01:34     NULL        Π            11     10         
+31/5/2018      31/05/2018 15:01:34     NULL        Χ            12     10         
+1/12/1999      01/12/1993 05:01:04     NULL        nkarag       13     10         
+
+
+10 rows returned
+----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+MyDate         MyTime                  DNumber     Name         SK     Number     
+~~~~~~         ~~~~~~                  ~~~~~~~     ~~~~         ~~     ~~~~~~     
+01/12/1990     01/12/1990 05:01:04     NULL        nkarag       1      NULL       
+1/12/1991      01/12/1990 05:01:04     NULL        nkarag       2      NULL       
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos        3      10         
+2/3/1975       02/03/1975 15:01:34     NULL        Θεοδώρου     4      10         
+1/12/1999      01/12/1992 15:21:04     NULL        nkarag       7      30         
+01/01/2090     01/01/2090 23:15:45     2.00        NULL         8      NULL       
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos        10     10         
+31/5/2018      31/05/2018 15:01:34     NULL        Π            11     10         
+31/5/2018      31/05/2018 15:01:34     NULL        Χ            12     10         
+1/12/1999      01/12/1993 05:01:04     NULL        nkarag       13     10         
+
+
+10 rows returned
+----------------------------------------------------------------------------------
+trgTab <semi-join> srcTab (t1 <!> "SK" == t2 <!> "SK")
+---------------------------------------------------------------------------------------
+MyDate         MyTime                  DNumber     Name              SK     Number     
+~~~~~~         ~~~~~~                  ~~~~~~~     ~~~~              ~~     ~~~~~~     
+01/01/2090     01/01/2090 23:15:45     NULL        Karagiannidis     0      50         
+NULL           01/01/2090 23:15:46     1.00        Karagiannidis     5      NULL       
+NULL           01/01/2090 23:15:45     1.00        Karagiannidis     6      10         
+NULL           01/01/2090 23:15:46     3.00        Karagiannidis     9      NULL       
+
+
+4 rows returned
+---------------------------------------------------------------------------------------
+SemiJoin Julius clause
+---------------------------------------------------------------------------------------
+MyDate         MyTime                  DNumber     Name              SK     Number     
+~~~~~~         ~~~~~~                  ~~~~~~~     ~~~~              ~~     ~~~~~~     
+01/01/2090     01/01/2090 23:15:45     NULL        Karagiannidis     0      50         
+NULL           01/01/2090 23:15:46     1.00        Karagiannidis     5      NULL       
+NULL           01/01/2090 23:15:45     1.00        Karagiannidis     6      10         
+NULL           01/01/2090 23:15:46     3.00        Karagiannidis     9      NULL       
+
+
+4 rows returned
+---------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
+MyDate         MyTime                  DNumber     Name              SK     Number     
+~~~~~~         ~~~~~~                  ~~~~~~~     ~~~~              ~~     ~~~~~~     
+01/01/2090     01/01/2090 23:15:45     NULL        Karagiannidis     0      50         
+NULL           01/01/2090 23:15:46     1.00        Karagiannidis     5      NULL       
+NULL           01/01/2090 23:15:45     1.00        Karagiannidis     6      10         
+NULL           01/01/2090 23:15:46     3.00        Karagiannidis     9      NULL       
+
+
+4 rows returned
+---------------------------------------------------------------------------------------
+*** Test deleteRTab
+---------------------------------------------------------------------------------------
+MyDate         MyTime                  DNumber     Name              SK     Number     
+~~~~~~         ~~~~~~                  ~~~~~~~     ~~~~              ~~     ~~~~~~     
+01/01/2090     01/01/2090 23:15:45     NULL        Karagiannidis     0      50         
+01/12/1990     01/12/1990 05:01:04     NULL        nkarag            1      NULL       
+1/12/1991      01/12/1990 05:01:04     NULL        nkarag            2      NULL       
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos             3      10         
+2/3/1975       02/03/1975 15:01:34     NULL        Θεοδώρου          4      10         
+NULL           01/01/2090 23:15:46     1.00        Karagiannidis     5      NULL       
+NULL           01/01/2090 23:15:45     1.00        Karagiannidis     6      10         
+1/12/1999      01/12/1992 15:21:04     NULL        nkarag            7      30         
+01/01/2090     01/01/2090 23:15:45     2.00        NULL              8      NULL       
+NULL           01/01/2090 23:15:46     3.00        Karagiannidis     9      NULL       
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos             10     10         
+31/5/2018      31/05/2018 15:01:34     NULL        Π                 11     10         
+31/5/2018      31/05/2018 15:01:34     NULL        Χ                 12     10         
+1/12/1999      01/12/1993 05:01:04     NULL        nkarag            13     10         
+
+
+14 rows returned
+---------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
+MyDate         MyTime                  DNumber     Name              SK     Number     
+~~~~~~         ~~~~~~                  ~~~~~~~     ~~~~              ~~     ~~~~~~     
+01/01/2090     01/01/2090 23:15:45     NULL        Karagiannidis     0      50         
+01/12/1990     01/12/1990 05:01:04     NULL        nkarag            1      NULL       
+1/12/1991      01/12/1990 05:01:04     NULL        nkarag            2      NULL       
+31/5/2018      31/05/2018 15:01:34     NULL        Nikos             3      10         
+2/3/1975       02/03/1975 15:01:34     NULL        Θεοδώρου          4      10         
+NULL           01/01/2090 23:15:46     1.00        Karagiannidis     5      NULL       
+NULL           01/01/2090 23:15:45     1.00        Karagiannidis     6      10         
+1/12/1999      01/12/1992 15:21:04     NULL        nkarag            7      30         
+
+
+8 rows returned
+---------------------------------------------------------------------------------------
+*** Test Delete clause
+---------------------------------------------------------------------------------------
+MyDate         MyTime                  DNumber     Name              SK     Number     
+~~~~~~         ~~~~~~                  ~~~~~~~     ~~~~              ~~     ~~~~~~     
+01/01/2090     01/01/2090 23:15:45     NULL        Karagiannidis     0      50         
+01/12/1990     01/12/1990 05:01:04     NULL        nkarag            1      NULL       
+1/12/1991      01/12/1990 05:01:04     NULL        nkarag            2      NULL       
+2/3/1975       02/03/1975 15:01:34     NULL        Θεοδώρου          4      10         
+NULL           01/01/2090 23:15:46     1.00        Karagiannidis     5      NULL       
+NULL           01/01/2090 23:15:45     1.00        Karagiannidis     6      10         
+1/12/1999      01/12/1992 15:21:04     NULL        nkarag            7      30         
+
+
+7 rows returned
+---------------------------------------------------------------------------------------
+*** Test do-notation
+This is from Julius
+-------------------------------------------------------------------
+MyTime                  ColNew2       Name              Number     
+~~~~~~                  ~~~~~~~       ~~~~              ~~~~~~     
+01/01/2090 23:15:45     <-|-|-|->     Karagiannidis     50         
+01/01/2090 23:15:45     <-|-|-|->     Karagiannidis     50         
+
+
+2 rows returned
+-------------------------------------------------------------------
+This is from do-notation
+-------------------------------------------------------------------
+MyTime                  ColNew2       Name              Number     
+~~~~~~                  ~~~~~~~       ~~~~              ~~~~~~     
+01/01/2090 23:15:45     <-|-|-|->     Karagiannidis     50         
+01/01/2090 23:15:45     <-|-|-|->     Karagiannidis     50         
+
+
+2 rows returned
+-------------------------------------------------------------------
+Test suite dbfunctor-test: PASS
+Test suite logged to:
+/tmp/workdir-DBFunctor/DBFunctor-0.1.2.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/DBFunctor-0.1.2.1/t/dbfunctor-test/test/DBFunctor-0.1.2.1-dbfunctor-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

@@ -1,0 +1,462 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - subcategories-0.2.1.1 (test:subcategories-test) (ephemeral targets)
+Preprocessing test suite 'subcategories-test' for subcategories-0.2.1.1...
+Building test suite 'subcategories-test' for subcategories-0.2.1.1...
+Running 1 test suites...
+Test suite subcategories-test: RUNNING...
+test/spec.hs
+  Control.Subcategory
+    FoldableSpec
+      cfoldr
+        List
+          has the same representation as V.foldr:                                   OK
+          has no instance dictionary:                                               OK
+        BVector
+          has the same representation as V.foldr:                                   OK
+          has no instance dictionary except G.Vector:                               OK
+        UVector
+          has the same representation as U.foldr (if an element is concrete):       OK
+          has no instance dictionary other than Unbox (if polymorphic):             FAIL (expected: Simplified subsumption sacrifices this and fails for GHC >= 9.0.1.)
+            test/Control/Subcategory/FoldableSpec.hs:83:
+            test/Control/Subcategory/FoldableSpec.hs:83:8: cfoldr_uvec_poly does not contain dictionary values except of Data.Vector.Unboxed.Base.Unbox failed:
+                Found type classes:  [Vector, MVector]
+                cfoldr_uvec_poly = \ @a @b $dUnbox eta eta1 eta2 ->
+                                     case eta2 of v2 { __DEFAULT ->
+                                     case $p1Unbox $dUnbox of { C:Vector ww ww ww ww ww ww ww ww ->
+                                     case ww v2 of { I# ipv ->
+                                     letrec {
+                                       foldrM_loop
+                                         = \ ds4 s1 ->
+                                             case ds4 of { __DEFAULT ->
+                                             case s1 of wild { I# x ->
+                                             case >=# x ipv of {
+                                               __DEFAULT ->
+                                                 case ww v2 wild of { Box x1 ->
+                                                 (eta
+                                                    x1
+                                                    ((foldrM_loop SPEC (I# (+# x 1#)))
+                                                     `cast` <Co:2> :: Coercible (Id b) b))
+                                                 `cast` <Co:3> :: Coercible b (Id b)
+                                                 };
+                                               1# -> eta1 `cast` <Co:3> :: Coercible b (Id b)
+                                             }
+                                             }
+                                             }; } in
+                                     foldrM_loop SPEC lvl
+                                     }
+                                     }
+                                     } (expected failure)
+        SVector
+          has the same representation as S.foldr (if an element is concrete):       OK
+          has no instance dictionary other than Storable (if polymorphic):          FAIL (expected: Simplified subsumption sacrifices this and fails for GHC >= 9.0.1.)
+            test/Control/Subcategory/FoldableSpec.hs:93:
+            test/Control/Subcategory/FoldableSpec.hs:93:8: cfoldr_svec_poly does not contain dictionary values except of Foreign.Storable.Storable failed:
+                Found type classes:  [Vector]
+                cfoldr_svec_poly = \ @a @b $dStorable ->
+                                     foldr ($fVectorVectora $dStorable) (expected failure)
+        PVector
+          has the same representation as P.foldr (if an element is concrete):       OK
+          has no instance dictionary other than Prim (if polymorphic):              FAIL (expected: Simplified subsumption sacrifices this and fails for GHC >= 9.0.1.)
+            test/Control/Subcategory/FoldableSpec.hs:103:
+            test/Control/Subcategory/FoldableSpec.hs:103:8: cfoldr_pvec_poly does not contain dictionary values except of Data.Primitive.Types.Prim failed:
+                Found type classes:  [Vector]
+                cfoldr_pvec_poly = \ @a @b $dPrim -> foldr ($fVectorVectora $dPrim) (expected failure)
+      cfoldMap
+        UVector
+          has the same rep as ofoldMap (if elements concrete):                      OK
+      cinit
+        List
+          has the same represeitation as Prelude.init:                              FAIL (expected: GHC >= 9.4 does different thing on CallStack)
+            test/Control/Subcategory/FoldableSpec.hs:137:
+            test/Control/Subcategory/FoldableSpec.hs:137:8: cinit_list ==- init_list failed:
+            LHS:
+                cinit_list
+                  = \ @a eta ->
+                      case eta of {
+                        [] -> lvl;
+                        : x xs -> init1 x xs
+                      }
+                
+                lvl = "subcategories-0.2.1.1-inplace"#
+                
+                lvl = unpackCString# lvl
+                
+                lvl = "Control.Subcategory.Foldable"#
+                
+                lvl = unpackCString# lvl
+                
+                lvl = "src/Control/Subcategory/Foldable.hs"#
+                
+                lvl = unpackCString# lvl
+                
+                lvl = I# 1388#
+                
+                lvl = I# 11#
+                
+                lvl = I# 15#
+                
+                lvl = SrcLoc lvl lvl lvl lvl lvl lvl lvl
+                
+                lvl = PushCallStack lvl lvl EmptyCallStack
+                
+                lvl
+                  = \ @a ->
+                      init2 (lvl `cast` <Co:4> :: CallStack ~~ (?callStack::CallStack))
+                
+            RHS:
+                init_list
+                  = \ @a eta ->
+                      case eta of {
+                        [] -> lvl;
+                        : x xs -> init1 x xs
+                      }
+                
+                $trModule = "Control.Subcategory.FoldableSpec"#
+                
+                $trModule = "subcategories-0.2.1.1-inplace-subcategories-test"#
+                
+                lvl = unpackCString# $trModule
+                
+                lvl = unpackCString# $trModule
+                
+                lvl = "test/Control/Subcategory/FoldableSpec.hs"#
+                
+                lvl = unpackCString# lvl
+                
+                lvl = I# 131#
+                
+                lvl = I# 13#
+                
+                lvl = I# 17#
+                
+                lvl = SrcLoc lvl lvl lvl lvl lvl lvl lvl
+                
+                lvl = PushCallStack lvl lvl EmptyCallStack
+                
+                lvl
+                  = \ @a ->
+                      init2 (lvl `cast` <Co:4> :: CallStack ~~ (?callStack::CallStack))
+                 (expected failure)
+      ctoList
+        List
+          has the same represeitation as Prelude.id:                                OK
+      cfromList
+        List
+          has the same represeitation as Prelude.id:                                OK
+      Rewrite rules
+        ctoList . cfromList = ctoList
+          List:                                                                     OK
+          Boxed vector:                                                             OK
+          Polymorphic (up to dictionary leftover):                                  OK
+      cgenerate
+        Boxed Vector:                                                               OK
+      creverse
+        List:                                                                       OK
+    FunctorSpec
+      cmap
+        list
+          has the same representation as Prelude.map:                               OK
+        Seq
+          has the same representation as fmap:                                      OK
+          has no instance dictionary:                                               OK
+        IntSet
+          has the same representation as IntSet.map:                                OK
+        BVector
+          has the same representation as V.map:                                     OK
+        UVector
+          has the same representation as U.map:                                     OK
+        SVector
+          has the same representation as S.map:                                     OK
+        PVector
+          has the same representation as P.map:                                     OK
+        SmallArray
+          has the same representation as fmap:                                      OK
+          has no instance dictionary:                                               OK
+        Array
+          has the same representation as fmap:                                      OK
+          has no instance dictionary:                                               OK
+        PrimArray
+          has the same representation as PA.mapPrimArray:                           OK
+          has no instance dictionary:                                               OK
+        Maybe
+          has the same representation as fmap:                                      OK
+          has no instance dictionary:                                               OK
+        Set
+          has the same representation as Set.map:                                   OK
+          has no instance dictionary except Ord:                                    OK
+        HashSet
+          has the same representation as HS.map, if the first argument is concrete: OK
+          has no instance dictionary except EQ and Hashable:                        OK
+        WrapMono ByteString
+          has the same representation as Data.ByteString.map:                       OK
+          has no instance dictionary:                                               OK
+        WrapMono Text
+          has the same representation as Data.Text.map:                             FAIL (expected: GHC >= 9.6 does aggeressive inlining somehow)
+            test/Control/Subcategory/FunctorSpec.hs:230:
+            test/Control/Subcategory/FunctorSpec.hs:230:8: cmap_MonoText ==- map_Text failed:
+            In "..."#
+            LHS:
+                cmap_MonoText
+                  = \ eta eta ->
+                      case eta `cast` <Co:4> :: Coercible (WrapMono Text Char) Text of
+                      { Text bx bx1 bx2 ->
+                      runRW#
+                        (\ s ->
+                           case newByteArray# (+# bx2 4#) s of { (# ipv, ipv1 #) ->
+                           letrec {
+                             $wouter
+                               = \ @s ww ww ww ww eta ->
+                                   join {
+                                     exit ww ww eta
+                                       = let { dstLen' = +# (-# (+# ww (+# bx2 bx1)) ww) 4# } in
+                                         case resizeMutableByteArray# ww dstLen' eta of
+                                         { (# ipv4, ipv5 #) ->
+                                         $wouter ipv5 dstLen' ww ww ipv4
+                                         } } in
+                                   join {
+                                     exit ww eta
+                                       = case shrinkMutableByteArray# ww ww eta of s2# { __DEFAULT ->
+                                         case unsafeFreezeByteArray# ww s2# of { (# ipv4, ipv5 #) ->
+                                         (# ipv4, ipv5, 0#, ww #)
+                                         }
+                                         } } in
+                                   joinrec {
+                                     $winner ww ww eta
+                                       = case >=# ww (+# bx2 bx1) of {
+                                           __DEFAULT ->
+                                             case ># (+# ww 4#) ww of {
+                                               __DEFAULT ->
+                                                 case indexWord8Array# bx ww of r# { __DEFAULT ->
+                                                 let {
+                                                   c#
+                                                     = word2Int#
+                                                         (clz8# (and# (not# (word8ToWord# r#)) 255##)) } in
+                                                 join {
+                                                   $j2 ipv4 ipv5
+                                                     = case eta (C# ipv4) of { C# c# ->
+                                                       join {
+                                                         $j c1
+                                                           = case +#
+                                                                    (+#
+                                                                       (geChar# c1 '\2048'#)
+                                                                       (geChar# c1 '\65536'#))
+                                                                    (geChar# c1 '\128'#)
+                                                             of {
+                                                               __DEFAULT ->
+                                                                 let { x# = ord# c1 } in
+                                                                 case writeWord8Array#
+                                                                        ww
+                                                                        ww
+                                                                        (wordToWord8#
+                                                                           (int2Word#
+                                                                              (+#
+                                                                                 (uncheckedIShiftRA# x# 18#)
+                                                                                 240#)))
+                                                                        eta
+                                                                 of s2#
+                                                                 { __DEFAULT ->
+                                                                 case writeWord8Array#
+                                                                        ww
+                                                                        (+# ww 1#)
+                                                                        (wordToWord8#
+                                                                           (int2Word#
+                                                                              (+#
+                                                                                 (andI#
+                                                                                    (uncheckedIShiftRA# x# 12#)
+                                                                                    63#)
+                                                                                 128#)))
+                                                                        s2#
+                                                                 of s2#1
+                                                                 { __DEFAULT ->
+                                                                 case writeWord8Array#
+                                                                        ww
+                                                                        (+# ww 2#)
+                                                                        (wordToWord8#
+                                                                           (int2Word#
+                                                                              (+#
+                                                                                 (andI#
+                                                                                    (uncheckedIShiftRA# x# 6#)
+                                                                                    63#)
+                                                                                 128#)))
+                                                                        s2#1
+                                                                 of s2#2
+                                                                 { __DEFAULT ->
+                                                                 case writeWord8Array#
+                                                                        ww
+                                                                        (+# ww 3#)
+                                                                        (wordToWord8#
+                                                                           (int2Word# (+# (andI# x# 63#) 128#)))
+                                                                        s2#2
+                                                                 of s2#3
+                                                                 { __DEFAULT ->
+                                                                 jump $winner (+# ww ipv5) (+# ww 4#) s2#3
+                                                                 }
+                                                                 }
+                                                                 }
+                                                                 };
+                                                               0# ->
+                                                                 case writeWord8Array#
+                                                                        ww
+                                                                        ww
+                                                                        (wordToWord8# (int2Word# (ord# c1)))
+                                                                        eta
+                                                                 of s2#
+                                                                 { __DEFAULT ->
+                                                                 jump $winner (+# ww ipv5) (+# ww 1#) s2#
+                                                                 };
+                                                               1# ->
+                                                                 let { x# = ord# c1 } in
+                                                                 case writeWord8Array#
+                                                                        ww
+                                                                        ww
+                                                                        (wordToWord8#
+                                                                           (int2Word#
+                                                                              (+#
+                                                                                 (uncheckedIShiftRA# x# 6#)
+                                                                                 192#)))
+                                                                        eta
+                                                                 of s2#
+                                                                 { __DEFAULT ->
+                                                                 case writeWord8Array#
+                                                                        ww
+                                                                        (+# ww 1#)
+                                                                        (wordToWord8#
+                                                                           (int2Word# (+# (andI# x# 63#) 128#)))
+                                                                        s2#
+                                                                 of s2#1
+                                                                 { __DEFAULT ->
+                                                                 jump $winner (+# ww ipv5) (+# ww 2#) s2#1
+                                                                 }
+                                                                 };
+                                                               2# ->
+                                                                 let { x# = ord# c1 } in
+                                                                 case writeWord8Array#
+                                                                        ww
+                                                                        ww
+                                                                        (wordToWord8#
+                                                                           (int2Word#
+                                                                              (+#
+                                                                                 (uncheckedIShiftRA# x# 12#)
+                                                                                 224#)))
+                                                                        eta
+                                                                 of s2#
+                                                                 { __DEFAULT ->
+                                                                 case writeWord8Array#
+                                                                        ww
+                                                                        (+# ww 1#)
+                                                                        (wordToWord8#
+                                                                           (int2Word#
+                                                                              (+#
+                                                                                 (andI#
+                                                                                    (uncheckedIShiftRA# x# 6#)
+                                                                                    63#)
+                                                                                 128#)))
+                                                                        s2#
+                                                                 of s2#1
+                                                                 { __DEFAULT ->
+                                                                 case writeWord8Array#
+                                                                        ww
+                                                                        (+# ww 2#)
+                                                                        (wordToWord8#
+                                                                           (int2Word# (+# (andI# x# 63#) 128#)))
+                                                                        s2#1
+                                                                 of s2#2
+                                                                 { __DEFAULT ->
+                                                                 jump $winner (+# ww ipv5) (+# ww 3#) s2#2
+                                                                 }
+                                                                 }
+                                                                 }
+                                                             } } in
+                                                       case andI# (ord# c#) 2095104# of {
+                                                         __DEFAULT -> jump $j c#;
+                                                         55296# -> jump $j '\65533'#
+                                                       }
+                                                       } } in
+                                                 case xorI# c# (<=# c# 0#) of ds1 {
+                                                   __DEFAULT ->
+                                                     case indexWord8Array# bx (+# ww 1#) of r#1 { __DEFAULT ->
+                                                     case indexWord8Array# bx (+# ww 2#) of r#2 { __DEFAULT ->
+                                                     case indexWord8Array# bx (+# ww 3#) of r#3 { __DEFAULT ->
+                                                     jump $j2
+                                                       (chr#
+                                                          (-#
+                                                             (+#
+                                                                (+#
+                                                                   (+#
+                                                                      (uncheckedIShiftL#
+                                                                         (-# (word2Int# (word8ToWord# r#)) 240#)
+                                                                         18#)
+                                                                      (uncheckedIShiftL#
+                                                                         (-#
+                                                                            (word2Int# (word8ToWord# r#1)) 128#)
+                                                                         12#))
+                                                                   (uncheckedIShiftL#
+                                                                      (-# (word2Int# (word8ToWord# r#2)) 128#)
+                                                                      6#))
+                                                                (word2Int# (word8ToWord# r#3)))
+                                                             128#))
+                                                       ds1
+                                                     }
+                                                     }
+                                                     };
+                                                   1# -> jump $j2 (chr# (word2Int# (word8ToWord# r#))) 1#;
+                                                   2# ->
+                                                     case indexWord8Array# bx (+# ww 1#) of r#1 { __DEFAULT ->
+                                                     jump $j2
+                                                       (chr#
+                                                          (-#
+                                                             (+#
+                                                                (uncheckedIShiftL#
+                                                                   (-# (word2Int# (word8ToWord# r#)) 192#) 6#)
+                                                                (word2Int# (word8ToWord# r#1)))
+                                                             128#))
+                                                       2#
+                                                     };
+                                                   3# ->
+                                                     case indexWord8Array# bx (+# ww 1#) of r#1 { __DEFAULT ->
+                                                     case indexWord8Array# bx (+# ww 2#) of r#2 { __DEFAULT ->
+                                                     jump $j2
+                                                       (chr#
+                                                          (-#
+                                                             (+#
+                                                                (+#
+                                                                   (uncheckedIShiftL#
+                                                                      (-# (word2Int# (word8ToWord# r#)) 224#)
+                                                                      12#)
+                                                                   (uncheckedIShiftL#
+                                                                      (-# (word2Int# (word8ToWord# r#1)) 128#)
+                                                                      6#))
+                                                                (word2Int# (word8ToWord# r#2)))
+                                                             128#))
+                                                       3#
+                                                     }
+                                                     }
+                                                 }
+                                                 };
+                                               1# -> jump exit ww ww eta
+                                             };
+                                           1# -> jump exit ww eta
+                                         }; } in
+                                   jump $winner ww ww eta; } in
+                           case $wouter ipv1 (+# bx2 4#) bx1 0# ipv of
+                           { (# ww, ww, ww, ww #) ->
+                           (Text ww ww ww)
+                           `cast` <Co:5> :: Coercible Text (WrapMono Text Char)
+                           }
+                           })
+                      }
+            RHS: map_Text = map (expected failure)
+          has no instance dictionary:                                               OK
+    ZipSpec
+      czipWith
+        list
+          has the same representation as Prelude.zipWith:                           OK
+        vector
+          has the same representation as Prelude.zipWith:                           OK
+
+All 45 tests passed (0.00s)
+Test suite subcategories-test: PASS
+Test suite logged to:
+/tmp/workdir-subcategories/subcategories-0.2.1.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/subcategories-0.2.1.1/t/subcategories-test/test/subcategories-0.2.1.1-subcategories-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

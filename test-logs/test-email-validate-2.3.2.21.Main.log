@@ -1,0 +1,577 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - email-validate-2.3.2.21 (test:Main) (ephemeral targets)
+Preprocessing test suite 'Main' for email-validate-2.3.2.21...
+Building test suite 'Main' for email-validate-2.3.2.21...
+Running 1 test suites...
+Test suite Main: RUNNING...
+
+show/read instances
+  can roundtrip [✔]
+    +++ OK, passed 100 tests.
+  shows in the same way as ByteString [✔]
+    +++ OK, passed 100 tests.
+  should fail if read back without a quote [✔]
+    +++ OK, passed 100 tests.
+emailAddress
+  is idempotent [✔]
+    +++ OK, passed 100 tests.
+Examples
+  "first.last@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "first.last@example.com." (Dot allowed on end of domain)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "local@exam_ple.com" (Underscore not permitted in domain)
+    should be invalid [✔]
+  "1234567890123456789012345678901234567890123456789012345678901234@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "\"first last\"@example.com" (Contains quoted spaces)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "\"first\\\"last\"@example.com" (Contains quoted escaped quote)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "first\\@last@example.com" (Escaping can only happen within a quoted string)
+    should be invalid [✔]
+  "\"first@last\"@example.com" (Contains quoted at-sign)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "\"first\\\\last\"@example.com" (Contains quoted escaped backslash)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "1234@xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx" (Maximum length is 254, this is 254 exactly)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "1234@xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx." (Trailing dot doesn't increase length)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "12345@xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx.xxxxxxxxx" (Maximum length is 254, this is 255)
+    should be invalid [✔]
+    should have correct error message [✔]
+  "first.last@[12.34.56.78]" (IP address)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "first.last@[IPv6:::12.34.56.78]" (IPv6 address)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "first.last@[IPv6:1111:2222:3333::4444:12.34.56.78]"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "first.last@[IPv6:1111:2222:3333:4444:5555:6666:12.34.56.78]"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "first.last@[IPv6:::1111:2222:3333:4444:5555:6666]"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "first.last@[IPv6:1111:2222:3333::4444:5555:6666]"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "first.last@[IPv6:1111:2222:3333:4444:5555:6666::]"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "first.last@[IPv6:1111:2222:3333:4444:5555:6666:7777:8888]"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "first.last@x23456789012345678901234567890123456789012345678901234567890123.example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "first.last@1xample.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "first.last@123.example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "first.last" (no at sign)
+    should be invalid [✔]
+    should have correct error message [✔]
+  ".first.last@example.com" (Local part starts with a dot)
+    should be invalid [✔]
+  "first.last.@example.com" (Local part ends with a dot)
+    should be invalid [✔]
+  "first..last@example.com" (Local part has consecutive dots)
+    should be invalid [✔]
+  "\"first\"last\"@example.com" (Local part contains unescaped excluded characters)
+    should be invalid [✔]
+  "\"first\\last\"@example.com" (Any character can be escaped in a quoted string)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "\"\"\"@example.com" (Local part contains unescaped excluded characters)
+    should be invalid [✔]
+  "\"\\\"@example.com" (Local part cannot end with a backslash)
+    should be invalid [✔]
+  "first\\\\@last@example.com" (Local part contains unescaped excluded characters)
+    should be invalid [✔]
+  "first.last@" (No domain)
+    should be invalid [✔]
+  "\"Abc\\@def\"@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "\"Fred\\ Bloggs\"@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "\"Joe.\\\\Blow\"@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "\"Abc@def\"@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "\"Fred Bloggs\"@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "user+mailbox@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "customer/department=shipping@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "$A12345@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "!def!xyz%abc@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "_somename@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "dclo@us.ibm.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "abc\\@def@example.com" (This example from RFC3696 was corrected in an erratum)
+    should be invalid [✔]
+  "abc\\\\@example.com" (This example from RFC3696 was corrected in an erratum)
+    should be invalid [✔]
+  "peter.piper@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "Doug\\ \\\"Ace\\\"\\ Lovell@example.com" (Escaping can only happen in a quoted string)
+    should be invalid [✔]
+  "\"Doug \\\"Ace\\\" L.\"@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "abc@def@example.com" (Doug Lovell says this should fail)
+    should be invalid [✔]
+  "abc\\\\@def@example.com" (Doug Lovell says this should fail)
+    should be invalid [✔]
+  "abc\\@example.com" (Doug Lovell says this should fail)
+    should be invalid [✔]
+  "@example.com" (no local part)
+    should be invalid [✔]
+  "doug@" (no domain part)
+    should be invalid [✔]
+  "\"qu@example.com" (Doug Lovell says this should fail)
+    should be invalid [✔]
+  "ote\"@example.com" (Doug Lovell says this should fail)
+    should be invalid [✔]
+  ".dot@example.com" (Doug Lovell says this should fail)
+    should be invalid [✔]
+  "dot.@example.com" (Doug Lovell says this should fail)
+    should be invalid [✔]
+  "two..dot@example.com" (Doug Lovell says this should fail)
+    should be invalid [✔]
+  "\"Doug \"Ace\" L.\"@example.com" (Doug Lovell says this should fail)
+    should be invalid [✔]
+  "Doug\\ \\\"Ace\\\"\\ L\\.@example.com" (Doug Lovell says this should fail)
+    should be invalid [✔]
+  "hello world@example.com" (Doug Lovell says this should fail)
+    should be invalid [✔]
+  "gatsby@f.sc.ot.t.f.i.tzg.era.l.d."
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "test@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "TEST@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "1234567890@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "test+test@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "test-test@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "t*est@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "+1~1+@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "{_test_}@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "\"[[ test ]]\"@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "test.test@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "\"test.test\"@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "test.\"test\"@example.com" (Obsolete form, but documented in RFC2822)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "\"test@test\"@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "test@123.123.123.x123"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "test@[123.123.123.123]"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "test@example.example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "test@example.example.example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "test.example.com"
+    should be invalid [✔]
+  "test.@example.com"
+    should be invalid [✔]
+  "test..test@example.com"
+    should be invalid [✔]
+  ".test@example.com"
+    should be invalid [✔]
+  "test@test@example.com"
+    should be invalid [✔]
+  "test@@example.com"
+    should be invalid [✔]
+  "-- test --@example.com" (No spaces allowed in local part)
+    should be invalid [✔]
+  "[test]@example.com" (Square brackets only allowed within quotes)
+    should be invalid [✔]
+  "\"test\\test\"@example.com" (Any character can be escaped in a quoted string)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "\"test\"test\"@example.com" (Quotes cannot be nested)
+    should be invalid [✔]
+  "()[]\\;:,><@example.com" (Disallowed Characters)
+    should be invalid [✔]
+  "test@." (Dave Child says so)
+    should be invalid [✔]
+  "test@example."
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "test@.org" (Dave Child says so)
+    should be invalid [✔]
+  "test@[123.123.123.123" (Dave Child says so)
+    should be invalid [✔]
+  "test@123.123.123.123]" (Dave Child says so)
+    should be invalid [✔]
+  "NotAnEmail" (Phil Haack says so)
+    should be invalid [✔]
+  "@NotAnEmail" (Phil Haack says so)
+    should be invalid [✔]
+  "\"test\\\\blah\"@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "\"test\\blah\"@example.com" (Any character can be escaped in a quoted string)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "\"test\\\rblah\"@example.com" (Quoted string specifically excludes carriage returns unless escaped)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "\"test\rblah\"@example.com" (Quoted string specifically excludes carriage returns)
+    should be invalid [✔]
+  "\"test\\\"blah\"@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "\"test\"blah\"@example.com" (Phil Haack says so)
+    should be invalid [✔]
+  "customer/department@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "_Yosemite.Sam@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "~@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  ".wooly@example.com" (Phil Haack says so)
+    should be invalid [✔]
+  "wo..oly@example.com" (Phil Haack says so)
+    should be invalid [✔]
+  "pootietang.@example.com" (Phil Haack says so)
+    should be invalid [✔]
+  ".@example.com" (Phil Haack says so)
+    should be invalid [✔]
+  "\"Austin@Powers\"@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "Ima.Fool@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "\"Ima.Fool\"@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "\"Ima Fool\"@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "Ima Fool@example.com" (Phil Haack says so)
+    should be invalid [✔]
+  "phil.h\\@\\@ck@haacked.com" (Escaping can only happen in a quoted string)
+    should be invalid [✔]
+  "\"first\".\"last\"@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "\"first\".middle.\"last\"@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "\"first\\\\\"last\"@example.com" (Contains an unescaped quote)
+    should be invalid [✔]
+  "\"first\".last@example.com" (obs-local-part form as described in RFC 2822)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "first.\"last\"@example.com" (obs-local-part form as described in RFC 2822)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "\"first\".\"middle\".\"last\"@example.com" (obs-local-part form as described in RFC 2822)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "\"first.middle\".\"last\"@example.com" (obs-local-part form as described in RFC 2822)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "\"first.middle.last\"@example.com" (obs-local-part form as described in RFC 2822)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "\"first..last\"@example.com" (obs-local-part form as described in RFC 2822)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "foo@[\\1.2.3.4]" (RFC 5321 specifies the syntax for address-literal and does not allow escaping)
+    should be invalid [✔]
+  "\"first\\\\\\\"last\"@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "first.\"mid\\dle\".\"last\"@example.com" (Backslash can escape anything but must escape something)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "Test.\r\n Folding.\r\n Whitespace@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "first\\last@example.com" (Unquoted string must be an atom)
+    should be invalid [✔]
+  "Abc\\@def@example.com" (Was incorrectly given as a valid address in the original RFC3696)
+    should be invalid [✔]
+  "Fred\\ Bloggs@example.com" (Was incorrectly given as a valid address in the original RFC3696)
+    should be invalid [✔]
+  "Joe.\\\\Blow@example.com" (Was incorrectly given as a valid address in the original RFC3696)
+    should be invalid [✔]
+  "\"test\\\r\n blah\"@example.com" (Folding white space can't appear within a quoted pair)
+    should be invalid [✔]
+  "\"test\r\n blah\"@example.com" (This is a valid quoted string with folding white space)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "{^c\\@**Dog^}@cartoon.com" (This is a throwaway example from Doug Lovell's article. Actually it's not a valid address.)
+    should be invalid [✔]
+  "(foo)cal(bar)@(baz)iamcal.com(quux)" (A valid address containing comments)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "cal@iamcal(woo).(yay)com" (A valid address containing comments)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "cal(woo(yay)hoopla)@iamcal.com" (A valid address containing comments)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "cal(foo\\@bar)@iamcal.com" (A valid address containing comments)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "cal(foo\\)bar)@iamcal.com" (A valid address containing comments and an escaped parenthesis)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "cal(foo(bar)@iamcal.com" (Unclosed parenthesis in comment)
+    should be invalid [✔]
+  "cal(foo)bar)@iamcal.com" (Too many closing parentheses)
+    should be invalid [✔]
+  "cal(foo\\)@iamcal.com" (Backslash at end of comment has nothing to escape)
+    should be invalid [✔]
+  "first().last@example.com" (A valid address containing an empty comment)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "first.(\r\n middle\r\n )last@example.com" (Comment with folding white space)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "first(12345678901234567890123456789012345678901234567890)last@(1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890)example.com" (Too long with comments, not too long without)
+    should be invalid [✔]
+  "first(Welcome to\r\n the (\"wonderful\" (!)) world\r\n of email)@example.com" (Silly example from my blog post)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "pete(his account)@silly.test(his host)" (Canonical example from RFC5322)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "c@(Chris's host.)public.example" (Canonical example from RFC5322)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "jdoe@machine(comment).  example" (Canonical example from RFC5322)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "1234   @   local(blah)  .machine .example" (Canonical example from RFC5322)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "first(middle)last@example.com" (Can't have a comment or white space except at an element boundary)
+    should be invalid [✔]
+  "first(abc.def).last@example.com" (Comment can contain a dot)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "first(a\"bc.def).last@example.com" (Comment can contain double quote)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "first.(\")middle.last(\")@example.com" (Comment can contain a quote)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "first(abc(\"def\".ghi).mno)middle(abc(\"def\".ghi).mno).last@(abc(\"def\".ghi).mno)example(abc(\"def\".ghi).mno).(abc(\"def\".ghi).mno)com(abc(\"def\".ghi).mno)" (Can't have comments or white space except at an element boundary)
+    should be invalid [✔]
+  "first(abc\\(def)@example.com" (Comment can contain quoted-pair)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "first.last@x(1234567890123456789012345678901234567890123456789012345678901234567890).com" (Label is longer than 63 octets, but not with comment removed)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "a(a(b(c)d(e(f))g)h(i)j)@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "a(a(b(c)d(e(f))g)(h(i)j)@example.com" (Braces are not properly matched)
+    should be invalid [✔]
+  "name.lastname@domain.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  ".@"
+    should be invalid [✔]
+  "@bar.com"
+    should be invalid [✔]
+  "@@bar.com"
+    should be invalid [✔]
+  "a@bar.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "aaa.com"
+    should be invalid [✔]
+  "aaa@.com"
+    should be invalid [✔]
+  "aaa@.123"
+    should be invalid [✔]
+  "aaa@[123.123.123.123]"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "aaa@[123.123.123.123]a" (extra data outside ip)
+    should be invalid [✔]
+  "a@bar.com."
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "a-b@bar.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "+@b.c" (TLDs can be any length)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "+@b.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "-@..com"
+    should be invalid [✔]
+  "-@a..com"
+    should be invalid [✔]
+  "a@b.co-foo.uk"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "\"hello my name is\"@stutter.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "\"Test \\\"Fail\\\" Ing\"@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "valid@special.museum"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "shaitan@my-domain.thisisminekthx" (Disagree with Paul Gregg here)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "test@...........com" (......)
+    should be invalid [✔]
+  "\"Joe\\\\Blow\"@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "Invalid \\\n Folding \\\n Whitespace@example.com" (This isn't FWS so Dominic Sayers says it's invalid)
+    should be invalid [✔]
+  "HM2Kinsists@(that comments are allowed)this.is.ok"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "user%uucp!path@somehost.edu"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "\"first(last)\"@example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  " \r\n (\r\n x \r\n ) \r\n first\r\n ( \r\n x\r\n ) \r\n .\r\n ( \r\n x) \r\n last \r\n (  x \r\n ) \r\n @example.com"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "test.\r\n \r\n obs@syntax.com" (obs-fws allows multiple lines)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "test. \r\n \r\n obs@syntax.com" (obs-fws allows multiple lines (test 2: space before break))
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "test.\r\n\r\n obs@syntax.com" (obs-fws must have at least one WSP per line)
+    should be invalid [✔]
+  "\"null \\\NUL\"@char.com" (can have escaped null character)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "\"null \NUL\"@char.com" (cannot have unescaped null character)
+    should be invalid [✔]
+  "a@b"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "a@bar"
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "invalid@special.museum-" (domain can't end with hyphen)
+    should be invalid [✔]
+  "a@-b.com" (domain can't start with hyphen)
+    should be invalid [✔]
+  "a@b-.com" (domain label can't end with hyphen)
+    should be invalid [✔]
+  "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx@x" (local-part longer than 64 octets)
+    should be invalid [✔]
+    should have correct error message [✔]
+  "x@x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456" (Domain exceeds 255 chars)
+    should be invalid [✔]
+  "test@123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012.com" (255 characters is maximum length for domain. This is 256.)
+    should be invalid [✔]
+  "123456789012345678901234567890123456789012345678901234567890@12345678901234567890123456789012345678901234567890123456789.12345678901234567890123456789012345678901234567890123456789.12345678901234567890123456789012345678901234567890123456789.1234.example.com" (Entire address is longer than 254 characters (this is 257))
+    should be invalid [✔]
+  "123456789012345678901234567890123456789012345678901234567890@12345678901234567890123456789012345678901234567890123456789.12345678901234567890123456789012345678901234567890123456789.12345678901234567890123456789012345678901234567890123456789.123.example.com" (Entire address is longer than 254 characters (this is 256))
+    should be invalid [✔]
+  "123456789012345678901234567890123456789012345678901234567890@12345678901234567890123456789012345678901234567890123456789.12345678901234567890123456789012345678901234567890123456789.12345678901234567890123456789012345678901234567890123456789.12.example.com" (Entire address is longer than 254 characters (this is 255))
+    should be invalid [✔]
+  "123456789012345678901234567890123456789012345678901234567890@12345678901234567890123456789012345678901234567890123456789.12345678901234567890123456789012345678901234567890123456789.12345678901234567890123456789012345678901234567890123456789.1.example.com" (Entire address is 254 characters)
+    should be valid [✔]
+    passes double-canonicalization test [✔]
+  "first.last@x234567890123456789012345678901234567890123456789012345678901234.example.com" (Label can't be longer than 63 octets)
+    should be invalid [✔]
+  "first.last@e.-xample.com" (Label can't begin with a hyphen)
+    should be invalid [✔]
+  "first.last@exampl-.e.com" (Label can't end with a hyphen)
+    should be invalid [✔]
+GitHub issue #12
+  is fixed [✔]
+Trailing dot
+  is canonicalized [✔]
+localPart
+  extracts local part [✔]
+domainPart
+  extracts domain part [✔]
+QuasiQuoter
+  works as expected [✔]
+
+Finished in 0.2004 seconds
+340 examples, 0 failures
+Test suite Main: PASS
+Test suite logged to:
+/tmp/workdir-email-validate/email-validate-2.3.2.21/dist-newstyle/build/x86_64-linux/ghc-9.6.6/email-validate-2.3.2.21/t/Main/test/email-validate-2.3.2.21-Main.log
+1 of 1 test suites (1 of 1 test cases) passed.

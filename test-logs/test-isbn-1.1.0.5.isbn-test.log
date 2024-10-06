@@ -1,0 +1,112 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - isbn-1.1.0.5 (test:isbn-test) (ephemeral targets)
+Preprocessing test suite 'isbn-test' for isbn-1.1.0.5...
+Building test suite 'isbn-test' for isbn-1.1.0.5...
+Running 1 test suites...
+Test suite isbn-test: RUNNING...
+
+Data.ISBN
+  Testing ISBN validation
+    can validate '0345816021'        as 'Right (ISBN10 "0345816021")' [✔]
+    can validate '0-807-01429-X'     as 'Right (ISBN10 "080701429X")' [✔]
+    can validate '9780807014295'     as 'Right (ISBN13 "9780807014295")' [✔]
+    can validate '978-0-306-40615-7' as 'Right (ISBN13 "9780306406157")' [✔]
+    can validate '979-10-95546-00-9' as 'Right (ISBN13 "9791095546009")' [✔]
+    can reject   '0-345-816'         as 'Left InvalidISBNInputLength' [✔]
+    can reject   'X-345-81602-1'     as 'Left IllegalCharactersInISBN10Body' [✔]
+    can reject   '0-345-81602-B'     as 'Left IllegalCharacterAsISBN10CheckDigit' [✔]
+    can reject   '0-345-81602-3'     as 'Left InvalidISBN10CheckDigit' [✔]
+    can reject   '00000000000000'    as 'Left InvalidISBNInputLength' [✔]
+    can reject   '9780807014299'     as 'Left InvalidISBN13CheckDigit' [✔]
+    can reject   '0X00000000000'     as 'Left IllegalCharactersInISBN13Input' [✔]
+  Testing ISBN-10 to ISBN-13 conversion
+    can convert (ISBN10 "0060899220") to (ISBN13 "9780060899226") [✔]
+    can convert (ISBN10 "1519150245") to (ISBN13 "9781519150240") [✔]
+  Testing ISBN-13 to ISBN-10 conversion
+    can convert (ISBN13 "9780060899226") to (Just (ISBN10 "0060899220")) [✔]
+    can convert (ISBN13 "9781519150240") to (Just (ISBN10 "1519150245")) [✔]
+    can convert (ISBN13 "2222222222222") to (Nothing) [✔]
+  Property Based Tests
+    can convert ISBN10 to ISBN13 and back to ISBN10 [✔]
+      +++ OK, passed 10000 tests.
+    can convert 978-prefixed ISBN13 to ISBN10 and back to ISBN13 [✔]
+      +++ OK, passed 10000 tests.
+Data.ISBN.ISBN10
+  Testing validity of ISBN-10 check digit characters
+    can accept 'X' [✔]
+    can accept '1' [✔]
+    can accept '2' [✔]
+    can accept '3' [✔]
+    can accept '4' [✔]
+    can accept '5' [✔]
+    can accept '6' [✔]
+    can accept '7' [✔]
+    can accept '8' [✔]
+    can accept '9' [✔]
+    can accept '0' [✔]
+    can reject 'C' [✔]
+    can reject 'F' [✔]
+    can reject 'a' [✔]
+    can reject 'x' [✔]
+    can reject '-' [✔]
+    can reject '_' [✔]
+    can reject '*' [✔]
+    can reject '!' [✔]
+    can reject ' ' [✔]
+  Testing ISBN-10 check digit confirmation
+    can confirm '0306406152' [✔]
+    can reject  '030640615X' [✔]
+    can confirm '0345816021' [✔]
+    can confirm '080701429X' [✔]
+    can confirm '0060899220' [✔]
+    can confirm '2222222222' [✔]
+    can confirm '4444444444' [✔]
+    can confirm '9999999999' [✔]
+    can reject  '999999999X' [✔]
+  Testing ISBN-10 checking
+    can equate: isISBN10 (ISBN10 "0345816021")    == True [✔]
+    can equate: isISBN10 (ISBN13 "9780345816023") == False [✔]
+  Testing ISBN-10 validation with errors
+    can validate '0-345-81602-1' as 'Right (ISBN10 "0345816021")' [✔]
+    can validate '0345816021'    as 'Right (ISBN10 "0345816021")' [✔]
+    can validate '080701429X'    as 'Right (ISBN10 "080701429X")' [✔]
+    can reject   '0-345-81602-0' as 'Left ISBN10InvalidCheckDigit' [✔]
+    can reject   '0-345-X1602-0' as 'Left ISBN10IllegalCharactersInBody' [✔]
+    can reject   'A-345-X1602-0' as 'Left ISBN10IllegalCharactersInBody' [✔]
+    can reject   'A2345-X1602-0' as 'Left ISBN10InvalidInputLength' [✔]
+    can reject   '345-81602-1'   as 'Left ISBN10InvalidInputLength' [✔]
+Data.ISBN.ISBN13
+  Testing ISBN-13 check digit calculation
+    can calculate check digit for '978030640615' should be '7' [✔]
+    can calculate check digit for '978034581602' should be '3' [✔]
+    can calculate check digit for '978080701429' should be '5' [✔]
+    can calculate check digit for '978151915024' should be '0' [✔]
+    can calculate check digit for '979109631539' should be '0' [✔]
+  Testing ISBN-13 check digit confirmation
+    can confirm '9780306406157' [✔]
+    can confirm '9780345816023' [✔]
+    can reject  '9780345816029' [✔]
+    can confirm '9780807014295' [✔]
+    can confirm '9791096315390' [✔]
+  Testing ISBN-13 checking
+    can equate: isISBN13 (ISBN10 "0345816021")    == False [✔]
+    can equate: isISBN13 (ISBN13 "9780345816023") == True [✔]
+  Testing ISBN-13 validation with errors
+    can validate '9780345816023'     as 'Right (ISBN13 "9780345816023")' [✔]
+    can validate '9780807014295'     as 'Right (ISBN13 "9780807014295")' [✔]
+    can validate '978-0-306-40615-7' as 'Right (ISBN13 "9780306406157")' [✔]
+    can validate '9780306406157'     as 'Right (ISBN13 "9780306406157")' [✔]
+    can validate '9781519150240'     as 'Right (ISBN13 "9781519150240")' [✔]
+    can validate '9791096315390'     as 'Right (ISBN13 "9791096315390")' [✔]
+    can reject   '9780345816029'     as 'Left ISBN13InvalidCheckDigit' [✔]
+    can reject   '9780807014299'     as 'Left ISBN13InvalidCheckDigit' [✔]
+    can reject   '00000000000000'    as 'Left ISBN13InvalidInputLength' [✔]
+    can reject   '0X00000000000'     as 'Left ISBN13IllegalCharactersInInput' [✔]
+
+Finished in 0.0453 seconds
+80 examples, 0 failures
+Test suite isbn-test: PASS
+Test suite logged to:
+/tmp/workdir-isbn/isbn-1.1.0.5/dist-newstyle/build/x86_64-linux/ghc-9.6.6/isbn-1.1.0.5/t/isbn-test/test/isbn-1.1.0.5-isbn-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

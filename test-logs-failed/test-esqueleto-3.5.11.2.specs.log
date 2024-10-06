@@ -1,0 +1,1259 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - esqueleto-3.5.11.2 (test:specs) (ephemeral targets)
+Preprocessing test suite 'specs' for esqueleto-3.5.11.2...
+Building test suite 'specs' for esqueleto-3.5.11.2...
+Running 1 test suites...
+Test suite specs: RUNNING...
+
+Esqueleto
+  SQLite
+    Esqueleto
+      select
+        works for a single value [✔]
+        works for a pair of a single value and () [✔]
+        works for a single () [✔]
+        works for a single NULL value [✔]
+      GetFirstTable
+        works to make long join chains easier [✔]
+      subSelect
+        is safe for queries that may return multiple results [✔]
+        is safe for queries that may not return anything [✔]
+      subSelectList
+        is safe on empty databases as well as good databases [✔]
+      subSelectMaybe
+        is equivalent to joinV . subSelect [✔]
+      subSelectCount
+        is a safe way to do a countRows [✔]
+      subSelectUnsafe
+        throws exceptions on multiple results [✔]
+        throws exceptions on null results [✔]
+      selectOne
+        returns Just [✔]
+        returns Nothing [✔]
+      selectSource
+        works for a simple example [✔]
+        can run a query many times [✔]
+        works on repro [✔]
+      select/from
+        works for a simple example [✔]
+        works for a simple self-join (one entity) [✔]
+        works for a simple self-join (two entities) [✔]
+        works for a self-join via sub_select [✔]
+        works for a self-join via exists [✔]
+        works for a simple projection [✔]
+        works for a simple projection with a simple implicit self-join [✔]
+        works with many kinds of LIMITs and OFFSETs [✔]
+        works with non-id primary key [✔]
+        works when returning a custom non-composite primary key from a query [✔]
+        works when returning a composite primary key from a query [✔]
+      select:JOIN
+        works with a LEFT OUTER JOIN [✔]
+        typechecks (A LEFT OUTER JOIN (B LEFT OUTER JOIN C)) [✔]
+        typechecks ((A LEFT OUTER JOIN B) LEFT OUTER JOIN C) [✔]
+        throws an error for using on without joins [✔]
+        throws an error for using too many ons [✔]
+        works with ForeignKey to a non-id primary key returning one entity [✔]
+        allows using a primary key that is itself a key of another table [✔]
+        allows joining between a primary key that is itself a key of another table, using ToBaseId [✔]
+        works with a ForeignKey to a non-id primary key returning both entities [✔]
+        works with a non-id primary key returning one entity [✔]
+        works with a composite primary key [‐]
+          # PENDING: Persistent does not create the CircleFkPoint constructor. See: https://github.com/yesodweb/persistent/issues/341
+        works when joining via a non-id primary key [✔]
+        respects the associativity of joins [✔]
+      select subquery
+        works [✔]
+        supports sub-selecting Maybe entities [✔]
+        lets you order by alias [✔]
+        supports groupBy [✔]
+        Can count results of aggregate query [✔]
+        joins on subqueries [✔]
+        flattens maybe values [✔]
+        unions [✔]
+      select where_
+        works for a simple example with (==.) [✔]
+        works for a simple example with (==.) and (||.) [✔]
+        works for a simple example with (>.) [uses val . Just] [✔]
+        works for a simple example with (>.) and not_ [uses just . val] [✔]
+        when using between
+          works for a simple example with [uses just . val] [✔]
+          works for a proyected fields value [✔]
+          when projecting composite keys
+            works when using composite keys with val [✔]
+        works with avg_ [✔]
+        works with min_ [✔]
+        works with max_ [✔]
+        works with lower_ [✔]
+        works with round_ [✔]
+        works with isNothing [✔]
+        works with not_ . isNothing [✔]
+        works for a many-to-many implicit join [✔]
+        works for a many-to-many explicit join [✔]
+        works for a many-to-many explicit join and on order doesn't matter [✔]
+        works for a many-to-many explicit join with LEFT OUTER JOINs [✔]
+        works with a composite primary key [✔]
+      select/orderBy
+        works with a single ASC field [✔]
+        works with a sub_select [✔]
+        works on a composite primary key [✔]
+      SELECT DISTINCT
+        works on a simple example (select . distinct) [✔]
+        works on a simple example (distinct (return ())) [✔]
+      coalesce/coalesceDefault
+        works on a simple example [✔]
+        works with sub-queries [✔]
+      delete
+        works on a simple example [✔]
+      update
+        works with a subexpression having COUNT(*) [✔]
+        works with a composite primary key [‐]
+          # PENDING: Need refactor to support composite pks on ESet
+        GROUP BY works with COUNT [✔]
+        GROUP BY works with composite primary key [✔]
+        GROUP BY works with COUNT and InnerJoin [✔]
+        GROUP BY works with nested tuples [✔]
+        GROUP BY works with HAVING [✔]
+      lists of values
+        IN works for valList [✔]
+        IN works for valList (null list) [✔]
+        IN works for subList_select [✔]
+        NOT IN works for subList_select [✔]
+        NOT IN works for valList (null list) [✔]
+        EXISTS works for subList_select [✔]
+        EXISTS works for subList_select [✔]
+      list fields
+        can update list fields [✔]
+      inserts by select
+        IN works for insertSelect [✔]
+      Math-related functions
+        castNum works for multiplying Int and Double [✔]
+      case
+        Works for a simple value based when - False [✔]
+        Works for a simple value based when - True [✔]
+        works for a semi-complicated query [✔]
+      counting rows
+        count (test A) works as expected [✔]
+        count (test B) works as expected [✔]
+        countRows works as expected [✔]
+        countDistinct works as expected [✔]
+      testRenderSql
+        works [✔]
+      renderExpr
+        renders a value [✔]
+        renders ? for a val [✔]
+      ExprParser
+        parseEscapedChars
+          parses words [✔]
+          only returns a single escape-char if present [✔]
+        parseEscapedIdentifier
+          parses the quotes out [✔]
+          requires a beginning and end quote [✔]
+        parseTableAccess
+          parses a table access [✔]
+        onExpr
+          works [✔]
+          also works with other nonsense [✔]
+          handles a conjunction [✔]
+          handles ? okay [✔]
+          handles degenerate cases [✔]
+          works even if an identifier isn't first [✔]
+      On Clause Ordering
+        identical results for
+          three tables [✔]
+          four tables [✔]
+          associativity of innerjoin [✔]
+          inner join on two entities [✔]
+          inner join on three entities [✔]
+          many-to-many [✔]
+          left joins on order [✔]
+          doesn't require an on for a crossjoin [✔]
+          errors with an on for a crossjoin [✔]
+          left joins associativity [✔]
+          composes queries still [✔]
+          works with joins in subselect [✔]
+          works with nested joins
+            unnested [✔]
+            leftmost nesting [✔]
+            middle nesting
+              direct association [✔]
+              indirect association [✔]
+              indirect association across [✔]
+            rightmost nesting
+              direct associations [✔]
+              indirect association [✔]
+      Experimental From
+        supports basic table queries [✔]
+        supports inner joins [✔]
+        supports outer joins [✔]
+        supports delete [✔]
+        supports implicit cross joins [✔]
+        compiles [✔]
+        can call functions on aliased values [✔]
+        allows re-using (:&) joined tables [✔]
+      locking
+        looks sane for ForUpdate [✔]
+        looks sane for ForUpdateSkipLocked [✔]
+        looks sane for ForShare [✔]
+        looks sane for LockInShareMode [✔]
+      Monoid instance
+        prioritizes last grouping of locks when mixing legacy and postgres specific locks [✔]
+      OverloadedRecordDot
+        with SqlExpr (Entity rec)
+          lets you project from a record [✔]
+        with SqlExpr (Maybe (Entity rec))
+          lets you project from a Maybe record [✔]
+      deriveEsqueletoRecord
+        can select records [✔]
+        can select nested records [✔]
+        can be used in a CTE [✔]
+        can select user-modified records [✔]
+        can left join on records [✔]
+        can can handle joins on records with Nothing [✔]
+        can left join on nested records [✔]
+        can handle multiple left joins on the same record [✔]
+    SQLite specific tests
+      random_
+        asc random_ works [✔]
+      random_ math
+        rand returns result in random order [✔]
+      works with random_ [✔]
+      works with sum_ [✔]
+      works with two ASC fields (one call) [✔]
+      works with one ASC and one DESC field (two calls) [✔]
+      throws an exception on SQLite with <2 arguments [✔]
+      works on a simple example [✔]
+      text functions
+        like, (%) and (++.) work on a simple example [✔]
+  MySQL
+    Esqueleto
+      select
+        works for a single value [✘]
+        works for a pair of a single value and () [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works for a single () [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works for a single NULL value [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      GetFirstTable
+        works to make long join chains easier [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      subSelect
+        is safe for queries that may return multiple results [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        is safe for queries that may not return anything [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      subSelectList
+        is safe on empty databases as well as good databases [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      subSelectMaybe
+        is equivalent to joinV . subSelect [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      subSelectCount
+        is a safe way to do a countRows [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      subSelectUnsafe
+        throws exceptions on multiple results [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        throws exceptions on null results [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      selectOne
+        returns Just [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        returns Nothing [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      selectSource
+        works for a simple example [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        can run a query many times [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works on repro [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      select/from
+        works for a simple example [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works for a simple self-join (one entity) [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works for a simple self-join (two entities) [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works for a self-join via sub_select [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works for a self-join via exists [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works for a simple projection [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works for a simple projection with a simple implicit self-join [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works with many kinds of LIMITs and OFFSETs [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works with non-id primary key [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works when returning a custom non-composite primary key from a query [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works when returning a composite primary key from a query [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      select:JOIN
+        works with a LEFT OUTER JOIN [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        typechecks (A LEFT OUTER JOIN (B LEFT OUTER JOIN C)) [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        typechecks ((A LEFT OUTER JOIN B) LEFT OUTER JOIN C) [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        throws an error for using on without joins [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        throws an error for using too many ons [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works with ForeignKey to a non-id primary key returning one entity [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        allows using a primary key that is itself a key of another table [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        allows joining between a primary key that is itself a key of another table, using ToBaseId [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works with a ForeignKey to a non-id primary key returning both entities [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works with a non-id primary key returning one entity [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works with a composite primary key [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works when joining via a non-id primary key [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        respects the associativity of joins [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      select subquery
+        works [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        supports sub-selecting Maybe entities [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        lets you order by alias [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        supports groupBy [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        Can count results of aggregate query [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        joins on subqueries [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        flattens maybe values [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        unions [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      select where_
+        works for a simple example with (==.) [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works for a simple example with (==.) and (||.) [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works for a simple example with (>.) [uses val . Just] [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works for a simple example with (>.) and not_ [uses just . val] [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        when using between
+          works for a simple example with [uses just . val] [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          works for a proyected fields value [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          when projecting composite keys
+            works when using composite keys with val [‐]
+              # PENDING: exception in beforeAll-hook (see previous failure)
+        works with avg_ [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works with min_ [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works with max_ [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works with lower_ [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works with round_ [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works with isNothing [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works with not_ . isNothing [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works for a many-to-many implicit join [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works for a many-to-many explicit join [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works for a many-to-many explicit join and on order doesn't matter [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works for a many-to-many explicit join with LEFT OUTER JOINs [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works with a composite primary key [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      select/orderBy
+        works with a single ASC field [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works with a sub_select [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works on a composite primary key [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      SELECT DISTINCT
+        works on a simple example (select . distinct) [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works on a simple example (distinct (return ())) [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      coalesce/coalesceDefault
+        works on a simple example [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works with sub-queries [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      delete
+        works on a simple example [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      update
+        works with a subexpression having COUNT(*) [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works with a composite primary key [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        GROUP BY works with COUNT [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        GROUP BY works with composite primary key [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        GROUP BY works with COUNT and InnerJoin [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        GROUP BY works with nested tuples [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        GROUP BY works with HAVING [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      lists of values
+        IN works for valList [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        IN works for valList (null list) [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        IN works for subList_select [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        NOT IN works for subList_select [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        NOT IN works for valList (null list) [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        EXISTS works for subList_select [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        EXISTS works for subList_select [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      list fields
+        can update list fields [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      inserts by select
+        IN works for insertSelect [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      Math-related functions
+        castNum works for multiplying Int and Double [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      case
+        Works for a simple value based when - False [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        Works for a simple value based when - True [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works for a semi-complicated query [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      counting rows
+        count (test A) works as expected [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        count (test B) works as expected [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        countRows works as expected [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        countDistinct works as expected [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      testRenderSql
+        works [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      renderExpr
+        renders a value [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        renders ? for a val [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      ExprParser
+        parseEscapedChars
+          parses words [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          only returns a single escape-char if present [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+        parseEscapedIdentifier
+          parses the quotes out [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          requires a beginning and end quote [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+        parseTableAccess
+          parses a table access [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+        onExpr
+          works [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          also works with other nonsense [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          handles a conjunction [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          handles ? okay [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          handles degenerate cases [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          works even if an identifier isn't first [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+      On Clause Ordering
+        identical results for
+          three tables [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          four tables [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          associativity of innerjoin [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          inner join on two entities [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          inner join on three entities [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          many-to-many [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          left joins on order [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          doesn't require an on for a crossjoin [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          errors with an on for a crossjoin [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          left joins associativity [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          composes queries still [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          works with joins in subselect [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          works with nested joins
+            unnested [‐]
+              # PENDING: exception in beforeAll-hook (see previous failure)
+            leftmost nesting [‐]
+              # PENDING: exception in beforeAll-hook (see previous failure)
+            middle nesting
+              direct association [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              indirect association [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              indirect association across [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+            rightmost nesting
+              direct associations [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              indirect association [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+      Experimental From
+        supports basic table queries [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        supports inner joins [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        supports outer joins [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        supports delete [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        supports implicit cross joins [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        compiles [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        can call functions on aliased values [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        allows re-using (:&) joined tables [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      locking
+        looks sane for ForUpdate [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        looks sane for ForUpdateSkipLocked [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        looks sane for ForShare [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        looks sane for LockInShareMode [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      Monoid instance
+        prioritizes last grouping of locks when mixing legacy and postgres specific locks [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      OverloadedRecordDot
+        with SqlExpr (Entity rec)
+          lets you project from a record [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+        with SqlExpr (Maybe (Entity rec))
+          lets you project from a Maybe record [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+      deriveEsqueletoRecord
+        can select records [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        can select nested records [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        can be used in a CTE [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        can select user-modified records [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        can left join on records [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        can can handle joins on records with Nothing [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        can left join on nested records [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        can handle multiple left joins on the same record [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+    MySQL specific tests
+      works with sum_ [‐]
+        # PENDING: exception in beforeAll-hook (see previous failure)
+      works with two ASC fields (one call) [‐]
+        # PENDING: exception in beforeAll-hook (see previous failure)
+      works with one ASC and one DESC field (two calls) [‐]
+        # PENDING: exception in beforeAll-hook (see previous failure)
+      works on PostgreSQL and MySQL with <2 arguments [‐]
+        # PENDING: exception in beforeAll-hook (see previous failure)
+      works on a simple example [‐]
+        # PENDING: exception in beforeAll-hook (see previous failure)
+      text functions
+        like, (%) and (++.) work on a simple example [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      MySQL Union
+        supports limit/orderBy by parenthesizing [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+  Postgresql
+    Esqueleto
+      select
+        works for a single value [✘]
+        works for a pair of a single value and () [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works for a single () [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works for a single NULL value [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      GetFirstTable
+        works to make long join chains easier [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      subSelect
+        is safe for queries that may return multiple results [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        is safe for queries that may not return anything [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      subSelectList
+        is safe on empty databases as well as good databases [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      subSelectMaybe
+        is equivalent to joinV . subSelect [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      subSelectCount
+        is a safe way to do a countRows [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      subSelectUnsafe
+        throws exceptions on multiple results [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        throws exceptions on null results [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      selectOne
+        returns Just [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        returns Nothing [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      selectSource
+        works for a simple example [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        can run a query many times [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works on repro [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      select/from
+        works for a simple example [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works for a simple self-join (one entity) [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works for a simple self-join (two entities) [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works for a self-join via sub_select [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works for a self-join via exists [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works for a simple projection [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works for a simple projection with a simple implicit self-join [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works with many kinds of LIMITs and OFFSETs [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works with non-id primary key [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works when returning a custom non-composite primary key from a query [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works when returning a composite primary key from a query [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      select:JOIN
+        works with a LEFT OUTER JOIN [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        typechecks (A LEFT OUTER JOIN (B LEFT OUTER JOIN C)) [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        typechecks ((A LEFT OUTER JOIN B) LEFT OUTER JOIN C) [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        throws an error for using on without joins [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        throws an error for using too many ons [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works with ForeignKey to a non-id primary key returning one entity [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        allows using a primary key that is itself a key of another table [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        allows joining between a primary key that is itself a key of another table, using ToBaseId [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works with a ForeignKey to a non-id primary key returning both entities [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works with a non-id primary key returning one entity [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works with a composite primary key [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works when joining via a non-id primary key [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        respects the associativity of joins [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      select subquery
+        works [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        supports sub-selecting Maybe entities [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        lets you order by alias [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        supports groupBy [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        Can count results of aggregate query [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        joins on subqueries [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        flattens maybe values [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        unions [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      select where_
+        works for a simple example with (==.) [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works for a simple example with (==.) and (||.) [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works for a simple example with (>.) [uses val . Just] [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works for a simple example with (>.) and not_ [uses just . val] [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        when using between
+          works for a simple example with [uses just . val] [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          works for a proyected fields value [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          when projecting composite keys
+            works when using composite keys with val [‐]
+              # PENDING: exception in beforeAll-hook (see previous failure)
+        works with avg_ [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works with min_ [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works with max_ [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works with lower_ [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works with round_ [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works with isNothing [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works with not_ . isNothing [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works for a many-to-many implicit join [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works for a many-to-many explicit join [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works for a many-to-many explicit join and on order doesn't matter [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works for a many-to-many explicit join with LEFT OUTER JOINs [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works with a composite primary key [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      select/orderBy
+        works with a single ASC field [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works with a sub_select [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works on a composite primary key [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      SELECT DISTINCT
+        works on a simple example (select . distinct) [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works on a simple example (distinct (return ())) [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      coalesce/coalesceDefault
+        works on a simple example [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works with sub-queries [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      delete
+        works on a simple example [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      update
+        works with a subexpression having COUNT(*) [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works with a composite primary key [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        GROUP BY works with COUNT [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        GROUP BY works with composite primary key [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        GROUP BY works with COUNT and InnerJoin [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        GROUP BY works with nested tuples [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        GROUP BY works with HAVING [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      lists of values
+        IN works for valList [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        IN works for valList (null list) [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        IN works for subList_select [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        NOT IN works for subList_select [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        NOT IN works for valList (null list) [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        EXISTS works for subList_select [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        EXISTS works for subList_select [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      list fields
+        can update list fields [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      inserts by select
+        IN works for insertSelect [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      Math-related functions
+        castNum works for multiplying Int and Double [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      case
+        Works for a simple value based when - False [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        Works for a simple value based when - True [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works for a semi-complicated query [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      counting rows
+        count (test A) works as expected [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        count (test B) works as expected [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        countRows works as expected [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        countDistinct works as expected [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      testRenderSql
+        works [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      renderExpr
+        renders a value [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        renders ? for a val [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      ExprParser
+        parseEscapedChars
+          parses words [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          only returns a single escape-char if present [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+        parseEscapedIdentifier
+          parses the quotes out [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          requires a beginning and end quote [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+        parseTableAccess
+          parses a table access [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+        onExpr
+          works [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          also works with other nonsense [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          handles a conjunction [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          handles ? okay [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          handles degenerate cases [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          works even if an identifier isn't first [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+      On Clause Ordering
+        identical results for
+          three tables [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          four tables [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          associativity of innerjoin [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          inner join on two entities [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          inner join on three entities [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          many-to-many [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          left joins on order [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          doesn't require an on for a crossjoin [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          errors with an on for a crossjoin [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          left joins associativity [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          composes queries still [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          works with joins in subselect [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          works with nested joins
+            unnested [‐]
+              # PENDING: exception in beforeAll-hook (see previous failure)
+            leftmost nesting [‐]
+              # PENDING: exception in beforeAll-hook (see previous failure)
+            middle nesting
+              direct association [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              indirect association [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              indirect association across [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+            rightmost nesting
+              direct associations [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              indirect association [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+      Experimental From
+        supports basic table queries [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        supports inner joins [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        supports outer joins [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        supports delete [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        supports implicit cross joins [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        compiles [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        can call functions on aliased values [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        allows re-using (:&) joined tables [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      locking
+        looks sane for ForUpdate [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        looks sane for ForUpdateSkipLocked [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        looks sane for ForShare [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        looks sane for LockInShareMode [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      Monoid instance
+        prioritizes last grouping of locks when mixing legacy and postgres specific locks [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      OverloadedRecordDot
+        with SqlExpr (Entity rec)
+          lets you project from a record [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+        with SqlExpr (Maybe (Entity rec))
+          lets you project from a Maybe record [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+      deriveEsqueletoRecord
+        can select records [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        can select nested records [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        can be used in a CTE [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        can select user-modified records [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        can left join on records [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        can can handle joins on records with Nothing [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        can left join on nested records [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        can handle multiple left joins on the same record [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+    PostgreSQL specific tests
+      random_
+        asc random_ works [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      random_ math
+        rand returns result in random order [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      SELECT DISTINCT ON
+        works on a simple example [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works on a slightly less simple example (two distinctOn calls, orderBy) [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works on a slightly less simple example (one distinctOn call, orderBy) [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works on a slightly less simple example (distinctOnOrderBy) [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        generates correct sql with nested expression (distinctOnOrderBy) [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      date_trunc
+        works [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      PostgreSQL module
+        Aggregate functions
+          arrayAgg
+            looks sane [‐]
+              # PENDING: exception in beforeAll-hook (see previous failure)
+            works on zero rows [‐]
+              # PENDING: exception in beforeAll-hook (see previous failure)
+          arrayAggWith
+            ALL, no ORDER BY
+              creates sane SQL [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              works on an example [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+            DISTINCT, no ORDER BY
+              creates sane SQL [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              works on an example [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+            ALL, ORDER BY
+              creates sane SQL [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              works on an example [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+            DISTINCT, ORDER BY
+              creates sane SQL [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              works on an example [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+          stringAgg
+            looks sane [‐]
+              # PENDING: exception in beforeAll-hook (see previous failure)
+            works on zero rows [‐]
+              # PENDING: exception in beforeAll-hook (see previous failure)
+          stringAggWith
+            ALL, no ORDER BY
+              creates sane SQL [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              works on an example [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              works with zero rows [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+            DISTINCT, no ORDER BY
+              creates sane SQL [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              works on an example [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+            ALL, ORDER BY
+              creates sane SQL [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              works on an example [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+            DISTINCT, ORDER BY
+              creates sane SQL [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              works on an example [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+          array_remove (NULL)
+            removes NULL from arrays from nullable fields [‐]
+              # PENDING: exception in beforeAll-hook (see previous failure)
+          maybeArray
+            Coalesces NULL into an empty array [‐]
+              # PENDING: exception in beforeAll-hook (see previous failure)
+        chr looks sane [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        allows unit for functions [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        works with now [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      works with one ASC and one DESC field (two calls) [‐]
+        # PENDING: exception in beforeAll-hook (see previous failure)
+      works with two ASC fields (one call) [‐]
+        # PENDING: exception in beforeAll-hook (see previous failure)
+      works with sum_ [‐]
+        # PENDING: exception in beforeAll-hook (see previous failure)
+      works with random_ [‐]
+        # PENDING: exception in beforeAll-hook (see previous failure)
+      works on a simple example [‐]
+        # PENDING: exception in beforeAll-hook (see previous failure)
+      works on PostgreSQL and MySQL with <2 arguments [‐]
+        # PENDING: exception in beforeAll-hook (see previous failure)
+      text functions
+        like, (%) and (++.) work on a simple example [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        ilike, (%) and (++.) work on a simple example on PostgreSQL [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      Unique Violation on Insert
+        Unique throws exception [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      Upsert test
+        Upsert can insert like normal [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        Upsert performs update on collision [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      insertSelectWithConflict test
+        Should do Nothing when no updates set [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        Should update a value if given an update on conflict [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      filterWhere
+        adds a filter clause to count aggregation [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        adds a filter clause to sum aggregation [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      You can run them
+        will run [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      can do multiple recursive queries [‐]
+        # PENDING: exception in beforeAll-hook (see previous failure)
+      passing previous query works [‐]
+        # PENDING: exception in beforeAll-hook (see previous failure)
+      PostgreSQL JSON tests
+        JSON Insertions
+          adds scalar values [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          adds arrays [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+          adds objects [‐]
+            # PENDING: exception in beforeAll-hook (see previous failure)
+        JSON Operators
+          Arrow Operators
+            Single Arrow (JSONB)
+              creates sane SQL [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              creates sane SQL (chained) [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              works as expected [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+            Single Arrow (Text)
+              creates sane SQL [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              creates sane SQL (chained) [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              works as expected [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+            Double Arrow (JSONB)
+              creates sane SQL [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              creates sane SQL (chained) [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              works as expected [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+            Double Arrow (Text)
+              creates sane SQL [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              creates sane SQL (chained) [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              works as expected [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+          Filter Operators
+            @>
+              creates sane SQL [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              creates sane SQL (chained) [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              works as expected [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+            <@
+              creates sane SQL [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              creates sane SQL (chained) [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              works as expected [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+            Question Mark
+              creates sane SQL [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              creates sane SQL (chained) [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              works as expected [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+            Question Mark (Any)
+              creates sane SQL [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              creates sane SQL (chained) [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              works as expected [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+            Question Mark (All)
+              creates sane SQL [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              creates sane SQL (chained) [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              works as expected [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+          Concatenation Operator
+            Concatenation
+              creates sane SQL [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              creates sane SQL (chained) [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              works as expected [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+          Deletion Operators
+            Minus Operator
+              creates sane SQL [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              creates sane SQL (chained) [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              works as expected [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+            Minus Operator (PSQL >= v10)
+              creates sane SQL [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              creates sane SQL (chained) [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              works as expected [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+            Hash-Minus Operator
+              creates sane SQL [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              creates sane SQL (chained) [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+              works as expected [‐]
+                # PENDING: exception in beforeAll-hook (see previous failure)
+      Lateral queries
+        supports CROSS JOIN LATERAL [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        supports INNER JOIN LATERAL [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        supports LEFT JOIN LATERAL [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      (VALUES (..)) query
+        works with joins and other sql expressions [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        supports single-column query [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        supports multi-column query (+ nested simple expression and null) [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      Aliasing behavior
+        correctly realiases entities accross multiple subselects [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        doesnt erroneously repeat variable names when using subselect + union [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      Monoid instance
+        concatenates postgres locking clauses [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      For update skip locked locking
+        skips locked rows for a locking select [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        skips locked rows for a subselect update [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+        skips locked rows for a subselect join update [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+      noWait
+        doesn't crash [‐]
+          # PENDING: exception in beforeAll-hook (see previous failure)
+
+Failures:
+
+  test/Common/Test/Select.hs:8:9: 
+  1) Esqueleto.MySQL.Esqueleto.select works for a single value
+       uncaught exception: MySQLError
+       ConnectionError {errFunction = "connect", errNumber = 2002, errMessage = "Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (2)"}
+
+  To rerun use: --match "/Esqueleto/MySQL/Esqueleto/select/works for a single value/" --seed 599966503
+
+  test/Common/Test/Select.hs:8:9: 
+  2) Esqueleto.Postgresql.Esqueleto.select works for a single value
+       uncaught exception: IOException of type OtherError
+       libpq: failed (connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+       	Is the server running on that host and accepting TCP/IP connections?
+       connection to server at "localhost" (::1), port 5432 failed: Cannot assign requested address
+       	Is the server running on that host and accepting TCP/IP connections?
+       )
+
+  To rerun use: --match "/Esqueleto/Postgresql/Esqueleto/select/works for a single value/" --seed 599966503
+
+Randomized with seed 599966503
+
+Finished in 0.0602 seconds
+591 examples, 2 failures, 426 pending
+Test suite specs: FAIL
+Test suite logged to:
+/tmp/workdir-esqueleto/esqueleto-3.5.11.2/dist-newstyle/build/x86_64-linux/ghc-9.6.6/esqueleto-3.5.11.2/t/specs/test/esqueleto-3.5.11.2-specs.log
+0 of 1 test suites (0 of 1 test cases) passed.
+Error: [Cabal-7125]
+Tests failed for test:specs from esqueleto-3.5.11.2.
+

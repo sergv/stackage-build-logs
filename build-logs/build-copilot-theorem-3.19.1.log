@@ -1,0 +1,175 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - copilot-theorem-3.19.1 (lib) (first run)
+ - copilot-theorem-3.19.1 (test:unit-tests) (first run)
+Configuring library for copilot-theorem-3.19.1...
+Preprocessing library for copilot-theorem-3.19.1...
+Building library for copilot-theorem-3.19.1...
+
+on the commandline: warning: [-Wdeprecated-flags]
+    -fcontext-stack=100 is deprecated: use -freduction-depth=100 instead
+[ 1 of 34] Compiling Copilot.Theorem.IL.Spec
+[ 2 of 34] Compiling Copilot.Theorem.IL.PrettyPrint
+[ 3 of 34] Compiling Copilot.Theorem.IL.Transform
+[ 4 of 34] Compiling Copilot.Theorem.IL.Translate
+
+src/Copilot/Theorem/IL/Translate.hs:187:15: warning: [GHC-62161] [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In a case alternative:
+        Patterns of type ‘C.Type a’ not matched:
+            C.Array _
+            C.Struct _
+    |
+187 | trConst t v = case t of
+    |               ^^^^^^^^^...
+
+src/Copilot/Theorem/IL/Translate.hs:268:10: warning: [GHC-62161] [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In a \case alternative:
+        Patterns of type ‘C.Type a’ not matched:
+            C.Array _
+            C.Struct _
+    |
+268 | trType = \case
+    |          ^^^^^...
+[ 5 of 34] Compiling Copilot.Theorem.IL
+[ 6 of 34] Compiling Copilot.Theorem.Kind2.AST
+[ 7 of 34] Compiling Copilot.Theorem.Misc.Error
+[ 8 of 34] Compiling Copilot.Theorem.Misc.SExpr
+[ 9 of 34] Compiling Copilot.Theorem.Kind2.PrettyPrint
+[10 of 34] Compiling Copilot.Theorem.Misc.Utils
+
+src/Copilot/Theorem/Misc/Utils.hs:12:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+12 | import Control.Applicative ((<$>))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[11 of 34] Compiling Copilot.Theorem.Prove
+
+src/Copilot/Theorem/Prove.hs:24:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+24 | import Control.Applicative (liftA2)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Copilot/Theorem/Prove.hs:82:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative (ProofScheme a)’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+82 |   pure = return
+   |   ^^^^^^^^^^^^^
+
+src/Copilot/Theorem/Prove.hs:87:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad (ProofScheme a)’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+87 |   return a = Proof (return a)
+   |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[12 of 34] Compiling Copilot.Theorem.Kind2.Output
+[13 of 34] Compiling Copilot.Theorem.Prover.Backend
+[14 of 34] Compiling Copilot.Theorem.Prover.SMTIO
+[15 of 34] Compiling Copilot.Theorem.Prover.SMTLib
+[16 of 34] Compiling Copilot.Theorem.Prover.TPTP
+[17 of 34] Compiling Copilot.Theorem.Prover.SMT
+
+src/Copilot/Theorem/Prover/SMT.hs:6:14: warning: [GHC-19244] [-Wtrustworthy-safe]
+    ‘Copilot.Theorem.Prover.SMT’ is marked as Trustworthy but has been inferred as safe!
+  |
+6 | {-# LANGUAGE Trustworthy       #-}
+  |              ^^^^^^^^^^^
+[18 of 34] Compiling Copilot.Theorem.Tactics
+[19 of 34] Compiling Copilot.Theorem
+[20 of 34] Compiling Copilot.Theorem.TransSys.Invariants
+[21 of 34] Compiling Copilot.Theorem.TransSys.Type
+[22 of 34] Compiling Copilot.Theorem.TransSys.Cast
+
+src/Copilot/Theorem/TransSys/Cast.hs:30:16: warning: [GHC-62161] [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In a case alternative:
+        Patterns of type ‘Type t’ not matched:
+            Array _
+            Struct _
+   |
+30 | castedType t = case t of
+   |                ^^^^^^^^^...
+[23 of 34] Compiling Copilot.Theorem.TransSys.Operators
+
+src/Copilot/Theorem/TransSys/Operators.hs:138:54: warning: [GHC-62161] [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In a case alternative:
+        Patterns of type ‘C.Op1 _a _b’ not matched:
+            C.Ceiling _
+            C.Floor _
+            C.GetField _ _ _
+    |
+138 | handleOp1 resT (op, e) handleExpr notHandledF mkOp = case op of
+    |                                                      ^^^^^^^^^^...
+
+src/Copilot/Theorem/TransSys/Operators.hs:224:65: warning: [GHC-62161] [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In a case alternative:
+        Patterns of type ‘C.Op2 _a _b _c’ not matched:
+            C.Atan2 _
+            C.Index _
+    |
+224 | handleOp2 resT (op, e1, e2) handleExpr notHandledF mkOp notOp = case op of
+    |                                                                 ^^^^^^^^^^...
+[24 of 34] Compiling Copilot.Theorem.TransSys.Spec
+
+src/Copilot/Theorem/TransSys/Spec.hs:33:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+33 | import Control.Applicative (liftA2)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Copilot/Theorem/TransSys/Spec.hs:37:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+37 | import Data.Monoid ((<>))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+[25 of 34] Compiling Copilot.Theorem.TransSys.Translate
+[26 of 34] Compiling Copilot.Theorem.TransSys.Renaming
+[27 of 34] Compiling Copilot.Theorem.TransSys.Transform
+
+src/Copilot/Theorem/TransSys/Transform.hs:211:12: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘Graph.SCC Node’ not matched: Graph.CyclicSCC _
+    |
+211 |       map (\(Graph.AcyclicSCC n) -> n) $ buildScc id (specNodes s) }
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[28 of 34] Compiling Copilot.Theorem.TransSys.PrettyPrint
+[29 of 34] Compiling Copilot.Theorem.TransSys
+[30 of 34] Compiling Copilot.Theorem.Kind2.Translate
+[31 of 34] Compiling Copilot.Theorem.Kind2.Prover
+[32 of 34] Compiling Copilot.Theorem.Kind2
+[33 of 34] Compiling Copilot.Theorem.What4.Translate
+
+src/Copilot/Theorem/What4/Translate.hs:373:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe (V.Vector x (XExpr sym))’ not matched:
+            Nothing
+    |
+373 |         let Just v = V.fromList n elts
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[34 of 34] Compiling Copilot.Theorem.What4
+Configuring test suite 'unit-tests' for copilot-theorem-3.19.1...
+Preprocessing test suite 'unit-tests' for copilot-theorem-3.19.1...
+Building test suite 'unit-tests' for copilot-theorem-3.19.1...
+[1 of 2] Compiling Test.Copilot.Theorem.What4
+[2 of 2] Compiling Main
+[3 of 3] Linking /tmp/workdir-copilot-theorem/copilot-theorem-3.19.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/copilot-theorem-3.19.1/t/unit-tests/build/unit-tests/unit-tests

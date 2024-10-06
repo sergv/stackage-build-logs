@@ -1,0 +1,72 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - what4-1.5.1 (test:exprs_tests) (ephemeral targets)
+Preprocessing test suite 'exprs_tests' for what4-1.5.1...
+Building test suite 'exprs_tests' for what4-1.5.1...
+Running 1 test suites...
+Test suite exprs_tests: RUNNING...
+What4 Expressions
+  d <- intDiv sym x y; m <- intMod sym x y ===> y * d + m == x and 0 <= m < y: OK
+      ✓ d <- intDiv sym x y; m <- intMod sym x y ===> y * d + m == x and 0 <= m < y passed 100 tests.
+  bvIsNeg
+    -1.32 bvIsNeg.32:                                                          OK
+    -1 bvIsNeg.32:                                                             OK
+    0xffffffff bvIsNeg.32:                                                     OK
+    0x80000000 bvIsNeg.32:                                                     OK
+    0x7fffffff !bvIsNeg.32:                                                    OK
+    0 !bvIsNeg.32:                                                             OK
+    bvIsNeg.32:                                                                OK
+        ✓ bvIsNeg.32 passed 100 tests.
+    !bvIsNeg.32:                                                               OK
+        ✓ !bvIsNeg.32 passed 100 tests.
+  int operators
+    n * m == m * n:                                                            OK
+        ✓ n * m == m * n passed 100 tests.
+    |n| >= 0:                                                                  OK
+        ✓ |n| >= 0 passed 100 tests.
+    integer division and mod
+      y * (div x y) + (mod x y) == x:                                          OK
+          ✓ y * (div x y) + (mod x y) == x passed 100 tests.
+      mod x y == mod x (- y) == mod x (abs y):                                 OK
+          ✓ mod x y == mod x (- y) == mod x (abs y) passed 100 tests.
+      div x (-y) == -(div x y):                                                OK
+          ✓ div x (-y) == -(div x y) passed 100 tests.
+    int min/max
+      (j <= c && c <= i) -> intMax j i == intMax i j == i:                     OK
+          ✓ (j <= c && c <= i) -> intMax j i == intMax i j == i passed 100 tests.
+      (lo_i <= i && lo_j <= j) -> (max lo_j lo_j) <= intMax i j:               OK
+          ✓ (lo_i <= i && lo_j <= j) -> (max lo_j lo_j) <= intMax i j passed 100 tests.
+      (i <= c && c <= j) -> intMin j i == intMin i j == i:                     OK
+          ✓ (i <= c && c <= j) -> intMin j i == intMin i j == i passed 100 tests.
+      (i <= hi_i && j <= hi_j) -> intMin i j <= (min hi_j hi_j):               OK
+          ✓ (i <= hi_i && j <= hi_j) -> intMin i j <= (min hi_j hi_j) passed 100 tests.
+  stringEmpty:                                                                 OK
+      ✓ stringEmpty passed 100 tests.
+  injective conversion
+    realToInteger:                                                             OK
+        ✓ realToInteger passed 100 tests.
+    bvToInteger:                                                               OK
+        ✓ bvToInteger passed 100 tests.
+    sbvToInteger:                                                              OK
+        ✓ sbvToInteger passed 100 tests.
+    predToBV:                                                                  OK
+        ✓ predToBV passed 100 tests.
+    integerToBV
+      bvToInteger (integerToBv x w) == mod x (2^w):                            OK
+          ✓ bvToInteger (integerToBv x w) == mod x (2^w) passed 100 tests.
+      bvToInteger (integerToBV x w) == x when 0 <= x < 2^w:                    OK
+          ✓ bvToInteger (integerToBV x w) == x when 0 <= x < 2^w passed 100 tests.
+      sbvToInteger (integerToBV x w) == mod (x + 2^(w-1)) (2^w) - 2^(w-1):     OK
+          ✓ sbvToInteger (integerToBV x w) == mod (x + 2^(w-1)) (2^w) - 2^(w-1) passed 100 tests.
+      sbvToInteger (integerToBV x w) == x when -2^(w-1) <= x < 2^(w-1):        OK
+          ✓ sbvToInteger (integerToBV x w) == x when -2^(w-1) <= x < 2^(w-1) passed 100 tests.
+      integerToBV (bvToInteger y) w == y when y is a SymBV sym w:              OK
+          ✓ integerToBV (bvToInteger y) w == y when y is a SymBV sym w passed 100 tests.
+      integerToBV (sbvToInteger y) w == y when y is a SymBV sym w:             OK
+          ✓ integerToBV (sbvToInteger y) w == y when y is a SymBV sym w passed 100 tests.
+
+All 29 tests passed (0.02s)
+Test suite exprs_tests: PASS
+Test suite logged to:
+/tmp/workdir-what4/what4-1.5.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/what4-1.5.1/t/exprs_tests/test/what4-1.5.1-exprs_tests.log
+1 of 1 test suites (1 of 1 test cases) passed.

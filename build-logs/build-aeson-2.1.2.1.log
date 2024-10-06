@@ -1,0 +1,281 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - aeson-2.1.2.1 (lib) (first run)
+ - aeson-2.1.2.1 (test:aeson-tests) (first run)
+Configuring library for aeson-2.1.2.1...
+Preprocessing library for aeson-2.1.2.1...
+Building library for aeson-2.1.2.1...
+[ 1 of 35] Compiling Data.Aeson.Internal.ByteString
+[ 2 of 35] Compiling Data.Aeson.Internal.Functions
+[ 3 of 35] Compiling Data.Aeson.Internal.TH
+[ 4 of 35] Compiling Data.Aeson.Internal.Text
+[ 5 of 35] Compiling Data.Aeson.Internal.Word8
+[ 6 of 35] Compiling Data.Aeson.Internal.Integer
+[ 7 of 35] Compiling Data.Aeson.Key
+[ 8 of 35] Compiling Data.Aeson.Decoding.Tokens
+[ 9 of 35] Compiling Data.Aeson.Decoding.Internal
+[10 of 35] Compiling Data.Aeson.KeyMap
+[11 of 35] Compiling Data.Aeson.Parser.UnescapePure
+[12 of 35] Compiling Data.Aeson.Parser.Unescape
+[13 of 35] Compiling Data.Aeson.Decoding.ByteString.Lazy
+[14 of 35] Compiling Data.Aeson.Decoding.ByteString
+[15 of 35] Compiling Data.Aeson.Types.Generic
+[16 of 35] Compiling Data.Aeson.Types.Internal
+[17 of 35] Compiling Data.Aeson.Parser.Internal
+[18 of 35] Compiling Data.Aeson.Parser
+[19 of 35] Compiling Data.Attoparsec.Time.Internal
+[20 of 35] Compiling Data.Attoparsec.Time
+
+attoparsec-iso8601/src/Data/Attoparsec/Time.hs:132:21: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘toPico’
+    (imported from Data.Attoparsec.Time.Internal):
+    Deprecated: "Use MkFixed"
+    |
+132 |   parsePicos a0 t = toPico (fromIntegral (t' * 10^n))
+    |                     ^^^^^^
+[21 of 35] Compiling Data.Aeson.Parser.Time
+[22 of 35] Compiling Data.Aeson.Types.FromJSON
+
+src/Data/Aeson/Types/FromJSON.hs:81:47: warning: [-Wunused-imports]
+    The import of ‘liftA2’
+    from module ‘Control.Applicative’ is redundant
+   |
+81 | import Control.Applicative ((<|>), Const(..), liftA2)
+   |                                               ^^^^^^
+[23 of 35] Compiling Data.Aeson.Internal
+[24 of 35] Compiling Data.Aeson.Internal.Time
+[25 of 35] Compiling Data.Aeson.Encoding.Builder
+[26 of 35] Compiling Data.Aeson.Encoding.Internal
+[27 of 35] Compiling Data.Aeson.Encoding
+[28 of 35] Compiling Data.Aeson.Types.ToJSON
+[29 of 35] Compiling Data.Aeson.Types.Class
+[30 of 35] Compiling Data.Aeson.Types
+[31 of 35] Compiling Data.Aeson.Text
+[32 of 35] Compiling Data.Aeson
+
+src/Data/Aeson.hs:166:35: warning: [-Wunused-imports]
+    The import of ‘ifromJSON’
+    from module ‘Data.Aeson.Types.FromJSON’ is redundant
+    |
+166 | import Data.Aeson.Types.FromJSON (ifromJSON, parseIndexedJSON)
+    |                                   ^^^^^^^^^
+
+src/Data/Aeson.hs:170:1: warning: [-Wunused-imports]
+    The import of ‘Data.Aeson.Types.Internal’ is redundant
+      except perhaps to import instances from ‘Data.Aeson.Types.Internal’
+    To import instances alone, use: import Data.Aeson.Types.Internal()
+    |
+170 | import Data.Aeson.Types.Internal (formatError)
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[33 of 35] Compiling Data.Aeson.TH
+
+src/Data/Aeson/TH.hs:984:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding: Patterns of type ‘[Q Exp]’ not matched: []
+    |
+984 |       x:xs = [ [|lookupField|]
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^...
+
+src/Data/Aeson/TH.hs:1100:14: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding: Patterns of type ‘[Q Exp]’ not matched: []
+     |
+1100 |          let x:xs = [ dispatchParseJSON jc conName tvMap argTy
+     |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+[34 of 35] Compiling Data.Aeson.QQ.Simple
+[35 of 35] Compiling Data.Aeson.Decoding
+Configuring test suite 'aeson-tests' for aeson-2.1.2.1...
+Preprocessing test suite 'aeson-tests' for aeson-2.1.2.1...
+Building test suite 'aeson-tests' for aeson-2.1.2.1...
+[ 1 of 24] Compiling Functions
+[ 2 of 24] Compiling JSONTestSuite
+[ 3 of 24] Compiling Options
+[ 4 of 24] Compiling Regression.Issue967
+[ 5 of 24] Compiling Types
+
+tests/Types.hs:16:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+16 | import Control.Applicative ((<$>))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 6 of 24] Compiling Instances
+[ 7 of 24] Compiling SerializationFormatSpec
+[ 8 of 24] Compiling PropertyQC
+[ 9 of 24] Compiling Encoders
+
+tests/Encoders.hs:316:7: warning: [GHC-53633] [-Woverlapping-patterns]
+    Pattern match is redundant
+    In a case alternative: _ | False -> ...
+    |
+316 |     | False -> genericParseJSON defaultOptions
+    |       ^^^^^
+
+tests/Encoders.hs:321:7: warning: [GHC-53633] [-Woverlapping-patterns]
+    Pattern match is redundant
+    In a case alternative: _ | False -> ...
+    |
+321 |     | False -> genericToJSON defaultOptions
+    |       ^^^^^
+[10 of 24] Compiling PropUtils
+[11 of 24] Compiling PropertyTH
+[12 of 24] Compiling PropertyRTFunctors
+[13 of 24] Compiling PropertyRoundTrip
+[14 of 24] Compiling PropertyKeys
+[15 of 24] Compiling PropertyGeneric
+[16 of 24] Compiling Properties
+[17 of 24] Compiling ErrorMessages
+
+tests/ErrorMessages.hs:17:1: warning: [-Wunused-imports]
+    The import of ‘Data.Semigroup’ is redundant
+      except perhaps to import instances from ‘Data.Semigroup’
+    To import instances alone, use: import Data.Semigroup()
+   |
+17 | import Data.Semigroup ((<>))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[18 of 24] Compiling DataFamilies.Types
+[19 of 24] Compiling DataFamilies.Instances
+[20 of 24] Compiling DataFamilies.Encoders
+[21 of 24] Compiling DataFamilies.Properties
+[22 of 24] Compiling UnitTests.NullaryConstructors
+[23 of 24] Compiling UnitTests
+
+tests/UnitTests.hs:89:21: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding: Patterns of type ‘[[Char]]’ not matched: []
+   |
+89 | camelFrom c s = let (p:ps) = split c s
+   |                     ^^^^^^^^^^^^^^^^^^
+
+tests/UnitTests.hs:138:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe UTCTime’ not matched: Nothing
+    |
+138 |   let (Just (t1 ::  UTCTime)) = parseWithAeson ts1
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/UnitTests.hs:139:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe UTCTime’ not matched: Nothing
+    |
+139 |   let (Just (t2 ::  UTCTime)) = parseWithAeson ts2
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/UnitTests.hs:140:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe UTCTime’ not matched: Nothing
+    |
+140 |   let (Just (t3 ::  UTCTime)) = parseWithAeson ts3
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/UnitTests.hs:141:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe UTCTime’ not matched: Nothing
+    |
+141 |   let (Just (t4 ::  UTCTime)) = parseWithAeson ts4
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/UnitTests.hs:153:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe UTCTime’ not matched: Nothing
+    |
+153 |   let (Just (t5 ::  UTCTime)) = parseWithAeson ts5
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/UnitTests.hs:154:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe UTCTime’ not matched: Nothing
+    |
+154 |   let (Just (t6 ::  UTCTime)) = parseWithAeson ts6
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/UnitTests.hs:155:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe UTCTime’ not matched: Nothing
+    |
+155 |   let (Just (t7 ::  UTCTime)) = parseWithAeson ts7
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/UnitTests.hs:156:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe UTCTime’ not matched: Nothing
+    |
+156 |   let (Just (t8 ::  UTCTime)) = parseWithAeson ts8
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/UnitTests.hs:157:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe UTCTime’ not matched: Nothing
+    |
+157 |   let (Just (t9 ::  UTCTime)) = parseWithAeson ts9
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/UnitTests.hs:169:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe UTCTime’ not matched: Nothing
+    |
+169 |   let (Just (t10 ::  UTCTime)) = parseWithAeson ts10
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/UnitTests.hs:170:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe UTCTime’ not matched: Nothing
+    |
+170 |   let (Just (t11 ::  UTCTime)) = parseWithAeson ts11
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/UnitTests.hs:171:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe UTCTime’ not matched: Nothing
+    |
+171 |   let (Just (t12 ::  UTCTime)) = parseWithAeson ts12
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/UnitTests.hs:178:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe UTCTime’ not matched: Nothing
+    |
+178 |   let (Just (t13 ::  UTCTime)) = parseWithAeson ts13
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/UnitTests.hs:181:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe UTCTime’ not matched: Nothing
+    |
+181 |   let (Just (t14 ::  UTCTime)) = parseWithAeson ts14
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/UnitTests.hs:661:23: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+    |
+661 | type family Fam757 :: * -> *
+    |                       ^
+
+tests/UnitTests.hs:661:28: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+    |
+661 | type family Fam757 :: * -> *
+    |                            ^
+[24 of 24] Compiling Main
+[25 of 25] Linking /tmp/workdir-aeson/aeson-2.1.2.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/aeson-2.1.2.1/t/aeson-tests/build/aeson-tests/aeson-tests

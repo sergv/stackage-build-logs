@@ -1,0 +1,68 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - ghc-typelits-natnormalise-0.7.10 (test:unit-tests) (ephemeral targets)
+Preprocessing test suite 'unit-tests' for ghc-typelits-natnormalise-0.7.10...
+Building test suite 'unit-tests' for ghc-typelits-natnormalise-0.7.10...
+Running 1 test suites...
+Test suite unit-tests: RUNNING...
+ghc-typelits-natnormalise
+  Basic functionality
+    show (head (1:>2:>3:>Nil)):                                                                                        OK
+    show (tail (1:>2:>3:>Nil)):                                                                                        OK
+    show (init (1:>2:>3:>Nil)):                                                                                        OK
+    show ((1:>2:>3:>Nil) ++ (7:>8:>Nil)):                                                                              OK
+    show (splitAt (snat :: SNat 3) (1:>2:>3:>7:>8:>Nil)):                                                              OK
+    show (concat ((1:>2:>3:>Nil) :> (4:>5:>6:>Nil) :> (7:>8:>9:>Nil) :> (10:>11:>12:>Nil) :> Nil)):                    OK
+    show (unconcat (snat :: SNat 4) (1:>2:>3:>4:>5:>6:>7:>8:>9:>10:>11:>12:>Nil)):                                     OK
+    show (proxyFun3 (Proxy :: Proxy 9)):                                                                               OK
+    show (proxyFun4 (Proxy :: Proxy 8)):                                                                               OK
+    show (proxyFun7 (Proxy :: Proxy 8) :: Proxy 3):                                                                    OK
+  Equality
+    ((2 ^ x) * (2 ^ (x + x))) ~ (2 * (2 ^ ((x + (x + x)) - 1))):                                                       OK
+    (((2 ^ x) - 2) * (2 ^ (x + x))) ~ ((2 ^ ((x + (x + x)) - 1)) + ((2 ^ ((x + (x + x)) - 1)) - (2 ^ ((x + x) + 1)))): OK
+  Implications
+    (x + 1) ~ (2 * y)) implies (((2 * (y - 1)) + 1)) ~ x:                                                              OK
+    (n+1) ~ ((n1 + m) + 1), m ~ n1, n1 ~ ((n2 + m1) + 1) implies n1 ~ 1 + (n2 + m1):                                   OK
+  Inequality
+    a <= a+1:                                                                                                          OK
+    (a+1 <=? a) ~ False:                                                                                               OK
+    a <= a+b:                                                                                                          OK
+    2a <= 4a:                                                                                                          OK
+    1 <= 2^a:                                                                                                          OK
+    `(2 <= (2 ^ (n + d)))` implies `(2 <= (2 ^ (d + n)))`:                                                             OK
+    1 <= a+3:                                                                                                          OK
+    `1 <= 2*x` implies `1 <= x`:                                                                                       OK
+    `x + 2 <= y` implies `x <= y` and `2 <= y`:                                                                        OK
+    `a <= n` implies `a <= (n+1)`:                                                                                     OK
+    1 <= 2^(a+3):                                                                                                      OK
+    KnownNat (F a) implies F a <= 3 * F a:                                                                             OK
+    1 <= G a implies F a <= G a * F a:                                                                                 OK
+    `(1 <= n)` only implies `(1 <= n + F n)` when `KnownNat (F n)`:                                                    OK
+    2 <= P (G2 dom) implies 1 <= P (G2 dom):                                                                           OK
+    b ~ (2^a) => 1 <= b:                                                                                               OK
+  errors
+    x + 2 ~ 3 + x:                                                                                                     OK
+    GCD 6 8 + x ~ x + GCD 9 6:                                                                                         OK
+    Unify "x + x + x" with "8":                                                                                        OK
+    Unify "(2*x)+4" with "2":                                                                                          OK
+    Unify "(2*x)+4" with "7":                                                                                          OK
+    Unify "2^k" with "7":                                                                                              OK
+    x ~ y + x:                                                                                                         OK
+    (CLog 2 (2 ^ n) ~ n, (1 <=? n) ~ True) => n ~ (n+d):                                                               OK
+    (n - 1) + 1 ~ n implies (1 <= n):                                                                                  OK
+    Inequality
+      a+1 <= a:                                                                                                        OK
+      (a <=? a+1) ~ False:                                                                                             OK
+      (a <=? a) ~ False:                                                                                               OK
+      () => (a+b <= a+c):                                                                                              OK
+      4a <= 2a:                                                                                                        OK
+      2a <=? 4a ~ False:                                                                                               OK
+      Show (Boo n) => Show (Boo (n - 1 + 1)):                                                                          OK
+      1 <= m, m <= rp implies 1 <= rp - m:                                                                             OK
+      Vacuously: 1 <= m ^ 2 ~ True:                                                                                    OK
+
+All 48 tests passed (0.00s)
+Test suite unit-tests: PASS
+Test suite logged to:
+/tmp/workdir-ghc-typelits-natnormalise/ghc-typelits-natnormalise-0.7.10/dist-newstyle/build/x86_64-linux/ghc-9.6.6/ghc-typelits-natnormalise-0.7.10/t/unit-tests/test/ghc-typelits-natnormalise-0.7.10-unit-tests.log
+1 of 1 test suites (1 of 1 test cases) passed.

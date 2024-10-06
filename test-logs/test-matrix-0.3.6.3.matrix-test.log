@@ -1,0 +1,68 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - matrix-0.3.6.3 (test:matrix-test) (ephemeral targets)
+Preprocessing test suite 'matrix-test' for matrix-0.3.6.3...
+Building test suite 'matrix-test' for matrix-0.3.6.3...
+Running 1 test suites...
+Test suite matrix-test: RUNNING...
+matrix tests
+  zero n m = matrix n m (const 0):                                                     OK
+    +++ OK, passed 100 tests.
+  identity * m = m * identity = m:                                                     OK
+    +++ OK, passed 100 tests.
+  a * (b * c) = (a * b) * c:                                                           OK (0.01s)
+    +++ OK, passed 100 tests.
+  multStd a b = multStd2 a b:                                                          OK
+    +++ OK, passed 100 tests.
+  getMatrixAsVector m = mconcat [ getRow i m | i <- [1 .. nrows m]]:                   OK
+    +++ OK, passed 100 tests.
+  fmap id = id:                                                                        OK
+    +++ OK, passed 100 tests.
+  permMatrix n i j * permMatrix n i j = identity n:                                    OK
+    +++ OK, passed 100 tests.
+  setElem (getElem i j m) (i,j) m = m:                                                 OK
+    +++ OK, passed 100 tests.
+  transpose (transpose m) = m:                                                         OK
+    +++ OK, passed 100 tests.
+  if m' = setSize e r c m then (nrows m' = r) && (ncols m' = c):                       OK
+    +++ OK, passed 100 tests.
+  if (nrows m = r) && (nrcols m = c) then setSize _ r c m = m:                         OK
+    +++ OK, passed 100 tests.
+  getRow i m = getCol i (transpose m):                                                 OK
+    +++ OK, passed 100 tests.
+  joinBlocks (splitBlocks i j m) = m:                                                  OK
+    +++ OK, passed 100 tests.
+  scaleMatrix k m = fmap (*k) m:                                                       OK
+    +++ OK, passed 100 tests.
+  (+) = elementwise (+):                                                               OK
+    +++ OK, passed 100 tests.
+  switchCols i j = transpose . switchRows i j . transpose:                             OK
+    +++ OK, passed 100 tests.
+  detLaplace (fromList 3 3 $ repeat 1) = 0:                                            OK
+    +++ OK, passed 1 test.
+  if (u,l,p,d) = luDecomp m then (p*m = l*u) && (detLaplace p = d):                    OK (3.67s)
+    +++ OK, passed 100 tests; 11 discarded.
+  detLaplace m = detLU m:                                                              OK (2.36s)
+    +++ OK, passed 100 tests.
+  if (u,l,p,q,d,e) = luDecomp' m then (p*m*q = l*u) && (detLU p = d) && (detLU q = e): OK (0.02s)
+    +++ OK, passed 100 tests; 10 discarded.
+  detLU (scaleRow k i m) = k * detLU m:                                                OK (0.01s)
+    +++ OK, passed 100 tests.
+  let n = nrows m in detLU (switchRows i j m) = detLU (permMatrix n i j) * detLU m:    OK (0.01s)
+    +++ OK, passed 100 tests.
+  fromList n m . toList = id:                                                          OK
+    +++ OK, passed 100 tests.
+  fromLists . toLists = id:                                                            OK
+    +++ OK, passed 100 tests.
+  inv m * m = Right identity:                                                          OK (0.04s)
+    +++ OK, passed 100 tests; 11 discarded.
+  inv . inv == id:                                                                     OK (0.06s)
+    +++ OK, passed 100 tests; 10 discarded.
+  rref . fromSquare = const (identity):                                                OK (0.02s)
+    +++ OK, passed 100 tests; 11 discarded.
+
+All 27 tests passed (6.24s)
+Test suite matrix-test: PASS
+Test suite logged to:
+/tmp/workdir-matrix/matrix-0.3.6.3/dist-newstyle/build/x86_64-linux/ghc-9.6.6/matrix-0.3.6.3/t/matrix-test/test/matrix-0.3.6.3-matrix-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

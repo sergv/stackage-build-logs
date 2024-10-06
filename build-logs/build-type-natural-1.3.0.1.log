@@ -1,0 +1,239 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - type-natural-1.3.0.1 (lib) (first run)
+ - type-natural-1.3.0.1 (test:type-natural-test) (first run)
+Configuring library for type-natural-1.3.0.1...
+Preprocessing library for type-natural-1.3.0.1...
+Building library for type-natural-1.3.0.1...
+
+src/Data/Type/Natural/Lemma/Arithmetic.hs:17:14: warning: [-Wdeprecated-flags]
+    -XTypeInType is deprecated: use -XDataKinds and -XPolyKinds instead
+   |
+17 | {-# LANGUAGE TypeInType #-}
+   |              ^^^^^^^^^^
+
+src/Data/Type/Natural/Lemma/Order.hs:19:14: warning: [-Wdeprecated-flags]
+    -XTypeInType is deprecated: use -XDataKinds and -XPolyKinds instead
+   |
+19 | {-# LANGUAGE TypeInType #-}
+   |              ^^^^^^^^^^
+
+src/Data/Type/Ordinal.hs:20:14: warning: [-Wdeprecated-flags]
+    -XTypeInType is deprecated: use -XDataKinds and -XPolyKinds instead
+   |
+20 | {-# LANGUAGE TypeInType #-}
+   |              ^^^^^^^^^^
+
+src/Data/Type/Natural/Lemma/Presburger.hs:18:14: warning: [-Wdeprecated-flags]
+    -XTypeInType is deprecated: use -XDataKinds and -XPolyKinds instead
+   |
+18 | {-# LANGUAGE TypeInType #-}
+   |              ^^^^^^^^^^
+[ 1 of 10] Compiling Data.Type.Natural.Core
+
+src/Data/Type/Natural/Core.hs:70:5: warning: [GHC-47854] [-Wduplicate-exports]
+    ‘Natural’ is exported by ‘module GHC.TypeNats’ and ‘Natural’
+   |
+70 |     module GHC.TypeNats,
+   |     ^^^^^^^^^^^^^^^^^^^
+
+src/Data/Type/Natural/Core.hs:82:1: warning: [-Wunused-imports]
+    The import of ‘Numeric.Natural’ is redundant
+      except perhaps to import instances from ‘Numeric.Natural’
+    To import instances alone, use: import Numeric.Natural()
+   |
+82 | import Numeric.Natural
+   | ^^^^^^^^^^^^^^^^^^^^^^
+[ 2 of 10] Compiling Data.Type.Natural.Lemma.Presburger
+[ 3 of 10] Compiling Data.Type.Natural.Lemma.Arithmetic
+[ 4 of 10] Compiling Data.Type.Natural.Lemma.Order
+[ 5 of 10] Compiling Data.Type.Natural
+[ 6 of 10] Compiling Data.Type.Natural.Builtin
+[ 7 of 10] Compiling Data.Type.Natural.Presburger.MinMaxSolver
+
+src/Data/Type/Natural/Presburger/MinMaxSolver.hs:13:1: warning: [-Wunused-imports]
+    The import of ‘GHC.Plugins’ is redundant
+      except perhaps to import instances from ‘GHC.Plugins’
+    To import instances alone, use: import GHC.Plugins()
+   |
+13 | import GHC.Plugins
+   | ^^^^^^^^^^^^^^^^^^...
+
+src/Data/Type/Natural/Presburger/MinMaxSolver.hs:20:1: warning: [-Wunused-imports]
+    The import of ‘GHC.Tc.Plugin’ is redundant
+      except perhaps to import instances from ‘GHC.Tc.Plugin’
+    To import instances alone, use: import GHC.Tc.Plugin()
+   |
+20 | import GHC.Tc.Plugin
+   | ^^^^^^^^^^^^^^^^^^^^
+[ 8 of 10] Compiling Data.Type.Natural.Utils
+[ 9 of 10] Compiling Data.Type.Ordinal
+[10 of 10] Compiling Data.Type.Ordinal.Builtin
+Configuring test suite 'type-natural-test' for type-natural-1.3.0.1...
+Preprocessing test suite 'type-natural-test' for type-natural-1.3.0.1...
+Building test suite 'type-natural-test' for type-natural-1.3.0.1...
+[1 of 8] Compiling Data.Type.Natural.Presburger.Cases
+
+tests/Data/Type/Natural/Presburger/Cases.hs:9:1: warning: [-Wunused-imports]
+    The import of ‘Data.Proxy’ is redundant
+      except perhaps to import instances from ‘Data.Proxy’
+    To import instances alone, use: import Data.Proxy()
+  |
+9 | import Data.Proxy (Proxy (Proxy))
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Data/Type/Natural/Presburger/Cases.hs:12:1: warning: [-Wunused-imports]
+    The import of ‘GHC.TypeNats’ is redundant
+      except perhaps to import instances from ‘GHC.TypeNats’
+    To import instances alone, use: import GHC.TypeNats()
+   |
+12 | import GHC.TypeNats
+   | ^^^^^^^^^^^^^^^^^^^
+
+tests/Data/Type/Natural/Presburger/Cases.hs:27:16: warning: [GHC-25897] [-Wdeferred-type-errors]
+    • Could not deduce ‘Data.Type.Ord.OrdCond (CmpNat n m) n n m ~ m’
+      from the context: n <= m
+        bound by the type signature for:
+                   falsity :: forall (n :: Nat) (m :: Nat) (p :: Nat -> Type)
+                                     (q :: Nat -> Type).
+                              (n <= m) =>
+                              p n -> q m -> Min n m :~: m
+        at tests/Data/Type/Natural/Presburger/Cases.hs:26:1-48
+      Expected: Min n m :~: m
+        Actual: m :~: m
+      Type synonyms expanded:
+      Expected type: Data.Type.Ord.OrdCond
+                       (Data.Type.Ord.Compare n m) n n m
+                     :~: m
+        Actual type: m :~: m
+      ‘m’ is a rigid type variable bound by
+        the type signature for:
+          falsity :: forall (n :: Nat) (m :: Nat) (p :: Nat -> Type)
+                            (q :: Nat -> Type).
+                     (n <= m) =>
+                     p n -> q m -> Min n m :~: m
+        at tests/Data/Type/Natural/Presburger/Cases.hs:26:1-48
+    • In the expression: Refl
+      In an equation for ‘falsity’: falsity _ _ = Refl
+    • Relevant bindings include
+        falsity :: p n -> q m -> Min n m :~: m
+          (bound at tests/Data/Type/Natural/Presburger/Cases.hs:27:1)
+   |
+27 | falsity _ _  = Refl
+   |                ^^^^
+[2 of 8] Compiling Data.Type.OrdinalSpec
+[3 of 8] Compiling Shared
+
+tests/Shared.hs:20:1: warning: [-Wunused-imports]
+    The import of ‘Numeric.Natural’ is redundant
+      except perhaps to import instances from ‘Numeric.Natural’
+    To import instances alone, use: import Numeric.Natural()
+   |
+20 | import Numeric.Natural
+   | ^^^^^^^^^^^^^^^^^^^^^^
+[4 of 8] Compiling Data.Type.NaturalSpec.TH
+
+tests/Data/Type/NaturalSpec/TH.hs:11:1: warning: [-Wunused-imports]
+    The import of ‘Numeric.Natural’ is redundant
+      except perhaps to import instances from ‘Numeric.Natural’
+    To import instances alone, use: import Numeric.Natural()
+   |
+11 | import Numeric.Natural
+   | ^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Data/Type/NaturalSpec/TH.hs:13:1: warning: [-Wunused-imports]
+    The import of ‘Test.Tasty’ is redundant
+      except perhaps to import instances from ‘Test.Tasty’
+    To import instances alone, use: import Test.Tasty()
+   |
+13 | import Test.Tasty
+   | ^^^^^^^^^^^^^^^^^
+[5 of 8] Compiling Data.Type.NaturalSpec
+
+tests/Data/Type/NaturalSpec.hs:13:1: warning: [-Wunused-imports]
+    The import of ‘GHC.TypeNats’ is redundant
+      except perhaps to import instances from ‘GHC.TypeNats’
+    To import instances alone, use: import GHC.TypeNats()
+   |
+13 | import GHC.TypeNats
+   | ^^^^^^^^^^^^^^^^^^^
+
+tests/Data/Type/NaturalSpec.hs:14:1: warning: [-Wunused-imports]
+    The import of ‘Shared’ is redundant
+      except perhaps to import instances from ‘Shared’
+    To import instances alone, use: import Shared()
+   |
+14 | import Shared
+   | ^^^^^^^^^^^^^
+
+tests/Data/Type/NaturalSpec.hs:17:1: warning: [-Wunused-imports]
+    The import of ‘Test.QuickCheck’ is redundant
+      except perhaps to import instances from ‘Test.QuickCheck’
+    To import instances alone, use: import Test.QuickCheck()
+   |
+17 | import Test.QuickCheck
+   | ^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Data/Type/NaturalSpec.hs:18:1: warning: [-Wunused-imports]
+    The import of ‘Control.Monad’ is redundant
+      except perhaps to import instances from ‘Control.Monad’
+    To import instances alone, use: import Control.Monad()
+   |
+18 | import Control.Monad (join)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[6 of 8] Compiling Data.Type.Natural.Presburger.MinMaxSolverSpec
+
+tests/Data/Type/Natural/Presburger/MinMaxSolverSpec.hs:16:1: warning: [-Wunused-imports]
+    The import of ‘Shared’ is redundant
+      except perhaps to import instances from ‘Shared’
+    To import instances alone, use: import Shared()
+   |
+16 | import Shared
+   | ^^^^^^^^^^^^^
+
+tests/Data/Type/Natural/Presburger/MinMaxSolverSpec.hs:17:1: warning: [-Wunused-imports]
+    The import of ‘Test.QuickCheck’ is redundant
+      except perhaps to import instances from ‘Test.QuickCheck’
+    To import instances alone, use: import Test.QuickCheck()
+   |
+17 | import Test.QuickCheck (ioProperty)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Data/Type/Natural/Presburger/MinMaxSolverSpec.hs:19:1: warning: [-Wunused-imports]
+    The import of ‘Test.Tasty.HUnit’ is redundant
+      except perhaps to import instances from ‘Test.Tasty.HUnit’
+    To import instances alone, use: import Test.Tasty.HUnit()
+   |
+19 | import Test.Tasty.HUnit
+   | ^^^^^^^^^^^^^^^^^^^^^^^
+[7 of 8] Compiling Data.Type.Natural.Lemma.OrderSpec
+
+tests/Data/Type/Natural/Lemma/OrderSpec.hs:135:11: warning: [-Wunused-matches]
+    Defined but not used: ‘v’
+    |
+135 |     Right v -> 
+    |           ^
+
+tests/Data/Type/Natural/Lemma/OrderSpec.hs:353:13: warning: [GHC-40564] [-Winaccessible-code]
+    • Inaccessible code in
+        a pattern with constructor: STrue :: SBool True,
+        in a case alternative
+      Couldn't match type ‘False’ with ‘True’
+    • In the pattern: STrue
+      In a case alternative: STrue -> error "impossible!"
+      In the expression:
+        case n %<=? m of
+          STrue -> error "impossible!"
+          SFalse -> totalWitness $ notLeqToLeq n m
+    |
+353 |             STrue -> error "impossible!"
+    |             ^^^^^
+
+tests/Data/Type/Natural/Lemma/OrderSpec.hs:353:13: warning: [GHC-94210] [-Woverlapping-patterns]
+    Pattern match has inaccessible right hand side
+    In a case alternative: STrue -> ...
+    |
+353 |             STrue -> error "impossible!"
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[8 of 8] Compiling Main
+[9 of 9] Linking /tmp/workdir-type-natural/type-natural-1.3.0.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/type-natural-1.3.0.1/t/type-natural-test/build/type-natural-test/type-natural-test

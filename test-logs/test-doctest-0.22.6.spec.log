@@ -1,0 +1,324 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - doctest-0.22.6 (test:spec) (ephemeral targets)
+Preprocessing test suite 'spec' for doctest-0.22.6...
+Building test suite 'spec' for doctest-0.22.6...
+Running 1 test suites...
+Test suite spec: RUNNING...
+
+Cabal.Options
+  pathOptions
+    is the set of options that are unique to 'cabal path' [✔]
+  replOptions
+    is the set of options that are unique to 'cabal repl' [✔]
+  rejectUnsupportedOptions
+    produces error messages that are consistent with 'cabal repl' [✔]
+  shouldReject
+    accepts --foo [✔]
+    rejects --ignore-project [✔]
+    rejects -z [✔]
+    rejects --output-format [✔]
+    rejects --output-format= [✔]
+    rejects --installdir [✔]
+  discardReplOptions
+    discards 'cabal repl'-only options [✔]
+  shouldDiscard
+    keeps --foo [✔]
+    discards --build-depends [✔]
+    discards --build-depends= [✔]
+    discards -b [✔]
+    discards -bfoo [✔]
+    discards --repl-options [✔]
+    discards --repl-options= [✔]
+    discards --enable-multi-repl [✔]
+Cabal.Paths
+  paths
+    returns the path to 'ghc' [✔]
+    returns the path to 'ghc-pkg' [✔]
+    returns the path to Cabal's cache directory [✔]
+Extract
+  extract
+    extracts documentation for a top-level declaration [✔]
+    extracts documentation from argument list [✔]
+    extracts documentation for a type class function [✔]
+    extracts documentation from the argument list of a type class function [✔]
+    extracts documentation from the module header [✔]
+    extracts documentation from imported modules [✔]
+    extracts documentation from export list [✔]
+    extracts documentation from named chunks [✔]
+    returns docstrings in the same order they appear in the source [✔]
+    extracts $setup code [✔]
+    fails on invalid flags [✔]
+  extract (regression tests)
+    works with infix operators [✔]
+    works with parallel list comprehensions [✔]
+    works with list comprehensions in instance definitions [✔]
+    works with foreign imports [✔]
+    works for rewrite rules [✔]
+    works for rewrite rules with type signatures [✔]
+    strips CR from dos line endings [✔]
+    works with a module that splices in an expression from an other module [✔]
+    works for type families and GHC 7.6.1 [✔]
+Info
+  formatInfo
+    formats --info output [✔]
+Interpreter
+  interpreterSupported
+    indicates whether GHCi is supported on current platform [✔]
+  ghcInfo
+    includes "Have interpreter" [✔]
+  safeEval
+    evaluates an expression [✔]
+    returns Left on unterminated multiline command [✔]
+  filterExpression
+    removes :set -XTemplateHaskell [✔]
+    filters -XTemplateHaskell [✔]
+    leaves :set-statement that do not set -XTemplateHaskell alone  [✔]
+Language.Haskell.GhciWrapper
+  evalEcho
+    prints result to stdout [✔]
+  evalIt
+    preserves it [✔]
+  eval
+    shows literals [✔]
+    shows string literals containing Unicode [✔]
+    evaluates simple expressions [✔]
+    supports let bindings [✔]
+    allows import statements [✔]
+    captures stdout [✔]
+    captures stdout (Unicode) [✔]
+    captures stdout (empty line) [✔]
+    captures stdout (multiple lines) [✔]
+    captures stderr [✔]
+    captures stderr (Unicode) [✔]
+    shows exceptions [✔]
+    shows exceptions (ExitCode) [✔]
+    gives an error message for identifiers that are not in scope [✔]
+    when configVerbose is True
+      prints prompt [✔]
+    with -XOverloadedStrings, -Wall and -Werror
+      does not fail on marker expression (bug fix) [✔]
+    with NoImplicitPrelude
+      works [✔]
+    with a strange String type
+      works [✔]
+Location
+  toLocation
+    works for a regular SrcSpan [✔]
+    works for a single-line SrcSpan [✔]
+    works for a SrcSpan that corresponds to single point [✔]
+    works for a bad SrcSpan [✔]
+    works for a SrcLoc with bad locations [✔]
+  enumerate
+    replicates UnhelpfulLocation [✔]
+    enumerates Location [✔]
+Main
+  doctest
+    testSimple [✔]
+    it-variable [✔]
+    it-variable in $setup [✔]
+    failing [✔]
+    skips subsequent examples from the same group if an example fails [✔]
+    testImport [✔]
+    testCommentLocation [✔]
+    testPutStr [✔]
+    fails on multi-line expressions, introduced with :{ [✔]
+    testBlankline [✔]
+    examples from the same Haddock comment share the same scope [✔]
+    testDocumentationForArguments [✔]
+    template-haskell [✔]
+    handles source files with CRLF line endings [✔]
+    runs $setup before each test group [✔]
+    skips subsequent tests from a module, if $setup fails [✔]
+    ignores trailing whitespace when matching test output [✔]
+  doctest as a runner for QuickCheck properties
+    runs a boolean property [✔]
+    runs an explicitly quantified property [✔]
+    runs an implicitly quantified property [✔]
+    reports a failing property [✔]
+    runs a boolean property with an explicit type signature [✔]
+    runs $setup before each property [✔]
+  doctest (regression tests)
+    bugfixWorkingDirectory [✔]
+    bugfixOutputToStdErr [✔]
+    bugfixImportHierarchical [✔]
+    bugfixMultipleModules [✔]
+    testCPP [✔]
+    template-haskell-bugfix [✔]
+    doesn't clash with user bindings of stdout/stderr [✔]
+    doesn't get confused by doctests using System.IO imports [✔]
+Options
+  parseOptions
+    strips --optghc [✔]
+    strips --optghc= [✔]
+    with ghc options that are not valid with --interactive
+      returns ProxyToGhc [✔]
+        +++ OK, passed 100 tests.
+    with --interactive
+      disables magic mode [✔]
+      filters out --interactive [✔]
+      accepts --fast [✔]
+    --no-magic
+      without --no-magic
+        enables magic mode [✔]
+      with --no-magic
+        disables magic mode [✔]
+    --fast
+      without --fast
+        disables fast mode [✔]
+      with --fast
+        enabled fast mode [✔]
+    --preserve-it
+      without --preserve-it
+        does not preserve the `it` variable [✔]
+      with --preserve-it
+        preserves the `it` variable [✔]
+    with --help
+      outputs usage information [✔]
+    with --version
+      outputs version information [✔]
+    with --info
+      outputs machine readable version information [✔]
+    --verbose
+      without --verbose
+        is not verbose by default [✔]
+      with --verbose
+        parses verbose option [✔]
+PackageDBs
+  getPackageDBsFromEnv
+    uses global and user when no env used [✔]
+    respects GHC_PACKAGE_PATH [✔]
+Parse
+  extractDocTests
+    extracts properties from a module [✔]
+    extracts examples from a module [✔]
+    extracts examples from documentation for non-exported names [✔]
+    extracts multiple examples from a module [✔]
+    returns an empty list, if documentation contains no examples [✔]
+    sets setup code to Nothing, if it does not contain any tests [✔]
+    keeps modules that only contain setup code [✔]
+  parseInteractions (an internal function)
+    parses an interaction [✔]
+    drops whitespace as appropriate [✔]
+    parses an interaction without a result [✔]
+    works with a complex example [✔]
+    attaches location information to parsed interactions [✔]
+    basic multiline [✔]
+    multiline align output [✔]
+    multiline align output with >>> [✔]
+    parses wild cards lines [✔]
+    parses wild card chunks [✔]
+   parseProperties (an internal function)
+    parses a property [✔]
+  mkLineChunks (an internal function)
+    replaces ellipsis with WildCardChunks [✔]
+    doesn't replace fewer than 3 consecutive dots [✔]
+    handles leading and trailing dots [✔]
+    handles leading and trailing ellipsis [✔]
+Property
+  runProperty
+    reports a failing property [✔]
+    runs a Bool property [✔]
+    runs a Bool property with an explicit type signature [✔]
+    runs an implicitly quantified property [✔]
+    runs an implicitly quantified property even with GHC 7.4 [✔]
+    runs an explicitly quantified property [✔]
+    allows to mix implicit and explicit quantification [✔]
+    reports the value for which a property fails [✔]
+    reports the values for which a property that takes multiple arguments fails [✔]
+    defaults ambiguous type variables to Integer [✔]
+  freeVariables
+    finds a free variables in a term [✔]
+    ignores duplicates [✔]
+    works for terms with multiple names [✔]
+    works for names that contain a prime [✔]
+    works for names that are similar to other names that are in scope [✔]
+  parseNotInScope
+    when error message was produced by GHC 7.4.1
+      extracts a variable name of variable that is not in scope from an error message [✔]
+      ignores duplicates [✔]
+      works for variable names that contain a prime [✔]
+      works for error messages with suggestions [✔]
+    when error message was produced by GHC 8.0.1
+      extracts a variable name of variable that is not in scope from an error message [✔]
+      ignores duplicates [✔]
+      works for variable names that contain a prime [✔]
+      works for error messages with suggestions [✔]
+Run
+  doctest
+    exits with ExitFailure if at least one test case fails [✔]
+    prints help on --help [✔]
+    prints version on --version [✔]
+    accepts arbitrary GHC options [✔]
+    accepts GHC options with --optghc [✔]
+    prints a deprecation message for --optghc [✔]
+    prints error message on invalid option [✔]
+    prints verbose description of a specification [✔]
+    prints verbose description of a property [✔]
+    prints verbose error [✔]
+    can deal with potentially problematic GHC options [✔]
+  doctestWithResult
+    on parse error
+      aborts with (ExitFailure 1) [✔]
+      prints a useful error message [✔]
+  expandDirs
+    expands a directory [✔]
+    ignores files [✔]
+    ignores random things [✔]
+Runner
+  report
+    when mode is interactive
+      writes to stderr [✔]
+      overwrites any intermediate output [✔]
+      blank out intermediate output if necessary [✔]
+    when mode is non-interactive
+      writes to stderr [✔]
+  report_
+    when mode is interactive
+      writes intermediate output to stderr [✔]
+      overwrites any intermediate output [✔]
+      blank out intermediate output if necessary [✔]
+    when mode is non-interactive
+      is ignored [✔]
+      does not influence a subsequent call to `report` [✔]
+      does not require `report` to blank out any intermediate output [✔]
+Runner.Example
+  mkResult
+    returns Equal when output matches [✔]
+      +++ OK, passed 100 tests.
+    ignores trailing whitespace [✔]
+    with WildCardLine
+      matches zero lines [✔]
+      matches first zero line [✔]
+      matches final zero line [✔]
+      matches an arbitrary number of lines [✔]
+      matches an arbitrary number of lines (quickcheck) [✔]
+        +++ OK, passed 100 tests.
+    with WildCardChunk
+      matches an arbitrary line chunk [✔]
+      matches an arbitrary line chunk at end [✔]
+      does not match at end [✔]
+      does not match at start [✔]
+    when output does not match
+      constructs failure message [✔]
+      constructs failure message for multi-line output [✔]
+      when any output line contains "unsafe" characters
+        uses show to format output lines [✔]
+      insert caret after last matching character on different lengths [✔]
+      insert caret after mismatching line for multi-line output [✔]
+      insert caret after mismatching line with the longest match for multi-line wildcard pattern [✔]
+      insert caret after longest match for wildcard [✔]
+      show expanded pattern for long matches [✔]
+Util
+  convertDosLineEndings
+    converts CRLF to LF [✔]
+    strips a trailing CR [✔]
+  takeWhileEnd
+    returns the longest suffix of elements that satisfy a given predicate [✔]
+
+Finished in 26.0313 seconds
+219 examples, 0 failures
+Test suite spec: PASS
+Test suite logged to:
+/tmp/workdir-doctest/doctest-0.22.6/dist-newstyle/build/x86_64-linux/ghc-9.6.6/doctest-0.22.6/t/spec/test/doctest-0.22.6-spec.log
+1 of 1 test suites (1 of 1 test cases) passed.

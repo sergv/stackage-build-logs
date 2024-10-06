@@ -1,0 +1,88 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - ekg-core-0.1.1.7 (lib) (first run)
+Configuring library for ekg-core-0.1.1.7...
+Preprocessing library for ekg-core-0.1.1.7...
+Building library for ekg-core-0.1.1.7...
+[1 of 9] Compiling Data.Array
+[2 of 9] Compiling Data.Atomic
+[3 of 9] Compiling System.Metrics.Counter
+[4 of 9] Compiling System.Metrics.Distribution.Internal
+[5 of 9] Compiling System.Metrics.Gauge
+[6 of 9] Compiling System.Metrics.Label
+[7 of 9] Compiling System.Metrics.ThreadId
+[8 of 9] Compiling System.Metrics.Distribution
+[9 of 9] Compiling System.Metrics
+
+System/Metrics.hs:71:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+71 | import Control.Applicative ((<$>))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+System/Metrics.hs:489:17: warning: [GHC-20125] [-Wmissing-fields]
+    • Fields of ‘Stats.RTSStats’ not initialised:
+        nonmoving_gc_sync_cpu_ns :: Stats.RtsTime
+        nonmoving_gc_sync_elapsed_ns :: Stats.RtsTime
+        nonmoving_gc_sync_max_elapsed_ns :: Stats.RtsTime
+        nonmoving_gc_cpu_ns :: Stats.RtsTime
+        nonmoving_gc_elapsed_ns :: Stats.RtsTime
+        nonmoving_gc_max_elapsed_ns :: Stats.RtsTime
+    • In the expression:
+        Stats.RTSStats
+          {gcs = 0, major_gcs = 0, allocated_bytes = 0, max_live_bytes = 0,
+           max_large_objects_bytes = 0, max_compact_bytes = 0,
+           max_slop_bytes = 0, max_mem_in_use_bytes = 0,
+           cumulative_live_bytes = 0, copied_bytes = 0, par_copied_bytes = 0,
+           cumulative_par_max_copied_bytes = 0,
+           cumulative_par_balanced_copied_bytes = 0, init_cpu_ns = 0,
+           init_elapsed_ns = 0, mutator_cpu_ns = 0, mutator_elapsed_ns = 0,
+           gc_cpu_ns = 0, gc_elapsed_ns = 0, cpu_ns = 0, elapsed_ns = 0,
+           gc = emptyGCDetails}
+      In an equation for ‘emptyRTSStats’:
+          emptyRTSStats
+            = Stats.RTSStats
+                {gcs = 0, major_gcs = 0, allocated_bytes = 0, max_live_bytes = 0,
+                 max_large_objects_bytes = 0, max_compact_bytes = 0,
+                 max_slop_bytes = 0, max_mem_in_use_bytes = 0,
+                 cumulative_live_bytes = 0, copied_bytes = 0, par_copied_bytes = 0,
+                 cumulative_par_max_copied_bytes = 0,
+                 cumulative_par_balanced_copied_bytes = 0, init_cpu_ns = 0,
+                 init_elapsed_ns = 0, mutator_cpu_ns = 0, mutator_elapsed_ns = 0,
+                 gc_cpu_ns = 0, gc_elapsed_ns = 0, cpu_ns = 0, elapsed_ns = 0,
+                 gc = emptyGCDetails}
+    |
+489 | emptyRTSStats = Stats.RTSStats
+    |                 ^^^^^^^^^^^^^^...
+
+System/Metrics.hs:519:18: warning: [GHC-20125] [-Wmissing-fields]
+    • Fields of ‘Stats.GCDetails’ not initialised:
+        gcdetails_block_fragmentation_bytes :: GHC.Word.Word64
+        gcdetails_nonmoving_gc_sync_cpu_ns :: Stats.RtsTime
+        gcdetails_nonmoving_gc_sync_elapsed_ns :: Stats.RtsTime
+    • In the expression:
+        Stats.GCDetails
+          {gcdetails_gen = 0, gcdetails_threads = 0,
+           gcdetails_allocated_bytes = 0, gcdetails_live_bytes = 0,
+           gcdetails_large_objects_bytes = 0, gcdetails_compact_bytes = 0,
+           gcdetails_slop_bytes = 0, gcdetails_mem_in_use_bytes = 0,
+           gcdetails_copied_bytes = 0, gcdetails_par_max_copied_bytes = 0,
+           gcdetails_par_balanced_copied_bytes = 0,
+           gcdetails_sync_elapsed_ns = 0, gcdetails_cpu_ns = 0,
+           gcdetails_elapsed_ns = 0}
+      In an equation for ‘emptyGCDetails’:
+          emptyGCDetails
+            = Stats.GCDetails
+                {gcdetails_gen = 0, gcdetails_threads = 0,
+                 gcdetails_allocated_bytes = 0, gcdetails_live_bytes = 0,
+                 gcdetails_large_objects_bytes = 0, gcdetails_compact_bytes = 0,
+                 gcdetails_slop_bytes = 0, gcdetails_mem_in_use_bytes = 0,
+                 gcdetails_copied_bytes = 0, gcdetails_par_max_copied_bytes = 0,
+                 gcdetails_par_balanced_copied_bytes = 0,
+                 gcdetails_sync_elapsed_ns = 0, gcdetails_cpu_ns = 0,
+                 gcdetails_elapsed_ns = 0}
+    |
+519 | emptyGCDetails = Stats.GCDetails
+    |                  ^^^^^^^^^^^^^^^...

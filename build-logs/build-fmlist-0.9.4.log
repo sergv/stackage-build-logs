@@ -1,0 +1,47 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - fmlist-0.9.4 (lib) (first run)
+Configuring library for fmlist-0.9.4...
+Preprocessing library for fmlist-0.9.4...
+Building library for fmlist-0.9.4...
+[1 of 1] Compiling Data.FMList
+
+Data/FMList.hs:274:3: warning: [-Wnoncanonical-monoid-instances]
+    Noncanonical ‘mappend’ definition detected
+    in the instance declaration for ‘Monoid (WrapApp f m)’.
+    ‘mappend’ will eventually be removed in favour of ‘(<>)’
+    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    |
+274 |   mappend (WrapApp a) (WrapApp b) = WrapApp $ mappend <$> a <*> b
+    |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Data/FMList.hs:294:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad FMList’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+294 |   return     = one
+    |   ^^^^^^^^^^^^^^^^
+
+Data/FMList.hs:296:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘(>>)’ definition detected
+    in the instance declaration for ‘Monad FMList’.
+    ‘(>>)’ will eventually be removed in favour of ‘(*>)’
+    Either remove definition for ‘(>>)’ (recommended) or define as ‘(>>) = (*>)’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+296 |   m >> k     = transform (\f -> const (foldMap f k)) m
+    |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Data/FMList.hs:314:3: warning: [-Wnoncanonical-monoid-instances]
+    Noncanonical ‘mappend’ definition detected
+    in the instance declaration for ‘Monoid (FMList a)’.
+    ‘mappend’ will eventually be removed in favour of ‘(<>)’
+    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    |
+314 |   mappend    = (><)
+    |   ^^^^^^^^^^^^^^^^^

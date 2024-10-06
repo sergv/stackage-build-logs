@@ -1,0 +1,366 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - cardano-coin-selection-1.0.1 (test:unit) (ephemeral targets)
+Preprocessing test suite 'unit' for cardano-coin-selection-1.0.1...
+Building test suite 'unit' for cardano-coin-selection-1.0.1...
+Running 1 test suites...
+Test suite unit: RUNNING...
+
+Cardano.CoinSelection
+  CoinMap properties
+    CoinMap coverage is adequate [✔]
+      +++ OK, passed 100 tests:
+      35% coin map has one entry
+      35% coin map has one unique value
+      34% coin map has multiple entries
+      34% coin map has several unique values
+      31% coin map is empty
+    CoinMapEntry coverage is adequate [✔]
+      +++ OK, passed 3200 tests:
+      87.06% coin map entry list has multiple entries
+      86.50% coin map entry list has multiple unique keys
+      41.16% coin map entry list has multiple duplicate keys
+      27.06% coin map entry list has no duplicate keys
+      16.06% coin map entry list has one duplicate key
+      10.22% coin map entry list has two duplicate keys
+       5.50% coin map entry list is empty
+       4.22% coin map entry list has one unique key
+       4.00% coin map entry list has one entry
+       3.78% coin map entry list has two unique keys
+       3.44% coin map entry list has two entries
+    coinMapFromList preserves total value for each unique key [✔]
+      +++ OK, passed 100 tests.
+    coinMapFromList preserves total value [✔]
+      +++ OK, passed 100 tests.
+    coinMapToList preserves total value [✔]
+      +++ OK, passed 100 tests.
+    coinMapFromList . coinMapToList = id [✔]
+      +++ OK, passed 100 tests.
+    coinMapToList . coinMapFromList = id (when no keys duplicated) [✔]
+      +++ OK, passed 100 tests.
+    coinMapToList order deterministic [✔]
+      +++ OK, passed 100 tests (34% shuffled).
+  CoinSelection properties
+    monoidal append preserves keys [✔]
+      +++ OK, passed 100 tests.
+    monoidal append preserves value [✔]
+      +++ OK, passed 100 tests.
+  CoinSelectionData properties
+    CoinSelectionData coverage is adequate [✔]
+      +++ OK, passed 200 tests (99.5% amountAvailable ≥ amountRequested).
+Cardano.CoinSelection.Algorithm.LargestFirst
+  Coin selection: largest-first algorithm: unit tests
+    Expect success: case #1:
+	max=100, UTxO=[10,10,17], Output=[17] --> Right [17] [✔]
+    Expect success: case #2:
+	max=100, UTxO=[12,10,17], Output=[1] --> Right [17] [✔]
+    Expect success: case #3:
+	max=100, UTxO=[12,10,17], Output=[18] --> Right [12,17] [✔]
+    Expect success: case #4:
+	max=100, UTxO=[12,10,17], Output=[30] --> Right [10,12,17] [✔]
+    Expect success: case #5:
+	max=3, UTxO=[1,2,10,6,5], Output=[11,1] --> Right [6,10] [✔]
+    Expect success: case #6:
+	max=100, UTxO=[12,20,17], Output=[40,1,1,1] --> Right [12,17,20] [✔]
+    Expect success: case #7:
+	max=100, UTxO=[12,20,17], Output=[40,1] --> Right [12,17,20] [✔]
+    Expect success: case #8:
+	max=100, UTxO=[20,20,10,5], Output=[41,6] --> Right [10,20,20] [✔]
+    Expect success: case #9:
+	max=2, UTxO=[1,2,10,6,5], Output=[11,1] --> Right [6,10] [✔]
+    Expect success: fewer inputs than outputs: case #1:
+	max=1000, UTxO=[100,100], Output=[1,2,3,4] --> Right [100] [✔]
+    Expect success: fewer inputs than outputs: case #2:
+	max=1000, UTxO=[100,10], Output=[1,2,3,4] --> Right [100] [✔]
+    Expect success: fewer inputs than outputs: case #3:
+	max=1000, UTxO=[10,10], Output=[1,2,3,4] --> Right [10] [✔]
+    Expect success: fewer inputs than outputs: case #4:
+	max=1, UTxO=[100], Output=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1] --> Right [100] [✔]
+    UTxO balance not sufficient: case #1:
+	max=100, UTxO=[12,10,17], Output=[40] --> Left (InputValueInsufficient (InputValueInsufficientError {inputValueAvailable = Coin 39, inputValueRequired = Coin 40})) [✔]
+    UTxO balance not sufficient: case #2:
+	max=100, UTxO=[12,10,17], Output=[40,1,1,1] --> Left (InputValueInsufficient (InputValueInsufficientError {inputValueAvailable = Coin 39, inputValueRequired = Coin 43})) [✔]
+    UTxO balance sufficient, but maximum input count exceeded:
+	max=9, UTxO=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], Output=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1] --> Left (InputLimitExceeded (InputLimitExceededError {calculatedInputLimit = 9})) [✔]
+  Coin selection: largest-first algorithm: properties
+    forall (UTxO, NonEmpty TxOut), for all selected input, there's no bigger input in the UTxO that is not already in the selected inputs [✔]
+      +++ OK, passed 100 tests; 1 discarded.
+    The algorithm selects just enough inputs and no more. [✔]
+      +++ OK, passed 10000 tests; 74 discarded.
+    The algorithm produces the correct set of change. [✔]
+      +++ OK, passed 25600 tests; 206 discarded:
+      98.574% amountSelected > amountRequired
+       1.426% amountSelected = amountRequired
+Cardano.CoinSelection.Algorithm.Migration
+  idealBatchSize
+    Eventually converge for decreasing functions [✔]
+      +++ OK, passed 100 tests:
+      35% BatchSize 32768
+      33% BatchSize 42
+      32% BatchSize 21845
+  accuracy of selectCoins
+    dust=1% [✔]
+      +++ OK, passed 1000 tests:
+      88.5% MEDIOCRE (<=  99%)
+      11.3% PERFECT  (== 100%)
+       0.2% OKAY     (>   99%)
+    dust=5% [✔]
+      +++ OK, passed 1000 tests:
+      74.0% PERFECT  (== 100%)
+      22.3% MEDIOCRE (<=  99%)
+       3.7% OKAY     (>   99%)
+    dust=10% [✔]
+      +++ OK, passed 1000 tests:
+      90.7% PERFECT  (== 100%)
+       5.9% MEDIOCRE (<=  99%)
+       3.4% OKAY     (>   99%)
+    dust=25% [✔]
+      +++ OK, passed 1000 tests:
+      96.3% PERFECT  (== 100%)
+       2.4% OKAY     (>   99%)
+       1.3% MEDIOCRE (<=  99%)
+    dust=50% [✔]
+      +++ OK, passed 1000 tests:
+      97.7% PERFECT  (== 100%)
+       2.0% OKAY     (>   99%)
+       0.3% MEDIOCRE (<=  99%)
+  selectCoins properties
+    No coin selection has outputs [✔]
+      +++ OK, passed 10000 tests.
+    Every coin in the selection change > dust threshold [✔]
+      +++ OK, passed 10000 tests.
+    Total input UTxO value >= sum of selection change coins [✔]
+      +++ OK, passed 10000 tests.
+    Every selection input is unique [✔]
+      +++ OK, passed 10000 tests.
+    Every selection input is a member of the UTxO [✔]
+      +++ OK, passed 10000 tests.
+    Every coin selection is well-balanced [✔]
+      +++ OK, passed 10000 tests.
+  selectCoins regressions
+    regression #1 [✔]
+      +++ OK, passed 1 test.
+Cardano.CoinSelection.Algorithm.RandomImprove
+  Coin selection : random algorithm unit tests
+    Cardano.CoinSelectionSpec[355:5] [✔]
+    Cardano.CoinSelectionSpec[355:5] [✔]
+    Cardano.CoinSelectionSpec[355:5] [✔]
+    Cardano.CoinSelectionSpec[355:5] [✔]
+    Cardano.CoinSelectionSpec[355:5] [✔]
+    Cardano.CoinSelectionSpec[355:5] [✔]
+    cannot cover aim, but only min:
+	max=4, UTxO=[1,1,1,1,1,1], Output=[3] --> Right [1,1,1,1] [✔]
+    REG CO-450: no fallback:
+	max=4, UTxO=[1000000,1000000,1000000,1000000], Output=[2000000,500000] --> Right [1000000,1000000,1000000,1000000] [✔]
+    enough funds, proper fragmentation, inputs depleted:
+	max=100, UTxO=[10,10,10,10], Output=[38,1] --> Left (InputsExhausted InputsExhaustedError) [✔]
+    Cardano.CoinSelectionSpec[355:5] [✔]
+    each output needs <maxNumOfInputs:
+	max=9, UTxO=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], Output=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1] --> Left (InputLimitExceeded (InputLimitExceededError {calculatedInputLimit = 9})) [✔]
+    each output needs >maxNumInputs:
+	max=9, UTxO=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], Output=[10,10,10,10,10,10,10,10,10,10] --> Left (InputLimitExceeded (InputLimitExceededError {calculatedInputLimit = 9})) [✔]
+    Cardano.CoinSelectionSpec[355:5] [✔]
+    Cardano.CoinSelectionSpec[355:5] [✔]
+    Cardano.CoinSelectionSpec[355:5] [✔]
+  Coin selection properties : random algorithm
+    forall (UTxO, NonEmpty TxOut), running algorithm gives not less UTxO fragmentation than LargestFirst algorithm [✔]
+      +++ OK, passed 100 tests; 1 discarded.
+    forall (UTxO, NonEmpty TxOut), running algorithm gives the same errors as LargestFirst algorithm [✔]
+      +++ OK, passed 100 tests.
+Cardano.CoinSelection.Fee
+  Fee calculation : unit tests
+    CoinSelection (inps=[20]outs=[17]chngs=[3]), UTxO=[]), fee=3 --> Right (FeeOutput {csInps = [20], csOuts = [17], csChngs = []}) [✔]
+    CoinSelection (inps=[20,20]outs=[16,18]chngs=[4,2]), UTxO=[]), fee=6 --> Right (FeeOutput {csInps = [20,20], csOuts = [16,18], csChngs = []}) [✔]
+    CoinSelection (inps=[20,20]outs=[18,18]chngs=[2,2]), UTxO=[]), fee=2 --> Right (FeeOutput {csInps = [20,20], csOuts = [18,18], csChngs = [1,1]}) [✔]
+    CoinSelection (inps=[20,20]outs=[17,18]chngs=[3,2]), UTxO=[]), fee=2 --> Right (FeeOutput {csInps = [20,20], csOuts = [17,18], csChngs = [2,1]}) [✔]
+    CoinSelection (inps=[20,20,20]outs=[14,18,19]chngs=[6,2,1]), UTxO=[]), fee=3 --> Right (FeeOutput {csInps = [20,20,20], csOuts = [14,18,19], csChngs = [4,1,1]}) [✔]
+    CoinSelection (inps=[20,20,20]outs=[14,18,19]chngs=[6,2,1]), UTxO=[]), fee=3 --> Right (FeeOutput {csInps = [20,20,20], csOuts = [14,18,19], csChngs = [6]}) [✔]
+    CoinSelection (inps=[20]outs=[17]chngs=[3]), UTxO=[]), fee=4 --> Left (CannotCoverFee (Fee (Coin 1))) [✔]
+    CoinSelection (inps=[10]outs=[7]chngs=[3]), UTxO=[1]), fee=5 --> Left (CannotCoverFee (Fee (Coin 1))) [✔]
+    CoinSelection (inps=[10]outs=[7]chngs=[3]), UTxO=[1,1]), fee=5 --> Right (FeeOutput {csInps = [10,1,1], csOuts = [7], csChngs = []}) [✔]
+    CoinSelection (inps=[10]outs=[7]chngs=[3]), UTxO=[3]), fee=5 --> Right (FeeOutput {csInps = [10,3], csOuts = [7], csChngs = [1]}) [✔]
+    CoinSelection (inps=[10,10]outs=[7,7]chngs=[3,3]), UTxO=[2,2]), fee=10 --> Right (FeeOutput {csInps = [10,10,2,2], csOuts = [7,7], csChngs = []}) [✔]
+    CoinSelection (inps=[10,10]outs=[7,7]chngs=[3,3]), UTxO=[3,3]), fee=10 --> Right (FeeOutput {csInps = [10,10,3,3], csOuts = [7,7], csChngs = [1,1]}) [✔]
+    CoinSelection (inps=[20,20]outs=[16,18]chngs=[4,2]), UTxO=[]), fee=6 --> Right (FeeOutput {csInps = [20,20], csOuts = [16,18], csChngs = []}) [✔]
+    CoinSelection (inps=[1]outs=[1]chngs=[]), UTxO=[2]), fee=1 --> Right (FeeOutput {csInps = [1,2], csOuts = [1], csChngs = [1]}) [✔]
+    CoinSelection (inps=[]outs=[]chngs=[]), UTxO=[3]), fee=3 --> Right (FeeOutput {csInps = [3], csOuts = [], csChngs = []}) [✔]
+    CoinSelection (inps=[]outs=[]chngs=[]), UTxO=[2,2]), fee=3 --> Right (FeeOutput {csInps = [2,2], csOuts = [], csChngs = [1]}) [✔]
+    CoinSelection (inps=[]outs=[]chngs=[]), UTxO=[2,2]), fee=3 --> Right (FeeOutput {csInps = [2,2], csOuts = [], csChngs = [1]}) [✔]
+  Fee Calculation: Generators
+    Arbitrary CoinSelection [✔]
+      +++ OK, passed 100 tests.
+  Fee Adjustment properties
+    Fee adjustment is deterministic when there's no extra inputs [✔]
+      +++ OK, passed 100 tests.
+    Adjusting for fee (/= 0) reduces the change outputs or increase inputs [✔]
+      +++ OK, passed 100 tests; 12 discarded.
+  distributeFee
+    fee portions are all within unity of ideal unrounded portions [✔]
+      +++ OK, passed 100 tests.
+    fee portions are allocated optimally [✔]
+      +++ OK, passed 100 tests.
+    Σ fst (distributeFee fee outs) == fee [✔]
+      +++ OK, passed 3200 tests.
+      
+      properties (6400 in total):
+      50.00% fee > 0
+      40.67% nOuts=2+
+       4.78% nOuts=2
+       4.55% nOuts=1
+    snd (distributeFee fee outs) == outs [✔]
+      +++ OK, passed 3200 tests.
+      
+      properties (6400 in total):
+      50.00% fee > 0
+      40.67% nOuts=2+
+       4.78% nOuts=2
+       4.55% nOuts=1
+    expectFailure: not (any null (fst <$> distributeFee fee outs)) [✔]
+      +++ OK, failed as expected. Falsified (after 309 tests and 43 shrinks):
+      (Fee (Coin 1),Coin 1 :| [Coin 1])
+  coalesceDust
+    sum coins = sum (coalesceDust threshold coins) [✔]
+      +++ OK, passed 6400 tests:
+      90.78% sum coins ≠ 0
+       9.22% sum coins = 0
+    all (/= Coin 0) (coalesceDust threshold coins) [✔]
+      +++ OK, passed 6400 tests:
+      90.17% ∃ coin ∈ coins . coin = 0
+       9.83% ∀ coin ∈ coins . coin > 0
+       9.22% ∀ coin ∈ coins . coin = 0
+    leaves at most one dust coin [✔]
+      +++ OK, passed 6400 tests:
+      52.11% length result ≥ 2
+      38.67% length result = 1
+      27.20% ∀ coin ∈ coins . coin ≠ threshold
+      13.84% have mixture of coin values in relation to threshold
+       9.33% ∀ coin ∈ coins . coin = threshold
+       9.22% length result = 0
+       8.77% ∀ coin ∈ coins . coin < threshold
+       3.45% ∀ coin ∈ coins . coin > threshold
+    length coins >= (coalesceDust threshold coins) [✔]
+      +++ OK, passed 100 tests.
+  reduceChangeOutputs
+    data coverage is adequate [✔]
+      +++ OK, passed 400 tests:
+      100.0% fee >= 0
+      58.2% several non-empty coins
+      28.7% fee = 0
+      24.2% fee > sum coins
+      22.5% 0 < fee < sum coins
+      22.0% fee = sum coins
+      17.2% two non-empty coins
+      17.0% one non-empty coin
+    the fee balancing algorithm converges for any coin selection [✔]
+      +++ OK, passed 100000 tests.
+  splitCoin
+    data coverage is adequate [✔]
+      +++ OK, passed 100 tests:
+      69% coin to split is non-zero
+      54% list of coins has at least one non-zero coin
+      40% list of coins has at least one zero coin
+      39% list of coins is singleton
+      32% coin to split is smaller than number of coins to increase
+      32% list of coins is empty
+      31% coin to split is zero
+      29% list of coins has multiple entries
+    preserves the total sum [✔]
+      +++ OK, passed 100 tests.
+    results are all within unity of ideal unrounded results [✔]
+      +++ OK, passed 100 tests.
+Cardano.CoinSelection.Types
+  Lemma 2.1 - Properties of UTxO operations
+    2.1.1) ins⊲ u ⊆ u [✔]
+      +++ OK, passed 100 tests (79% dom u ⋂ ins ≠ ∅).
+    2.1.2) ins⋪ u ⊆ u [✔]
+      +++ OK, passed 100 tests (79% dom u ⋂ ins ≠ ∅).
+    2.1.3) u ⊳ outs ⊆ u [✔]
+      +++ OK, passed 100 tests (78% u ⋂ outs ≠ ∅).
+    2.1.4) ins⊲ (u ⋃ v) = (ins⊲ u) ⋃ (ins⊲ v) [✔]
+      +++ OK, passed 100 tests (91% (dom u ⋃ dom v) ⋂ ins ≠ ∅).
+    2.1.5) ins⋪ (u ⋃ v) = (ins⋪ u) ⋃ (ins⋪ v) [✔]
+      +++ OK, passed 100 tests (91% (dom u ⋃ dom v) ⋂ ins ≠ ∅).
+    2.1.6) (dom u ⋂ ins) ⊲ u = ins⊲ u [✔]
+      +++ OK, passed 100 tests (79% dom u ⋂ ins ≠ ∅).
+    2.1.7) (dom u ⋂ ins) ⋪ u = ins⋪ u [✔]
+      +++ OK, passed 100 tests (79% dom u ⋂ ins ≠ ∅).
+    2.1.8) (dom u ⋃ ins) ⋪ (u ⋃ v) = (ins ⋃ dom u) ⋪ v [✔]
+      +++ OK, passed 100 tests (79% dom u ⋂ ins ≠ ∅).
+    2.1.9) ins⋪ u = (dom u \ ins)⊲ u [✔]
+      +++ OK, passed 100 tests (79% dom u ⋂ ins ≠ ∅).
+  Lemma 2.6 - Properties of balance
+    2.6.1) dom u ⋂ dom v ==> balance (u ⋃ v) = balance u + balance v [✔]
+      +++ OK, passed 400 tests (66.0% u ≠ ∅ , v ≠ ∅).
+    2.6.2) balance (ins⋪ u) = balance u - balance (ins⊲ u) [✔]
+      +++ OK, passed 100 tests (79% dom u ⋂ ins ≠ ∅).
+Internal.Coin
+  Coin properties
+    Only construction of non-negative values is possible. [✔]
+      +++ OK, passed 3200 tests:
+      48.41% input is positive
+      48.12% input is negative
+       3.47% input is zero
+    Coverage of generated values is acceptable. [✔]
+      +++ OK, passed 100 tests:
+      36% value is zero
+      32% value is more than one
+      32% value is one
+    Addition [✔]
+      +++ OK, passed 100 tests.
+    Multiplication [✔]
+      +++ OK, passed 6400 tests:
+      48.64% scaling factor is negative
+      48.12% scaling factor is positive
+       3.23% scaling factor is zero
+    Subtraction [✔]
+      +++ OK, passed 100 tests:
+      40% x > y
+      31% values are equal
+      29% x < y
+    Division [✔]
+      +++ OK, passed 6400 tests:
+      48.64% denominator is negative
+      48.12% denominator is positive
+       3.23% denominator is zero
+    Modulus [✔]
+      +++ OK, passed 6400 tests:
+      48.64% denominator is negative
+      48.12% denominator is positive
+       3.23% denominator is zero
+    Distance [✔]
+      +++ OK, passed 100 tests:
+      40% x > y
+      31% values are equal
+      29% x < y
+Test.Vector.Shuffle
+  shuffle
+    every list can be shuffled, ultimately [✔]
+      +++ OK, passed 100 tests (93% shuffled).
+    shuffle is non-deterministic [✔]
+      +++ OK, passed 100 tests (91% not deterministic).
+    sort (shuffle xs) == sort xs [✔]
+      +++ OK, passed 100 tests (95% non-empty).
+  shuffleNonEmpty
+    every non-empty list can be shuffled, ultimately [✔]
+      +++ OK, passed 100 tests (93% shuffled).
+    shuffleNonEmpty is non-deterministic [✔]
+      +++ OK, passed 100 tests (92% not deterministic).
+    sort (shuffleNonEmpty xs) == sort xs [✔]
+      +++ OK, passed 100 tests (100% non-empty).
+  shuffleWith / mkSeed
+    shuffling with the same seed is deterministic [✔]
+      +++ OK, passed 100 tests (93% non singleton).
+    different seed means different shuffles [✔]
+      +++ OK, passed 200 tests; 21 discarded:
+      91.5% different
+      
+      69.5% big list
+      25.0% small list
+       5.5% singleton
+
+Finished in 14.1708 seconds
+121 examples, 0 failures
+Test suite unit: PASS
+Test suite logged to:
+/tmp/workdir-cardano-coin-selection/cardano-coin-selection-1.0.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/cardano-coin-selection-1.0.1/t/unit/test/cardano-coin-selection-1.0.1-unit.log
+1 of 1 test suites (1 of 1 test cases) passed.

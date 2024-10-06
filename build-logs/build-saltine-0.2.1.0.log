@@ -1,0 +1,852 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - saltine-0.2.1.0 (lib) (first run)
+ - saltine-0.2.1.0 (test:tests) (first run)
+Configuring library for saltine-0.2.1.0...
+Preprocessing library for saltine-0.2.1.0...
+Building library for saltine-0.2.1.0...
+[ 1 of 32] Compiling Crypto.Saltine
+[ 2 of 32] Compiling Crypto.Saltine.Class
+[ 3 of 32] Compiling Crypto.Saltine.Internal.ByteSizes
+[ 4 of 32] Compiling Crypto.Saltine.Internal.Util
+
+src/Crypto/Saltine/Internal/Util.hs:12:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+12 | import Data.Monoid
+   | ^^^^^^^^^^^^^^^^^^
+
+src/Crypto/Saltine/Internal/Util.hs:158:78: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[CStringLen]’ not matched:
+            []
+            [(_, _)]
+            ((_, _):(_, _):_:_)
+    |
+158 |     (S.length a == S.length b) && unsafePerformIO (constByteStrings [a, b] $ \
+    |                                                                              ^...
+
+src/Crypto/Saltine/Internal/Util.hs:174:33: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[CStringLen]’ not matched:
+            []
+            ((_, _):_:_)
+    |
+174 |         constByteStrings [bs] $ \
+    |                                 ^...
+[ 5 of 32] Compiling Crypto.Saltine.Internal.ScalarMult
+[ 6 of 32] Compiling Crypto.Saltine.Internal.Password
+
+src/Crypto/Saltine/Internal/Password.hs:103:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+    |
+103 | import Data.Monoid
+    | ^^^^^^^^^^^^^^^^^^
+[ 7 of 32] Compiling Crypto.Saltine.Internal.Hash
+
+src/Crypto/Saltine/Internal/Hash.hs:33:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+33 | import Data.Monoid
+   | ^^^^^^^^^^^^^^^^^^
+
+src/Crypto/Saltine/Internal/Hash.hs:60:29: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[CStringLen]’ not matched:
+            []
+            [(_, _)]
+            ((_, _):(_, _):_:_)
+   |
+60 |   constByteStrings [k, m] $ \[(pk, _), (pm, _)] ->
+   |                             ^^^^^^^^^^^^^^^^^^^^^^...
+[ 8 of 32] Compiling Crypto.Saltine.Core.Utils
+[ 9 of 32] Compiling Crypto.Saltine.Core.ScalarMult
+
+src/Crypto/Saltine/Core/ScalarMult.hs:73:29: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            [(_, _)]
+            ((_, _):(_, _):_:_)
+   |
+73 |   constByteStrings [n, p] $ \[(pn, _), (pp, _)] ->
+   |                             ^^^^^^^^^^^^^^^^^^^^^^...
+
+src/Crypto/Saltine/Core/ScalarMult.hs:78:26: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            ((_, _):_:_)
+   |
+78 |   constByteStrings [n] $ \[(pn, _)] ->
+   |                          ^^^^^^^^^^^^^...
+[10 of 32] Compiling Crypto.Saltine.Core.Password
+
+src/Crypto/Saltine/Core/Password.hs:86:43: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[CStringLen]’ not matched:
+            []
+            ((_, _):_:_)
+   |
+86 |     constByteStrings [TE.encodeUtf8 pw] $ \ [(ppw, ppwlen)] -> do
+   |                                           ^^^^^^^^^^^^^^^^^^^^^^^...
+
+src/Crypto/Saltine/Core/Password.hs:96:74: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[CStringLen]’ not matched:
+            []
+            [(_, _)]
+            ((_, _):(_, _):_:_)
+   |
+96 |   constByteStrings [TE.encodeUtf8 $ T.snoc h '\NUL', TE.encodeUtf8 pw] $ \[(ph, _), (ppw, ppwlen)] -> do
+   |                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+src/Crypto/Saltine/Core/Password.hs:108:62: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[CStringLen]’ not matched:
+            []
+            ((_, _):_:_)
+    |
+108 |         constByteStrings [TE.encodeUtf8 $ T.snoc h '\NUL'] $ \[(ph,_)] -> do
+    |                                                              ^^^^^^^^^^^^^^^...
+
+src/Crypto/Saltine/Core/Password.hs:123:55: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[CStringLen]’ not matched:
+            []
+            [(_, _)]
+            ((_, _):(_, _):_:_)
+    |
+123 |           constByteStrings [TE.encodeUtf8 pw, salt] $ \[(ppw,ppwlen), (psalt,_)] ->
+    |                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+[11 of 32] Compiling Crypto.Saltine.Core.Hash
+
+src/Crypto/Saltine/Core/Hash.hs:75:26: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            ((_, _):_:_)
+   |
+75 |   constByteStrings [m] $ \[(pm, _)] -> c_hash ph pm (fromIntegral $ S.length m)
+   |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Crypto/Saltine/Core/Hash.hs:102:29: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            [(_, _)]
+            ((_, _):(_, _):_:_)
+    |
+102 |   constByteStrings [k, m] $ \[(pk, _), (pm, _)] ->
+    |                             ^^^^^^^^^^^^^^^^^^^^^^...
+[12 of 32] Compiling Crypto.Saltine.Internal.Stream
+
+src/Crypto/Saltine/Internal/Stream.hs:28:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+28 | import Data.Monoid
+   | ^^^^^^^^^^^^^^^^^^
+[13 of 32] Compiling Crypto.Saltine.Core.Stream
+
+src/Crypto/Saltine/Core/Stream.hs:84:37: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            [(_, _)]
+            ((_, _):(_, _):_:_)
+   |
+84 |     constByteStrings [key, nonce] $ \[(pk, _), (pn, _)] ->
+   |                                     ^^^^^^^^^^^^^^^^^^^^^^...
+
+src/Crypto/Saltine/Core/Stream.hs:101:42: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            [(_, _)]
+            [(_, _), (_, _)]
+            ((_, _):(_, _):(_, _):_:_)
+    |
+101 |     constByteStrings [key, nonce, msg] $ \[(pk, _), (pn, _), (pm, _)] ->
+    |                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+[14 of 32] Compiling Crypto.Saltine.Internal.Sign
+
+src/Crypto/Saltine/Internal/Sign.hs:34:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+34 | import Data.Monoid
+   | ^^^^^^^^^^^^^^^^^^
+[15 of 32] Compiling Crypto.Saltine.Core.Sign
+
+src/Crypto/Saltine/Core/Sign.hs:77:33: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            [(_, _)]
+            ((_, _):(_, _):_:_)
+   |
+77 |       constByteStrings [k, m] $ \[(pk, _), (pm, _)] ->
+   |                                 ^^^^^^^^^^^^^^^^^^^^^^...
+
+src/Crypto/Saltine/Core/Sign.hs:94:34: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            [(_, _)]
+            ((_, _):(_, _):_:_)
+   |
+94 |       constByteStrings [k, sm] $ \[(pk, _), (psm, _)] ->
+   |                                  ^^^^^^^^^^^^^^^^^^^^^^^...
+
+src/Crypto/Saltine/Core/Sign.hs:111:39: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            [(_, _)]
+            ((_, _):(_, _):_:_)
+    |
+111 |             constByteStrings [k, m] $ \[(pk, _), (pm, _)] ->
+    |                                       ^^^^^^^^^^^^^^^^^^^^^^...
+
+src/Crypto/Saltine/Core/Sign.hs:126:37: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            [(_, _)]
+            [(_, _), (_, _)]
+            ((_, _):(_, _):(_, _):_:_)
+    |
+126 |     constByteStrings [k, sig, sm] $ \[(pk, _), (psig, _), (psm, _)] -> do
+    |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+[16 of 32] Compiling Crypto.Saltine.Internal.SecretBox
+
+src/Crypto/Saltine/Internal/SecretBox.hs:34:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+34 | import Data.Monoid
+   | ^^^^^^^^^^^^^^^^^^
+[17 of 32] Compiling Crypto.Saltine.Core.SecretBox
+
+src/Crypto/Saltine/Core/SecretBox.hs:81:47: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            [(_, _)]
+            [(_, _), (_, _)]
+            ((_, _):(_, _):(_, _):_:_)
+   |
+81 |     constByteStrings [key, pad' msg, nonce] $ \
+   |                                               ^...
+
+src/Crypto/Saltine/Core/SecretBox.hs:101:44: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            [(_, _)]
+            [(_, _), (_, _)]
+            ((_, _):(_, _):(_, _):_:_)
+    |
+101 |       constByteStrings [key, msg, nonce] $ \
+    |                                            ^...
+
+src/Crypto/Saltine/Core/SecretBox.hs:119:54: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            [(_, _)]
+            [(_, _), (_, _)]
+            ((_, _):(_, _):(_, _):_:_)
+    |
+119 |         constByteStrings [key, pad' cipher, nonce] $ \
+    |                                                      ^...
+
+src/Crypto/Saltine/Core/SecretBox.hs:142:54: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            [(_, _)]
+            [(_, _), (_, _)]
+            [(_, _), (_, _), (_, _)]
+            ...
+    |
+142 |         constByteStrings [key, cipher, tag, nonce] $ \
+    |                                                      ^...
+[18 of 32] Compiling Crypto.Saltine.Internal.OneTimeAuth
+
+src/Crypto/Saltine/Internal/OneTimeAuth.hs:29:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+29 | import Data.Monoid
+   | ^^^^^^^^^^^^^^^^^^
+[19 of 32] Compiling Crypto.Saltine.Core.OneTimeAuth
+
+src/Crypto/Saltine/Core/OneTimeAuth.hs:67:35: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            [(_, _)]
+            ((_, _):(_, _):_:_)
+   |
+67 |     constByteStrings [key, msg] $ \[(pk, _), (pm, _)] ->
+   |                                   ^^^^^^^^^^^^^^^^^^^^^^...
+
+src/Crypto/Saltine/Core/OneTimeAuth.hs:78:55: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            [(_, _)]
+            [(_, _), (_, _)]
+            ((_, _):(_, _):(_, _):_:_)
+   |
+78 |   unsafeDidSucceed $ constByteStrings [key, msg, a] $ \
+   |                                                       ^...
+[20 of 32] Compiling Crypto.Saltine.Internal.Box
+
+src/Crypto/Saltine/Internal/Box.hs:43:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+43 | import Data.Monoid
+   | ^^^^^^^^^^^^^^^^^^
+[21 of 32] Compiling Crypto.Saltine.Internal.Auth
+
+src/Crypto/Saltine/Internal/Auth.hs:29:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+29 | import Data.Monoid
+   | ^^^^^^^^^^^^^^^^^^
+[22 of 32] Compiling Crypto.Saltine.Internal.AEAD.XChaCha20Poly1305
+
+src/Crypto/Saltine/Internal/AEAD/XChaCha20Poly1305.hs:31:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+31 | import Data.Monoid
+   | ^^^^^^^^^^^^^^^^^^
+[23 of 32] Compiling Crypto.Saltine.Internal.AEAD.ChaCha20Poly1305IETF
+
+src/Crypto/Saltine/Internal/AEAD/ChaCha20Poly1305IETF.hs:31:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+31 | import Data.Monoid
+   | ^^^^^^^^^^^^^^^^^^
+[24 of 32] Compiling Crypto.Saltine.Internal.AEAD.ChaCha20Poly1305
+
+src/Crypto/Saltine/Internal/AEAD/ChaCha20Poly1305.hs:31:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+31 | import Data.Monoid
+   | ^^^^^^^^^^^^^^^^^^
+[25 of 32] Compiling Crypto.Saltine.Internal.AEAD.AES256GCM
+
+src/Crypto/Saltine/Internal/AEAD/AES256GCM.hs:32:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+32 | import Data.Monoid
+   | ^^^^^^^^^^^^^^^^^^
+[26 of 32] Compiling Crypto.Saltine.Core.Box
+
+src/Crypto/Saltine/Core/Box.hs:127:31: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            [(_, _)]
+            ((_, _):(_, _):_:_)
+    |
+127 |   constByteStrings [pk, sk] $ \[(ppk, _), (psk, _)] ->
+    |                               ^^^^^^^^^^^^^^^^^^^^^^^^...
+
+src/Crypto/Saltine/Core/Box.hs:143:45: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            [(_, _)]
+            [(_, _), (_, _)]
+            [(_, _), (_, _), (_, _)]
+            ...
+    |
+143 |     constByteStrings [pk, sk, msg, nonce] $ \
+    |                                             ^...
+
+src/Crypto/Saltine/Core/Box.hs:162:52: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            [(_, _)]
+            [(_, _), (_, _)]
+            [(_, _), (_, _), (_, _)]
+            ...
+    |
+162 |         constByteStrings [pk, sk, cipher, nonce] $ \
+    |                                                    ^...
+
+src/Crypto/Saltine/Core/Box.hs:177:41: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            [(_, _)]
+            [(_, _), (_, _)]
+            ((_, _):(_, _):(_, _):_:_)
+    |
+177 |     constByteStrings [ck, msg, nonce] $ \
+    |                                         ^...
+
+src/Crypto/Saltine/Core/Box.hs:195:48: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            [(_, _)]
+            [(_, _), (_, _)]
+            ((_, _):(_, _):(_, _):_:_)
+    |
+195 |         constByteStrings [ck, cipher, nonce] $ \
+    |                                                ^...
+
+src/Crypto/Saltine/Core/Box.hs:207:34: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            [(_, _)]
+            ((_, _):(_, _):_:_)
+    |
+207 |     constByteStrings [pk, msg] $ \
+    |                                  ^...
+
+src/Crypto/Saltine/Core/Box.hs:228:45: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            [(_, _)]
+            [(_, _), (_, _)]
+            ((_, _):(_, _):(_, _):_:_)
+    |
+228 |         constByteStrings [pk, sk, cipher] $ \
+    |                                             ^...
+[27 of 32] Compiling Crypto.Saltine.Core.Auth
+
+src/Crypto/Saltine/Core/Auth.hs:71:35: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            [(_, _)]
+            ((_, _):(_, _):_:_)
+   |
+71 |     constByteStrings [key, msg] $ \[(pk, _), (pm, mlen)] ->
+   |                                   ^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+src/Crypto/Saltine/Core/Auth.hs:83:55: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            [(_, _)]
+            [(_, _), (_, _)]
+            ((_, _):(_, _):(_, _):_:_)
+   |
+83 |   unsafeDidSucceed $ constByteStrings [key, msg, a] $ \[(pk, _), (pm, mlen), (pa, _)] ->
+   |                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+[28 of 32] Compiling Crypto.Saltine.Core.AEAD.XChaCha20Poly1305
+
+src/Crypto/Saltine/Core/AEAD/XChaCha20Poly1305.hs:61:47: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            [(_, _)]
+            [(_, _), (_, _)]
+            [(_, _), (_, _), (_, _)]
+            ...
+   |
+61 |     constByteStrings [key, msg, aad, nonce] $ \
+   |                                               ^...
+
+src/Crypto/Saltine/Core/AEAD/XChaCha20Poly1305.hs:84:54: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            [(_, _)]
+            [(_, _), (_, _)]
+            [(_, _), (_, _), (_, _)]
+            ...
+   |
+84 |         constByteStrings [key, cipher, aad, nonce] $ \
+   |                                                      ^...
+
+src/Crypto/Saltine/Core/AEAD/XChaCha20Poly1305.hs:103:47: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            [(_, _)]
+            [(_, _), (_, _)]
+            [(_, _), (_, _), (_, _)]
+            ...
+    |
+103 |     constByteStrings [key, msg, aad, nonce] $ \
+    |                                               ^...
+
+src/Crypto/Saltine/Core/AEAD/XChaCha20Poly1305.hs:128:59: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            [(_, _)]
+            [(_, _), (_, _)]
+            [(_, _), (_, _), (_, _)]
+            ...
+    |
+128 |         constByteStrings [key, tag, cipher, aad, nonce] $ \
+    |                                                           ^...
+[29 of 32] Compiling Crypto.Saltine.Core.AEAD
+[30 of 32] Compiling Crypto.Saltine.Core.AEAD.ChaCha20Poly1305IETF
+
+src/Crypto/Saltine/Core/AEAD/ChaCha20Poly1305IETF.hs:61:47: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            [(_, _)]
+            [(_, _), (_, _)]
+            [(_, _), (_, _), (_, _)]
+            ...
+   |
+61 |     constByteStrings [key, msg, aad, nonce] $ \
+   |                                               ^...
+
+src/Crypto/Saltine/Core/AEAD/ChaCha20Poly1305IETF.hs:84:54: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            [(_, _)]
+            [(_, _), (_, _)]
+            [(_, _), (_, _), (_, _)]
+            ...
+   |
+84 |         constByteStrings [key, cipher, aad, nonce] $ \
+   |                                                      ^...
+
+src/Crypto/Saltine/Core/AEAD/ChaCha20Poly1305IETF.hs:103:47: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            [(_, _)]
+            [(_, _), (_, _)]
+            [(_, _), (_, _), (_, _)]
+            ...
+    |
+103 |     constByteStrings [key, msg, aad, nonce] $ \
+    |                                               ^...
+
+src/Crypto/Saltine/Core/AEAD/ChaCha20Poly1305IETF.hs:128:59: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            [(_, _)]
+            [(_, _), (_, _)]
+            [(_, _), (_, _), (_, _)]
+            ...
+    |
+128 |         constByteStrings [key, tag, cipher, aad, nonce] $ \
+    |                                                           ^...
+[31 of 32] Compiling Crypto.Saltine.Core.AEAD.ChaCha20Poly1305
+
+src/Crypto/Saltine/Core/AEAD/ChaCha20Poly1305.hs:61:47: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            [(_, _)]
+            [(_, _), (_, _)]
+            [(_, _), (_, _), (_, _)]
+            ...
+   |
+61 |     constByteStrings [key, msg, aad, nonce] $ \
+   |                                               ^...
+
+src/Crypto/Saltine/Core/AEAD/ChaCha20Poly1305.hs:84:54: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            [(_, _)]
+            [(_, _), (_, _)]
+            [(_, _), (_, _), (_, _)]
+            ...
+   |
+84 |         constByteStrings [key, cipher, aad, nonce] $ \
+   |                                                      ^...
+
+src/Crypto/Saltine/Core/AEAD/ChaCha20Poly1305.hs:103:47: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            [(_, _)]
+            [(_, _), (_, _)]
+            [(_, _), (_, _), (_, _)]
+            ...
+    |
+103 |     constByteStrings [key, msg, aad, nonce] $ \
+    |                                               ^...
+
+src/Crypto/Saltine/Core/AEAD/ChaCha20Poly1305.hs:128:59: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            [(_, _)]
+            [(_, _), (_, _)]
+            [(_, _), (_, _), (_, _)]
+            ...
+    |
+128 |         constByteStrings [key, tag, cipher, aad, nonce] $ \
+    |                                                           ^...
+[32 of 32] Compiling Crypto.Saltine.Core.AEAD.AES256GCM
+
+src/Crypto/Saltine/Core/AEAD/AES256GCM.hs:76:47: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            [(_, _)]
+            [(_, _), (_, _)]
+            [(_, _), (_, _), (_, _)]
+            ...
+   |
+76 |     constByteStrings [key, msg, aad, nonce] $ \
+   |                                               ^...
+
+src/Crypto/Saltine/Core/AEAD/AES256GCM.hs:99:54: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            [(_, _)]
+            [(_, _), (_, _)]
+            [(_, _), (_, _), (_, _)]
+            ...
+   |
+99 |         constByteStrings [key, cipher, aad, nonce] $ \
+   |                                                      ^...
+
+src/Crypto/Saltine/Core/AEAD/AES256GCM.hs:118:47: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            [(_, _)]
+            [(_, _), (_, _)]
+            [(_, _), (_, _), (_, _)]
+            ...
+    |
+118 |     constByteStrings [key, msg, aad, nonce] $ \
+    |                                               ^...
+
+src/Crypto/Saltine/Core/AEAD/AES256GCM.hs:143:59: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[GHC.Foreign.CStringLen]’ not matched:
+            []
+            [(_, _)]
+            [(_, _), (_, _)]
+            [(_, _), (_, _), (_, _)]
+            ...
+    |
+143 |         constByteStrings [key, tag, cipher, aad, nonce] $ \
+    |                                                           ^...
+Configuring test suite 'tests' for saltine-0.2.1.0...
+Preprocessing test suite 'tests' for saltine-0.2.1.0...
+Building test suite 'tests' for saltine-0.2.1.0...
+[ 1 of 17] Compiling PasswordProperties
+
+tests/PasswordProperties.hs:11:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+11 | import Data.Monoid
+   | ^^^^^^^^^^^^^^^^^^
+
+tests/PasswordProperties.hs:20:1: warning: [GHC-90177] [-Worphans]
+    Orphan instance: instance Arbitrary Text
+    Suggested fix:
+      Move the instance declaration to the module of the class or of the type, or
+      wrap the type with a newtype and declare the instance on the new type.
+   |
+20 | instance Arbitrary Text where
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+tests/PasswordProperties.hs:23:1: warning: [GHC-90177] [-Worphans]
+    Orphan instance: instance Arbitrary Algorithm
+    Suggested fix:
+      Move the instance declaration to the module of the class or of the type, or
+      wrap the type with a newtype and declare the instance on the new type.
+   |
+23 | instance Arbitrary Algorithm where
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+tests/PasswordProperties.hs:27:1: warning: [GHC-90177] [-Worphans]
+    Orphan instance: instance Arbitrary Memlimit
+    Suggested fix:
+      Move the instance declaration to the module of the class or of the type, or
+      wrap the type with a newtype and declare the instance on the new type.
+   |
+27 | instance Arbitrary Memlimit where
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+tests/PasswordProperties.hs:32:1: warning: [GHC-90177] [-Worphans]
+    Orphan instance: instance Arbitrary Opslimit
+    Suggested fix:
+      Move the instance declaration to the module of the class or of the type, or
+      wrap the type with a newtype and declare the instance on the new type.
+   |
+32 | instance Arbitrary Opslimit where
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+tests/PasswordProperties.hs:37:1: warning: [GHC-90177] [-Worphans]
+    Orphan instance: instance Arbitrary Policy
+    Suggested fix:
+      Move the instance declaration to the module of the class or of the type, or
+      wrap the type with a newtype and declare the instance on the new type.
+   |
+37 | instance Arbitrary Policy where
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+[ 2 of 17] Compiling Util
+
+tests/Util.hs:10:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+10 | import           Data.Monoid
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Util.hs:11:1: warning: [-Wunused-imports]
+    The import of ‘Data.Semigroup’ is redundant
+      except perhaps to import instances from ‘Data.Semigroup’
+    To import instances alone, use: import Data.Semigroup()
+   |
+11 | import           Data.Semigroup          (Semigroup)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 3 of 17] Compiling StreamProperties
+[ 4 of 17] Compiling SignProperties
+
+tests/SignProperties.hs:9:1: warning: [-Wunused-imports]
+    The import of ‘Crypto.Saltine.Internal.Sign’ is redundant
+      except perhaps to import instances from ‘Crypto.Saltine.Internal.Sign’
+    To import instances alone, use: import Crypto.Saltine.Internal.Sign()
+  |
+9 | import           Crypto.Saltine.Internal.Sign
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 5 of 17] Compiling SecretBoxProperties
+[ 6 of 17] Compiling SealedBoxProperties
+
+tests/SealedBoxProperties.hs:9:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+  |
+9 | import Data.Monoid
+  | ^^^^^^^^^^^^^^^^^^
+[ 7 of 17] Compiling ScalarMultProperties
+
+tests/ScalarMultProperties.hs:53:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Scalar’ not matched: Nothing
+   |
+53 |         let Just a = decode a'
+   |             ^^^^^^^^^^^^^^^^^^
+
+tests/ScalarMultProperties.hs:58:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Scalar’ not matched: Nothing
+   |
+58 |         let Just a = decode a'
+   |             ^^^^^^^^^^^^^^^^^^
+
+tests/ScalarMultProperties.hs:59:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Scalar’ not matched: Nothing
+   |
+59 |             Just b = decode b'
+   |             ^^^^^^^^^^^^^^^^^^
+[ 8 of 17] Compiling OneTimeAuthProperties
+[ 9 of 17] Compiling HashProperties
+[10 of 17] Compiling BoxProperties
+
+tests/BoxProperties.hs:9:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+  |
+9 | import Data.Monoid
+  | ^^^^^^^^^^^^^^^^^^
+[11 of 17] Compiling AuthProperties
+[12 of 17] Compiling AEAD.XChaCha20Poly1305Properties
+[13 of 17] Compiling AEAD.ChaCha20Poly1305Properties
+[14 of 17] Compiling AEAD.ChaCha20Poly1305IETFProperties
+[15 of 17] Compiling AEAD.AES256GCMProperties
+[16 of 17] Compiling UtilProperties
+[17 of 17] Compiling Main
+[18 of 18] Linking /tmp/workdir-saltine/saltine-0.2.1.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/saltine-0.2.1.0/t/tests/build/tests/tests

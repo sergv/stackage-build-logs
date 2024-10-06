@@ -1,0 +1,102 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - servant-0.20.2 (test:spec) (ephemeral targets)
+Preprocessing test suite 'spec' for servant-0.20.2...
+Building test suite 'spec' for servant-0.20.2...
+Running 1 test suites...
+Test suite spec: RUNNING...
+
+Servant.API.ContentTypes
+  Servant.API.ContentTypes
+    handleAcceptH
+      matches any charset if none were provided [✔]
+      does not match non utf-8 charsets [✔]
+    The JSON Content-Type type
+      handles whitespace at end of input [✔]
+      handles whitespace at beginning of input [✔]
+      does not like junk at end of input [✔]
+      has mimeUnrender reverse mimeRender for valid top-level json ([Int])  [✔]
+        +++ OK, passed 100 tests.
+      has mimeUnrender reverse mimeRender for valid top-level json  [✔]
+        +++ OK, passed 100 tests.
+    The NoContent Content-Type type
+      does not render any content [✔]
+      evaluates the NoContent value [✔]
+    The PlainText Content-Type type
+      has mimeUnrender reverse mimeRender (lazy Text) [✔]
+        +++ OK, passed 100 tests.
+      has mimeUnrender reverse mimeRender (strict Text) [✔]
+        +++ OK, passed 100 tests.
+    The OctetStream Content-Type type
+      is id (Lazy ByteString) [✔]
+        +++ OK, passed 100 tests.
+      is fromStrict/toStrict (Strict ByteString) [✔]
+        +++ OK, passed 100 tests.
+    handleAcceptH
+      returns Nothing if the 'Accept' header doesn't match [✔]
+      returns Just if the 'Accept' header matches [✔]
+      returns Just if the 'Accept' header matches, with multiple mime types [✔]
+      returns the Content-Type as the first element of the tuple [✔]
+      returns the appropriately serialized representation [✔]
+        +++ OK, passed 100 tests.
+      respects the Accept spec ordering [✔]
+        +++ OK, passed 100 tests.
+    handleCTypeH
+      returns Nothing if the 'Content-Type' header doesn't match [✔]
+      the 'Content-Type' header matches
+        returns Just if the parameter matches [✔]
+        returns Just if there is no parameter [✔]
+        returns Just Left if the decoding fails [✔]
+        returns Just (Right val) if the decoding succeeds [✔]
+        returns Just (Right val) if the decoding succeeds for either of multiple mime-types [✔]
+        passes content-type to mimeUnrenderWithType [✔]
+    eitherDecode is lenient
+      parses top-level strings [✔]
+        +++ OK, passed 100 tests.
+Servant.API.ResponseHeaders
+  Servant.API.ResponseHeaders
+    addHeader
+      adds a header to a value [✔]
+      maintains the value [✔]
+      adds headers to the front of the list [✔]
+      adds a header with description to a value [✔]
+    noHeader
+      does not add a header [✔]
+    HasStatus Headers
+      gets the status from the underlying value [✔]
+Servant.API.Stream
+  Servant.API.Stream
+    NoFraming
+      framingUnrender [✔]
+        +++ OK, passed 100 tests.
+      roundtrip [✔]
+        +++ OK, passed 100 tests.
+    NewlineFraming
+      framingRender examples [✔]
+      framingUnrender examples [✔]
+      roundtrip [✔]
+        +++ OK, passed 100 tests.
+    NetstringFraming
+      framingRender examples [✔]
+      framingUnrender examples [✔]
+      roundtrip [✔]
+        +++ OK, passed 100 tests.
+Servant.Links
+  Servant.Links
+    generates correct links for capture query params [✔]
+    generates correct links for CaptureAll [✔]
+    generated correct links for UVerbs [✔]
+    generates correct links for query flags [✔]
+    generates correct link for fragment [✔]
+    generates correct links for all of the verbs [✔]
+    can generate all links for an API that has only linkable endpoints [✔]
+    can generate all links for ComprehensiveAPIWithoutRaw [✔]
+    Generate links from record fields accessors [✔]
+    Check links from record fields [✔]
+
+Finished in 0.0134 seconds
+51 examples, 0 failures
+Test suite spec: PASS
+Test suite logged to:
+/tmp/workdir-servant/servant-0.20.2/dist-newstyle/build/x86_64-linux/ghc-9.6.6/servant-0.20.2/t/spec/test/servant-0.20.2-spec.log
+1 of 1 test suites (1 of 1 test cases) passed.

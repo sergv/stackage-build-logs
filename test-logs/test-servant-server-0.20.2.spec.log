@@ -1,0 +1,288 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - servant-server-0.20.2 (test:spec) (ephemeral targets)
+Preprocessing test suite 'spec' for servant-server-0.20.2...
+Building test suite 'spec' for servant-server-0.20.2...
+Running 1 test suites...
+Test suite spec: RUNNING...
+
+Servant.ArbitraryMonadServer
+  Arbitrary monad server
+    Enter
+      allows running arbitrary monads [✔]
+      allows combnation of enters [✔]
+Servant.Server
+  Servant.API.Verb
+    GET 200
+      returns the person [✔]
+      returns no content on NoContent [✔]
+      throws 405 on wrong method  [✔]
+      returns headers [✔]
+      handles trailing '/' gracefully [✔]
+      returns 406 if the Accept header is not supported [✔]
+      responds if the Accept header is supported [✔]
+      allows modular specification of supported content types [✔]
+      sets the Content-Type header [✔]
+      works for Stream as for Result [✔]
+    POST 210
+      returns the person [✔]
+      returns no content on NoContent [✔]
+      throws 405 on wrong method  [✔]
+      returns headers [✔]
+      handles trailing '/' gracefully [✔]
+      returns 406 if the Accept header is not supported [✔]
+      responds if the Accept header is supported [✔]
+      allows modular specification of supported content types [✔]
+      sets the Content-Type header [✔]
+      works for Stream as for Result [✔]
+    PUT 203
+      returns the person [✔]
+      returns no content on NoContent [✔]
+      throws 405 on wrong method  [✔]
+      returns headers [✔]
+      handles trailing '/' gracefully [✔]
+      returns 406 if the Accept header is not supported [✔]
+      responds if the Accept header is supported [✔]
+      allows modular specification of supported content types [✔]
+      sets the Content-Type header [✔]
+      works for Stream as for Result [✔]
+    DELETE 280
+      returns the person [✔]
+      returns no content on NoContent [✔]
+      throws 405 on wrong method  [✔]
+      returns headers [✔]
+      handles trailing '/' gracefully [✔]
+      returns 406 if the Accept header is not supported [✔]
+      responds if the Accept header is supported [✔]
+      allows modular specification of supported content types [✔]
+      sets the Content-Type header [✔]
+      works for Stream as for Result [✔]
+    PATCH 214
+      returns no content on NoContent [✔]
+      throws 405 on wrong method  [✔]
+      returns headers [✔]
+      handles trailing '/' gracefully [✔]
+      returns 406 if the Accept header is not supported [✔]
+      responds if the Accept header is supported [✔]
+      sets the Content-Type header [✔]
+      works for Stream as for Result [✔]
+    GET 200 with HEAD
+      returns no content on NoContent [✔]
+      HEAD returns no content body [✔]
+      throws 405 on wrong method  [✔]
+      returns headers [✔]
+      handles trailing '/' gracefully [✔]
+      returns 406 if the Accept header is not supported [✔]
+      responds if the Accept header is supported [✔]
+      sets the Content-Type header [✔]
+      works for Stream as for Result [✔]
+  Servant.API.UVerb 
+    A route returning either 301/String or 200/Person
+      when requesting the person
+        returns status 200 [✔]
+        returns a person [✔]
+      requesting the redirect
+        returns a message and status 301 [✔]
+    a route with a single response type
+      should return the defined status code [✔]
+      should return the expected response [✔]
+  Servant.API.Capture
+    can capture parts of the 'pathInfo' [✔]
+    returns 400 if the decoding fails [✔]
+    returns an animal if eyes or ears are 2 [✔]
+    returns a weird animal on Lenient Capture [✔]
+    returns 400 if parsing integer fails on Strict Capture [✔]
+    strips the captured path snippet from pathInfo [✔]
+  Servant.API.CaptureAll
+    can capture a single element of the 'pathInfo' [✔]
+    can capture multiple elements of the 'pathInfo' [✔]
+    can capture arbitrarily many elements of the 'pathInfo' [✔]
+    can capture when there are no elements in 'pathInfo' [✔]
+    returns 400 if the decoding fails [✔]
+    returns 400 if the decoding fails, regardless of which element [✔]
+    returns 400 if the decoding fails, even when it's multiple elements [✔]
+    can capture single String [✔]
+    can capture when there are no elements in 'pathinfo' [✔]
+    can capture empty string from captureall [✔]
+    can capture empty rooted capture all [✔]
+    can capture empty string from rooted capture all [✔]
+    consumes everything from pathInfo [✔]
+  Servant.API.QueryParam
+    allows retrieving simple GET parameters [✔]
+    allows retrieving lists in GET parameters [✔]
+    parses a query parameter [✔]
+    generates an error on query parameter parse failure [✔]
+    parses multiple query parameters [✔]
+    generates an error on parse failures of multiple parameters [✔]
+    allows retrieving value-less GET parameters [✔]
+    allows retrieving a full query string [✔]
+    allows retrieving a query string deep object [✔]
+    Uses queryString instead of rawQueryString
+      allows rewriting for simple GET/query parameters [✔]
+      allows rewriting for lists in GET parameters [✔]
+      allows rewriting when parsing multiple query parameters [✔]
+      allows retrieving value-less GET parameters [✔]
+  Servant.API.Fragment
+    ignores fragment even if it is present in query [✔]
+  Servant.API.ReqBody
+    passes the argument to the handler [✔]
+    rejects invalid request bodies with status 400 [✔]
+    responds with 415 if the request body media type is unsupported [✔]
+  Servant.API.Header
+    passes the header to the handler (Int) [✔]
+    passes the header to the handler (String) [✔]
+    checks for parse errors [✔]
+  Servant.API.Raw
+    runs applications [✔]
+    gets the pathInfo modified [✔]
+  Servant.API.RawM
+    gives access to monadic context [✔]
+    lets users throw servant errors [✔]
+    gets the pathInfo modified [✔]
+  Servant.API.Alternative
+    unions endpoints [✔]
+    checks all endpoints before returning 415 [✔]
+    returns 404 if the path does not exist [✔]
+  ResponseHeaders
+    includes the headers in the response [✔]
+    responds with not found for non-existent endpoints [✔]
+    returns 406 if the Accept header is not supported [✔]
+  UVerbResponseHeaders
+    includes the headers in the response [✔]
+  Misc. combinators for request inspection
+    Successfully gets the HTTP version specified in the request [✔]
+    Checks that hspec-wai uses HTTP, not HTTPS [✔]
+    Checks that hspec-wai issues request from 0.0.0.0 [✔]
+    Doesn't serve anything from the empty API [✔]
+  Servant.API.BasicAuth
+    Basic Authentication
+      returns 401 when no credentials given [✔]
+      returns 403 when invalid credentials given [✔]
+      returns 200 with the right password [✔]
+      plays nice with subsequent Raw endpoints [✔]
+  Servant.API.Auth
+    Custom Auth Protection
+      returns 401 when missing headers [✔]
+      returns 403 on wrong passwords [✔]
+      returns 200 with the right header [✔]
+      plays nice with subsequent Raw endpoints [✔]
+Servant.Server.Error
+  HTTP Errors
+    HTTP error order
+      has 404 as its highest priority error [✔]
+      has 405 as its second highest priority error [✔]
+      has 401 as its third highest priority error (auth) [✔]
+      has 406 as its fourth highest priority error [✔]
+      has 415 as its fifth highest priority error [✔]
+      has 400 as its sixth highest priority error [✔]
+      has handler-level errors as last priority [✔]
+    PrioErrors
+      returns 404 on GET / (text) [✔]
+      returns 404 on GET /bar (text) [✔]
+      returns 415 on GET /foo (text) [✔]
+      returns 404 on PUT / (text) [✔]
+      returns 404 on PUT /bar (text) [✔]
+      returns 405 on PUT /foo (text) [✔]
+      returns 404 on GET / (invalid json) [✔]
+      returns 404 on GET /bar (invalid json) [✔]
+      returns 400 on GET /foo (invalid json) [✔]
+      returns 404 on PUT / (invalid json) [✔]
+      returns 404 on PUT /bar (invalid json) [✔]
+      returns 405 on PUT /foo (invalid json) [✔]
+      returns 404 on GET / (valid json) [✔]
+      returns 404 on GET /bar (valid json) [✔]
+      returns 200 on GET /foo (valid json) [✔]
+      returns 404 on PUT / (valid json) [✔]
+      returns 404 on PUT /bar (valid json) [✔]
+      returns 405 on PUT /foo (valid json) [✔]
+    Handler search
+      should continue when URLs don't match [✔]
+      should continue when methods don't match [✔]
+    Multiple handlers return errors
+      should respond with 404 if no path matches [✔]
+      should respond with 405 if a path but not method matches [✔]
+      should respond with the corresponding error if path and method match [✔]
+      should respond with 415 only if none of the subservers supports the request's content type [✔]
+    Custom errors from combinators
+      formats query parse error [✔]
+      formats query parse error with missing param [✔]
+      formats capture parse error [✔]
+      formats body parse error [✔]
+Servant.Server.Internal.Context
+  getContextEntry
+    gets the context if a matching one exists [✔]
+    gets the first matching context [✔]
+    does not typecheck if type does not exist [✔]
+    Show instance
+      has a Show instance [✔]
+      bracketing
+        works [✔]
+        works with operators [✔]
+  descendIntoNamedContext
+    allows extracting subcontexts [✔]
+    allows extracting entries from subcontexts [✔]
+    does not typecheck if subContext has the wrong type [✔]
+    does not typecheck if subContext with that name doesn't exist [✔]
+Servant.Server.Internal.RoutingApplication
+  Delayed
+garbage created
+garbage collected
+    actually runs clean up actions [✔]
+garbage created
+garbage collected
+    even with exceptions in serverD [✔]
+garbage created
+garbage collected
+    even with routing failure in bodyD [✔]
+garbage created
+garbage collected
+    even with exceptions in bodyD [✔]
+  ResApi
+    writes and cleanups resources [✔]
+Servant.Server.Router
+  Servant.Server.Internal.Router
+    tweakResponse
+      calls f on route result [✔]
+    runRouter
+      capture failure returns a 400 response [✔]
+    choice
+      distributes endpoints through static paths [✔]
+      distributes nested routes through static paths [✔]
+      distributes nested routes through dynamic paths [✔]
+      properly reorders permuted static paths [✔]
+      properly reorders permuted static paths in the presence of QueryParams [✔]
+      properly reorders permuted static paths in the presence of Raw in end [✔]
+      properly reorders permuted static paths in the presence of Raw in beginning [✔]
+      properly reorders permuted static paths in the presence of Raw in middle [✔]
+      properly reorders permuted static paths in the presence of a root endpoint in end [✔]
+      properly reorders permuted static paths in the presence of a root endpoint in beginning [✔]
+      properly reorders permuted static paths in the presence of a root endpoint in middle [✔]
+      properly handles mixing static paths at different levels [✔]
+    serverLayout
+      correctly represents the example API [✔]
+      aggregates capture hints when different [✔]
+      nubs capture hints when equal [✔]
+      properly displays CaptureAll hints [✔]
+Servant.Server.StaticFiles
+  serveDirectory
+    successfully serves files [✔]
+    serves the contents of index.html when requesting the root of a directory [✔]
+Servant.Server.Streaming
+  client to server can stream lazy ByteStrings [✔]
+Servant.Server.UsingContext
+  accessing context entries from custom combinators
+    allows retrieving a ContextEntry [✔]
+    allows retrieving the same ContextEntry twice [✔]
+  inserting context entries with custom combinators
+    allows to inject context entries [✔]
+    allows to inject tagged context entries [✔]
+  allows retrieving different ContextEntries for the same combinator [✔]
+  WithNamedContext
+    allows descending into a subcontext for a given api [✔]
+
+Finished in 0.0075 seconds
+204 examples, 0 failures
+Test suite spec: PASS
+Test suite logged to:
+/tmp/workdir-servant-server/servant-server-0.20.2/dist-newstyle/build/x86_64-linux/ghc-9.6.6/servant-server-0.20.2/t/spec/test/servant-server-0.20.2-spec.log
+1 of 1 test suites (1 of 1 test cases) passed.

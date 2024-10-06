@@ -1,0 +1,42 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - annotated-exception-0.2.0.5 (lib) (first run)
+ - annotated-exception-0.2.0.5 (test:annotated-exception-test) (first run)
+Configuring library for annotated-exception-0.2.0.5...
+Preprocessing library for annotated-exception-0.2.0.5...
+Building library for annotated-exception-0.2.0.5...
+[1 of 4] Compiling Data.Annotation
+[2 of 4] Compiling Control.Exception.Annotated
+
+src/Control/Exception/Annotated.hs:270:20: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘a’ shadows the existing binding
+      bound at src/Control/Exception/Annotated.hs:261:29
+    |
+270 |     go mcallstack (a : as) bs =
+    |                    ^
+
+src/Control/Exception/Annotated.hs:383:15: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘anns’ shadows the existing binding
+      bound at src/Control/Exception/Annotated.hs:377:30
+    |
+383 |     go (ann : anns) =
+    |               ^^^^
+[3 of 4] Compiling Control.Exception.Annotated.UnliftIO
+
+src/Control/Exception/Annotated/UnliftIO.hs:113:38: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘checkpointCallStackWith’
+    (imported from Control.Exception.Annotated):
+    Deprecated: "As of 0.2.0.0 this is exactly equivalent to `checkpointMany`."
+    |
+113 |         liftIO $ withFrozenCallStack Catch.checkpointCallStackWith anns (runInIO action)
+    |                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[4 of 4] Compiling Paths_annotated_exception
+Configuring test suite 'annotated-exception-test' for annotated-exception-0.2.0.5...
+Preprocessing test suite 'annotated-exception-test' for annotated-exception-0.2.0.5...
+Building test suite 'annotated-exception-test' for annotated-exception-0.2.0.5...
+[1 of 5] Compiling Data.AnnotationSpec
+[2 of 5] Compiling Control.Exception.AnnotatedSpec
+[3 of 5] Compiling Control.Exception.Annotated.UnliftIOSpec
+[4 of 5] Compiling Main
+[5 of 5] Compiling Paths_annotated_exception
+[6 of 6] Linking /tmp/workdir-annotated-exception/annotated-exception-0.2.0.5/dist-newstyle/build/x86_64-linux/ghc-9.6.6/annotated-exception-0.2.0.5/t/annotated-exception-test/build/annotated-exception-test/annotated-exception-test

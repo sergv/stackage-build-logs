@@ -1,0 +1,168 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - lsp-types-2.1.1.0 (test:lsp-types-test) (ephemeral targets)
+Preprocessing test suite 'lsp-types-test' for lsp-types-2.1.1.0...
+Building test suite 'lsp-types-test' for lsp-types-2.1.1.0...
+
+test/JsonSpec.hs:5:14: warning: [-Wdeprecated-flags]
+    -XTypeInType is deprecated: use -XDataKinds and -XPolyKinds instead
+  |
+5 | {-# LANGUAGE TypeInType #-}
+  |              ^^^^^^^^^^
+
+test/JsonSpec.hs:5:14: warning: [-Wdeprecated-flags]
+    -XTypeInType is deprecated: use -XDataKinds and -XPolyKinds instead
+  |
+5 | {-# LANGUAGE TypeInType #-}
+  |              ^^^^^^^^^^
+Running 1 test suites...
+Test suite lsp-types-test: RUNNING...
+
+Capabilities
+  capabilities
+    gives 3.10 capabilities [✔]
+    gives pre 3.10 capabilities [✔]
+Json
+  MarkedString
+    roundtrip [✔]
+      +++ OK, passed 100 tests.
+  MarkupContent
+    roundtrip [✔]
+      +++ OK, passed 100 tests.
+  TextDocumentContentChangeEvent
+    roundtrip [✔]
+      +++ OK, passed 100 tests.
+  WatchedFiles
+    roundtrip [✔]
+      +++ OK, passed 100 tests.
+  Registration
+    roundtrip [✔]
+      +++ OK, passed 100 tests.
+  CompletionList
+    handles optional field set to null in record [✔]
+  CompletionItem
+    example [✔]
+  RequestMessage
+    handles missing params field [✔]
+    handles params field set to null [✔]
+  ResponseMessage
+    Hover roundtrip [✔]
+      +++ OK, passed 100 tests.
+    decodes error data = null [✔]
+    throws if neither result nor error is present [✔]
+    throws if both result and error are present [✔]
+    decodes result = null [✔]
+  NotificationMessage
+    handles missing params field [✔]
+Location
+  isSubrangeOf
+    is true if the first range is totally inside the second range [✔]
+    is true if two ranges equal [✔]
+    is false if the first range is outside of the second [✔]
+  positionInRange
+    is false if position is after the end of a single line range [✔]
+    is false if position is before the begining of a single line range [✔]
+    is true if position is in a single line range [✔]
+    is false if position is right at the end of the range [✔]
+    is true if position is in the middle of a multiline range [✔]
+    is false if position is before the beginning of a multiline range [✔]
+    is false if position is right at the end of a multiline range [✔]
+Method
+  Method enum aeson instance consistency
+    Client Methods
+      maintains roundtrip consistency [✔]
+    Server Methods
+      maintains roundtrip consistency [✔]
+SemanticTokens
+  relativize/absolutizeTokens
+    round-trips [✔]
+    handles big tokens [✔]
+  encodeTokens
+    when running the LSP examples
+      encodes example 1 correctly [✔]
+      encodes example 2 correctly [✔]
+    handles big tokens [✔]
+  computeEdits
+    handles an edit in the middle [✔]
+    handles an edit at the end [✔]
+    handles an edit at the beginning [✔]
+    handles an ambiguous edit [✔]
+    handles a long edit [✔]
+    handles multiple edits [✔]
+    handles big tokens [✔]
+ServerCapabilities
+  server capabilities
+    folding range options
+      decodes
+        just id [✔]
+        id and document selector [✔]
+        static boolean [✔]
+      encodes
+        just id [✔]
+    decodes [✔]
+    client/registerCapability
+      allows empty registerOptions [✔]
+Types
+  MarkupContent
+    appends two plainstrings [✔]
+    appends a marked up and a plain string [✔]
+    appends a plain string and a marked up string [✔]
+URIFilePath
+  Platform aware URI file path functions
+    converts a URI to a POSIX file path [✔]
+    converts a POSIX file path to a URI [✔]
+    converts a URI to a Windows file path [✔]
+    converts a Windows file path to a URI [✔]
+    converts a POSIX file path to a URI [✔]
+    converts a Windows file path to a URI [✔]
+    converts a Windows file path to a URI [✔]
+    converts a POSIX file path to a URI and back [✔]
+    converts a Posix file path to a URI and back [✔]
+      +++ OK, passed 100 tests.
+    converts a Windows file path to a URI and back [✔]
+      +++ OK, passed 100 tests.
+    converts a relative POSIX file path to a URI and back [✔]
+  URI file path functions
+    converts a URI to a file path [✔]
+    converts a file path to a URI [✔]
+    removes unnecessary current directory paths [✔]
+    converts a file path to a URI and back [✔]
+      +++ OK, passed 100 tests.
+    converts a relative file path to a URI and back [✔]
+    converts a file path with initial current dir to a URI and back [✔]
+  URI normalization functions
+    ignores differences in percent-encoding [✔]
+      +++ OK, passed 100 tests.
+    ignores differences in percent-encoding (examples) [✔]
+    normalizes uri file path when converting from uri to normalized uri [✔]
+    converts a file path with reserved uri chars to a normalized URI and back [✔]
+    converts a file path with substrings that looks like uri escaped chars and back [✔]
+    converts a file path to a normalized URI and back [✔]
+      +++ OK, passed 100 tests.
+  Normalized file path functions
+    makes file path normalized [✔]
+      +++ OK, passed 100 tests.
+    converts to a normalized uri and back [✔]
+      +++ OK, passed 100 tests.
+    converts a file path with reserved uri chars to a normalized URI and back [✔]
+    converts a file path with substrings that looks like uri escaped chars and back [✔]
+    creates the same NormalizedUri than the older implementation [✔]
+      +++ OK, passed 100 tests.
+    converts to NormalizedFilePath and back sucessfully [✔]
+      +++ OK, passed 100 tests.
+    can not convert OsPath in non-standard encoding to NormalizedFilePath [✔]
+WorkspaceEdit
+  applyTextEdit
+    inserts text [✔]
+    deletes text [✔]
+    edits a multiline text [✔]
+    inserts text past the last line [✔]
+  editTextEdit
+    edits a multiline text edit [✔]
+
+Finished in 3.7875 seconds
+85 examples, 0 failures
+Test suite lsp-types-test: PASS
+Test suite logged to:
+/tmp/workdir-lsp-types/lsp-types-2.1.1.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/lsp-types-2.1.1.0/t/lsp-types-test/test/lsp-types-2.1.1.0-lsp-types-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

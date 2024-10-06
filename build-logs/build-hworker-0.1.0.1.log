@@ -1,0 +1,236 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - hworker-0.1.0.1 (lib) (first run)
+ - hworker-0.1.0.1 (test:hworker-test) (first run)
+Configuring library for hworker-0.1.0.1...
+Warning: [no-default-language] Packages using 'cabal-version: >= 1.10' and
+before 'cabal-version: 3.4' must specify the 'default-language' field for each
+component (e.g. Haskell98 or Haskell2010). If a component uses different
+languages in different modules then list the other ones in the
+'other-languages' field.
+Preprocessing library for hworker-0.1.0.1...
+Building library for hworker-0.1.0.1...
+[1 of 2] Compiling Data.Aeson.Helpers
+[2 of 2] Compiling System.Hworker
+
+src/System/Hworker.hs:85:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+85 | import           Data.Monoid             ((<>))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/System/Hworker.hs:89:1: warning: [-Wunused-imports]
+    The import of ‘Data.Time.Calendar’ is redundant
+      except perhaps to import instances from ‘Data.Time.Calendar’
+    To import instances alone, use: import Data.Time.Calendar()
+   |
+89 | import           Data.Time.Calendar      (Day (..))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/System/Hworker.hs:132:1: warning: [-Wunused-top-binds]
+    Defined but not used: type constructor or class ‘JobData’
+    |
+132 | data JobData t = JobData UTCTime t
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/System/Hworker.hs:132:18: warning: [-Wunused-top-binds]
+    Defined but not used: data constructor ‘JobData’
+    |
+132 | data JobData t = JobData UTCTime t
+    |                  ^^^^^^^^^^^^^^^^^
+
+src/System/Hworker.hs:291:48: warning: [GHC-18042] [-Wtype-defaults]
+    • Defaulting the type variable ‘a0’ to type ‘String’ in the following constraints
+        (Data.String.IsString a0)
+          arising from the literal ‘"WORKER RUNNING"’
+          at src/System/Hworker.hs:291:48-63
+        (Show a0)
+          arising from a use of ‘hwlog’ at src/System/Hworker.hs:291:38-42
+    • In the expression: "WORKER RUNNING"
+      In the second argument of ‘hwlog’, namely ‘("WORKER RUNNING", t)’
+      In the second argument of ‘($)’, namely
+        ‘hwlog hw ("WORKER RUNNING", t)’
+    |
+291 |          do when (hworkerDebug hw) $ hwlog hw ("WORKER RUNNING", t)
+    |                                                ^^^^^^^^^^^^^^^^
+
+src/System/Hworker.hs:293:39: warning: [GHC-18042] [-Wtype-defaults]
+    • Defaulting the type variable ‘a0’ to type ‘String’ in the following constraints
+        (Data.String.IsString a0)
+          arising from the literal ‘"BROKEN JOB"’
+          at src/System/Hworker.hs:293:39-50
+        (Show a0)
+          arising from a use of ‘hwlog’ at src/System/Hworker.hs:293:29-33
+    • In the expression: "BROKEN JOB"
+      In the second argument of ‘hwlog’, namely ‘("BROKEN JOB", t)’
+      In a stmt of a 'do' block: hwlog hw ("BROKEN JOB", t)
+    |
+293 |               Nothing -> do hwlog hw ("BROKEN JOB", t)
+    |                                       ^^^^^^^^^^^^
+
+src/System/Hworker.hs:294:29: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘now’ shadows the existing binding
+      bound at src/System/Hworker.hs:276:6
+    |
+294 |                             now <- getCurrentTime
+    |                             ^^^
+
+src/System/Hworker.hs:307:59: warning: [GHC-18042] [-Wtype-defaults]
+    • Defaulting the type variable ‘a0’ to type ‘String’ in the following constraints
+        (Data.String.IsString a0)
+          arising from the literal ‘"JOB COMPLETE"’
+          at src/System/Hworker.hs:307:59-72
+        (Show a0)
+          arising from a use of ‘hwlog’ at src/System/Hworker.hs:307:49-53
+    • In the expression: "JOB COMPLETE"
+      In the second argument of ‘hwlog’, namely ‘("JOB COMPLETE", t)’
+      In the second argument of ‘($)’, namely
+        ‘hwlog hw ("JOB COMPLETE", t)’
+    |
+307 |                     do when (hworkerDebug hw) $ hwlog hw ("JOB COMPLETE", t)
+    |                                                           ^^^^^^^^^^^^^^
+
+src/System/Hworker.hs:344:14: warning: [-Wunused-matches]
+    Defined but not used: ‘jt’
+    |
+344 |              jt <- forkIO (catch (v >>= putMVar x . Right)
+    |              ^^
+
+src/System/Hworker.hs:367:10: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘jobs’ shadows the existing binding
+      defined at src/System/Hworker.hs:410:1
+    |
+367 |        (\jobs ->
+    |          ^^^^
+
+src/System/Hworker.hs:368:31: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘job’ shadows the existing binding
+      defined at src/System/Hworker.hs:130:3
+    |
+368 |           void $ forM jobs $ \job ->
+    |                               ^^^
+
+src/System/Hworker.hs:380:47: warning: [GHC-18042] [-Wtype-defaults]
+    • Defaulting the type variable ‘a0’ to type ‘String’ in the following constraints
+        (Show a0)
+          arising from a use of ‘hwlog’ at src/System/Hworker.hs:380:47-51
+        (Data.String.IsString a0)
+          arising from the literal ‘"MONITOR RV"’
+          at src/System/Hworker.hs:380:57-68
+    • In the second argument of ‘($)’, namely
+        ‘hwlog hw ("MONITOR RV", n)’
+      In a stmt of a 'do' block:
+        when (hworkerDebug hw) $ hwlog hw ("MONITOR RV", n)
+      In the second argument of ‘($)’, namely
+        ‘do n <- withInt
+                   hw
+                   (R.eval
+                      "local del = redis.call('hdel', KEYS[2], ARGV[1])\n\
+                                 \if del == 1 then\
+                                 \  redis.call('rpush', KEYS[1], ARGV[1])\n\                                   \end\n\
+                                 \return del"
+                      [jobQueue hw, progressQueue hw] [job])
+            when (hworkerDebug hw) $ hwlog hw ("MONITOR RV", n)
+            when (hworkerDebug hw && n == 1)
+              $ hwlog hw ("MONITOR REQUEUED", job)’
+    |
+380 |                      when (hworkerDebug hw) $ hwlog hw ("MONITOR RV", n)
+    |                                               ^^^^^
+
+src/System/Hworker.hs:381:57: warning: [GHC-18042] [-Wtype-defaults]
+    • Defaulting the type variable ‘a0’ to type ‘String’ in the following constraints
+        (Show a0)
+          arising from a use of ‘hwlog’ at src/System/Hworker.hs:381:57-61
+        (Data.String.IsString a0)
+          arising from the literal ‘"MONITOR REQUEUED"’
+          at src/System/Hworker.hs:381:67-84
+    • In the second argument of ‘($)’, namely
+        ‘hwlog hw ("MONITOR REQUEUED", job)’
+      In a stmt of a 'do' block:
+        when (hworkerDebug hw && n == 1)
+          $ hwlog hw ("MONITOR REQUEUED", job)
+      In the second argument of ‘($)’, namely
+        ‘do n <- withInt
+                   hw
+                   (R.eval
+                      "local del = redis.call('hdel', KEYS[2], ARGV[1])\n\
+                                 \if del == 1 then\
+                                 \  redis.call('rpush', KEYS[1], ARGV[1])\n\                                   \end\n\
+                                 \return del"
+                      [jobQueue hw, progressQueue hw] [job])
+            when (hworkerDebug hw) $ hwlog hw ("MONITOR RV", n)
+            when (hworkerDebug hw && n == 1)
+              $ hwlog hw ("MONITOR REQUEUED", job)’
+    |
+381 |                      when (hworkerDebug hw && n == 1) $ hwlog hw ("MONITOR REQUEUED", job)))
+    |                                                         ^^^^^
+
+src/System/Hworker.hs:401:18: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘queue’ shadows the existing binding
+      defined at src/System/Hworker.hs:265:1
+    |
+401 | jobsFromQueue hw queue =
+    |                  ^^^^^
+
+src/System/Hworker.hs:427:37: warning: [GHC-18042] [-Wtype-defaults]
+    • Defaulting the type variable ‘a0’ to type ‘String’ in the following constraints
+        (Show a0)
+          arising from a use of ‘hwlog’ at src/System/Hworker.hs:427:37-41
+        (Data.String.IsString a0)
+          arising from the literal ‘"DEBUG"’
+          at src/System/Hworker.hs:427:47-53
+    • In the expression: hwlog hw ("DEBUG", queued, running)
+      In the third argument of ‘withList’, namely
+        ‘(\ queued -> hwlog hw ("DEBUG", queued, running))’
+      In the expression:
+        withList
+          hw (R.lrange (jobQueue hw) 0 (- 1))
+          (\ queued -> hwlog hw ("DEBUG", queued, running))
+    |
+427 |                         (\queued -> hwlog hw ("DEBUG", queued, running)))
+    |                                     ^^^^^
+
+src/System/Hworker.hs:431:1: warning: [GHC-38417] [-Wmissing-signatures]
+    Top-level binding with no type signature:
+      withList :: Show a1 =>
+                  Hworker s t -> R.Redis (Either a1 [a2]) -> ([a2] -> IO ()) -> IO ()
+    |
+431 | withList hw a f =
+    | ^^^^^^^^
+
+src/System/Hworker.hs:438:1: warning: [GHC-38417] [-Wmissing-signatures]
+    Top-level binding with no type signature:
+      withMaybe :: Show a =>
+                   Hworker s t1
+                   -> R.Redis (Either a (Maybe t2)) -> (t2 -> IO ()) -> IO ()
+    |
+438 | withMaybe hw a f =
+    | ^^^^^^^^^
+
+src/System/Hworker.hs:445:1: warning: [GHC-38417] [-Wmissing-signatures]
+    Top-level binding with no type signature:
+      withNil :: Show a =>
+                 Hworker s t -> R.Redis (Either a (Maybe ByteString)) -> IO ()
+    |
+445 | withNil hw a =
+    | ^^^^^^^
+
+src/System/Hworker.hs:460:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘withIgnore’
+    |
+460 | withIgnore hw a =
+    | ^^^^^^^^^^
+Configuring test suite 'hworker-test' for hworker-0.1.0.1...
+Warning: [no-default-language] Packages using 'cabal-version: >= 1.10' and
+before 'cabal-version: 3.4' must specify the 'default-language' field for each
+component (e.g. Haskell98 or Haskell2010). If a component uses different
+languages in different modules then list the other ones in the
+'other-languages' field.
+Preprocessing test suite 'hworker-test' for hworker-0.1.0.1...
+Building test suite 'hworker-test' for hworker-0.1.0.1...
+[1 of 3] Compiling Data.Aeson.Helpers
+[2 of 3] Compiling System.Hworker
+[3 of 3] Compiling Main
+[4 of 4] Linking /tmp/workdir-hworker/hworker-0.1.0.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/hworker-0.1.0.1/t/hworker-test/build/hworker-test/hworker-test

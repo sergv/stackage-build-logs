@@ -1,0 +1,106 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - hw-hspec-hedgehog-0.1.1.1 (test:hw-hspec-hedgehog-test) (ephemeral targets)
+Preprocessing test suite 'hw-hspec-hedgehog-test' for hw-hspec-hedgehog-0.1.1.1...
+Building test suite 'hw-hspec-hedgehog-test' for hw-hspec-hedgehog-0.1.1.1...
+Running 1 test suites...
+Test suite hw-hspec-hedgehog-test: RUNNING...
+
+HaskellWorks.Hspec.Hedgehog
+  HaskellWorks.Hspec.HedgehogSpec
+  ✓ <interactive> passed 100 tests.
+    should have require function that checks hedgehog properties [✔]
+  ✗ <interactive> failed at test/HaskellWorks/Hspec/HedgehogSpec.hs:24:23
+    after 1 test.
+    shrink path: 1:
+  
+       ┏━━ test/HaskellWorks/Hspec/HedgehogSpec.hs ━━━
+    16 ┃ spec :: Spec
+    17 ┃ spec = describe "HaskellWorks.Hspec.HedgehogSpec" $ do
+    18 ┃   it "should have require function that checks hedgehog properties" $ do
+    19 ┃     require $ property $ do
+    20 ┃       x <- forAll (Gen.int Range.constantBounded)
+    21 ┃       x === x
+    22 ┃ 
+    23 ┃   it "`require . property` should print a callstack with the test's location when property fails" $
+    24 ┃     require (property failure) `shouldThrow` \(HUnitFailure srcLocMaybe _) ->
+       ┃     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    25 ┃       fmap srcLocModule srcLocMaybe == Just "HaskellWorks.Hspec.HedgehogSpec"
+    26 ┃ 
+    27 ┃   it "`requireProperty` should print a callstack with the test's location when property fails" $
+    28 ┃     requireProperty failure `shouldThrow` \(HUnitFailure srcLocMaybe _) ->
+    29 ┃       fmap srcLocModule srcLocMaybe == Just "HaskellWorks.Hspec.HedgehogSpec"
+    30 ┃ 
+    31 ┃   it "`requireTest` should print a callstack with the test's location when property fails" $
+    32 ┃     requireTest failure `shouldThrow` \(HUnitFailure srcLocMaybe _) ->
+    33 ┃       fmap srcLocModule srcLocMaybe == Just "HaskellWorks.Hspec.HedgehogSpec"
+  
+    This failure can be reproduced by running:
+    > recheckAt (Seed 14478516212317363710 5956592162000937653) "1:" <property>
+  
+    `require . property` should print a callstack with the test's location when property fails [✔]
+  ✗ <interactive> failed at test/HaskellWorks/Hspec/HedgehogSpec.hs:28:21
+    after 1 test.
+    shrink path: 1:
+  
+       ┏━━ test/HaskellWorks/Hspec/HedgehogSpec.hs ━━━
+    16 ┃ spec :: Spec
+    17 ┃ spec = describe "HaskellWorks.Hspec.HedgehogSpec" $ do
+    18 ┃   it "should have require function that checks hedgehog properties" $ do
+    19 ┃     require $ property $ do
+    20 ┃       x <- forAll (Gen.int Range.constantBounded)
+    21 ┃       x === x
+    22 ┃ 
+    23 ┃   it "`require . property` should print a callstack with the test's location when property fails" $
+    24 ┃     require (property failure) `shouldThrow` \(HUnitFailure srcLocMaybe _) ->
+    25 ┃       fmap srcLocModule srcLocMaybe == Just "HaskellWorks.Hspec.HedgehogSpec"
+    26 ┃ 
+    27 ┃   it "`requireProperty` should print a callstack with the test's location when property fails" $
+    28 ┃     requireProperty failure `shouldThrow` \(HUnitFailure srcLocMaybe _) ->
+       ┃     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    29 ┃       fmap srcLocModule srcLocMaybe == Just "HaskellWorks.Hspec.HedgehogSpec"
+    30 ┃ 
+    31 ┃   it "`requireTest` should print a callstack with the test's location when property fails" $
+    32 ┃     requireTest failure `shouldThrow` \(HUnitFailure srcLocMaybe _) ->
+    33 ┃       fmap srcLocModule srcLocMaybe == Just "HaskellWorks.Hspec.HedgehogSpec"
+  
+    This failure can be reproduced by running:
+    > recheckAt (Seed 10906993205747544080 2635144664282627847) "1:" <property>
+  
+    `requireProperty` should print a callstack with the test's location when property fails [✔]
+  ✗ <interactive> failed at test/HaskellWorks/Hspec/HedgehogSpec.hs:32:17
+    after 1 test.
+    shrink path: 1:
+  
+       ┏━━ test/HaskellWorks/Hspec/HedgehogSpec.hs ━━━
+    16 ┃ spec :: Spec
+    17 ┃ spec = describe "HaskellWorks.Hspec.HedgehogSpec" $ do
+    18 ┃   it "should have require function that checks hedgehog properties" $ do
+    19 ┃     require $ property $ do
+    20 ┃       x <- forAll (Gen.int Range.constantBounded)
+    21 ┃       x === x
+    22 ┃ 
+    23 ┃   it "`require . property` should print a callstack with the test's location when property fails" $
+    24 ┃     require (property failure) `shouldThrow` \(HUnitFailure srcLocMaybe _) ->
+    25 ┃       fmap srcLocModule srcLocMaybe == Just "HaskellWorks.Hspec.HedgehogSpec"
+    26 ┃ 
+    27 ┃   it "`requireProperty` should print a callstack with the test's location when property fails" $
+    28 ┃     requireProperty failure `shouldThrow` \(HUnitFailure srcLocMaybe _) ->
+    29 ┃       fmap srcLocModule srcLocMaybe == Just "HaskellWorks.Hspec.HedgehogSpec"
+    30 ┃ 
+    31 ┃   it "`requireTest` should print a callstack with the test's location when property fails" $
+    32 ┃     requireTest failure `shouldThrow` \(HUnitFailure srcLocMaybe _) ->
+       ┃     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    33 ┃       fmap srcLocModule srcLocMaybe == Just "HaskellWorks.Hspec.HedgehogSpec"
+  
+    This failure can be reproduced by running:
+    > recheckAt (Seed 2706057411020586687 12632157478927460603) "1:" <property>
+  
+    `requireTest` should print a callstack with the test's location when property fails [✔]
+
+Finished in 0.0045 seconds
+4 examples, 0 failures
+Test suite hw-hspec-hedgehog-test: PASS
+Test suite logged to:
+/tmp/workdir-hw-hspec-hedgehog/hw-hspec-hedgehog-0.1.1.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/hw-hspec-hedgehog-0.1.1.1/t/hw-hspec-hedgehog-test/test/hw-hspec-hedgehog-0.1.1.1-hw-hspec-hedgehog-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

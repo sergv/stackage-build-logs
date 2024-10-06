@@ -1,0 +1,281 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - flatparse-0.5.1.0 (test:spec) (ephemeral targets)
+Preprocessing test suite 'spec' for flatparse-0.5.1.0...
+Building test suite 'spec' for flatparse-0.5.1.0...
+Running 1 test suites...
+Test suite spec: RUNNING...
+
+FlatParse.Basic
+  Errors and failures
+    FB.empty
+      always fails [✔]
+    err
+      throws an error [✔]
+    lookahead
+      restores state [✔]
+    fails
+      expects child to fail [✔]
+      fails when child succeeds [✔]
+      propagates errors [✔]
+    try
+      turns error into failure [✔]
+    optional
+      can succeed [✔]
+      can succeed when argument missing [✔]
+      propagates errors [✔]
+    optional_
+      can succeed [✔]
+      can succeed when argument missing [✔]
+      propagates errors [✔]
+    withOption
+      handles success [✔]
+      handles failure [✔]
+      handles error [✔]
+    cut
+      turns failure into error [✔]
+      leaves success alone [✔]
+      propagates error [✔]
+    cutting
+      turns failure into error [✔]
+      leaves success alone [✔]
+      combines errors [✔]
+  Basic lexing and parsing
+    FB.eof
+      succeeds at end of file [✔]
+      fails with more input [✔]
+    skip
+      skips to the end of input [✔]
+        +++ OK, passed 100 tests.
+    char
+      succeeds on that char [✔]
+      succeeds on multibyte char [✔]
+      fails on the wrong char [✔]
+      fails at end of file [✔]
+    byte
+      succeeds on that byte [✔]
+      succeeds on high bytes [✔]
+      fails on the wrong byte [✔]
+      fails on end of file [✔]
+    bytes
+      succeeds on those bytes [✔]
+      succeeds on high bytes [✔]
+      fails on wrong bytes [✔]
+      fails when out of space [✔]
+    byteString
+      succeeds on those bytes [✔]
+      succeeds on high bytestring [✔]
+      fails on wrong bytestring [✔]
+      fails when out of space [✔]
+    string
+      succeeds on the right string [✔]
+      succeeds with multibyte chars [✔]
+      fails on the wrong string [✔]
+      fails when out of space [✔]
+    switch
+      parses simple words [✔]
+      matches the default [✔]
+      fails with no default [✔]
+      prefers longest match [✔]
+      doesn't reproduce bug #12 [✔]
+    switchWithPost
+      applies post after match [✔]
+      doesn't apply post after default [✔]
+      requires the post must match [✔]
+    rawSwitchWithPost
+      parses simple words [✔]
+      matches the default [✔]
+      fails with no default [✔]
+      prefers longest match [✔]
+      applies post after match [✔]
+      doesn't apply post after default [✔]
+      requires the post must match [✔]
+    satisfy
+      succeeds on the right char [✔]
+      succeeds on multi-byte chars [✔]
+      fails on the wrong char [✔]
+      fails at end of file [✔]
+    satisfyAscii
+      succeeds on the right char [✔]
+      fails on the wrong char [✔]
+      fails on the wrong multi-byte char [✔]
+      fails at end of file [✔]
+    skipSatisfyAscii
+      succeeds on the right char [✔]
+      fails on the wrong char [✔]
+      fails on the wrong multi-byte char [✔]
+      fails at end of file [✔]
+    fusedSatisfy
+      correctly routes chars based on length [✔]
+      fails on FB.empty input [✔]
+    anyWord8
+      reads a byte [✔]
+      fails on FB.empty input [✔]
+    anyWord16
+      succeeds [✔]
+      fails on FB.empty input [✔]
+      fails on insufficient input [✔]
+    anyWord32
+      succeeds [✔]
+      fails on empty input [✔]
+      fails on insufficient input [✔]
+    anyWord
+      fails on FB.empty input [✔]
+    anyChar
+      reads 1-byte char [✔]
+      reads 2-byte char [✔]
+      reads 3-byte char [✔]
+      reads 4-byte char [✔]
+      fails on FB.empty input [✔]
+    skipAnyChar
+      reads 1-byte char [✔]
+      reads 2-byte char [✔]
+      reads 3-byte char [✔]
+      reads 4-byte char [✔]
+      fails on empty input [✔]
+    anyAsciiChar
+      reads ASCII char [✔]
+      fails on non-ASCII char [✔]
+      fails on empty input [✔]
+    skipAnyAsciiChar
+      reads ASCII char [✔]
+      fails on non-ASCII char [✔]
+      fails on empty input [✔]
+    isDigit
+      agrees with Data.Char [✔]
+        +++ OK, passed 100 tests.
+    isAsciiLetter
+      agrees with Data.Char [✔]
+        +++ OK, passed 100 tests.
+    anyAsciiDecimalInt
+      round-trips on non-negative Ints [✔]
+        +++ OK, passed 100 tests.
+      fails on reading an integer out of bounds [✔]
+        +++ OK, passed 100 tests.
+      fails on non-integers [✔]
+      fails on negative integers [✔]
+        +++ OK, passed 100 tests.
+      fails on FB.empty input [✔]
+    anyAsciiHexInt
+      round-trips on non-negative Ints, lowercase [✔]
+        +++ OK, passed 100 tests.
+      round-trips on non-negative Ints, uppercase [✔]
+        +++ OK, passed 100 tests.
+      fails on non-integers [✔]
+      fails on negative integers [✔]
+      fails on FB.empty input [✔]
+    anyAsciiDecimalWord
+      round-trips on non-negative Words [✔]
+        +++ OK, passed 100 tests.
+      fails on reading an wordeger out of bounds [✔]
+        +++ OK, passed 100 tests.
+      fails on non-wordegers [✔]
+      fails on negative wordegers [✔]
+        +++ OK, passed 100 tests.
+      fails on empty input [✔]
+    anyAsciiDecimalInteger
+      round-trips on non-negative Integers [✔]
+        +++ OK, passed 100 tests.
+      fails on non-integers [✔]
+      fails on negative integers [✔]
+      fails on FB.empty input [✔]
+    anyVarintProtobuf
+      parses some examples [✔]
+      fails on overlong varint [✔]
+    anyCString
+      parses arbitrary null-terminated bytestrings [✔]
+        +++ OK, passed 100 tests.
+    Explicit-endianness machine integers
+      Unsigned
+        parses Word8s [✔]
+          +++ OK, passed 100 tests.
+        parses Word16s (LE) [✔]
+          +++ OK, passed 100 tests.
+        parses Word16s (BE) [✔]
+          +++ OK, passed 100 tests.
+        parses Word32s (LE) [✔]
+          +++ OK, passed 100 tests.
+        parses Word32s (BE) [✔]
+          +++ OK, passed 100 tests.
+        parses Word64s (LE) [✔]
+          +++ OK, passed 100 tests.
+        parses Word64s (BE) [✔]
+          +++ OK, passed 100 tests.
+      Signed
+        parses Int8s [✔]
+          +++ OK, passed 100 tests.
+        parses Int16s (LE) [✔]
+          +++ OK, passed 100 tests.
+        parses Int16s (BE) [✔]
+          +++ OK, passed 100 tests.
+        parses Int32s (LE) [✔]
+          +++ OK, passed 100 tests.
+        parses Int32s (BE) [✔]
+          +++ OK, passed 100 tests.
+        parses Int64s (LE) [✔]
+          +++ OK, passed 100 tests.
+        parses Int64s (BE) [✔]
+          +++ OK, passed 100 tests.
+  Combinators
+    Functor instance
+      fmaps over the result [✔]
+    Applicative instance
+      combines using <*> [✔]
+    Monad instance
+      combines with a do block [✔]
+    (<|>)
+      chooses first option on success [✔]
+      chooses second option when first fails [✔]
+    branch
+      chooses the first FB.branch on success [✔]
+      does not backtrack from first FB.branch [✔]
+      chooses the second FB.branch on failure [✔]
+    chainl
+      parses a chain of numbers [✔]
+      allows the right chain to be FB.empty [✔]
+      requires at least the leftmost parser to match [✔]
+    chainr
+      parses a chain of numbers [✔]
+      allows the left chain to be FB.empty [✔]
+      requires at least the rightmost parser to match [✔]
+    many
+      parses many chars [✔]
+      accepts FB.empty input [✔]
+      is greedy [✔]
+    skipMany
+      parses many chars [✔]
+      accepts FB.empty input [✔]
+      is greedy [✔]
+    some
+      parses some chars [✔]
+      rejects FB.empty input [✔]
+      is greedy [✔]
+    skipSome
+      parses some chars [✔]
+      rejects FB.empty input [✔]
+      is greedy [✔]
+    notFollowedBy
+      succeeds when it should [✔]
+      fails when first parser doesn't match [✔]
+      fails when followed by the wrong thing [✔]
+    isolate
+      isolate takeRest is identity [✔]
+        +++ OK, passed 100 tests.
+      isolate take length is identity [✔]
+        +++ OK, passed 100 tests.
+  Positions and span conversions
+    posLineCols
+      empty [✔]
+      single [✔]
+      two [✔]
+      three [✔]
+      emptystr [✔]
+  Location & address primitives
+    valid lookaheadFromAddr# usage succeeds [✔]
+
+Finished in 0.0066 seconds
+174 examples, 0 failures
+Test suite spec: PASS
+Test suite logged to:
+/tmp/workdir-flatparse/flatparse-0.5.1.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/flatparse-0.5.1.0/t/spec/test/flatparse-0.5.1.0-spec.log
+1 of 1 test suites (1 of 1 test cases) passed.

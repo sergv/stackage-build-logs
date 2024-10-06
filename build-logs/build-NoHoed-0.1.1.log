@@ -1,0 +1,30 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - NoHoed-0.1.1 (lib) (first run)
+Configuring library for NoHoed-0.1.1...
+Preprocessing library for NoHoed-0.1.1...
+Building library for NoHoed-0.1.1...
+[1 of 2] Compiling Debug.Hoed.Pure
+
+src/Debug/Hoed/Pure.hs:46:20: warning: [-Wsimplifiable-class-constraints]
+    • The constraint ‘Observable a’ matches
+        instance Observable a -- Defined at src/Debug/Hoed/Pure.hs:44:31
+      This makes type inference for inner bindings fragile;
+        either use MonoLocalBinds, or simplify it using the instance
+    • In the definition of data constructor ‘O’
+      In the newtype declaration for ‘Observer’
+   |
+46 | newtype Observer = O (forall a . (Observable a) => String -> a -> a)
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Debug/Hoed/Pure.hs:51:9: warning: [-Wsimplifiable-class-constraints]
+    • The constraint ‘Observable a’ matches
+        instance Observable a -- Defined at src/Debug/Hoed/Pure.hs:44:31
+      This makes type inference for inner bindings fragile;
+        either use MonoLocalBinds, or simplify it using the instance
+    • In the type signature:
+        (<<) :: (Observable a) => ObserverM (a -> b) -> a -> ObserverM b
+   |
+51 | (<<) :: (Observable a) => ObserverM (a -> b) -> a -> ObserverM b
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2 of 2] Compiling Debug.Hoed.Pure.TH

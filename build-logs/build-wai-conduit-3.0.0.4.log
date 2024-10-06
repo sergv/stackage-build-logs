@@ -1,0 +1,55 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - wai-conduit-3.0.0.4 (lib) (first run)
+Configuring library for wai-conduit-3.0.0.4...
+Preprocessing library for wai-conduit-3.0.0.4...
+Building library for wai-conduit-3.0.0.4...
+[1 of 1] Compiling Network.Wai.Conduit
+
+Network/Wai/Conduit.hs:26:46: warning: [GHC-68441] [-Wdeprecations]
+    In the use of type constructor or class ‘Source’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use ConduitT directly"
+   |
+26 | sourceRequestBody :: MonadIO m => Request -> Source m ByteString
+   |                                              ^^^^^^
+
+Network/Wai/Conduit.hs:30:18: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘requestBody’
+    (imported from Network.Wai, but defined in Network.Wai.Internal):
+    Deprecated: "requestBody's name is misleading because it only gets a partial chunk of the body. Use getRequestBodyChunk instead when getting the field, and setRequestBodyChunks when setting the field."
+   |
+30 |     go = liftIO (requestBody req)
+   |                  ^^^^^^^^^^^
+
+Network/Wai/Conduit.hs:41:48: warning: [GHC-68441] [-Wdeprecations]
+    In the use of type constructor or class ‘Source’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use ConduitT directly"
+   |
+41 | responseSource :: Status -> ResponseHeaders -> Source IO (Flush Builder) -> Response
+   |                                                ^^^^^^
+
+Network/Wai/Conduit.hs:43:9: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘$$’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use runConduit and .|"
+   |
+43 |     src $$ CL.mapM_ (\mbuilder ->
+   |         ^^
+
+Network/Wai/Conduit.hs:53:23: warning: [GHC-68441] [-Wdeprecations]
+    In the use of type constructor or class ‘Source’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use ConduitT directly"
+   |
+53 |                   => (Source m ByteString -> Sink ByteString n () -> IO ())
+   |                       ^^^^^^
+
+Network/Wai/Conduit.hs:53:46: warning: [GHC-68441] [-Wdeprecations]
+    In the use of type constructor or class ‘Sink’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use ConduitT directly"
+   |
+53 |                   => (Source m ByteString -> Sink ByteString n () -> IO ())
+   |                                              ^^^^

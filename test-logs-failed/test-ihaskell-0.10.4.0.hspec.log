@@ -1,0 +1,413 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - ihaskell-0.10.4.0 (test:hspec) (ephemeral targets)
+Preprocessing test suite 'hspec' for ihaskell-0.10.4.0...
+Building test suite 'hspec' for ihaskell-0.10.4.0...
+Running 1 test suites...
+Test suite hspec: RUNNING...
+
+Layout Chunk
+  chunks 'a string' [✔]
+  chunks 'a\n string' [✔]
+  chunks 'a\n string\nextra' [✔]
+  chunks strings with too many lines [✔]
+  parses multiple exprs [✔]
+  deals with quasiquotes [✔]
+Get Module Name
+  parses simple module names [✔]
+  parses module names with dots [✔]
+  parses module names with exports [✔]
+  errors when given unnamed modules [✔]
+Parser
+  parses empty strings [✔]
+  parses simple imports [✔]
+  parses simple arithmetic [✔]
+  parses :type [✔]
+  parses :info [✔]
+  parses :help and :? [✔]
+  parses :set x [✔]
+  parses :extension x [✔]
+  fails to parse :nope [✔]
+  parses number followed by let stmt [✔]
+  parses let x in y [✔]
+  parses a data declaration [✔]
+  parses number followed by type directive [✔]
+  parses a <- statement [✔]
+  parses a <- stmt followed by let stmt [✔]
+  parses <- followed by let followed by expr [✔]
+  parses two print statements [✔]
+  parses a pattern-maching function declaration [✔]
+  parses a function decl followed by an expression [✔]
+  parses list pattern matching fun decl [✔]
+  parses two pattern matches as the same declaration [✔]
+  parses a type signature followed by a declaration [✔]
+  parases a simple module [✔]
+  parses a module with an export [✔]
+  breaks when a let is incomplete [✔]
+  parses LANGUAGE pragmas case-insensitively [✔]
+  breaks without data kinds [✔]
+  parses statements after imports [✔]
+  ignores blank lines properly [✔]
+  doesn't break on long strings [✔]
+  parses do blocks in expression [✔]
+  correctly locates parsed items [✔]
+Parsing Shell Commands
+  parses A correctly [✔]
+  parses :load A correctly [✔]
+  parses :!l ~/Downloads/MyFile\ Has\ Spaces.txt correctly [✔]
+  parses :!l "~/Downloads/MyFile Has Spaces.txt" /Another/File\ WithSpaces.doc correctly [✔]
+Code Evaluation
+  gets rid of the test failure with Nix [✘]
+  evaluates expressions [✘]
+  evaluates flags [✘]
+  evaluates multiline expressions [✘]
+  evaluates function declarations silently [✘]
+  evaluates data declarations [✘]
+  evaluates do blocks in expressions [✘]
+  is silent for imports [✘]
+  prints Unicode characters correctly [✘]
+  prints multiline output correctly [✘]
+  evaluates directives [✘]
+  captures stderr [✘]
+  immediately applies language extensions [✘]
+Completion
+  correctly gets the completion identifier without dots [✔]
+  correctly gets the completion identifier with dots [✔]
+  correctly gets the completion type [✔]
+  properly completes identifiers [✘]
+  properly completes qualified identifiers [✘]
+  properly completes imports [✘]
+Completes commands
+  properly completes haskell file paths on :load directive [✘]
+  provides path completions on empty shell cmds  [✘]
+  correctly interprets ~ as the environment HOME variable [✘]
+  generates the correct matchingText on `:! cd ~/*`  [✘]
+  generates the correct matchingText on `:load ~/*`  [✘]
+  generates the correct matchingText on `:l ~/*`  [✘]
+Hoogle Search
+  fmap search result
+    should find 1 results [✔]
+    should not contain html markup [✔]
+  module result
+    should not contain html markup [✔]
+    should be renderable [✔]
+
+Failures:
+
+  src/tests/IHaskell/Test/Eval.hs:98:5: 
+  1) Code Evaluation gets rid of the test failure with Nix
+       uncaught exception: SourceError
+       <interactive>:1:1: error: [GHC-76037]
+           Not in scope: `IHaskell.Display.displayFromChanEncoded'
+           NB: no module named `IHaskell.Display' is imported.
+
+  To rerun use: --match "/Code Evaluation/gets rid of the test failure with Nix/" --seed 1209299377
+
+  src/tests/IHaskell/Test/Eval.hs:104:5: 
+  2) Code Evaluation evaluates expressions
+       uncaught exception: SourceError
+       <interactive>:1:1: error: [GHC-76037]
+           Not in scope: `IHaskell.Display.displayFromChanEncoded'
+           NB: no module named `IHaskell.Display' is imported.
+
+  To rerun use: --match "/Code Evaluation/evaluates expressions/" --seed 1209299377
+
+  src/tests/IHaskell/Test/Eval.hs:114:5: 
+  3) Code Evaluation evaluates flags
+       uncaught exception: SourceError
+       <interactive>:1:1: error: [GHC-76037]
+           Not in scope: `IHaskell.Display.displayFromChanEncoded'
+           NB: no module named `IHaskell.Display' is imported.
+
+  To rerun use: --match "/Code Evaluation/evaluates flags/" --seed 1209299377
+
+  src/tests/IHaskell/Test/Eval.hs:118:5: 
+  4) Code Evaluation evaluates multiline expressions
+       uncaught exception: SourceError
+       <interactive>:1:1: error: [GHC-76037]
+           Not in scope: `IHaskell.Display.displayFromChanEncoded'
+           NB: no module named `IHaskell.Display' is imported.
+
+  To rerun use: --match "/Code Evaluation/evaluates multiline expressions/" --seed 1209299377
+
+  src/tests/IHaskell/Test/Eval.hs:125:5: 
+  5) Code Evaluation evaluates function declarations silently
+       uncaught exception: SourceError
+       <interactive>:1:1: error: [GHC-76037]
+           Not in scope: `IHaskell.Display.displayFromChanEncoded'
+           NB: no module named `IHaskell.Display' is imported.
+
+  To rerun use: --match "/Code Evaluation/evaluates function declarations silently/" --seed 1209299377
+
+  src/tests/IHaskell/Test/Eval.hs:133:5: 
+  6) Code Evaluation evaluates data declarations
+       uncaught exception: SourceError
+       <interactive>:1:1: error: [GHC-76037]
+           Not in scope: `IHaskell.Display.displayFromChanEncoded'
+           NB: no module named `IHaskell.Display' is imported.
+
+  To rerun use: --match "/Code Evaluation/evaluates data declarations/" --seed 1209299377
+
+  src/tests/IHaskell/Test/Eval.hs:142:5: 
+  7) Code Evaluation evaluates do blocks in expressions
+       uncaught exception: SourceError
+       <interactive>:1:1: error: [GHC-76037]
+           Not in scope: `IHaskell.Display.displayFromChanEncoded'
+           NB: no module named `IHaskell.Display' is imported.
+
+  To rerun use: --match "/Code Evaluation/evaluates do blocks in expressions/" --seed 1209299377
+
+  src/tests/IHaskell/Test/Eval.hs:150:5: 
+  8) Code Evaluation is silent for imports
+       uncaught exception: SourceError
+       <interactive>:1:1: error: [GHC-76037]
+           Not in scope: `IHaskell.Display.displayFromChanEncoded'
+           NB: no module named `IHaskell.Display' is imported.
+
+  To rerun use: --match "/Code Evaluation/is silent for imports/" --seed 1209299377
+
+  src/tests/IHaskell/Test/Eval.hs:156:5: 
+  9) Code Evaluation prints Unicode characters correctly
+       uncaught exception: SourceError
+       <interactive>:1:1: error: [GHC-76037]
+           Not in scope: `IHaskell.Display.displayFromChanEncoded'
+           NB: no module named `IHaskell.Display' is imported.
+
+  To rerun use: --match "/Code Evaluation/prints Unicode characters correctly/" --seed 1209299377
+
+  src/tests/IHaskell/Test/Eval.hs:160:5: 
+  10) Code Evaluation prints multiline output correctly
+       uncaught exception: SourceError
+       <interactive>:1:1: error: [GHC-76037]
+           Not in scope: `IHaskell.Display.displayFromChanEncoded'
+           NB: no module named `IHaskell.Display' is imported.
+
+  To rerun use: --match "/Code Evaluation/prints multiline output correctly/" --seed 1209299377
+
+  src/tests/IHaskell/Test/Eval.hs:163:5: 
+  11) Code Evaluation evaluates directives
+       uncaught exception: SourceError
+       <interactive>:1:1: error: [GHC-76037]
+           Not in scope: `IHaskell.Display.displayFromChanEncoded'
+           NB: no module named `IHaskell.Display' is imported.
+
+  To rerun use: --match "/Code Evaluation/evaluates directives/" --seed 1209299377
+
+  src/tests/IHaskell/Test/Eval.hs:183:5: 
+  12) Code Evaluation captures stderr
+       uncaught exception: SourceError
+       <interactive>:1:1: error: [GHC-76037]
+           Not in scope: `IHaskell.Display.displayFromChanEncoded'
+           NB: no module named `IHaskell.Display' is imported.
+
+  To rerun use: --match "/Code Evaluation/captures stderr/" --seed 1209299377
+
+  src/tests/IHaskell/Test/Eval.hs:189:5: 
+  13) Code Evaluation immediately applies language extensions
+       uncaught exception: SourceError
+       <interactive>:1:1: error: [GHC-76037]
+           Not in scope: `IHaskell.Display.displayFromChanEncoded'
+           NB: no module named `IHaskell.Display' is imported.
+
+  To rerun use: --match "/Code Evaluation/immediately applies language extensions/" --seed 1209299377
+
+  src/tests/IHaskell/Test/Completion.hs:132:5: 
+  14) Completion properly completes identifiers
+       uncaught exception: SourceError
+       <interactive>:1:1: error:
+           Could not find module `IHaskell.Display'
+           Use -v (or `:set -v` in ghci) to see a list of the files searched for.
+
+  To rerun use: --match "/Completion/properly completes identifiers/" --seed 1209299377
+
+  src/tests/IHaskell/Test/Completion.hs:138:5: 
+  15) Completion properly completes qualified identifiers
+       uncaught exception: SourceError
+       <interactive>:1:1: error:
+           Could not find module `IHaskell.Display'
+           Use -v (or `:set -v` in ghci) to see a list of the files searched for.
+
+  To rerun use: --match "/Completion/properly completes qualified identifiers/" --seed 1209299377
+
+  src/tests/IHaskell/Test/Completion.hs:147:5: 
+  16) Completion properly completes imports
+       uncaught exception: SourceError
+       <interactive>:1:1: error:
+           Could not find module `IHaskell.Display'
+           Use -v (or `:set -v` in ghci) to see a list of the files searched for.
+
+  To rerun use: --match "/Completion/properly completes imports/" --seed 1209299377
+
+  src/tests/IHaskell/Test/Completion.hs:155:3: 
+  17) Completes commands properly completes haskell file paths on :load directive
+       uncaught exception: ReThrownException
+       
+       Ran commands: 
+       withTmpDir
+       rm -f /tmp/tmpThreadId13681972784-0
+       mkdir /tmp/tmpThreadId13681972784-0
+       cd /tmp/tmpThreadId13681972784-0
+       mkdir -p /tmp/tmpThreadId13681972784-0/dir
+       mkdir -p /tmp/tmpThreadId13681972784-0/dir/dir1
+       touch /tmp/tmpThreadId13681972784-0/file1.hs
+       appendfile /tmp/tmpThreadId13681972784-0/file1.hs
+       touch /tmp/tmpThreadId13681972784-0/dir/file2.hs
+       appendfile /tmp/tmpThreadId13681972784-0/dir/file2.hs
+       touch /tmp/tmpThreadId13681972784-0/file1.lhs
+       appendfile /tmp/tmpThreadId13681972784-0/file1.lhs
+       touch /tmp/tmpThreadId13681972784-0/dir/file2.lhs
+       appendfile /tmp/tmpThreadId13681972784-0/dir/file2.lhs
+       rm -rf /tmp/tmpThreadId13681972784-0
+       
+       Exception: <interactive>:1:1: error:
+           Could not find module `IHaskell.Display'
+           Use -v (or `:set -v` in ghci) to see a list of the files searched for.
+
+  To rerun use: --match "/Completes commands/properly completes haskell file paths on :load directive/" --seed 1209299377
+
+  src/tests/IHaskell/Test/Completion.hs:165:3: 
+  18) Completes commands provides path completions on empty shell cmds 
+       uncaught exception: ReThrownException
+       
+       Ran commands: 
+       withTmpDir
+       rm -f /tmp/tmpThreadId13741972784-1
+       mkdir /tmp/tmpThreadId13741972784-1
+       cd /tmp/tmpThreadId13741972784-1
+       mkdir -p /tmp/tmpThreadId13741972784-1/dir
+       mkdir -p /tmp/tmpThreadId13741972784-1/dir/dir1
+       touch /tmp/tmpThreadId13741972784-1/file1.hs
+       appendfile /tmp/tmpThreadId13741972784-1/file1.hs
+       touch /tmp/tmpThreadId13741972784-1/dir/file2.hs
+       appendfile /tmp/tmpThreadId13741972784-1/dir/file2.hs
+       touch /tmp/tmpThreadId13741972784-1/file1.lhs
+       appendfile /tmp/tmpThreadId13741972784-1/file1.lhs
+       touch /tmp/tmpThreadId13741972784-1/dir/file2.lhs
+       appendfile /tmp/tmpThreadId13741972784-1/dir/file2.lhs
+       rm -rf /tmp/tmpThreadId13741972784-1
+       
+       Exception: <interactive>:1:1: error:
+           Could not find module `IHaskell.Display'
+           Use -v (or `:set -v` in ghci) to see a list of the files searched for.
+
+  To rerun use: --match "/Completes commands/provides path completions on empty shell cmds /" --seed 1209299377
+
+  src/tests/IHaskell/Test/Completion.hs:180:3: 
+  19) Completes commands correctly interprets ~ as the environment HOME variable
+       uncaught exception: ReThrownException
+       
+       Ran commands: 
+       withTmpDir
+       rm -f /tmp/tmpThreadId13791972784-2
+       mkdir /tmp/tmpThreadId13791972784-2
+       cd /tmp/tmpThreadId13791972784-2
+       mkdir -p /tmp/tmpThreadId13791972784-2/dir
+       mkdir -p /tmp/tmpThreadId13791972784-2/dir/dir1
+       touch /tmp/tmpThreadId13791972784-2/file1.hs
+       appendfile /tmp/tmpThreadId13791972784-2/file1.hs
+       touch /tmp/tmpThreadId13791972784-2/dir/file2.hs
+       appendfile /tmp/tmpThreadId13791972784-2/dir/file2.hs
+       touch /tmp/tmpThreadId13791972784-2/file1.lhs
+       appendfile /tmp/tmpThreadId13791972784-2/file1.lhs
+       touch /tmp/tmpThreadId13791972784-2/dir/file2.lhs
+       appendfile /tmp/tmpThreadId13791972784-2/dir/file2.lhs
+       rm -rf /tmp/tmpThreadId13791972784-2
+       
+       Exception: <interactive>:1:1: error:
+           Could not find module `IHaskell.Display'
+           Use -v (or `:set -v` in ghci) to see a list of the files searched for.
+
+  To rerun use: --match "/Completes commands/correctly interprets ~ as the environment HOME variable/" --seed 1209299377
+
+  src/tests/IHaskell/Test/Completion.hs:196:3: 
+  20) Completes commands generates the correct matchingText on `:! cd ~/*` 
+       uncaught exception: ReThrownException
+       
+       Ran commands: 
+       withTmpDir
+       rm -f /tmp/tmpThreadId13841972784-3
+       mkdir /tmp/tmpThreadId13841972784-3
+       cd /tmp/tmpThreadId13841972784-3
+       mkdir -p /tmp/tmpThreadId13841972784-3/dir
+       mkdir -p /tmp/tmpThreadId13841972784-3/dir/dir1
+       touch /tmp/tmpThreadId13841972784-3/file1.hs
+       appendfile /tmp/tmpThreadId13841972784-3/file1.hs
+       touch /tmp/tmpThreadId13841972784-3/dir/file2.hs
+       appendfile /tmp/tmpThreadId13841972784-3/dir/file2.hs
+       touch /tmp/tmpThreadId13841972784-3/file1.lhs
+       appendfile /tmp/tmpThreadId13841972784-3/file1.lhs
+       touch /tmp/tmpThreadId13841972784-3/dir/file2.lhs
+       appendfile /tmp/tmpThreadId13841972784-3/dir/file2.lhs
+       rm -rf /tmp/tmpThreadId13841972784-3
+       
+       Exception: <interactive>:1:1: error:
+           Could not find module `IHaskell.Display'
+           Use -v (or `:set -v` in ghci) to see a list of the files searched for.
+
+  To rerun use: --match "/Completes commands/generates the correct matchingText on `:! cd ~/*` /" --seed 1209299377
+
+  src/tests/IHaskell/Test/Completion.hs:199:3: 
+  21) Completes commands generates the correct matchingText on `:load ~/*` 
+       uncaught exception: ReThrownException
+       
+       Ran commands: 
+       withTmpDir
+       rm -f /tmp/tmpThreadId13891972784-4
+       mkdir /tmp/tmpThreadId13891972784-4
+       cd /tmp/tmpThreadId13891972784-4
+       mkdir -p /tmp/tmpThreadId13891972784-4/dir
+       mkdir -p /tmp/tmpThreadId13891972784-4/dir/dir1
+       touch /tmp/tmpThreadId13891972784-4/file1.hs
+       appendfile /tmp/tmpThreadId13891972784-4/file1.hs
+       touch /tmp/tmpThreadId13891972784-4/dir/file2.hs
+       appendfile /tmp/tmpThreadId13891972784-4/dir/file2.hs
+       touch /tmp/tmpThreadId13891972784-4/file1.lhs
+       appendfile /tmp/tmpThreadId13891972784-4/file1.lhs
+       touch /tmp/tmpThreadId13891972784-4/dir/file2.lhs
+       appendfile /tmp/tmpThreadId13891972784-4/dir/file2.lhs
+       rm -rf /tmp/tmpThreadId13891972784-4
+       
+       Exception: <interactive>:1:1: error:
+           Could not find module `IHaskell.Display'
+           Use -v (or `:set -v` in ghci) to see a list of the files searched for.
+
+  To rerun use: --match "/Completes commands/generates the correct matchingText on `:load ~/*` /" --seed 1209299377
+
+  src/tests/IHaskell/Test/Completion.hs:202:3: 
+  22) Completes commands generates the correct matchingText on `:l ~/*` 
+       uncaught exception: ReThrownException
+       
+       Ran commands: 
+       withTmpDir
+       rm -f /tmp/tmpThreadId13941972784-5
+       mkdir /tmp/tmpThreadId13941972784-5
+       cd /tmp/tmpThreadId13941972784-5
+       mkdir -p /tmp/tmpThreadId13941972784-5/dir
+       mkdir -p /tmp/tmpThreadId13941972784-5/dir/dir1
+       touch /tmp/tmpThreadId13941972784-5/file1.hs
+       appendfile /tmp/tmpThreadId13941972784-5/file1.hs
+       touch /tmp/tmpThreadId13941972784-5/dir/file2.hs
+       appendfile /tmp/tmpThreadId13941972784-5/dir/file2.hs
+       touch /tmp/tmpThreadId13941972784-5/file1.lhs
+       appendfile /tmp/tmpThreadId13941972784-5/file1.lhs
+       touch /tmp/tmpThreadId13941972784-5/dir/file2.lhs
+       appendfile /tmp/tmpThreadId13941972784-5/dir/file2.lhs
+       rm -rf /tmp/tmpThreadId13941972784-5
+       
+       Exception: <interactive>:1:1: error:
+           Could not find module `IHaskell.Display'
+           Use -v (or `:set -v` in ghci) to see a list of the files searched for.
+
+  To rerun use: --match "/Completes commands/generates the correct matchingText on `:l ~/*` /" --seed 1209299377
+
+Randomized with seed 1209299377
+
+Finished in 4.2529 seconds
+75 examples, 22 failures
+Test suite hspec: FAIL
+Test suite logged to:
+/tmp/workdir-ihaskell/ihaskell-0.10.4.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/ihaskell-0.10.4.0/t/hspec/test/ihaskell-0.10.4.0-hspec.log
+0 of 1 test suites (0 of 1 test cases) passed.
+Error: [Cabal-7125]
+Tests failed for test:hspec from ihaskell-0.10.4.0.
+

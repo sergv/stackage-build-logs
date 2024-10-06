@@ -1,0 +1,85 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - conferer-aeson-1.1.0.2 (test:specs) (ephemeral targets)
+Preprocessing test suite 'specs' for conferer-aeson-1.1.0.2...
+Building test suite 'specs' for conferer-aeson-1.1.0.2...
+Running 1 test suites...
+Test suite specs: RUNNING...
+
+Conferer.FromConfig.Aeson
+  getting an existing path returns the right value [✔]
+Conferer.Source.Aeson
+  json source
+    #getKeyInSource
+      getting an existing path returns the right value [✔]
+      getting an non existing path returns nothing [✔]
+      getting an non existing path returns nothing [✔]
+      getting a key with an object that has '_self'
+        gets the value inside '_self' [✔]
+      with a key that's not valid
+        ignores the value [✔]
+      with an array
+        getting a path with number gets the right value [✔]
+        magic 'keys' key
+          with an empy array
+            the magic 'keys' key is "" [✔]
+          with a non empty array
+            the magic 'keys' key is a comma separated list of all indexes present on the array [✔]
+      with an object
+        getting an existing path returns nothing [✔]
+        magic 'keys' key
+          with an empy object
+            the magic 'keys' key is "" [✔]
+          with a non empty object
+            the magic 'keys' key is a comma separated list of all keys present in the object [✔]
+          with an object that has a 'keys' key present
+            return its value instead of doing the metamagic [✔]
+      with an int
+        getting an existing path returns the right value [✔]
+      with a float
+        getting an existing path returns the right value [✔]
+      with a boolean
+        getting an existing path returns the right value [✔]
+    #getSubkeysInSource
+      listing keys in non existant path
+        gets no keys [✔]
+      listing keys with an empty object
+        gets only the 'keys' magic key [✔]
+      gettings a existing subkey directly
+        gets no keys [✔]
+      getting the subkeys for an object
+        gets the keys [✔]
+      gettings the keys from a list and an object
+        gets the keys as index numbers [✔]
+      getting the keys from subkeys
+        gets no keys [✔]
+      gettings the keys from nested objects
+        gets those keys and all intermediate magic 'keys' keys [✔]
+      gettings the keys from list
+        returns the present indexes [✔]
+      gettings keys with invalid names
+        ignores those names [✔]
+      when json keys don't follow the conferer Key format
+        ignores the evil keys [✔]
+      when '_self' is present
+        gets an object if it has '_self' [✔]
+    #invalidJsonKeys
+      with some common keys
+        works [✔]
+      with one top level invalid key
+        fails [✔]
+      with one invalid key inside an object
+        fails [✔]
+      with one invalid key inside an array
+        fails [✔]
+      with _self
+        succeeds [✔]
+      with empty key
+        fails [✔]
+
+Finished in 0.0010 seconds
+33 examples, 0 failures
+Test suite specs: PASS
+Test suite logged to:
+/tmp/workdir-conferer-aeson/conferer-aeson-1.1.0.2/dist-newstyle/build/x86_64-linux/ghc-9.6.6/conferer-aeson-1.1.0.2/t/specs/test/conferer-aeson-1.1.0.2-specs.log
+1 of 1 test suites (1 of 1 test cases) passed.

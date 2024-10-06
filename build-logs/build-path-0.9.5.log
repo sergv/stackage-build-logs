@@ -1,0 +1,216 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - path-0.9.5 (lib) (first run)
+ - path-0.9.5 (test:validity-test) (first run)
+ - path-0.9.5 (test:test) (first run)
+Configuring library for path-0.9.5...
+Preprocessing library for path-0.9.5...
+Building library for path-0.9.5...
+[1 of 6] Compiling Path.Internal.Posix
+[2 of 6] Compiling Path.Internal
+[3 of 6] Compiling Path.Internal.Windows
+[4 of 6] Compiling Path.Posix
+
+src/Path/Include.hs:486:11: warning: [GHC-53633] [-Woverlapping-patterns]
+    Pattern match is redundant
+    In an equation for ‘normalizeDrive’: normalizeDrive | False = ...
+    |
+486 |         | IS_WINDOWS = normalizeTrailingSeps
+    |           ^^^^^
+
+src/Path/Include.hs:850:5: warning: [GHC-53633] [-Woverlapping-patterns]
+    Pattern match is redundant
+    In an equation for ‘normalizeFilePath’:
+        normalizeFilePath | False = ...
+    |
+850 |   | IS_WINDOWS = normalizeWindowsSeps . FilePath.normalise
+    |     ^^^^^
+[5 of 6] Compiling Path
+[6 of 6] Compiling Path.Windows
+
+src/Path/Include.hs:487:11: warning: [GHC-53633] [-Woverlapping-patterns]
+    Pattern match is redundant
+    In an equation for ‘normalizeDrive’:
+        normalizeDrive | otherwise = ...
+    |
+487 |         | otherwise  = id
+    |           ^^^^^^^^^
+
+src/Path/Include.hs:851:5: warning: [GHC-53633] [-Woverlapping-patterns]
+    Pattern match is redundant
+    In an equation for ‘normalizeFilePath’:
+        normalizeFilePath | otherwise = ...
+    |
+851 |   | otherwise  = normalizeLeadingSeps . FilePath.normalise
+    |     ^^^^^^^^^
+Configuring test suite 'validity-test' for path-0.9.5...
+Preprocessing test suite 'validity-test' for path-0.9.5...
+Building test suite 'validity-test' for path-0.9.5...
+[1 of 2] Compiling Path.Gen
+[2 of 2] Compiling Main
+[3 of 3] Linking /tmp/workdir-path/path-0.9.5/dist-newstyle/build/x86_64-linux/ghc-9.6.6/path-0.9.5/t/validity-test/build/validity-test/validity-test
+Configuring test suite 'test' for path-0.9.5...
+Preprocessing test suite 'test' for path-0.9.5...
+Building test suite 'test' for path-0.9.5...
+[1 of 5] Compiling Common.Posix
+
+test/Common/Include.hs:21:5: warning: [-Wunused-top-binds]
+    Defined but not used: ‘foo’
+   |
+21 |     foo :: Path a b -> FilePath
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/Common/Include.hs:30:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘qqRelDir’
+   |
+30 | qqRelDir = foo [reldir|foo/|]
+   | ^^^^^^^^
+
+test/Common/Include.hs:33:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘qqRelFile’
+   |
+33 | qqRelFile = foo [relfile|foo|]
+   | ^^^^^^^^^
+
+test/Common/Include.hs:36:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘thRelDir’
+   |
+36 | thRelDir = foo $(mkRelDir "foo/")
+   | ^^^^^^^^
+
+test/Common/Include.hs:39:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘thRelFile’
+   |
+39 | thRelFile = foo $(mkRelFile "foo")
+   | ^^^^^^^^^
+
+test/Common/Include.hs:42:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘liftRelDir’
+   |
+42 | liftRelDir = foo $(TH.lift (Path "foo/" :: Path Rel Dir))
+   | ^^^^^^^^^^
+
+test/Common/Include.hs:45:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘liftRelFile’
+   |
+45 | liftRelFile = foo $(TH.lift (Path "foo" :: Path Rel File))
+   | ^^^^^^^^^^^
+
+test/Common/Posix.hs:9:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘qqAbsDir’
+  |
+9 | qqAbsDir = foo [absdir|/foo/|]
+  | ^^^^^^^^
+
+test/Common/Posix.hs:12:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘qqAbsFile’
+   |
+12 | qqAbsFile = foo [absdir|/foo|]
+   | ^^^^^^^^^
+
+test/Common/Posix.hs:15:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘thAbsDir’
+   |
+15 | thAbsDir = foo $(mkAbsDir "/foo/")
+   | ^^^^^^^^
+
+test/Common/Posix.hs:18:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘thAbsFile’
+   |
+18 | thAbsFile = foo $(mkAbsFile "/foo")
+   | ^^^^^^^^^
+
+test/Common/Posix.hs:21:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘liftAbsDir’
+   |
+21 | liftAbsDir = foo $(TH.lift (Path "/foo/" :: Path Abs Dir))
+   | ^^^^^^^^^^
+
+test/Common/Posix.hs:24:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘liftAbsFile’
+   |
+24 | liftAbsFile = foo $(TH.lift (Path "/foo" :: Path Abs File))
+   | ^^^^^^^^^^^
+[2 of 5] Compiling Common.Windows
+
+test/Common/Include.hs:21:5: warning: [-Wunused-top-binds]
+    Defined but not used: ‘foo’
+   |
+21 |     foo :: Path a b -> FilePath
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/Common/Include.hs:30:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘qqRelDir’
+   |
+30 | qqRelDir = foo [reldir|foo/|]
+   | ^^^^^^^^
+
+test/Common/Include.hs:33:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘qqRelFile’
+   |
+33 | qqRelFile = foo [relfile|foo|]
+   | ^^^^^^^^^
+
+test/Common/Include.hs:36:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘thRelDir’
+   |
+36 | thRelDir = foo $(mkRelDir "foo/")
+   | ^^^^^^^^
+
+test/Common/Include.hs:39:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘thRelFile’
+   |
+39 | thRelFile = foo $(mkRelFile "foo")
+   | ^^^^^^^^^
+
+test/Common/Include.hs:42:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘liftRelDir’
+   |
+42 | liftRelDir = foo $(TH.lift (Path "foo/" :: Path Rel Dir))
+   | ^^^^^^^^^^
+
+test/Common/Include.hs:45:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘liftRelFile’
+   |
+45 | liftRelFile = foo $(TH.lift (Path "foo" :: Path Rel File))
+   | ^^^^^^^^^^^
+
+test/Common/Windows.hs:8:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘qqAbsDir’
+  |
+8 | qqAbsDir = foo [absdir|C:\foo\|]
+  | ^^^^^^^^
+
+test/Common/Windows.hs:11:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘qqAbsFile’
+   |
+11 | qqAbsFile = foo [absdir|C:\foo|]
+   | ^^^^^^^^^
+
+test/Common/Windows.hs:14:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘thAbsDir’
+   |
+14 | thAbsDir = foo $(mkAbsDir "C:\\foo\\")
+   | ^^^^^^^^
+
+test/Common/Windows.hs:17:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘thAbsFile’
+   |
+17 | thAbsFile = foo $(mkAbsFile "C:\\foo")
+   | ^^^^^^^^^
+
+test/Common/Windows.hs:20:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘liftAbsDir’
+   |
+20 | liftAbsDir = foo $(TH.lift (Path "C:\\foo\\" :: Path Abs Dir))
+   | ^^^^^^^^^^
+
+test/Common/Windows.hs:23:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘liftAbsFile’
+   |
+23 | liftAbsFile = foo $(TH.lift (Path "C:\\foo" :: Path Abs File))
+   | ^^^^^^^^^^^
+[3 of 5] Compiling Posix
+[4 of 5] Compiling Windows
+[5 of 5] Compiling Main
+[6 of 6] Linking /tmp/workdir-path/path-0.9.5/dist-newstyle/build/x86_64-linux/ghc-9.6.6/path-0.9.5/t/test/build/test/test

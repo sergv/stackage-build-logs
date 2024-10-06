@@ -1,0 +1,389 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - hpc-codecov-0.5.0.0 (test:test-main) (ephemeral targets)
+Preprocessing test suite 'test-main' for hpc-codecov-0.5.0.0...
+Building test suite 'test-main' for hpc-codecov-0.5.0.0...
+Running 1 test suites...
+Test suite test-main: RUNNING...
+Error: unrecognized option `--foo'
+main
+Run 'test-main --help' for usage.
+  report
+Error: 
+  - unrecognized option `--foo'
+  - unrecognized option `--bar'
+  - unrecognized option `--buzz'
+Run 'test-main --help' for usage.
+    mempty:                         OK
+  cmdline
+    non-existing-option:            OK
+    non-existing-options:           OK
+Error: option `--mix' requires an argument DIR
+Run 'test-main --help' for usage.
+    mixdir-without-argument:        OKError: no TARGET was given
+Run 'test-main --help' for usage.
+
+    no-tix-file:                    OK
+    non-existing-tix:               Error: cannot find tix: "no_such_file.tix"
+Run 'test-main --help' for usage.
+OK
+Error: invalid build tool: `foo'
+Run 'test-main --help' for usage.
+    invalid-build-tool:             OK
+Error: cannot find tix for test suite: "no-such-test"
+Run 'test-main --help' for usage.
+    invalid-test-suite:             OKError: invalid format: `foo'
+
+Run 'test-main --help' for usage.
+    invalid-format:                 OK
+A tool to generate reports from .tix and .mix files
+    help:                           
+USAGE: test-main [OPTIONS] TARGET
+
+ARGUMENTS:
+  <TARGET>  Either a path to a .tix file or a 'TOOL:TEST_SUITE'.
+            Supported TOOL values are 'stack' and 'cabal'.
+            When the TOOL is 'stack' and building a project with
+            multiple packages, use 'all' as the TEST_SUITE value
+            to specify the combined report.
+
+OPTIONS:
+  -m DIR     --mix=DIR          .mix file directory, can repeat
+                                (default: .hpc)
+  -s DIR     --src=DIR          Source directory, can repeat
+                                (default: current directory)
+  -x MODULE  --exclude=MODULE   Module name to exclude, can repeat
+  -o FILE    --out=FILE         Output file
+                                (default: stdout)
+  -r DIR     --root=DIR         Project root directory for TOOL
+                                Usually the directory containing
+                                'stack.yaml' or 'cabal.project'
+                                (default: current directory)
+  -b DIR     --build=DIR        Build directory made by the TOOL
+                                (default:
+                                 - '.stack-work' for stack
+                                 - 'dist-newstyle' for cabal)
+  -X DIR     --skip=DIR         Basename of directory to skip while
+                                searching data for TOOL, can repeat
+  -f FMT     --format=FMT       Format of generated report
+                                'codecov', 'lcov', or 'cobertura'
+                                (default: codecov)
+  -v         --verbose          Show verbose output
+             --version          Show versoin and exit
+             --numeric-version  Show numeric version and exit
+  -h         --help             Show this help and exit
+
+For more info, see:
+
+  https://github.com/8c6794b6/hpc-codecov#readme
+
+OK
+test-main version 0.5.0.0
+    version:                        OK
+0.5.0.0
+    numeric-version:                FoOK
+u  recip
+nd    recip-data-to-stdout:            tix file: test/data/reciprocal/reciprocal.tix
+Searching mix:  Main
+Found mix:      reciprocal.hs
+Found source:   test/data/reciprocal/reciprocal.hs
+Writing report to stdout
+{"coverage":{"test/data/reciprocal/reciprocal.hs":{"2":"1/2","3":0,"4":0,"6":1,"9":7,"10":"1/2","11":"1/2","13":6,"14":6,"17":6,"18":"1/2","21":1,"22":1,"23":"1/2","25":1,"26":1,"28":1,"29":1,"30":1,"31":1}}}
+Done
+OK
+Found ti    recip-lcov-data-to-stdout:      x file: test/data/reciprocal/reciprocal.tix
+Searching mix:  Main
+Found mix:      reciprocal.hs
+Found source:   test/data/reciprocal/reciprocal.hs
+Writing report to stdout
+TN:
+SF:test/data/reciprocal/reciprocal.hs
+FN:28,31,main
+FN:21,26,showRecip
+FN:2,6,reciprocal
+FN:9,14,divide
+FN:17,18,position
+FNDA:1,main
+FNDA:1,showRecip
+FNDA:1,reciprocal
+FNDA:7,divide
+FNDA:6,position
+FNF:5
+FNH:5
+BRDA:23,0,0,0
+BRDA:23,0,1,1
+BRDA:3,0,0,0
+BRDA:3,0,1,0
+BRDA:2,0,0,1
+BRDA:2,0,1,0
+BRDA:11,0,0,6
+BRDA:11,0,1,0
+BRDA:10,0,0,0
+BRDA:10,0,1,6
+BRDA:9,0,0,1
+BRDA:9,0,1,6
+BRDA:18,0,0,5
+BRDA:18,0,1,0
+BRDA:17,0,0,1
+BRDA:17,0,1,5
+BRF:16
+BRH:9
+DA:2,1
+DA:3,0
+DA:4,0
+DA:6,1
+DA:9,7
+DA:10,6
+DA:11,6
+DA:13,6
+DA:14,6
+DA:17,6
+DA:18,5
+DA:21,1
+DA:22,1
+DA:23,1
+DA:25,1
+DA:26,1
+DA:28,1
+DA:29,1
+DA:30,1
+DA:31,1
+LF:20
+LH:18
+end_of_record
+Done
+OK
+    recip-cobertura-data-to-stdout: Found tix file: test/data/reciprocal/reciprocal.tix
+Searching mix:  Main
+Found mix:      reciprocal.hs
+Found source:   test/data/reciprocal/reciprocal.hs
+Writing report to stdout
+<?xml version="1.0" ?><!DOCTYPE coverage SYSTEM 'http://cobertura.sourceforge.nex/xml/coverage-0.4.dtd'><coverage branch-rate="0.5625" branches-covered="9" branches-valid="16" complexity="0" line-rate="0.9" lines-covered="18" lines-valid="20" timestamp="1728221102" version="2.0.3"><sources><source>.</source></sources><packages><package name="test.data.reciprocal" line-rate="0.9" branch-rate="0.5625" complexity="0"><classes><class branch-rate="0.5625" complexity="0" filename="test/data/reciprocal/reciprocal.hs" line-rate="0.9" name=""><methods><method name="main" signature="" line-rate="0.0" branch-rate="0.0"><lines><line hits="0" number="28" branch="false"/></lines></method><method name="showRecip" signature="" line-rate="0.0" branch-rate="0.0"><lines><line hits="0" number="21" branch="false"/></lines></method><method name="reciprocal" signature="" line-rate="0.0" branch-rate="0.0"><lines><line hits="0" number="2" branch="false"/></lines></method><method name="divide" signature="" line-rate="0.0" branch-rate="0.0"><lines><line hits="0" number="9" branch="false"/></lines></method><method name="position" signature="" line-rate="0.0" branch-rate="0.0"><lines><line hits="0" number="17" branch="false"/></lines></method></methods><lines><line branch="true" hits="1" number="2" condition-coverage="50% (1/2)"/><line branch="true" hits="0" number="3" condition-coverage="0% (0/2)"/><line branch="false" hits="0" number="4"/><line branch="false" hits="1" number="6"/><line branch="true" hits="7" number="9" condition-coverage="100% (2/2)"/><line branch="true" hits="6" number="10" condition-coverage="50% (1/2)"/><line branch="true" hits="6" number="11" condition-coverage="50% (1/2)"/><line branch="false" hits="6" number="13"/><line branch="false" hits="6" number="14"/><line branch="true" hits="6" number="17" condition-coverage="100% (2/2)"/><line branch="true" hits="5" number="18" condition-coverage="50% (1/2)"/><line branch="false" hits="1" number="21"/><line branch="false" hits="1" number="22"/><line branch="true" hits="1" number="23" condition-coverage="50% (1/2)"/><line branch="false" hits="1" number="25"/><line branch="false" hits="1" number="26"/><line branch="false" hits="1" number="28"/><line branch="false" hits="1" number="29"/><line branch="false" hits="1" number="30"/><line branch="false" hits="1" number="31"/></lines></class></classes></package></packages></coverage>
+Done
+OK
+Fo    recip-data-no-src:              und tix file: test/data/reciprocal/reciprocal.tix
+Searching mix:  Main
+Found mix:      reciprocal.hs
+Error: cannot find src: "reciprocal.hs"
+searched locations:
+  test/data/reciprocal.hs
+  test/reciprocal.hs
+Run 'test-main --help' for usage.
+OK
+  exception
+    NoTarget:                       OK
+    TixNotFound:                    OK
+  parser
+    readTix'
+      compare:                      OK
+    readMix'
+      compare:                      OK
+      malformed timestamp:          OK
+  self
+    self-data-to-stdout:            Resolving dependencies...
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - hpc-codecov-0.5.0.0 (lib) (first run)
+ - hpc-codecov-0.5.0.0 (test:test-main) (first run)
+Configuring library for hpc-codecov-0.5.0.0...
+Preprocessing library for hpc-codecov-0.5.0.0...
+Building library for hpc-codecov-0.5.0.0...
+[1 of 9] Compiling Paths_hpc_codecov
+[2 of 9] Compiling Trace.Hpc.Codecov.Exception
+[3 of 9] Compiling Trace.Hpc.Codecov.Parser
+[4 of 9] Compiling Trace.Hpc.Codecov.Report.Entry
+[5 of 9] Compiling Trace.Hpc.Codecov.Report.Emit
+[6 of 9] Compiling Trace.Hpc.Codecov.Report
+[7 of 9] Compiling Trace.Hpc.Codecov.Discover
+[8 of 9] Compiling Trace.Hpc.Codecov.Options
+[9 of 9] Compiling Trace.Hpc.Codecov.Main
+Configuring test suite 'test-main' for hpc-codecov-0.5.0.0...
+Preprocessing test suite 'test-main' for hpc-codecov-0.5.0.0...
+Building test suite 'test-main' for hpc-codecov-0.5.0.0...
+[1 of 2] Compiling Test.Main
+[2 of 2] Compiling Main
+[3 of 3] Linking /tmp/workdir-hpc-codecov/hpc-codecov-0.5.0.0/.hpc_codecov_test_tmp_cabal_v2/build/x86_64-linux/ghc-9.6.6/hpc-codecov-0.5.0.0/t/test-main/build/test-main/test-main
+Running 1 test suites...
+Test suite test-main: RUNNING...
+/tmp/workdir-hpc-codecov/hpc-codecov-0.5.0.0/.hpc_codecov_test_tmp_cabal_v2/build/x86_64-linux/ghc-9.6.6/hpc-codecov-0.5.0.0/t/test-main/build/test-main/test-main: symbol lookup error: /tmp/workdir-hpc-codecov/hpc-codecov-0.5.0.0/.hpc_codecov_test_tmp_cabal_v2/build/x86_64-linux/ghc-9.6.6/hpc-codecov-0.5.0.0/t/test-main/build/test-main/test-main: undefined symbol: _hpc_tickboxes_hpczmcodecovzm0zi5zi0zi0zminplace_TraceziHpcziCodecovziParser_hpc
+Test suite test-main: FAIL
+Test suite logged to:
+/tmp/workdir-hpc-codecov/hpc-codecov-0.5.0.0/.hpc_codecov_test_tmp_cabal_v2/build/x86_64-linux/ghc-9.6.6/hpc-codecov-0.5.0.0/t/test-main/test/hpc-codecov-0.5.0.0-test-main.log
+0 of 1 test suites (0 of 1 test cases) passed.
+Error: [Cabal-7125]
+Tests failed for test:test-main from hpc-codecov-0.5.0.0.
+
+Testing project1 with cabal ...
+FAIL
+      Exception: callProcess: cabal "test" "--builddir=.hpc_codecov_test_tmp_cabal_v2" "--enable-coverage" (exit 1): failed
+      Use -p '$0=="main.self.self-data-to-stdout"' to rerun this test only.
+    self-data-to-stdout-lcov:       FAIL
+      Exception: callProcess: cabal "test" "--builddir=.hpc_codecov_test_tmp_cabal_v2" "--enable-coverage" (exit 1): failed
+      Use -p '/self-data-to-stdout-lcov/' to rerun this test only.
+    self-data-to-stdout-cobertura:  FAIL
+      Exception: callProcess: cabal "test" "--builddir=.hpc_codecov_test_tmp_cabal_v2" "--enable-coverage" (exit 1): failed
+      Use -p '/self-data-to-stdout-cobertura/' to rerun this test only.
+    self-data-to-stdout-verbose:    FAIL
+      Exception: callProcess: cabal "test" "--builddir=.hpc_codecov_test_tmp_cabal_v2" "--enable-coverage" (exit 1): failed
+      Use -p '/self-data-to-stdout-verbose/' to rerun this test only.
+    self-data-to-file-verbose:      FAIL
+      Exception: callProcess: cabal "test" "--builddir=.hpc_codecov_test_tmp_cabal_v2" "--enable-coverage" (exit 1): failed
+      Use -p '/self-data-to-file-verbose/' to rerun this test only.
+    self-data-no-mix-none:          FAIL
+      Exception: callProcess: cabal "test" "--builddir=.hpc_codecov_test_tmp_cabal_v2" "--enable-coverage" (exit 1): failed
+      Use -p '/self-data-no-mix-none/' to rerun this test only.
+    self-data-no-mix-one:           FAIL
+      Exception: callProcess: cabal "test" "--builddir=.hpc_codecov_test_tmp_cabal_v2" "--enable-coverage" (exit 1): failed
+      Use -p '/self-data-no-mix-one/' to rerun this test only.
+    self-data-no-all-two:           FAIL
+      Exception: callProcess: cabal "test" "--builddir=.hpc_codecov_test_tmp_cabal_v2" "--enable-coverage" (exit 1): failed
+      Use -p '/self-data-no-all-two/' to rerun this test only.
+  discover_cabal
+    project1:                       Resolving dependencies...
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - project1-0.1.0.0 (lib) (first run)
+ - project1-0.1.0.0 (test:project1-test) (first run)
+Configuring library for project1-0.1.0.0...
+Preprocessing library for project1-0.1.0.0...
+Building library for project1-0.1.0.0...
+[1 of 5] Compiling Lib.Bar.Buzz
+[2 of 5] Compiling Lib.Bar
+[3 of 5] Compiling Lib.Foo
+[4 of 5] Compiling Lib
+[5 of 5] Compiling Paths_project1
+Configuring test suite 'project1-test' for project1-0.1.0.0...
+Preprocessing test suite 'project1-test' for project1-0.1.0.0...
+Building test suite 'project1-test' for project1-0.1.0.0...
+[1 of 2] Compiling Main
+[2 of 2] Compiling Paths_project1
+[3 of 3] Linking /tmp/workdir-hpc-codecov/hpc-codecov-0.5.0.0/test/data/project1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/project1-0.1.0.0/t/project1-test/build/project1-test/project1-test
+Running 1 test suites...
+Test suite project1-test: RUNNING...
+got even number
+b in the middle
+14
+10
+Test suite project1-test: PASS
+Test suite logged to:
+/tmp/workdir-hpc-codecov/hpc-codecov-0.5.0.0/test/data/project1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/project1-0.1.0.0/t/project1-test/test/project1-0.1.0.0-project1-test.log
+Writing: project1-0.1.0.0-inplace/Lib.Foo.hs.html
+Writing: project1-0.1.0.0-inplace/Lib.Bar.Buzz.hs.html
+Writing: project1-0.1.0.0-inplace/Lib.Bar.hs.html
+Writing: project1-0.1.0.0-inplace/Lib.hs.html
+Writing: hpc_index.html
+Writing: hpc_index_fun.html
+Writing: hpc_index_alt.html
+Writing: hpc_index_exp.html
+Package coverage report written to
+/tmp/workdir-hpc-codecov/hpc-codecov-0.5.0.0/test/data/project1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/project1-0.1.0.0/t/project1-test/hpc/dyn/html/hpc_index.html
+1 of 1 test suites (1 of 1 test cases) passed.
+Writing: project1-0.1.0.0-inplace/Lib.Foo.hs.html
+Writing: project1-0.1.0.0-inplace/Lib.Bar.Buzz.hs.html
+Writing: project1-0.1.0.0-inplace/Lib.Bar.hs.html
+Writing: project1-0.1.0.0-inplace/Lib.hs.html
+Writing: hpc_index.html
+Writing: hpc_index_fun.html
+Writing: hpc_index_alt.html
+Writing: hpc_index_exp.html
+Package coverage report written to
+/tmp/workdir-hpc-codecov/hpc-codecov-0.5.0.0/test/data/project1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/project1-0.1.0.0/t/project1-test/hpc/dyn/html/hpc_index.html
+ec: ExitSuccess
+Starting discover for cabal
+Scanning under "test/data/project1" for .cabal files and "dist-newstyle"
+Skipping directories: project1-exe
+Scanned:
+  Directories containing .cabal files:
+    - test/data/project1/
+  Build dirs:
+    - test/data/project1/dist-newstyle
+
+Discovered:
+  Tix file: 
+    - test/data/project1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/project1-0.1.0.0/t/project1-test/hpc/dyn/tix/project1-test.tix
+  Mix dirs: 
+    - test/data/project1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/project1-0.1.0.0/build/extra-compilation-artifacts/hpc/vanilla/mix/project1-0.1.0.0-inplace
+
+Found tix file: test/data/project1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/project1-0.1.0.0/t/project1-test/hpc/dyn/tix/project1-test.tix
+Searching mix:  project1-0.1.0.0-inplace-project1-test/Main
+Error: cannot find mix: "project1-0.1.0.0-inplace-project1-test/Main"
+searched locations:
+  .hpc/project1-0.1.0.0-inplace-project1-test/Main.mix
+  test/data/project1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/project1-0.1.0.0/build/extra-compilation-artifacts/hpc/vanilla/mix/project1-0.1.0.0-inplace/project1-0.1.0.0-inplace-project1-test/Main.mix
+Run 'test-main --help' for usage.
+Testing project1 with cabal ...
+FAIL
+      Exception: ExitFailure 1
+      Use -p '$0=="main.discover_cabal.project1"' to rerun this test only.
+    project1:                       Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - project1-0.1.0.0 (test:project1-test) (first run)
+Preprocessing test suite 'project1-test' for project1-0.1.0.0...
+Building test suite 'project1-test' for project1-0.1.0.0...
+Running 1 test suites...
+Test suite project1-test: RUNNING...
+got even number
+b in the middle
+14
+10
+Test suite project1-test: PASS
+Test suite logged to:
+/tmp/workdir-hpc-codecov/hpc-codecov-0.5.0.0/test/data/project1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/project1-0.1.0.0/t/project1-test/test/project1-0.1.0.0-project1-test.log
+Writing: project1-0.1.0.0-inplace/Lib.Foo.hs.html
+Writing: project1-0.1.0.0-inplace/Lib.Bar.Buzz.hs.html
+Writing: project1-0.1.0.0-inplace/Lib.Bar.hs.html
+Writing: project1-0.1.0.0-inplace/Lib.hs.html
+Writing: hpc_index.html
+Writing: hpc_index_fun.html
+Writing: hpc_index_alt.html
+Writing: hpc_index_exp.html
+Package coverage report written to
+/tmp/workdir-hpc-codecov/hpc-codecov-0.5.0.0/test/data/project1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/project1-0.1.0.0/t/project1-test/hpc/dyn/html/hpc_index.html
+1 of 1 test suites (1 of 1 test cases) passed.
+Writing: project1-0.1.0.0-inplace/Lib.Foo.hs.html
+Writing: project1-0.1.0.0-inplace/Lib.Bar.Buzz.hs.html
+Writing: project1-0.1.0.0-inplace/Lib.Bar.hs.html
+Writing: project1-0.1.0.0-inplace/Lib.hs.html
+Writing: hpc_index.html
+Writing: hpc_index_fun.html
+Writing: hpc_index_alt.html
+Writing: hpc_index_exp.html
+Package coverage report written to
+/tmp/workdir-hpc-codecov/hpc-codecov-0.5.0.0/test/data/project1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/project1-0.1.0.0/t/project1-test/hpc/dyn/html/hpc_index.html
+ec: ExitSuccess
+Starting discover for cabal
+Scanning under "" for .cabal files and "dist-newstyle"
+No directory specified to skip during discover
+Scanned:
+  Directories containing .cabal files:
+    - ./
+    - test/data/project1/
+  Build dirs:
+    - dist-newstyle
+    - test/data/project1/dist-newstyle
+
+Discovered:
+  Tix file: 
+    - /tmp/workdir-hpc-codecov/hpc-codecov-0.5.0.0/test/data/project1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/project1-0.1.0.0/t/project1-test/hpc/dyn/tix/project1-test.tix
+  Mix dirs: 
+    - test/data/project1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/project1-0.1.0.0/build/extra-compilation-artifacts/hpc/vanilla/mix/project1-0.1.0.0-inplace
+
+Found tix file: /tmp/workdir-hpc-codecov/hpc-codecov-0.5.0.0/test/data/project1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/project1-0.1.0.0/t/project1-test/hpc/dyn/tix/project1-test.tix
+Searching mix:  project1-0.1.0.0-inplace/Lib.Foo
+Error: cannot find mix: "project1-0.1.0.0-inplace/Lib.Foo"
+searched locations:
+  .hpc/project1-0.1.0.0-inplace/Lib.Foo.mix
+  test/data/project1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/project1-0.1.0.0/build/extra-compilation-artifacts/hpc/vanilla/mix/project1-0.1.0.0-inplace/project1-0.1.0.0-inplace/Lib.Foo.mix
+Run 'test-main --help' for usage.
+FAIL
+      Exception: ExitFailure 1
+      Use -p '$0=="main.discover_cabal.project1"' to rerun this test only.
+
+10 out of 31 tests failed (21.19s)
+Test suite test-main: FAIL
+Test suite logged to:
+/tmp/workdir-hpc-codecov/hpc-codecov-0.5.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/hpc-codecov-0.5.0.0/t/test-main/test/hpc-codecov-0.5.0.0-test-main.log
+0 of 1 test suites (0 of 1 test cases) passed.
+Error: [Cabal-7125]
+Tests failed for test:test-main from hpc-codecov-0.5.0.0.
+

@@ -1,0 +1,48 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - TCache-0.13.3 (test:caching) (ephemeral targets)
+Preprocessing test suite 'caching' for TCache-0.13.3...
+Building test suite 'caching' for TCache-0.13.3...
+Running 1 test suites...
+Test suite caching: RUNNING...
+See the source code of this example!
+
+This program tests the caching, cleaning, re-retrieval and updating of the cache.
+It uses the DefaultPersistence (disk) and defaultCheck (cleaning rules).
+It writes asyncronously every 10 seconds all changed elemements to disk.
+When there is more than the allowed number of elements (100) in the cache it cleans them by the given rule.
+With defaultCheck it drops elements which where not accesed since half the time between now and the last sync.
+
+Creating 200 resources with content: n 0
+total: 200 dirty: 200 loaded: 200
+Last element: Just (Data 200 0)
+
+Starting the async proc with folder: .tcachedata/caching/
+after 6 seconds
+total: 200 dirty: 200 loaded: 200
+after 11 seconds (should have saved)
+total: 200 dirty: 0 loaded: 200
+after 16 seconds (accessing one element)
+Just (Data 100 0)
+total: 200 dirty: 0 loaded: 200
+after 21 seconds (should have cleaned)
+total: 200 dirty: 0 loaded: 1
+Updating every element, included the discarded ones with 'n 1'
+after 26 seconds (should be 'full')
+total: 200 dirty: 200 loaded: 200
+accessing all entries once and print the last
+Just (Data 200 1)
+after 31 seconds (should have saved)
+total: 200 dirty: 0 loaded: 200
+after 36 seconds
+total: 200 dirty: 0 loaded: 200
+after 41 seconds (should be cleaned again)
+total: 200 dirty: 0 loaded: 0
+getting the first 50 elements
+Last element: Just (Data 50 1)
+Now we have
+total: 200 dirty: 0 loaded: 50
+Test suite caching: PASS
+Test suite logged to:
+/tmp/workdir-TCache/TCache-0.13.3/dist-newstyle/build/x86_64-linux/ghc-9.6.6/TCache-0.13.3/t/caching/test/TCache-0.13.3-caching.log
+1 of 1 test suites (1 of 1 test cases) passed.

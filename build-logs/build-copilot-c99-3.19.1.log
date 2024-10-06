@@ -1,0 +1,123 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - copilot-c99-3.19.1 (lib) (first run)
+ - copilot-c99-3.19.1 (test:unit-tests) (first run)
+Configuring library for copilot-c99-3.19.1...
+Preprocessing library for copilot-c99-3.19.1...
+Building library for copilot-c99-3.19.1...
+[1 of 9] Compiling Copilot.Compile.C99.Error
+[2 of 9] Compiling Copilot.Compile.C99.Name
+[3 of 9] Compiling Copilot.Compile.C99.External
+[4 of 9] Compiling Copilot.Compile.C99.Settings
+[5 of 9] Compiling Copilot.Compile.C99.Type
+[6 of 9] Compiling Copilot.Compile.C99.Expr
+
+src/Copilot/Compile/C99/Expr.hs:75:3: warning: [GHC-62161] [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In a case alternative:
+        Patterns of type ‘Op1 a b’ not matched:
+            GetField Bool _ _
+            GetField Int8 _ _
+            GetField Int16 _ _
+            GetField Int32 _ _
+            ...
+   |
+75 |   case op of
+   |   ^^^^^^^^^^...
+[7 of 9] Compiling Copilot.Compile.C99.CodeGen
+
+src/Copilot/Compile/C99/CodeGen.hs:68:1: warning: [GHC-62161] [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In an equation for ‘mkStructDecln’:
+        Patterns of type ‘Type a’ not matched:
+            Bool
+            Int8
+            Int16
+            Int32
+            ...
+   |
+68 | mkStructDecln (Struct x) = C.TypeDecln struct
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+src/Copilot/Compile/C99/CodeGen.hs:78:1: warning: [GHC-62161] [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In an equation for ‘mkStructForwDecln’:
+        Patterns of type ‘Type a’ not matched:
+            Bool
+            Int8
+            Int16
+            Int32
+            ...
+   |
+78 | mkStructForwDecln (Struct x) = C.TypeDecln struct
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+[8 of 9] Compiling Copilot.Compile.C99.Compile
+[9 of 9] Compiling Copilot.Compile.C99
+Configuring test suite 'unit-tests' for copilot-c99-3.19.1...
+Preprocessing test suite 'unit-tests' for copilot-c99-3.19.1...
+Building test suite 'unit-tests' for copilot-c99-3.19.1...
+[1 of 2] Compiling Test.Copilot.Compile.C99
+
+tests/Test/Copilot/Compile/C99.hs:37:1: warning: [-Wunused-imports]
+    The import of ‘Copilot.Core.Type.Array’ is redundant
+      except perhaps to import instances from ‘Copilot.Core.Type.Array’
+    To import instances alone, use: import Copilot.Core.Type.Array()
+   |
+37 | import Copilot.Core.Type.Array (array)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Test/Copilot/Compile/C99.hs:437:5: warning: [-Wunused-top-binds]
+    Defined but not used: ‘wrapTC1Expr’
+    |
+437 |   { wrapTC1Expr :: Spec
+    |     ^^^^^^^^^^^
+
+tests/Test/Copilot/Compile/C99.hs:441:5: warning: [-Wunused-top-binds]
+    Defined but not used: ‘wrapTC1Fun’
+    |
+441 |   , wrapTC1Fun :: [a] -> [b]
+    |     ^^^^^^^^^^
+
+tests/Test/Copilot/Compile/C99.hs:445:5: warning: [-Wunused-top-binds]
+    Defined but not used: ‘wrapTC1CopInp’
+    |
+445 |   , wrapTC1CopInp :: (String -> String, String, String, Gen a)
+    |     ^^^^^^^^^^^^^
+
+tests/Test/Copilot/Compile/C99.hs:459:5: warning: [-Wunused-top-binds]
+    Defined but not used: ‘wrapTC1CopOut’
+    |
+459 |   , wrapTC1CopOut :: (String, String)
+    |     ^^^^^^^^^^^^^
+
+tests/Test/Copilot/Compile/C99.hs:470:5: warning: [-Wunused-top-binds]
+    Defined but not used: ‘wrapTC2Expr’
+    |
+470 |   { wrapTC2Expr :: Spec
+    |     ^^^^^^^^^^^
+
+tests/Test/Copilot/Compile/C99.hs:474:5: warning: [-Wunused-top-binds]
+    Defined but not used: ‘wrapTC2Fun’
+    |
+474 |   , wrapTC2Fun :: [a] -> [b] -> [c]
+    |     ^^^^^^^^^^
+
+tests/Test/Copilot/Compile/C99.hs:478:5: warning: [-Wunused-top-binds]
+    Defined but not used: ‘wrapTC2CopInp1’
+    |
+478 |   , wrapTC2CopInp1 :: (String -> String, String, String, Gen a)
+    |     ^^^^^^^^^^^^^^
+
+tests/Test/Copilot/Compile/C99.hs:492:5: warning: [-Wunused-top-binds]
+    Defined but not used: ‘wrapTC2CopInp2’
+    |
+492 |   , wrapTC2CopInp2 :: (String -> String, String, String, Gen b)
+    |     ^^^^^^^^^^^^^^
+
+tests/Test/Copilot/Compile/C99.hs:506:5: warning: [-Wunused-top-binds]
+    Defined but not used: ‘wrapTC2CopOut’
+    |
+506 |   , wrapTC2CopOut :: (String, String)
+    |     ^^^^^^^^^^^^^
+[2 of 2] Compiling Main
+[3 of 3] Linking /tmp/workdir-copilot-c99/copilot-c99-3.19.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/copilot-c99-3.19.1/t/unit-tests/build/unit-tests/unit-tests

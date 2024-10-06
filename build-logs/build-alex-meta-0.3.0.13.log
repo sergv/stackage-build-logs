@@ -1,0 +1,67 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - alex-meta-0.3.0.13 (lib) (first run)
+Configuring library for alex-meta-0.3.0.13...
+Preprocessing library for alex-meta-0.3.0.13...
+Building library for alex-meta-0.3.0.13...
+[ 1 of 23] Compiling Data.Ranged.Boundaries
+[ 2 of 23] Compiling Data.Ranged.Ranges
+[ 3 of 23] Compiling Data.Ranged.RangedSet
+[ 4 of 23] Compiling Data.Ranged
+[ 5 of 23] Compiling Map
+[ 6 of 23] Compiling Set
+[ 7 of 23] Compiling DFS
+[ 8 of 23] Compiling Sort
+[ 9 of 23] Compiling UTF8
+[10 of 23] Compiling CharSet
+[11 of 23] Compiling Util
+[12 of 23] Compiling AbsSyn
+[13 of 23] Compiling Text.Alex.AlexTemplate
+[14 of 23] Compiling ParseMonad
+
+src/ParseMonad.hs:92:2: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad P’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+92 |  return a = P $ \env -> Right (env,a)
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/ParseMonad.hs:109:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative P’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+109 |   pure = return
+    |   ^^^^^^^^^^^^^
+[15 of 23] Compiling Scan
+[16 of 23] Compiling Parser
+[17 of 23] Compiling Output
+[18 of 23] Compiling NFA
+
+src/NFA.hs:167:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad NFAM’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+167 |   return a = N $ \s n e -> (s,n,a)
+    |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/NFA.hs:177:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative NFAM’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+177 |   pure = return
+    |   ^^^^^^^^^^^^^
+[19 of 23] Compiling Info
+[20 of 23] Compiling DFAMin
+[21 of 23] Compiling DFA
+[22 of 23] Compiling Text.Alex
+[23 of 23] Compiling Text.Alex.Quote

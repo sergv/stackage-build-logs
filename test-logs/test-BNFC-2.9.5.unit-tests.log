@@ -1,0 +1,175 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - BNFC-2.9.5 (test:unit-tests) (ephemeral targets)
+Preprocessing test suite 'unit-tests' for BNFC-2.9.5...
+Building test suite 'unit-tests' for BNFC-2.9.5...
+Running 1 test suites...
+Test suite unit-tests: RUNNING...
+
+BNFC.Backend.Base
+  Backend monad
+    empty computation generates empty list of files [✔]
+  writeFiles
+    creates the root directory if it doesn't exists [✔]
+writing new file ./file.txt
+    creates a file from the bucket [✔]
+writing new file ./file.txt
+    put the right content in the file [✔]
+writing new file ./subdir/file.txt
+    creates subdirectories [✔]
+writing new file root/foo/bar.txt
+    creates files in the root directory [✔]
+BNFC.Backend.C
+  C backend
+8 rules accepted
+
+    respect the makefile option [✔]
+BNFC.Backend.Common.Makefile
+  mkMakefile
+    uses the names in the options dictionary [✔]
+BNFC.Backend.Common.NamedVariables
+  getVars
+    returns a list of the same length as the input list [✔]
+      +++ OK, passed 100 tests.
+    leaves the name of the (non list) category untouched [✔]
+      +++ OK, passed 100 tests; 391 discarded.
+    give the output described in the example [✔]
+BNFC.Backend.CPP.NoSTL
+  C backend
+8 rules accepted
+
+    respect the makefile option [✔]
+BNFC.Backend.CPP.STL
+  C backend
+8 rules accepted
+
+    respect the makefile option [✔]
+BNFC.Backend.Haskell
+  with default option and the Calc grammar
+8 rules accepted
+
+Use Alex 3 to compile LexCalc.x.
+    generates a file called AbsCalc.hs [✔]
+8 rules accepted
+
+Use Alex 3 to compile LexCalc.x.
+    generates a file called LexCalc.x [✔]
+8 rules accepted
+
+Use Alex 3 to compile LexCalc.x.
+    generates a file called ParCalc.y [✔]
+8 rules accepted
+
+Use Alex 3 to compile LexCalc.x.
+    generates a squeleton file [✔]
+8 rules accepted
+
+Use Alex 3 to compile LexCalc.x.
+    generates a pretty printer file [✔]
+8 rules accepted
+
+Use Alex 3 to compile LexCalc.x.
+    generates a test program file [✔]
+8 rules accepted
+
+Use Alex 3 to compile LexCalc.x.
+    generates a error module file [✔]
+  with option -mMyMakefile and the Calc grammar
+8 rules accepted
+
+Use Alex 3 to compile LexCalc.x.
+    generates a Makefile [✔]
+BNFC.Backend.Haskell.CFtoHappy
+  convert
+    quotes backslashes [✔]
+    quotes backslashes as part of a longer string [✔]
+BNFC.Backend.HaskellGADT
+  C backend
+8 rules accepted
+
+   (Use Alex 3 to compile.)
+   (Tested with Happy 1.15 - 1.20)
+    respect the makefile option [✔]
+BNFC.Backend.Java
+  Java backend
+8 rules accepted
+
+   (Tested with JLex 1.2.6)
+   (Parser created only for category Exp)
+   (Tested with CUP 0.11b)
+    respect the makefile option [✔]
+BNFC.Backend.Latex
+  LaTeX backend
+8 rules accepted
+
+    creates the .tex file [✔]
+8 rules accepted
+
+    creates the Makefile [✔]
+  prt
+    correctly converts ^^ into latex 	extasciicircum	extasciicircum [✔]
+BNFC.Backend.OCaml
+  OCaml backend
+8 rules accepted
+
+    respect the makefile option [✔]
+BNFC.CF
+  Show Cat
+    shows (Cat "Def") as "Def" [✔]
+    shows (ListCat (Cat "Thing")) as "[Thing]" [✔]
+    shows (CoercCat "Expr" 3) as "Expr3" [✔]
+    shows (ListCat (CoercCat "Expr" 2)) as "[Expr2]" [✔]
+    shows (TokenCat "Abc") as "Abc" [✔]
+  strToCat
+    reads "Abc" to Cat "Abc" [✔]
+    reads "Abc123" to CoercCat "Abc" 123 [✔]
+    reads "[Expr2]" to ListCat (CoercCat "Expr" 2) [✔]
+  identCat
+    returns ListC for (ListCat (Cat "C")) [✔]
+    returns C3 for (CoercCat "C" 3) [✔]
+  catOfList
+    returns Cat "A" for (ListCat (Cat "A")) [✔]
+    returns Cat "B" for (Cat "B") [✔]
+  precCat
+    returns 0 for a regular category [✔]
+    returns the precedence of a CoercCat [✔]
+    returns the precedence of a CoercCat inside of a ListCat [✔]
+  sameCat
+    considers a category to be the same as itself [✔]
+    considers Abc3 and Abc5 to be the same [✔]
+    considers Abc and Abc4 to be the same [✔]
+    considers Foo and Bar to not be the same [✔]
+BNFC.GetCF
+  transItem
+    translate a non-terminal [✔]
+    translate a terminal [✔]
+    skips empty terminals [✔]
+    splits multiwords terminals [✔]
+  checkRule
+    returns an error if the rule uses an unknown category [✔]
+BNFC.Options
+  parseMode
+    returns Help on an empty list of arguments [✔]
+    returns Help if given --help [✔]
+    returns Version if given --version [✔]
+    returns an error if help is given an argument [✔]
+    If no language is specified, it should default to haskell [✔]
+    returns an error if the grammar file is missing [✔]
+    returns an error if multiple grammar files are given [✔]
+    sets the language name to the basename of the grammar file [✔]
+    accept 'old style' options [✔]
+  accept latex as a target language [✔]
+  Old option translation
+    translate -haskell to --haskell [✔]
+    --makefile
+      is off by default [✔]
+      uses the file name 'Makefile' by default [✔]
+      when using the option with an argument
+        uses the argument as Makefile name [✔]
+
+Finished in 0.0065 seconds
+67 examples, 0 failures
+Test suite unit-tests: PASS
+Test suite logged to:
+/tmp/workdir-BNFC/BNFC-2.9.5/dist-newstyle/build/x86_64-linux/ghc-9.6.6/BNFC-2.9.5/t/unit-tests/test/BNFC-2.9.5-unit-tests.log
+1 of 1 test suites (1 of 1 test cases) passed.

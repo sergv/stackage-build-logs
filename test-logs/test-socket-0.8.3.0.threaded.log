@@ -1,0 +1,60 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - socket-0.8.3.0 (test:threaded) (ephemeral targets)
+Preprocessing test suite 'threaded' for socket-0.8.3.0...
+Building test suite 'threaded' for socket-0.8.3.0...
+Running 1 test suites...
+Test suite threaded: RUNNING...
+socket
+  System.Socket
+    accept
+      Inet/Stream/TCP
+        cancel operation:                                        OK (1.00s)
+    connect
+      Inet/Stream/TCP
+        connect to closed port on inetLoopback:                  OK
+        connect to closed port on inetNone:                      OK
+        connect to open socket on localhost:                     OK
+        connect closed socket:                                   OK
+        connect already connected socket:                        OK
+    listen
+      Inet/Datagram/UDP
+        listen on bound socket:                                  OK
+      Inet/Stream/TCP
+        listen on bound socket:                                  OK
+    send/receive
+      Inet/Stream/TCP
+        send and receive a chunk:                                OK
+        recv empty bytestring when peer disconnected gracefully: OK
+        trigger ePipe exception:                                 OK (2.00s)
+      Inet/Datagram/UDP
+        send and receive a datagram:                             OK (1.00s)
+    sendAll/receiveAll
+      Inet/Stream/TCP
+        sendAll and receiveAll a 128MB chunk:                    OK (0.30s)
+        sendAllLazy and receiveAll a 128MB chunk:                OK (0.23s)
+        sendAllBuilder and receiveAll a 128MB chunk:             OK (0.26s)
+    setSocketOption
+      V6Only
+        present:                                                 OK (2.00s)
+        absent:                                                  OK (1.00s)
+    getAddress
+      getAddress after bind:                                     OK
+    getAddrInfo
+      getAddrInfo "127.0.0.1" "80":                              OK
+      getAddrInfo "" "":                                         OK
+  System.Socket.Inet
+    System.Socket.Family.Inet
+      inetAddressFromTuple (127,0,0,1) == inetLoopback:          OK
+      inetAddressToTuple (inetAddressFromTuple x) == x:          OK
+        +++ OK, passed 100 tests.
+    System.Socket.Family.Inet6
+      inet6AddressFromTuple (0,0,0,0,0,0,0,1) == inet6Loopback:  OK
+      inet6AddressToTuple (inet6AddressFromTuple x) == x:        OK
+        +++ OK, passed 100 tests.
+
+All 24 tests passed (7.79s)
+Test suite threaded: PASS
+Test suite logged to:
+/tmp/workdir-socket/socket-0.8.3.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/socket-0.8.3.0/t/threaded/test/socket-0.8.3.0-threaded.log
+1 of 1 test suites (1 of 1 test cases) passed.

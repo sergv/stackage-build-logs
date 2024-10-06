@@ -1,0 +1,343 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - inline-r-1.0.1 (lib) (first run)
+ - inline-r-1.0.1 (test:tests) (first run)
+ - inline-r-1.0.1 (test:test-shootout) (first run)
+ - inline-r-1.0.1 (test:test-qq) (first run)
+ - inline-r-1.0.1 (test:test-env2) (first run)
+ - inline-r-1.0.1 (test:test-env1) (first run)
+Configuring library for inline-r-1.0.1...
+Preprocessing library for inline-r-1.0.1...
+Building library for inline-r-1.0.1...
+[ 1 of 35] Compiling Control.Memory.Region
+[ 2 of 35] Compiling Foreign.R.Embedded
+[ 3 of 35] Compiling Foreign.R.Encoding
+[ 4 of 35] Compiling Foreign.R.Error
+[ 5 of 35] Compiling Foreign.R.EventLoop
+[ 6 of 35] Compiling Internal.Error
+[ 7 of 35] Compiling Foreign.R.Context
+[ 8 of 35] Compiling Foreign.R.Type[boot]
+[ 9 of 35] Compiling Foreign.R.Constraints
+[10 of 35] Compiling Foreign.R.Type
+[11 of 35] Compiling Foreign.R.Internal
+[12 of 35] Compiling Foreign.R
+[13 of 35] Compiling Foreign.R.Parse
+[14 of 35] Compiling Data.Vector.SEXP.Base
+
+src/Data/Vector/SEXP/Base.hs:37:28: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+37 | type E s a b = ElemRep s a ~ b
+   |                            ^
+
+src/Data/Vector/SEXP/Base.hs:43:70: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+43 | type SVECTOR ty a = (Storable a, IsVector ty, SingI ty, ElemRep V ty ~ a)
+   |                                                                      ^
+[15 of 35] Compiling Control.Monad.R.Class
+
+src/Control/Monad/R/Class.hs:35:16: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+35 |   acquire :: s ~ V => SEXP s a -> m (SEXP (Region m) a)
+   |                ^
+
+src/Control/Monad/R/Class.hs:36:43: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+36 |   default acquire :: (MonadIO m, Region m ~ G) => SEXP s a -> m (SEXP (Region m) a)
+   |                                           ^
+
+src/Control/Monad/R/Class.hs:40:25: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+40 |   data ExecContext m :: *
+   |                         ^
+[16 of 35] Compiling Control.Monad.R.Internal
+[17 of 35] Compiling Data.Vector.SEXP.Mutable.Internal
+[18 of 35] Compiling Data.Vector.SEXP.Mutable
+[19 of 35] Compiling Data.Vector.SEXP
+
+src/Data/Vector/SEXP.hs:1218:113: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+     |
+1218 | zipWithM :: (MonadR m, VECTOR (Region m) tya a, VECTOR (Region m) tyb b, VECTOR (Region m) tyc c, ElemRep V tya ~ a, ElemRep V tyb ~ b, ElemRep V tyc ~ c)
+     |                                                                                                                 ^
+
+src/Data/Vector/SEXP.hs:1218:132: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+     |
+1218 | zipWithM :: (MonadR m, VECTOR (Region m) tya a, VECTOR (Region m) tyb b, VECTOR (Region m) tyc c, ElemRep V tya ~ a, ElemRep V tyb ~ b, ElemRep V tyc ~ c)
+     |                                                                                                                                    ^
+
+src/Data/Vector/SEXP.hs:1218:151: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+     |
+1218 | zipWithM :: (MonadR m, VECTOR (Region m) tya a, VECTOR (Region m) tyb b, VECTOR (Region m) tyc c, ElemRep V tya ~ a, ElemRep V tyb ~ b, ElemRep V tyc ~ c)
+     |                                                                                                                                                       ^
+
+src/Data/Vector/SEXP.hs:1710:65: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+     |
+1710 | unsafeFreeze :: (VECTOR (Region m) ty a, MonadR m, ElemRep V ty ~ a)
+     |                                                                 ^
+
+src/Data/Vector/SEXP.hs:1717:63: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+     |
+1717 | unsafeThaw :: (MonadR m, VECTOR (Region m) ty a, ElemRep V ty ~ a)
+     |                                                               ^
+
+src/Data/Vector/SEXP.hs:1723:57: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+     |
+1723 | thaw :: (MonadR m, VECTOR (Region m) ty a, ElemRep V ty ~ a)
+     |                                                         ^
+
+src/Data/Vector/SEXP.hs:1729:59: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+     |
+1729 | freeze :: (MonadR m, VECTOR (Region m) ty a, ElemRep V ty ~ a)
+     |                                                           ^
+
+src/Data/Vector/SEXP.hs:1737:54: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+     |
+1737 |   :: (MonadR m, VECTOR (Region m) ty a, ElemRep V ty ~ a)
+     |                                                      ^
+
+src/Data/Vector/SEXP.hs:1744:57: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+     |
+1744 | copy :: (MonadR m, VECTOR (Region m) ty a, ElemRep V ty ~ a)
+     |                                                         ^
+[20 of 35] Compiling Language.R.GC
+[21 of 35] Compiling Language.R.Globals
+[22 of 35] Compiling Language.R.Event
+[23 of 35] Compiling Language.R.HExp
+
+src/Language/R/HExp.hs:82:14: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+82 | data HExp :: * -> SEXPTYPE -> * where
+   |              ^
+
+src/Language/R/HExp.hs:82:31: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+82 | data HExp :: * -> SEXPTYPE -> * where
+   |                               ^
+[24 of 35] Compiling Language.R.Debug
+[25 of 35] Compiling Language.R.Instance
+[26 of 35] Compiling Language.R.Internal.FunWrappers.TH
+[27 of 35] Compiling Language.R.Internal.FunWrappers
+[28 of 35] Compiling Language.R.Internal[boot]
+[29 of 35] Compiling Language.R.Literal
+[30 of 35] Compiling Language.R
+[31 of 35] Compiling Language.R.Internal
+[32 of 35] Compiling Language.R.QQ
+
+src/Language/R/QQ.hs:24:1: warning: [-Wunused-imports]
+    The qualified import of ‘Data.Vector.SEXP’ is redundant
+      except perhaps to import instances from ‘Data.Vector.SEXP’
+    To import instances alone, use: import Data.Vector.SEXP()
+   |
+24 | import qualified Data.Vector.SEXP as Vector
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Language/R/QQ.hs:27:29: warning: [-Wunused-imports]
+    The import of ‘SEXP’ from module ‘Foreign.R’ is redundant
+   |
+27 | import           Foreign.R (SEXP, SomeSEXP(..))
+   |                             ^^^^
+
+src/Language/R/QQ.hs:33:1: warning: [-Wunused-imports]
+    The import of ‘Language.R.HExp’ is redundant
+      except perhaps to import instances from ‘Language.R.HExp’
+    To import instances alone, use: import Language.R.HExp()
+   |
+33 | import           Language.R.HExp
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Language/R/QQ.hs:37:32: warning: [-Wunused-imports]
+    The import of ‘runIO’
+    from module ‘Language.Haskell.TH’ is redundant
+   |
+37 | import Language.Haskell.TH (Q, runIO)
+   |                                ^^^^^
+
+src/Language/R/QQ.hs:42:1: warning: [-Wunused-imports]
+    The import of ‘putMVar, takeMVar’
+    from module ‘Control.Concurrent’ is redundant
+   |
+42 | import Control.Concurrent (MVar, newMVar, takeMVar, putMVar)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Language/R/QQ.hs:46:32: warning: [-Wunused-imports]
+    The import of ‘isSuffixOf’ from module ‘Data.List’ is redundant
+   |
+46 | import Data.List (intercalate, isSuffixOf)
+   |                                ^^^^^^^^^^
+
+src/Language/R/QQ.hs:47:1: warning: [-Wunused-imports]
+    The qualified import of ‘Data.Set’ is redundant
+      except perhaps to import instances from ‘Data.Set’
+    To import instances alone, use: import Data.Set()
+   |
+47 | import qualified Data.Set as Set
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Language/R/QQ.hs:48:1: warning: [-Wunused-imports]
+    The import of ‘Data.Set’ is redundant
+      except perhaps to import instances from ‘Data.Set’
+    To import instances alone, use: import Data.Set()
+   |
+48 | import Data.Set (Set)
+   | ^^^^^^^^^^^^^^^^^^^^^
+
+src/Language/R/QQ.hs:89:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘qqLock’
+   |
+89 | qqLock = unsafePerformIO $ newMVar ()
+   | ^^^^^^
+
+src/Language/R/QQ.hs:142:12: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘stdout’ shadows the existing binding
+      imported from ‘System.IO’ at src/Language/R/QQ.hs:55:1-16
+      (and originally defined in ‘GHC.IO.StdHandles’)
+    |
+142 |     (code, stdout, stderr) <- readProcessWithExitCode "R" ["--slave"]
+    |            ^^^^^^
+
+src/Language/R/QQ.hs:142:20: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘stderr’ shadows the existing binding
+      imported from ‘System.IO’ at src/Language/R/QQ.hs:55:1-16
+      (and originally defined in ‘GHC.IO.StdHandles’)
+    |
+142 |     (code, stdout, stderr) <- readProcessWithExitCode "R" ["--slave"]
+    |                    ^^^^^^
+[33 of 35] Compiling H.Prelude
+[34 of 35] Compiling Language.R.Matcher
+
+src/Language/R/Matcher.hs:67:1: warning: [-Wunused-imports]
+    The import of ‘Data.Foldable’ is redundant
+      except perhaps to import instances from ‘Data.Foldable’
+    To import instances alone, use: import Data.Foldable()
+   |
+67 | import Data.Foldable (asum)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Language/R/Matcher.hs:108:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad (Matcher s)’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+108 |   return x = Matcher $ \_ f _ -> f x
+    |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Language/R/Matcher.hs:115:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative (Matcher s)’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+115 |   pure = return
+    |   ^^^^^^^^^^^^^
+
+src/Language/R/Matcher.hs:341:20: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘HExp s R.List’ not matched: DotDotDot _
+    |
+341 |     , hexp SList $ \(List car cdr _) -> do
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^...
+[35 of 35] Compiling H.Prelude.Interactive
+Configuring test suite 'tests' for inline-r-1.0.1...
+Preprocessing test suite 'tests' for inline-r-1.0.1...
+Building test suite 'tests' for inline-r-1.0.1...
+[1 of 8] Compiling Test.Constraints
+[2 of 8] Compiling Test.Event
+
+tests/Test/Event.hs:85:15: error: [GHC-83865]
+    • Couldn't match expected type: OpenFileFlags -> IO Fd
+                  with actual type: IO Fd
+    • The function ‘openFd’ is applied to four value arguments,
+        but its type ‘FilePath -> OpenMode -> OpenFileFlags -> IO Fd’
+        has only three
+      In a stmt of a 'do' block:
+        fd <- openFd
+                path ReadOnly Nothing defaultFileFlags {nonBlock = True}
+      In the expression:
+        do hPutStrLn h "hello"
+           hClose h
+           fd <- openFd
+                   path ReadOnly Nothing defaultFileFlags {nonBlock = True}
+           action fd
+           ....
+   |
+85 |         fd <- openFd path ReadOnly Nothing defaultFileFlags{ nonBlock = True }
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Test/Event.hs:85:36: error: [GHC-83865]
+    • Couldn't match expected type ‘OpenFileFlags’
+                  with actual type ‘Maybe a0’
+    • In the third argument of ‘openFd’, namely ‘Nothing’
+      In a stmt of a 'do' block:
+        fd <- openFd
+                path ReadOnly Nothing defaultFileFlags {nonBlock = True}
+      In the expression:
+        do hPutStrLn h "hello"
+           hClose h
+           fd <- openFd
+                   path ReadOnly Nothing defaultFileFlags {nonBlock = True}
+           action fd
+           ....
+   |
+85 |         fd <- openFd path ReadOnly Nothing defaultFileFlags{ nonBlock = True }
+   |                                    ^^^^^^^
+[3 of 8] Compiling Test.FunPtr
+[4 of 8] Compiling Test.GC
+[5 of 8] Compiling Test.Matcher
+[6 of 8] Compiling Test.Regions
+[7 of 8] Compiling Test.Vector
+Error: [Cabal-7125]
+Failed to build test:tests from inline-r-1.0.1.
+

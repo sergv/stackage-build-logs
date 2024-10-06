@@ -1,0 +1,81 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - ghcjs-perch-0.3.3.3 (lib) (first run)
+Configuring library for ghcjs-perch-0.3.3.3...
+Preprocessing library for ghcjs-perch-0.3.3.3...
+Building library for ghcjs-perch-0.3.3.3...
+[1 of 5] Compiling Internal.FFI
+[2 of 5] Compiling Internal.Type
+
+src/Internal/Type.hs:20:1: warning: [GHC-38417] [-Wmissing-signatures]
+    Top-level binding with no type signature: unpack :: a
+   |
+20 | unpack = undefined
+   | ^^^^^^
+[3 of 5] Compiling Internal.API
+
+src/Internal/API.hs:4:1: warning: [-Wunused-imports]
+    The import of ‘Internal.FFI’ is redundant
+      except perhaps to import instances from ‘Internal.FFI’
+    To import instances alone, use: import Internal.FFI()
+  |
+4 | import           Internal.FFI
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[4 of 5] Compiling Internal.Perch
+
+src/Internal/Perch.hs:28:1: warning: [GHC-38417] [-Wmissing-signatures]
+    Top-level binding with no type signature: pack :: a
+   |
+28 | pack = undefined
+   | ^^^^
+
+src/Internal/Perch.hs:61:1: warning: [GHC-38417] [-Wmissing-signatures]
+    Top-level binding with no type signature:
+      mappendt :: PerchM a1 -> PerchM a2 -> PerchM a3
+   |
+61 | mappendt mx my = Perch . withPerch $ \e ->
+   | ^^^^^^^^
+
+src/Internal/Perch.hs:66:10: warning: [GHC-06201] [-Wmissing-methods]
+    • No explicit implementation for
+        ‘fmap’
+    • In the instance declaration for ‘Functor PerchM’
+   |
+66 | instance Functor PerchM
+   |          ^^^^^^^^^^^^^^
+
+src/Internal/Perch.hs:68:10: warning: [GHC-06201] [-Wmissing-methods]
+    • No explicit implementation for
+        ‘pure’ and (either ‘<*>’ or ‘liftA2’)
+    • In the instance declaration for ‘Applicative PerchM’
+   |
+68 | instance Applicative PerchM
+   |          ^^^^^^^^^^^^^^^^^^
+
+src/Internal/Perch.hs:71:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘(>>)’ definition detected
+    in the instance declaration for ‘Monad PerchM’.
+    ‘(>>)’ will eventually be removed in favour of ‘(*>)’
+    Either remove definition for ‘(>>)’ (recommended) or define as ‘(>>) = (*>)’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+71 |   (>>) x y = mappend (unsafeCoerce x) y
+   |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Internal/Perch.hs:73:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad PerchM’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+73 |   return = mempty
+   |   ^^^^^^^^^^^^^^^
+
+src/Internal/Perch.hs:411:16: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘p’ shadows the existing binding
+      defined at src/Internal/Perch.hs:250:1
+    |
+411 | withPerchBuild p act e =
+    |                ^
+[5 of 5] Compiling GHCJS.Perch

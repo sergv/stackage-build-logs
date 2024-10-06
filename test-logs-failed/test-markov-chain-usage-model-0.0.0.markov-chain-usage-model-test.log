@@ -1,0 +1,85 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - markov-chain-usage-model-0.0.0 (test:markov-chain-usage-model-test) (ephemeral targets)
+Preprocessing test suite 'markov-chain-usage-model-test' for markov-chain-usage-model-0.0.0...
+Building test suite 'markov-chain-usage-model-test' for markov-chain-usage-model-0.0.0...
+
+<no location info>: warning: [GHC-42258] [-Wunused-packages]
+    The following packages were specified via -package or -package-id flags,
+    but were not needed for compilation:
+      - tasty-discover-5.0.0 (exposed by flag -package-id tasty-discover-5.0.0-ac1f3a0c34f4946b674870a7b9211b3d138ee763a198982f525ea6e6c427fb4e)
+
+<no location info>: warning: [GHC-42258] [-Wunused-packages]
+    The following packages were specified via -package or -package-id flags,
+    but were not needed for compilation:
+      - tasty-discover-5.0.0 (exposed by flag -package-id tasty-discover-5.0.0-ac1f3a0c34f4946b674870a7b9211b3d138ee763a198982f525ea6e6c427fb4e)
+Running 1 test suites...
+Test suite markov-chain-usage-model-test: RUNNING...
+test/Spec.hs
+  Unit
+    expectExpectedArcReliability: OK
+    expectTransientReliability:   OK
+    occurenceMean:                OK
+    occurenceVar:                 OK
+    docTest:                      src/MarkovChain.hs:94: failure in expression `fundamental (minorMatrix 5 5 p :: M)'
+expected: ┌                                                                                 ┐
+          │                 1.0  1.2307692307692306  1.2307692307692308  0.9230769230769231 │
+          │                 0.0  1.2307692307692306  1.2307692307692308  0.9230769230769231 │
+          │                 0.0 0.15384615384615385  2.1538461538461537  0.6153846153846154 │
+          │                 0.0  0.3076923076923077  0.3076923076923077  1.2307692307692308 │
+          └                                                                                 ┘
+ but got: ┌                                                                                 ┐
+          │                 1.0  1.2307692307692308  1.2307692307692308  0.9230769230769231 │
+                                                  ^
+          │                 0.0  1.2307692307692308  1.2307692307692308  0.9230769230769231 │
+          │                 0.0 0.15384615384615385  2.1538461538461537  0.6153846153846154 │
+          │                 0.0  0.3076923076923077  0.3076923076923077  1.2307692307692308 │
+          └                                                                                 ┘
+
+src/MarkovChain.hs:112: failure in expression `occVariance (fundamental (minorMatrix 5 5 p :: M))'
+expected: ┌                                                                                 ┐
+          │                 0.0 0.28402366863905315  2.5562130177514795  0.4970414201183433 │
+          │                 0.0 0.28402366863905315  2.5562130177514795  0.4970414201183433 │
+          │                 0.0 0.20118343195266267  2.4852071005917153  0.5207100591715977 │
+          │                 0.0  0.3550295857988165  0.9230769230769231  0.2840236686390534 │
+          └                                                                                 ┘
+ but got: ┌                                                                                 ┐
+          │                 0.0  0.2840236686390534  2.5562130177514795  0.4970414201183433 │
+                                ^
+          │                 0.0  0.2840236686390534  2.5562130177514795  0.4970414201183433 │
+          │                 0.0 0.20118343195266275  2.4852071005917153  0.5207100591715977 │
+          │                 0.0  0.3550295857988166  0.9230769230769231  0.2840236686390534 │
+          └                                                                                 ┘
+
+src/MarkovChain.hs:131: failure in expression `perron p'
+expected: [0.1857142857142857,0.22857142857142854,0.22857142857142856,0.17142857142857143,0.1857142857142857]
+ but got: [0.1857142857142857,0.22857142857142856,0.22857142857142856,0.17142857142857143,0.1857142857142857]
+                                                ^
+
+src/MarkovChain.hs:157: failure in expression `:{
+let s :: M
+    s = fromList 4 5
+      [ 1,    0,    0,    0,    0
+      , 0,    0.5,  0.5,  0,    0
+      , 0,    0.5,  0.25, 0.25, 0
+      , 0.25, 0,    0,    0.5,  0.25
+      ]
+in sigma s (perron p)
+:}'
+expected: [0.2807017543859649,0.2807017543859649,0.21052631578947367,0.17543859649122806,5.2631578947368425e-2]
+ but got: [0.2807017543859649,0.2807017543859649,0.2105263157894737,0.17543859649122806,5.2631578947368425e-2]
+                                                                  ^
+
+Examples: 11  Tried: 11  Errors: 0  Failures: 4
+FAIL
+      Exception: ExitFailure 1
+      Use -p '/docTest/' to rerun this test only.
+
+1 out of 5 tests failed (0.61s)
+Test suite markov-chain-usage-model-test: FAIL
+Test suite logged to:
+/tmp/workdir-markov-chain-usage-model/markov-chain-usage-model-0.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/markov-chain-usage-model-0.0.0/t/markov-chain-usage-model-test/test/markov-chain-usage-model-0.0.0-markov-chain-usage-model-test.log
+0 of 1 test suites (0 of 1 test cases) passed.
+Error: [Cabal-7125]
+Tests failed for test:markov-chain-usage-model-test from markov-chain-usage-model-0.0.0.
+

@@ -1,0 +1,227 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - amazonka-core-2.0 (test:tests) (ephemeral targets)
+Preprocessing test suite 'tests' for amazonka-core-2.0...
+Building test suite 'tests' for amazonka-core-2.0...
+Running 1 test suites...
+Test suite tests: RUNNING...
+amazonka-core
+  primitives
+    numeric
+      json
+        deserialisation
+          natural:                                                                                    OK
+          int:                                                                                        OK
+          negative int:                                                                               OK
+          integer:                                                                                    OK
+          negative integer:                                                                           OK
+          double:                                                                                     OK
+          negative double:                                                                            OK
+          numeric text:                                                                               OK
+        serialisation
+          natural:                                                                                    OK
+          int:                                                                                        OK
+          negative int:                                                                               OK
+          integer:                                                                                    OK
+          negative integer:                                                                           OK
+          double:                                                                                     OK
+          negative double:                                                                            OK
+          numeric string:                                                                             OK
+      xml
+        deserialisation
+          natural:                                                                                    OK
+          int:                                                                                        OK
+          negative int:                                                                               OK
+          integer:                                                                                    OK
+          negative integer:                                                                           OK
+          double:                                                                                     OK
+          negative double:                                                                            OK
+          numeric string:                                                                             OK
+        serialisation
+          natural:                                                                                    OK
+          int:                                                                                        OK
+          negative int:                                                                               OK
+          integer:                                                                                    OK
+          negative integer:                                                                           OK
+          double:                                                                                     OK
+          negative double:                                                                            OK
+          numeric text:                                                                               OK
+    time
+      text
+        deserialise
+          rfc822 - UTC:                                                                               OK
+          rfc822 - GMT:                                                                               OK
+          rfc822 - PST:                                                                               OK
+          iso8601:                                                                                    OK
+          aws:                                                                                        OK
+        serialise
+          rfc822:                                                                                     OK
+          iso8601:                                                                                    OK
+          aws:                                                                                        OK
+      query
+        serialise
+          rfc822:                                                                                     OK
+          iso8601:                                                                                    OK
+          aws:                                                                                        OK
+      xml
+        deserialise
+          rfc822:                                                                                     OK
+          iso8601:                                                                                    OK
+          aws:                                                                                        OK
+        serialise
+          rfc822:                                                                                     OK
+          iso8601:                                                                                    OK
+          aws:                                                                                        OK
+      json
+        deserialise
+          rfc822:                                                                                     OK
+          iso8601:                                                                                    OK
+          aws:                                                                                        OK
+          posix
+            integer:                                                                                  OK
+            double:                                                                                   OK
+            scientific:                                                                               OK
+        serialise
+          rfc822:                                                                                     OK
+          iso8601:                                                                                    OK
+          aws:                                                                                        OK
+          posix:                                                                                      OK
+    base64
+      text
+        deserialise:                                                                                  OK
+        serialise:                                                                                    OK
+      query
+        serialise:                                                                                    OK
+      xml
+        deserialise:                                                                                  OK
+        serialise:                                                                                    OK
+      json
+        deserialise:                                                                                  OK
+        serialise:                                                                                    OK
+    maybe
+      xml
+        serialise
+          nothing:                                                                                    OK
+          just:                                                                                       OK
+    query
+      fromString
+        key:                                                                                          OK
+        key=:                                                                                         OK
+        key=value:                                                                                    OK
+        key&..:                                                                                       OK
+        key=value&..:                                                                                 OK
+  paths
+    path
+      encode
+        doesn't append trailing slash:                                                                OK
+        preserves trailing slash:                                                                     OK
+        preserves adjacent slashes:                                                                   OK
+  collections
+    list
+      query
+        serialise
+          non-flattened
+            absent:                                                                                   OK
+            primitive:                                                                                OK
+            complex:                                                                                  OK
+          flattened
+            absent/empty:                                                                             OK
+            primitive:                                                                                OK
+            complex:                                                                                  OK
+      xml
+        deserialise
+          non-flattened
+            absent:                                                                                   OK
+            empty:                                                                                    OK
+            primitive:                                                                                OK
+            complex:                                                                                  OK
+          flattened
+            absent/empty:                                                                             OK
+            primitive:                                                                                OK
+            complex:                                                                                  OK
+        serialise
+          non-flattened
+            absent:                                                                                   OK
+            primitive:                                                                                OK
+            complex:                                                                                  OK
+          flattened
+            absent/empty:                                                                             OK
+            primitive:                                                                                OK
+            complex:                                                                                  OK
+  signing
+    v2Header.BaseSpec
+      constructSigningQuery
+        should always convert set QValues to Nothing:                                                 OK
+          +++ OK, passed 100 tests.
+        should keep an unset QValue:                                                                  OK
+        should discard QPairs that are not interesting to AWS:                                        OK
+          +++ OK, passed 100 tests.
+        should keep all QPairs that are interesting to AWS:                                           OK
+          +++ OK, passed 100 tests.
+        should keep an empty QList:                                                                   OK
+        should keep a list of Nothing QValues:                                                        OK
+        should discard the contents of an unintersting QList:                                         OK
+          +++ OK, passed 100 tests.
+        should not discard all QC.elements in interesting QLists:                                     OK
+          +++ OK, passed 100 tests.
+      constructSigningHeader
+        should convert random headers to their header value:                                          OK
+          +++ OK, passed 100 tests.
+        should convert interesting headers to their header value:                                     OK
+          +++ OK, passed 100 tests.
+        should convert aws headers to a canonical string:                                             OK
+          +++ OK, passed 100 tests.
+      auxiliary headers functions
+        should sort and preserve headers:                                                             OK
+          +++ OK, passed 100 tests.
+        should contain empty md5 and empty content type headers if not present:                       OK
+        should preserve a set md5 and contain an empty content type header if not present:            OK
+        should preserve a set content type and preserve an empty md5 header if not present:           OK
+        should preserve md5 and content type headers if set:                                          OK
+      toSingerQBS
+        should convert an empty query string:                                                         OK
+        should convert an empty value of QPair to just the key:                                       OK
+        should convert an empty value of QPair followed by QValue to just the key and just the value: OK
+      constructFullPath
+        should convert an empty queryString to just the path:                                         OK
+        should convert an empty value of QPair and a path to just the path and the key:               OK
+      should construct canonical headers
+        should construct a canonical header from a base string:                                       OK
+    v4
+      base
+        paths
+          request paths are escaped once:                                                             OK (0.06s)
+            +++ OK, passed 100 tests.
+          S3 canonical paths are escaped once:                                                        OK (0.04s)
+            +++ OK, passed 100 tests.
+          non-S3 canonical paths are escaped twice:                                                   OK (0.08s)
+            +++ OK, passed 100 tests.
+          empty path:                                                                                 OK
+          base path:                                                                                  OK
+          S3 canonical path encoding example:                                                         OK
+          non-S3 canonical path encoding example:                                                     OK
+          S3 canonical path is not normalized:                                                        OK
+          non-S3 canonical path is normalized:                                                        OK
+      chunked
+        headers
+          empty body:                                                                                 OK (0.17s)
+            +++ OK, passed 100 tests.
+          1 chunk body:                                                                               OK (0.16s)
+            +++ OK, passed 100 tests.
+          2 chunks body:                                                                              OK (0.13s)
+            +++ OK, passed 100 tests.
+  errors
+    getErrorCode
+      with header, colon:                                                                             OK
+      with header, no colon:                                                                          OK
+      no header:                                                                                      OK
+    xml
+      ec2:                                                                                            OK
+      route53:                                                                                        OK
+      sqs:                                                                                            OK
+
+All 135 tests passed (0.67s)
+Test suite tests: PASS
+Test suite logged to:
+/tmp/workdir-amazonka-core/amazonka-core-2.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/amazonka-core-2.0/t/tests/test/amazonka-core-2.0-tests.log
+1 of 1 test suites (1 of 1 test cases) passed.

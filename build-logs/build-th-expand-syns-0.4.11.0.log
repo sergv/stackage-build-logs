@@ -1,0 +1,67 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - th-expand-syns-0.4.11.0 (lib) (first run)
+ - th-expand-syns-0.4.11.0 (test:test-th-expand-syns) (first run)
+Configuring library for th-expand-syns-0.4.11.0...
+Preprocessing library for th-expand-syns-0.4.11.0...
+Building library for th-expand-syns-0.4.11.0...
+[1 of 2] Compiling Language.Haskell.TH.ExpandSyns.SemigroupCompat
+[2 of 2] Compiling Language.Haskell.TH.ExpandSyns
+Configuring test suite 'test-th-expand-syns' for th-expand-syns-0.4.11.0...
+Preprocessing test suite 'test-th-expand-syns' for th-expand-syns-0.4.11.0...
+Building test suite 'test-th-expand-syns' for th-expand-syns-0.4.11.0...
+[1 of 3] Compiling Util
+[2 of 3] Compiling Types
+[3 of 3] Compiling Main
+info: input = ForallT [PlainTV a_6989586621679026433 SpecifiedSpec] [AppT (ConT GHC.Show.Show) (VarT a_6989586621679026433)] (AppT (AppT ArrowT (VarT a_6989586621679026433)) (AppT (AppT ArrowT (AppT (ConT Types.ForAll) (ConT GHC.Types.List))) (AppT (AppT (TupleT 2) (ConT GHC.Types.Int)) (AppT (ConT Types.ApplyToInteger) (ConT GHC.Types.List)))))
+info: expected = ForallT [PlainTV a_6989586621679026434 SpecifiedSpec] [AppT (ConT GHC.Show.Show) (VarT a_6989586621679026434)] (AppT (AppT ArrowT (VarT a_6989586621679026434)) (AppT (AppT ArrowT (ForallT [KindedTV x_6989586621679026435 SpecifiedSpec StarT] [] (AppT (ConT GHC.Types.List) (VarT x_6989586621679026435)))) (AppT (AppT (TupleT 2) (ConT GHC.Types.Int)) (AppT (ConT GHC.Types.List) (ConT GHC.Num.Integer.Integer)))))
+info:  actual  = ForallT [PlainTV a_6989586621679026433 SpecifiedSpec] [AppT (ConT GHC.Show.Show) (VarT a_6989586621679026433)] (AppT (AppT ArrowT (VarT a_6989586621679026433)) (AppT (AppT ArrowT (ForallT [KindedTV x_7566047373982450583 SpecifiedSpec StarT] [] (AppT (ConT GHC.Types.List) (VarT x_7566047373982450583)))) (AppT (AppT (TupleT 2) (ConT GHC.Types.Int)) (AppT (ConT GHC.Types.List) (ConT GHC.Num.Integer.Integer)))))
+info: input = ForallT [PlainTV y SpecifiedSpec] [] (AppT (ConT E) (VarT y))
+info: expected = ForallT [PlainTV y SpecifiedSpec] [] (ForallT [KindedTV y_0 SpecifiedSpec StarT] [] (AppT (AppT ArrowT (AppT (AppT (ConT Data.Either.Either) (VarT y)) (VarT y_0))) (ConT GHC.Types.Int)))
+info:  actual  = ForallT [PlainTV y SpecifiedSpec] [] (ForallT [KindedTV y_7566047373982450690 SpecifiedSpec StarT] [] (AppT (AppT ArrowT (AppT (AppT (ConT Data.Either.Either) (VarT y)) (VarT y_7566047373982450690))) (ConT GHC.Types.Int)))
+info: input = AppT (AppT (AppT (TupleT 3) (AppT (ConT Types.DF1) (ConT GHC.Types.Int))) (AppT (ConT Types.TF1) (ConT GHC.Types.Int))) (AppT (ConT Types.AT1) (ConT GHC.Types.Int))
+info: expected = AppT (AppT (AppT (TupleT 3) (AppT (ConT Types.DF1) (ConT GHC.Types.Int))) (AppT (ConT Types.TF1) (ConT GHC.Types.Int))) (AppT (ConT Types.AT1) (ConT GHC.Types.Int))
+info:  actual  = AppT (AppT (AppT (TupleT 3) (AppT (ConT Types.DF1) (ConT GHC.Types.Int))) (AppT (ConT Types.TF1) (ConT GHC.Types.Int))) (AppT (ConT Types.AT1) (ConT GHC.Types.Int))
+info: input = AppT (AppT (AppT (TupleT 3) (AppT (ConT Types.DF1) (ConT Types.Int'))) (AppT (ConT Types.TF1) (ConT Types.Int'))) (AppT (ConT Types.AT1) (ConT Types.Int'))
+info: expected = AppT (AppT (AppT (TupleT 3) (AppT (ConT Types.DF1) (ConT GHC.Types.Int))) (AppT (ConT Types.TF1) (ConT GHC.Types.Int))) (AppT (ConT Types.AT1) (ConT GHC.Types.Int))
+info:  actual  = AppT (AppT (AppT (TupleT 3) (AppT (ConT Types.DF1) (ConT GHC.Types.Int))) (AppT (ConT Types.TF1) (ConT GHC.Types.Int))) (AppT (ConT Types.AT1) (ConT GHC.Types.Int))
+info: input = AppT (AppT (ConT Types.Either') (AppT (ConT Types.ListOf) (ConT Types.Int'))) (AppT (ConT Types.ListOf) (ConT GHC.Types.Char))
+info: expected = AppT (AppT (ConT Data.Either.Either) (AppT ListT (ConT GHC.Types.Int))) (AppT ListT (ConT GHC.Types.Char))
+info:  actual  = AppT (AppT (ConT Data.Either.Either) (AppT ListT (ConT GHC.Types.Int))) (AppT ListT (ConT GHC.Types.Char))
+info: input = ConT Types.Int''
+info: expected = ConT GHC.Types.Int
+info:  actual  = ConT GHC.Types.Int
+info: input = SigT (ConT GHC.Types.Int) (AppT (ConT Types.Id) StarT)
+info: expected = SigT (ConT GHC.Types.Int) StarT
+info:  actual  = SigT (ConT GHC.Types.Int) StarT
+
+testing/Main.hs:52:6: warning: [GHC-39584]
+    th-expand-syns: WARNING: Type synonym families (and associated type synonyms) are currently not supported (they won't be expanded). Name of unsupported family: Types.AT1
+   |
+52 |     $(let
+   |      ^^^^...
+
+testing/Main.hs:52:6: warning: [GHC-39584]
+    th-expand-syns: WARNING: Type synonym families (and associated type synonyms) are currently not supported (they won't be expanded). Name of unsupported family: Types.TF1
+   |
+52 |     $(let
+   |      ^^^^...
+
+testing/Main.hs:58:6: warning: [GHC-39584]
+    th-expand-syns: WARNING: Type synonym families (and associated type synonyms) are currently not supported (they won't be expanded). Name of unsupported family: Types.AT1
+   |
+58 |     $(mkTest [t| (DF1 Int', TF1 Int', AT1 Int') |]
+   |      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+testing/Main.hs:58:6: warning: [GHC-39584]
+    th-expand-syns: WARNING: Type synonym families (and associated type synonyms) are currently not supported (they won't be expanded). Name of unsupported family: Types.TF1
+   |
+58 |     $(mkTest [t| (DF1 Int', TF1 Int', AT1 Int') |]
+   |      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+testing/Main.hs:78:6: warning: [GHC-39584]
+    No warning about type families should appear after this line.
+   |
+78 |     $(do
+   |      ^^^...
+[4 of 4] Linking /tmp/workdir-th-expand-syns/th-expand-syns-0.4.11.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/th-expand-syns-0.4.11.0/t/test-th-expand-syns/build/test-th-expand-syns/test-th-expand-syns

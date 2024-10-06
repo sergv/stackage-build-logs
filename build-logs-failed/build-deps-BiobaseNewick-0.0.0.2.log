@@ -1,0 +1,42 @@
+Resolving dependencies...
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - language-haskell-extract-0.2.4 (lib:language-haskell-extract) (requires build)
+ - test-framework-th-0.2.4 (lib:test-framework-th) (requires build)
+Starting     language-haskell-extract-0.2.4 (all, legacy fallback: cabal-version is less than 1.8)
+Building     language-haskell-extract-0.2.4 (all, legacy fallback: cabal-version is less than 1.8)
+
+Failed to build language-haskell-extract-0.2.4.
+Build log (
+/tmp/stackage-work/build-logs/ghc-9.6.6/language-haskell-extract-0.2.4-2e2212c5712b0d5d4443f3e008003dec175eb7febe8997fc0bf05ebb167487f8.log
+):
+Warning: language-haskell-extract.cabal:57:30: version operators used. To use
+version operators the package needs to specify at least 'cabal-version: >=
+1.8'.
+Configuring language-haskell-extract-0.2.4...
+Preprocessing library for language-haskell-extract-0.2.4...
+Building library for language-haskell-extract-0.2.4...
+[1 of 1] Compiling Language.Haskell.Extract
+
+src/Language/Haskell/Extract.hs:28:30: error: [GHC-83865]
+    • Couldn't match expected type ‘Maybe Exp’ with actual type ‘Exp’
+    • In the expression: LitE $ StringL n
+      In the first argument of ‘TupE’, namely
+        ‘[LitE $ StringL n, VarE $ mkName n]’
+      In the expression: TupE [LitE $ StringL n, VarE $ mkName n]
+   |
+28 |      let makePair n = TupE [ LitE $ StringL n , VarE $ mkName n]
+   |                              ^^^^^^^^^^^^^^^^
+
+src/Language/Haskell/Extract.hs:28:49: error: [GHC-83865]
+    • Couldn't match expected type ‘Maybe Exp’ with actual type ‘Exp’
+    • In the expression: VarE $ mkName n
+      In the first argument of ‘TupE’, namely
+        ‘[LitE $ StringL n, VarE $ mkName n]’
+      In the expression: TupE [LitE $ StringL n, VarE $ mkName n]
+   |
+28 |      let makePair n = TupE [ LitE $ StringL n , VarE $ mkName n]
+   |                                                 ^^^^^^^^^^^^^^^
+Error: [Cabal-7125]
+Failed to build language-haskell-extract-0.2.4 (which is required by test-framework-th-0.2.4). See the build log above for details.
+

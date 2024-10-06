@@ -1,0 +1,121 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - hal-1.0.1 (lib) (first run)
+ - hal-1.0.1 (test:hal-test) (first run)
+Configuring library for hal-1.0.1...
+Preprocessing library for hal-1.0.1...
+Building library for hal-1.0.1...
+[ 1 of 15] Compiling AWS.Lambda.Combinators
+[ 2 of 15] Compiling AWS.Lambda.Context
+[ 3 of 15] Compiling AWS.Lambda.Events.ApiGateway.ProxyRequest
+
+src/AWS/Lambda/Events/ApiGateway/ProxyRequest.hs:171:16: warning: [GHC-30606] [-Wredundant-constraints]
+    Redundant constraint: Eq k
+    In the type signature for:
+         toCIHashMap :: forall k a.
+                        (Eq k, FoldCase k, Hashable k) =>
+                        HashMap k a -> HashMap (CI k) a
+    |
+171 | toCIHashMap :: (Eq k, FoldCase k, Hashable k) => HashMap k a -> HashMap (CI k) a
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/AWS/Lambda/Events/ApiGateway/ProxyRequest.hs:174:18: warning: [GHC-30606] [-Wredundant-constraints]
+    Redundant constraint: Eq k
+    In the type signature for:
+         fromCIHashMap :: forall k a.
+                          (Eq k, Hashable k) =>
+                          HashMap (CI k) a -> HashMap k a
+    |
+174 | fromCIHashMap :: (Eq k, Hashable k) => HashMap (CI k) a -> HashMap k a
+    |                  ^^^^^^^^^^^^^^^^^^
+[ 4 of 15] Compiling AWS.Lambda.Events.ApiGateway.ProxyResponse
+
+src/AWS/Lambda/Events/ApiGateway/ProxyResponse.hs:162:16: warning: [GHC-30606] [-Wredundant-constraints]
+    Redundant constraint: Eq k
+    In the type signature for:
+         toCIHashMap :: forall k a.
+                        (Eq k, FoldCase k, Hashable k) =>
+                        HashMap k a -> HashMap (CI k) a
+    |
+162 | toCIHashMap :: (Eq k, FoldCase k, Hashable k) => HashMap k a -> HashMap (CI k) a
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 5 of 15] Compiling AWS.Lambda.Events.EventBridge
+[ 6 of 15] Compiling AWS.Lambda.Events.EventBridge.Detail.SSM.ParameterStoreChange
+[ 7 of 15] Compiling AWS.Lambda.Events.Kafka
+[ 8 of 15] Compiling AWS.Lambda.Events.S3
+[ 9 of 15] Compiling AWS.Lambda.Events.SQS
+[10 of 15] Compiling AWS.Lambda.Internal
+[11 of 15] Compiling AWS.Lambda.RuntimeClient.Internal
+[12 of 15] Compiling AWS.Lambda.RuntimeClient
+[13 of 15] Compiling AWS.Lambda.Runtime.Value
+[14 of 15] Compiling AWS.Lambda.Runtime
+[15 of 15] Compiling Paths_hal
+Configuring test suite 'hal-test' for hal-1.0.1...
+Preprocessing test suite 'hal-test' for hal-1.0.1...
+Building test suite 'hal-test' for hal-1.0.1...
+[ 1 of 14] Compiling AWS.Lambda.Events.ApiGateway.ProxyRequest.Gen.Parameters
+[ 2 of 14] Compiling AWS.Lambda.Events.ApiGateway.ProxyRequest.Gen.Resource
+[ 3 of 14] Compiling AWS.Lambda.Events.EventBridge.Detail.SSM.ParameterStoreChange.Gen
+[ 4 of 14] Compiling AWS.Lambda.Events.EventBridge.Gen
+
+test/AWS/Lambda/Events/EventBridge/Gen.hs:8:1: warning: [-Wunused-imports]
+    The import of ‘Data.List’ is redundant
+      except perhaps to import instances from ‘Data.List’
+    To import instances alone, use: import Data.List()
+  |
+8 | import           Data.List                     (intersperse)
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 5 of 14] Compiling AWS.Lambda.Events.EventBridge.Spec
+
+test/AWS/Lambda/Events/EventBridge/Spec.hs:19:1: warning: [-Wunused-imports]
+    The import of ‘Test.Hspec.Runner’ is redundant
+      except perhaps to import instances from ‘Test.Hspec.Runner’
+    To import instances alone, use: import Test.Hspec.Runner()
+   |
+19 | import           Test.Hspec.Runner                                          (hspec)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 6 of 14] Compiling AWS.Lambda.Events.Kafka.Gen
+
+test/AWS/Lambda/Events/Kafka/Gen.hs:11:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+11 | import           Control.Applicative        (liftA2)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 7 of 14] Compiling AWS.Lambda.Events.Kafka.Spec
+[ 8 of 14] Compiling Gen.Header
+[ 9 of 14] Compiling AWS.Lambda.Events.ApiGateway.ProxyResponse.Gen
+[10 of 14] Compiling AWS.Lambda.Events.ApiGateway.ProxyResponse.Spec
+[11 of 14] Compiling AWS.Lambda.Events.ApiGateway.ProxyRequest.Gen
+
+test/AWS/Lambda/Events/ApiGateway/ProxyRequest/Gen.hs:8:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+  |
+8 | import           Control.Applicative                        (liftA2)
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[12 of 14] Compiling AWS.Lambda.Events.ApiGateway.ProxyRequest.Spec
+[13 of 14] Compiling Main
+
+test/Spec.hs:233:3: warning: [GHC-20125] [-Wmissing-fields]
+    • Fields of ‘Response’ not initialised:
+        responseOriginalRequest :: http-client-0.7.17:Network.HTTP.Client.Types.Request
+        responseEarlyHints :: Network.HTTP.Types.Header.ResponseHeaders
+    • In the expression:
+        Response
+          {responseStatus = undefined, responseVersion = undefined,
+           responseHeaders = headers, responseBody = body,
+           responseCookieJar = undefined, responseClose' = undefined}
+      In an equation for ‘minResponse’:
+          minResponse headers body
+            = Response
+                {responseStatus = undefined, responseVersion = undefined,
+                 responseHeaders = headers, responseBody = body,
+                 responseCookieJar = undefined, responseClose' = undefined}
+    |
+233 |   Response
+    |   ^^^^^^^^...
+[14 of 14] Compiling Paths_hal
+[15 of 15] Linking /tmp/workdir-hal/hal-1.0.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/hal-1.0.1/t/hal-test/build/hal-test/hal-test

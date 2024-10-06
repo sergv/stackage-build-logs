@@ -1,0 +1,31 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - fuzzyset-0.3.2 (lib) (first run)
+ - fuzzyset-0.3.2 (test:fuzzyset-test) (first run)
+Configuring library for fuzzyset-0.3.2...
+Preprocessing library for fuzzyset-0.3.2...
+Building library for fuzzyset-0.3.2...
+[1 of 6] Compiling Data.FuzzySet.Utils
+[2 of 6] Compiling Data.FuzzySet.Internal
+[3 of 6] Compiling Data.FuzzySet.Simple
+[4 of 6] Compiling Data.FuzzySet.Monad
+
+src/Data/FuzzySet/Monad.hs:153:10: warning: [-Wsimplifiable-class-constraints]
+    • The constraint ‘MonadState FuzzySet (SelectT s m)’ matches
+        instance MonadState s m => MonadState s (SelectT r m)
+          -- Defined in ‘Control.Monad.State.Class’
+      This makes type inference for inner bindings fragile;
+        either use MonoLocalBinds, or simplify it using the instance
+    • In the instance declaration for ‘MonadFuzzySearch (SelectT s m)’
+    |
+153 | instance (MonadFuzzySearch m, MonadState FuzzySet (SelectT s m)) => MonadFuzzySearch (SelectT s m) where
+    |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[5 of 6] Compiling Data.FuzzySet
+[6 of 6] Compiling Paths_fuzzyset
+Configuring test suite 'fuzzyset-test' for fuzzyset-0.3.2...
+Preprocessing test suite 'fuzzyset-test' for fuzzyset-0.3.2...
+Building test suite 'fuzzyset-test' for fuzzyset-0.3.2...
+[1 of 3] Compiling Helpers
+[2 of 3] Compiling Main
+[3 of 3] Compiling Paths_fuzzyset
+[4 of 4] Linking /tmp/workdir-fuzzyset/fuzzyset-0.3.2/dist-newstyle/build/x86_64-linux/ghc-9.6.6/fuzzyset-0.3.2/t/fuzzyset-test/build/fuzzyset-test/fuzzyset-test

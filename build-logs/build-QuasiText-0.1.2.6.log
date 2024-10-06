@@ -1,0 +1,23 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - QuasiText-0.1.2.6 (lib) (first run)
+Configuring library for QuasiText-0.1.2.6...
+Preprocessing library for QuasiText-0.1.2.6...
+Building library for QuasiText-0.1.2.6...
+[1 of 1] Compiling Text.QuasiText
+
+src/Text/QuasiText.hs:48:9: warning: [GHC-20125] [-Wmissing-fields]
+    • Fields of ‘QuasiQuoter’ not initialised:
+        quotePat :: String -> Q Pat
+        quoteType :: String -> Q Type
+        quoteDec :: String -> Q [Dec]
+    • In the expression:
+        QuasiQuoter
+          {quoteExp = \ s -> let ... in appE [| T.concat |] (listE chunks)}
+      In an equation for ‘embed’:
+          embed
+            = QuasiQuoter
+                {quoteExp = \ s -> let ... in appE ... (listE chunks)}
+   |
+48 | embed = QuasiQuoter
+   |         ^^^^^^^^^^^...

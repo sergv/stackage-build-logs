@@ -1,0 +1,221 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - snap-1.1.3.3 (lib) (first run)
+ - snap-1.1.3.3 (test:testsuite) (first run)
+Configuring library for snap-1.1.3.3...
+Preprocessing library for snap-1.1.3.3...
+Building library for snap-1.1.3.3...
+[ 1 of 27] Compiling Paths_snap
+[ 2 of 27] Compiling Snap.Snaplet.Config
+[ 3 of 27] Compiling Snap.Snaplet.Internal.Lensed
+
+src/Snap/Snaplet/Internal/Lensed.hs:57:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad (Lensed b v m)’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+57 |     return a = Lensed $ \_ v s -> return (a, v, s)
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 4 of 27] Compiling Snap.Snaplet.Internal.RST
+
+src/Snap/Snaplet/Internal/RST.hs:10:47: warning: [-Wunused-imports]
+    The import of ‘Applicative’
+    from module ‘Control.Applicative’ is redundant
+   |
+10 |                                               Applicative (..))
+   |                                               ^^^^^^^^^^^^^^^^
+
+src/Snap/Snaplet/Internal/RST.hs:59:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative (RST r s m)’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+59 |     pure = return
+   |     ^^^^^^^^^^^^^
+
+src/Snap/Snaplet/Internal/RST.hs:92:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad (RST r s m)’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+92 |     return a = RST $ \_ s -> return (a, s)
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 5 of 27] Compiling Snap.Snaplet.Internal.LensT
+[ 6 of 27] Compiling Snap.Snaplet.Internal.Types
+
+src/Snap/Snaplet/Internal/Types.hs:23:1: warning: [-Wunused-imports]
+    The import of ‘Control.Monad.Fail’ is redundant
+      except perhaps to import instances from ‘Control.Monad.Fail’
+    To import instances alone, use: import Control.Monad.Fail()
+   |
+23 | import           Control.Monad.Fail           (MonadFail)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 7 of 27] Compiling Snap.Snaplet.Internal.Initializer
+[ 8 of 27] Compiling Snap.Snaplet
+[ 9 of 27] Compiling Snap.Snaplet.Heist.Internal
+
+src/Snap/Snaplet/Heist/Internal.hs:13:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+13 | import           Data.Monoid
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[10 of 27] Compiling Snap.Snaplet.HeistNoClass
+[11 of 27] Compiling Snap.Snaplet.Heist
+[12 of 27] Compiling Snap.Snaplet.Heist.Interpreted
+[13 of 27] Compiling Snap.Snaplet.Heist.Generic
+[14 of 27] Compiling Snap.Snaplet.Heist.Compiled
+[15 of 27] Compiling Snap.Snaplet.Auth.Types
+[16 of 27] Compiling Snap
+[17 of 27] Compiling Snap.Snaplet.Session.Common
+
+src/Snap/Snaplet/Session/Common.hs:44:9: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘withSystemRandom’ (imported from System.Random.MWC):
+    Deprecated: "Use withSystemRandomST or createSystemSeed or createSystemRandom instead"
+   |
+44 | mkRNG = withSystemRandom (newMVar >=> return . RNG)
+   |         ^^^^^^^^^^^^^^^^
+[18 of 27] Compiling Snap.Snaplet.Session.SecureCookie
+[19 of 27] Compiling Snap.Snaplet.Session.SessionManager
+[20 of 27] Compiling Snap.Snaplet.Session
+[21 of 27] Compiling Snap.Snaplet.Session.Backends.CookieSession
+[22 of 27] Compiling Snap.Snaplet.Auth.AuthManager
+[23 of 27] Compiling Snap.Snaplet.Auth.Handlers
+[24 of 27] Compiling Snap.Snaplet.Auth.SpliceHelpers
+[25 of 27] Compiling Snap.Snaplet.Auth.Backends.JsonFile
+
+src/Snap/Snaplet/Auth/Backends/JsonFile.hs:18:1: warning: [-Wunused-imports]
+    The import of ‘Data.Aeson.Parser’ is redundant
+      except perhaps to import instances from ‘Data.Aeson.Parser’
+    To import instances alone, use: import Data.Aeson.Parser()
+   |
+18 | import           Data.Aeson.Parser (json)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Snap/Snaplet/Auth/Backends/JsonFile.hs:25:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+25 | import           Data.Monoid (mempty)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[26 of 27] Compiling Snap.Snaplet.Auth
+[27 of 27] Compiling Snap.Snaplet.Test
+Configuring test suite 'testsuite' for snap-1.1.3.3...
+Preprocessing test suite 'testsuite' for snap-1.1.3.3...
+Building test suite 'testsuite' for snap-1.1.3.3...
+[ 1 of 48] Compiling Blackbox.Tests
+
+test/suite/Blackbox/Tests.hs:108:51: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘concatHandler’
+    (imported from Network.Http.Client, but defined in Network.Http.Connection):
+    Deprecated: "Use simpleHandler instead"
+    |
+108 |     actual <- get (S.pack $ testServerUrl ++ url) concatHandler
+    |                                                   ^^^^^^^^^^^^^
+
+test/suite/Blackbox/Tests.hs:125:14: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘concatHandler’
+    (imported from Network.Http.Client, but defined in Network.Http.Connection):
+    Deprecated: "Use simpleHandler instead"
+    |
+125 |       res <- concatHandler resp is
+    |              ^^^^^^^^^^^^^
+
+test/suite/Blackbox/Tests.hs:146:40: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘concatHandler’
+    (imported from Network.Http.Client, but defined in Network.Http.Connection):
+    Deprecated: "Use simpleHandler instead"
+    |
+146 |   get (S.pack $ testServerUri ++ path) concatHandler
+    |                                        ^^^^^^^^^^^^^
+[ 2 of 48] Compiling Paths_snap
+[ 3 of 48] Compiling SafeCWD
+[ 4 of 48] Compiling Snap.Snaplet.Config
+[ 5 of 48] Compiling Snap.Snaplet.Internal.Lensed
+
+src/Snap/Snaplet/Internal/Lensed.hs:57:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad (Lensed b v m)’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+57 |     return a = Lensed $ \_ v s -> return (a, v, s)
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 6 of 48] Compiling Snap.Snaplet.Internal.Lensed.Tests
+[ 7 of 48] Compiling Snap.Snaplet.Internal.RST
+
+src/Snap/Snaplet/Internal/RST.hs:59:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative (RST r s m)’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+59 |     pure = return
+   |     ^^^^^^^^^^^^^
+
+src/Snap/Snaplet/Internal/RST.hs:92:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad (RST r s m)’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+92 |     return a = RST $ \_ s -> return (a, s)
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 8 of 48] Compiling Snap.Snaplet.Internal.LensT
+[ 9 of 48] Compiling Snap.Snaplet.Internal.LensT.Tests
+[10 of 48] Compiling Snap.Snaplet.Internal.RST.Tests
+[11 of 48] Compiling Snap.Snaplet.Internal.Types
+[12 of 48] Compiling Snap.Snaplet.Internal.Initializer
+[13 of 48] Compiling Snap.Snaplet.Internal.Tests
+[14 of 48] Compiling Snap.Snaplet
+[15 of 48] Compiling Snap.Snaplet.Heist.Internal
+[16 of 48] Compiling Snap.Snaplet.HeistNoClass
+[17 of 48] Compiling Snap.Snaplet.Heist
+[18 of 48] Compiling Snap.Snaplet.Heist.Interpreted
+[19 of 48] Compiling Snap.Snaplet.Heist.Generic
+[20 of 48] Compiling Snap.Snaplet.Heist.Compiled
+[21 of 48] Compiling Snap.Snaplet.Auth.Types
+[22 of 48] Compiling Snap
+[23 of 48] Compiling Snap.Snaplet.Session.Common
+
+src/Snap/Snaplet/Session/Common.hs:44:9: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘withSystemRandom’ (imported from System.Random.MWC):
+    Deprecated: "Use withSystemRandomST or createSystemSeed or createSystemRandom instead"
+   |
+44 | mkRNG = withSystemRandom (newMVar >=> return . RNG)
+   |         ^^^^^^^^^^^^^^^^
+[24 of 48] Compiling Snap.Snaplet.Session.SecureCookie
+[25 of 48] Compiling Snap.Snaplet.Session.SessionManager
+[26 of 48] Compiling Snap.Snaplet.Session
+[27 of 48] Compiling Snap.Snaplet.Session.Backends.CookieSession
+[28 of 48] Compiling Snap.Snaplet.Auth.AuthManager
+[29 of 48] Compiling Snap.Snaplet.Auth.Handlers
+[30 of 48] Compiling Snap.Snaplet.Auth.SpliceHelpers
+[31 of 48] Compiling Snap.Snaplet.Auth.Backends.JsonFile
+[32 of 48] Compiling Snap.Snaplet.Auth
+[33 of 48] Compiling Snap.Snaplet.Test
+[34 of 48] Compiling Snap.Snaplet.Test.Common.EmbeddedSnaplet
+[35 of 48] Compiling Snap.TestCommon
+[36 of 48] Compiling Snap.Snaplet.Test.Common.FooSnaplet
+[37 of 48] Compiling Snap.Snaplet.Test.Common.BarSnaplet
+[38 of 48] Compiling Snap.Snaplet.Test.Common.Types
+[39 of 48] Compiling Snap.Snaplet.Test.Common.Handlers
+[40 of 48] Compiling Snap.Snaplet.Test.Common.App
+[41 of 48] Compiling Snap.Snaplet.Test.Tests
+[42 of 48] Compiling Snap.Snaplet.Config.Tests
+[43 of 48] Compiling Snap.Snaplet.Auth.SpliceTests
+[44 of 48] Compiling Snap.Snaplet.Auth.Handlers.Tests
+[45 of 48] Compiling Snap.Snaplet.Heist.Tests
+[46 of 48] Compiling Snap.Snaplet.Auth.Types.Tests
+[47 of 48] Compiling Snap.Snaplet.Auth.Tests
+[48 of 48] Compiling Main
+[49 of 49] Linking /tmp/workdir-snap/snap-1.1.3.3/dist-newstyle/build/x86_64-linux/ghc-9.6.6/snap-1.1.3.3/t/testsuite/build/testsuite/testsuite

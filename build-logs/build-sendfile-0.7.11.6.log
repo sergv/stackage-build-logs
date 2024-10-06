@@ -1,0 +1,57 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - sendfile-0.7.11.6 (lib) (first run)
+Configuring library for sendfile-0.7.11.6...
+Preprocessing library for sendfile-0.7.11.6...
+Building library for sendfile-0.7.11.6...
+[1 of 7] Compiling Network.Socket.SendFile.Iter
+[2 of 7] Compiling Network.Socket.SendFile.Linux
+
+src/Network/Socket/SendFile/Linux.hsc:5:18: warning: [-Wunused-imports]
+    The import of ‘Int32’ from module ‘Data.Int’ is redundant
+  |
+5 | import Data.Int (Int32, Int64)    -- Int64 is imported on 64-bit systems
+  |                  ^^^^^
+
+src/Network/Socket/SendFile/Linux.hsc:6:19: warning: [-Wunused-imports]
+    The import of ‘Word32’ from module ‘Data.Word’ is redundant
+  |
+6 | import Data.Word (Word32, Word64) -- Word64 is imported on 64-bit systems
+  |                   ^^^^^^
+[3 of 7] Compiling Network.Socket.SendFile.Util
+[4 of 7] Compiling Network.Socket.SendFile.Portable
+
+src/Network/Socket/SendFile/Portable.hs:22:1: warning: [GHC-99623] [-Wdodgy-imports]
+    The import item ‘Socket(..)’ suggests that
+    ‘Socket’ has (in-scope) constructors or class methods,
+    but it has none
+   |
+22 | import Network.Socket (Socket(..), fdSocket)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Network/Socket/SendFile/Portable.hs:79:25: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘fdSocket’
+    (imported from Network.Socket, but defined in Network.Socket.Types):
+    Deprecated: "Use withFdSocket or unsafeFdSocket instead"
+   |
+79 |           then do fd <- fdSocket socket
+   |                         ^^^^^^^^
+[5 of 7] Compiling Network.Socket.SendFile.Internal
+
+src/Network/Socket/SendFile/Internal.hs:81:27: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘fdSocket’
+    (imported from Network.Socket, but defined in Network.Socket.Types):
+    Deprecated: "Use withFdSocket or unsafeFdSocket instead"
+   |
+81 |     do out_fd <- fmap Fd (fdSocket outs)
+   |                           ^^^^^^^^
+
+src/Network/Socket/SendFile/Internal.hs:92:27: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘fdSocket’
+    (imported from Network.Socket, but defined in Network.Socket.Types):
+    Deprecated: "Use withFdSocket or unsafeFdSocket instead"
+   |
+92 |     do out_fd <- fmap Fd (fdSocket outs)
+   |                           ^^^^^^^^
+[6 of 7] Compiling Network.Socket.SendFile
+[7 of 7] Compiling Network.Socket.SendFile.Handle

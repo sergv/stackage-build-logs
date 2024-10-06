@@ -1,0 +1,166 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - dbus-1.3.3 (test:dbus_tests) (ephemeral targets)
+Preprocessing test suite 'dbus_tests' for dbus-1.3.3...
+Building test suite 'dbus_tests' for dbus-1.3.3...
+Running 1 test suites...
+Test suite dbus_tests: RUNNING...
+dbus
+  Address
+    address:                                     OK
+      +++ OK, passed 100 tests.
+    parseAddress:                                OK
+      +++ OK, passed 100 tests.
+    parseAddresses:                              OK (0.01s)
+      +++ OK, passed 100 tests.
+    parse-invalid:                               OK
+    formatAddress:                               OK
+      +++ OK, passed 100 tests.
+    formatAddresses:                             OK (0.02s)
+      +++ OK, passed 100 tests.
+    getSystemAddress:                            OK
+    getSessionAddress:                           OK
+    getStarterAddress:                           OK
+  BusName
+    parse:                                       OK
+      +++ OK, passed 100 tests.
+    parse-invalid:                               OK
+    IsVariant:                                   OK
+  Client
+    requestName:                                 OK
+    releaseName:                                 OK
+    call:                                        OK
+    callGeneration:                              OK
+    callNoReply:                                 OK
+    addMatch:                                    OK
+    autoMethod:                                  OK
+    exportIntrospection:                         OK
+    connect
+      connectSystem:                             OK
+      connectSystem-no-address:                  OK
+      connectSession:                            OK
+      connectSession-no-address:                 OK
+      connectStarter:                            OK
+      connectStarter-no-address:                 OK
+      connectWithName:                           OK
+  ErrorName
+    parse:                                       OK
+      +++ OK, passed 100 tests.
+    parse-invalid:                               OK
+    IsVariant:                                   OK
+  Integration
+    socket:                                      OK (0.12s)
+    client:                                      OK (0.06s)
+  InterfaceName
+    parse:                                       OK
+      +++ OK, passed 100 tests.
+    parse-invalid:                               OK
+    IsVariant:                                   OK
+  Introspection
+    xml-passthrough:                             OK (0.15s)
+      +++ OK, passed 100 tests.
+    xml-parse:                                   OK
+    xml-parse-failed:                            OK
+    xml-write-failed:                            OK
+  MemberName
+    parse:                                       OK
+      +++ OK, passed 100 tests.
+    parse-invalid:                               OK
+    IsVariant:                                   OK
+  Message
+    methodErrorMessage:                          OK
+  ObjectPath
+    parse:                                       OK (0.03s)
+      +++ OK, passed 100 tests.
+    parse-invalid:                               OK
+  Serialization
+    MethodCall:                                  OK (0.06s)
+      +++ OK, passed 100 tests.
+    MethodReturn:                                OK (0.01s)
+      +++ OK, passed 100 tests.
+    MethodError:                                 OK (0.03s)
+      +++ OK, passed 100 tests.
+    Signal:                                      OK (0.06s)
+      +++ OK, passed 100 tests.
+  Signature
+    signature:                                   OK (0.06s)
+      +++ OK, passed 100 tests.
+    parseSignature:                              OK (0.08s)
+      +++ OK, passed 100 tests.
+    parse-invalid:                               OK
+    formatSignature:                             OK (0.07s)
+      +++ OK, passed 100 tests.
+    IsAtom:                                      OK
+    show-type:                                   OK
+  Socket
+    listen:                                      OK
+    listenWith-custom-auth:                      OK
+    send-receive:                                OK
+    send-receive-file-descriptors:               OK
+  Transport
+    transportOpen
+      unknown:                                   OK
+      unix
+        path:                                    OK
+        abstract:                                OK
+        too-few:                                 OK
+        too-many:                                OK
+        not-listening:                           OK
+      tcp
+        ipv4:                                    OK
+        ipv6:                                    OK
+        unknown-family:                          OK
+        no-port:                                 OK
+        invalid-port:                            OK
+        no-usable-addresses:                     OK
+        not-listening:                           OK
+    transportListen
+      unknown:                                   OK
+      unix
+        path:                                    OK
+        abstract:                                OK
+        tmpdir:                                  OK
+        too-few:                                 OK
+        too-many:                                OK
+        invalid-bind:                            FAIL
+          tests/DBusTests/Util.hs:310:
+          unexpected exception TransportError {transportErrorMessage = "Network.Socket.bind: resource busy (Address already in use)", transportErrorAddress = Just (Address "unix:path=/")}
+          Use -p '/unix.invalid-bind/' to rerun this test only.
+      tcp
+        ipv4:                                    OK
+        ipv6:                                    OK
+        unknown-family:                          OK
+        invalid-port:                            OK
+        invalid-bind:                            FAIL
+          tests/DBusTests/Util.hs:311:
+          expected exception not thrown
+          Use -p '/tcp.invalid-bind/' to rerun this test only.
+    transportAccept
+      socket:                                    OK
+      socket-closed:                             OK
+    send-receive:                                OK (0.05s)
+    send-receive-file-descriptors:               OK
+    send-receive-file-descriptors-multiple-puts: OK
+    handle-lost-connection:                      OK
+  Variant
+    IsAtom:                                      OK
+    IsValue:                                     OK
+    show:                                        OK
+    byte-storage:                                OK
+  Wire
+    unmarshal
+      unexpected-eof:                            OK
+    Unix File Descriptor Passing
+      (un)marshal round trip:                    OK
+        marshal
+        unmarshal
+      UnixFdHeader mismatch:                     OK
+
+2 out of 97 tests failed (0.87s)
+Test suite dbus_tests: FAIL
+Test suite logged to:
+/tmp/workdir-dbus/dbus-1.3.3/dist-newstyle/build/x86_64-linux/ghc-9.6.6/dbus-1.3.3/t/dbus_tests/test/dbus-1.3.3-dbus_tests.log
+0 of 1 test suites (0 of 1 test cases) passed.
+Error: [Cabal-7125]
+Tests failed for test:dbus_tests from dbus-1.3.3.
+

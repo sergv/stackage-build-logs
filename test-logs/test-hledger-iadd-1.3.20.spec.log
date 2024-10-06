@@ -1,0 +1,146 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - hledger-iadd-1.3.20 (test:spec) (ephemeral targets)
+Preprocessing test suite 'spec' for hledger-iadd-1.3.20...
+Building test suite 'spec' for hledger-iadd-1.3.20...
+Running 1 test suites...
+Test suite spec: RUNNING...
+
+AmountParser
+  parseAmount
+    parses single amount [✔]
+    parses a positive number [✔]
+    parses a negative number [✔]
+    parses a simple sum [✔]
+    parses a sum with negative values [✔]
+    fails to parse a trailing plus [✔]
+ConfigParser
+  parses a complete example [✔]
+  fills in the default values [✔]
+  fills in the default values for random data [✔]
+    +++ OK, passed 100 tests.
+  given whitespace
+    parses just whitespace [✔]
+    parses beginning whitespace [✔]
+    parses trailing whitespace [✔]
+    parses middle whitespace [✔]
+    parses whitespace everywhere [✔]
+  given escaped strings
+    parses simple escaped strings [✔]
+    parses escaped strings with quotes in them [✔]
+    parses escaped strings with backslashes in them [✔]
+    parses escaped strings with newlines in them [✔]
+    fails to parse non-terminated escaped strings [✔]
+  given bare strings
+    parses a bare string correctly [✔]
+    correctly trims bare strings [✔]
+    fails to parse empty bare strings [✔]
+  allows dashes in option names [✔]
+  allows underscores in option names [✔]
+  doesn't allow spaces in option names [✔]
+  doesn't allow equal signs in option names [✔]
+  given integers
+    parses zero [✔]
+    parses negative zero [✔]
+    fails to parse integer with trailing stuff [✔]
+    fails to parse empty string as integer [✔]
+    fails to parse letters as integer [✔]
+  given strings
+    parses the empty string quoted [✔]
+  handles a file with just comments [✔]
+  handles comments and whitespace in front [✔]
+  handles comments and whitespace in front [✔]
+  handles comments and whitespace after [✔]
+  handles comments with whitespace between [✔]
+  handles comments after assignments [✔]
+  handles comments around assignments [✔]
+  parserExample
+    works for one example [✔]
+    can parse it's own example output [✔]
+      +++ OK, passed 100 tests.
+DateParser
+  date format parser
+    parses the german format correctly [✔]
+  date parser
+    actually requires non-optional fields [✔]
+    weekDay
+      actually returns the right week day [✔]
+        +++ OK, passed 100 tests.
+      is always smaller than the current date [✔]
+        +++ OK, passed 100 tests.
+  date completion
+    today [✔]
+    today is a leap day [✔]
+    skips to previous month [✔]
+    stays in month if possible [✔]
+    skips to previous month to reach the 31st [✔]
+    skips to an earlier month to reach the 31st [✔]
+    skips to the previous year if necessary [✔]
+    skips to the previous years if after a leap year [✔]
+    even might skip to a leap year 8 years ago [✔]
+    some date in the near future [✔]
+    some date in the far future [✔]
+    last october [✔]
+    last november [✔]
+    next november [✔]
+    next january [✔]
+    last january [✔]
+    literally yesterday [✔]
+    literally today [✔]
+    literally tomorrow [✔]
+    literally monday [✔]
+    literally tuesday [✔]
+    literally wednesday [✔]
+    literally thursday [✔]
+    literally friday [✔]
+    literally saturday [✔]
+    literally sunday [✔]
+    literally satan [✔]
+  date printer
+    is inverse to reading [✔]
+      +++ OK, passed 100 tests.
+    handles short years correctly [✔]
+    handles long years correctly [✔]
+Model
+  suggest
+    at the account prompt
+      suggests nothing for an empty journal [✔]
+      suggests the accounts in order [✔]
+    at the amount prompt
+      suggests amounts from the similar transaction [✔]
+      suggests the balancing amount if accounts don't match with similar transaction [✔]
+      initially doesn't suggest an amount if there is no similar transaction [✔]
+      suggests the balancing amount if there is no similar transaction for the second account [✔]
+  accountsByFrequency
+    sorts according to frequency [✔]
+    includes subaccounts [✔]
+    only counts explicit occurences for sorting [✔]
+    includes accounts from the 'account directive' [✔]
+  setCurrentComment
+    works at the date prompt [✔]
+    works at the description prompt [✔]
+    works at the account prompt [✔]
+    works at the amount prompt [✔]
+    works at the final prompt [✔]
+  setTransactionComment
+    works at the date prompt [✔]
+    works at the description prompt [✔]
+    works at the account prompt [✔]
+    works at the amount prompt [✔]
+    works at the final prompt [✔]
+  isDuplicateTransaction
+    considers exact copies as duplicates [✔]
+    ignores the order of postings [✔]
+    ignores comments and tags [✔]
+    considers date and description [✔]
+    considers date, amount and account of postings [✔]
+    ignores amount presentation [✔]
+  isSubsetTransaction
+    ignores amount presentation [✔]
+
+Finished in 0.0097 seconds
+102 examples, 0 failures
+Test suite spec: PASS
+Test suite logged to:
+/tmp/workdir-hledger-iadd/hledger-iadd-1.3.20/dist-newstyle/build/x86_64-linux/ghc-9.6.6/hledger-iadd-1.3.20/t/spec/test/hledger-iadd-1.3.20-spec.log
+1 of 1 test suites (1 of 1 test cases) passed.

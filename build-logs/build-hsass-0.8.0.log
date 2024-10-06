@@ -1,0 +1,90 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - hsass-0.8.0 (lib) (first run)
+ - hsass-0.8.0 (test:test) (first run)
+Configuring library for hsass-0.8.0...
+Preprocessing library for hsass-0.8.0...
+Building library for hsass-0.8.0...
+[ 1 of 12] Compiling Text.Sass.Marshal.Internal
+
+Text/Sass/Marshal/Internal.hs:14:1: warning: [-Wunused-imports]
+    The import of ‘Foreign.Marshal.Alloc’ is redundant
+      except perhaps to import instances from ‘Foreign.Marshal.Alloc’
+    To import instances alone, use: import Foreign.Marshal.Alloc()
+   |
+14 | import           Foreign.Marshal.Alloc    (mallocBytes)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Text/Sass/Marshal/Internal.hs:41:5: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘memcpy’
+    (imported from Data.ByteString.Internal, but defined in Data.ByteString.Internal.Type):
+    Deprecated: "Use Foreign.Marshal.Utils.copyBytes instead"
+   |
+41 |     BI.memcpy buf (p `plusPtr` o) (fromIntegral l)
+   |     ^^^^^^^^^
+[ 2 of 12] Compiling Text.Sass.Utils
+[ 3 of 12] Compiling Text.Sass.Values
+[ 4 of 12] Compiling Text.Sass.Functions
+[ 5 of 12] Compiling Text.Sass.Options
+[ 6 of 12] Compiling Text.Sass.Values.Internal
+[ 7 of 12] Compiling Text.Sass.Functions.Internal
+[ 8 of 12] Compiling Text.Sass.Options.Internal
+[ 9 of 12] Compiling Text.Sass.Internal
+[10 of 12] Compiling Text.Sass.Compilation
+
+Text/Sass/Compilation.hs:39:1: warning: [-Wunused-imports]
+    The import of ‘Data.Maybe’ is redundant
+      except perhaps to import instances from ‘Data.Maybe’
+    To import instances alone, use: import Data.Maybe()
+   |
+39 | import           Data.Maybe                     (fromMaybe)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[11 of 12] Compiling Text.Sass
+[12 of 12] Compiling Text.Sass.Values.Utils
+Configuring test suite 'test' for hsass-0.8.0...
+Preprocessing test suite 'test' for hsass-0.8.0...
+Building test suite 'test' for hsass-0.8.0...
+[1 of 7] Compiling Text.Sass.EncodingSpec
+
+test/Text/Sass/EncodingSpec.hs:7:68: warning: [-Wunused-imports]
+    The import of ‘utf8’ from module ‘GHC.IO.Encoding’ is redundant
+  |
+7 | import           GHC.IO.Encoding           (setFileSystemEncoding, utf8)
+  |                                                                    ^^^^
+[2 of 7] Compiling Text.Sass.FunctionsSpec
+[3 of 7] Compiling Text.Sass.TestingUtils
+[4 of 7] Compiling Text.Sass.CompilationSpec
+
+test/Text/Sass/CompilationSpec.hs:64:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Either
+                            SassError (SassExtendedResult String)’ not matched:
+            Left _
+   |
+64 |         let Right res' = res
+   |             ^^^^^^^^^^^^^^^^
+
+test/Text/Sass/CompilationSpec.hs:70:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Either
+                            SassError
+                            (SassExtendedResult
+                               bytestring-0.11.5.3:Data.ByteString.Internal.Type.ByteString)’ not matched:
+            Left _
+   |
+70 |         let Right res' = res
+   |             ^^^^^^^^^^^^^^^^
+
+test/Text/Sass/CompilationSpec.hs:87:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe String’ not matched: Nothing
+   |
+87 |         let Just m' = m
+   |             ^^^^^^^^^^^
+[5 of 7] Compiling Text.Sass.TutorialSpec
+[6 of 7] Compiling Text.Sass.ValuesSpec
+[7 of 7] Compiling Main
+[8 of 8] Linking /tmp/workdir-hsass/hsass-0.8.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/hsass-0.8.0/t/test/build/test/test

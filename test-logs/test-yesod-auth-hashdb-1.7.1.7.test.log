@@ -1,0 +1,48 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - yesod-auth-hashdb-1.7.1.7 (test:test) (ephemeral targets)
+Preprocessing test suite 'test' for yesod-auth-hashdb-1.7.1.7...
+Building test suite 'test' for yesod-auth-hashdb-1.7.1.7...
+Running 1 test suites...
+Test suite test: RUNNING...
+
+validatePass
+  Naively upgraded old-style valid user
+    no longer checks good password (wrong format, so Just False) [✔]
+    no longer checks bad password (wrong format, so Just False) [✔]
+  Naively upgraded old-style user with no password hash
+    fails validation giving Nothing [✔]
+  Naively upgraded old-style user with no salt
+    fails validation (wrong format, so Just False) [✔]
+  Previously upgraded old-style user
+    no longer verifies with correct password as it still needs salt [✔]
+    fails validation with a wrong password giving Just False [✔]
+  New style valid user
+    verifies OK with correct password [✔]
+    fails validation with a wrong password giving Just False [✔]
+  New-style user with no password hash
+    fails validation giving Nothing [✔]
+upgradePasswordHash
+  Upgrade of naively upgraded old-style password hash
+    is Nothing if the user has a password (format is wrong) [✔]
+    is Nothing if there is no password hash [✔]
+  Upgrade of previously upgraded old-style user
+    silently succeeds producing a password which won't verify as it still needs salt [✔]
+  Upgrade of new-style password hash to stronger setting
+    really does have a hash containing the new strength [✔]
+    still verifies with the same password [✔]
+    is Nothing if there is no password hash [✔]
+setPassword
+  produces hash which verifies OK starting from old-style user [✔]
+  produces empty salt (in the case of old-style user) [✔]
+  produces hash which verifies OK starting from new-style user [✔]
+Only the bottom 8 bits of password characters are used
+  when verifying new-style password hash [✔]
+  when setting a new password [✔]
+
+Finished in 1.7063 seconds
+20 examples, 0 failures
+Test suite test: PASS
+Test suite logged to:
+/tmp/workdir-yesod-auth-hashdb/yesod-auth-hashdb-1.7.1.7/dist-newstyle/build/x86_64-linux/ghc-9.6.6/yesod-auth-hashdb-1.7.1.7/t/test/test/yesod-auth-hashdb-1.7.1.7-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

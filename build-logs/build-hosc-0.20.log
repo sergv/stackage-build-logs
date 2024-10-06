@@ -1,0 +1,82 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - hosc-0.20 (lib) (first run)
+Configuring library for hosc-0.20...
+Preprocessing library for hosc-0.20...
+Building library for hosc-0.20...
+[ 1 of 24] Compiling Sound.Osc.Coding.Convert
+[ 2 of 24] Compiling Sound.Osc.Coding.Cast
+[ 3 of 24] Compiling Sound.Osc.Coding.Byte
+[ 4 of 24] Compiling Sound.Osc.Datum
+[ 5 of 24] Compiling Sound.Osc.Alias
+[ 6 of 24] Compiling Sound.Osc.Packet
+[ 7 of 24] Compiling Sound.Osc.Time
+[ 8 of 24] Compiling Sound.Osc.Text
+[ 9 of 24] Compiling Sound.Osc.Coding.Encode.Builder
+[10 of 24] Compiling Sound.Osc.Coding.Encode.Base
+[11 of 24] Compiling Sound.Osc.Coding.Decode.Binary
+[12 of 24] Compiling Sound.Osc.Coding.Decode.Base
+
+Sound/Osc/Coding/Decode/Base.hs:53:18: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[Word8]’ not matched:
+            []
+            [_]
+            [_, _]
+            [_, _, _]
+            ...
+   |
+53 |       'm' -> let [b0,b1,b2,b3] = B.unpack (B.take 4 b) in midi (b0,b1,b2,b3)
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sound/Osc/Coding/Decode/Base.hs:68:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Datum’ not matched:
+            Int32 _
+            Int64 _
+            Float _
+            Double _
+            ...
+   |
+68 |         (AsciiString cmd) = decode_datum 's' b
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sound/Osc/Coding/Decode/Base.hs:70:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Datum’ not matched:
+            Int32 _
+            Int64 _
+            Float _
+            Double _
+            ...
+   |
+70 |         (AsciiString dsc) = decode_datum 's' (b_drop n b)
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sound/Osc/Coding/Decode/Base.hs:87:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Datum’ not matched:
+            Int32 _
+            Int64 _
+            Float _
+            Double _
+            ...
+   |
+87 |         (TimeStamp timeStamp) = decode_datum 't' (b_drop h b)
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[13 of 24] Compiling Sound.Osc.Time.System
+[14 of 24] Compiling Sound.Osc.Time.Thread
+[15 of 24] Compiling Sound.Osc.Time.Thread.MonadIO
+[16 of 24] Compiling Sound.Osc.Wait
+[17 of 24] Compiling Sound.Osc.Transport.Fd
+[18 of 24] Compiling Sound.Osc.Transport.Monad
+[19 of 24] Compiling Sound.Osc.Transport.Fd.Udp
+[20 of 24] Compiling Sound.Osc.Transport.Fd.Tcp
+[21 of 24] Compiling Sound.Osc.Time.Timeout
+[22 of 24] Compiling Sound.Osc.Core
+[23 of 24] Compiling Sound.Osc.Fd
+[24 of 24] Compiling Sound.Osc

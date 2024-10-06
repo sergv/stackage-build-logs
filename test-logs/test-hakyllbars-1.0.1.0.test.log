@@ -1,0 +1,128 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - hakyllbars-1.0.1.0 (test:test) (ephemeral targets)
+Preprocessing test suite 'test' for hakyllbars-1.0.1.0...
+Building test suite 'test' for hakyllbars-1.0.1.0...
+Running 1 test suites...
+Test suite test: RUNNING...
+
+Hakyllbars.Source.Lexer
+  expression mode
+    "{{a b c d"
+      produces [ExpressionBlockToken',NameToken' "a",NameToken' "b",NameToken' "c",NameToken' "d"] [✔]
+    "{{1 2 3 4"
+      produces [ExpressionBlockToken',IntToken' 1,IntToken' 2,IntToken' 3,IntToken' 4] [✔]
+    "{{a 1 b 2"
+      produces [ExpressionBlockToken',NameToken' "a",IntToken' 1,NameToken' "b",IntToken' 2] [✔]
+    "{{1.1 2.2 3.3 4.4"
+      produces [ExpressionBlockToken',DoubleToken' 1.1,DoubleToken' 2.2,DoubleToken' 3.3,DoubleToken' 4.4] [✔]
+    invalid numbers
+      "{{1.a 2.2"
+        rejects tokens with "\"test\" (line 1, column 5):\nunexpected \"a\"\nexpecting digit" [✔]
+      "{{1a 2.2"
+        rejects tokens with "\"test\" (line 1, column 5):\nunexpected 'a'" [✔]
+    keywords and word literals
+      "{{true else false end"
+        produces [ExpressionBlockToken',BoolToken' True,ElseToken',BoolToken' False,EndToken'] [✔]
+    string literals
+      "{{\"abcd\""
+        produces [ExpressionBlockToken',StringToken' "abcd"] [✔]
+      "{{\"\\\"abcd\""
+        produces [ExpressionBlockToken',StringToken' "\"abcd"] [✔]
+      "{{\"a\\'b\\nc\\td\\\\\""
+        produces [ExpressionBlockToken',StringToken' "a'b\nc\td\\"] [✔]
+      "{{\"this string}} has these {{\""
+        produces [ExpressionBlockToken',StringToken' "this string}} has these {{"] [✔]
+      "{{'abcd'"
+        produces [ExpressionBlockToken',StringToken' "abcd"] [✔]
+      "{{'\\\"abcd'"
+        produces [ExpressionBlockToken',StringToken' "\"abcd"] [✔]
+      "{{'a\\\"b\\nc\\td\\\\\\''"
+        produces [ExpressionBlockToken',StringToken' "a\"b\nc\td\\'"] [✔]
+      "{{'this string}} has these {{'"
+        produces [ExpressionBlockToken',StringToken' "this string}} has these {{"] [✔]
+  text
+    "\\{{*"
+      produces [TextToken' "{{*"] [✔]
+    "\\{{!"
+      produces [TextToken' "{{!"] [✔]
+    "\\}}"
+      produces [TextToken' "}}"] [✔]
+    "\\{{"
+      produces [TextToken' "{{"] [✔]
+    "{a"
+      produces [TextToken' "{a"] [✔]
+    "}a"
+      produces [TextToken' "}a"] [✔]
+    "\\a"
+      produces [TextToken' "\\a"] [✔]
+    "\\\\"
+      produces [TextToken' "\\"] [✔]
+    "this contains a \\}} literal"
+      produces [TextToken' "this contains a }} literal"] [✔]
+  comment blocks
+    "{{! this is a comment }}"
+      produces [CommentBlockToken',TextToken' " this is a comment ",CloseBlockToken'] [✔]
+    "{{! this {{is {{! a}} nested}} comment }}"
+      produces [CommentBlockToken',TextToken' " this {{is {{! a}} nested}} comment ",CloseBlockToken'] [✔]
+    "{{! this has an \\}} in it }}"
+      produces [CommentBlockToken',TextToken' " this has an }} in it ",CloseBlockToken'] [✔]
+  mixing blocks
+    "{{expression}} and some text"
+      produces [ExpressionBlockToken',NameToken' "expression",CloseBlockToken',TextToken' " and some text"] [✔]
+    "this {{expression}} and some text"
+      produces [TextToken' "this ",ExpressionBlockToken',NameToken' "expression",CloseBlockToken',TextToken' " and some text"] [✔]
+    "here: {{! a comment {{with nesting}} }} followed by {{an | expression}}"
+      produces [TextToken' "here: ",CommentBlockToken',TextToken' " a comment {{with nesting}} ",CloseBlockToken',TextToken' " followed by ",ExpressionBlockToken',NameToken' "an",PipeToken',NameToken' "expression",CloseBlockToken'] [✔]
+  whitespace-trimmed blocks
+    end-trimming block
+      "{{expression-}}\n     some spaces"
+        produces [ExpressionBlockToken',NameToken' "expression",CloseBlockToken',TextToken' "some spaces"] [✔]
+    start-trimming block
+      "some spaces\n   {{-expression}}"
+        produces [TextToken' "some spaces",ExpressionBlockToken',NameToken' "expression",CloseBlockToken'] [✔]
+  turning off blocks
+    expression block
+      "{{*{{expression}}}}"
+        produces [TurnOffToken',TextToken' "{{expression}}",CloseBlockToken'] [✔]
+    trimming
+      "{{*\n{{#if layout-}}\n  {{@applyLayout layout-}}\n  {{body-}}\n{{#else-}}\n  {{body-}}\n{{#end-}}\n}}"
+        produces [TurnOffToken',TextToken' "\n{{#if layout-}}\n  {{@applyLayout layout-}}\n  {{body-}}\n{{#else-}}\n  {{body-}}\n{{#end-}}\n",CloseBlockToken'] [✔]
+Hakyllbars.Source.Parser
+  expression blocks
+    "{{a | b}}{{c d}}"
+      produces Template' [ExpressionBlock' (FilterExpression' (NameExpression' "a") (NameExpression' "b")),ExpressionBlock' (ApplyExpression' (NameExpression' "c") (NameExpression' "d"))] [✔]
+    "{{thing | with { this: a, that: b } }}"
+      produces Template' [ExpressionBlock' (FilterExpression' (NameExpression' "thing") (ApplyExpression' (NameExpression' "with") (ContextExpression' [("this",NameExpression' "a"),("that",NameExpression' "b")])))] [✔]
+    "{{thing | with this: a, that: b}}"
+      produces Template' [ExpressionBlock' (FilterExpression' (NameExpression' "thing") (ApplyExpression' (NameExpression' "with") (ContextExpression' [("this",NameExpression' "a"),("that",NameExpression' "b")])))] [✔]
+    "{{(a (b | c))}}"
+      produces Template' [ExpressionBlock' (ApplyExpression' (NameExpression' "a") (FilterExpression' (NameExpression' "b") (NameExpression' "c")))] [✔]
+    "{{[1, 2, 3]}}"
+      produces Template' [ExpressionBlock' (ListExpression' [IntExpression' 1,IntExpression' 2,IntExpression' 3])] [✔]
+    "{{[]}}"
+      produces Template' [ExpressionBlock' (ListExpression' [])] [✔]
+  comment blocks
+    "{{! this is a comment }}"
+      produces Template' [CommentBlock' " this is a comment "] [✔]
+  alt blocks
+    "{{#if (this thing)}} text {{#end}}"
+      produces Template' [AltBlock' [ApplyBlock' (ApplyExpression' (NameExpression' "if") (ApplyExpression' (NameExpression' "this") (NameExpression' "thing"))) [TextBlock' " text "]] Nothing] [✔]
+    "{{#if (that thing)}}\ntext\n{{#end}}\n"
+      produces Template' [AltBlock' [ApplyBlock' (ApplyExpression' (NameExpression' "if") (ApplyExpression' (NameExpression' "that") (NameExpression' "thing"))) [TextBlock' "\ntext\n"]] Nothing,TextBlock' "\n"] [✔]
+    "{{#if this}}\nthat\n{{#else then}}\nthe other\n{{#end}}\n"
+      produces Template' [AltBlock' [ApplyBlock' (ApplyExpression' (NameExpression' "if") (NameExpression' "this")) [TextBlock' "\nthat\n"],ApplyBlock' (NameExpression' "then") [TextBlock' "\nthe other\n"]] Nothing,TextBlock' "\n"] [✔]
+    "{{#if this}}\nthat\n{{#else}}\nthe other\n{{#end}}\n"
+      produces Template' [AltBlock' [ApplyBlock' (ApplyExpression' (NameExpression' "if") (NameExpression' "this")) [TextBlock' "\nthat\n"]] (Just (DefaultBlock' [TextBlock' "\nthe other\n"])),TextBlock' "\n"] [✔]
+    "{{#if (this thing)}}\nthen show this thing\n{{#else some condition}}\nthen show this other thing\n{{#else}}\notherwise show this thing\n{{#end}}\n"
+      produces Template' [AltBlock' [ApplyBlock' (ApplyExpression' (NameExpression' "if") (ApplyExpression' (NameExpression' "this") (NameExpression' "thing"))) [TextBlock' "\nthen show this thing\n"],ApplyBlock' (ApplyExpression' (NameExpression' "some") (NameExpression' "condition")) [TextBlock' "\nthen show this other thing\n"]] (Just (DefaultBlock' [TextBlock' "\notherwise show this thing\n"])),TextBlock' "\n"] [✔]
+  off blocks
+    "{{*\n{{this}} is\n{{!verbatim}}\nand {{@bananana}}\n-}}\n"
+      produces Template' [TextBlock' "\n{{this}} is\n{{!verbatim}}\nand {{@bananana}}\n"] [✔]
+
+Finished in 0.0071 seconds
+47 examples, 0 failures
+Test suite test: PASS
+Test suite logged to:
+/tmp/workdir-hakyllbars/hakyllbars-1.0.1.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/hakyllbars-1.0.1.0/t/test/test/hakyllbars-1.0.1.0-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

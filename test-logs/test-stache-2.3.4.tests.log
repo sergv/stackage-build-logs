@@ -1,0 +1,131 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - stache-2.3.4 (test:tests) (ephemeral targets)
+Preprocessing test suite 'tests' for stache-2.3.4...
+Building test suite 'tests' for stache-2.3.4...
+Running 1 test suites...
+Test suite tests: RUNNING...
+
+Text.Mustache.Compile.TH
+  mustache
+    compiles template using QuasiQuotes at compile time [✔]
+  compileMustacheText
+    compiles template from text at compile time [✔]
+  compileMustacheFile
+    compiles template from file at compile time [✔]
+  compileMustacheDir
+    compiles templates from directory at compile time [✔]
+Text.Mustache.Parser
+  parseMustache
+    parses text [✔]
+    when parsing a variable
+      with white space
+        parses escaped {{ variable }} [✔]
+        parses unescaped {{{ variable }}} [✔]
+        parses unescaped {{& variable }} [✔]
+        parses escaped {{ nested.variable }} [✔]
+        parses escaped {{ nested . variable . with . spaces }} [✔]
+      without white space
+        parses escaped {{variable}} [✔]
+        parses unescaped {{{variable}}} [✔]
+        parses unescaped {{& variable }} [✔]
+      allows '-' in variable names [✔]
+      allows '_' in variable names [✔]
+    when parsing a section
+      parses empty section [✔]
+      parses non-empty section [✔]
+    when parsing an inverted section
+      parses empty inverted section [✔]
+      parses non-empty inverted section [✔]
+    when parsing a partial
+      parses a partial with white space [✔]
+      parses a partial without white space [✔]
+      handles indented partial correctly [✔]
+    when running into delimiter change
+      has effect [✔]
+      handles whitespace just as well [✔]
+      affects {{{s [✔]
+      parses two subsequent delimiter changes [✔]
+      propagates delimiter change from a nested scope [✔]
+    when given malformed input
+      rejects unclosed tags [✔]
+      rejects il-formed expressions [✔]
+      rejects unclosed sections [✔]
+Text.Mustache.Render
+  renderMustache
+    leaves text block “as is” [✔]
+    renders escaped variables correctly [✔]
+    renders unescaped variables “as is” [✔]
+    when rendering a variable
+      when variable does not exist
+        generates correct warning [✔]
+      when variable is not non-scalar
+        generates correct warning [✔]
+    when rendering a section
+      when the key is not present
+        renders nothing [✔]
+        generates correct warning [✔]
+      when the key is present
+        when the key is a “false” value
+          skips the Null value [✔]
+          skips false Boolean [✔]
+          skips empty list [✔]
+          skips empty object [✔]
+          skips empty string [✔]
+        when the key is a Boolean true
+          renders the section without interpolation [✔]
+        when the key is an object
+          uses it to render section once [✔]
+        when the key is a singleton list
+          uses it to render section once [✔]
+        when the key is a list of Boolean trues
+          renders the section as many times as there are elements [✔]
+        when the key is a list of objects
+          renders the section many times changing context [✔]
+        when the key is a number
+          renders the section [✔]
+          uses the key as context [✔]
+        when the key is a non-empty string
+          renders the section [✔]
+          uses the key as context [✔]
+    when rendering an inverted section
+      when the key is not present
+        renders the inverse section [✔]
+        generates correct warning [✔]
+      when the key is present
+        when the key is a “false” value
+          renders with Null value [✔]
+          renders with false Boolean [✔]
+          renders with empty list [✔]
+          renders with empty object [✔]
+        when the key is a “true” value
+          skips true Boolean [✔]
+          skips non-empty object [✔]
+          skips non-empty list [✔]
+    when rendering a partial
+      skips missing partial [✔]
+      renders partial correctly [✔]
+    when rendering a nested partial
+      renders outer partial correctly [✔]
+    when using dotted keys inside a section
+      it should be equivalent to access via one more section [✔]
+Text.Mustache.Type
+  Template instances
+    the Semigroup instance
+      the resulting template inherits focus of the left one [✔]
+      the resulting template merges caches with left bias [✔]
+  showKey
+    when the key has no elements in it
+      is rendered correctly [✔]
+    when the key has some elements
+      is rendered correctly [✔]
+  displayMustacheWarning
+    renders “not found” warning correctly [✔]
+    renders “directly rendered value” warning correctly [✔]
+
+Finished in 0.0024 seconds
+70 examples, 0 failures
+Test suite tests: PASS
+Test suite logged to:
+/tmp/workdir-stache/stache-2.3.4/dist-newstyle/build/x86_64-linux/ghc-9.6.6/stache-2.3.4/t/tests/test/stache-2.3.4-tests.log
+1 of 1 test suites (1 of 1 test cases) passed.

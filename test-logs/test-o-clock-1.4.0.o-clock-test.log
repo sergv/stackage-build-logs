@@ -1,0 +1,180 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - o-clock-1.4.0 (test:o-clock-test) (ephemeral targets)
+Preprocessing test suite 'o-clock-test' for o-clock-1.4.0...
+Building test suite 'o-clock-test' for o-clock-1.4.0...
+Running 1 test suites...
+Test suite o-clock-test: RUNNING...
+Valid:
+     GCD
+       Base cases
+         GCD 3 0 = 3
+           (OK Equal)
+         GCD 0 3 = 3
+           (OK Equal)
+         GCD 3 3 = 3
+           (OK Equal)
+       Relatively simple
+         GCD 3 5 = 1
+           (OK Equal)
+         GCD 2 7 = 1
+           (OK Equal)
+         GCD 9 1000 = 1
+           (OK Equal)
+         GCD 1000 9 = 1
+           (OK Equal)
+       Common divisor
+         GCD 2 6 = 2
+           (OK Equal)
+         GCD 3 6 = 3
+           (OK Equal)
+         GCD 500 1000 = 500
+           (OK Equal)
+         GCD 400 1000 = 200
+           (OK Equal)
+Valid:
+     Normalize
+       Already normalized
+         Norm: 2/7 = 2%7
+           (OK Equal)
+         Norm: 1/9 = 1%9
+           (OK Equal)
+       GCD
+         Norm: 2%14 = 1%7
+           (OK Equal)
+         Norm: 300%900 = 1%3
+           (OK Equal)
+Valid:
+     DivRat
+       Dividing
+         2%7 / 2%7 = 1%1
+           (OK Equal)
+         2%7 / 7%2 = 4%49
+           (OK Equal)
+         5%6 / 25%3 = 1%10
+           (OK Equal)
+Valid:
+     >=%
+       Comparing
+         2%7 >=% 2%7 = True
+           (OK Equal)
+         2%7 >=% 7%2 = False
+           (OK Equal)
+         5%42 >=% 1%42 = True
+           (OK Equal)
+Valid:
+     Units
+       Lower
+         Second      = 1 % 1
+           (OK Equal)
+         Millisecond = 1 % 1000
+           (OK Equal)
+         Microsecond = 1 % 1000000
+           (OK Equal)
+         Nanosecond  = 1 % 1000000000
+           (OK Equal)
+         Picosecond  = 1 % 1000000000000
+           (OK Equal)
+       Bigger
+         Minute    = 60 % 1
+           (OK Equal)
+         Hour      = 3600 % 1
+           (OK Equal)
+         Day       = 86400 % 1
+           (OK Equal)
+         Week      = 604800 % 1
+           (OK Equal)
+         Fortnight = 1209600 % 1
+           (OK Equal)
+Valid:
+     Units
+       Lower
+         UnitName Second      = 's'
+           (OK Equal)
+         UnitName Millisecond = 'ms'
+           (OK Equal)
+         UnitName Microsecond = 'mcs'
+           (OK Equal)
+         UnitName Nanosecond  = 'ns'
+           (OK Equal)
+         UnitName Picosecond  = 'ps'
+           (OK Equal)
+       Bigger
+         UnitName Minute    = 'm'
+           (OK Equal)
+         UnitName Hour      = 'h'
+           (OK Equal)
+         UnitName Day       = 'd'
+           (OK Equal)
+         UnitName Week      = 'w'
+           (OK Equal)
+         UnitName Fortnight = 'fn'
+           (OK Equal)
+O'Clock
+  Units
+    Unit Conversion Test
+      11 seconds is 11000 milliseconds:                                         OK
+      5000 milliseconds is 5 seconds:                                           OK
+      3 seconds is 3000000 microseconds:                                        OK
+      3 microseconds is 3/1000000 seconds:                                      OK
+      7 days is 1 week:                                                         OK
+      2 fornights is 28 days:                                                   OK
+      1 nanosecond is 1000 picoseconds:                                         OK
+    Read Time Test
+      parses '42s' as 42 seconds:                                               OK
+      fails when '42mm' is expected as seconds:                                 OK
+      parses '7/2s' as 7/2 seconds:                                             OK
+      fails when '-4s' is expected as seconds:                                  OK
+      parses '25+5/7s' as 180/7 seconds:                                        OK
+      fails when '3+2s' is expected as seconds:                                 OK
+      fails when '+3s' is expected as seconds:                                  OK
+      fails when '/3s' is expected as seconds:                                  OK
+      parses '14/2h' as 7 hours:                                                OK
+      fails when '14/2h' expected as 7 seconds:                                 OK
+      parses big number to big number:                                          OK
+      fails when '4ms' expected as 4 seconds:                                   OK
+    Floor tests
+      returns 0s when floor < 1 second:                                         OK
+      returns 2d when floor 2.5 days:                                           OK
+      returns 42ps when floor integer:                                          OK
+    Ceiling tests
+      returns 1s, given 2/3 seconds:                                            OK
+      returns 3d, given 2+1/2 days:                                             OK
+      returns 42ps, given exactly 42 picoseconds:                               OK
+    Conversion to Fractional values
+      The 'Rational' representation of (hour $ 1 % 8) should be equal to 1 % 8: OK
+      The 'Double' representation of (hour $ 1 % 8) should be equal to 0.125:   OK
+    Formatting tests
+      4000 minutes should be formatted without ending-zeros:                    OK
+      4000 minutes should be formatted without beginning-zeros:                 OK
+      3601 sec should be formatted without middle-zeros:                        OK
+      works on rational nums:                                                   OK
+      works without minutes formatting:                                         OK
+      4000 minutes should be formatted like 2d18h40m:                           OK
+      42 fortnights should be formatted like 42fn:                              OK
+      the first zero time unit when receive zero time:                          OK
+      sums all time units:                                                      OK
+  Timestamp and time operations
+    timeDiff
+      1 is less than 5, diff is 4 seconds:                                      OK
+      100 is greater that 40, diff is 60 sec == 1 min:                          OK
+      42 is equal to 42, diff is 0 Weeks:                                       OK
+    timeAdd
+      3 hours offset 7 is 10:                                                   OK
+    timeMul
+      twice 21 mcs is 42 mcs:                                                   OK
+    timeDiv
+      84 picoseconds divide by 2 is 42:                                         OK
+      fails when trying to divide by zero:                                      OK
+  Hedgehog read . show == id:                                                   OK
+      ✓ <interactive> passed 100 tests.
+  Hedgehog toUnit @to @from . toUnit @from @to ≡ id' property:                  OK
+      ✓ <interactive> passed 100 tests.
+  Hedgehog unitsP . unitsF ≡ id:                                                OK
+      ✓ <interactive> passed 100 tests.
+
+All 46 tests passed (0.01s)
+Test suite o-clock-test: PASS
+Test suite logged to:
+/tmp/workdir-o-clock/o-clock-1.4.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/o-clock-1.4.0/t/o-clock-test/test/o-clock-1.4.0-o-clock-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

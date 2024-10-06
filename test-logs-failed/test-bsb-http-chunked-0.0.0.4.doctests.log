@@ -1,0 +1,72 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - bsb-http-chunked-0.0.0.4 (test:doctests) (ephemeral targets)
+Preprocessing test suite 'doctests' for bsb-http-chunked-0.0.0.4...
+Building test suite 'doctests' for bsb-http-chunked-0.0.0.4...
+Running 1 test suites...
+Test suite doctests: RUNNING...
+
+Data/ByteString/Builder/HTTP/Chunked.hs:117:47: error: [GHC-88464]
+    • Found type wildcard ‘_x’ standing for ‘a1’
+      Where: ‘a1’ is a rigid type variable bound by
+               the inferred type of
+                 go :: (BufferRange -> IO (BuildSignal a1)) -> BuildStep a
+               at Data/ByteString/Builder/HTTP/Chunked.hs:(118,9)-(177,64)
+      To use the inferred type, enable PartialTypeSignatures
+    • In the type signature:
+        go :: (BufferRange -> IO (BuildSignal _x)) -> BuildStep a
+      In an equation for ‘transferEncodingStep’:
+          transferEncodingStep k
+            = go (B.runBuilder innerBuilder)
+            where
+                go :: (BufferRange -> IO (BuildSignal _x)) -> BuildStep a
+                go innerStep (BufferRange op ope)
+                  | outRemaining < minimalBufferSize
+                  = pure $ B.bufferFull minimalBufferSize op (go innerStep)
+                  | otherwise
+                  = B.fillWithBuildStep innerStep doneH fullH insertChunkH brInner
+                  where
+                      outRemaining = ope `F.minusPtr` op
+                      maxChunkSizeLength = word32HexLength $ fromIntegral outRemaining
+                      ....
+      In an equation for ‘chunkedTransferEncoding’:
+          chunkedTransferEncoding innerBuilder
+            = B.builder transferEncodingStep
+            where
+                transferEncodingStep :: forall a. BuildStep a -> BuildStep a
+                transferEncodingStep k
+                  = go (B.runBuilder innerBuilder)
+                  where
+                      go :: (BufferRange -> IO (BuildSignal _x)) -> BuildStep a
+                      go innerStep (BufferRange op ope)
+                        | outRemaining < minimalBufferSize
+                        = pure $ B.bufferFull minimalBufferSize op (go innerStep)
+                        | otherwise
+                        = B.fillWithBuildStep innerStep doneH fullH insertChunkH brInner
+                        where
+                            ...
+    • Relevant bindings include
+        k :: BuildStep a
+          (bound at Data/ByteString/Builder/HTTP/Chunked.hs:114:26)
+        transferEncodingStep :: BuildStep a -> BuildStep a
+          (bound at Data/ByteString/Builder/HTTP/Chunked.hs:114:5)
+        innerBuilder :: Builder
+          (bound at Data/ByteString/Builder/HTTP/Chunked.hs:110:25)
+        chunkedTransferEncoding :: Builder -> Builder
+          (bound at Data/ByteString/Builder/HTTP/Chunked.hs:110:1)
+Data/ByteString/Builder/HTTP/Chunked.hs:97: failure in expression `let f = B.toLazyByteString . chunkedTransferEncoding . B.lazyByteString'
+expected: 
+ but got: 
+          ^
+          <interactive>:31:30: error: [GHC-88464]
+              Variable not in scope:
+                chunkedTransferEncoding :: Builder -> Builder
+
+Examples: 5  Tried: 3  Errors: 0  Failures: 1
+Test suite doctests: FAIL
+Test suite logged to:
+/tmp/workdir-bsb-http-chunked/bsb-http-chunked-0.0.0.4/dist-newstyle/build/x86_64-linux/ghc-9.6.6/bsb-http-chunked-0.0.0.4/t/doctests/test/bsb-http-chunked-0.0.0.4-doctests.log
+0 of 1 test suites (0 of 1 test cases) passed.
+Error: [Cabal-7125]
+Tests failed for test:doctests from bsb-http-chunked-0.0.0.4.
+

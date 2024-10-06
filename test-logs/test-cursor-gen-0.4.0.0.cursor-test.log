@@ -1,0 +1,2171 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - cursor-gen-0.4.0.0 (test:cursor-test) (ephemeral targets)
+Preprocessing test suite 'cursor-test' for cursor-gen-0.4.0.0...
+Building test suite 'cursor-test' for cursor-gen-0.4.0.0...
+Running 1 test suites...
+Test suite cursor-test: RUNNING...
+
+Cursor.List
+  Eq (ListCursor Bool)
+    (==) :: (ListCursor Bool) -> (ListCursor Bool) -> Bool
+      is reflexive for "valid (ListCursor Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is symmetric for "valid (ListCursor Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "valid (ListCursor Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a /= b) for "valid (ListCursor Bool)"s [✔]
+        +++ OK, passed 100 tests.
+    (/=) :: (ListCursor Bool) -> (ListCursor Bool) -> Bool
+      is antireflexive for "valid (ListCursor Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a == b) for "valid (ListCursor Bool)"s [✔]
+        +++ OK, passed 100 tests.
+  Functor ListCursor
+    fmap :: (a -> b) -> ListCursor a -> ListCursor b
+      satisfies the first Fuctor law: 'fmap id == id' for "ListCursor of ints :: (ListCursor Int)" [✔]
+        +++ OK, passed 100 tests.
+      satisfieds the second Functor law: 'fmap (f . g) == fmap f . fmap g' for "ListCursor of ints :: (ListCursor Int)" 's given to "increments :: (Int -> Int)" and "scalings :: (Int -> Int)" [✔]
+        +++ OK, passed 100 tests.
+    (<$) :: a -> ListCursor b -> ListCursor a
+      is equivalent to its default implementation for "int :: Int" and "ListCursor of ints :: (ListCursor Int)" [✔]
+        +++ OK, passed 100 tests.
+  GenValid (ListCursor Bool)
+    genValid   :: Gen (ListCursor Bool)
+      only generates valid '(ListCursor Bool)'s [✔]
+        +++ OK, passed 100 tests.
+  emptyListCursor
+    is valid [✔]
+  makeListCursor
+    produces valid list cursors [✔]
+      +++ OK, passed 100 tests.
+  makeListCursorWithSelection
+    produces valid list cursors [✔]
+      +++ OK, passed 100 tests.
+  rebuildListCursor
+    produces valid lists [✔]
+      +++ OK, passed 100 tests.
+    is the inverse of makeListCursor [✔]
+      +++ OK, passed 100 tests.
+    is the inverse of makeListCursorWithSelection for any index [✔]
+      +++ OK, passed 100 tests.
+  listCursorNull
+    produces valid bools [✔]
+      +++ OK, passed 100 tests.
+  listCursorLength
+    produces valid bools [✔]
+      +++ OK, passed 100 tests.
+  listCursorIndex
+    produces valid indices [✔]
+      +++ OK, passed 100 tests.
+  listCursorSelectPrev
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the previous position [‐]
+      # PENDING: No reason given
+  listCursorSelectNext
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the next position [‐]
+      # PENDING: No reason given
+  listCursorSelectIndex
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the position at the given index [‐]
+      # PENDING: No reason given
+  listCursorPrevItem
+    produces valid items [✔]
+      +++ OK, passed 100 tests.
+    returns the item before the position [‐]
+      # PENDING: No reason given
+  listCursorNextItem
+    produces valid items [✔]
+      +++ OK, passed 100 tests.
+    returns the item after the position [‐]
+      # PENDING: No reason given
+  listCursorPrevUntil
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    produces a cursor where the previous item either satisfies the predicate or is empty [✔]
+      +++ OK, passed 100 tests.
+  listCursorNextUntil
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    produces a cursor where the previous item either satisfies the predicate or is empty [✔]
+      +++ OK, passed 100 tests.
+  listCursorSelectStart
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    is idempotent [✔]
+      +++ OK, passed 100 tests.
+    selects the starting position [‐]
+      # PENDING: No reason given
+  listCursorSelectEnd
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    is idempotent [✔]
+      +++ OK, passed 100 tests.
+    selects the end position [‐]
+      # PENDING: No reason given
+  listCursorInsert
+    produces valids [✔]
+      +++ OK, passed 100 tests.
+    inserts an item before the cursor [‐]
+      # PENDING: No reason given
+  listCursorAppend
+    produces valids [✔]
+      +++ OK, passed 100 tests.
+    inserts an item after the cursor [‐]
+      # PENDING: No reason given
+  listCursorInsertList
+    produces valids [✔]
+      +++ OK, passed 100 tests.
+  listCursorAppendList
+    produces valids [✔]
+      +++ OK, passed 100 tests.
+  listCursorRemove
+    produces valids [✔]
+      +++ OK, passed 100 tests.
+    removes an item before the cursor [‐]
+      # PENDING: No reason given
+  listCursorDelete
+    produces valids [✔]
+      +++ OK, passed 100 tests.
+    removes an item before the cursor [‐]
+      # PENDING: No reason given
+  listCursorSplit
+    produces valids [✔]
+      +++ OK, passed 100 tests.
+    produces two list cursors that rebuild to the rebuilding of the original [✔]
+      +++ OK, passed 100 tests.
+  listCursorCombine
+    produces valids [✔]
+      +++ OK, passed 100 tests.
+    produces a list that rebuilds to the rebuilding of the original two cursors [✔]
+      +++ OK, passed 100 tests.
+Cursor.List.NonEmpty
+  nonemptyPrepend
+    is equivalent to regular prepend [✔]
+      +++ OK, passed 100 tests.
+  nonemptyAppend
+    is equivalent to regular append [✔]
+      +++ OK, passed 100 tests.
+Cursor.Map
+  Eq (MapCursor Bool Bool Bool Bool)
+    (==) :: (MapCursor Bool Bool Bool Bool) -> (MapCursor Bool Bool Bool Bool) -> Bool
+      is reflexive for "valid (MapCursor Bool Bool Bool Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is symmetric for "valid (MapCursor Bool Bool Bool Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "valid (MapCursor Bool Bool Bool Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a /= b) for "valid (MapCursor Bool Bool Bool Bool)"s [✔]
+        +++ OK, passed 100 tests.
+    (/=) :: (MapCursor Bool Bool Bool Bool) -> (MapCursor Bool Bool Bool Bool) -> Bool
+      is antireflexive for "valid (MapCursor Bool Bool Bool Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a == b) for "valid (MapCursor Bool Bool Bool Bool)"s [✔]
+        +++ OK, passed 100 tests.
+  GenValid (MapCursor Bool Bool Bool Bool)
+    genValid   :: Gen (MapCursor Bool Bool Bool Bool)
+      only generates valid '(MapCursor Bool Bool Bool Bool)'s [✔]
+        +++ OK, passed 100 tests.
+Cursor.Map.KeyValue
+  Eq (KeyValueCursor Bool Bool Bool Bool)
+    (==) :: (KeyValueCursor Bool Bool Bool Bool) -> (KeyValueCursor Bool Bool Bool Bool) -> Bool
+      is reflexive for "valid (KeyValueCursor Bool Bool Bool Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is symmetric for "valid (KeyValueCursor Bool Bool Bool Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "valid (KeyValueCursor Bool Bool Bool Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a /= b) for "valid (KeyValueCursor Bool Bool Bool Bool)"s [✔]
+        +++ OK, passed 100 tests.
+    (/=) :: (KeyValueCursor Bool Bool Bool Bool) -> (KeyValueCursor Bool Bool Bool Bool) -> Bool
+      is antireflexive for "valid (KeyValueCursor Bool Bool Bool Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a == b) for "valid (KeyValueCursor Bool Bool Bool Bool)"s [✔]
+        +++ OK, passed 100 tests.
+  GenValid (KeyValueCursor Bool Bool Bool Bool)
+    genValid   :: Gen (KeyValueCursor Bool Bool Bool Bool)
+      only generates valid '(KeyValueCursor Bool Bool Bool Bool)'s [✔]
+        +++ OK, passed 100 tests.
+  Eq KeyValueToggle
+    (==) :: KeyValueToggle -> KeyValueToggle -> Bool
+      is reflexive for "valid KeyValueToggle"s [✔]
+        +++ OK, passed 100 tests.
+      is symmetric for "valid KeyValueToggle"s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "valid KeyValueToggle"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a /= b) for "valid KeyValueToggle"s [✔]
+        +++ OK, passed 100 tests.
+    (/=) :: KeyValueToggle -> KeyValueToggle -> Bool
+      is antireflexive for "valid KeyValueToggle"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a == b) for "valid KeyValueToggle"s [✔]
+        +++ OK, passed 100 tests.
+  GenValid KeyValueToggle
+    genValid   :: Gen KeyValueToggle
+      only generates valid 'KeyValueToggle's [✔]
+        +++ OK, passed 100 tests.
+Cursor.Simple.Forest
+  Eq (ForestCursor Int Int)
+    (==) :: (ForestCursor Int Int) -> (ForestCursor Int Int) -> Bool
+      is reflexive for "valid (ForestCursor Int Int)"s [✔]
+        +++ OK, passed 100 tests.
+      is symmetric for "valid (ForestCursor Int Int)"s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "valid (ForestCursor Int Int)"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a /= b) for "valid (ForestCursor Int Int)"s [✔]
+        +++ OK, passed 100 tests.
+    (/=) :: (ForestCursor Int Int) -> (ForestCursor Int Int) -> Bool
+      is antireflexive for "valid (ForestCursor Int Int)"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a == b) for "valid (ForestCursor Int Int)"s [✔]
+        +++ OK, passed 100 tests.
+  GenValid (ForestCursor Bool Bool)
+    genValid   :: Gen (ForestCursor Bool Bool)
+      only generates valid '(ForestCursor Bool Bool)'s [✔]
+        +++ OK, passed 100 tests.
+  shrinkValid :: (ForestCursor Bool Bool -> [ForestCursor Bool Bool])
+    preserves validity for the first 10 elements [✔]
+      +++ OK, passed 50 tests.
+    never shrinks to itself for valid values for the first 10 elements [✔]
+      +++ OK, passed 50 tests.
+  singletonForestCursor
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  makeForestCursor
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  rebuildForestCursor
+    produces valid forests [✔]
+      +++ OK, passed 100 tests.
+    is the inverse of makeForestCursor for integers [✔]
+      +++ OK, passed 100 tests.
+  forestCursorLestCursorL
+    satisfies the first lens law for valid values and valid values [✔]
+      +++ OK, passed 100 tests.
+    satisfies the second lens law for valid values [✔]
+      +++ OK, passed 100 tests.
+    satisfies the third lens law for valid values and valid values [✔]
+      +++ OK, passed 100 tests.
+    gets valid values from valid values values [✔]
+      +++ OK, passed 100 tests.
+    produces valid values when it is used to set valid values values on valid values values [✔]
+      +++ OK, passed 100 tests.
+  forestCursorSelectedTreeL
+    satisfies the first lens law for valid values and valid values [✔]
+      +++ OK, passed 100 tests.
+    satisfies the second lens law for valid values [✔]
+      +++ OK, passed 100 tests.
+    satisfies the third lens law for valid values and valid values [✔]
+      +++ OK, passed 100 tests.
+    gets valid values from valid values values [✔]
+      +++ OK, passed 100 tests.
+    produces valid values when it is used to set valid values values on valid values values [✔]
+      +++ OK, passed 100 tests.
+  forestCursorSelection
+    produces valid ints [✔]
+      +++ OK, passed 100 tests.
+    returns the index of the currently selected element [‐]
+      # PENDING: No reason given
+  forestCursorSelectIndex
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is the identity function when given the current selection [✔]
+      +++ OK, passed 100 tests.
+    returns selects the element at the given index [‐]
+      # PENDING: No reason given
+  forestCursorSelectPrevTreeCursor
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the previous tree cursor [‐]
+      # PENDING: No reason given
+  forestCursorSelectNextTreeCursor
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the next tree [‐]
+      # PENDING: No reason given
+  forestCursorSelectFirstTreeCursor
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the first tree [‐]
+      # PENDING: No reason given
+  forestCursorSelectLastTreeCursor
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the last tree [‐]
+      # PENDING: No reason given
+  forestCursorSelectPrev
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the previous node [‐]
+      # PENDING: No reason given
+    Works for this classic example without any collapsing [✔]
+  forestCursorSelectNext
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the next node [‐]
+      # PENDING: No reason given
+    Works for this classic example [✔]
+  forestCursorSelectPrevOnSameLevel
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the previous node on the same level as the current node [‐]
+      # PENDING: No reason given
+  forestCursorSelectNextOnSameLevel
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the next node on the same level as the current node [‐]
+      # PENDING: No reason given
+  forestCursorSelectFirstOnSameLevel
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the previous node on the same level as the current node [‐]
+      # PENDING: No reason given
+  forestCursorSelectLastOnSameLevel
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the next node on the same level as the current node [‐]
+      # PENDING: No reason given
+  forestCursorSelectFirst
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the first node in the forest [‐]
+      # PENDING: No reason given
+  forestCursorSelectLast
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the last node in the forest [‐]
+      # PENDING: No reason given
+  forestCursorSelectAbove
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the parent [‐]
+      # PENDING: No reason given
+  forestCursorSelectBelowAtPos
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement for any index [✔]
+      +++ OK, passed 100 tests.
+    selects the child of the selected node at the given position [‐]
+      # PENDING: No reason given
+  forestCursorSelectBelowAtStart
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the first child of the selected node [‐]
+      # PENDING: No reason given
+  forestCursorSelectBelowAtEnd
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the first child of the selected node [‐]
+      # PENDING: No reason given
+  forestCursorOpenCurrentForest
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  forestCursorCloseCurrentForest
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  forestCursorToggleCurrentForest
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  forestCursorOpenCurrentForestRecursively
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  forestCursorToggleCurrentForestRecursively
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  forestCursorInsertEntireTree
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    inserts a tree cursor before the currently selected tree cursor [‐]
+      # PENDING: No reason given
+  forestCursorInsertAndSelectTreeCursor
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    inserts a tree cursor before the currently selected tree cursor and selects it [‐]
+      # PENDING: No reason given
+  forestCursorAppendEntireTree
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    appends a tree after the currently selected tree cursor [‐]
+      # PENDING: No reason given
+  forestCursorAppendAndSelectTreeCursor
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    appends a tree cursor after the currently selected tree cursor and selects it [‐]
+      # PENDING: No reason given
+  forestCursorInsertTree
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    inserts a tree before the currently selected tree [‐]
+      # PENDING: No reason given
+  forestCursorInsertAndSelectTree
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    inserts a tree before the currently selected tree and selects it [‐]
+      # PENDING: No reason given
+  forestCursorAppendTree
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    appends a tree after the currently selected tree  [‐]
+      # PENDING: No reason given
+  forestCursorAppendAndSelectTree
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    appends a tree after the currently selected tree and selects it [‐]
+      # PENDING: No reason given
+  forestCursorInsert
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    inserts a node before the currently selected node [‐]
+      # PENDING: No reason given
+  forestCursorInsertAndSelect
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    inserts a node before the currently selected node and selects it [‐]
+      # PENDING: No reason given
+  forestCursorInsertNodeSingleAndSelect
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    inserts a node before the currently selected node and selects it [‐]
+      # PENDING: No reason given
+  forestCursorInsertNodeAndSelect
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    inserts a node before the currently selected node and selects it [‐]
+      # PENDING: No reason given
+  forestCursorAppend
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    appends a node after the currently selected node [‐]
+      # PENDING: No reason given
+  forestCursorAppendAndSelect
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    appends a node after the currently selected node and selects it [‐]
+      # PENDING: No reason given
+  forestCursorAppendNodeSingleAndSelect
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    appends a node after the currently selected node and selects it [‐]
+      # PENDING: No reason given
+  forestCursorAppendNodeAndSelect
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    appends a node after the currently selected node and selects it [‐]
+      # PENDING: No reason given
+  forestCursorAddChildTreeToNodeAtPos
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    adds a child tree to a node at the given position in the children of that node [‐]
+      # PENDING: No reason given
+  forestCursorAddChildTreeToNodeAtStart
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    adds a child tree to a node at the start the children of that node [‐]
+      # PENDING: No reason given
+  forestCursorAddChildTreeToNodeAtEnd
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    adds a child tree to a node at the end the children of that node [‐]
+      # PENDING: No reason given
+  forestCursorAddChildToNodeAtPos
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    adds a child to a node at the given position in the children of that node [‐]
+      # PENDING: No reason given
+  forestCursorAddChildToNodeAtStart
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    adds a child to a node at the start the children of that node [‐]
+      # PENDING: No reason given
+  forestCursorAddChildToNodeAtEnd
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    adds a child to a node at the end the children of that node [‐]
+      # PENDING: No reason given
+  forestCursorAddChildTreeToNodeAtPosAndSelect
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    adds a child tree to a node at the given position in the children of that node [‐]
+      # PENDING: No reason given
+  forestCursorAddChildTreeToNodeAtStartAndSelect
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    adds a child tree to a node at the start the children of that node [‐]
+      # PENDING: No reason given
+  forestCursorAddChildTreeToNodeAtEndAndSelect
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    adds a child tree to a node at the end the children of that node [‐]
+      # PENDING: No reason given
+  forestCursorAddChildToNodeAtPosAndSelect
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    adds a child to a node at the given position in the children of that node [‐]
+      # PENDING: No reason given
+  forestCursorAddChildToNodeAtStartAndSelect
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    adds a child to a node at the start the children of that node [‐]
+      # PENDING: No reason given
+  forestCursorAddChildToNodeAtEndAndSelect
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    adds a child to a node at the end the children of that node [‐]
+      # PENDING: No reason given
+  forestCursorAddChildNodeSingleToNodeAtPosAndSelect
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  forestCursorAddChildNodeSingleToNodeAtStartAndSelect
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  forestCursorAddChildNodeSingleToNodeAtEndAndSelect
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  forestCursorAddChildNodeToNodeAtPosAndSelect
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  forestCursorAddChildNodeToNodeAtStartAndSelect
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  forestCursorAddChildNodeToNodeAtEndAndSelect
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  forestCursorAddRoot
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    houses the entire forest under the given node [‐]
+      # PENDING: No reason given
+  forestCursorSwapPrev
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    works on the example from the docs [✔]
+    swaps the current node with the previous node on the same level [‐]
+      # PENDING: No reason given
+    reverts forestCursorSwapNext [✔]
+      +++ OK, passed 100 tests.
+  forestCursorSwapNext
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    works on the example from the docs [✔]
+    swaps the current node with the next node on the same level [‐]
+      # PENDING: No reason given
+    reverts forestCursorSwapPrev [✔]
+      +++ OK, passed 100 tests.
+  forestCursorRemoveElemAndSelectPrev
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    works for this simple example [✔]
+      +++ OK, passed 100 tests.
+    removes the selected element and selects the previous element [‐]
+      # PENDING: No reason given
+  forestCursorDeleteElemAndSelectNext
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    works for this simple example [✔]
+      +++ OK, passed 100 tests.
+    deletes the selected element and selects the next element [‐]
+      # PENDING: No reason given
+  forestCursorRemoveElem
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    works for this simple example [✔]
+      +++ OK, passed 100 tests.
+    removes the selected element [‐]
+      # PENDING: No reason given
+  forestCursorDeleteElem
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    works for this simple example [✔]
+      +++ OK, passed 100 tests.
+    deletes the selected element [‐]
+      # PENDING: No reason given
+  forestCursorRemoveSubTreeAndSelectPrev
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    removes the selected subtree and selects the previous tree [‐]
+      # PENDING: No reason given
+  forestCursorDeleteSubTreeAndSelectNext
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    deletes the selected subtree and selects the next tree [‐]
+      # PENDING: No reason given
+  forestCursorRemoveSubTree
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    removes the selected subtree [‐]
+      # PENDING: No reason given
+  forestCursorDeleteSubTree
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    deletes the selected subtree [‐]
+      # PENDING: No reason given
+  forestCursorPromoteElem
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    works on the example from the documentation [✔]
+    promotes the current node to the level of its parent [‐]
+      # PENDING: No reason given
+  forestCursorDemoteElem
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    works on the example from the documentation [✔]
+    demotes the current node to the level of its children [‐]
+      # PENDING: No reason given
+  forestCursorPromoteSubTree
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    works on the example from the documentation [✔]
+    promotes the current subtree to the level of its parent [‐]
+      # PENDING: No reason given
+  forestCursorDemoteSubTree
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    works on the example from the documentation [✔]
+    demotes the current subtree to the level of its children [‐]
+      # PENDING: No reason given
+  forestCursorDemoteElemUnder
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    Works on the example from the docs [✔]
+      +++ OK, passed 100 tests.
+    demotes the current node to the level of its children [‐]
+      # PENDING: No reason given
+  forestCursorDemoteSubTreeUnder
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    Works on the example from the docs [✔]
+      +++ OK, passed 100 tests.
+    demotes the current subtree to the level of its children, by adding a root [‐]
+      # PENDING: No reason given
+Cursor.Simple.List.NonEmpty
+  Eq (NonEmptyCursor Bool Bool)
+    (==) :: (NonEmptyCursor Bool Bool) -> (NonEmptyCursor Bool Bool) -> Bool
+      is reflexive for "valid (NonEmptyCursor Bool Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is symmetric for "valid (NonEmptyCursor Bool Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "valid (NonEmptyCursor Bool Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a /= b) for "valid (NonEmptyCursor Bool Bool)"s [✔]
+        +++ OK, passed 100 tests.
+    (/=) :: (NonEmptyCursor Bool Bool) -> (NonEmptyCursor Bool Bool) -> Bool
+      is antireflexive for "valid (NonEmptyCursor Bool Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a == b) for "valid (NonEmptyCursor Bool Bool)"s [✔]
+        +++ OK, passed 100 tests.
+  GenValid (NonEmptyCursor Bool Bool)
+    genValid   :: Gen (NonEmptyCursor Bool Bool)
+      only generates valid '(NonEmptyCursor Bool Bool)'s [✔]
+        +++ OK, passed 100 tests.
+  makeNonEmptyCursor
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  makeNonEmptyCursorWithSelection
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is the inverse of rebuildNonEmptyCursor when using the current selection [✔]
+      +++ OK, passed 100 tests.
+  singletonNonEmptyCursor
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  rebuildNonEmptyCursor
+    produces valid nonempty lists [✔]
+      +++ OK, passed 100 tests.
+    is the inverse of makeNonEmptyCursor for integers [✔]
+      +++ OK, passed 100 tests.
+    is the inverse of makeNonEmptyCursorWithSelection for integers, for any index [✔]
+      +++ OK, passed 100 tests.
+  nonEmptyCursorElemL
+    satisfies the first lens law for valid values and valid values [✔]
+      +++ OK, passed 100 tests.
+    satisfies the second lens law for valid values [✔]
+      +++ OK, passed 100 tests.
+    satisfies the third lens law for valid values and valid values [✔]
+      +++ OK, passed 100 tests.
+    gets valid values from valid values values [✔]
+      +++ OK, passed 100 tests.
+    produces valid values when it is used to set valid values values on valid values values [✔]
+      +++ OK, passed 100 tests.
+  nonEmptyCursorSelectPrev
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the previous element [‐]
+      # PENDING: No reason given
+  nonEmptyCursorSelectNext
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the next element [‐]
+      # PENDING: No reason given
+  nonEmptyCursorSelectFirst
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    is idempotent [✔]
+      +++ OK, passed 100 tests.
+    selects the first element [‐]
+      # PENDING: No reason given
+  nonEmptyCursorSelectLast
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    is idempotent [✔]
+      +++ OK, passed 100 tests.
+    selects the last element [‐]
+      # PENDING: No reason given
+  nonEmptyCursorSelection
+    produces valid ints [✔]
+      +++ OK, passed 100 tests.
+    returns the index of the currently selected element [‐]
+      # PENDING: No reason given
+  nonEmptyCursorSelectIndex
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is the identity function when given the current selection [✔]
+      +++ OK, passed 100 tests.
+    returns selects the element at the given index [‐]
+      # PENDING: No reason given
+  nonEmptyCursorInsert
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    inserts a character before the cursor [‐]
+      # PENDING: No reason given
+  nonEmptyCursorAppend
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    inserts a character after the cursor [‐]
+      # PENDING: No reason given
+  nonEmptyCursorInsertAndSelect
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    inserts a character before the cursor and selects it [‐]
+      # PENDING: No reason given
+  nonEmptyCursorAppendAndSelect
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    appends a character before the cursor and selects it [‐]
+      # PENDING: No reason given
+  nonEmptyCursorInsertAtStart
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    inserts a character at the start of the list [‐]
+      # PENDING: No reason given
+  nonEmptyCursorAppendAtEnd
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    inserts a character at the end of the list [‐]
+      # PENDING: No reason given
+  nonEmptyCursorInsertAtStartAndSelect
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    inserts a character at the start of the list and selects it [‐]
+      # PENDING: No reason given
+  nonEmptyCursorAppendAtEndAndSelect
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    appends a character at the end of the list and selects it [‐]
+      # PENDING: No reason given
+  nonEmptyCursorRemoveElem
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    removes an element [‐]
+      # PENDING: No reason given
+  nonEmptyCursorDeleteElem
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  nonEmptyCursorSearch
+    produces valid cursors when looking for an equal element [✔]
+      +++ OK, passed 100 tests.
+    is indeed the right value when it finds a value and is looking for an equal element [✔]
+      +++ OK, passed 100 tests.
+    finds an element if it is in there [✔]
+      +++ OK, passed 100 tests.
+  nonEmptyCursorSelectOrAdd
+    produces valid cursors when looking for an equal element [✔]
+      +++ OK, passed 100 tests.
+Cursor.Simple.Map
+  makeMapCursor
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  makeMapCursorWithSelection
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  singletonMapCursorKey
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  singletonMapCursorValue
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  rebuildMapCursor
+    produces valid Nonempty lists [✔]
+      +++ OK, passed 100 tests.
+    is the inverse of makeMapCursor for integers [✔]
+      +++ OK, passed 100 tests.
+  mapCursorNonEmptyCursorL
+    satisfies the first lens law for valid values and valid values [✔]
+      +++ OK, passed 100 tests.
+    satisfies the second lens law for valid values [✔]
+      +++ OK, passed 100 tests.
+    satisfies the third lens law for valid values and valid values [✔]
+      +++ OK, passed 100 tests.
+    gets valid values from valid values values [✔]
+      +++ OK, passed 100 tests.
+    produces valid values when it is used to set valid values values on valid values values [✔]
+      +++ OK, passed 100 tests.
+  mapCursorElemL
+    satisfies the first lens law for valid values and valid values [✔]
+      +++ OK, passed 100 tests.
+    satisfies the second lens law for valid values [✔]
+      +++ OK, passed 100 tests.
+    satisfies the third lens law for valid values and valid values [✔]
+      +++ OK, passed 100 tests.
+    gets valid values from valid values values [✔]
+      +++ OK, passed 100 tests.
+    produces valid values when it is used to set valid values values on valid values values [✔]
+      +++ OK, passed 100 tests.
+  mapCursorSelectKey
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  mapCursorSelectValue
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  mapCursorToggleSelected
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  mapCursorSelectPrev
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the previous element [‐]
+      # PENDING: No reason given
+  mapCursorSelectNext
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the next element [‐]
+      # PENDING: No reason given
+  mapCursorSelectFirst
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    is idempotent [✔]
+      +++ OK, passed 100 tests.
+    selects the first element [‐]
+      # PENDING: No reason given
+  mapCursorSelectLast
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    is idempotent [✔]
+      +++ OK, passed 100 tests.
+    selects the last element [‐]
+      # PENDING: No reason given
+  mapCursorSelection
+    produces valid ints [✔]
+      +++ OK, passed 100 tests.
+    returns the index of the currently selected element [‐]
+      # PENDING: No reason given
+  mapCursorSelectIndex
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is the identity function when given the current selection [✔]
+      +++ OK, passed 100 tests.
+    returns selects the element at the given index [‐]
+      # PENDING: No reason given
+  mapCursorInsert
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    inserts a character before the cursor [‐]
+      # PENDING: No reason given
+  mapCursorAppend
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    inserts a character after the cursor [‐]
+      # PENDING: No reason given
+  mapCursorInsertAndSelectKey
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  mapCursorAppendAndSelectKey
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  mapCursorInsertAndSelectValue
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  mapCursorAppendAndSelectValue
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  mapCursorRemoveElem
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    removes an element [‐]
+      # PENDING: No reason given
+  mapCursorDeleteElem
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    deletes an element [‐]
+      # PENDING: No reason given
+  mapCursorSearch
+    produces valid cursors when looking for an equal pair [✔]
+      +++ OK, passed 100 tests.
+    is indeed the right value when it finds a value and is looking for an equal element [✔]
+      +++ OK, passed 100 tests.
+  mapCursorSelectOrAdd
+    produces valid cursors when looking for an equal element [✔]
+      +++ OK, passed 100 tests.
+Cursor.Simple.Map.KeyValue
+  makeKeyValueCursorKey
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  makeKeyValueCursorValue
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  rebuildKeyValueCursor
+    produces valid tuples [✔]
+      +++ OK, passed 100 tests.
+  keyValueCursorSelection
+    produces valid selections [✔]
+      +++ OK, passed 100 tests.
+  keyValueCursorSelectKey
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+  keyValueCursorSelectValue
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+  keyValueCursorToggleSelected
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+Cursor.Simple.Tree.Base
+  Eq (TreeCursor Int Int)
+    (==) :: (TreeCursor Int Int) -> (TreeCursor Int Int) -> Bool
+      is reflexive for "valid (TreeCursor Int Int)"s [✔]
+        +++ OK, passed 100 tests.
+      is symmetric for "valid (TreeCursor Int Int)"s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "valid (TreeCursor Int Int)"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a /= b) for "valid (TreeCursor Int Int)"s [✔]
+        +++ OK, passed 100 tests.
+    (/=) :: (TreeCursor Int Int) -> (TreeCursor Int Int) -> Bool
+      is antireflexive for "valid (TreeCursor Int Int)"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a == b) for "valid (TreeCursor Int Int)"s [✔]
+        +++ OK, passed 100 tests.
+  GenValid (TreeCursor Bool Bool)
+    genValid   :: Gen (TreeCursor Bool Bool)
+      only generates valid '(TreeCursor Bool Bool)'s [✔]
+        +++ OK, passed 100 tests.
+  makeTreeCursor
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  makeNodeTreeCursor
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  makeTreeCursorWithSelection
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  singletonTreeCursor
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  rebuildTreeCursor
+    produces valid trees [✔]
+      +++ OK, passed 100 tests.
+    is the inverse of makeTreeCursor for integers [✔]
+      +++ OK, passed 100 tests.
+    is the inverse of makeTreeCursorWithSelection for the current selection [✔]
+      +++ OK, passed 100 tests.
+Cursor.Simple.Tree.Collapse
+  treeCursorOpenCurrentForest
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  treeCursorCloseCurrentForest
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  treeCursorToggleCurrentForest
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  treeCursorOpenCurrentForestRecursively
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  treeCursorToggleCurrentForestRecursively
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+Cursor.Simple.Tree.Delete
+  treeCursorDeleteSubTreeAndSelectPrevious
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    deletes the current subtree selects the previous subtree [‐]
+      # PENDING: No reason given
+  treeCursorDeleteSubTreeAndSelectNext
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    deletes the current subtree selects the next subtree [‐]
+      # PENDING: No reason given
+  treeCursorDeleteSubTreeAndSelectAbove
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    deletes the current subtree selects the above node [‐]
+      # PENDING: No reason given
+  treeCursorRemoveSubTree
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    removes the current subtree [‐]
+      # PENDING: No reason given
+  treeCursorDeleteSubTree
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    deletes the current subtree [‐]
+      # PENDING: No reason given
+  treeCursorDeleteElemAndSelectPrevious
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    works for this simple example [✔]
+      +++ OK, passed 100 tests.
+    deletes the current element and selects the previous element [‐]
+      # PENDING: No reason given
+  treeCursorDeleteElemAndSelectNext
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    works for this simple example [✔]
+      +++ OK, passed 100 tests.
+    deletes the current element and selects the next element [‐]
+      # PENDING: No reason given
+  treeCursorDeleteElemAndSelectAbove
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    works for this simple example [✔]
+      +++ OK, passed 100 tests.
+    deletes the current element and selects the above element [‐]
+      # PENDING: No reason given
+  treeCursorRemoveElem
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    removes the current element [‐]
+      # PENDING: No reason given
+  treeCursorDeleteElem
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    deletes the current element [‐]
+      # PENDING: No reason given
+Cursor.Simple.Tree.Demote
+  Functor DemoteResult
+    fmap :: (a -> b) -> DemoteResult a -> DemoteResult b
+      satisfies the first Fuctor law: 'fmap id == id' for "DemoteResult of ints :: (DemoteResult Int)" [✔]
+        +++ OK, passed 100 tests.
+      satisfieds the second Functor law: 'fmap (f . g) == fmap f . fmap g' for "DemoteResult of ints :: (DemoteResult Int)" 's given to "increments :: (Int -> Int)" and "scalings :: (Int -> Int)" [✔]
+        +++ OK, passed 100 tests.
+    (<$) :: a -> DemoteResult b -> DemoteResult a
+      is equivalent to its default implementation for "int :: Int" and "DemoteResult of ints :: (DemoteResult Int)" [✔]
+        +++ OK, passed 100 tests.
+  treeCursorDemoteElem
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    Works on the example from the docs [✔]
+    demotes the current node to the level of its children [‐]
+      # PENDING: No reason given
+  treeCursorDemoteSubTree
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    Works on the example from the docs [✔]
+    demotes the current subtree to the level of its children [‐]
+      # PENDING: No reason given
+  treeCursorDemoteElemUnder
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    Works on the example from the docs [✔]
+      +++ OK, passed 100 tests.
+    demotes the current node to the level of its children [‐]
+      # PENDING: No reason given
+  treeCursorDemoteSubTreeUnder
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    Works on the example from the docs [✔]
+      +++ OK, passed 100 tests.
+    demotes the current subtree to the level of its children, by adding a root [‐]
+      # PENDING: No reason given
+Cursor.Simple.Tree.Insert
+  treeCursorInsert
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    inserts the element [‐]
+      # PENDING: No reason given
+  treeCursorInsertAndSelect
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    inserts and select the element [‐]
+      # PENDING: No reason given
+  treeCursorInsertNodeSingleAndSelect
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    inserts and select the element [‐]
+      # PENDING: No reason given
+  treeCursorInsertNodeAndSelect
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    inserts and select the element [‐]
+      # PENDING: No reason given
+  treeCursorAppend
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    appends the element [‐]
+      # PENDING: No reason given
+  treeCursorAppendAndSelect
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    appends and select the element [‐]
+      # PENDING: No reason given
+  treeCursorAppendNodeSingleAndSelect
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    appends and select the element [‐]
+      # PENDING: No reason given
+  treeCursorAppendNodeAndSelect
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    appends and select the element [‐]
+      # PENDING: No reason given
+  treeCursorAddChildAtPos
+    produces valid cursors  [✔]
+      +++ OK, passed 100 tests.
+    adds a tree at the given index in the children of the current node [‐]
+      # PENDING: No reason given
+  treeCursorAddChildAtStart
+    produces valid cursors  [✔]
+      +++ OK, passed 100 tests.
+    adds a tree at the start of the children of the current node [‐]
+      # PENDING: No reason given
+  treeCursorAddChildAtEnd
+    produces valid cursors  [✔]
+      +++ OK, passed 100 tests.
+    adds a tree at the end of the children of the current node [‐]
+      # PENDING: No reason given
+  treeCursorAddChildAtPosAndSelect
+    produces valid cursors  [✔]
+      +++ OK, passed 100 tests.
+    adds a tree at the given index in theAndSelect children of the current node [‐]
+      # PENDING: No reason given
+  treeCursorAddChildAtStartAndSelect
+    producesAndSelect valid cursors  [✔]
+      +++ OK, passed 100 tests.
+    adds a tree at the start of the children of the current node [‐]
+      # PENDING: No reason given
+  treeCursorAddChildAtEndAndSelect
+    produces valid cursors  [✔]
+      +++ OK, passed 100 tests.
+    adds a tree at the end of the children of the current node [‐]
+      # PENDING: No reason given
+  treeCursorAddChildNodeSingleAtPosAndSelect
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  treeCursorAddChildNodeSingleAtStartAndSelect
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  treeCursorAddChildNodeSingleAtEndAndSelect
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  treeCursorAddChildNodeAtPosAndSelect
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  treeCursorAddChildNodeAtStartAndSelect
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    works for this example [✔]
+  treeCursorAddChildNodeAtEndAndSelect
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    works for this example [✔]
+Cursor.Simple.Tree.Movement
+  treeCursorSelection
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+  treeCursorSelect
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    is identity with the current selection [✔]
+      +++ OK, passed 100 tests.
+  treeCursorSelectPrevOnSameLevel
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the previous element [‐]
+      # PENDING: No reason given
+    after treeCursorSelectNextOnSameLevel is identity if they don't fail [✔]
+      +++ OK, passed 100 tests.
+  treeCursorSelectNextOnSameLevel
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the next element [‐]
+      # PENDING: No reason given
+    after treeCursorSelectPrevOnSameLevel is identity if they don't fail [✔]
+      +++ OK, passed 100 tests.
+  treeCursorSelectFirstOnSameLevel
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the previous element [‐]
+      # PENDING: No reason given
+  treeCursorSelectNextOnSameLevel
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the next element [‐]
+      # PENDING: No reason given
+  treeCursorSelectAbovePrev
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    Works for this classic example [✔]
+    selects the previous element [‐]
+      # PENDING: No reason given
+    after treeCursorSelectAboveNext is identity if they don't fail [✔]
+      +++ OK, passed 100 tests.
+  treeCursorSelectAboveNext
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    Works for this classic example [✔]
+    selects the next element [‐]
+      # PENDING: No reason given
+    after treeCursorSelectAbovePrev is identity if they don't fail [✔]
+      +++ OK, passed 100 tests.
+  treeCursorSelectPrev
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the previous element [‐]
+      # PENDING: No reason given
+    after treeCursorSelectNext is identity if they don't fail [✔]
+      +++ OK, passed 100 tests.
+  treeCursorSelectNext
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the next element [‐]
+      # PENDING: No reason given
+    after treeCursorSelectPrev is identity if they don't fail [✔]
+      +++ OK, passed 100 tests.
+  treeCursorSelectFirst
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the first element [‐]
+      # PENDING: No reason given
+    is idempotent [✔]
+      +++ OK, passed 100 tests.
+  treeCursorSelectLast
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the last element [‐]
+      # PENDING: No reason given
+    is idempotent [✔]
+      +++ OK, passed 100 tests.
+  treeCursorSelectAbove
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the element above [‐]
+      # PENDING: No reason given
+    after treeCursorSelectBelow is identity if they don't fail [✔]
+      +++ OK, passed 100 tests.
+  treeCursorSelectBelowAtPos
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the element n-th below [‐]
+      # PENDING: No reason given
+  treeCursorSelectBelowAtStart
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the first child below [‐]
+      # PENDING: No reason given
+  treeCursorSelectBelowAtEnd
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the last child below [‐]
+      # PENDING: No reason given
+  treeCursorSelectBelowAtStartRecursively
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the first child below, recursively [‐]
+      # PENDING: No reason given
+  treeCursorSelectBelowAtEndRecursively
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the last child below, recursively [‐]
+      # PENDING: No reason given
+Cursor.Simple.Tree.Promote
+  Functor PromoteElemResult
+    fmap :: (a -> b) -> PromoteElemResult a -> PromoteElemResult b
+      satisfies the first Fuctor law: 'fmap id == id' for "PromoteElemResult of ints :: (PromoteElemResult Int)" [✔]
+        +++ OK, passed 100 tests.
+      satisfieds the second Functor law: 'fmap (f . g) == fmap f . fmap g' for "PromoteElemResult of ints :: (PromoteElemResult Int)" 's given to "increments :: (Int -> Int)" and "scalings :: (Int -> Int)" [✔]
+        +++ OK, passed 100 tests.
+    (<$) :: a -> PromoteElemResult b -> PromoteElemResult a
+      is equivalent to its default implementation for "int :: Int" and "PromoteElemResult of ints :: (PromoteElemResult Int)" [✔]
+        +++ OK, passed 100 tests.
+  Applicative PromoteElemResult
+    pure :: a -> PromoteElemResult a and (<*>) :: PromoteElemResult (a -> b) -> PromoteElemResult a -> PromoteElemResult b
+      satisfy the identity law: 'pure id <*> v = v' for "PromoteElemResult of ints :: (PromoteElemResult Int)" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the composition law: 'pure (.) <*> u <*> v <*> w = u <*> (v <*> w)' for "PromoteElemResult of scalings :: (PromoteElemResult (Int -> Int))" composed with "PromoteElemResult of increments :: (PromoteElemResult (Int -> Int))" and applied to "PromoteElemResult of ints :: (PromoteElemResult Int)" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the homomorphism law: 'pure f <*> pure x = pure (f x)' for "increments :: (Int -> Int)" sequenced with "int :: Int" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the interchange law: 'u <*> pure y = pure ($ y) <*> u' for "PromoteElemResult of increments :: (PromoteElemResult (Int -> Int))" sequenced with "int :: Int" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the law about the functor instance: fmap f x = pure f <*> x for "increments :: (Int -> Int)" mapped over "PromoteElemResult of ints :: (PromoteElemResult Int)" [✔]
+        +++ OK, passed 100 tests.
+    (*>) :: PromoteElemResult a -> PromoteElemResult b -> PromoteElemResult b
+      is equivalent to its default implementation 'u Type> v = pure (const id) <*> u <*> v' for "PromoteElemResult of ints :: (PromoteElemResult Int)" in front of "PromoteElemResult of ints :: Int" [✔]
+        +++ OK, passed 100 tests.
+    (<*) :: PromoteElemResult a -> PromoteElemResult b -> PromoteElemResult a
+      is equivalent to its default implementation 'u <* v = pure const <*> u <*> v' for "PromoteElemResult of ints :: Int" behind "PromoteElemResult of ints :: (PromoteElemResult Int)" [✔]
+        +++ OK, passed 100 tests.
+  Monad PromoteElemResult
+    return :: a -> PromoteElemResult a and (>>=) :: PromoteElemResult a -> (b -> PromoteElemResult a) -> PromoteElemResult b
+      satisfy the first Monad law: 'return a >>= k = k a' for "int :: Int" and "perturbations using the int :: (Int -> PromoteElemResult Int)" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the second Monad law: 'm >>= return = m' for "PromoteElemResult of ints :: (PromoteElemResult Int)" [✔]
+        +++ OK, passed 100 tests.
+    (>>=) :: PromoteElemResult a -> (b -> PromoteElemResult a) -> PromoteElemResult b
+      satisfies the third Monad law: 'm >>= (x -> k x >>= h) = (m >>= k) >>= h' for "PromoteElemResult of ints :: (PromoteElemResult Int)" "perturbations using the int :: (Int -> PromoteElemResult Int)" and "perturbations using the double the int :: (Int -> PromoteElemResult Int)" [✔]
+        +++ OK, passed 100 tests.
+    relation with Applicative PromoteElemResult
+      satisfies 'pure = return' for "PromoteElemResult of ints :: (PromoteElemResult Int)" [✔]
+        +++ OK, passed 100 tests.
+      satisfies '(<*>) = ap' for "PromoteElemResult of additions :: (PromoteElemResult (Int -> Int))" and "PromoteElemResult of ints :: (PromoteElemResult Int)" [✔]
+        +++ OK, passed 100 tests.
+      satisfies '(>>) = (*>)' for "PromoteElemResult of ints :: (PromoteElemResult Int)" and "PromoteElemResult of ints :: (PromoteElemResult Int)" [✔]
+        +++ OK, passed 100 tests.
+    relation with Functor PromoteElemResult
+      satisfies 'fmap f xs = xs >>= return . f' for "increments :: (Int -> Int)" and "PromoteElemResult of ints :: (PromoteElemResult Int)" [✔]
+        +++ OK, passed 100 tests.
+  treeCursorPromoteElem
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    Works on the example from the docs [✔]
+    promotes the current node to the level of its parent [‐]
+      # PENDING: No reason given
+  Functor PromoteResult
+    fmap :: (a -> b) -> PromoteResult a -> PromoteResult b
+      satisfies the first Fuctor law: 'fmap id == id' for "PromoteResult of ints :: (PromoteResult Int)" [✔]
+        +++ OK, passed 100 tests.
+      satisfieds the second Functor law: 'fmap (f . g) == fmap f . fmap g' for "PromoteResult of ints :: (PromoteResult Int)" 's given to "increments :: (Int -> Int)" and "scalings :: (Int -> Int)" [✔]
+        +++ OK, passed 100 tests.
+    (<$) :: a -> PromoteResult b -> PromoteResult a
+      is equivalent to its default implementation for "int :: Int" and "PromoteResult of ints :: (PromoteResult Int)" [✔]
+        +++ OK, passed 100 tests.
+  Applicative PromoteResult
+    pure :: a -> PromoteResult a and (<*>) :: PromoteResult (a -> b) -> PromoteResult a -> PromoteResult b
+      satisfy the identity law: 'pure id <*> v = v' for "PromoteResult of ints :: (PromoteResult Int)" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the composition law: 'pure (.) <*> u <*> v <*> w = u <*> (v <*> w)' for "PromoteResult of scalings :: (PromoteResult (Int -> Int))" composed with "PromoteResult of increments :: (PromoteResult (Int -> Int))" and applied to "PromoteResult of ints :: (PromoteResult Int)" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the homomorphism law: 'pure f <*> pure x = pure (f x)' for "increments :: (Int -> Int)" sequenced with "int :: Int" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the interchange law: 'u <*> pure y = pure ($ y) <*> u' for "PromoteResult of increments :: (PromoteResult (Int -> Int))" sequenced with "int :: Int" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the law about the functor instance: fmap f x = pure f <*> x for "increments :: (Int -> Int)" mapped over "PromoteResult of ints :: (PromoteResult Int)" [✔]
+        +++ OK, passed 100 tests.
+    (*>) :: PromoteResult a -> PromoteResult b -> PromoteResult b
+      is equivalent to its default implementation 'u Type> v = pure (const id) <*> u <*> v' for "PromoteResult of ints :: (PromoteResult Int)" in front of "PromoteResult of ints :: Int" [✔]
+        +++ OK, passed 100 tests.
+    (<*) :: PromoteResult a -> PromoteResult b -> PromoteResult a
+      is equivalent to its default implementation 'u <* v = pure const <*> u <*> v' for "PromoteResult of ints :: Int" behind "PromoteResult of ints :: (PromoteResult Int)" [✔]
+        +++ OK, passed 100 tests.
+  Monad PromoteResult
+    return :: a -> PromoteResult a and (>>=) :: PromoteResult a -> (b -> PromoteResult a) -> PromoteResult b
+      satisfy the first Monad law: 'return a >>= k = k a' for "int :: Int" and "perturbations using the int :: (Int -> PromoteResult Int)" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the second Monad law: 'm >>= return = m' for "PromoteResult of ints :: (PromoteResult Int)" [✔]
+        +++ OK, passed 100 tests.
+    (>>=) :: PromoteResult a -> (b -> PromoteResult a) -> PromoteResult b
+      satisfies the third Monad law: 'm >>= (x -> k x >>= h) = (m >>= k) >>= h' for "PromoteResult of ints :: (PromoteResult Int)" "perturbations using the int :: (Int -> PromoteResult Int)" and "perturbations using the double the int :: (Int -> PromoteResult Int)" [✔]
+        +++ OK, passed 100 tests.
+    relation with Applicative PromoteResult
+      satisfies 'pure = return' for "PromoteResult of ints :: (PromoteResult Int)" [✔]
+        +++ OK, passed 100 tests.
+      satisfies '(<*>) = ap' for "PromoteResult of additions :: (PromoteResult (Int -> Int))" and "PromoteResult of ints :: (PromoteResult Int)" [✔]
+        +++ OK, passed 100 tests.
+      satisfies '(>>) = (*>)' for "PromoteResult of ints :: (PromoteResult Int)" and "PromoteResult of ints :: (PromoteResult Int)" [✔]
+        +++ OK, passed 100 tests.
+    relation with Functor PromoteResult
+      satisfies 'fmap f xs = xs >>= return . f' for "increments :: (Int -> Int)" and "PromoteResult of ints :: (PromoteResult Int)" [✔]
+        +++ OK, passed 100 tests.
+  treeCursorPromoteSubTree
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    Works on the example from the docs [✔]
+    promotes the current subtree to the level of its parent [‐]
+      # PENDING: No reason given
+Cursor.Simple.Tree.Swap
+  Functor SwapResult
+    fmap :: (a -> b) -> SwapResult a -> SwapResult b
+      satisfies the first Fuctor law: 'fmap id == id' for "SwapResult of ints :: (SwapResult Int)" [✔]
+        +++ OK, passed 100 tests.
+      satisfieds the second Functor law: 'fmap (f . g) == fmap f . fmap g' for "SwapResult of ints :: (SwapResult Int)" 's given to "increments :: (Int -> Int)" and "scalings :: (Int -> Int)" [✔]
+        +++ OK, passed 100 tests.
+    (<$) :: a -> SwapResult b -> SwapResult a
+      is equivalent to its default implementation for "int :: Int" and "SwapResult of ints :: (SwapResult Int)" [✔]
+        +++ OK, passed 100 tests.
+  treeCursorSwapPrev
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    works on the example from the docs [✔]
+    reverts treeCursorSwapNext [✔]
+      +++ OK, passed 100 tests.
+    swaps the current node with the previous node [‐]
+      # PENDING: No reason given
+  treeCursorSwapNext
+    produces valids on valids [✔]
+      +++ OK, passed 100 tests.
+    works on the example from the docs [✔]
+    reverts treeCursorSwapNext [✔]
+      +++ OK, passed 100 tests.
+    swaps the current node with the next node [‐]
+      # PENDING: No reason given
+Cursor.Text
+  Eq TextCursor
+    (==) :: TextCursor -> TextCursor -> Bool
+      is reflexive for "valid TextCursor"s [✔]
+        +++ OK, passed 100 tests.
+      is symmetric for "valid TextCursor"s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "valid TextCursor"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a /= b) for "valid TextCursor"s [✔]
+        +++ OK, passed 100 tests.
+    (/=) :: TextCursor -> TextCursor -> Bool
+      is antireflexive for "valid TextCursor"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a == b) for "valid TextCursor"s [✔]
+        +++ OK, passed 100 tests.
+  GenValid TextCursor
+    genValid   :: Gen TextCursor
+      only generates valid 'TextCursor's [✔]
+        +++ OK, passed 100 tests.
+  Validity TextCursor
+    considers a text cursor with a newline in the previous characters invalid [✔]
+    considers a text cursor with a newline in the next characters invalid [✔]
+    considers a text cursor with an unsafe character in the previous characters invalid [✔]
+    considers a text cursor with an unsafe character in the next characters invalid [✔]
+  emptyTextCursor
+    is valid [✔]
+  makeTextCursor
+    produces valid list cursors [✔]
+      +++ OK, passed 100 tests.
+  makeTextCursorWithSelection
+    produces valid list cursors [✔]
+      +++ OK, passed 100 tests.
+  rebuildTextCursor
+    produces valid lists [✔]
+      +++ OK, passed 100 tests.
+    is the inverse of makeTextCursor [✔]
+      +++ OK, passed 100 tests.
+    is the inverse of makeTextCursorWithSelection for any index [✔]
+      +++ OK, passed 100 tests.
+  textCursorNull
+    produces valid bools [✔]
+      +++ OK, passed 100 tests.
+  textCursorLength
+    produces valid ints [✔]
+      +++ OK, passed 100 tests.
+  textCursorIndex
+    produces valid indices [✔]
+      +++ OK, passed 100 tests.
+  textCursorSelectPrev
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the previous position [‐]
+      # PENDING: No reason given
+  textCursorSelectNext
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the next position [‐]
+      # PENDING: No reason given
+  textCursorSelectIndex
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the position at the given index [‐]
+      # PENDING: No reason given
+    produces a cursor that has the given selection for valid selections in the cursor [✔]
+      +++ OK, passed 100 tests.
+  textCursorSelectStart
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    is idempotent [✔]
+      +++ OK, passed 100 tests.
+    selects the starting position [‐]
+      # PENDING: No reason given
+  textCursorSelectEnd
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    is idempotent [✔]
+      +++ OK, passed 100 tests.
+    selects the end position [‐]
+      # PENDING: No reason given
+  textCursorPrevChar
+    produces valid items [✔]
+      +++ OK, passed 100 tests.
+    returns the item before the position [‐]
+      # PENDING: No reason given
+  textCursorNextChar
+    produces valid items [✔]
+      +++ OK, passed 100 tests.
+    returns the item after the position [‐]
+      # PENDING: No reason given
+  textCursorSelectBeginWord
+    produces valid items [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    is idempotent [✔]
+      +++ OK, passed 100 tests (89% non trivial).
+    works for this example [✔]
+    works for this example [✔]
+    works for this example [✔]
+    works for this example [✔]
+  textCursorSelectEndWord
+    produces valid items [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    is idempotent [✔]
+      +++ OK, passed 100 tests (89% non trivial).
+    works for this example [✔]
+    works for this example [✔]
+    works for this example [✔]
+    works for this example [✔]
+  textCursorSelectNextWord
+    produces valid items [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    works for this example [✔]
+    works for this example [✔]
+    works for this example [✔]
+    works for this example [✔]
+    goes to the end of the cursor [✔]
+    chooses the next word correctly [✔]
+  textCursorSelectPrevWord
+    produces valid items [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    works for this example [✔]
+    works for this example [✔]
+    works for this example [✔]
+    works for this example [✔]
+    goes to the beginning of the cursor [✔]
+    chooses the previous word correctly [✔]
+  textCursorInsert
+    produces valids [✔]
+      +++ OK, passed 100 tests.
+    inserts an item before the cursor [‐]
+      # PENDING: No reason given
+  textCursorAppend
+    produces valids [✔]
+      +++ OK, passed 100 tests.
+    inserts an item after the cursor [‐]
+      # PENDING: No reason given
+  textCursorInsertString
+    produces valids [✔]
+      +++ OK, passed 100 tests.
+    works for this example [✔]
+  textCursorAppendString
+    produces valids [✔]
+      +++ OK, passed 100 tests.
+  textCursorInsertText
+    produces valids [✔]
+      +++ OK, passed 100 tests.
+  textCursorAppendText
+    produces valids [✔]
+      +++ OK, passed 100 tests.
+  textCursorRemove
+    produces valids [✔]
+      +++ OK, passed 100 tests.
+    removes an item before the cursor [‐]
+      # PENDING: No reason given
+  textCursorDelete
+    produces valids [✔]
+      +++ OK, passed 100 tests.
+    removes an item before the cursor [‐]
+      # PENDING: No reason given
+  textCursorSplit
+    produces valids [✔]
+      +++ OK, passed 100 tests.
+    produces two list cursors that rebuild to the rebuilding of the original [✔]
+      +++ OK, passed 100 tests.
+  textCursorCombine
+    produces valids [✔]
+      +++ OK, passed 100 tests.
+    produces a list that rebuilds to the rebuilding of the original two cursors [✔]
+      +++ OK, passed 100 tests.
+Cursor.TextField
+  Eq TextFieldCursor
+    (==) :: TextFieldCursor -> TextFieldCursor -> Bool
+      is reflexive for "valid TextFieldCursor"s [✔]
+        +++ OK, passed 100 tests.
+      is symmetric for "valid TextFieldCursor"s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "valid TextFieldCursor"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a /= b) for "valid TextFieldCursor"s [✔]
+        +++ OK, passed 100 tests.
+    (/=) :: TextFieldCursor -> TextFieldCursor -> Bool
+      is antireflexive for "valid TextFieldCursor"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a == b) for "valid TextFieldCursor"s [✔]
+        +++ OK, passed 100 tests.
+  GenValid TextFieldCursor
+    genValid   :: Gen TextFieldCursor
+      only generates valid 'TextFieldCursor's [✔]
+        +++ OK, passed 100 tests.
+  Validity TextFieldCursor
+    consider a textfield with a newline in the previous lines invalid [✔]
+      +++ OK, passed 100 tests.
+    consider a textfield with a newline in the next lines invalid [✔]
+      +++ OK, passed 100 tests.
+  makeTextFieldCursor
+    produces a valid cursor for "\n" [✔]
+    produces a valid cursor for "\n\n" [✔]
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  makeTextFieldCursorWithSelection
+    produces a valid cursor for "\n" [✔]
+      +++ OK, passed 100 tests.
+    produces a valid cursor for "\n\n" [✔]
+      +++ OK, passed 100 tests.
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is the inverse of rebuildTextFieldCursor when using the current selection [✔]
+      +++ OK, passed 100 tests.
+  rebuildTextFieldCursorLines
+    produces valid lists [✔]
+      +++ OK, passed 100 tests.
+    produces texts without newlines [✔]
+      +++ OK, passed 100 tests.
+  rebuildTextFieldCursor
+    produces valid texts [✔]
+      +++ OK, passed 100 tests.
+    is the inverse of makeTextFieldCursor [✔]
+      +++ OK, passed 100 tests.
+    is the inverse of makeTextFieldCursorWithSelection for integers, for any index [✔]
+      +++ OK, passed 100 tests.
+  textFieldCursorSelection
+    produces valid tuples [✔]
+      +++ OK, passed 100 tests.
+  emptyTextFieldCursor
+    is valid [✔]
+  nullTextFieldCursor
+    produces valid [✔]
+      +++ OK, passed 100 tests.
+  textFieldCursorSelectPrevLine
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the previous line [‐]
+      # PENDING: No reason given
+  textFieldCursorSelectNextLine
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    selects the next line [‐]
+      # PENDING: No reason given
+  textFieldCursorSelectFirstLine
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    is idempotent [✔]
+      +++ OK, passed 100 tests.
+    selects the first line [‐]
+      # PENDING: No reason given
+  textFieldCursorSelectLastLine
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    is a movement [✔]
+      +++ OK, passed 100 tests.
+    is idempotent [✔]
+      +++ OK, passed 100 tests.
+    selects the last line [‐]
+      # PENDING: No reason given
+  textFieldCursorSelectPrevChar
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    selects the previous character on the current line [‐]
+      # PENDING: No reason given
+  textFieldCursorSelectNextChar
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    selects the previous character on the current line [‐]
+      # PENDING: No reason given
+  textFieldCursorSelectBeginWord
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  textFieldCursorSelectEndWord
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  textFieldCursorSelectPrevWord
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  textFieldCursorSelectNextWord
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  textFieldCursorIndexOnLine
+    produces valid indices [✔]
+      +++ OK, passed 100 tests.
+    returns the index on the current line [‐]
+      # PENDING: No reason given
+  textFieldCursorSelectIndexOnLine
+    produces valid cursors for any index [✔]
+      +++ OK, passed 100 tests.
+    selects the given index on the current line [‐]
+      # PENDING: No reason given
+  textFieldCursorInsertChar
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    inserts a character before the cursor on the current line [‐]
+      # PENDING: No reason given
+  textFieldCursorAppendChar
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    inserts a character after the cursor on the currrent line [‐]
+      # PENDING: No reason given
+  textFieldCursorInsertNewline
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    inserts a new line [‐]
+      # PENDING: No reason given
+  textFieldCursorAppendNewline
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+  textFieldCursorRemove
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    removes empty text field cursor [✔]
+    removes a character or a line [‐]
+      # PENDING: No reason given
+  textFieldCursorDelete
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    removes empty text field cursor [✔]
+    deletes a character or a line [‐]
+      # PENDING: No reason given
+  textFieldCursorSelectStartOfLine
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    selects the start of the current line [‐]
+      # PENDING: No reason given
+  textFieldCursorSelectEndOfLine
+    produces valid cursors [✔]
+      +++ OK, passed 100 tests.
+    selects the end of the current line [‐]
+      # PENDING: No reason given
+Cursor.Tree.Types
+  Eq TreeCursorSelection
+    (==) :: TreeCursorSelection -> TreeCursorSelection -> Bool
+      is reflexive for "valid TreeCursorSelection"s [✔]
+        +++ OK, passed 100 tests.
+      is symmetric for "valid TreeCursorSelection"s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "valid TreeCursorSelection"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a /= b) for "valid TreeCursorSelection"s [✔]
+        +++ OK, passed 100 tests.
+    (/=) :: TreeCursorSelection -> TreeCursorSelection -> Bool
+      is antireflexive for "valid TreeCursorSelection"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a == b) for "valid TreeCursorSelection"s [✔]
+        +++ OK, passed 100 tests.
+  GenValid TreeCursorSelection
+    genValid   :: Gen TreeCursorSelection
+      only generates valid 'TreeCursorSelection's [✔]
+        +++ OK, passed 100 tests.
+  shrinkValid :: (TreeCursorSelection -> [TreeCursorSelection])
+    preserves validity for the first 10 elements [✔]
+      +++ OK, passed 100 tests.
+    never shrinks to itself for valid values for the first 10 elements [✔]
+      +++ OK, passed 100 tests.
+  Eq (SwapResult Bool)
+    (==) :: (SwapResult Bool) -> (SwapResult Bool) -> Bool
+      is reflexive for "valid (SwapResult Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is symmetric for "valid (SwapResult Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "valid (SwapResult Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a /= b) for "valid (SwapResult Bool)"s [✔]
+        +++ OK, passed 100 tests.
+    (/=) :: (SwapResult Bool) -> (SwapResult Bool) -> Bool
+      is antireflexive for "valid (SwapResult Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a == b) for "valid (SwapResult Bool)"s [✔]
+        +++ OK, passed 100 tests.
+  GenValid (SwapResult Bool)
+    genValid   :: Gen (SwapResult Bool)
+      only generates valid '(SwapResult Bool)'s [✔]
+        +++ OK, passed 100 tests.
+  shrinkValid :: (SwapResult Bool -> [SwapResult Bool])
+    preserves validity for the first 10 elements [✔]
+      +++ OK, passed 100 tests.
+    never shrinks to itself for valid values for the first 10 elements [✔]
+      +++ OK, passed 100 tests.
+  Eq (PromoteElemResult Bool)
+    (==) :: (PromoteElemResult Bool) -> (PromoteElemResult Bool) -> Bool
+      is reflexive for "valid (PromoteElemResult Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is symmetric for "valid (PromoteElemResult Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "valid (PromoteElemResult Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a /= b) for "valid (PromoteElemResult Bool)"s [✔]
+        +++ OK, passed 100 tests.
+    (/=) :: (PromoteElemResult Bool) -> (PromoteElemResult Bool) -> Bool
+      is antireflexive for "valid (PromoteElemResult Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a == b) for "valid (PromoteElemResult Bool)"s [✔]
+        +++ OK, passed 100 tests.
+  GenValid (PromoteElemResult Bool)
+    genValid   :: Gen (PromoteElemResult Bool)
+      only generates valid '(PromoteElemResult Bool)'s [✔]
+        +++ OK, passed 100 tests.
+  shrinkValid :: (PromoteElemResult Bool -> [PromoteElemResult Bool])
+    preserves validity for the first 10 elements [✔]
+      +++ OK, passed 100 tests.
+    never shrinks to itself for valid values for the first 10 elements [✔]
+      +++ OK, passed 100 tests.
+  Eq (PromoteResult Bool)
+    (==) :: (PromoteResult Bool) -> (PromoteResult Bool) -> Bool
+      is reflexive for "valid (PromoteResult Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is symmetric for "valid (PromoteResult Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "valid (PromoteResult Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a /= b) for "valid (PromoteResult Bool)"s [✔]
+        +++ OK, passed 100 tests.
+    (/=) :: (PromoteResult Bool) -> (PromoteResult Bool) -> Bool
+      is antireflexive for "valid (PromoteResult Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a == b) for "valid (PromoteResult Bool)"s [✔]
+        +++ OK, passed 100 tests.
+  GenValid (PromoteResult Bool)
+    genValid   :: Gen (PromoteResult Bool)
+      only generates valid '(PromoteResult Bool)'s [✔]
+        +++ OK, passed 100 tests.
+  shrinkValid :: (PromoteResult Bool -> [PromoteResult Bool])
+    preserves validity for the first 10 elements [✔]
+      +++ OK, passed 100 tests.
+    never shrinks to itself for valid values for the first 10 elements [✔]
+      +++ OK, passed 100 tests.
+  Eq (DemoteResult Bool)
+    (==) :: (DemoteResult Bool) -> (DemoteResult Bool) -> Bool
+      is reflexive for "valid (DemoteResult Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is symmetric for "valid (DemoteResult Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "valid (DemoteResult Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a /= b) for "valid (DemoteResult Bool)"s [✔]
+        +++ OK, passed 100 tests.
+    (/=) :: (DemoteResult Bool) -> (DemoteResult Bool) -> Bool
+      is antireflexive for "valid (DemoteResult Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a == b) for "valid (DemoteResult Bool)"s [✔]
+        +++ OK, passed 100 tests.
+  GenValid (DemoteResult Bool)
+    genValid   :: Gen (DemoteResult Bool)
+      only generates valid '(DemoteResult Bool)'s [✔]
+        +++ OK, passed 100 tests.
+  shrinkValid :: (DemoteResult Bool -> [DemoteResult Bool])
+    preserves validity for the first 10 elements [✔]
+      +++ OK, passed 100 tests.
+    never shrinks to itself for valid values for the first 10 elements [✔]
+      +++ OK, passed 100 tests.
+  Eq (CTree Bool)
+    (==) :: (CTree Bool) -> (CTree Bool) -> Bool
+      is reflexive for "valid (CTree Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is symmetric for "valid (CTree Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "valid (CTree Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a /= b) for "valid (CTree Bool)"s [✔]
+        +++ OK, passed 100 tests.
+    (/=) :: (CTree Bool) -> (CTree Bool) -> Bool
+      is antireflexive for "valid (CTree Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a == b) for "valid (CTree Bool)"s [✔]
+        +++ OK, passed 100 tests.
+  GenValid (CTree Bool)
+    genValid   :: Gen (CTree Bool)
+      only generates valid '(CTree Bool)'s [✔]
+        +++ OK, passed 100 tests.
+  shrinkValid :: (CTree Bool -> [CTree Bool])
+    preserves validity for the first 10 elements [✔]
+      +++ OK, passed 100 tests.
+    never shrinks to itself for valid values for the first 10 elements [✔]
+      +++ OK, passed 100 tests.
+  Eq (CForest Bool)
+    (==) :: (CForest Bool) -> (CForest Bool) -> Bool
+      is reflexive for "valid (CForest Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is symmetric for "valid (CForest Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "valid (CForest Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a /= b) for "valid (CForest Bool)"s [✔]
+        +++ OK, passed 100 tests.
+    (/=) :: (CForest Bool) -> (CForest Bool) -> Bool
+      is antireflexive for "valid (CForest Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a == b) for "valid (CForest Bool)"s [✔]
+        +++ OK, passed 100 tests.
+  GenValid (CForest Bool)
+    genValid   :: Gen (CForest Bool)
+      only generates valid '(CForest Bool)'s [✔]
+        +++ OK, passed 100 tests.
+  shrinkValid :: (CForest Bool -> [CForest Bool])
+    preserves validity for the first 10 elements [✔]
+      +++ OK, passed 100 tests.
+    never shrinks to itself for valid values for the first 10 elements [✔]
+      +++ OK, passed 100 tests.
+  Eq (TreeAbove Bool)
+    (==) :: (TreeAbove Bool) -> (TreeAbove Bool) -> Bool
+      is reflexive for "valid (TreeAbove Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is symmetric for "valid (TreeAbove Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "valid (TreeAbove Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a /= b) for "valid (TreeAbove Bool)"s [✔]
+        +++ OK, passed 100 tests.
+    (/=) :: (TreeAbove Bool) -> (TreeAbove Bool) -> Bool
+      is antireflexive for "valid (TreeAbove Bool)"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a == b) for "valid (TreeAbove Bool)"s [✔]
+        +++ OK, passed 100 tests.
+  GenValid (TreeAbove Bool)
+    genValid   :: Gen (TreeAbove Bool)
+      only generates valid '(TreeAbove Bool)'s [✔]
+        +++ OK, passed 100 tests.
+  shrinkValid :: (TreeAbove Bool -> [TreeAbove Bool])
+    preserves validity for the first 10 elements [✔]
+      +++ OK, passed 100 tests.
+    never shrinks to itself for valid values for the first 10 elements [✔]
+      +++ OK, passed 100 tests.
+  treeAboveLeftsL
+    satisfies the first lens law for valid values and valid values [✔]
+      +++ OK, passed 100 tests.
+    satisfies the second lens law for valid values [✔]
+      +++ OK, passed 100 tests.
+    satisfies the third lens law for valid values and valid values [✔]
+      +++ OK, passed 100 tests.
+    gets valid values from valid values values [✔]
+      +++ OK, passed 100 tests.
+    produces valid values when it is used to set valid values values on valid values values [✔]
+      +++ OK, passed 100 tests.
+  treeAboveAboveL
+    satisfies the first lens law for valid values and valid values [✔]
+      +++ OK, passed 100 tests.
+    satisfies the second lens law for valid values [✔]
+      +++ OK, passed 100 tests.
+    satisfies the third lens law for valid values and valid values [✔]
+      +++ OK, passed 100 tests.
+    gets valid values from valid values values [✔]
+      +++ OK, passed 100 tests.
+    produces valid values when it is used to set valid values values on valid values values [✔]
+      +++ OK, passed 100 tests.
+  treeAboveNodeL
+    satisfies the first lens law for valid values and valid values [✔]
+      +++ OK, passed 100 tests.
+    satisfies the second lens law for valid values [✔]
+      +++ OK, passed 100 tests.
+    satisfies the third lens law for valid values and valid values [✔]
+      +++ OK, passed 100 tests.
+    gets valid values from valid values values [✔]
+      +++ OK, passed 100 tests.
+    produces valid values when it is used to set valid values values on valid values values [✔]
+      +++ OK, passed 100 tests.
+  treeAboveRightsL
+    satisfies the first lens law for valid values and valid values [✔]
+      +++ OK, passed 100 tests.
+    satisfies the second lens law for valid values [✔]
+      +++ OK, passed 100 tests.
+    satisfies the third lens law for valid values and valid values [✔]
+      +++ OK, passed 100 tests.
+    gets valid values from valid values values [✔]
+      +++ OK, passed 100 tests.
+    produces valid values when it is used to set valid values values on valid values values [✔]
+      +++ OK, passed 100 tests.
+  Eq (TreeCursor Bool Word)
+    (==) :: (TreeCursor Bool Word) -> (TreeCursor Bool Word) -> Bool
+      is reflexive for "valid (TreeCursor Bool Word)"s [✔]
+        +++ OK, passed 100 tests.
+      is symmetric for "valid (TreeCursor Bool Word)"s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "valid (TreeCursor Bool Word)"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a /= b) for "valid (TreeCursor Bool Word)"s [✔]
+        +++ OK, passed 100 tests.
+    (/=) :: (TreeCursor Bool Word) -> (TreeCursor Bool Word) -> Bool
+      is antireflexive for "valid (TreeCursor Bool Word)"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a == b) for "valid (TreeCursor Bool Word)"s [✔]
+        +++ OK, passed 100 tests.
+  GenValid (TreeCursor Bool Bool)
+    genValid   :: Gen (TreeCursor Bool Bool)
+      only generates valid '(TreeCursor Bool Bool)'s [✔]
+        +++ OK, passed 100 tests.
+  shrinkValid :: (TreeCursor Word Bool -> [TreeCursor Word Bool])
+    preserves validity for the first 10 elements [✔]
+      +++ OK, passed 100 tests.
+    never shrinks to itself for valid values for the first 10 elements [✔]
+      +++ OK, passed 100 tests.
+  treeCursorAboveL
+    satisfies the first lens law for valid values and valid values [✔]
+      +++ OK, passed 100 tests.
+    satisfies the second lens law for valid values [✔]
+      +++ OK, passed 100 tests.
+    satisfies the third lens law for valid values and valid values [✔]
+      +++ OK, passed 100 tests.
+    gets valid values from valid values values [✔]
+      +++ OK, passed 100 tests.
+    produces valid values when it is used to set valid values values on valid values values [✔]
+      +++ OK, passed 100 tests.
+  treeCursorCurrentL
+    satisfies the first lens law for valid values and valid values [✔]
+      +++ OK, passed 100 tests.
+    satisfies the second lens law for valid values [✔]
+      +++ OK, passed 100 tests.
+    satisfies the third lens law for valid values and valid values [✔]
+      +++ OK, passed 100 tests.
+    gets valid values from valid values values [✔]
+      +++ OK, passed 100 tests.
+    produces valid values when it is used to set valid values values on valid values values [✔]
+      +++ OK, passed 100 tests.
+  treeCursorBelowL
+    satisfies the first lens law for valid values and valid values [✔]
+      +++ OK, passed 100 tests.
+    satisfies the second lens law for valid values [✔]
+      +++ OK, passed 100 tests.
+    satisfies the third lens law for valid values and valid values [✔]
+      +++ OK, passed 100 tests.
+    gets valid values from valid values values [✔]
+      +++ OK, passed 100 tests.
+    produces valid values when it is used to set valid values values on valid values values [✔]
+      +++ OK, passed 100 tests.
+  treeCursorCurrentSubTreeL
+    satisfies the first lens law for valid values and valid values [✔]
+      +++ OK, passed 100 tests.
+    satisfies the second lens law for valid values [✔]
+      +++ OK, passed 100 tests.
+    satisfies the third lens law for valid values and valid values [✔]
+      +++ OK, passed 100 tests.
+    gets valid values from valid values values [✔]
+      +++ OK, passed 100 tests.
+    produces valid values when it is used to set valid values values on valid values values [✔]
+      +++ OK, passed 100 tests.
+
+Finished in 0.3523 seconds
+881 examples, 0 failures, 173 pending
+Test suite cursor-test: PASS
+Test suite logged to:
+/tmp/workdir-cursor-gen/cursor-gen-0.4.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/cursor-gen-0.4.0.0/t/cursor-test/test/cursor-gen-0.4.0.0-cursor-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

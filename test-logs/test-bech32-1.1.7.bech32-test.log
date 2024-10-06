@@ -1,0 +1,145 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - bech32-1.1.7 (test:bech32-test) (ephemeral targets)
+Preprocessing test suite 'bech32-test' for bech32-1.1.7...
+Building test suite 'bech32-test' for bech32-1.1.7...
+Running 1 test suites...
+Test suite bech32-test: RUNNING...
+
+App
+  bech32 command-line
+    any bech32 string can be decoded to hex [✔]
+      +++ OK, passed 1000 tests.
+    can re-encode encoded strings 2e2e2e [✔]
+      +++ OK, passed 1000 tests.
+    can re-encode encoded strings bech3219chzuvz5nks [✔]
+      +++ OK, passed 1000 tests.
+    can re-encode encoded strings GWff [✔]
+      +++ OK, passed 1000 tests.
+Codec.Binary.Bech32
+  Valid Reference Strings
+    should always decode successfully [✔]
+  Valid Checksums
+    A12UEL5L [✔]
+    an83characterlonghumanreadablepartthatcontainsthenumber1andtheexcludedcharactersbio1tt5tgs [✔]
+    abcdef1qpzry9x8gf2tvdw0s3jn54khce6mua7lmqqqxw [✔]
+    11qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqc8247j [✔]
+    split1checkupstagehandshakeupstreamerranterredcaperred2y9e3w [✔]
+  Invalid Checksums
+     1nwldj5 [✔]
+    1axkwrx [✔]
+    an84characterslonghumanreadablepartthatcontainsthenumber1andtheexcludedcharactersbio1569pvx [✔]
+    pzry9x0s0muk [✔]
+    1pzry9x0s0muk [✔]
+    x1b4n0q5v [✔]
+    x1n4n0q5v [✔]
+    111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111 [✔]
+    li1dgmt3 [✔]
+    Codec.Binary.Bech32Spec[120:13] [✔]
+    de1lg7wtÿ [✔]
+    aBcdef1qpzry9x8gf2tvDw0s3jn54khce6mua7lmqqqXw [✔]
+    A1G7SGD8 [✔]
+    10a06t8 [✔]
+    1qzzfhee [✔]
+    tb1qrp33g0q5c5txsp9arysrx4k6zdkfs4nce4xj0gdcccefvpysxf3q0sL5k7 [✔]
+    bc1qw508d6qejxtdg4y5r3zarvary0c5xw7kv8f3t5 [✔]
+  Parsing human-readable parts from text
+    Known-good human readable parts parse correctly.
+      addr [✔]
+      ca [✔]
+      bc [✔]
+      tb [✔]
+      xprv [✔]
+    Known-bad human readable parts fail to parse.
+      鑫 [✔]
+      臥虎藏龍 [✔]
+    Characters are checked correctly for validity. [✔]
+      +++ OK, passed 100 tests:
+      50% no invalid characters
+      50% one or more invalid characters
+    Lengths are checked correctly. [✔]
+      +++ OK, passed 800 tests:
+      22.4% maximum length
+      20.5% too short
+      19.9% too long
+      19.0% minimum length
+      18.2% comfortably within bounds
+  More Encoding/Decoding Cases
+    length > maximum [✔]
+    hrp lowercased [✔]
+  Arbitrary Bech32String
+    Generation always produces a valid string that can be decoded. [✔]
+      +++ OK, passed 100 tests.
+  Arbitrary Bech32Char
+    Generation always produces a valid character. [✔]
+      +++ OK, passed 10000 tests:
+      53.62% is a data character: FALSE
+      46.38% is a data character: TRUE
+    Shrinking always produces valid characters. [✔]
+      +++ OK, passed 10000 tests.
+    Shrinking always produces characters with codes that are smaller. [✔]
+      +++ OK, passed 10000 tests.
+  Decoding a corrupted string should fail
+    Decoding fails when an adjacent pair of characters is swapped. [✔]
+      +++ OK, passed 10000 tests; 296 discarded.
+    Decoding fails when a character is omitted. [✔]
+      +++ OK, passed 10000 tests.
+    Decoding fails when a character is inserted. [✔]
+      +++ OK, passed 10000 tests:
+      94.13% inserted into the middle
+       3.06% inserted after the end
+       2.81% inserted before the start
+    Decoding fails when a single character is mutated. [✔]
+      +++ OK, passed 10000 tests; 157 discarded.
+    Decoding fails for an upper-case string with a lower-case character. [✔]
+      +++ OK, passed 10000 tests; 4751 discarded.
+    Decoding fails for a lower-case string with an upper-case character. [✔]
+      +++ OK, passed 10000 tests; 4751 discarded.
+  Roundtrip (encode . decode)
+    Can perform roundtrip for valid data [✔]
+      +++ OK, passed 100 tests.
+  Roundtrip (dataPartToBytes . dataPartFromBytes)
+    Can perform roundtrip base conversion [✔]
+      +++ OK, passed 100 tests.
+  Roundtrip (dataPartFromText . dataPartToText)
+    Can perform roundtrip conversion [✔]
+      +++ OK, passed 100 tests.
+  Roundtrip (dataPartFromWords . dataPartToWords)
+    Can perform roundtrip conversion [✔]
+      +++ OK, passed 100 tests.
+  Roundtrip (dataPartToWords . dataPartFromWords)
+    Can perform roundtrip conversion [✔]
+      +++ OK, passed 100 tests.
+  Roundtrip (humanReadablePartFromText . humanReadablePartToText)
+    Can perform roundtrip conversion [✔]
+      +++ OK, passed 100 tests.
+  Roundtrip (toBase256 . toBase32)
+    Can perform roundtrip base conversion [✔]
+      +++ OK, passed 100 tests.
+  Roundtrip (toBase32 . toBase256)
+    Can perform roundtrip base conversion [✔]
+      +++ OK, passed 100 tests; 276 discarded.
+  Roundtrip (dataCharToWord . dataCharFromWord)
+    can perform roundtrip character set conversion [✔]
+      +++ OK, passed 100 tests.
+  Constructors produce valid values
+    dataPartFromBytes [✔]
+      +++ OK, passed 100 tests.
+    dataPartFromText [✔]
+      +++ OK, passed 100 tests.
+    dataPartFromWords [✔]
+      +++ OK, passed 100 tests.
+  Conversion of word string from one word size to another
+    With identical word sizes, conversion is the identity transform [✔]
+      +++ OK, passed 100 tests.
+    With different word sizes, roundtripping preserves data [✔]
+      +++ OK, passed 100 tests.
+  Pointless test to trigger coverage on derived instances
+    Right (HumanReadablePart "ca") [✔]
+
+Finished in 82.3654 seconds
+63 examples, 0 failures
+Test suite bech32-test: PASS
+Test suite logged to:
+/tmp/workdir-bech32/bech32-1.1.7/dist-newstyle/build/x86_64-linux/ghc-9.6.6/bech32-1.1.7/t/bech32-test/test/bech32-1.1.7-bech32-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

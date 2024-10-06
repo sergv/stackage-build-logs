@@ -1,0 +1,62 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - ghc-typelits-knownnat-0.7.12 (test:unittests) (ephemeral targets)
+Preprocessing test suite 'unittests' for ghc-typelits-knownnat-0.7.12...
+Building test suite 'unittests' for ghc-typelits-knownnat-0.7.12...
+Running 1 test suites...
+Test suite unittests: RUNNING...
+ghc-typelits-natnormalise
+  Basic functionality
+    KnownNat 4 + KnownNat 6 ~ 10:                                                     OK
+    KnownNat 4 * KnownNat 3 ~ 12:                                                     OK
+    KnownNat 2 + KnownNat 7 ~ 9:                                                      OK
+    KnownNat 2 * KnownNat 7 ~ 14:                                                     OK
+    KnownNat 2 ^ KnownNat 7 ~ 128:                                                    OK
+    KnownNat 3 ^ KnownNat 7 ~ 2187:                                                   OK
+    (KnownNat 2 ^ KnownNat 7) + (KnownNat 2 * KnownNat 7) ~ 142:                      OK
+    KnownNat (Max 7 5 + 1) ~ 8:                                                       OK
+    KnownNat (Min 7 5 + 1) ~ 6:                                                       OK
+    KnownNat (7 - 5) ~ 2:                                                             OK
+    KnownNat (y*x*y), x=3 y=4 ~ 48:                                                   OK
+    KnownNat m, 2 * n ~ m, m = 10 ~ 5:                                                OK
+  Implications
+    KnownNat m => KnownNat (m*m); @5:                                                 OK
+    KnownNat (m+1) => KnownNat m; @m ~ 5:                                             OK
+    KnownNat (m+1) => KnownNat m; @m ~ 0:                                             OK
+    KnownNat (m+3) => KnownNat m; @m ~ 0:                                             OK
+    KnownNat (4+m) => KnownNat (7+m); @m ~ 1:                                         OK
+    KnownNat (4 + Foo 1) => KnownNat (Foo 1 + 7); @Foo 1 ~ 1:                         OK
+    KnownNat (4 + Foo 1 + Foo 1) => KnownNat (Foo 1 + 7 + Foo 1); @Foo 1 ~ 1:         OK
+    KnownNat (4 + 2 * Foo 1 + Foo 1) => KnownNat (2 * Foo 1 + 7 + Foo 1); @Foo 1 ~ 1: OK
+    KnownNat (3 * a - a) => KnownNat (2 * a); @a ~ 4:                                 OK
+    KnownNat (a + b), KnownNat b => KnownNat a; @(a+b) ~ 8, b ~ 6:                    OK
+  Normalisation
+    KnownNat (m-n+n) ~ KnownNat m:                                                    OK
+    SNat (a+1) - SNat a = SNat 1:                                                     OK
+    SNat (a+b) - SNat b = SNat a:                                                     OK
+    SNat ((addrSize + 1) - (addrSize - 1)) = SNat 2:                                  OK
+    (KnownNat n, n ~ m + 1) ~ KnownNat m:                                             OK
+  KnownBool
+    KnownBool (X <=? Y) @2 @3 ~ True:                                                 OK
+    KnownBool (X <=? Y) @3 @2 ~ False:                                                OK
+    KnownNat (If (X <=? Y) Y X) @2 @3 ~ 3:                                            OK
+    KnownNat (If (X <=? Y) Y X) @3 @2 ~ 3:                                            OK
+    KnownNat (If (X <=? Y) X Y) @2 @3 ~ 2:                                            OK
+    KnownNat (If (X <=? Y) X Y) @3 @2 ~ 2:                                            OK
+  QuickCheck
+    addT = (+):                                                                       OK
+      +++ OK, passed 100 tests.
+    subT = (-):                                                                       OK
+      +++ OK, passed 100 tests; 98 discarded.
+    mulT = (*):                                                                       OK
+      +++ OK, passed 100 tests.
+    maxT = max:                                                                       OK
+      +++ OK, passed 100 tests.
+    logT = logInt:                                                                    OK
+      +++ OK, passed 100 tests; 13 discarded.
+
+All 38 tests passed (0.00s)
+Test suite unittests: PASS
+Test suite logged to:
+/tmp/workdir-ghc-typelits-knownnat/ghc-typelits-knownnat-0.7.12/dist-newstyle/build/x86_64-linux/ghc-9.6.6/ghc-typelits-knownnat-0.7.12/t/unittests/test/ghc-typelits-knownnat-0.7.12-unittests.log
+1 of 1 test suites (1 of 1 test cases) passed.

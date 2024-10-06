@@ -1,0 +1,49 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - forma-1.2.0 (test:tests) (ephemeral targets)
+Preprocessing test suite 'tests' for forma-1.2.0...
+Building test suite 'tests' for forma-1.2.0...
+Running 1 test suites...
+Test suite tests: RUNNING...
+
+ToJSON FormResult
+  ParsingFailed case (1) [✔]
+  ParsingFailed case (2) [✔]
+  ParsingFailed case (3) [✔]
+  ValidationFailed [✔]
+  Succeeded [✔]
+value
+  when the data is convertable
+    succeeds [✔]
+  when the data is not convertable
+    fails to parse [✔]
+subParser
+  accesses fields correctly [✔]
+  reports correct failure when field is missing [✔]
+  reports correct field path on parse failure [✔]
+  reports correct field path on validation failure [✔]
+withCheck
+  reports correct path and error when parsing fails [✔]
+  reports correct path and error when validation fails [✔]
+Forma (older test suite)
+  when a parse error happens
+    it's reported immediately [✔]
+  when no parse error happens
+    when validation errors happen
+      all of them are reported [✔]
+    when no validation errors happens
+      the parsing succeeds [✔]
+  for withCheck being used in SignupForm example
+    when both password fields are empty
+      we get errors for both empty password fields [✔]
+    when both password fields contain values that don't match
+      the validation added with withCheck reports that passwords don't match [✔]
+    when username and both password fields are filled in correctly
+      it validates and returns the correct value [✔]
+
+Finished in 0.0005 seconds
+19 examples, 0 failures
+Test suite tests: PASS
+Test suite logged to:
+/tmp/workdir-forma/forma-1.2.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/forma-1.2.0/t/tests/test/forma-1.2.0-tests.log
+1 of 1 test suites (1 of 1 test cases) passed.

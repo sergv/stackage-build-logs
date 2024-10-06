@@ -1,0 +1,32 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - minisat-solver-0.1 (lib) (first run)
+Configuring library for minisat-solver-0.1...
+Preprocessing library for minisat-solver-0.1...
+Building library for minisat-solver-0.1...
+[1 of 7] Compiling SAT.MiniSat.Literals
+[2 of 7] Compiling SAT.MiniSat.LowLevel
+[3 of 7] Compiling SAT.MiniSat.Monadic
+[4 of 7] Compiling SAT.MiniSat.Functional
+[5 of 7] Compiling SAT.MiniSat.Variable
+[6 of 7] Compiling SAT.MiniSat.Formula
+
+SAT/MiniSat/Formula.hs:308:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad (Trans v)’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+308 |   return a = Trans (\n -> (a, n, []))
+    |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+SAT/MiniSat/Formula.hs:316:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative (Trans v)’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+316 |   pure = return
+    |   ^^^^^^^^^^^^^
+[7 of 7] Compiling SAT.MiniSat

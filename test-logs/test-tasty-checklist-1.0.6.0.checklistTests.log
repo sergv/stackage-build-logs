@@ -1,0 +1,95 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - tasty-checklist-1.0.6.0 (test:checklistTests) (ephemeral targets)
+Preprocessing test suite 'checklistTests' for tasty-checklist-1.0.6.0...
+Building test suite 'checklistTests' for tasty-checklist-1.0.6.0...
+Running 1 test suites...
+Test suite checklistTests: RUNNING...
+Checklist testing
+  simple checklist:                     FAIL (expected: 3 failed checks)
+    Exception: ERROR: simple
+      3 checks failed in this checklist:
+      -Failed check 'one' with: 1
+      -Failed check 'two' with: 2
+      -Failed check 'three' with: 3 (expected failure)
+  simple checklist with retraction:     
+        WARN Failed check 'one' with: 1
+        WARN Failed check 'two' with: 2
+        WARN Failed check 'three' with: 3
+FAIL (expected: 2 failed checks)
+    Exception: ERROR: simple retracted
+      2 checks failed in this checklist:
+      -Failed check 'one' with: 1
+      -Failed check 'three' with: 3 (expected failure)
+  simple checklist and assert:          FAIL (expected: 3 failed checks and assert)
+    test/TestChecklist.hs:52:
+    expected: 3
+     but got: 4 (expected failure)
+  someFun 7 result is good:             OK
+  someFun 3 result:                     FAIL (expected: 2 values don't match)
+    Exception: ERROR: someFun
+      2 checks failed in this checklist:
+      --- Input for below: The answer to the universe is 18?
+      -Failed check: foo
+            expected:    42
+            failed with: 18
+      -Failed check: shown
+            expected:    "The answer to the universe is 42!"
+            failed with: "The answer to the universe is 18?" (expected failure)
+  normal assert failure:                FAIL (expected: assertion)
+
+        WARN -- Input for below: The answer to the universe is 18?
+        WARN Failed check: foo
+        expected:    42
+        failed with: 18
+        WARN Failed check: shown
+        expected:    "The answer to the universe is 42!"
+        failed with: "The answer to the universe is 18?"
+    test/TestChecklist.hs:79:
+    expected: 3
+     but got: 5 (expected failure)
+  someFun 3 result and assert:          FAIL (expected: 2 values don't match and assertion)
+    test/TestChecklist.hs:92:
+    expected: 3
+     but got: 5 (expected failure)
+  object w/o Show is OK:                OK
+  object w/o Show bad comparison:       FAIL (expected: revealed test check fails)
+    Exception: ERROR: opaque object bad expected
+      1 checks failed in this checklist:
+      --- Input for below: [[19]]
+      -Failed check: revealed
+            expected:    18
+            failed with: 19 (expected failure)
+  Compare identical multi-line results: OK
+  Compare changed multi-line results:   FAIL (expected: there are changes)
+    Exception: ERROR: multi-line
+      2 checks failed in this checklist:
+      --- Input for below: "To be, or not to be--that is the question:\nWhether 'tis nobler in the mind to suffer\nThe slings and arrows of outrageous fortune\nOr to take arms against a sea of troubles\nAnd by opposing end them. To die, to sleep--\nNo more--and by a sleep to say we end\nThe heartache, and the thousand natural shocks\nThat flesh is heir to. 'Tis a consummation\nDevoutly to be wished. To die, to sleep--\nTo sleep--perchance to dream: ay, there's the rub,\nFor in that sleep of death what dreams may come\nWhen we have shuffled off this mortal coil,\nMust give us pause. There's the respect\nThat makes calamity of so long life.\n"
+      -Failed check: word count
+            expected:    113
+            failed with: 114
+      -Failed check 'unchanged observation failure' with: MISMATCH between 14l/609c expected and 14l/606c actual
+       1|        > To␠be,␠or␠not␠to␠be--that␠is␠the␠question:
+       2|        > Whether␠'tis␠nobler␠in␠the␠mind␠to␠suffer
+       3|        > The␠slings␠and␠arrows␠of␠outrageous␠fortune
+       4|        > Or␠to␠take␠arms␠against␠a␠sea␠of␠troubles
+       5| ↱expect> And␠by␠opposing␠end␠them.␠␠To␠die,␠to␠sleep--
+        | ↳actual> And␠by␠opposing␠end␠them.␠To␠die,␠to␠sleep--
+       6|        > No␠more--and␠by␠a␠sleep␠to␠say␠we␠end
+       7|        > The␠heartache,␠and␠the␠thousand␠natural␠shocks
+       8|        > That␠flesh␠is␠heir␠to.␠'Tis␠a␠consummation
+       9| ↱expect> Devoutly␠to␠be␠wished.␠␠To␠die,␠to␠sleep--
+        | ↳actual> Devoutly␠to␠be␠wished.␠To␠die,␠to␠sleep--
+      10|        > To␠sleep--perchance␠to␠dream:␠ay,␠there's␠the␠rub,
+      11|        > For␠in␠that␠sleep␠of␠death␠what␠dreams␠may␠come
+      12|        > When␠we␠have␠shuffled␠off␠this␠mortal␠coil,
+      13| ↱expect> Must␠give␠us␠pause.␠␠There's␠the␠respect
+        | ↳actual> Must␠give␠us␠pause.␠There's␠the␠respect
+      14|        > That␠makes␠calamity␠of␠so␠long␠life.
+     (expected failure)
+
+All 11 tests passed (0.00s)
+Test suite checklistTests: PASS
+Test suite logged to:
+/tmp/workdir-tasty-checklist/tasty-checklist-1.0.6.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/tasty-checklist-1.0.6.0/t/checklistTests/test/tasty-checklist-1.0.6.0-checklistTests.log
+1 of 1 test suites (1 of 1 test cases) passed.

@@ -1,0 +1,252 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - asn1-encoding-0.9.6 (lib) (first run)
+ - asn1-encoding-0.9.6 (test:tests-asn1-encoding) (first run)
+Configuring library for asn1-encoding-0.9.6...
+Preprocessing library for asn1-encoding-0.9.6...
+Building library for asn1-encoding-0.9.6...
+[ 1 of 12] Compiling Data.ASN1.Error
+[ 2 of 12] Compiling Data.ASN1.Get
+
+Data/ASN1/Get.hs:31:29: warning: [-Wunused-imports]
+    The import of ‘Applicative’
+    from module ‘Control.Applicative’ is redundant
+   |
+31 | import Control.Applicative (Applicative(..),Alternative(..))
+   |                             ^^^^^^^^^^^^^^^
+
+Data/ASN1/Get.hs:92:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative Get’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+92 |     pure  = return
+   |     ^^^^^^^^^^^^^^
+
+Data/ASN1/Get.hs:101:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad Get’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+101 |     return a = Get $ \ s0 b0 m0 p0 _ ks -> ks s0 b0 m0 p0 a
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 3 of 12] Compiling Data.ASN1.Internal
+[ 4 of 12] Compiling Data.ASN1.Object
+[ 5 of 12] Compiling Data.ASN1.Serialize
+
+Data/ASN1/Serialize.hs:17:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+17 | import Control.Applicative ((<$>))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 6 of 12] Compiling Data.ASN1.BinaryEncoding.Writer
+[ 7 of 12] Compiling Data.ASN1.BinaryEncoding.Parse
+[ 8 of 12] Compiling Data.ASN1.BinaryEncoding.Raw
+[ 9 of 12] Compiling Data.ASN1.Stream
+[10 of 12] Compiling Data.ASN1.Prim
+
+Data/ASN1/Prim.hs:55:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+55 | import Data.Monoid
+   | ^^^^^^^^^^^^^^^^^^
+
+Data/ASN1/Prim.hs:65:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+65 | import Control.Applicative
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Data/ASN1/Prim.hs:259:11: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘exponent’ shadows the existing binding
+      imported from ‘Prelude’ at Data/ASN1/Prim.hs:13:8-21
+      (and originally defined in ‘GHC.Float’)
+    |
+259 |           exponent = exp' - fromIntegral scaleFactor
+    |           ^^^^^^^^
+
+Data/ASN1/Prim.hs:296:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding: Patterns of type ‘[Word8]’ not matched: []
+    |
+296 |         (x:xs) = B.unpack s
+    |         ^^^^^^^^^^^^^^^^^^^
+
+Data/ASN1/Prim.hs:428:9: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘exp’ shadows the existing binding
+      imported from ‘Prelude’ at Data/ASN1/Prim.hs:13:8-21
+      (and originally defined in ‘GHC.Float’)
+    |
+428 |   (man, exp) = decodeFloat d
+    |         ^^^
+
+Data/ASN1/Prim.hs:429:14: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘exponent’ shadows the existing binding
+      imported from ‘Prelude’ at Data/ASN1/Prim.hs:13:8-21
+      (and originally defined in ‘GHC.Float’)
+    |
+429 |   (mantissa, exponent) = normalize (fromIntegral $ mkUnsigned man, exp)
+    |              ^^^^^^^^
+
+Data/ASN1/Prim.hs:441:22: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘exponent’ shadows the existing binding
+      imported from ‘Prelude’ at Data/ASN1/Prim.hs:13:8-21
+      (and originally defined in ‘GHC.Float’)
+    |
+441 | normalize (mantissa, exponent) = (mantissa `shiftR` sh, exponent + sh)
+    |                      ^^^^^^^^
+[11 of 12] Compiling Data.ASN1.Encoding
+[12 of 12] Compiling Data.ASN1.BinaryEncoding
+Configuring test suite 'tests-asn1-encoding' for asn1-encoding-0.9.6...
+Preprocessing test suite 'tests-asn1-encoding' for asn1-encoding-0.9.6...
+Building test suite 'tests-asn1-encoding' for asn1-encoding-0.9.6...
+
+<no location info>: warning: [GHC-32850] [-Wmissing-home-modules]
+    These modules are needed for compilation but not listed in your .cabal file's other-modules for ‘asn1-encoding-0.9.6-inplace-tests-asn1-encoding’ :
+        Data.ASN1.BinaryEncoding
+        Data.ASN1.BinaryEncoding.Parse
+        Data.ASN1.BinaryEncoding.Writer
+        Data.ASN1.Encoding
+        Data.ASN1.Error
+        Data.ASN1.Get
+        Data.ASN1.Internal
+        Data.ASN1.Prim
+        Data.ASN1.Serialize
+        Data.ASN1.Stream
+[ 1 of 11] Compiling Data.ASN1.Error
+[ 2 of 11] Compiling Data.ASN1.Get
+
+Data/ASN1/Get.hs:31:29: warning: [-Wunused-imports]
+    The import of ‘Applicative’
+    from module ‘Control.Applicative’ is redundant
+   |
+31 | import Control.Applicative (Applicative(..),Alternative(..))
+   |                             ^^^^^^^^^^^^^^^
+
+Data/ASN1/Get.hs:92:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative Get’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+92 |     pure  = return
+   |     ^^^^^^^^^^^^^^
+
+Data/ASN1/Get.hs:101:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad Get’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+101 |     return a = Get $ \ s0 b0 m0 p0 _ ks -> ks s0 b0 m0 p0 a
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 3 of 11] Compiling Data.ASN1.Internal
+[ 4 of 11] Compiling Data.ASN1.Serialize
+
+Data/ASN1/Serialize.hs:17:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+17 | import Control.Applicative ((<$>))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 5 of 11] Compiling Data.ASN1.BinaryEncoding.Writer
+[ 6 of 11] Compiling Data.ASN1.BinaryEncoding.Parse
+[ 7 of 11] Compiling Data.ASN1.Stream
+[ 8 of 11] Compiling Data.ASN1.Prim
+
+Data/ASN1/Prim.hs:55:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+55 | import Data.Monoid
+   | ^^^^^^^^^^^^^^^^^^
+
+Data/ASN1/Prim.hs:65:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+65 | import Control.Applicative
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Data/ASN1/Prim.hs:259:11: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘exponent’ shadows the existing binding
+      imported from ‘Prelude’ at Data/ASN1/Prim.hs:13:8-21
+      (and originally defined in ‘GHC.Float’)
+    |
+259 |           exponent = exp' - fromIntegral scaleFactor
+    |           ^^^^^^^^
+
+Data/ASN1/Prim.hs:296:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding: Patterns of type ‘[Word8]’ not matched: []
+    |
+296 |         (x:xs) = B.unpack s
+    |         ^^^^^^^^^^^^^^^^^^^
+
+Data/ASN1/Prim.hs:428:9: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘exp’ shadows the existing binding
+      imported from ‘Prelude’ at Data/ASN1/Prim.hs:13:8-21
+      (and originally defined in ‘GHC.Float’)
+    |
+428 |   (man, exp) = decodeFloat d
+    |         ^^^
+
+Data/ASN1/Prim.hs:429:14: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘exponent’ shadows the existing binding
+      imported from ‘Prelude’ at Data/ASN1/Prim.hs:13:8-21
+      (and originally defined in ‘GHC.Float’)
+    |
+429 |   (mantissa, exponent) = normalize (fromIntegral $ mkUnsigned man, exp)
+    |              ^^^^^^^^
+
+Data/ASN1/Prim.hs:441:22: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘exponent’ shadows the existing binding
+      imported from ‘Prelude’ at Data/ASN1/Prim.hs:13:8-21
+      (and originally defined in ‘GHC.Float’)
+    |
+441 | normalize (mantissa, exponent) = (mantissa `shiftR` sh, exponent + sh)
+    |                      ^^^^^^^^
+[ 9 of 11] Compiling Data.ASN1.Encoding
+[10 of 11] Compiling Data.ASN1.BinaryEncoding
+[11 of 11] Compiling Main
+
+tests/Tests.hs:4:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+  |
+4 | import Control.Applicative
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests.hs:35:25: warning: [-Wunused-local-binds]
+    Defined but not used: ‘nbBytes’
+   |
+35 |                         nbBytes nb = if nb > 255 then 1 + nbBytes (nb `div` 256) else 1
+   |                         ^^^^^^^
+
+<no location info>: warning: [GHC-32850] [-Wmissing-home-modules]
+    These modules are needed for compilation but not listed in your .cabal file's other-modules for ‘asn1-encoding-0.9.6-inplace-tests-asn1-encoding’ :
+        Data.ASN1.BinaryEncoding
+        Data.ASN1.BinaryEncoding.Parse
+        Data.ASN1.BinaryEncoding.Writer
+        Data.ASN1.Encoding
+        Data.ASN1.Error
+        Data.ASN1.Get
+        Data.ASN1.Internal
+        Data.ASN1.Prim
+        Data.ASN1.Serialize
+        Data.ASN1.Stream
+[12 of 12] Linking /tmp/workdir-asn1-encoding/asn1-encoding-0.9.6/dist-newstyle/build/x86_64-linux/ghc-9.6.6/asn1-encoding-0.9.6/t/tests-asn1-encoding/build/tests-asn1-encoding/tests-asn1-encoding

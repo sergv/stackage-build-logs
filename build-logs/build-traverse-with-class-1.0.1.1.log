@@ -1,0 +1,264 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - traverse-with-class-1.0.1.1 (lib) (first run)
+ - traverse-with-class-1.0.1.1 (test:test) (first run)
+Configuring library for traverse-with-class-1.0.1.1...
+Preprocessing library for traverse-with-class-1.0.1.1...
+Building library for traverse-with-class-1.0.1.1...
+[1 of 6] Compiling Data.Generics.Traversable.Core
+
+Data/Generics/Traversable/Core.hs:5:26: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+  |
+5 | class GTraversable (c :: * -> Constraint) a where
+  |                          ^
+[2 of 6] Compiling Data.Generics.Traversable.TH
+[3 of 6] Compiling Data.Generics.Traversable.Instances
+[4 of 6] Compiling Data.Generics.Traversable
+
+Data/Generics/Traversable.hs:60:53: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+60 | class    (GTraversable (Rec c) a, c a) => Rec (c :: * -> Constraint) a
+   |                                                     ^
+
+Data/Generics/Traversable.hs:61:53: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+61 | instance (GTraversable (Rec c) a, c a) => Rec (c :: * -> Constraint) a
+   |                                                     ^
+
+Data/Generics/Traversable.hs:101:6: warning: [-Wsimplifiable-class-constraints]
+    • The constraint ‘Rec c d’ matches
+        instance (GTraversable (Rec c) a, c a) => Rec c a
+          -- Defined at Data/Generics/Traversable.hs:61:10
+      This makes type inference for inner bindings fragile;
+        either use MonoLocalBinds, or simplify it using the instance
+    • In the type signature:
+        everywhere :: forall c a. (Rec c a) =>
+                                  (forall d. (Rec c d) => d -> d) -> a -> a
+    |
+101 |   :: forall c a .
+    |      ^^^^^^^^^^^^...
+
+Data/Generics/Traversable.hs:101:6: warning: [-Wsimplifiable-class-constraints]
+    • The constraint ‘Rec c a’ matches
+        instance (GTraversable (Rec c) a, c a) => Rec c a
+          -- Defined at Data/Generics/Traversable.hs:61:10
+      This makes type inference for inner bindings fragile;
+        either use MonoLocalBinds, or simplify it using the instance
+    • In the type signature:
+        everywhere :: forall c a. (Rec c a) =>
+                                  (forall d. (Rec c d) => d -> d) -> a -> a
+    |
+101 |   :: forall c a .
+    |      ^^^^^^^^^^^^...
+
+Data/Generics/Traversable.hs:107:11: warning: [-Wsimplifiable-class-constraints]
+    • The constraint ‘Rec c b’ matches
+        instance (GTraversable (Rec c) a, c a) => Rec c a
+          -- Defined at Data/Generics/Traversable.hs:61:10
+      This makes type inference for inner bindings fragile;
+        either use MonoLocalBinds, or simplify it using the instance
+    • In the type signature: go :: forall b. Rec c b => b -> b
+      In the expression:
+        let
+          go :: forall b. Rec c b => b -> b
+          go = f . gmap @(Rec c) go
+        in go
+      In an equation for ‘everywhere’:
+          everywhere f
+            = let
+                go :: forall b. Rec c b => b -> b
+                go = f . gmap @(Rec c) go
+              in go
+    |
+107 |     go :: forall b . Rec c b => b -> b
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Data/Generics/Traversable.hs:113:6: warning: [-Wsimplifiable-class-constraints]
+    • The constraint ‘Rec c d’ matches
+        instance (GTraversable (Rec c) a, c a) => Rec c a
+          -- Defined at Data/Generics/Traversable.hs:61:10
+      This makes type inference for inner bindings fragile;
+        either use MonoLocalBinds, or simplify it using the instance
+    • In the type signature:
+        everywhere' :: forall c a. (Rec c a) =>
+                                   (forall d. (Rec c d) => d -> d) -> a -> a
+    |
+113 |   :: forall c a .
+    |      ^^^^^^^^^^^^...
+
+Data/Generics/Traversable.hs:113:6: warning: [-Wsimplifiable-class-constraints]
+    • The constraint ‘Rec c a’ matches
+        instance (GTraversable (Rec c) a, c a) => Rec c a
+          -- Defined at Data/Generics/Traversable.hs:61:10
+      This makes type inference for inner bindings fragile;
+        either use MonoLocalBinds, or simplify it using the instance
+    • In the type signature:
+        everywhere' :: forall c a. (Rec c a) =>
+                                   (forall d. (Rec c d) => d -> d) -> a -> a
+    |
+113 |   :: forall c a .
+    |      ^^^^^^^^^^^^...
+
+Data/Generics/Traversable.hs:119:11: warning: [-Wsimplifiable-class-constraints]
+    • The constraint ‘Rec c b’ matches
+        instance (GTraversable (Rec c) a, c a) => Rec c a
+          -- Defined at Data/Generics/Traversable.hs:61:10
+      This makes type inference for inner bindings fragile;
+        either use MonoLocalBinds, or simplify it using the instance
+    • In the type signature: go :: forall b. Rec c b => b -> b
+      In the expression:
+        let
+          go :: forall b. Rec c b => b -> b
+          go = gmap @(Rec c) go . f
+        in go
+      In an equation for ‘everywhere'’:
+          everywhere' f
+            = let
+                go :: forall b. Rec c b => b -> b
+                go = gmap @(Rec c) go . f
+              in go
+    |
+119 |     go :: forall b . Rec c b => b -> b
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Data/Generics/Traversable.hs:125:6: warning: [-Wsimplifiable-class-constraints]
+    • The constraint ‘Rec c d’ matches
+        instance (GTraversable (Rec c) a, c a) => Rec c a
+          -- Defined at Data/Generics/Traversable.hs:61:10
+      This makes type inference for inner bindings fragile;
+        either use MonoLocalBinds, or simplify it using the instance
+    • In the type signature:
+        everywhereM :: forall c m a. (Monad m, Rec c a) =>
+                                     (forall d. (Rec c d) => d -> m d) -> a -> m a
+    |
+125 |   :: forall c m a .
+    |      ^^^^^^^^^^^^^^...
+
+Data/Generics/Traversable.hs:125:6: warning: [-Wsimplifiable-class-constraints]
+    • The constraint ‘Rec c a’ matches
+        instance (GTraversable (Rec c) a, c a) => Rec c a
+          -- Defined at Data/Generics/Traversable.hs:61:10
+      This makes type inference for inner bindings fragile;
+        either use MonoLocalBinds, or simplify it using the instance
+    • In the type signature:
+        everywhereM :: forall c m a. (Monad m, Rec c a) =>
+                                     (forall d. (Rec c d) => d -> m d) -> a -> m a
+    |
+125 |   :: forall c m a .
+    |      ^^^^^^^^^^^^^^...
+
+Data/Generics/Traversable.hs:131:11: warning: [-Wsimplifiable-class-constraints]
+    • The constraint ‘Rec c b’ matches
+        instance (GTraversable (Rec c) a, c a) => Rec c a
+          -- Defined at Data/Generics/Traversable.hs:61:10
+      This makes type inference for inner bindings fragile;
+        either use MonoLocalBinds, or simplify it using the instance
+    • In the type signature: go :: forall b. Rec c b => b -> m b
+      In the expression:
+        let
+          go :: forall b. Rec c b => b -> m b
+          go = f <=< gmapM @(Rec c) go
+        in go
+      In an equation for ‘everywhereM’:
+          everywhereM f
+            = let
+                go :: forall b. Rec c b => b -> m b
+                go = f <=< gmapM @(Rec c) go
+              in go
+    |
+131 |     go :: forall b . Rec c b => b -> m b
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Data/Generics/Traversable.hs:137:6: warning: [-Wsimplifiable-class-constraints]
+    • The constraint ‘Rec c d’ matches
+        instance (GTraversable (Rec c) a, c a) => Rec c a
+          -- Defined at Data/Generics/Traversable.hs:61:10
+      This makes type inference for inner bindings fragile;
+        either use MonoLocalBinds, or simplify it using the instance
+    • In the type signature:
+        everything :: forall c r a. (Rec c a) =>
+                                    (r -> r -> r) -> (forall d. (Rec c d) => d -> r) -> a -> r
+    |
+137 |   :: forall c r a .
+    |      ^^^^^^^^^^^^^^...
+
+Data/Generics/Traversable.hs:137:6: warning: [-Wsimplifiable-class-constraints]
+    • The constraint ‘Rec c a’ matches
+        instance (GTraversable (Rec c) a, c a) => Rec c a
+          -- Defined at Data/Generics/Traversable.hs:61:10
+      This makes type inference for inner bindings fragile;
+        either use MonoLocalBinds, or simplify it using the instance
+    • In the type signature:
+        everything :: forall c r a. (Rec c a) =>
+                                    (r -> r -> r) -> (forall d. (Rec c d) => d -> r) -> a -> r
+    |
+137 |   :: forall c r a .
+    |      ^^^^^^^^^^^^^^...
+
+Data/Generics/Traversable.hs:144:11: warning: [-Wsimplifiable-class-constraints]
+    • The constraint ‘Rec c b’ matches
+        instance (GTraversable (Rec c) a, c a) => Rec c a
+          -- Defined at Data/Generics/Traversable.hs:61:10
+      This makes type inference for inner bindings fragile;
+        either use MonoLocalBinds, or simplify it using the instance
+    • In the type signature: go :: forall b. Rec c b => b -> r
+      In the expression:
+        let
+          go :: forall b. Rec c b => b -> r
+          go x = gfoldl' @(Rec c) (\ a y -> combine a (go y)) (f x) x
+        in go
+      In an equation for ‘everything’:
+          everything combine f
+            = let
+                go :: forall b. Rec c b => b -> r
+                go x = gfoldl' @(Rec c) (\ a y -> ...) (f x) x
+              in go
+    |
+144 |     go :: forall b . Rec c b => b -> r
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[5 of 6] Compiling Data.Generics.Traversable.Generic
+
+Data/Generics/Traversable/Generic.hs:59:29: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+59 | class GTraversable' c (f :: * -> *) where
+   |                             ^
+
+Data/Generics/Traversable/Generic.hs:59:34: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+59 | class GTraversable' c (f :: * -> *) where
+   |                                  ^
+[6 of 6] Compiling Data.Generics.Traversable.Zipper
+
+Data/Generics/Traversable/Zipper.hs:99:19: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+99 | data Zipper (c :: * -> Constraint) root =
+   |                   ^
+Configuring test suite 'test' for traverse-with-class-1.0.1.1...
+Preprocessing test suite 'test' for traverse-with-class-1.0.1.1...
+Building test suite 'test' for traverse-with-class-1.0.1.1...
+[1 of 1] Compiling Main
+[2 of 2] Linking /tmp/workdir-traverse-with-class/traverse-with-class-1.0.1.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/traverse-with-class-1.0.1.1/t/test/build/test/test

@@ -1,0 +1,125 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - scotty-0.20.1 (test:spec) (ephemeral targets)
+Preprocessing test suite 'spec' for scotty-0.20.1...
+Building test suite 'spec' for scotty-0.20.1...
+Running 1 test suites...
+Test suite spec: RUNNING...
+
+Web.Scotty
+  ScottyM
+    get
+      adds route for GET requests [✔]
+      properly handles extra slash routes for GET requests [✔]
+    post
+      adds route for POST requests [✔]
+      properly handles extra slash routes for POST requests [✔]
+    put
+      adds route for PUT requests [✔]
+      properly handles extra slash routes for PUT requests [✔]
+    patch
+      adds route for PATCH requests [✔]
+      properly handles extra slash routes for PATCH requests [✔]
+    delete
+      adds route for DELETE requests [✔]
+      properly handles extra slash routes for DELETE requests [✔]
+    options
+      adds route for OPTIONS requests [✔]
+      properly handles extra slash routes for OPTIONS requests [✔]
+    addroute
+      can be used to add route for GET requests [✔]
+      can be used to add route for POST requests [✔]
+      can be used to add route for HEAD requests [✔]
+      can be used to add route for PUT requests [✔]
+      can be used to add route for PATCH requests [✔]
+      can be used to add route for DELETE requests [✔]
+      can be used to add route for OPTIONS requests [✔]
+    matchAny
+      adds route that matches "NONSTANDARD" requests [✔]
+      adds route that matches "GET" requests [✔]
+      adds route that matches "POST" requests [✔]
+      adds route that matches "HEAD" requests [✔]
+      adds route that matches "PUT" requests [✔]
+      adds route that matches "PATCH" requests [✔]
+      adds route that matches "DELETE" requests [✔]
+      adds route that matches "OPTIONS" requests [✔]
+    notFound
+      adds handler for requests that do not match any route [✔]
+      allows to customize the HTTP status code [✔]
+      when not specified
+        returns 404 when no route matches [✔]
+    defaultHandler
+      sets custom exception handler [✔]
+      allows to customize the HTTP status code [✔]
+      when not specified
+        returns 500 on exceptions [✔]
+    setMaxRequestBodySize
+      should return 200 OK if the request body size is below 1 KB [✔]
+      should return 413 (Content Too Large) if the request body size is above 1 KB [✔]
+      (counterexample)
+        doesn't throw an uncaught exception if the body is large [✔]
+  ActionM
+    MonadBaseControl instance
+      catches SomeException and returns 200 [✔]
+      returns 500 on uncaught exceptions [✔]
+    Alternative instance
+      empty without any route following returns a 404 [✔]
+      empty throws Next [✔]
+      <|> skips the left route if that fails [✔]
+    MonadFail instance
+      returns 500 if not caught [✔]
+      can catch the StatusError thrown by fail [✔]
+    redirect
+      Responds with a 302 Redirect [✔]
+    captureParam
+      responds with 200 OK iff at least one route matches at the right type [✔]
+      responds with 404 Not Found if no route matches at the right type [✔]
+      responds with 500 Server Error if the parameter cannot be found in the capture [✔]
+      recover from missing parameter exception
+        catches a StatusError [✔]
+    queryParam
+      returns query parameter with given name [✔]
+      responds with 200 OK if the query parameter can be parsed at the right type [✔]
+      responds with 400 Bad Request if the query parameter cannot be parsed at the right type [✔]
+      recover from type mismatch parameter exception
+        catches a StatusError [✔]
+    formParam
+      returns form parameter with given name [✔]
+      replaces non UTF-8 bytes with Unicode replacement character [✔]
+      responds with 200 OK if the form parameter can be parsed at the right type [✔]
+      responds with 400 Bad Request if the form parameter cannot be parsed at the right type [✔]
+      preserves the body of a POST request even after 'next' (#147) [✔]
+      recover from type mismatch parameter exception
+        catches a StatusError [✔]
+    text
+      sets body to given text [✔]
+      sets Content-Type header to "text/plain; charset=utf-8" [✔]
+      doesn't override a previously set Content-Type header [✔]
+    html
+      sets body to given text [✔]
+      sets Content-Type header to "text/html; charset=utf-8" [✔]
+      doesn't override a previously set Content-Type header [✔]
+    json
+      doesn't override a previously set Content-Type header [✔]
+    finish
+      responds with 200 by default [✔]
+      stops the execution of an action [✔]
+    setSimpleCookie
+      responds with a Set-Cookie header [✔]
+    getCookie
+      finds the right cookie in the request headers [✔]
+    deleteCookie
+      responds with a Set-Cookie header with expiry date Jan 1, 1970 [✔]
+    nested
+I've done some IO here
+      responds with the expected simpleApp response [✔]
+  scottySocket
+Setting phasers to stun... (unix socket /tmp/scotty-test.socket) (ctrl-c to quit)
+    works with a unix socket [✔]
+
+Finished in 0.0046 seconds
+72 examples, 0 failures
+Test suite spec: PASS
+Test suite logged to:
+/tmp/workdir-scotty/scotty-0.20.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/scotty-0.20.1/t/spec/test/scotty-0.20.1-spec.log
+1 of 1 test suites (1 of 1 test cases) passed.

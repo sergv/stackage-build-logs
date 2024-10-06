@@ -1,0 +1,80 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - backtracking-0.1.0 (lib) (first run)
+ - backtracking-0.1.0 (test:test) (first run)
+Configuring library for backtracking-0.1.0...
+Preprocessing library for backtracking-0.1.0...
+Building library for backtracking-0.1.0...
+[1 of 1] Compiling Control.Monad.Search
+
+src/Control/Monad/Search.hs:35:23: warning: [-Wunused-top-binds]
+    Defined but not used: ‘unDFS’
+   |
+35 | newtype DFS a = DFS { unDFS :: [a] }
+   |                       ^^^^^
+
+src/Control/Monad/Search.hs:48:23: warning: [-Wunused-top-binds]
+    Defined but not used: ‘unBFS’
+   |
+48 | newtype BFS a = BFS { unBFS :: [[a]] }
+   |                       ^^^^^
+
+src/Control/Monad/Search.hs:54:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative BFS’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+54 |   pure = return
+   |   ^^^^^^^^^^^^^
+
+src/Control/Monad/Search.hs:58:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad BFS’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+58 |   return x = BFS [[x]]
+   |   ^^^^^^^^^^^^^^^^^^^^
+
+src/Control/Monad/Search.hs:63:16: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘xss’ shadows the existing binding
+      bound at src/Control/Monad/Search.hs:60:11
+   |
+63 |     shift (BFS xss) = BFS ([] : xss)
+   |                ^^^
+
+src/Control/Monad/Search.hs:75:11: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘xss’ shadows the existing binding
+      bound at src/Control/Monad/Search.hs:71:14
+   |
+75 |     merge xss [] = xss
+   |           ^^^
+
+src/Control/Monad/Search.hs:76:14: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘yss’ shadows the existing binding
+      bound at src/Control/Monad/Search.hs:71:24
+   |
+76 |     merge [] yss = yss
+   |              ^^^
+
+src/Control/Monad/Search.hs:77:15: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘xss’ shadows the existing binding
+      bound at src/Control/Monad/Search.hs:71:14
+   |
+77 |     merge (xs:xss) (ys:yss) = (xs ++ ys) : merge xss yss
+   |               ^^^
+
+src/Control/Monad/Search.hs:77:24: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘yss’ shadows the existing binding
+      bound at src/Control/Monad/Search.hs:71:24
+   |
+77 |     merge (xs:xss) (ys:yss) = (xs ++ ys) : merge xss yss
+   |                        ^^^
+Configuring test suite 'test' for backtracking-0.1.0...
+Preprocessing test suite 'test' for backtracking-0.1.0...
+Building test suite 'test' for backtracking-0.1.0...
+[1 of 2] Compiling Spec
+[2 of 2] Compiling Main
+[3 of 3] Linking /tmp/workdir-backtracking/backtracking-0.1.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/backtracking-0.1.0/t/test/build/test/test

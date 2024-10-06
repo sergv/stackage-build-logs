@@ -1,0 +1,100 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - ghc-typelits-extra-0.4.7 (test:test-ghc-typelits-extra) (ephemeral targets)
+Preprocessing test suite 'test-ghc-typelits-extra' for ghc-typelits-extra-0.4.7...
+Building test suite 'test-ghc-typelits-extra' for ghc-typelits-extra-0.4.7...
+Running 1 test suites...
+Test suite test-ghc-typelits-extra: RUNNING...
+ghc-typelits-natnormalise
+  Basic functionality
+    GCD 6 8 ~ 2:                                                          OK
+    forall x . GCD 6 8 + x ~ x + GCD 10 8:                                OK
+    CLog 3 10 ~ 3:                                                        OK
+    forall x . CLog 3 10 + x ~ x + CLog 2 7:                              OK
+    forall x>1 . CLog x (x^y) ~ y:                                        OK
+    KnownNat (CLog 6 8) ~ 2:                                              OK
+    KnownNat (CLog 3 10) ~ 3:                                             OK
+    KnownNat ((CLog 2 4) * (3 ^ (CLog 2 4)))) ~ 18:                       OK
+    KnownNat (Max (CLog 2 4) (CLog 4 20)) ~ 3:                            OK
+    Div 9 3 ~ 3:                                                          OK
+    Div 9 4 ~ 2:                                                          OK
+    Mod 9 3 ~ 0:                                                          OK
+    Mod 9 4 ~ 1:                                                          OK
+    KnownNat (Div 9 3) ~ 3:                                               OK
+    KnownNat (Mod 9 4) ~ 1:                                               OK
+    LCM 18 7 ~ 126:                                                       OK
+    KnownNat (LCM 18 7) ~ 126:                                            OK
+    forall x . LCM 3 4 + x ~ x + LCM 6 4:                                 OK
+    KnownNat (FLog 3 1) ~ 0:                                              OK
+    FLog 3 1 ~ 0:                                                         OK
+    KnownNat (CLog 3 1) ~ 0:                                              OK
+    CLog 3 1 ~ 0:                                                         OK
+    KnownNat (Log 3 1) ~ 0:                                               OK
+    KnownNat (Log 3 9) ~ 2:                                               OK
+    Log 3 9 ~ 2:                                                          OK
+    forall x>1 . x ^ (Log x y) ~ y:                                       OK
+    forall x . Max x x ~ x:                                               OK
+    forall x . Min x x ~ x:                                               OK
+    forall x . (Max x x + 1) ~ (1 + x):                                   OK
+    forall x . (Min x x + 1) ~ (1 + Max x x):                             OK
+    forall x . Min x (x+1) ~ x:                                           OK
+    forall x . Min (x+1) x ~ x:                                           OK
+    forall x . Max x (x+1) ~ (x+1):                                       OK
+    forall x . Max (x+1) x ~ (x+1):                                       OK
+    forall x . (1 + Max n (1+n)) ~ (2 + x):                               OK
+    forall x . (1 + Min n (1+n)) ~ (1 + x):                               OK
+    1 <= Div 18 3:                                                        OK
+    Min (0-1) 0 ~ (0-1):                                                  OK
+    Max (0-1) 0 ~ (0-1):                                                  OK
+    forall x y . Max x y ~ Max y x:                                       OK
+    forall x y . Min x y ~ Min y x:                                       OK
+    forall x y . GCD x y ~ GCD y x:                                       OK
+    forall x y . LCM x y ~ LCM y x:                                       OK
+    forall x y . x <=? Max x y ~ True:                                    OK
+    forall x y . y <=? Max x y ~ True:                                    OK
+    forall x y n . n ~ Max x y => x <=? n ~ True:                         OK
+    forall x y n . n ~ Max x y => y <=? n ~ True:                         OK
+    forall n . Max (n+1) 1 ~ 1+n:                                         OK
+    forall n . Max (1+n) 1 ~ n+1:                                         OK
+    forall n . Max (n+2) 1 ~ Max (2+n) 2:                                 OK
+    forall n . Max (((2 ^ n) + 1) + ((2 ^ n) + 1)) 1 ~ 2 + ((2 ^ n) * 2): OK
+    forall a . (1 + BitPack a) ~ (Max 0 (BitPack a) + CLog 2 2:           OK
+    forall n . 1 <= Max (n + 1) 1:                                        OK
+    forall n . n <= Max (n + 1) 1:                                        OK
+    forall n . n + 1 <= Max (n + 1) 1:                                    OK
+    forall n p . n <= Max (n + p) p:                                      OK
+    forall n p . n + 1 <= Max (n + p + 1) p:                              OK
+  errors
+    GCD 6 8 /~ 4:                                                         OK
+    GCD 6 8 + x /~ x + GCD 9 6:                                           OK
+    CLog 3 10 /~ 2:                                                       OK
+    CLog 3 10 + x /~ x + CLog 2 9:                                        OK
+    CLog 0 4 /~ 100:                                                      OK
+    CLog 1 4 /~ 100:                                                      OK
+    CLog 4 0 /~ 0:                                                        OK
+    CLog 1 (1^y) /~ y:                                                    OK
+    CLog 0 (0^y) /~ y:                                                    OK
+    No instance (KnownNat (CLog 1 4)):                                    OK
+    No instance (KnownNat (CLog 4 4 - CLog 2 4)):                         OK
+    Div 4 0 /~ 4:                                                         OK
+    Mod 4 0 /~ 4:                                                         OK
+    FLog 0 4 /~ 100:                                                      OK
+    FLog 1 4 /~ 100:                                                      OK
+    FLog 4 0 /~ 0:                                                        OK
+    GCD 6 8 /~ 4:                                                         OK
+    GCD 6 8 + x /~ x + GCD 9 6:                                           OK
+    No instance (KnownNat (Log 3 0)):                                     OK
+    No instance (KnownNat (Log 3 10)):                                    OK
+    Min a (a*b) /~ a:                                                     OK
+    Max a (a*b) /~ (a*b):                                                 OK
+    (1 <=? Div 18 6) ~ False:                                             OK
+    (z <=? Max x y) /~ True:                                              OK
+    (x+1 <=? Max x y) /~ True:                                            OK
+    (x <= n) /=> (Max x y) ~ n:                                           OK
+    n + 2 <=? Max (n + 1) 1 /~ True:                                      OK
+
+All 84 tests passed (0.00s)
+Test suite test-ghc-typelits-extra: PASS
+Test suite logged to:
+/tmp/workdir-ghc-typelits-extra/ghc-typelits-extra-0.4.7/dist-newstyle/build/x86_64-linux/ghc-9.6.6/ghc-typelits-extra-0.4.7/t/test-ghc-typelits-extra/test/ghc-typelits-extra-0.4.7-test-ghc-typelits-extra.log
+1 of 1 test suites (1 of 1 test cases) passed.

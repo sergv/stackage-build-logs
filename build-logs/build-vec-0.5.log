@@ -1,0 +1,259 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - vec-0.5 (lib) (first run)
+ - vec-0.5 (test:inspection) (first run)
+Configuring library for vec-0.5...
+Preprocessing library for vec-0.5...
+Building library for vec-0.5...
+[1 of 6] Compiling Control.Lens.Yocto
+[2 of 6] Compiling Data.Vec.Pull
+
+src/Data/Vec/Pull.hs:142:24: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+142 | instance (N.SNatI m, n ~ 'S m)  => I.Foldable1 (Vec n) where
+    |                        ^
+
+src/Data/Vec/Pull.hs:158:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘(>>)’ definition detected
+    in the instance declaration for ‘Monad (Vec n)’.
+    ‘(>>)’ will eventually be removed in favour of ‘(*>)’
+    Either remove definition for ‘(>>)’ (recommended) or define as ‘(>>) = (*>)’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+158 |     _ >> x = x
+    |     ^^^^^^^^^^
+
+src/Data/Vec/Pull.hs:177:5: warning: [-Wnoncanonical-monoid-instances]
+    Noncanonical ‘mappend’ definition detected
+    in the instance declaration for ‘Monoid (Vec n a)’.
+    ‘mappend’ will eventually be removed in favour of ‘(<>)’
+    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    |
+177 |     Vec a `mappend` Vec b = Vec (mappend a b)
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Data/Vec/Pull.hs:192:12: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+192 | instance n ~ 'N.Z => Boring (Vec n a) where
+    |            ^
+[3 of 6] Compiling Data.Vec.DataFamily.SpineStrict
+
+src/Data/Vec/DataFamily/SpineStrict.hs:251:24: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+251 | instance (N.SNatI m, n ~ 'S m) => I.Foldable1 (Vec n) where
+    |                        ^
+
+src/Data/Vec/DataFamily/SpineStrict.hs:254:24: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+254 | instance (N.SNatI m, n ~ 'S m) => I.Traversable1 (Vec n) where
+    |                        ^
+
+src/Data/Vec/DataFamily/SpineStrict.hs:301:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘(>>)’ definition detected
+    in the instance declaration for ‘Monad (Vec n)’.
+    ‘(>>)’ will eventually be removed in favour of ‘(*>)’
+    Either remove definition for ‘(>>)’ (recommended) or define as ‘(>>) = (*>)’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+301 |     _ >> x = x
+    |     ^^^^^^^^^^
+
+src/Data/Vec/DataFamily/SpineStrict.hs:320:5: warning: [-Wnoncanonical-monoid-instances]
+    Noncanonical ‘mappend’ definition detected
+    in the instance declaration for ‘Monoid (Vec n a)’.
+    ‘mappend’ will eventually be removed in favour of ‘(<>)’
+    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    |
+320 |     mappend = zipWith mappend
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+[4 of 6] Compiling SafeCompat
+[5 of 6] Compiling Data.Vec.Lazy
+
+src/Data/Vec/Lazy.hs:210:12: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+210 | instance n ~ 'S m => I.Foldable1 (Vec n) where
+    |            ^
+
+src/Data/Vec/Lazy.hs:213:12: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+213 | instance n ~ 'S m => I.Traversable1 (Vec n) where
+    |            ^
+
+src/Data/Vec/Lazy.hs:239:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘(>>)’ definition detected
+    in the instance declaration for ‘Monad (Vec n)’.
+    ‘(>>)’ will eventually be removed in favour of ‘(*>)’
+    Either remove definition for ‘(>>)’ (recommended) or define as ‘(>>) = (*>)’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+239 |     _ >> x = x
+    |     ^^^^^^^^^^
+
+src/Data/Vec/Lazy.hs:258:5: warning: [-Wnoncanonical-monoid-instances]
+    Noncanonical ‘mappend’ definition detected
+    in the instance declaration for ‘Monoid (Vec n a)’.
+    ‘mappend’ will eventually be removed in favour of ‘(<>)’
+    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    |
+258 |     mappend = zipWith mappend
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Data/Vec/Lazy.hs:273:12: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+273 | instance n ~ 'N.Z => Boring (Vec n a) where
+    |            ^
+
+src/Data/Vec/Lazy.hs:858:13: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+858 | instance (a ~ a', b ~ b') => VecEach (a, a') (b, b') a b where
+    |             ^
+
+src/Data/Vec/Lazy.hs:858:21: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+858 | instance (a ~ a', b ~ b') => VecEach (a, a') (b, b') a b where
+    |                     ^
+
+src/Data/Vec/Lazy.hs:865:13: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+865 | instance (a ~ a2, a ~ a3, b ~ b2, b ~ b3) => VecEach (a, a2, a3) (b, b2, b3) a b where
+    |             ^
+
+src/Data/Vec/Lazy.hs:865:21: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+865 | instance (a ~ a2, a ~ a3, b ~ b2, b ~ b3) => VecEach (a, a2, a3) (b, b2, b3) a b where
+    |                     ^
+
+src/Data/Vec/Lazy.hs:865:29: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+865 | instance (a ~ a2, a ~ a3, b ~ b2, b ~ b3) => VecEach (a, a2, a3) (b, b2, b3) a b where
+    |                             ^
+
+src/Data/Vec/Lazy.hs:865:37: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+865 | instance (a ~ a2, a ~ a3, b ~ b2, b ~ b3) => VecEach (a, a2, a3) (b, b2, b3) a b where
+    |                                     ^
+
+src/Data/Vec/Lazy.hs:872:13: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+872 | instance (a ~ a2, a ~ a3, a ~ a4, b ~ b2, b ~ b3, b ~ b4) => VecEach (a, a2, a3, a4) (b, b2, b3, b4) a b where
+    |             ^
+
+src/Data/Vec/Lazy.hs:872:21: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+872 | instance (a ~ a2, a ~ a3, a ~ a4, b ~ b2, b ~ b3, b ~ b4) => VecEach (a, a2, a3, a4) (b, b2, b3, b4) a b where
+    |                     ^
+
+src/Data/Vec/Lazy.hs:872:29: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+872 | instance (a ~ a2, a ~ a3, a ~ a4, b ~ b2, b ~ b3, b ~ b4) => VecEach (a, a2, a3, a4) (b, b2, b3, b4) a b where
+    |                             ^
+
+src/Data/Vec/Lazy.hs:872:37: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+872 | instance (a ~ a2, a ~ a3, a ~ a4, b ~ b2, b ~ b3, b ~ b4) => VecEach (a, a2, a3, a4) (b, b2, b3, b4) a b where
+    |                                     ^
+
+src/Data/Vec/Lazy.hs:872:45: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+872 | instance (a ~ a2, a ~ a3, a ~ a4, b ~ b2, b ~ b3, b ~ b4) => VecEach (a, a2, a3, a4) (b, b2, b3, b4) a b where
+    |                                             ^
+
+src/Data/Vec/Lazy.hs:872:53: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+872 | instance (a ~ a2, a ~ a3, a ~ a4, b ~ b2, b ~ b3, b ~ b4) => VecEach (a, a2, a3, a4) (b, b2, b3, b4) a b where
+    |                                                     ^
+[6 of 6] Compiling Data.Vec.Lazy.Inline
+Configuring test suite 'inspection' for vec-0.5...
+Preprocessing test suite 'inspection' for vec-0.5...
+Building test suite 'inspection' for vec-0.5...
+[1 of 3] Compiling Inspection
+test/Inspection.hs:39:1: lhsInline === rhsZipWith passed.
+test/Inspection.hs:40:1: lhsNormal === rhsZipWith failed expectedly.
+test/Inspection.hs:55:1: lhsIMap === rhsIMap passed.
+test/Inspection.hs:56:1: lhsIMap' === rhsIMap failed expectedly.
+test/Inspection.hs:89:1: lhsJoin === rhsJoin passed.
+test/Inspection.hs:90:1: lhsJoin' === rhsJoin failed expectedly.
+test/Inspection.hs:105:1: lhsSnoc === rhsSnoc passed.
+test/Inspection.hs:106:1: lhsSnoc' === rhsSnoc failed expectedly.
+test/Inspection.hs:121:1: lhsReverse === rhsReverse passed.
+test/Inspection.hs:122:1: lhsReverse' === rhsReverse failed expectedly.
+test/Inspection.hs:137:1: lhsLast === rhsLast passed.
+test/Inspection.hs:138:1: lhsLast' === rhsLast failed expectedly.
+test/Inspection.hs:153:1: lhsInit === rhsInit passed.
+test/Inspection.hs:154:1: lhsInit' === rhsInit failed expectedly.
+test/Inspection.hs:169:1: lhsToNonEmpty === rhsToNonEmpty passed.
+test/Inspection.hs:170:1: lhsToNonEmpty' === rhsToNonEmpty failed expectedly.
+inspection testing successful
+      expected successes: 8
+       expected failures: 8
+[2 of 3] Compiling Inspection.DataFamily.SpineStrict
+test/Inspection/DataFamily/SpineStrict.hs:34:1: lhsInline === rhsZipWith passed.
+test/Inspection/DataFamily/SpineStrict.hs:46:1: lhsIMap === rhsIMap passed.
+test/Inspection/DataFamily/SpineStrict.hs:59:1: lhsDotProduct === rhsDotProduct passed.
+test/Inspection/DataFamily/SpineStrict.hs:71:1: lhsJoin === rhsJoin passed.
+test/Inspection/DataFamily/SpineStrict.hs:83:1: lhsSnoc === rhsSnoc passed.
+test/Inspection/DataFamily/SpineStrict.hs:95:1: lhsReverse === rhsReverse passed.
+inspection testing successful
+      expected successes: 6
+[3 of 3] Compiling Main
+[4 of 4] Linking /tmp/workdir-vec/vec-0.5/dist-newstyle/build/x86_64-linux/ghc-9.6.6/vec-0.5/t/inspection/build/inspection/inspection

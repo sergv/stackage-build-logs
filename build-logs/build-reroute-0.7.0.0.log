@@ -1,0 +1,129 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - reroute-0.7.0.0 (lib) (first run)
+ - reroute-0.7.0.0 (test:reroute-test) (first run)
+Configuring library for reroute-0.7.0.0...
+Preprocessing library for reroute-0.7.0.0...
+Building library for reroute-0.7.0.0...
+[1 of 4] Compiling Data.PolyMap
+
+src/Data/PolyMap.hs:30:50: warning: [-Wunused-imports]
+    The import of ‘liftA2’
+    from module ‘Control.Applicative’ is redundant
+   |
+30 | import Control.Applicative (Alternative ((<|>)), liftA2)
+   |                                                  ^^^^^^
+
+src/Data/PolyMap.hs:43:20: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+43 | data PolyMap (c :: * -> Constraint) (f :: * -> *) (a :: *) where
+   |                    ^
+
+src/Data/PolyMap.hs:43:43: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+43 | data PolyMap (c :: * -> Constraint) (f :: * -> *) (a :: *) where
+   |                                           ^
+
+src/Data/PolyMap.hs:43:48: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+43 | data PolyMap (c :: * -> Constraint) (f :: * -> *) (a :: *) where
+   |                                                ^
+
+src/Data/PolyMap.hs:43:57: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+43 | data PolyMap (c :: * -> Constraint) (f :: * -> *) (a :: *) where
+   |                                                         ^
+[2 of 4] Compiling Web.Routing.SafeRouting
+
+src/Web/Routing/SafeRouting.hs:59:27: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+59 | data PathInternal (as :: [*]) where
+   |                           ^
+
+src/Web/Routing/SafeRouting.hs:110:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘PathMap (T.Text -> x)’ not matched:
+            PathMap _ [] _ _ _
+    |
+110 |       let (PathMap _ (action' : _) _ _ _) = updateFn (\ctx rest -> action (rest :&: HNil) ctx) emptyPathMap
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[3 of 4] Compiling Web.Routing.Router
+
+src/Web/Routing/Router.hs:21:49: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+21 | newtype RegistryT n b middleware reqTypes (m :: * -> *) a = RegistryT
+   |                                                 ^
+
+src/Web/Routing/Router.hs:21:54: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+21 | newtype RegistryT n b middleware reqTypes (m :: * -> *) a = RegistryT
+   |                                                      ^
+[4 of 4] Compiling Web.Routing.Combinators
+
+src/Web/Routing/Combinators.hs:20:19: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+20 | data Path (as :: [*]) (pathState :: PathState) where
+   |                   ^
+Configuring test suite 'reroute-test' for reroute-0.7.0.0...
+Preprocessing test suite 'reroute-test' for reroute-0.7.0.0...
+Building test suite 'reroute-test' for reroute-0.7.0.0...
+[1 of 2] Compiling Web.Routing.SafeRoutingSpec
+
+test/Web/Routing/SafeRoutingSpec.hs:27:31: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+27 | defR :: (Monad m, m ReturnVar ~ x) => Path ts ps -> HVectElim ts x -> RegistryT m ReturnVar middleware Bool m ()
+   |                               ^
+
+test/Web/Routing/SafeRoutingSpec.hs:30:34: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+30 | defRAny :: (Monad m, m ReturnVar ~ x) => Path ts ps -> HVectElim ts x -> RegistryT m ReturnVar middleware Bool m ()
+   |                                  ^
+
+test/Web/Routing/SafeRoutingSpec.hs:39:31: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+39 |     m ([T.Text] -> ReturnVar) ~ x
+   |                               ^
+[2 of 2] Compiling Main
+[3 of 3] Linking /tmp/workdir-reroute/reroute-0.7.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/reroute-0.7.0.0/t/reroute-test/build/reroute-test/reroute-test

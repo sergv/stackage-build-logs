@@ -1,0 +1,76 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - thyme-0.4 (lib) (first run)
+ - thyme-0.4 (test:sanity) (first run)
+ - thyme-0.4 (test:rewrite) (first run)
+Configuring library for thyme-0.4...
+Preprocessing library for thyme-0.4...
+Building library for thyme-0.4...
+[ 1 of 22] Compiling Control.Lens
+[ 2 of 22] Compiling Data.Thyme.Format.Internal
+[ 3 of 22] Compiling Data.Thyme.Calendar.Internal
+[ 4 of 22] Compiling Data.Thyme.Calendar.MonthDay
+[ 5 of 22] Compiling Data.Thyme.Internal.Micro
+[ 6 of 22] Compiling Data.Thyme.Clock.Internal
+
+src/Data/Thyme/Clock/Internal.hs:60:28: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+60 | class (HasBasis t, Basis t ~ (), Scalar t ~ Rational) => TimeDiff t where
+   |                            ^
+
+src/Data/Thyme/Clock/Internal.hs:60:43: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+60 | class (HasBasis t, Basis t ~ (), Scalar t ~ Rational) => TimeDiff t where
+   |                                           ^
+[ 7 of 22] Compiling Data.Thyme.Format.Human
+[ 8 of 22] Compiling Data.Thyme.Clock.POSIX
+[ 9 of 22] Compiling Data.Thyme.Clock
+[10 of 22] Compiling Data.Thyme.Calendar
+[11 of 22] Compiling Data.Thyme.Calendar.WeekdayOfMonth
+[12 of 22] Compiling Data.Thyme.Calendar.OrdinalDate
+[13 of 22] Compiling Data.Thyme.Calendar.WeekDate
+[14 of 22] Compiling Data.Thyme.LocalTime
+[15 of 22] Compiling Data.Thyme.Clock.TAI
+[16 of 22] Compiling Data.Thyme.Format
+[17 of 22] Compiling Data.Thyme
+[18 of 22] Compiling Data.Thyme.Format.Aeson
+[19 of 22] Compiling Data.Thyme.TrueName
+
+src/Data/Thyme/TrueName.hs:33:16: warning: [GHC-62161] [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In a case alternative:
+        Patterns of type ‘Dec’ not matched:
+            TypeDataD _ _ _ _
+            DefaultD _
+   |
+33 | decNames dec = case dec of
+   |                ^^^^^^^^^^^...
+[20 of 22] Compiling Data.Thyme.Time.Core
+[21 of 22] Compiling Data.Thyme.Time
+[22 of 22] Compiling Data.Thyme.Docs
+Configuring test suite 'sanity' for thyme-0.4...
+Preprocessing test suite 'sanity' for thyme-0.4...
+Building test suite 'sanity' for thyme-0.4...
+[1 of 3] Compiling Control.Lens
+[2 of 3] Compiling Common
+[3 of 3] Compiling Main
+
+tests/sanity.hs:95:5: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘isSuccess’ shadows the existing binding
+      imported from ‘Test.QuickCheck’ at tests/sanity.hs:19:1-22
+      (and originally defined in ‘Test.QuickCheck.Test’)
+   |
+95 |     isSuccess r = case r of Success {} -> True; _ -> False
+   |     ^^^^^^^^^
+[4 of 4] Linking /tmp/workdir-thyme/thyme-0.4/dist-newstyle/build/x86_64-linux/ghc-9.6.6/thyme-0.4/t/sanity/build/sanity/sanity
+Configuring test suite 'rewrite' for thyme-0.4...
+Preprocessing test suite 'rewrite' for thyme-0.4...
+Building test suite 'rewrite' for thyme-0.4...
+[1 of 1] Compiling Main
+[2 of 2] Linking /tmp/workdir-thyme/thyme-0.4/dist-newstyle/build/x86_64-linux/ghc-9.6.6/thyme-0.4/t/rewrite/build/rewrite/rewrite

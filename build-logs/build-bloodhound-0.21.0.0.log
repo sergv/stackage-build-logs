@@ -1,0 +1,178 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - bloodhound-0.21.0.0 (lib) (first run)
+ - bloodhound-0.21.0.0 (test:bloodhound-tests) (first run)
+Configuring library for bloodhound-0.21.0.0...
+Preprocessing library for bloodhound-0.21.0.0...
+Building library for bloodhound-0.21.0.0...
+[ 1 of 19] Compiling Bloodhound.Import
+[ 2 of 19] Compiling Database.Bloodhound.Internal.Client.Doc
+[ 3 of 19] Compiling Database.Bloodhound.Internal.Client.BHRequest
+[ 4 of 19] Compiling Database.Bloodhound.Internal.Newtypes
+[ 5 of 19] Compiling Database.Bloodhound.Common.Script
+[ 6 of 19] Compiling Database.Bloodhound.Internal.PointInTime
+[ 7 of 19] Compiling Database.Bloodhound.Internal.Query
+
+src/Database/Bloodhound/Internal/Query.hs:1844:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Value’ not matched:
+            Object _
+            Array _
+            Number _
+            Bool _
+            ...
+     |
+1844 |       (String unitText) = toJSON dUnit
+     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 8 of 19] Compiling Database.Bloodhound.Internal.Highlight
+[ 9 of 19] Compiling Database.Bloodhound.Internal.Count
+[10 of 19] Compiling Database.Bloodhound.Internal.Sort
+[11 of 19] Compiling Database.Bloodhound.Internal.StringlyTyped
+[12 of 19] Compiling Database.Bloodhound.Internal.Analysis
+[13 of 19] Compiling Database.Bloodhound.Internal.Client
+
+src/Database/Bloodhound/Internal/Client.hs:823:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Value’ not matched:
+            Array _
+            String _
+            Number _
+            Bool _
+            ...
+    |
+823 |       Object iaObj = toJSON ia
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Database/Bloodhound/Internal/Client.hs:824:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Value’ not matched:
+            Array _
+            String _
+            Number _
+            Bool _
+            ...
+    |
+824 |       Object optsObj = toJSON opts
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Database/Bloodhound/Internal/Client.hs:827:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Value’ not matched:
+            Array _
+            String _
+            Number _
+            Bool _
+            ...
+    |
+827 |       Object iaObj = toJSON ia
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Database/Bloodhound/Internal/Client.hs:840:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Value’ not matched:
+            Array _
+            String _
+            Number _
+            Bool _
+            ...
+    |
+840 |       Object routingObj = maybe (Object mempty) toJSON aliasCreateRouting
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Database/Bloodhound/Internal/Client.hs:1601:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Value’ not matched:
+            Array _
+            String _
+            Number _
+            Bool _
+            ...
+     |
+1601 |       Object settings =
+     |       ^^^^^^^^^^^^^^^^^...
+[14 of 19] Compiling Database.Bloodhound.Internal.Aggregation
+[15 of 19] Compiling Database.Bloodhound.Internal.Suggest
+[16 of 19] Compiling Database.Bloodhound.Types
+[17 of 19] Compiling Database.Bloodhound.Client
+[18 of 19] Compiling Database.Bloodhound
+[19 of 19] Compiling Paths_bloodhound
+Configuring test suite 'bloodhound-tests' for bloodhound-0.21.0.0...
+Preprocessing test suite 'bloodhound-tests' for bloodhound-0.21.0.0...
+Building test suite 'bloodhound-tests' for bloodhound-0.21.0.0...
+[ 1 of 20] Compiling Paths_bloodhound
+[ 2 of 20] Compiling Test.Import
+[ 3 of 20] Compiling Test.Common
+
+tests/Test/Common.hs:186:8: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘putMapping’
+    (imported from Test.Import, but defined in Database.Bloodhound.Client):
+    Deprecated: "See <https://www.elastic.co/guide/en/elasticsearch/reference/7.17/removal-of-types.html>"
+    |
+186 |   _ <- putMapping testIndex TweetMapping
+    |        ^^^^^^^^^^
+[ 4 of 20] Compiling Test.Highlights
+[ 5 of 20] Compiling Test.Documents
+
+tests/Test/Documents.hs:51:14: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘putMapping’
+    (imported from Test.Import, but defined in Database.Bloodhound.Client):
+    Deprecated: "See <https://www.elastic.co/guide/en/elasticsearch/reference/7.17/removal-of-types.html>"
+   |
+51 |         _ <- putMapping testIndex ConversationMapping
+   |              ^^^^^^^^^^
+[ 6 of 20] Compiling Test.Count
+[ 7 of 20] Compiling Test.BulkAPI
+[ 8 of 20] Compiling Test.ApproxEq
+[ 9 of 20] Compiling Test.Generators
+[10 of 20] Compiling Test.Aggregation
+[11 of 20] Compiling Test.Indices
+[12 of 20] Compiling Test.JSON
+
+tests/Test/JSON.hs:81:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Value’ not matched:
+            Object _
+            Array _
+            Number _
+            Bool _
+            ...
+   |
+81 |       let String str = toJSON flags
+   |           ^^^^^^^^^^^^^^^^^^^^^^^^^
+[13 of 20] Compiling Test.Query
+[14 of 20] Compiling Test.Script
+
+tests/Test/Script.hs:34:17: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe HitFields’ not matched: Nothing
+   |
+34 |             let Just results =
+   |                 ^^^^^^^^^^^^^^...
+[15 of 20] Compiling Test.Snapshots
+
+tests/Test/Snapshots.hs:50:17: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Value’ not matched:
+            Nothing
+            Just (Object _)
+            Just (Array _)
+            Just (Number _)
+            ...
+   |
+50 |             let Just (String dir) = X.lookup "location" (gSnapshotRepoSettingsObject (gSnapshotRepoSettings r1))
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[16 of 20] Compiling Test.Sorting
+[17 of 20] Compiling Test.SourceFiltering
+[18 of 20] Compiling Test.Suggest
+[19 of 20] Compiling Test.Templates
+[20 of 20] Compiling Main
+[21 of 21] Linking /tmp/workdir-bloodhound/bloodhound-0.21.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/bloodhound-0.21.0.0/t/bloodhound-tests/build/bloodhound-tests/bloodhound-tests

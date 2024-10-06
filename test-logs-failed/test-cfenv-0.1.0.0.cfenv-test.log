@@ -1,0 +1,71 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - cfenv-0.1.0.0 (test:cfenv-test) (ephemeral targets)
+Preprocessing test suite 'cfenv-test' for cfenv-0.1.0.0...
+Building test suite 'cfenv-test' for cfenv-0.1.0.0...
+Running 1 test suites...
+Test suite cfenv-test: RUNNING...
+
+System.CloudFoundry.Environment
+  isRunningOnCf
+    returns true if VCAP_APPLICATION has a value [✔]
+    returns true if VCAP_APPLICATION is not set [✔]
+    returns true if VCAP_APPLICATION is empty [✔]
+    returns true if VCAP_APPLICATION is only whitespace [✔]
+  current
+    returns error if HOME is not set [✔]
+    returns error if MEMORY_LIMIT is not set [✔]
+    returns error if PWD is not set [✔]
+    returns error if PORT is not set [✔]
+    returns error if PORT is not valid number [✔]
+    returns error if TMPDIR is not set [✔]
+    returns error if USER is not set [✔]
+    returns error if VCAP_APPLICATION is not set [✔]
+    returns error if VCAP_APPLICATION bad JSON [✘]
+    returns Application if VCAP_SERVICES is not set [✔]
+    returns error if VCAP_SERVICES bad JSON [✘]
+    returns Application when the environment is correct [✔]
+  lookupCurrent
+    returns Just Application if running on Cloud Foundry [✔]
+    returns Nothing if not running on Cloud Foundry [✔]
+  credentialString
+    returns nothing if there is no matching string [✔]
+    returns the string if it is found [✔]
+  for Service searching functions
+    withTag
+      returns an empty list if no matching services are found [✔]
+      returns the services with matching tags [✔]
+    withName
+      returns nothing if there is no service with the given name [✔]
+      returns the service if it exists [✔]
+    withLabel
+      returns an empty list if there is no service with the given label [✔]
+      returns the services with that labe [✔]
+
+Failures:
+
+  test/System/CloudFoundry/EnvironmentSpec.hs:68:23: 
+  1) System.CloudFoundry.Environment.current returns error if VCAP_APPLICATION bad JSON
+       predicate failed on expected exception: CfEnvError
+       VCAP_APPLICATION Error in $: string at 'not-json'
+
+  To rerun use: --match "/System.CloudFoundry.Environment/current/returns error if VCAP_APPLICATION bad JSON/" --seed 575965620
+
+  test/System/CloudFoundry/EnvironmentSpec.hs:77:23: 
+  2) System.CloudFoundry.Environment.current returns error if VCAP_SERVICES bad JSON
+       predicate failed on expected exception: CfEnvError
+       VCAP_SERVICES Error in $: string at 'not-json'
+
+  To rerun use: --match "/System.CloudFoundry.Environment/current/returns error if VCAP_SERVICES bad JSON/" --seed 575965620
+
+Randomized with seed 575965620
+
+Finished in 0.0028 seconds
+26 examples, 2 failures
+Test suite cfenv-test: FAIL
+Test suite logged to:
+/tmp/workdir-cfenv/cfenv-0.1.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/cfenv-0.1.0.0/t/cfenv-test/test/cfenv-0.1.0.0-cfenv-test.log
+0 of 1 test suites (0 of 1 test cases) passed.
+Error: [Cabal-7125]
+Tests failed for test:cfenv-test from cfenv-0.1.0.0.
+

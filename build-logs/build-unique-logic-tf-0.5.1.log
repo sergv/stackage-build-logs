@@ -1,0 +1,186 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - unique-logic-tf-0.5.1 (lib) (first run)
+ - unique-logic-tf-0.5.1 (test:test-unique-logic) (first run)
+Configuring library for unique-logic-tf-0.5.1...
+Preprocessing library for unique-logic-tf-0.5.1...
+Building library for unique-logic-tf-0.5.1...
+[ 1 of 13] Compiling UniqueLogic.ST.TF.MonadTrans
+
+src/UniqueLogic/ST/TF/MonadTrans.hs:12:1: warning: [-Wunused-imports]
+    The import of ‘<*>, Applicative, pure’
+    from module ‘Control.Applicative’ is redundant
+   |
+12 | import Control.Applicative (Applicative, pure, (<*>), Const(Const))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/UniqueLogic/ST/TF/MonadTrans.hs:14:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+14 | import Data.Monoid (Monoid, )
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/UniqueLogic/ST/TF/MonadTrans.hs:62:4: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative (Wrap t m)’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+62 |    pure = return
+   |    ^^^^^^^^^^^^^
+
+src/UniqueLogic/ST/TF/MonadTrans.hs:66:4: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad (Wrap t m)’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+66 |    return = wrap . point
+   |    ^^^^^^^^^^^^^^^^^^^^^
+[ 2 of 13] Compiling UniqueLogic.ST.TF.System
+
+src/UniqueLogic/ST/TF/System.hs:40:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+40 | import Control.Applicative (Applicative, liftA2, pure, (<*>), (<$>), )
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/UniqueLogic/ST/TF/System.hs:45:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+45 | import Data.Monoid (Monoid, mempty, mappend, mconcat, )
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/UniqueLogic/ST/TF/System.hs:46:1: warning: [-Wunused-imports]
+    The import of ‘Data.Semigroup’ is redundant
+      except perhaps to import instances from ‘Data.Semigroup’
+    To import instances alone, use: import Data.Semigroup()
+   |
+46 | import Data.Semigroup (Semigroup, (<>), )
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/UniqueLogic/ST/TF/System.hs:66:4: warning: [-Wnoncanonical-monoid-instances]
+    Noncanonical ‘mappend’ definition detected
+    in the instance declaration for ‘Monoid (Updates w s)’.
+    ‘mappend’ will eventually be removed in favour of ‘(<>)’
+    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+   |
+66 |    mappend (Updates x) (Updates y) = Updates $ mappend x y
+   |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/UniqueLogic/ST/TF/System.hs:91:4: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad (T w s)’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+91 |    return = Cons . return
+   |    ^^^^^^^^^^^^^^^^^^^^^^
+
+src/UniqueLogic/ST/TF/System.hs:192:32: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+    |
+192 |    data ValueConstraint w a :: *
+    |                                ^
+[ 3 of 13] Compiling UniqueLogic.ST.TF.System.Label
+
+src/UniqueLogic/ST/TF/System/Label.hs:25:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+25 | import Data.Monoid (Monoid, )
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/UniqueLogic/ST/TF/System/Label.hs:26:1: warning: [-Wunused-imports]
+    The import of ‘Data.Traversable’ is redundant
+      except perhaps to import instances from ‘Data.Traversable’
+    To import instances alone, use: import Data.Traversable()
+   |
+26 | import Data.Traversable (traverse, )
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 4 of 13] Compiling UniqueLogic.ST.TF.System.Simple
+[ 5 of 13] Compiling UniqueLogic.ST.TF.ZeroFractional
+[ 6 of 13] Compiling UniqueLogic.ST.TF.Rule
+
+src/UniqueLogic/ST/TF/Rule.hs:14:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+14 | import Control.Applicative (liftA2, )
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 7 of 13] Compiling UniqueLogic.ST.TF.Example.Rule
+[ 8 of 13] Compiling UniqueLogic.ST.TF.Example.Incremental
+[ 9 of 13] Compiling UniqueLogic.ST.TF.Expression
+
+src/UniqueLogic/ST/TF/Expression.hs:25:1: warning: [-Wunused-imports]
+    The import of ‘<*>, Applicative, liftA2, pure’
+    from module ‘Control.Applicative’ is redundant
+   |
+25 | import Control.Applicative (Applicative, pure, liftA, liftA2, (<*>), )
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[10 of 13] Compiling UniqueLogic.ST.TF.Example.Expression
+[11 of 13] Compiling UniqueLogic.ST.TF.Example.Term
+[12 of 13] Compiling UniqueLogic.ST.TF.Example.Verify
+
+src/UniqueLogic/ST/TF/Example/Verify.hs:23:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+23 | import Control.Applicative (Applicative, pure, (<*>), )
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/UniqueLogic/ST/TF/Example/Verify.hs:74:4: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative (Track m)’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+74 |    pure = return
+   |    ^^^^^^^^^^^^^
+
+src/UniqueLogic/ST/TF/Example/Verify.hs:78:4: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad (Track m)’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+78 |    return = Track . UMT.point
+   |    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[13 of 13] Compiling UniqueLogic.ST.TF.Example.Label
+Configuring test suite 'test-unique-logic' for unique-logic-tf-0.5.1...
+Preprocessing test suite 'test-unique-logic' for unique-logic-tf-0.5.1...
+Building test suite 'test-unique-logic' for unique-logic-tf-0.5.1...
+[1 of 1] Compiling Main
+
+src/UniqueLogic/ST/TF/Test.hs:12:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+12 | import Data.Monoid (Monoid(mempty, mappend))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/UniqueLogic/ST/TF/Test.hs:13:1: warning: [-Wunused-imports]
+    The import of ‘Data.Semigroup’ is redundant
+      except perhaps to import instances from ‘Data.Semigroup’
+    To import instances alone, use: import Data.Semigroup()
+   |
+13 | import Data.Semigroup (Semigroup, (<>), )
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2 of 2] Linking /tmp/workdir-unique-logic-tf/unique-logic-tf-0.5.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/unique-logic-tf-0.5.1/t/test-unique-logic/build/test-unique-logic/test-unique-logic

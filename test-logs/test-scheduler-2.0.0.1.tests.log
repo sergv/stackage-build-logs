@@ -1,0 +1,254 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - scheduler-2.0.0.1 (test:tests) (ephemeral targets)
+Preprocessing test suite 'tests' for scheduler-2.0.0.1...
+Building test suite 'tests' for scheduler-2.0.0.1...
+hspec-discover: WARNING - The `--no-main' option is deprecated and will be removed in a future release!
+hspec-discover: WARNING - The `--no-main' option is deprecated and will be removed in a future release!
+Running 1 test suites...
+Test suite tests: RUNNING...
+
+Control.Scheduler
+  Comp
+    Monoid
+      x <> mempty = x [✔]
+        +++ OK, passed 100 tests.
+      mempty <> x = x [✔]
+        +++ OK, passed 100 tests.
+      x <> (y <> z) = (x <> y) <> z [✔]
+        +++ OK, passed 100 tests.
+      mconcat = foldr '(<>)' mempty [✔]
+        +++ OK, passed 100 tests.
+      Eq Comp
+        (==) :: Comp -> Comp -> Bool
+          is reflexive for "arbitrary Comp"s [✔]
+            +++ OK, passed 100 tests.
+          is symmetric for "arbitrary Comp"s [✔]
+            +++ OK, passed 100 tests.
+          is transitive for "arbitrary Comp"s [✔]
+            +++ OK, passed 100 tests.
+          is equivalent to (\a b -> not $ a /= b) for "arbitrary Comp"s [✔]
+            +++ OK, passed 100 tests.
+        (/=) :: Comp -> Comp -> Bool
+          is antireflexive for "arbitrary Comp"s [✔]
+            +++ OK, passed 100 tests.
+          is equivalent to (\a b -> not $ a == b) for "arbitrary Comp"s [✔]
+            +++ OK, passed 100 tests.
+      Monoid Comp
+        mempty :: Comp
+          is the identity for mappend :: Comp -> Comp -> Comp for "arbitrary :: Comp" [✔]
+            +++ OK, passed 100 tests.
+        mappend :: Comp -> Comp -> Comp
+          is an associative operation for "arbitrary :: (Comp,Comp,Comp)" [✔]
+            +++ OK, passed 100 tests.
+        mconcat :: [Comp] -> Comp
+          is equivalent to its default implementation for "arbitrary :: [Comp]" [✔]
+            +++ OK, passed 100 tests.
+    Show
+      show == showsPrec 0 [✔]
+        +++ OK, passed 100 tests.
+      (show) == showsPrec 1 [✔]
+        +++ OK, passed 100 tests; 50 discarded.
+  Results
+    Eq (Results Int)
+      (==) :: (Results Int) -> (Results Int) -> Bool
+        is reflexive for "arbitrary (Results Int)"s [✔]
+          +++ OK, passed 100 tests.
+        is symmetric for "arbitrary (Results Int)"s [✔]
+          +++ OK, passed 100 tests.
+        is transitive for "arbitrary (Results Int)"s [✔]
+          +++ OK, passed 100 tests.
+        is equivalent to (\a b -> not $ a /= b) for "arbitrary (Results Int)"s [✔]
+          +++ OK, passed 100 tests.
+      (/=) :: (Results Int) -> (Results Int) -> Bool
+        is antireflexive for "arbitrary (Results Int)"s [✔]
+          +++ OK, passed 100 tests.
+        is equivalent to (\a b -> not $ a == b) for "arbitrary (Results Int)"s [✔]
+          +++ OK, passed 100 tests.
+    Functor Results
+      fmap :: (a -> b) -> Results a -> Results b
+        satisfies the first Fuctor law: 'fmap id == id' for "Results of ints :: (Results Int)" [✔]
+          +++ OK, passed 100 tests.
+        satisfieds the second Functor law: 'fmap (f . g) == fmap f . fmap g' for "Results of ints :: (Results Int)" 's given to "increments :: (Int -> Int)" and "scalings :: (Int -> Int)" [✔]
+          +++ OK, passed 100 tests.
+      (<$) :: a -> Results b -> Results a
+        is equivalent to its default implementation for "int :: Int" and "Results of ints :: (Results Int)" [✔]
+          +++ OK, passed 100 tests.
+    Show (Results Int) and Read (Results Int)
+      are implemented such that read . show == id for arbitrary values [✔]
+        +++ OK, passed 100 tests.
+    Traversable [✔]
+      +++ OK, passed 100 tests.
+  WorkerId
+    Eq WorkerId
+      (==) :: WorkerId -> WorkerId -> Bool
+        is reflexive for "arbitrary WorkerId"s [✔]
+          +++ OK, passed 100 tests.
+        is symmetric for "arbitrary WorkerId"s [✔]
+          +++ OK, passed 100 tests.
+        is transitive for "arbitrary WorkerId"s [✔]
+          +++ OK, passed 100 tests.
+        is equivalent to (\a b -> not $ a /= b) for "arbitrary WorkerId"s [✔]
+          +++ OK, passed 100 tests.
+      (/=) :: WorkerId -> WorkerId -> Bool
+        is antireflexive for "arbitrary WorkerId"s [✔]
+          +++ OK, passed 100 tests.
+        is equivalent to (\a b -> not $ a == b) for "arbitrary WorkerId"s [✔]
+          +++ OK, passed 100 tests.
+    Ord WorkerId
+      (<=) :: WorkerId -> WorkerId -> Bool
+        is reflexive for "arbitrary WorkerId"'s [✔]
+          +++ OK, passed 100 tests.
+        is antisymmetric for "arbitrary WorkerId"'s [✔]
+          +++ OK, passed 100 tests.
+        is transitive for "arbitrary WorkerId"'s [✔]
+          +++ OK, passed 100 tests.
+        is equivalent to (\a b -> compare a b /= GT) for "arbitrary WorkerId"'s [✔]
+          +++ OK, passed 100 tests.
+      (>=) :: WorkerId -> WorkerId -> Bool
+        is reflexive for "arbitrary WorkerId"'s [✔]
+          +++ OK, passed 100 tests.
+        is antisymmetric for "arbitrary WorkerId"'s [✔]
+          +++ OK, passed 100 tests.
+        is transitive for "arbitrary WorkerId"'s [✔]
+          +++ OK, passed 100 tests.
+        is equivalent to (\a b -> compare a b /= LT) for "arbitrary WorkerId"'s [✔]
+          +++ OK, passed 100 tests.
+      (<) :: WorkerId -> WorkerId -> Bool
+        is antireflexive for "arbitrary WorkerId"'s [✔]
+          +++ OK, passed 100 tests.
+        is transitive for "arbitrary WorkerId"'s [✔]
+          +++ OK, passed 100 tests.
+        is equivalent to (\a b -> compare a b == LT) for "arbitrary WorkerId"'s [✔]
+          +++ OK, passed 100 tests.
+      (>) :: WorkerId -> WorkerId -> Bool
+        is antireflexive for "arbitrary WorkerId"'s [✔]
+          +++ OK, passed 100 tests.
+        is transitive for "arbitrary WorkerId"'s [✔]
+          +++ OK, passed 100 tests.
+        is equivalent to (\a b -> compare a b == GT) for "arbitrary WorkerId"'s [✔]
+          +++ OK, passed 100 tests.
+      "min :: (WorkerId -> WorkerId -> WorkerId)"
+        is equivalent to (\a b -> if a <= b then a else b) for "arbitrary WorkerId"'s [✔]
+          +++ OK, passed 100 tests.
+      "max :: (WorkerId -> WorkerId -> WorkerId)"
+        is equivalent to (\a b -> if a >= b then a else b) for "arbitrary WorkerId"'s [✔]
+          +++ OK, passed 100 tests.
+    MaxMin [✔]
+      +++ OK, passed 100 tests.
+    Show WorkerId and Read WorkerId
+      are implemented such that read . show == id for arbitrary values [✔]
+        +++ OK, passed 100 tests.
+    Enum
+      toEnumFromEnum [✔]
+        +++ OK, passed 100 tests.
+      succ . pred [✔]
+        +++ OK, passed 100 tests.
+  Trivial
+    WorkerIdIsZero [✔]
+    TerminateDoesNothing [✔]
+    TerminateSeq [✔]
+      +++ OK, passed 100 tests.
+    TerminateWithSeq [✔]
+      +++ OK, passed 100 tests.
+    TerminateSeqR [✔]
+      +++ OK, passed 100 tests.
+    TerminateWithSeqR [✔]
+      +++ OK, passed 100 tests.
+  Seq
+    SameList [✔]
+      +++ OK, passed 100 tests.
+    Recursive [✔]
+      +++ OK, passed 100 tests.
+    Nested [✔]
+      +++ OK, passed 100 tests.
+    Serially [✔]
+      +++ OK, passed 100 tests.
+    TrivialAsSeq_ [✔]
+      +++ OK, passed 100 tests.
+    replicateConcurrently == replicateM [✔]
+      +++ OK, passed 100 tests.
+    replicateWork == replicateM [✔]
+      +++ OK, passed 100 tests.
+    replicateWork_ == replicateM [✔]
+      +++ OK, passed 100 tests.
+    WorkerIdIsZero [✔]
+    TerminateSeq [✔]
+      +++ OK, passed 100 tests.
+    TerminateWithSeq [✔]
+      +++ OK, passed 100 tests.
+    TerminateSeqR [✔]
+      +++ OK, passed 100 tests.
+    TerminateWithSeqR [✔]
+      +++ OK, passed 100 tests.
+  ParOn
+    SameList [✔]
+      +++ OK, passed 100 tests.
+    Recursive [✔]
+      +++ OK, passed 100 tests.
+    Nested [✔]
+      +++ OK, passed 100 tests.
+    Serially [✔]
+      +++ OK, passed 100 tests.
+  Arbitrary Comp
+    Trivial [✔]
+      +++ OK, passed 100 tests.
+    ArbitraryCompNested [✔]
+      +++ OK, passed 100 tests.
+    AllJobsProcessed [✔]
+      +++ OK, passed 100 tests.
+    traverseConcurrently == traverse [✔]
+      +++ OK, passed 100 tests.
+    replicateConcurrently == replicateM [✔]
+      +++ OK, passed 100 tests.
+    replicateWork == replicateM [✔]
+      +++ OK, passed 100 tests.
+    replicateWork_ == replicateM [✔]
+      +++ OK, passed 100 tests.
+  Exceptions
+    CatchDivideByZero [✔]
+      +++ OK, passed 100 tests.
+    CatchDivideByZeroNested [✔]
+      +++ OK, passed 100 tests.
+    KillBlockedCoworker [✔]
+      +++ OK, passed 100 tests.
+    KillSleepingCoworker [✔]
+      +++ OK, passed 100 tests.
+    ExpectAsyncException [✔]
+      +++ OK, passed 100 tests.
+    WorkerCaughtAsyncException [✔]
+      +++ OK, passed 100 tests.
+    AllWorkersDied [✔]
+      +++ OK, passed 100 tests.
+    traverseConcurrently_ [✔]
+      +++ OK, passed 100 tests.
+    traverseConcurrentlyInfinite_ [✔]
+      +++ OK, passed 100 tests.
+  Premature
+    FinishEarly [✔]
+      +++ OK, passed 100 tests.
+    FinishEarly_ [✔]
+      +++ OK, passed 100 tests.
+    FinishEarlyWith [✔]
+      +++ OK, passed 100 tests.
+    FinishBeforeStarting [✔]
+      +++ OK, passed 100 tests.
+    FinishWithBeforeStarting [✔]
+      +++ OK, passed 100 tests.
+  WorkerState
+    MutexException [✔]
+      +++ OK, passed 100 tests.
+    WorkerStateExclusive [✔]
+      +++ OK, passed 100 tests.
+  Restartable
+    ManyJobsInChunks [✔]
+      +++ OK, passed 100 tests.
+    FindCancelResume [✔]
+      +++ OK, passed 100 tests.
+
+Finished in 5.4119 seconds
+100 examples, 0 failures
+Test suite tests: PASS
+Test suite logged to:
+/tmp/workdir-scheduler/scheduler-2.0.0.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/scheduler-2.0.0.1/t/tests/test/scheduler-2.0.0.1-tests.log
+1 of 1 test suites (1 of 1 test cases) passed.

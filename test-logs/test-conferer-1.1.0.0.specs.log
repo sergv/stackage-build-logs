@@ -1,0 +1,292 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - conferer-1.1.0.0 (test:specs) (ephemeral targets)
+Preprocessing test suite 'specs' for conferer-1.1.0.0...
+Building test suite 'specs' for conferer-1.1.0.0...
+Running 1 test suites...
+Test suite specs: RUNNING...
+
+Conferer
+  mkConfig'
+    the precedence of the sources is defined by the order in the list
+      if several sources have a value for the key, the first source in the list that has it is used [✔]
+      if only one source has a value for the key, that source is used [✔]
+      if the key is not present in any source, it doesn't retrieve any value [✔]
+    adds the defaults to the config
+      if the key is present in a source and in the default, it uses the first source that has it [✔]
+      if the key is not present in any source but it's in a default, it uses the default [✔]
+Conferer.Config
+  Config
+    #getKey
+      getting a non existent key returns missing key [✔]
+      getting a key only present in the defaults [✔]
+      with multiple sources and defaults
+        getting an key returns unwraps the original map [✔]
+        getting an existent key returns in the bottom maps gets it [✔]
+      with some key mapping
+        with basic one to one mapping
+          gets the value through a mapping [✔]
+        with a nested key mapping
+          goes through all the mappings and gets the right value [✔]
+        with circular mappings
+          gets the first key [✔]
+        with nested key
+          maps the right upper key [✔]
+        with some defaults
+          maps and allows getting the default [✔]
+    #listSubkeys
+      return an empty list when nothing is configured [✔]
+      with some values in the config
+        when nothing is configured [✔]
+      with a config that has a value configured and we get that same value
+        returns that key in the list of subkeys [✔]
+      with a config that has a value configured but we get a different value
+        returns an empty list [✔]
+      with a config with defaults
+        returns those defaults in the list [✔]
+      with configs in both defaults and sources
+        returns both results combined [✔]
+      mappings
+        with a simple mapping and a configured value
+          returns the keys that are present based on the mapping [✔]
+        with a multiple mappings and a configured value
+          returns the right keys [✔]
+        with circular mappings
+          returns the right keys [✔]
+        with reducing mappings
+          returns the right keys [‐]
+            # PENDING: No reason given
+        keys that are present based on the mapping [✔]
+    #addDefaults
+      with multiple defaults on the same key
+        the last one has more priority [✔]
+Conferer.FromConfig
+  Override FromConfig
+    gets the right value [✔]
+Conferer.FromConfig.Bool
+  Basic fetching
+    fetching a Bool from config
+      with empty config
+        throws an exception [✔]
+      with a default of 'True'
+        gets that same value [✔]
+      with a default of 'False'
+        gets that same value [✔]
+      with a config value of 'true'
+        gets the right value [✔]
+      with a config value of 'false'
+        gets the right value [✔]
+      parsing is case insensitive
+        with a config value of 'faLSe'
+          gets the right value [✔]
+        with a config value of 'TRUE'
+          gets the right value [✔]
+      with invalid types in the defaults
+        throws an exception [✔]
+Conferer.FromConfig.File
+  File fromConfig
+    fetching a File from config
+      gets the right value [✔]
+      throws an exception [✔]
+      with whole path in root
+        gets the right value [✔]
+      with whole path in root and overriding extension
+        gets the right value [✔]
+      with whole path in root and overriding extension and basename
+        gets the right value [✔]
+      with whole path in root and overriding dirname
+        gets the right value [✔]
+      with both filename and basename the most specific takes priority
+        gets the right value [✔]
+      with both filename and extension the most specific takes priority
+        gets the right value [✔]
+      without root path specificied, with subcomponents that complete a path
+        gets the right value [✔]
+Conferer.FromConfig.List
+  list parsing
+    with empty config
+      throws an exception [✔]
+    with a default of '[7]'
+      gets that same value [✔]
+    with an empty keys it always gets an empty list
+      gets the right value [✔]
+    with a fully defined list without a default
+      gets the right value [✔]
+    with a non number key
+      gets the right value [✔]
+    orders the values lexicographically
+      gets the right value [✔]
+    with a prototype as default
+      gets the right value [✔]
+    with a partial prototype that gets completed later
+      gets the right value [✔]
+    when the user updates the prototype via config
+      gets the right value [✔]
+    listing keys explicitly uses keys in that order
+      gets the right value [✔]
+    listing keys explicitly uses the prototype if the key is not complete
+      gets the right value [✔]
+    listing keys explicitly I can use values from the default
+      gets the right value [✔]
+    listing keys explicitly I can use values from the default  and override some of the values
+      gets the right value [✔]
+    listing keys explicitly and using a default from an index that's not present
+      throws an exception [✔]
+    listing a default keys that's not present ignores the prototype
+      throws an exception [✔]
+    fetching maps every key (and they can be used if the lower fromconfig uses listSubkeys
+      gets the right value [✔]
+Conferer.FromConfig.Maybe
+  fetching a Maybe from config
+    when the key is there and has a valid value
+      gets the right value [✔]
+    when the key is missing
+      gets the right value [✔]
+    when the key is there but has a wrong value
+      throws an exception [✔]
+    with default of the inner type
+      gets the right value [✔]
+    with default of a Just inner type
+      gets the right value [✔]
+    with default of a Nothing and no configuration
+      gets the right value [✔]
+Conferer.FromConfig.Numbers
+  Numbers fetching
+    fetching an Int from config
+      with empty config
+        throws an exception [✔]
+      with a default of '7'
+        gets that same value [✔]
+      with a config value of '7'
+        gets the right value [✔]
+      with a config value of '-7'
+        gets the right value [✔]
+      with invalid types in the defaults
+        throws an exception [✔]
+    fetching a Float from config
+      with empty config
+        throws an exception [✔]
+      with a default of '7.5'
+        gets that same value [✔]
+      with a config value of '9.5'
+        gets the right value [✔]
+      with a config value of '-9.5'
+        gets the right value [✔]
+      with invalid types in the defaults
+        throws an exception [✔]
+      with invalid types in the defaults
+        throws an exception [✔]
+      with invalid types in the defaults
+        throws an exception [✔]
+Conferer.FromConfig.StringLike
+  fetching a String from config
+    with empty config
+      throws an exception [✔]
+    with a default of '"aaa"'
+      gets that same value [✔]
+    with a config value of 'thing'
+      gets the right value [✔]
+  fetching text from config
+    with empty config
+      throws an exception [✔]
+    with a default of '"aaa"'
+      gets that same value [✔]
+    with a config value of 'thing'
+      gets the right value [✔]
+  fetching bytestring from config
+    with empty config
+      throws an exception [✔]
+    with a default of '"aaa"'
+      gets that same value [✔]
+    with a config value of 'thing'
+      gets the right value [✔]
+  fetching lazy bytestring from config
+    with empty config
+      throws an exception [✔]
+    with a default of '"aaa"'
+      gets that same value [✔]
+    with a config value of 'thing'
+      gets the right value [✔]
+Conferer.Generics
+  Generics
+    with a simple record
+      without a default but with all of the keys defined
+        gets the right value [✔]
+      when no keys are set
+        gets the right value [✔]
+      when all keys are set
+        gets the right value [✔]
+      when some keys are set
+        gets the right value [✔]
+    with a nested record
+      when none of the keys are set
+        gets the right value [✔]
+      when some keys of the top record are set
+        gets the right value [✔]
+      when some keys of the inner record are set
+        gets the right value [✔]
+      when every key is set
+        gets the right value [✔]
+Conferer.Key
+  #fromString
+    parsing keys does the right thing [✔]
+    an empty string is the empty list [✔]
+    empty key fragments are removed [✔]
+    are matched in a case insensitive way [✔]
+    's true representation is case insensitive [✔]
+  #isValidKeyFragment
+    with a all leters
+      is valid [✔]
+    with only numbers
+      is valid [✔]
+    with both numbers and letters
+      is valid [✔]
+    with a dot
+      is not valid [✔]
+    with an uppercase letter
+      is not valid [✔]
+    with an empty string
+      is not valid [✔]
+Conferer.Source.CLIArgs
+  with a mapping source
+    gets a parameters with it's value if it starts with the right prefix [✔]
+    with a value that begins with the right prefix it uses it [✔]
+    with a reapeated value it uses the last one [✔]
+    ignores values that don't start with the right prefix [✔]
+    after encountering a -- it stops parsing parameters [✔]
+    with passed flag without a value it returns true [✔]
+Conferer.Source.Env
+  with an env source
+    getting an existent key returns unwraps top level value (without children) [✔]
+    getting an existent key for a child gets that value [✔]
+    listing some keys returns all the right values [✔]
+    listing the keys under the root list everything excluding . [✔]
+    key to env var and back be identity [✔]
+      +++ OK, passed 100 tests.
+Conferer.Source.InMemory
+  in memory source
+    getting a non existent key returns an empty config [✔]
+    getting an existent key returns unwraps the original map [✔]
+    listing subkeys works [✔]
+    listing subkeys never returns the same key [✔]
+    listing subkeys that are not present [✔]
+Conferer.Source.Namespaced
+  namespaced config
+    return nothing if the key doesn't match [✔]
+    returns the wrapped value [✔]
+    listing subkeys [✔]
+Conferer.Source.Null
+  always fails to get a key [✔]
+Conferer.Source.PropertiesFile
+  with a properties file config
+    getting an existent key returns unwraps top level value (without children) [✔]
+    getting an existent key for a child gets that value [✔]
+    keys should always be consistent as to how the words are separated [✔]
+    respects leading spaces in values [✔]
+
+Finished in 0.0037 seconds
+133 examples, 0 failures, 1 pending
+Test suite specs: PASS
+Test suite logged to:
+/tmp/workdir-conferer/conferer-1.1.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/conferer-1.1.0.0/t/specs/test/conferer-1.1.0.0-specs.log
+1 of 1 test suites (1 of 1 test cases) passed.

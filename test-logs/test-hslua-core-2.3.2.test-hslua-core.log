@@ -1,0 +1,187 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - hslua-core-2.3.2 (test:test-hslua-core) (ephemeral targets)
+Preprocessing test suite 'test-hslua-core' for hslua-core-2.3.2...
+Building test suite 'test-hslua-core' for hslua-core-2.3.2...
+Running 1 test suites...
+Test suite test-hslua-core: RUNNING...
+hslua-core
+  Core module
+    Error
+      try catches errors:                                                 OK
+      second alternative is used when first fails:                        OK
+      Applicative.empty implementation throws an exception:               OK
+      changeErrorType
+        catches error as different type in argument operation:            OK
+        passes value through on success:                                  OK
+      type mismatch
+        got string:                                                       OK
+        got unnamed userdata:                                             OK
+        named userdata:                                                   OK
+        missing value:                                                    OK
+    Auxiliary
+      checkstack'
+        returns unit if stack space can be provided:                      OK
+      getsubtable
+        gets a subtable from field:                                       OK
+        creates new table at field if necessary:                          OK
+        returns True if a table exists:                                   OK
+        returns False if field does not contain a table:                  OK
+      getmetafield'
+        gets field from the object's metatable:                           OK
+        returns TypeNil if the object doesn't have a metatable:           OK
+      getmetatable'
+        gets table created with newmetatable:                             OK
+        returns nil if there is no such metatable:                        OK
+        returns TypeTable if metatable exists:                            OK
+      requiref
+        can load a module:                                                OK
+        returns () on success:                                            OK
+        sets global if flag is set:                                       OK
+        catches errors:                                                   OK
+      where'
+        return location in chunk:                                         OK
+      loaded:                                                             OK
+      preload:                                                            OK
+    copy
+      copies stack elements using positive indices:                       OK
+      copies stack elements using negative indices:                       OK
+    insert
+      inserts stack elements using positive indices:                      OK
+      inserts stack elements using negative indices:                      OK
+    absindex:                                                             OK
+    gettable gets a table value:                                          OK
+    rawlen gives the length of a list:                                    OK
+    Type checking
+      isfunction:                                                         OK
+      isnil:                                                              OK
+      isnone:                                                             OK
+      isnoneornil:                                                        OK
+    CFunction handling:                                                   OK
+    getting values
+      tointeger
+        tointeger returns numbers verbatim:                               OK
+        tointeger accepts strings coercible to integers:                  OK
+        tointeger returns Nothing when given a boolean:                   OK
+      tonumber
+        tonumber returns numbers verbatim:                                OK
+        tonumber accepts strings as numbers:                              OK
+        tonumber returns Nothing when given a boolean:                    OK
+      tostring
+        get a string:                                                     OK
+        get a number as string:                                           OK
+        fail when looking at a boolean:                                   OK
+    setting and getting a global works:                                   OK
+    get functions (Lua to stack)
+      unicode characters in field name are ok:                            OK
+    setting and getting a global works:                                   OK
+    can push and receive a thread:                                        OK
+    different threads are not equal in Haskell:                           OK
+    thread status
+      OK is base thread status:                                           OK
+      Yield is the thread status after yielding:                          OK
+    miscellaneous functions
+      pushglobaltable
+        globals are fields in global table:                               OK
+    auxiliary functions
+      tostring'
+        integers are converted in base10:                                 OK
+        a nil value is converted into the literal string 'nil':           OK
+        strings are returned verbatim:                                    OK
+        string for userdata shows the pointer value:                      OK
+        string is also pushed to the stack:                               OK
+        errors during metamethod execution are caught:                    OK
+      ref and unref
+        store nil value to registry:                                      OK
+        get referenced value from registry:                               OK
+        references become invalid after unref:                            OK
+    loading
+      loadstring
+        loading a valid string should succeed:                            OK
+        loading an invalid string should give a syntax error:             OK
+      dostring
+        loading a string which fails should give a run error:             OK
+        loading an invalid string should return a syntax error:           OK
+        loading a valid program should succeed:                           OK
+        top of the stack should be result of last computation:            OK
+      loadbuffer
+        loading a valid string should succeed:                            OK
+        loading a string containing NUL should be correct:                OK
+      loadfile
+        file error should be returned when file does not exist:           OK
+        loading an invalid file should give a syntax error:               OK
+        loading a valid program should succeed:                           OK
+        example fib program should be loaded correctly:                   OK
+      dofile
+        file error should be returned when file does not exist:           OK
+        loading an invalid file should give a syntax error:               OK
+        loading a failing program should give an run error:               OK
+        loading a valid program should succeed:                           OK
+        example fib program should be loaded correctly:                   OK
+    pcall
+      raising an error should lead to an error status:                    OK
+      raising an error in the error handler should give a 'double error': OK
+    garbage collection:                                                   OK
+    compare
+      identifies strictly smaller values:                                 OK
+        +++ OK, passed 100 tests.
+      identifies smaller or equal values:                                 OK
+        +++ OK, passed 100 tests.
+      identifies equal values:                                            OK
+        +++ OK, passed 100 tests.
+    lessthan works:                                                       OK
+      +++ OK, passed 100 tests.
+    order of Lua types is consistent:                                     OK
+      +++ OK, passed 100 tests.
+    boolean values are correct:                                           OK
+    functions can throw a table as error message:                         OK
+    handling table errors won't leak:                                     OK
+    Primary
+      rotate'
+        rotates stack:                                                    OK
+    Closures
+      Haskell functions are callable from Lua:                            OK
+      Haskell functions have the Lua type C function:                     OK
+      function garbage collection:                                        OK
+    Package
+      requirehs
+        call the given function:                                          OK
+        doesn't call function if module has been loaded:                  OK
+        pushes module to stack:                                           OK
+        module can be loaded with `require`:                              OK
+      preloadhs
+        does not modify the stack:                                        OK
+        module can be loaded with `require`:                              OK
+    Run
+      runEither
+        Lua errors are caught:                                            OK
+        error-less code gives 'Right':                                    OK
+    Trace
+      pcallTrace
+        Calls the function:                                               OK
+        Adds a traceback:                                                 OK
+      callTrace
+        Calls the function:                                               OK
+        Adds a traceback:                                                 OK
+    Unsafe
+      next
+        get next key from table:                                          OK
+        returns FALSE if table is empty:                                  OK
+    Userdata
+      Name is kept in __name:                                             OK
+      get back pushed value:                                              OK
+      fail on boolean:                                                    OK
+      fail on wrong userdata:                                             OK
+      change wrapped value:                                               OK
+      change fails on wrong name:                                         OK
+    Warn
+      warnings get handled:                                               OK
+    Debug
+      getupvalue:                                                         OK
+      setupvalue:                                                         OK
+
+All 119 tests passed (0.01s)
+Test suite test-hslua-core: PASS
+Test suite logged to:
+/tmp/workdir-hslua-core/hslua-core-2.3.2/dist-newstyle/build/x86_64-linux/ghc-9.6.6/hslua-core-2.3.2/t/test-hslua-core/test/hslua-core-2.3.2-test-hslua-core.log
+1 of 1 test suites (1 of 1 test cases) passed.

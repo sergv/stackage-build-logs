@@ -1,0 +1,53 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - imagesize-conduit-1.1 (lib) (first run)
+ - imagesize-conduit-1.1 (test:test) (first run)
+Configuring library for imagesize-conduit-1.1...
+Preprocessing library for imagesize-conduit-1.1...
+Building library for imagesize-conduit-1.1...
+[1 of 1] Compiling Data.Conduit.ImageSize
+
+Data/Conduit/ImageSize.hs:15:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+15 | import Control.Applicative ((<$>), (<*>))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Data/Conduit/ImageSize.hs:43:56: warning: [GHC-68441] [-Wdeprecations]
+    In the use of type constructor or class ‘Consumer’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use ConduitT directly"
+   |
+43 | sinkImageSize :: (Monad m, MonadThrow n, Functor n) => Consumer S.ByteString m (n Size)
+   |                                                        ^^^^^^^^
+
+Data/Conduit/ImageSize.hs:50:45: warning: [GHC-68441] [-Wdeprecations]
+    In the use of type constructor or class ‘Consumer’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use ConduitT directly"
+   |
+50 | sinkImageInfo :: (Monad m, MonadThrow n) => Consumer S.ByteString m (n (Size, FileFormat))
+   |                                             ^^^^^^^^
+
+Data/Conduit/ImageSize.hs:120:9: warning: [GHC-68441] [-Wdeprecations]
+    In the use of type constructor or class ‘Consumer’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use ConduitT directly"
+    |
+120 |      -> Consumer S.ByteString m (Maybe i)
+    |         ^^^^^^^^
+Configuring test suite 'test' for imagesize-conduit-1.1...
+Preprocessing test suite 'test' for imagesize-conduit-1.1...
+Building test suite 'test' for imagesize-conduit-1.1...
+[1 of 1] Compiling Main
+
+test/main.hs:19:45: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘$$’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use runConduit and .|"
+   |
+19 |     size <- runResourceT $ CB.sourceFile fp C.$$ sinkImageInfo
+   |                                             ^^^^
+[2 of 2] Linking /tmp/workdir-imagesize-conduit/imagesize-conduit-1.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/imagesize-conduit-1.1/t/test/build/test/test

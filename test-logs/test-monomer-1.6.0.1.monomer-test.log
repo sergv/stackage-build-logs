@@ -1,0 +1,1217 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - monomer-1.6.0.1 (test:monomer-test) (ephemeral targets)
+Preprocessing test suite 'monomer-test' for monomer-1.6.0.1...
+Building test suite 'monomer-test' for monomer-1.6.0.1...
+Running 1 test suites...
+Test suite monomer-test: RUNNING...
+
+Common
+  Cursor Icon
+    handleEventSimple
+      should not change the cursor if not event happened [✔]
+      should not change the cursor if the widget does not have a cursor [✔]
+      should change the cursor if the widget has a custom cursor [✔]
+      should generate the correct sequence of cursors from the events [✔]
+    handleEventNested
+      should change the cursor if the widget has a custom cursor [✔]
+      should generate the correct sequence of cursors from the events [✔]
+    handleEventOverlay
+      should not change the cursor if not event happened [✔]
+      should not show arrow in overlay area if dropdown is not open [✔]
+      should show arrow in overlay area if dropdown is open [✔]
+      should show arrow in overlay area when dropdown is open, invalid after it's closed [✔]
+Core
+  SizeReq
+    SizeReqUpdater
+      should update fixed size to minimum size [✔]
+      should update fixed size to expand size [✔]
+  StyleUtil
+    StyleState actions
+      StyleState merge
+        should merge basic styles [✔]
+        should merge hover styles [✔]
+        should merge focus styles [✔]
+        should merge hover focus styles [✔]
+        should merge active styles [✔]
+        should merge disabled styles [✔]
+      StyleState merge
+        should set basic styles [✔]
+        should set hover styles [✔]
+        should set focus styles [✔]
+        should set focus hover styles [✔]
+        should set active styles [✔]
+        should set disabled styles [✔]
+Graphics
+  Util
+    colorHex
+      should generate the correct color [✔]
+    colorHSL
+      should generate the correct color [✔]
+Widgets
+  Composite
+    handleEvent
+      handleEventBasic
+        should not generate an event if clicked outside [✔]
+        should generate a user provided event when clicked [✔]
+      handleEventOnInit
+        should generate an init event [✔]
+      handleEventOnDispose
+        should generate a dispose event [✔]
+      handleEventOnChange
+        should not generate an event if model did not change [✔]
+        should generate an event if model changed [✔]
+      handleEventNewRoot
+        should generate a resize request when the widgetType of the root widget changes [✔]
+      handleEventChild
+        should not generate an event if clicked outside [✔]
+        should generate a main event when clicked in main button [✔]
+        should generate a child event when clicked in child button [✔]
+        should update the nested model when the checkbox is clicked [✔]
+      handleEventResize
+        should not generate a resize event on init [✔]
+        should generate a resize event when size changes [✔]
+      handleEventLocalKey
+        handleEventLocalKeySingleState
+          should insert new text at the end, since its merged with a local key [✔]
+        handleEventLocalKeyRemoveItem
+          should remove an element and keep the correct keys [✔]
+    handleMessage
+      should not generate an event if clicked outside [✔]
+    findByPoint
+      should return Nothing [✔]
+      should return item number 5 [✔]
+      should return item number 8 [✔]
+      should return background item [✔]
+      should return item number 9 when starting from the second level [✔]
+      should return Nothing if start path is not valid [✔]
+    findByPath
+      should return Nothing [✔]
+      should return item number 5 [✔]
+      should return item number 8 [✔]
+      should return background item [✔]
+      should return item number 9 when starting from the second level [✔]
+    findNextFocus
+      should return the first textfield [✔]
+      should return the second textfield [✔]
+      should return the third textfield [✔]
+      should return the third textfield (starts backwards) [✔]
+      should return the second textfield (starts backwards) [✔]
+      should return the first textfield (starts backwards) [✔]
+    merge resize
+      should not generate a request if user size did not change [✔]
+      should generate a ResizeWidgets request if user size changed [✔]
+      should generate a ResizeWidgets request if user size changed [✔]
+    getSizeReq
+      should return width = Fixed 70 [✔]
+      should return height = Fixed 20 [✔]
+    resize
+      should have the provided viewport size [✔]
+      should assign the same viewport size to its child [✔]
+  Container
+    merge resize
+      should not generate a request if user size did not change [✔]
+      should generate a ResizeWidgets request if user size changed [✔]
+      should generate a ResizeWidgets request if user size changed [✔]
+    handleEvent
+      handleEventNormal
+        should insert new text at the right location, since widgets match [✔]
+      handleEventNoKey
+        should insert new text at the end, since its merged without a key and state is lost [✔]
+      handleEventLocalKey
+        should insert new text at the correct location, since its merged with a key [✔]
+  Animation
+    Fade
+      initWidget
+        should not request rendering if autoStart = False [✔]
+        should request rendering if autoStart = True [✔]
+      handleMessage
+        should not request rendering if an invalid message is received [✔]
+        should request rendering if AnimationStart is received [✔]
+        should cancel rendering if AnimationStop is received [✔]
+        should generate an event if AnimationFinished is received [✔]
+      getSizeReq
+        should return same reqW as child node [✔]
+        should return same reqH as child node [✔]
+    Shake
+      initWidget
+        should not request rendering if autoStart = False [✔]
+        should request rendering if autoStart = True [✔]
+      handleMessage
+        should not request rendering if an invalid message is received [✔]
+        should request rendering if AnimationStart is received [✔]
+        should cancel rendering if AnimationStop is received [✔]
+        should generate an event if AnimationFinished is received [✔]
+      getSizeReq
+        should return same reqW as child node [✔]
+        should return same reqH as child node [✔]
+    Slide
+      initWidget
+        should not request rendering if autoStart = False [✔]
+        should request rendering if autoStart = True [✔]
+      handleMessage
+        should not request rendering if an invalid message is received [✔]
+        should request rendering if AnimationStart is received [✔]
+        should cancel rendering if AnimationStop is received [✔]
+        should generate an event if AnimationFinished is received [✔]
+      getSizeReq
+        should return same reqW as child node [✔]
+        should return same reqH as child node [✔]
+    Transform
+      initWidget
+        should not request rendering if autoStart = False [✔]
+        should request rendering if autoStart = True [✔]
+      handleMessage
+        should not request rendering if an invalid message is received [✔]
+        should request rendering if AnimationStart is received [✔]
+        should cancel rendering if AnimationStop is received [✔]
+        should generate an event if AnimationFinished is received [✔]
+      getSizeReq
+        should return same reqW as child node [✔]
+        should return same reqH as child node [✔]
+    Wipe
+      initWidget
+        should not request rendering if autoStart = False [✔]
+        should request rendering if autoStart = True [✔]
+      handleMessage
+        should not request rendering if an invalid message is received [✔]
+        should request rendering if AnimationStart is received [✔]
+        should cancel rendering if AnimationStop is received [✔]
+        should generate an event if AnimationFinished is received [✔]
+      getSizeReq
+        should return same reqW as child node [✔]
+        should return same reqH as child node [✔]
+    Zoom
+      initWidget
+        should not request rendering if autoStart = False [✔]
+        should request rendering if autoStart = True [✔]
+      handleMessage
+        should not request rendering if an invalid message is received [✔]
+        should request rendering if AnimationStart is received [✔]
+        should cancel rendering if AnimationStop is received [✔]
+        should generate an event if AnimationFinished is received [✔]
+      getSizeReq
+        should return same reqW as child node [✔]
+        should return same reqH as child node [✔]
+  Containers
+    Alert
+      handleEvent
+        should generate a close event if clicked outside the dialog [✔]
+        should generate a close event when clicking the Accept button [✔]
+        should not generate a close event when clicking the dialog [✔]
+    Box
+      mergeReq
+        should return the new node, since a handler was not provided [✔]
+        should return the new node, since the handler returned merge is needed [✔]
+        should return the old node, since the handler returned merge is not needed [✔]
+      filterEvent
+        should click the first button, since the click event was directed to it [✔]
+        should click the second button, since the click event's target was modified [✔]
+      handleEvent
+        should not generate an event if clicked outside [✔]
+        should generate an event if the button (centered) is clicked [✔]
+        should generate an event when the cursor enters the viewport [✔]
+        should generate an event when the cursor leaves the viewport [✔]
+        should generate an event if the button is pressed in the child viewport [✔]
+        should generate an event if the button is released in the child viewport [✔]
+        should generate an event when focus is received [✔]
+        should generate an event when focus is lost [✔]
+      handleEventIgnoreEmpty
+        should click the bottom layer, since nothing is handled on top [✔]
+        should click the top layer, since pointer is on the button [✔]
+      handleEventSinkEmpty
+        should do nothing, since event is not passed down [✔]
+        should click the top layer, since pointer is on the button [✔]
+      getSizeReq
+        should return width = Fixed 50 [✔]
+        should return height = Fixed 20 [✔]
+      getSizeReqUpdater
+        should return width = Min 50 2 [✔]
+        should return height = Max 20 [✔]
+      resize
+        default
+          should have the provided viewport size [✔]
+          should have one child [✔]
+          should have its children assigned a viewport [✔]
+        expand
+          should have its children assigned a valid viewport [✔]
+        align
+          should align its child left [✔]
+          should align its child right [✔]
+          should align its child top [✔]
+          should align its child bottom [✔]
+          should align its child top-left [✔]
+          should align its child bottom-right [✔]
+    BoxShadow
+      getSizeReq
+        should return child width plus radius on each side [✔]
+        should return child height plus radius on each side [✔]
+      resize
+        shadow in middle-center should put child in middle-center [✔]
+        shadow in top-left should put child in bottom-right [✔]
+        shadow in bottom-right should put child in top-left [✔]
+        shadow in default location should put child in top-center [✔]
+    Confirm
+      handleEvent
+        should generate a close event if clicked outside the dialog [✔]
+        should generate an Accept event when clicking the Accept button [✔]
+        should generate a Cancel event when clicking the Cancel button [✔]
+        should not generate a close event when clicking the dialog [✔]
+    Drag & Drop
+      handleEvent
+        should leave items intact if drag is not completed [✔]
+        should update items list if drag was successful [✔]
+        should both update items list if successive drags were successful [✔]
+      getSizeReq
+        should return same reqW as child node [✔]
+        should return same reqH as child node [✔]
+    Dropdown
+      handleEvent
+        should not update the model if not clicked [✔]
+        should not update the model if clicked outside the list [✔]
+        should update the model when clicked [✔]
+        should update the model when clicked, after wheel scrolled [✔]
+        should update the model when clicked, after list is displaced because of arrow press [✔]
+        should update the model when Enter/Space is pressed, after navigating to an element [✔]
+        should generate an event when focus is received [✔]
+        should generate an event when focus is lost and list is not open [✔]
+      handleEventValue
+        should not generate an event if clicked outside [✔]
+        should not generate an event when clicked outside, after being opened with keyboard [✔]
+        should generate an event when clicked, after being opened with keyboard [✔]
+        should generate an event when Enter/Space is pressed, after navigating to an element [✔]
+        should generate a focus lost event when opened, canceled, and navigated away [✔]
+        should generate an event when focus is lost and list is open. The navigation also generates a change event [✔]
+      getSizeReq
+        should return width = Flex 120 [✔]
+        should return height = Flex 20 1 [✔]
+      testWidgetType
+        should set the correct widgetType [✔]
+    Grid
+      getSizeReq
+        empty
+          should return width = Fixed 0 [✔]
+          should return height = Fixed 0 [✔]
+        several items, horizontal
+          should return width = Fixed 240 (largest width * 3) [✔]
+          should return height = Fixed 20 [✔]
+        several items, vertical, one not visible
+          should return width = Fixed 80 [✔]
+          should return height = Fixed 60 [✔]
+        several items, different reqSizes
+          should return width = Range 300 900 1 (3 * Range 100 300) [✔]
+          should return height = Range 100 300 1 [✔]
+        several items, different reqSizes
+          should return width = Min 100 1 [✔]
+          should return height = Min 300 1 (3 * Min 100) [✔]
+        getSizeReqUpdater
+          should return width = Min 50 2 [✔]
+          should return height = Max 20 [✔]
+        with childSpacing
+          should not add spacing when empty [✔]
+          should not add spacing when singleton [✔]
+          should add spacing between children [✔]
+          should not add spacing between invisible children [✔]
+      resize
+        empty
+          should have the provided viewport size [✔]
+          should not have children [✔]
+        several items, horizontal
+          should have the provided viewport size [✔]
+          should assign the same viewport size to each children [✔]
+        several items, vertical, one not visible
+          should have the provided viewport size [✔]
+          should assign the same viewport size to each children [✔]
+        with childSpacing
+          should add spacing between children [✔]
+          should not add spacing between invisible children [✔]
+    Keystroke
+      handleEvent
+        should not generate events [✔]
+        should generate an event when Ctrl-Space is pressed [✔]
+        should generate an event when Ctrl-Dash is pressed [✔]
+        should generate an event when Ctrl-Shift-Space is pressed [✔]
+        should generate events when function keys are pressed [✔]
+        should generate events when symbol keys are pressed [✔]
+        should only generate events when the exact keys are pressed [✔]
+        should not ignore children events if not explicitly requested [✔]
+        should ignore children events if requested [✔]
+        should not filter text events if not explicitly requested [✔]
+        should filter text events if requested [✔]
+      handleNestedEvent
+        should not generate events [✔]
+        should generate an event when clicking the button [✔]
+        should generate the expected events when pressing the enter key [✔]
+      getSizeReq
+        should return same reqW as child node [✔]
+        should return same reqH as child node [✔]
+    Popup
+      handleEvent
+        basics
+          should update the model when the popup is open [✔]
+          should close the popup when clicked outside the content [✔]
+          should close the popup when Esc is pressed [✔]
+          should close the popup when clicked in the content's toggle button [✔]
+          should not close the popup when clicked in the content's test toggle button [✔]
+        popupDisabledClose
+          should not close the popup when clicked outside the content if popupDisableClose is set [✔]
+          should not close the popup when Esc is pressed if popupDisableClose is set [✔]
+        alignment
+          should toggle the popupToggle button when aligned center to the widget [✔]
+          should toggle the popupToggle button when aligned top-center to the window [✔]
+          should toggle the popupToggle button when aligned bottom-right to the window [✔]
+      handleEventAnchor
+        alignment outer border
+          should toggle the popupToggle button when aligned above the widget [✔]
+          should toggle the popupToggle button when aligned below the widget [✔]
+          should close the popup when aligned above the widget and the toggle button is clicked [✔]
+          should close the popup when aligned below the widget and the toggle button is clicked [✔]
+          Re align outer
+            should re-locate the anchor below the widget, because it did not fit above [✔]
+    Scroll
+      handleEvent
+        handleBarClick
+          should click the first button [✔]
+          should scroll right and click the second button [✔]
+          should scroll down and click the third button [✔]
+          should scroll down and right and click the fourth button [✔]
+        handleThumbDrag
+          should click the first button [✔]
+          should drag the thumb right and click the second button [✔]
+          should drag the thumb down and click the third button [✔]
+          should drag the thumb down and right and click the fourth button [✔]
+          should fail to drag the thumb right because of thumb size, causing it to click the first button [✔]
+          should fail to drag the thumb down because of thumb size, causing it to click the first button [✔]
+        handleChildrenFocus
+          should not follow focus events [✔]
+          should follow focus events [✔]
+        handleWheel
+          should scroll horizontally with the horizontal wheel and click the second button [✔]
+          should scroll horizontally with the horizontal wheel, ignoring shift, and click the second button [✔]
+          should scroll vertically with the vertical wheel and click the third button [✔]
+          should scroll horizontally with the vertical wheel, since shift is pressed, and click the second button [✔]
+        handleNestedWheel
+          should scroll main widget [✔]
+          should scroll child widget [✔]
+        handleMessageReset
+          should not generate an event if scroll does not show Button1 [✔]
+          should generate an event if scroll shows Button1 [✔]
+        raiseOnChange
+          should raise the event on init [✔]
+          should raise the event when horizontal bar is clicked [✔]
+          should raise the event when vertical bar is clicked [✔]
+          should raise the event when wheel is scrolled [✔]
+      forwardStyle
+        should assign scroll the top style, while the child be set to default [✔]
+        should split the style according to the rules of scrollFwdDefault [✔]
+      resize
+        resizeLarge
+          should have the provided viewport size [✔]
+          should assign all the requested space [✔]
+        resizeSmall
+          should have the provided viewport size [✔]
+          should assign all the requested space [✔]
+        resizeOverlaySmall
+          should have the provided viewport size [✔]
+          should assign all the requested space [✔]
+        resizeH
+          should have the provided viewport size [✔]
+          should assign all the requested horizontal space [✔]
+        resizeV
+          should have the provided viewport size [✔]
+          should assign all the requested vertical space [✔]
+        resizeOverlayH
+          should have the provided viewport size [✔]
+          should assign all the requested horizontal space [✔]
+        resizeOverlayV
+          should have the provided viewport size [✔]
+          should assign all the requested vertical space [✔]
+    SelectList
+      handleEvent
+        should not update the model if clicked outside the list [✔]
+        should update the model when clicked [✔]
+        should update the model when clicked, after wheel scrolled [✔]
+        should update the model when clicked, after list is displaced because of arrow press [✔]
+        should update the model when Enter/Space is pressed, after navigating to an element [✔]
+        should generate an event when focus is received [✔]
+        should generate an event when focus is lost [✔]
+      handleEventValue
+        should not generate an event if clicked outside [✔]
+        should generate an event when clicked [✔]
+        should generate an event when Enter/Space is pressed, after navigating to an element [✔]
+      getSizeReq
+        should return width = Flex 120 [✔]
+        should return height = Flex 2000 1 [✔]
+      testWidgetType
+        should set the correct widgetType [✔]
+    Split
+      handleEventMouseDragH
+        should drag left 100 pixels, moving the slider [✔]
+        should drag left 200 pixels, but move the slider only 120 [✔]
+        should drag right 100 pixels, but move the slider only 80 [✔]
+        should drag up 100 pixels, keeping the slider intact [✔]
+        should drag down 100 pixels, keeping the slider intact [✔]
+      handleEventMouseDragV
+        should drag up 100 pixels, moving the slider [✔]
+        should drag up 200 pixels, but move the slider only 100 [✔]
+        should drag down 100 pixels, but move the slider only 40 [✔]
+        should drag left 100 pixels, keeping the slider intact [✔]
+        should drag right 100 pixels, keeping the slider intact [✔]
+      getSizeReq
+        should return width = Range 5 125 0.01 [✔]
+        should return height = Fixed 20 [✔]
+        should return width = Expand 60 1 [✔]
+        should return height = Fixed 45 [✔]
+    Stack
+      getSizeReq
+        empty
+          should return Fixed width = 0 [✔]
+          should return Fixed height = 0 [✔]
+        several items
+          should return width = Fixed 80 [✔]
+          should return height = Fixed 60 [✔]
+        getSizeReqUpdater
+          should return width = Min 50 2 [✔]
+          should return height = Max 20 [✔]
+          should return width = Min 50 10 [✔]
+          should return height = Max 20 15 [✔]
+        with childSpacing
+          should not add spacing when empty [✔]
+          should not add spacing when singleton [✔]
+          should add spacing between children [✔]
+          should not add spacing between invisible children [✔]
+      resize
+        empty
+          should have the provided viewport size [✔]
+          should not have children [✔]
+        flexible items, horizontal
+          should have the provided viewport size [✔]
+          should assign size proportional to requested size to each children [✔]
+        flexible items, vertical
+          should have the provided viewport size [✔]
+          should assign size proportional to requested size to each children [✔]
+        strict/flexible items, horizontal
+          should have the provided viewport size [✔]
+          should assign requested size to the main labels and the rest to grid [✔]
+        strict/flexible items, vertical
+          should have the provided viewport size [✔]
+          should assign requested size to the main labels and the rest to grid [✔]
+        mixed items, horizontal
+          should have the provided viewport size [✔]
+          should assign size proportional to requested size to each children [✔]
+        mixed items, vertical
+          should have the provided viewport size [✔]
+          should assign size proportional to requested size to each children [✔]
+        all kinds of sizeReq, vertical
+          should have the provided viewport size [✔]
+          should assign size proportional to requested size to each children [✔]
+        vertical, without enough space
+          should have a larger viewport size (parent should fix it) [✔]
+          should assign size proportional to requested size to each children [✔]
+        label flex and spacer, horizontal
+          should have the provided viewport size [✔]
+          should assign size proportional to requested size to each children [✔]
+        label fixed and spacer, horizontal
+          should have the provided viewport size [✔]
+          should assign size proportional to requested size to each children [✔]
+        with childSpacing
+          should add spacing between children [✔]
+          should not add spacing between invisible children [✔]
+    Theme Switch
+      switchTheme
+        should return different sizes when theme changes [✔]
+      getSizeReq
+        should return same reqW as child node [✔]
+        should return same reqH as child node [✔]
+    Tooltip
+      handleEvent
+        should not generate a render schedule [✔]
+        should generate a render schedule after moving [✔]
+        should ony generate a render schedule even after moving, since delay has not passed [✔]
+      handleEventFollow
+        should not generate a render schedule [✔]
+        should generate a render schedule after moving [✔]
+        should generate a render schedule even after moving, and RenderOnce after [✔]
+      getSizeReq
+        should return same reqW as child node [✔]
+        should return same reqH as child node [✔]
+    ZStack
+      handleEvent
+        handleEventFirstVisible
+          should not generate an event if clicked outside [✔]
+          should click the second layer, since top is not visible [✔]
+        handleEventAllLayersActive
+          should not generate an event if clicked outside [✔]
+          should click the first layer, since top is not visible and second does not have widgets in that location [✔]
+        handleEventFocusTop
+          should not attempt to set focus on lower layers [✔]
+        handleEventFocusAll
+          should set focus on second layer, since it's enabled [✔]
+        handleEventFocusChange
+          should restore focus when switching between layers [✔]
+        handleEventFocusKeep
+          should not restore focus when switching between layers if a focus change request is detected [✔]
+      getSizeReq
+        empty
+          should return width = Fixed 0 [✔]
+          should return height = Fixed 0 [✔]
+        several items, horizontal
+          should return width = Fixed 130 [✔]
+          should return height = Fixed 60 [✔]
+        several items, horizontal
+          should return width = Fixed 300 [✔]
+          should return height = Fixed 40 [✔]
+      resize
+        empty
+          should have the provided viewport size [✔]
+          should not have children [✔]
+        several items, horizontal
+          should have the provided viewport size [✔]
+          should assign the same viewport size to each children [✔]
+  Singles
+    Button
+      handleEvent
+        should not generate an event if clicked outside [✔]
+        should generate a user provided event when clicked [✔]
+        should generate a user provided event when Enter/Space is pressed [✔]
+        should generate an event when focus is received [✔]
+        should generate an event when focus is lost [✔]
+      getSizeReq
+        fixed
+          should return width = Fixed 50 [✔]
+          should return height = Fixed 20 [✔]
+        flex
+          should return width = Flex 70 1 [✔]
+          should return height = Flex 20 2 [✔]
+        multi
+          should return width = Fixed 50 [✔]
+          should return height = Flex 60 1 [✔]
+    Checkbox
+      handleEvent
+        should not update the model if not clicked [✔]
+        should update the model when clicked [✔]
+        should update the model when Enter/Space is pressed [✔]
+        should generate an event when focus is received [✔]
+        should generate an event when focus is lost [✔]
+      handleEventValue
+        should not generate an event if clicked outside [✔]
+        should generate a user provided event when clicked [✔]
+        should generate a user provided event when clicked (True -> False) [✔]
+        should generate a user provided event when Enter/Space is pressed [✔]
+      getSizeReq
+        should return width = Fixed 20 [✔]
+        should return height = Fixed 20 [✔]
+    ColorPicker
+      handleEvent
+        should update the model [✔]
+        should generate an event when focus is received [✔]
+        should generate an event when focus is lost [✔]
+      handleEventV
+        should generate a change event [✔]
+        should generate an event when focus is received [✔]
+        should generate an event when focus is lost [✔]
+      getSizeReq
+        should return width = Range 97 1097 [✔]
+        should return height = Fixed 64 [✔]
+    DateField
+      handleEventDate
+        should remove the contents and get Nothing as model value [✔]
+        should input '2000-02-14' [✔]
+        should input '1' (invalid date) [✔]
+        should input '30/12/1999' but fail because of minValue [✔]
+        should input '01/03/2005' but fail because of maxValue [✔]
+        should remove one character and input '4' [✔]
+        should input '14/02/2001', remove one word and input '2000' [✔]
+        should update the model when using the wheel [✔]
+        should generate an event when focus is received [✔]
+        should generate an event when focus is lost [✔]
+      handleEventDate
+        should input an '11/23/1983' [✔]
+        should move right, delete one character and input '5' [✔]
+        should move right and delete one character [✔]
+        should input '11/23/198', input '.', 'a', then input '3' [✔]
+        should input '03/0544/199555' [✔]
+      handleEventMouseDragDate
+        should drag upwards 100 pixels, setting the value to 10/06/1989 [✔]
+        should drag downwards 100 pixels, setting the value to 14/08/1988 (dragRate = 2) [✔]
+        should drag downwards 10000 pixels, staying at minDate (the minimum) [✔]
+        should drag upwards 2000 pixels, staying at maxDate (the maximum) [✔]
+        should drag downwards 30 and 20 pixels, setting the value to 11/01/1989 [✔]
+        should set focus and drag upwards 100 pixels, but value stay at midDate since shift is not pressed [✔]
+        should set focus and drag upwards 100 pixels, setting the value to 10/06/1989 since shift is pressed [✔]
+        should drag upwards 100 pixels, setting the value to 10/06/1989 even if it was double clicked on [✔]
+      handleEventReadOnly
+        should ignore text input [✔]
+        should ignore drag [✔]
+        should ignore wheel [✔]
+      handleShiftFocus
+        should set focus when clicked [✔]
+        should not set focus when clicked with shift pressed [✔]
+      getSizeReqDate
+        should return width = Flex 160 1 [✔]
+        should return height = Fixed 20 [✔]
+        should return width = Flex 100 1 when resizeOnChange = True [✔]
+        should return height = Fixed 20 when resizeOnChange = True [✔]
+      testWidgetType
+        should set the correct widgetType [✔]
+    Dial
+      handleKeyboard
+        should press arrow up ten times and set the dial value to 20 [✔]
+        should press arrow up + shift ten times and set the dial value to 2 [✔]
+        should press arrow up + ctrl four times and set the dial value to 80 [✔]
+        should press arrow down ten times and set the dial value to -20 [✔]
+        should press arrow down + shift five times and set the dial value to 1 [✔]
+        should press arrow up + ctrl one time and set the dial value to -20 [✔]
+      handleMouseDrag
+        should not change the value when dragging off bounds [✔]
+        should not change the value when dragging horizontally [✔]
+        should drag 100 pixels up and set the dial value to 20 [✔]
+        should drag 500 pixels up and set the dial value 100 [✔]
+        should drag 1000 pixels up, but stay on 100 [✔]
+      handleMouseDragVal
+        should not change the value when dragging off bounds [✔]
+        should not change the value when dragging horizontally [✔]
+        should drag 100 pixels up and set the dial value to 110 [✔]
+        should drag 490 pixels up and set the dial value 500 [✔]
+        should drag 1000 pixels up, but stay on 500 [✔]
+        should generate an event when focus is received [✔]
+        should generate an event when focus is lost [✔]
+      handleWheel
+        should update the model when using the wheel [✔]
+      handleWheelVal
+        should update the model when using the wheel [✔]
+        should generate IgnoreParentEvents when using the wheel [✔]
+      handleShiftFocus
+        should set focus when clicked [✔]
+        should not set focus when clicked with shift pressed [✔]
+      getSizeReq
+        should return width = Fixed 50 [✔]
+        should return height = Fixed 50 [✔]
+      testWidgetType
+        should set the correct widgetType [✔]
+    ExternalLink
+      handleEvent
+        should not generate an event if clicked outside [✔]
+xdg-open: file 'Url' does not exist
+        should generate a widget task when clicked [✔]
+xdg-open: file 'Url' does not exist
+        should generate a user provided event when Enter/Space is pressed [✔]
+        should generate an event when focus is received [✔]
+        should generate an event when focus is lost [✔]
+      getSizeReq
+        should return width = Fixed 40 [✔]
+        should return height = Fixed 20 [✔]
+    Image
+      init/merge
+        should create a RunTask on init [✔]
+        should not create a task when merging to the same path [✔]
+        should create two tasks when merging to a different path [✔]
+        should have one widgetId on init (loading) [✔]
+        should not have any widgetId on merge with the same image (not loading) [✔]
+        should have one widgetId on merge with a different image (loading) [✔]
+    Label
+      getSizeReq
+        should return width = Fixed 100 [✔]
+        should return height = Fixed 20 [✔]
+        should return width = Flex 120 1 [✔]
+        should return height = Flex 20 2 [✔]
+        should return width = Flex 120 1 [✔]
+        should return height = Flex 20 2 [✔]
+      getSizeReq
+        should return width = Fixed 50 [✔]
+        should return height = Flex 60 1 [✔]
+      getSizeReq
+        should return width = Max 50 1 [✔]
+        should return height = Flex 100 1 [✔]
+      getSizeReq
+        should return width = Max 50 1 [✔]
+        should return height = Flex 80 1 [✔]
+      getSizeReqMerge
+        should return width = Fixed 320 [✔]
+        should return height = Fixed 20 [✔]
+        should return width = Fixed 600 [✔]
+        should return height = Fixed 20 [✔]
+      resize
+        should resize single line in a single step [✔]
+        should resize multi line in two steps [✔]
+    Labeled Checkbox
+      handleEvent
+        should not update the model if not clicked [✔]
+        should update the model when clicked on the label [✔]
+        should not update the model when clicked on the spacer [✔]
+        should update the model when clicked on the checkbox [✔]
+        should update the model when Enter/Space is pressed [✔]
+        should generate an event when focus is received [✔]
+        should generate an event when focus is lost [✔]
+      handleEventValue
+        should not generate an event if clicked outside [✔]
+        should generate a user provided event when clicked on the label [✔]
+        should not generate a user provided event when clicked on the spacer [✔]
+        should generate a user provided event when clicked on the checkbox [✔]
+        should generate a user provided event when clicked (True -> False) [✔]
+        should generate a user provided event when Enter/Space is pressed [✔]
+      getSizeReq
+        should return width = Fixed 70 [✔]
+        should return height = Fixed 20 [✔]
+    Labeled Radio
+      handleEvent
+        should not update the model if not clicked [✔]
+        should update the model when clicked on the label [✔]
+        should not update the model when clicked on the spacer [✔]
+        should update the model when clicked on the radio [✔]
+        should update the model when Enter/Space is pressed [✔]
+        should generate an event when focus is received [✔]
+        should generate an event when focus is lost [✔]
+      handleEventValue
+        should not generate an event if clicked outside [✔]
+        should generate a user provided event when clicked on the label [✔]
+        should not generate a user provided event when clicked on the spacer [✔]
+        should generate a user provided event when clicked on the radio [✔]
+        should generate a user provided event when Enter/Space is pressed [✔]
+      getSizeReq
+        should return width = Fixed 70 [✔]
+        should return height = Fixed 20 [✔]
+      testWidgetType
+        should set the correct widgetType [✔]
+    NumericField
+      IntegralField
+        handleEventIntegral
+          should remove the contents and get Nothing as model value [✔]
+          should input '123' without select on focus [✔]
+          should input '1' [✔]
+          should input '-1' [✔]
+          should input '1501' [✔]
+          should input '1502', but fail because of maxValue [✔]
+          should input '123', remove one character and input '4' [✔]
+          should input '123', remove one word and input '456' [✔]
+          should update the model when using the wheel [✔]
+          should generate IgnoreParentEvents when using the wheel [✔]
+          should generate an event when focus is received [✔]
+          should generate an event when focus is lost [✔]
+        handleEventIntegral
+          should input an '10' [✔]
+          should input '1', move to beginning and input '5' [✔]
+          should input '1', input '.' then input '5' [✔]
+          should input '3', input 'a' then input '6' [✔]
+          should input '1234', delete line then input '777' [✔]
+        handleEventMouseDragIntegral
+          should drag upwards 100 pixels, setting the value to 100 [✔]
+          should drag downwards 100 pixels, setting the value to -200 (dragRate = 2) [✔]
+          should drag downwards 1000 pixels, staying at -500 (the minimum) [✔]
+          should drag upwards 1000 pixels, staying at 500 (the maximum) [✔]
+          should drag downwards 30 and 20 pixels, setting the value to -5 [✔]
+          should set focus and drag upwards 100 pixels, but value stay at 0 since shift is not pressed [✔]
+          should set focus and drag upwards 100 pixels, setting the value to 100 since shift is pressed [✔]
+          should drag upwards 100 pixels, setting the value to 100 even if it was double clicked on [✔]
+        handleEventReadOnly
+          should ignore text input [✔]
+          should ignore drag [✔]
+          should ignore wheel [✔]
+        getSizeReqIntegral
+          should return width = Flex 50 1 [✔]
+          should return height = Fixed 20 [✔]
+          should return width = Flex 110 1 when resizeOnChange = True [✔]
+          should return height = Fixed 20 when resizeOnChange = True [✔]
+        testIntegralWidgetType
+          should set the correct widgetType [✔]
+      FractionalField
+        handleEventFractional
+          should remove the contents and get Nothing as model value [✔]
+          should input '123' without select on focus [✔]
+          should input '1.23' [✔]
+          should input '-1' [✔]
+          should input '1501' [✔]
+          should input '1502', but fail because of maxValue [✔]
+          should input '123', remove one character and input '4' [✔]
+          should input '123', remove one word and input '456' [✔]
+          should input '123.34', remove one word and input '56' [✔]
+          should input '123.34', remove two words and input '56' [✔]
+          should update the model when using the wheel [✔]
+          should generate IgnoreParentEvents when using the wheel [✔]
+          should generate an event when focus is received [✔]
+          should generate an event when focus is lost [✔]
+        handleEventValueFractional
+          should input an '100' [✔]
+          should input a '1' and be considered invalid [✔]
+          should input '1', move to beginning and input '5' [✔]
+          should input '1', input '.' then input '5' [✔]
+          should input '20', input '.' twice then input '777' [✔]
+          should input '10', '.' then input '2345' [✔]
+          should input '3', input 'a' then input '6' [✔]
+          should input '1234', delete line then input '777' [✔]
+        handleEventMouseDragFractional
+          should drag upwards 100 pixels, setting the value to 10 [✔]
+          should drag downwards 100 pixels, setting the value to -20 (dragRate = 0.2) [✔]
+          should drag downwards 30 and 20 pixels, setting the value to -5 [✔]
+          should drag upwards 100 pixels, but value stay at 0 since shift is not pressed [✔]
+          should drag upwards 100 pixels, setting the value to 10 since shift not pressed [✔]
+          should drag upwards 100 pixels, setting the value to 10 even if it was double clicked on [✔]
+        handleShiftFocusFractional
+          should set focus when clicked [✔]
+          should not set focus when clicked with shift pressed [✔]
+        getSizeReqFractional
+          should return width = Flex 70 1 [✔]
+          should return height = Fixed 20 [✔]
+          should return width = Flex 110 1 when resizeOnChange = True [✔]
+          should return height = Fixed 20 when resizeOnChange = True [✔]
+        testFractionalWidgetType
+          should set the correct widgetType [✔]
+    OptionButton
+      handleEvent
+        should not update the model if not clicked [✔]
+        should update the model when clicked [✔]
+        should update the model when Enter/Space is pressed [✔]
+        should generate an event when focus is received [✔]
+        should generate an event when focus is lost [✔]
+        should generate multiple click events when clicked, but a single onChange because the value did not change [✔]
+      handleEventValue
+        should not generate an event if clicked outside [✔]
+        should generate a user provided event when clicked [✔]
+        should generate a user provided event when Enter/Space is pressed [✔]
+      getSizeReq
+        should return width = Fixed 50 [✔]
+        should return height = Fixed 20 [✔]
+      testWidgetType
+        should set the correct widgetType [✔]
+    Radio
+      handleEvent
+        should not update the model if not clicked [✔]
+        should update the model when clicked [✔]
+        should update the model when Enter/Space is pressed [✔]
+        should generate an event when focus is received [✔]
+        should generate an event when focus is lost [✔]
+        should generate multiple click events when clicked, but a single onChange because the value did not change [✔]
+      handleEventValue
+        should not generate an event if clicked outside [✔]
+        should generate a user provided event when clicked [✔]
+        should generate a user provided event when Enter/Space is pressed [✔]
+      getSizeReq
+        should return width = Fixed 20 [✔]
+        should return height = Fixed 20 [✔]
+      testWidgetType
+        should set the correct widgetType [✔]
+    SeparatorLine
+      separatorLineSizeReqBox
+        should return (Fixed 1, Fixed 1) [✔]
+      separatorLineSizeReqGrid
+        should return (Fixed 1, Flex 10 0.5) for horizontal [✔]
+        should return (Flex 10 0.5, Fixed 1) for vertical [✔]
+      separatorLineSizeReqStack
+        should return (Fixed 5, Flex 10 0.5) for horizontal [✔]
+        should return (Flex 10 0.5, Fixed 5) for vertical [✔]
+    Slider
+      handleKeyboardH
+        should not change the value when using vertical arrows [✔]
+        should press arrow right ten times and set the slider value to 20 [✔]
+        should press arrow right + shift ten times and set the slider value to 2 [✔]
+        should press arrow right + ctrl four times and set the slider value to 80 [✔]
+        should press arrow left ten times and set the slider value to -20 [✔]
+        should press arrow left + shift five times and set the slider value to 1 [✔]
+        should press arrow right + ctrl one time and set the slider value to -20 [✔]
+      handleKeyboardV
+        should not change the value when using horizontal arrows [✔]
+        should press arrow up ten times and set the slider value to 20 [✔]
+        should press arrow up + shift ten times and set the slider value to 2 [✔]
+        should press arrow up + ctrl four times and set the slider value to 80 [✔]
+        should press arrow down ten times and set the slider value to -20 [✔]
+        should press arrow down + shift five times and set the slider value to 1 [✔]
+        should press arrow up + ctrl one time and set the slider value to -20 [✔]
+      handleMouseDragH
+        should not change the value when dragging vertically [✔]
+        should drag 160 pixels right and set the slider value to 50 [✔]
+        should drag 320 pixels right and set the slider value 100 [✔]
+        should drag 1000 pixels right, but stay on 100 [✔]
+      handleMouseDragV
+        should not change the value when dragging horizontally [✔]
+        should drag 100 pixels up and set the slider value to 50 [✔]
+        should drag 500 pixels up and set the slider value 100 [✔]
+        should drag 1000 pixels up, but stay on 100 [✔]
+      handleMouseDragThumb
+        should not change the value when dragging horizontally [✔]
+        should drag 100 pixels up and set the slider value to 50 [✔]
+        should drag 500 pixels up and set the slider value 100 [✔]
+        should drag 1000 pixels up, but stay on 100 [✔]
+      handleMouseDragValH
+        should not change the value when dragging vertically [✔]
+        should drag 160 pixels left and set the slider value to -250 [✔]
+        should drag right to 640 and set the slider value 500 [✔]
+        should drag 1000 pixels right, but stay on 500 [✔]
+        should click 160 pixels left and set the slider to -250 [✔]
+        should generate an event when focus is received [✔]
+        should generate an event when focus is lost [✔]
+      handleMouseDragValV
+        should not change the value when dragging horizontally [✔]
+        should drag 100 pixels down and set the slider value to -250 [✔]
+        should drag up to zero and set the slider value 500 [✔]
+        should drag 1000 pixels up, but stay on 500 [✔]
+        should click 120 pixels down and set the slider to -250 [✔]
+        should generate an event when focus is received [✔]
+        should generate an event when focus is lost [✔]
+      handleWheelH
+        should update the model when using the wheel [✔]
+        should generate IgnoreParentEvents when using the wheel [✔]
+      handleWheelValV
+        should update the model when using the wheel [✔]
+      handleShiftFocus
+        should set focus when clicked [✔]
+        should not set focus when clicked with shift pressed [✔]
+      getSizeReqH
+        should return width = Expand 1000 1 [✔]
+        should return height = Fixed 10 [✔]
+      getSizeReqV
+        should return width = Fixed 10 [✔]
+        should return height = Expand 1000 1 [✔]
+      getSizeReqThumb
+        should return width = Fixed 10 [✔]
+        should return height = Expand 1000 1 [✔]
+      testWidgetType
+        should set the correct widgetType [✔]
+    Spacer/Filler
+      Spacer
+        spacerSizeReqBox
+          should return (Fixed 10, Fixed 10) [✔]
+        spacerSizeReqGrid
+          should return (Fixed 10, Flex 5 0.5) for horizontal [✔]
+          should return (Flex 5 0.5, Fixed 10) for vertical [✔]
+        spacerSizeReqStack
+          should return (Fixed 10, Flex 5 0.5) for horizontal [✔]
+          should return (Flex 10 0.5, Fixed 5) for vertical [✔]
+      Filler
+        fillerSizeReqBox
+          should return (Expand 5 0.5, Expand 5 0.5) [✔]
+        fillerSizeReqGrid
+          should return (Expand 5 0.5, Flex 5 0.5) for horizontal [✔]
+          should return (Flex 5 0.5, Expand 5 0.5) for vertical [✔]
+        fillerSizeReqStack
+          should return (Expand 5 0.5, Flex 5 0.5) for horizontal [✔]
+          should return (Flex 5 0.5, Expand 5 0.5) for vertical [✔]
+    TextArea
+      handleEvent
+        should input an 'a' [✔]
+        should input 'ababa', remove the middle 'a' and input 'c' [✔]
+        should input 'ababa', select last two and input 'c' [✔]
+        should input 'This is a dog', move to beginning, select first word and input 'that' [✔]
+        should input 'This is a dog', select one word, deselect and input 'big ' [✔]
+        should input 'This string very long text is', and reject ' invalid' since maxLength == 40 [✔]
+        should input 5 empty lines, and accept 'valid' since maxLines == 5 [✔]
+        should input 5 empty lines, and reject '
+invalid' since maxLines == 5 [✔]
+        should input 'This is text
+test', select all and input 'No' [✔]
+        should input 'This is text', receive focus (with select on Focus) and input 'No' [✔]
+        should copy and paste text around [‐]
+          # PENDING: SDL Video sub system not initialized. Skipping.
+        should cut and paste text around [‐]
+          # PENDING: SDL Video sub system not initialized. Skipping.
+        should generate an event when focus is received [✔]
+        should generate an event when focus is lost [✔]
+      handleEventValue
+        should input an 'ab' [✔]
+        should input 'this is a dog', input '?', move to beginning and input 'Is ' [✔]
+        should input 'This is a dog', move before 'is', select 'is', deselect it and input 'nt' [✔]
+        should input 'This is a dog', remove one word and input 'bird' [✔]
+        should input 'This is a dog', select to beginning and input 'No' [✔]
+        should input 'This is a dog', move to beginning, select until end of line and input 'No' [✔]
+        should input 'This is
+ a dog', move to beginning, move one word right, select until end and input 'door' [✔]
+        should input 'a', move to beginning, input 'H', move to end of line and input 't' [✔]
+        should input 'abc', select to beginning, input 'def', move back twice, select to end and input 'dd' [✔]
+        should input 'abc123', move to beginning, select three letters, copy, move to end, paste [‐]
+          # PENDING: SDL Video sub system not initialized. Skipping.
+        should input a-b-c-d on separate lines, then press Return [✔]
+        should input a-b-c-d on separate lines, move to beginning, move down, select two lines, input 'e' [✔]
+      handleEventMouseSelect
+        should add text at the end, since click + drag started outside of viewport [✔]
+        should drag around and input 'Text' [✔]
+        should input 'This is text', select 'is text' and input 'test' [✔]
+        should input 'This is text', select all from beginning and input 'New' [✔]
+        should input 'This is text', select all from the end and input 'New' [✔]
+        should input 'This is long
+line', click twice, input 'a' [✔]
+        should input 'This is long
+line', click three times, input 'New' [✔]
+        should input 'This is long
+line', click four times, input 'Clear' [✔]
+        should input multiline text, move to start, select the first line and clear it [✔]
+        should input multiline text, move to start, select drag four lines, unselect, select active line and clear it (tests auto scroll) [✔]
+      handleEventHistory
+        should input 'This is text', have the last word removed and then undo [✔]
+        should input 'This is text', have the last two words removed, undo and redo [✔]
+        should input 'This is just a string', play around with history and come end up with 'This is just text [✔]
+        should input 'This is text', remove two words, undo, input 'not' and fail to redo [✔]
+      handleEventReadOnly
+        should ignore text input [✔]
+        should ignore cut [✔]
+        should ignore paste [✔]
+      getSizeReq
+        should return (Min 100 1, Min 20 1), but transformed to expandSize by scroll [✔]
+        should return (Min 150 1, Min 80 1), but transformed to expandSize by scroll [✔]
+    TextField
+      handleEvent
+        should input an 'a' [✔]
+        should input 'ababa', remove the middle 'a' and input 'c' [✔]
+        should input 'ababa', select last two and input 'c' [✔]
+        should input 'This is a dog', move to beginning, select first word and input 'that' [✔]
+        should input 'This is a dog', select one word, deselect and input 'big ' [✔]
+        should input 'This string very long text is', and reject ' invalid' since maxLength == 40 [✔]
+        should input 'This is text', select all and input 'No' [✔]
+        should input 'This is text', receive focus (with select on Focus) and input 'No' [✔]
+        should copy and paste text around [‐]
+          # PENDING: SDL Video sub system not initialized. Skipping.
+        should cut and paste text around [‐]
+          # PENDING: SDL Video sub system not initialized. Skipping.
+        should generate an event when focus is received [✔]
+        should generate an event when focus is lost [✔]
+      handleEventValue
+        should input an 'ab' [✔]
+        should input 'this is a dog', input '?', move to beginning and input 'Is ' [✔]
+        should input 'This is a dog', move before 'is', select 'is', deselect it and input 'nt' [✔]
+        should input 'This is a dog', remove one word and input 'bird' [✔]
+        should input 'This is a dog', select to beginning and input 'No' [✔]
+        should input 'This is a dog', move to beginning, select until end and input 'No' [✔]
+        should input 'a', move to beginning, input 'H', move to end and input 't' [✔]
+        should input 'abc', select to beginning, input 'def', move back twice, select to end and input 'dd' [✔]
+        should input 'abc123', move to beginning, select three letters, copy, move to end, paste [‐]
+          # PENDING: SDL Video sub system not initialized. Skipping.
+      handleEventMouseSelect
+        should add text at the end, since click + drag started outside of viewport [✔]
+        should drag around and input 'Text' [✔]
+        should input 'This is text', select 'is text' and input 'test' [✔]
+        should input 'This is text', select all from beginning and input 'New' [✔]
+        should input 'This is text', select all from the end and input 'New' [✔]
+      handleEventHistory
+        should input 'This is text', have the last word removed and then undo [✔]
+        should input 'This is text', have the last two words removed, undo and redo [✔]
+        should input 'This is just a string', play around with history and come end up with 'This is just text [✔]
+        should input 'This is text', remove two words, undo, input 'not' and fail to redo [✔]
+      handleEventMouseDrag
+        should ignore shift+drag events [✔]
+      handleEventWheel
+        should ignore wheel events [✔]
+      handleEventReadOnly
+        should ignore text input [✔]
+        should ignore cut [✔]
+        should ignore paste [✔]
+      getSizeReq
+        should return width = Flex 100 1 [✔]
+        should return height = Fixed 20 [✔]
+    TimeField
+      handleEventTime
+        should remove the contents and get Nothing as model value [✔]
+        should input '01:30' [✔]
+        should input '1' (invalid time) [✔]
+        should input '02:35' but fail because of minValue [✔]
+        should input '23:50' but fail because of maxValue [✔]
+        should remove one character and input '4' [✔]
+        should input '22:30', remove one word and input '15' [✔]
+        should update the model when using the wheel [✔]
+        should generate an event when focus is received [✔]
+        should generate an event when focus is lost [✔]
+      handleEventTime
+        should input an '12:07:48' [✔]
+        should move right, delete one character and input '5' [✔]
+        should move right and delete one word [✔]
+        should input '04:20:', input '.', 'a', then input '10' [✔]
+        should input '22:5644:4555' [✔]
+      handleEventMouseDragTime
+        should drag upwards 100 pixels, setting the value to 18:50:15 [✔]
+        should drag downwards 100 pixels, setting the value to 11:30:15 (dragRate = 2) [✔]
+        should drag downwards 10000 pixels, staying at minTime (the minimum) [✔]
+        should drag upwards 2000 pixels, staying at maxTime (the maximum) [✔]
+        should drag downwards 30 and 20 pixels, setting the value to 14:30:15 [✔]
+        should set focus and drag upwards 100 pixels, but value stay at midTime since shift is not pressed [✔]
+        should set focus and drag upwards 100 pixels, setting the value to 18:50:15 since shift is pressed [✔]
+        should drag upwards 100 pixels, setting the value to 18:50:15 even if it was double clicked on [✔]
+        should generate a focus event when clicked [✔]
+        should not generate a focus event when clicked if shift is pressed [✔]
+      handleEventReadOnly
+        should ignore text input [✔]
+        should ignore drag [✔]
+        should ignore wheel [✔]
+      handleShiftFocus
+        should set focus when clicked [✔]
+        should not set focus when clicked with shift pressed [✔]
+      getSizeReqTime
+        should return width = Flex 160 1 [✔]
+        should return height = Fixed 20 [✔]
+        should return width = Flex 100 1 when resizeOnChange = True [✔]
+        should return height = Fixed 20 when resizeOnChange = True [✔]
+      testWidgetType
+        should set the correct widgetType [✔]
+    ToggleButton
+      handleEvent
+        should not update the model if not clicked [✔]
+        should update the model when clicked [✔]
+        should update the model when Enter/Space is pressed [✔]
+        should generate an event when focus is received [✔]
+        should generate an event when focus is lost [✔]
+        should generate multiple click and change events when clicked, since it toggles between True and False [✔]
+      handleEventValue
+        should not generate an event if clicked outside [✔]
+        should generate a user provided event when clicked [✔]
+        should generate a user provided event when clicked (True -> False) [✔]
+        should generate a user provided event when Enter/Space is pressed [✔]
+      getSizeReq
+        should return width = Fixed 60 [✔]
+        should return height = Fixed 20 [✔]
+Widgets Util
+  Focus
+    parentPath
+      should return root path [✔]
+      should return a single element path [✔]
+      should return a multiple element path [✔]
+    nextTargetStep
+      should return Nothing if next step is not valid [✔]
+      should return a valid target step [✔]
+    isFocusCandidate
+      should return False if not backward candidate [✔]
+      should return True if backward candidate [✔]
+      should return False if not forward candidate [✔]
+      should return True if forward candidate [✔]
+  Style
+    currentStyle
+      should return basic style [✔]
+      should return hover style [✔]
+      should return hover style [✔]
+      should return focusHover style [✔]
+      should return active style [✔]
+      should return disabled style [✔]
+    handleSizeChange
+      should request Resize widgets if sizeReq changed [✔]
+      should not request Resize widgets if sizeReq has not changed [✔]
+  Text
+    fitTextToSize single line
+      should return the same empty text, trimmed (ellipsis) [✔]
+      should return the same empty text, untrimmed (ellipsis) [✔]
+      should return the same empty text, trimmed (clip) [✔]
+      should return the same empty text, untrimmed (clip) [✔]
+      should return the same text, trimmed, if it fits (ellipsis) [✔]
+      should return the same text, untrimmed, if it fits (ellipsis) [✔]
+      should return the same text, trimmed, if it fits (clip) [✔]
+      should return the same text, untrimmed, if it fits (clip) [✔]
+      should return text with ellipsis, trimmed, if it does not fit [✔]
+      should return text with ellipsis, untrimmed, if it does not fit [✔]
+      should return text clipped, trimmed, if it does not fit [✔]
+      should return text clipped, untrimmed, if it does not fit [✔]
+    fitTextToSize multi line
+      should return the same text, trimmed, if it fits [✔]
+      should return the same text, untrimmed, if it fits [✔]
+      should return several empty lines [✔]
+      should return several empty lines and one with text [✔]
+      should return text with ellipsis, trimmed, if it does not fit [✔]
+      should return text with ellipsis, untrimmed, if it does not fit [✔]
+      should return text clipped, trimmed, if it does not fit [✔]
+      should return text clipped, untrimmed, if it does not fit [✔]
+      should return text broken even in the middle of words, clipped, trimmed, if it does not fit [✔]
+    fitTextToWidth with spacing
+      should fit text in (100, 80) [✔]
+      should fit text in (96, 120) [✔]
+      should fit text in (100, 95) [✔]
+      should fit text in (96, 145) [✔]
+
+Finished in 0.1978 seconds
+853 examples, 0 failures, 6 pending
+Test suite monomer-test: PASS
+Test suite logged to:
+/tmp/workdir-monomer/monomer-1.6.0.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/monomer-1.6.0.1/t/monomer-test/test/monomer-1.6.0.1-monomer-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

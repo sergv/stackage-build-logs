@@ -1,0 +1,113 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - toml-reader-0.2.1.0 (test:toml-reader-tests) (ephemeral targets)
+Preprocessing test suite 'toml-reader-tests' for toml-reader-0.2.1.0...
+Building test suite 'toml-reader-tests' for toml-reader-0.2.1.0...
+Running 1 test suites...
+Test suite toml-reader-tests: RUNNING...
+toml-reader
+  TOML.Utils.Map
+    getPathLens
+      gets and sets value at path:                          OK
+    getPath
+      gets value at path:                                   OK
+  TOML.Utils.NonEmpty
+    zipHistory
+      should zip already-seen keys with each key:           OK
+      works with one-element list:                          OK
+  TOML.Error
+    renderTOMLError
+      renders errors correctly
+        ParseError:                                         OK
+        NormalizeError.DuplicateKeyError:                   OK
+        NormalizeError.DuplicateSectionError:               OK
+        NormalizeError.ExtendTableError:                    OK
+        NormalizeError.ExtendTableInInlineArrayError:       OK
+        NormalizeError.ImplicitArrayForDefinedKeyError:     OK
+        NormalizeError.NonTableInNestedKeyError:            OK
+        NormalizeError.NonTableInNestedImplicitArrayError:  OK
+        DecodeError.MissingField:                           OK
+        DecodeError.InvalidValue:                           OK
+        DecodeError.TypeMismatch:                           OK
+        DecodeError.OtherDecodeError:                       OK
+      renders context items correctly:                      OK
+  TOML.Parser
+    Large floats are parsed efficiently:                    OK
+  TOML.Decode
+    getField
+      decodes field:                                        OK
+      errors if field does not exist:                       OK
+      errors if field is the wrong type:                    OK
+    getFieldOr
+      decodes field:                                        OK
+      returns default if field does not exist:              OK
+      errors if field is the wrong type:                    OK
+    getFieldOpt
+      decodes field:                                        OK
+      returns Nothing if field does not exist:              OK
+      errors if field is the wrong type:                    OK
+    getFieldWith
+      decodes field:                                        OK
+      errors if field does not exist:                       OK
+      errors if field is the wrong type:                    OK
+    getFieldOptWith
+      decodes field:                                        OK
+      returns Nothing if field does not exist:              OK
+      errors if field is the wrong type:                    OK
+    getFields
+      decodes field:                                        OK
+      errors if field does not exist:                       OK
+      errors if intermediate field does not exist:          OK
+      errors if field is the wrong type:                    OK
+      errors if intermediate field is the wrong type:       OK
+    getFieldsOpt
+      decodes field:                                        OK
+      returns Nothing if field does not exist:              OK
+      returns Nothing if intermediate field does not exist: OK
+      errors if field is the wrong type:                    OK
+      errors if intermediate field is the wrong type:       OK
+    getFieldsWith
+      decodes field:                                        OK
+      errors if field does not exist:                       OK
+      errors if intermediate field does not exist:          OK
+      errors if field is the wrong type:                    OK
+      errors if intermediate field is the wrong type:       OK
+    getFieldsOptWith
+      decodes field:                                        OK
+      returns Nothing if field does not exist:              OK
+      returns Nothing if intermediate field does not exist: OK
+      errors if field is the wrong type:                    OK
+      errors if intermediate field is the wrong type:       OK
+    getArrayOf
+      decodes field:                                        OK
+      errors if value is the wrong type:                    OK
+      errors if value in array is the wrong type:           OK
+    Decoding multiple fields at once:                       OK
+    DecodeTOML instances
+      Bool:                                                 OK
+      String:                                               OK
+      Char:                                                 OK
+      Char errors with multi-character string:              OK
+      Int:                                                  OK
+      Natural:                                              OK
+      Natural errors with negative numbers:                 OK
+      Int8:                                                 OK
+      Int8 errors with underflow/overflow:                  OK
+      Double:                                               OK
+      Array:                                                OK
+      UTCTime:                                              OK
+      ZonedTime:                                            OK
+      LocalTime:                                            OK
+      Day:                                                  OK
+      TimeOfDay:                                            OK
+      Maybe:                                                OK
+      Either:                                               OK
+      ():                                                   OK
+      (a, b):                                               OK
+      Tuples show errors with index:                        OK
+
+All 78 tests passed (0.00s)
+Test suite toml-reader-tests: PASS
+Test suite logged to:
+/tmp/workdir-toml-reader/toml-reader-0.2.1.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/toml-reader-0.2.1.0/t/toml-reader-tests/test/toml-reader-0.2.1.0-toml-reader-tests.log
+1 of 1 test suites (1 of 1 test cases) passed.

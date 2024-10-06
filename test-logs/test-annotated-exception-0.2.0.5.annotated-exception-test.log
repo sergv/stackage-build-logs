@@ -1,0 +1,100 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - annotated-exception-0.2.0.5 (test:annotated-exception-test) (ephemeral targets)
+Preprocessing test suite 'annotated-exception-test' for annotated-exception-0.2.0.5...
+Building test suite 'annotated-exception-test' for annotated-exception-0.2.0.5...
+Running 1 test suites...
+Test suite annotated-exception-test: RUNNING...
+
+Control.Exception.Annotated
+  toException
+    wraps inner in SomeException [✔]
+    flattens annotations [✔]
+  AnnotatedException can fromException a
+    different type [✔]
+    SomeException [✔]
+    nested AnnotatedException [✔]
+    can i guess also parse into a nested Annotated [✔]
+    does not loop infinitely if the wrong type is selected [✔]
+  throw
+    wraps exceptions [✔]
+  catch
+    catches located exceptions [✔]
+    catches regular exceptions [✔]
+    catches SomeException [✔]
+    catches located SomeExceptions [✔]
+    permits other types to pass through [✔]
+    includes a callstack location
+      with an originally annotated exception [✔]
+      with a non-annotated original exception [✔]
+  catches
+    has a callstack entry [✔]
+  tryAnnotated
+    promotes to empty with no annotations [✔]
+    preserves annotations [✔]
+    preserves annotations added via checkpoint [✔]
+    doesn't mess up if trying the wrong type [✔]
+  throwWithCallstack
+    includes a CallStack on the given exception [✔]
+    interaction with checkpointCallStack
+      only has one CallStack [✔]
+  try
+    when throwing non-Annotated
+      can add an empty annotation for a non-Annotated exception [✔]
+      can catch a usual exception [✔]
+    when throwing Annotated
+      can catch a non-Annotated exception [✔]
+      can catch an Annotated exception [✔]
+    when the wrong error is tried 
+      does not catch the exception [✔]
+    nesting behavior
+      can catch at any level of nesting [✔]
+  Safe.try
+    can catch a located exception [✔]
+    does not catch an AnnotatedException [✔]
+  catches
+    is exported [✔]
+  checkpoint
+    adds annotations [✔]
+    adds two annotations [✔]
+    adds three annotations [✔]
+    caught exceptions are propagated [✔]
+    works with error calls [✔]
+    works with non-handled exceptions [✔]
+    supports rethrowing [✔]
+    handles CallStack nicely [✔]
+    handles CallStack nicely when throwing [✔]
+    handles CallStack nicely when throwing manually-created AnnotatedException [✔]
+    handles CallStack nicely when rethrowing [✔]
+    handles CallStack nicely when rethrowing manually-created AnnotatedException [✔]
+  HasCallStack behavior
+    should have source location [✔]
+    appears to be throw-site first, then other entires [✔]
+    addCallstackToException
+      does not drop any other annotations [✔]
+      should add a CallStack to an empty AnnotatedException [✔]
+      should not add a second CallStack to an AnnotatedException [✔]
+      should merge CallStack as HasCallStack does [✔]
+Control.Exception.Annotated.UnliftIO
+  catch
+    the right exception
+      works [✔]
+    the wrong exception
+      works [✔]
+    includes a callstack location [✔]
+  catches
+    has a callstack entry [✔]
+    the right exception
+      works [✔]
+Data.Annotation
+  Show
+    includes type information [✔]
+    uses parens [✔]
+    is cool with strings [✔]
+
+Finished in 0.0041 seconds
+57 examples, 0 failures
+Test suite annotated-exception-test: PASS
+Test suite logged to:
+/tmp/workdir-annotated-exception/annotated-exception-0.2.0.5/dist-newstyle/build/x86_64-linux/ghc-9.6.6/annotated-exception-0.2.0.5/t/annotated-exception-test/test/annotated-exception-0.2.0.5-annotated-exception-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

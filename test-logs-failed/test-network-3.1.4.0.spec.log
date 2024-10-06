@@ -1,0 +1,165 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - network-3.1.4.0 (ephemeral targets)
+Preprocessing library for network-3.1.4.0...
+Building library for network-3.1.4.0...
+Preprocessing test suite 'spec' for network-3.1.4.0...
+Building test suite 'spec' for network-3.1.4.0...
+[6 of 6] Linking /tmp/workdir-network/network-3.1.4.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/network-3.1.4.0/build/spec/spec [Library changed]
+Running 1 test suites...
+Test suite spec: RUNNING...
+
+Network.Socket
+  connect
+    fails to connect and throws an IOException [✔]
+    successfully connects to a socket with no exception [✔]
+  bind
+    successfully binds to an ipv4 socket [✔]
+    successfully binds to a unix socket [✔]
+  UserTimeout
+    can be set [✔]
+  getAddrInfo
+    works for IPv4 address [✔]
+    works for IPv6 address [✘]
+    does not cause segfault on macOS 10.8.2 due to AI_NUMERICSERV [✔]
+  ifNameToIndex and ifIndexToName
+    convert a name to an index and back [✔]
+  socket
+    should not be GCed while blocking [✔]
+  unix sockets
+    basic unix sockets end-to-end [✔]
+    can end-to-end with an abstract socket [✔]
+    safely throws an exception [✔]
+    socketPair
+      can send and recieve bi-directionally [✔]
+    sendFd/recvFd
+      can send and recieve a file descriptor [✔]
+  getPeerCredential
+    can return something [✔]
+  gracefulClose
+    does not send TCP RST back [✔]
+  socketToFd
+    socketToFd can send using fd [✔]
+  getNameInfo
+    works for IPv4 address [✔]
+    works for IPv6 address [✔]
+    works for IPv6 address [✔]
+    works for global multicast IPv6 address [✔]
+  show SocketAddr
+    works for IPv4 address [✔]
+    works for IPv6 address [✔]
+    works for IPv6 address with zeros [✔]
+    works for multicast IPv6 address with reserved scope [✔]
+  show Family
+    works for pattern synonyms [✔]
+    works for unsupported [✔]
+    works for positive values [✔]
+    works for negative values [✔]
+  show SocketType
+    works for pattern synonyms [✔]
+    works for unsupported [✔]
+    works for positive values [✔]
+    works for negative values [✔]
+  show SocketOptions
+    works for pattern synonyms [✔]
+    works for unsupported [✔]
+    works for positive values [✔]
+    works for negative values [✔]
+  show CmsgId
+    works for pattern synonyms [✔]
+    works for unsupported [✔]
+    works for positive values [✔]
+    works for negative values [✔]
+  bijective read-show roundtrip equality
+    holds for Family [✔]
+      +++ OK, passed 100 tests.
+    holds for SocketType [✔]
+      +++ OK, passed 100 tests.
+    holds for SocketOption [✔]
+      +++ OK, passed 100 tests.
+    holds for CmsgId [✔]
+      +++ OK, passed 100 tests.
+Network.Socket.ByteString
+  send
+    works well [✔]
+    throws when closed [✔]
+    checks -1 correctly on Windows [✔]
+  sendAll
+    works well [✔]
+    throws when closed [✔]
+  sendTo
+    works well [✔]
+    throws when closed [✔]
+  sendAllTo
+    works well [✔]
+    throws when closed [✔]
+  sendMany
+    works well [✔]
+    throws when closed [✔]
+  sendManyTo
+    works well [✔]
+    throws when closed [✔]
+  recv
+    works well [✔]
+    throws when closed [✔]
+    can treat overflow [✔]
+    returns empty string at EOF [✔]
+    checks -1 correctly on Windows [✔]
+  recvFrom
+    works well [✔]
+    throws when closed [✔]
+    can treat overflow [✔]
+    returns empty string at EOF [✔]
+  sendMsg
+    works well [✔]
+    throws when closed [✔]
+  recvMsg
+    works well [✔]
+    receives truncated flag [✔]
+    peek [✔]
+    receives control messages for IPv4 [✔]
+    receives control messages for IPv6 [✘]
+    receives truncated control messages [✔]
+Network.Socket.ByteString.Lazy
+  send
+    works well [✔]
+    throws when closed [✔]
+  sendAll
+    works well [✔]
+    throws when closed [✔]
+  getContents
+    works well [✔]
+    returns empty string at EOF [✔]
+  recv
+    works well [✔]
+    throws when closed [✔]
+    can treat overflow [✔]
+    returns empty string at EOF [✔]
+
+Failures:
+
+  tests/Network/SocketSpec.hs:110:9: 
+  1) Network.Socket.getAddrInfo works for IPv6 address
+       uncaught exception: IOException of type NoSuchThing
+       Network.Socket.getAddrInfo (called with preferred socket type/protocol: AddrInfo {addrFlags = [AI_NUMERICHOST,AI_ADDRCONFIG], addrFamily = AF_UNSPEC, addrSocketType = NoSocketType, addrProtocol = 0, addrAddress = 0.0.0.0:0, addrCanonName = Nothing}, host name: Just "2001:0db8:85a3:0000:0000:8a2e:0370:7334", service name: Nothing): does not exist (Address family for hostname not supported)
+
+  To rerun use: --match "/Network.Socket/getAddrInfo/works for IPv6 address/" --seed 1128733013
+
+  tests/Network/Socket/ByteStringSpec.hs:265:9: 
+  2) Network.Socket.ByteString.recvMsg receives control messages for IPv6
+       uncaught exception: IOException of type UnsupportedOperation
+       Network.Socket.bind: unsupported operation (Cannot assign requested address)
+
+  To rerun use: --match "/Network.Socket.ByteString/recvMsg/receives control messages for IPv6/" --seed 1128733013
+
+Randomized with seed 1128733013
+
+Finished in 0.4082 seconds
+86 examples, 2 failures
+Test suite spec: FAIL
+Test suite logged to:
+/tmp/workdir-network/network-3.1.4.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/network-3.1.4.0/test/network-3.1.4.0-spec.log
+0 of 1 test suites (0 of 1 test cases) passed.
+Error: [Cabal-7125]
+Tests failed for network-3.1.4.0.
+

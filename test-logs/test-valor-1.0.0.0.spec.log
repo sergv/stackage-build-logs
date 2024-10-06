@@ -1,0 +1,124 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - valor-1.0.0.0 (test:spec) (ephemeral targets)
+Preprocessing test suite 'spec' for valor-1.0.0.0...
+Building test suite 'spec' for valor-1.0.0.0...
+Running 1 test suites...
+Test suite spec: RUNNING...
+
+Data.Valor
+  Valor
+    'Valor' utility functions
+      pass : should always pass [✔]
+        +++ OK, passed 100 tests.
+      fail : should always fail [✔]
+        +++ OK, passed 100 tests.
+      test : should choose one or the other depending on the predicate [✔]
+        +++ OK, passed 100 tests.
+      make : should fail with error 'e' if result is 'Maybe e' [✔]
+        +++ OK, passed 100 tests.
+      peek : should choose one or the other validator depending on result of a third [✔]
+        +++ OK, passed 100 tests.
+      poke : should choose one or the other validator depending on result of a third, and aggregate the error [✔]
+        +++ OK, passed 100 tests.
+      nerf : should neutralize a failing validator [✔]
+        +++ OK, passed 100 tests.
+      peer : should convert neutral to Nothing and error to Maybe [✔]
+        +++ OK, passed 100 tests.
+      adapt : should make validator work with a different input type [✔]
+        +++ OK, passed 100 tests.
+      check1 : should adapt validator to different input and result in a maybe error [✔]
+        +++ OK, passed 100 tests.
+      checkN : applies validator to a list of items and results in Just [ Maybe e ] if there's even a single error, Nothing otherwise [✔]
+        +++ OK, passed 100 tests.
+Data.Valor.Internal
+  Valid
+    unValid
+      should retrieve a value 'e' from 'Valid e' [✔]
+  Wrong
+    'Wrong' property tests
+      Semigroup instance for 'Wrong'
+        Associativity: x <> (y <> z) ≡ (x <> y) <> z [✔]
+          +++ OK, passed 100 tests.
+        Inert a <> Inert b ≡ Inert $ a <> b [✔]
+          +++ OK, passed 100 tests.
+        Inert a <> Wrong b ≡ Wrong $ a <> b [✔]
+          +++ OK, passed 100 tests.
+        Wrong a <> Inert b ≡ Wrong $ a <> b [✔]
+          +++ OK, passed 100 tests.
+        Wrong a <> Wrong b ≡ Wrong $ a <> b [✔]
+          +++ OK, passed 100 tests.
+      Monoid instance for 'Wrong'
+        Left identity: mempty <> x ≡ x [✔]
+          +++ OK, passed 100 tests.
+        Right identity: x <> mempty ≡ x [✔]
+          +++ OK, passed 100 tests.
+        Concatenation: mconcat ≡ foldr (<>) mempty [✔]
+          +++ OK, passed 100 tests.
+      Functor instance for 'Wrong'
+        Identity: fmap id ≡ id [✔]
+          +++ OK, passed 100 tests.
+      Applicative instance for 'Wrong'
+        Identity: pure id <*> v ≡ v [✔]
+          +++ OK, passed 100 tests.
+        Homomorphism: pure f <*> pure x ≡ pure (f x) [✔]
+          +++ OK, passed 100 tests.
+        Interchange: u <*> pure y ≡ pure ($ y) <*> u [✔]
+          +++ OK, passed 100 tests.
+        Composition: pure (.) <*> u <*> v <*> w ≡ u <*> (v <*> w) [✔]
+          +++ OK, passed 100 tests.
+        Inert f <*> Inert v ≡ Inert $ f v [✔]
+          +++ OK, passed 100 tests.
+        Inert f <*> Wrong v ≡ Wrong $ f v [✔]
+          +++ OK, passed 100 tests.
+        Wrong f <*> Inert v ≡ Wrong $ f v [✔]
+          +++ OK, passed 100 tests.
+        Wrong f <*> Wrong v ≡ Wrong $ f v [✔]
+          +++ OK, passed 100 tests.
+    'Wrong' utility functions
+      altW
+        Inert a `altW` Inert b ≡ Inert a [✔]
+          +++ OK, passed 100 tests.
+        Inert a `altW` Wrong b ≡ Inert a [✔]
+          +++ OK, passed 100 tests.
+        Wrong a `altW` Inert b ≡ Inert b [✔]
+          +++ OK, passed 100 tests.
+        Wrong a `altW` Wrong b ≡ Wrong b [✔]
+          +++ OK, passed 100 tests.
+      accW
+        Inert a `accW` Inert b ≡ Inert a [✔]
+          +++ OK, passed 100 tests.
+        Inert a `accW` Wrong b ≡ Inert a [✔]
+          +++ OK, passed 100 tests.
+        Wrong a `accW` Inert b ≡ Inert b [✔]
+          +++ OK, passed 100 tests.
+        Wrong a `accW` Wrong b ≡ Wrong $ a <> b [✔]
+          +++ OK, passed 100 tests.
+      valW
+        Should extract a raw value from 'Wrong' [✔]
+          +++ OK, passed 100 tests.
+      wrong
+        Should apply appropriate function depending on the 'Wrong' constructor [✔]
+          +++ OK, passed 100 tests.
+      isInert
+        Should return 'False' when 'Wrong' [✔]
+        Should return 'True' when 'Inert' [✔]
+      isWrong
+        Should return 'True' when 'Wrong' [✔]
+        Should return 'False' when 'Inert' [✔]
+  Valor
+    'Valor' property tests
+      Monad instance for 'Valor'
+        Left identity: return a >>= k ≡ k a [✔]
+          +++ OK, passed 100 tests.
+        Right identity: m >>= return ≡ m [✔]
+          +++ OK, passed 100 tests.
+        Associativity: m >>= (\x -> k x >>= h) ≡ (m >>= k) >>= h [✔]
+          +++ OK, passed 100 tests.
+
+Finished in 0.0138 seconds
+46 examples, 0 failures
+Test suite spec: PASS
+Test suite logged to:
+/tmp/workdir-valor/valor-1.0.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/valor-1.0.0.0/t/spec/test/valor-1.0.0.0-spec.log
+1 of 1 test suites (1 of 1 test cases) passed.

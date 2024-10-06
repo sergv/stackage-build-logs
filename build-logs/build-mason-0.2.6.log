@@ -1,0 +1,146 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - mason-0.2.6 (lib) (first run)
+Configuring library for mason-0.2.6...
+Preprocessing library for mason-0.2.6...
+Building library for mason-0.2.6...
+[1 of 4] Compiling Mason.Builder.Internal
+
+src/Mason/Builder/Internal.hs:140:39: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘memcpy’
+    (imported from Data.ByteString.Internal, but defined in Data.ByteString.Internal.Type):
+    Deprecated: "Use Foreign.Marshal.Utils.copyBytes instead"
+    |
+140 |   unsafeWithForeignPtr fsrc $ \src -> B.memcpy ptr (src `plusPtr` ofs) len
+    |                                       ^^^^^^^^
+
+src/Mason/Builder/Internal.hs:297:12: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘memset’
+    (imported from Data.ByteString.Internal, but defined in Data.ByteString.Internal.Type):
+    Deprecated: "Use Foreign.Marshal.Utils.fillBytes instead"
+    |
+297 |     void $ B.memset ptr ch (fromIntegral pad)
+    |            ^^^^^^^^
+
+src/Mason/Builder/Internal.hs:317:5: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘memcpy’
+    (imported from Data.ByteString.Internal, but defined in Data.ByteString.Internal.Type):
+    Deprecated: "Use Foreign.Marshal.Utils.copyBytes instead"
+    |
+317 |     B.memcpy dst' ptr0 pos
+    |     ^^^^^^^^
+
+src/Mason/Builder/Internal.hs:356:41: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘memcpy’
+    (imported from Data.ByteString.Internal, but defined in Data.ByteString.Internal.Type):
+    Deprecated: "Use Foreign.Marshal.Utils.copyBytes instead"
+    |
+356 |       unsafeWithForeignPtr bs $ \dst -> B.memcpy dst ptr0 len
+    |                                         ^^^^^^^^
+
+src/Mason/Builder/Internal.hs:611:59: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘memcpy’
+    (imported from Data.ByteString.Internal, but defined in Data.ByteString.Internal.Type):
+    Deprecated: "Use Foreign.Marshal.Utils.copyBytes instead"
+    |
+611 |     when (len > 0) $ push $! B.unsafeCreate len $ \dst -> B.memcpy dst ptr0 len
+    |                                                           ^^^^^^^^
+[2 of 4] Compiling Mason.Builder
+
+src/Mason/Builder.hs:379:18: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘memset’
+    (imported from Data.ByteString.Internal, but defined in Data.ByteString.Internal.Type):
+    Deprecated: "Use Foreign.Marshal.Utils.fillBytes instead"
+    |
+379 |             _ <- B.memset dst 48 $ fromIntegral (prec + dp - 2)
+    |                  ^^^^^^^^
+
+src/Mason/Builder.hs:380:13: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘memcpy’
+    (imported from Data.ByteString.Internal, but defined in Data.ByteString.Internal.Type):
+    Deprecated: "Use Foreign.Marshal.Utils.copyBytes instead"
+    |
+380 |             B.memcpy dst ptr $ min len prec
+    |             ^^^^^^^^
+
+src/Mason/Builder.hs:383:18: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘memset’
+    (imported from Data.ByteString.Internal, but defined in Data.ByteString.Internal.Type):
+    Deprecated: "Use Foreign.Marshal.Utils.fillBytes instead"
+    |
+383 |             _ <- B.memset dst 48 $ fromIntegral (prec + 1)
+    |                  ^^^^^^^^
+
+src/Mason/Builder.hs:384:13: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘memcpy’
+    (imported from Data.ByteString.Internal, but defined in Data.ByteString.Internal.Type):
+    Deprecated: "Use Foreign.Marshal.Utils.copyBytes instead"
+    |
+384 |             B.memcpy dst ptr $ min len $ dp + 1
+    |             ^^^^^^^^
+
+src/Mason/Builder.hs:386:13: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘memcpy’
+    (imported from Data.ByteString.Internal, but defined in Data.ByteString.Internal.Type):
+    Deprecated: "Use Foreign.Marshal.Utils.copyBytes instead"
+    |
+386 |             B.memcpy (dst `plusPtr` (dp + 2)) (ptr `plusPtr` (dp + 1)) $ max 0 $ len - dp - 1
+    |             ^^^^^^^^
+
+src/Mason/Builder.hs:398:8: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘memset’
+    (imported from Data.ByteString.Internal, but defined in Data.ByteString.Internal.Type):
+    Deprecated: "Use Foreign.Marshal.Utils.fillBytes instead"
+    |
+398 |   _ <- B.memset dst 48 $ fromIntegral $ n + 1
+    |        ^^^^^^^^
+
+src/Mason/Builder.hs:415:12: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘memset’
+    (imported from Data.ByteString.Internal, but defined in Data.ByteString.Internal.Type):
+    Deprecated: "Use Foreign.Marshal.Utils.fillBytes instead"
+    |
+415 |       _ <- B.memset dst 48 $ fromIntegral len'
+    |            ^^^^^^^^
+
+src/Mason/Builder.hs:418:7: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘memcpy’
+    (imported from Data.ByteString.Internal, but defined in Data.ByteString.Internal.Type):
+    Deprecated: "Use Foreign.Marshal.Utils.copyBytes instead"
+    |
+418 |       B.memcpy (dst `plusPtr` 2) (ptr `plusPtr` 1) (min (len - 1) len')
+    |       ^^^^^^^^
+
+src/Mason/Builder.hs:441:12: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘memset’
+    (imported from Data.ByteString.Internal, but defined in Data.ByteString.Internal.Type):
+    Deprecated: "Use Foreign.Marshal.Utils.fillBytes instead"
+    |
+441 |       _ <- B.memset dst 48 $ fromIntegral len'
+    |            ^^^^^^^^
+
+src/Mason/Builder.hs:444:11: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘memcpy’
+    (imported from Data.ByteString.Internal, but defined in Data.ByteString.Internal.Type):
+    Deprecated: "Use Foreign.Marshal.Utils.copyBytes instead"
+    |
+444 |           B.memcpy dst ptr $ min len dp
+    |           ^^^^^^^^
+
+src/Mason/Builder.hs:446:11: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘memcpy’
+    (imported from Data.ByteString.Internal, but defined in Data.ByteString.Internal.Type):
+    Deprecated: "Use Foreign.Marshal.Utils.copyBytes instead"
+    |
+446 |           B.memcpy (dst `plusPtr` (dp + 1)) (ptr `plusPtr` dp) $ max 0 (len - dp)
+    |           ^^^^^^^^
+
+src/Mason/Builder.hs:449:11: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘memcpy’
+    (imported from Data.ByteString.Internal, but defined in Data.ByteString.Internal.Type):
+    Deprecated: "Use Foreign.Marshal.Utils.copyBytes instead"
+    |
+449 |           B.memcpy (dst `plusPtr` (2 - dp)) ptr len
+    |           ^^^^^^^^
+[3 of 4] Compiling Mason.Builder.Dynamic
+[4 of 4] Compiling Mason.Builder.Compat

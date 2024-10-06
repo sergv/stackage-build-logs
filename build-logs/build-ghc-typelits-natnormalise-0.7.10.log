@@ -1,0 +1,247 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - ghc-typelits-natnormalise-0.7.10 (lib) (first run)
+ - ghc-typelits-natnormalise-0.7.10 (test:unit-tests) (first run)
+Configuring library for ghc-typelits-natnormalise-0.7.10...
+Preprocessing library for ghc-typelits-natnormalise-0.7.10...
+Building library for ghc-typelits-natnormalise-0.7.10...
+[1 of 3] Compiling GHC.TypeLits.Normalise.SOP
+[2 of 3] Compiling GHC.TypeLits.Normalise.Unify
+[3 of 3] Compiling GHC.TypeLits.Normalise
+Configuring test suite 'unit-tests' for ghc-typelits-natnormalise-0.7.10...
+Preprocessing test suite 'unit-tests' for ghc-typelits-natnormalise-0.7.10...
+Building test suite 'unit-tests' for ghc-typelits-natnormalise-0.7.10...
+[1 of 2] Compiling ErrorTests
+
+tests/ErrorTests.hs:32:14: warning: [GHC-83865] [-Wdeferred-type-errors]
+    • Couldn't match type: x + 1
+                     with: 2 + x
+      Expected: Proxy (x + 1) -> Proxy (2 + x)
+        Actual: Proxy (x + 1) -> Proxy (x + 1)
+        NB: ‘+’ is a non-injective type family
+    • In the expression: id
+      In an equation for ‘testProxy1’: testProxy1 = id
+    • Relevant bindings include
+        testProxy1 :: Proxy (x + 1) -> Proxy (2 + x)
+          (bound at tests/ErrorTests.hs:32:1)
+   |
+32 | testProxy1 = id
+   |              ^^
+
+tests/ErrorTests.hs:50:14: warning: [GHC-83865] [-Wdeferred-type-errors]
+    • Couldn't match type: 2 + x
+                     with: x + 3
+      Expected: Proxy (GCD 6 8 + x) -> Proxy (x + GCD 9 6)
+        Actual: Proxy (2 + x) -> Proxy (2 + x)
+        NB: ‘+’ is a non-injective type family
+    • In the expression: id
+      In an equation for ‘testProxy2’: testProxy2 = id
+    • Relevant bindings include
+        testProxy2 :: Proxy (GCD 6 8 + x) -> Proxy (x + GCD 9 6)
+          (bound at tests/ErrorTests.hs:50:1)
+   |
+50 | testProxy2 = id
+   |              ^^
+
+tests/ErrorTests.hs:67:14: warning: [GHC-83865] [-Wdeferred-type-errors]
+    • Couldn't match type ‘(x0 + x0) + x0’ with ‘8’
+      Expected: Proxy 8 -> ()
+        Actual: Proxy ((x0 + x0) + x0) -> ()
+        The type variable ‘x0’ is ambiguous
+    • In the expression: proxyFun3
+      In an equation for ‘testProxy3’: testProxy3 = proxyFun3
+   |
+67 | testProxy3 = proxyFun3
+   |              ^^^^^^^^^
+
+tests/ErrorTests.hs:84:14: warning: [GHC-83865] [-Wdeferred-type-errors]
+    • Couldn't match type ‘(2 * y0) + 4’ with ‘2’
+      Expected: Proxy 2 -> ()
+        Actual: Proxy ((2 * y0) + 4) -> ()
+        The type variable ‘y0’ is ambiguous
+    • In the expression: proxyFun4
+      In an equation for ‘testProxy4’: testProxy4 = proxyFun4
+   |
+84 | testProxy4 = proxyFun4
+   |              ^^^^^^^^^
+
+tests/ErrorTests.hs:98:14: warning: [GHC-83865] [-Wdeferred-type-errors]
+    • Couldn't match type ‘2 * y1’ with ‘3’
+      Expected: Proxy 7 -> ()
+        Actual: Proxy ((2 * y1) + 4) -> ()
+        The type variable ‘y1’ is ambiguous
+    • In the expression: proxyFun4
+      In an equation for ‘testProxy5’: testProxy5 = proxyFun4
+   |
+98 | testProxy5 = proxyFun4
+   |              ^^^^^^^^^
+
+tests/ErrorTests.hs:115:14: warning: [GHC-83865] [-Wdeferred-type-errors]
+    • Couldn't match type ‘2 ^ k0’ with ‘7’
+      Expected: Proxy 7
+        Actual: Proxy (2 ^ k0)
+        The type variable ‘k0’ is ambiguous
+    • In the expression: proxyFun6 (Proxy :: Proxy 7)
+      In an equation for ‘testProxy6’:
+          testProxy6 = proxyFun6 (Proxy :: Proxy 7)
+    |
+115 | testProxy6 = proxyFun6 (Proxy :: Proxy 7)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/ErrorTests.hs:136:14: warning: [GHC-25897] [-Wdeferred-type-errors]
+    • Couldn't match type ‘x’ with ‘y + x’
+      Expected: Proxy x -> Proxy (y + x)
+        Actual: Proxy x -> Proxy x
+      ‘x’ is a rigid type variable bound by
+        the type signature for:
+          testProxy8 :: forall (x :: Natural) (y :: Natural).
+                        Proxy x -> Proxy (y + x)
+        at tests/ErrorTests.hs:135:1-38
+    • In the expression: id
+      In an equation for ‘testProxy8’: testProxy8 = id
+    • Relevant bindings include
+        testProxy8 :: Proxy x -> Proxy (y + x)
+          (bound at tests/ErrorTests.hs:136:1)
+    |
+136 | testProxy8 = id
+    |              ^^
+
+tests/ErrorTests.hs:160:14: warning: [GHC-64725] [-Wdeferred-type-errors]
+    • Cannot satisfy: a + 1 <= a
+    • In the expression: proxyInEq
+      In an equation for ‘testProxy9’: testProxy9 = proxyInEq
+    |
+160 | testProxy9 = proxyInEq
+    |              ^^^^^^^^^
+
+tests/ErrorTests.hs:191:15: warning: [GHC-18872] [-Wdeferred-type-errors]
+    • Couldn't match type ‘Data.Type.Ord.OrdCond
+                             (CmpNat a (a + 2)) True True False’
+                     with ‘False’
+        arising from a use of ‘proxyInEq'’
+    • In the expression: proxyInEq'
+      In an equation for ‘testProxy10’: testProxy10 = proxyInEq'
+    • Relevant bindings include
+        testProxy10 :: Proxy a -> Proxy (a + 2) -> ()
+          (bound at tests/ErrorTests.hs:191:1)
+    |
+191 | testProxy10 = proxyInEq'
+    |               ^^^^^^^^^^
+
+tests/ErrorTests.hs:254:15: warning: [GHC-18872] [-Wdeferred-type-errors]
+    • Couldn't match type ‘True’ with ‘False’
+        arising from a use of ‘proxyInEq'’
+    • In the expression: proxyInEq'
+      In an equation for ‘testProxy11’: testProxy11 = proxyInEq'
+    |
+254 | testProxy11 = proxyInEq'
+    |               ^^^^^^^^^^
+
+tests/ErrorTests.hs:271:16: warning: [GHC-83865] [-Wdeferred-type-errors]
+    • Couldn't match type: a0 + b0
+                     with: a + b
+      Expected: Proxy (a + b) -> Proxy (a + c) -> ()
+        Actual: Proxy (a0 + b0) -> Proxy (a0 + c0) -> ()
+        NB: ‘+’ is a non-injective type family
+        The type variables ‘a0’, ‘b0’ are ambiguous
+    • In the ambiguity check for ‘testProxy12’
+      To defer the ambiguity check to use sites, enable AllowAmbiguousTypes
+      In the type signature:
+        testProxy12 :: Proxy (a + b) -> Proxy (a + c) -> ()
+    |
+271 | testProxy12 :: Proxy (a + b) -> Proxy (a + c) -> ()
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/ErrorTests.hs:272:15: warning: [GHC-64725] [-Wdeferred-type-errors]
+    • Cannot satisfy: a + b <= a + c
+    • In the expression: proxyInEq
+      In an equation for ‘testProxy12’: testProxy12 = proxyInEq
+    |
+272 | testProxy12 = proxyInEq
+    |               ^^^^^^^^^
+
+tests/ErrorTests.hs:303:15: warning: [GHC-64725] [-Wdeferred-type-errors]
+    • Cannot satisfy: 4 * a <= 2 * a
+    • In the expression: proxyInEq
+      In an equation for ‘testProxy13’: testProxy13 = proxyInEq
+    |
+303 | testProxy13 = proxyInEq
+    |               ^^^^^^^^^
+
+tests/ErrorTests.hs:334:15: warning: [GHC-18872] [-Wdeferred-type-errors]
+    • Couldn't match type ‘Data.Type.Ord.OrdCond
+                             (CmpNat (2 * a) (4 * a)) True True False’
+                     with ‘False’
+        arising from a use of ‘proxyInEq'’
+    • In the expression: proxyInEq'
+      In an equation for ‘testProxy14’: testProxy14 = proxyInEq'
+    • Relevant bindings include
+        testProxy14 :: Proxy (2 * a) -> Proxy (4 * a) -> ()
+          (bound at tests/ErrorTests.hs:334:1)
+    |
+334 | testProxy14 = proxyInEq'
+    |               ^^^^^^^^^^
+
+tests/ErrorTests.hs:400:15: warning: [GHC-25897] [-Wdeferred-type-errors]
+    • Could not deduce ‘(n + d) ~ n’
+      from the context: (CLog 2 (2 ^ n) ~ n, (1 <=? n) ~ True)
+        bound by the type signature for:
+                   testProxy15 :: forall (n :: Natural) (d :: Natural).
+                                  (CLog 2 (2 ^ n) ~ n, (1 <=? n) ~ True) =>
+                                  Proxy n -> Proxy (n + d)
+        at tests/ErrorTests.hs:399:1-79
+      Expected: Proxy n -> Proxy (n + d)
+        Actual: Proxy n -> Proxy n
+      ‘n’ is a rigid type variable bound by
+        the type signature for:
+          testProxy15 :: forall (n :: Natural) (d :: Natural).
+                         (CLog 2 (2 ^ n) ~ n, (1 <=? n) ~ True) =>
+                         Proxy n -> Proxy (n + d)
+        at tests/ErrorTests.hs:399:1-79
+    • In the expression: id
+      In an equation for ‘testProxy15’: testProxy15 = id
+    • Relevant bindings include
+        testProxy15 :: Proxy n -> Proxy (n + d)
+          (bound at tests/ErrorTests.hs:400:1)
+    |
+400 | testProxy15 = id
+    |               ^^
+
+tests/ErrorTests.hs:419:8: warning: [GHC-64725] [-Wdeferred-type-errors]
+    • Cannot satisfy: 1 <= n
+    • In the expression: FZ
+      In a case alternative: 0 -> FZ
+      In the expression:
+        case n of
+          0 -> FZ
+          x -> FS (test16 @(n - 1) (x - 1))
+    |
+419 |   0 -> FZ
+    |        ^^
+
+tests/ErrorTests.hs:456:16: warning: [GHC-64725] [-Wdeferred-type-errors]
+    • Cannot satisfy: 1 <= n
+    • In the first argument of ‘const’, namely ‘show’
+      In the expression: const show
+      In an equation for ‘test17’: test17 = const show
+    |
+456 | test17 = const show
+    |                ^^^^
+
+tests/ErrorTests.hs:476:19: warning: [GHC-64725] [-Wdeferred-type-errors]
+    • Cannot satisfy: 1 <= rp - m
+    • In the expression: test19f
+      In an equation for ‘testProxy19’: testProxy19 _ _ = test19f
+    |
+476 | testProxy19 _ _ = test19f
+    |                   ^^^^^^^
+
+tests/ErrorTests.hs:491:15: warning: [GHC-64725] [-Wdeferred-type-errors]
+    • Cannot satisfy: 1 <= m ^ 2
+    • In the expression: proxyInEq
+      In an equation for ‘testProxy20’: testProxy20 = proxyInEq
+    |
+491 | testProxy20 = proxyInEq
+    |               ^^^^^^^^^
+[2 of 2] Compiling Main
+[3 of 3] Linking /tmp/workdir-ghc-typelits-natnormalise/ghc-typelits-natnormalise-0.7.10/dist-newstyle/build/x86_64-linux/ghc-9.6.6/ghc-typelits-natnormalise-0.7.10/t/unit-tests/build/unit-tests/unit-tests

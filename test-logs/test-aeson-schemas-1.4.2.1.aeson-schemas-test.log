@@ -1,0 +1,382 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - aeson-schemas-1.4.2.1 (test:aeson-schemas-test) (ephemeral targets)
+Preprocessing test suite 'aeson-schemas-test' for aeson-schemas-1.4.2.1...
+Building test suite 'aeson-schemas-test' for aeson-schemas-1.4.2.1...
+Running 1 test suites...
+Test suite aeson-schemas-test: RUNNING...
+aeson-schemas
+  Object
+    Show instance
+      Scalar key:                                                           OK
+        +++ OK, passed 100 tests.
+      Object with multiple keys:                                            OK
+        +++ OK, passed 100 tests.
+      Nested object:                                                        OK
+        +++ OK, passed 100 tests.
+      Object with existing Maybe key:                                       OK
+        +++ OK, passed 100 tests.
+      Object with non-existing Maybe key:                                   OK
+      Object with valid Try key:                                            OK (0.01s)
+        +++ OK, passed 100 tests.
+      Object with invalid Try key:                                          OK
+        +++ OK, passed 100 tests.
+      Object with List key:                                                 OK
+        +++ OK, passed 100 tests.
+      Object with Union key branch 0:                                       OK
+        +++ OK, passed 100 tests.
+      Object with Union key branch 1:                                       OK
+        +++ OK, passed 100 tests.
+      Object with referenced Object:                                        OK
+        +++ OK, passed 100 tests.
+      Object with extended Object:                                          OK
+        +++ OK, passed 100 tests.
+      Object with Phantom key:                                              OK
+        +++ OK, passed 100 tests.
+    Eq instance
+      o === o:                                                              OK (0.03s)
+        +++ OK, passed 100 tests.
+        
+        Key types (503 in total):
+        89.7% Normal
+        10.3% Phantom
+        
+        Object depth (100 in total):
+        53% 1
+        33% 2
+         6% 4
+         5% 3
+         3% 5
+        
+        Object sizes (209 in total):
+        58.9% 1
+        16.3% 2
+         8.1% 4
+         4.8% 5
+         3.8% 7
+         2.9% 6
+         2.4% 12
+         1.4% 11
+         1.4% 3
+        
+        Schema types (793 in total):
+        26.4% SchemaObject
+        18.3% Int
+        13.4% Text
+        12.9% Bool
+        11.3% Double
+         7.6% SchemaList
+         5.4% SchemaTry
+         2.8% SchemaMaybe
+         2.0% SchemaUnion
+    FromJSON instance
+      Scalar valid:                                                         OK
+        +++ OK, passed 100 tests.
+      Scalar invalid:                                                       OK
+      Maybe valid:                                                          OK
+        +++ OK, passed 100 tests.
+      Maybe invalid:                                                        OK
+      Try valid with valid parse:                                           OK
+        +++ OK, passed 100 tests.
+      Try valid with invalid parse:                                         OK
+        +++ OK, passed 100 tests.
+      List valid:                                                           OK
+        +++ OK, passed 100 tests.
+      List invalid:                                                         OK
+      List invalid inner:                                                   OK
+      Object invalid:                                                       OK
+      Object invalid in later keys:                                         OK
+      Nested object valid:                                                  OK
+        +++ OK, passed 100 tests.
+      Nested object invalid:                                                OK
+      Nested object invalid inner:                                          OK
+      Union object valid:                                                   OK
+        +++ OK, passed 100 tests.
+      Union object invalid:                                                 OK
+      Phantom key valid object:                                             OK
+        +++ OK, passed 100 tests.
+      Phantom key valid non-object try:                                     OK
+        +++ OK, passed 100 tests.
+      Phantom key invalid:                                                  OK
+      Phantom key missing inner:                                            OK
+      Phantom key invalid inner:                                            OK
+      Decode failure messages are truncated:                                OK
+      QuickCheck arbitrary Schema:                                          OK
+        +++ OK, passed 100 tests.
+        
+        Key types (562 in total):
+        87.5% Normal
+        12.5% Phantom
+        
+        Object depth (100 in total):
+        49% 1
+        29% 3
+        22% 2
+        
+        Object sizes (217 in total):
+        47.5% 1
+        18.0% 2
+         8.3% 3
+         8.3% 4
+         6.9% 7
+         4.6% 5
+         4.6% 6
+         1.8% 10
+        
+        Schema types (959 in total):
+        22.6% SchemaObject
+        17.5% Bool
+        12.4% Double
+        12.4% Text
+        10.0% Int
+         7.1% SchemaMaybe
+         6.6% SchemaList
+         6.5% SchemaTry
+         4.9% SchemaUnion
+    ToJSON instance
+      parseJSON . toJSON === pure:                                          OK (0.05s)
+        +++ OK, passed 100 tests.
+        
+        Key types (499 in total):
+        94.6% Normal
+         5.4% Phantom
+        
+        Object depth (100 in total):
+        50% 1
+        31% 2
+        13% 4
+         6% 3
+        
+        Object sizes (202 in total):
+        49.5% 1
+        17.8% 2
+         9.9% 3
+         8.9% 6
+         7.9% 4
+         2.5% 8
+         2.5% 9
+         1.0% 5
+        
+        Schema types (772 in total):
+        26.2% SchemaObject
+        14.5% Bool
+        14.0% Double
+        13.1% Int
+        11.9% Text
+         8.3% SchemaTry
+         5.2% SchemaList
+         4.4% SchemaMaybe
+         2.5% SchemaUnion
+    toMap smoketest:                                                        OK
+  `get` quasiquoter
+    Valid get expressions
+      Scalar expressions
+        Get Bool key from object:                                           OK
+          +++ OK, passed 100 tests.
+        Get Int key from object:                                            OK
+          +++ OK, passed 100 tests.
+        Get Double key from object:                                         OK
+          +++ OK, passed 100 tests.
+        Get Text key from object:                                           OK
+          +++ OK, passed 100 tests.
+        Get Custom key from object:                                         OK
+          +++ OK, passed 100 tests.
+        Get Enum key from object:                                           OK
+          +++ OK, passed 100 tests.
+      Basic expressions
+        Can query fields on namespaced object:                              OK
+        Can query quoted keys:                                              OK
+          +++ OK, passed 100 tests.
+        Can query nested fields:                                            OK
+          +++ OK, passed 100 tests.
+        Can generate a lambda expression:                                   OK
+          +++ OK, passed 100 tests.
+        Can extract a list of elements:                                     OK
+          +++ OK, passed 100 tests.
+        Can extract a tuple of elements:                                    OK
+          +++ OK, passed 100 tests.
+      Nullable expressions
+        Get Maybe key from object with value:                               OK
+        Get Maybe key from object with null value:                          OK
+        Get Maybe key from object without value:                            OK
+        Can run operations within existing Maybe value:                     OK
+        Can run operations within nonexisting Maybe value:                  OK
+        Can run operations after unwrapping Maybe value:                    OK
+        Get Try key from object with parsed value:                          OK
+        Get Try key from object with invalid value:                         OK
+        Can run operations within parsed Try value:                         OK
+        Can run operations within invalid Try value:                        OK
+        Can run operations after unwrapping Try value:                      OK
+        fromJust errors
+          Plain fromJust:                                                   OK
+          With start:                                                       OK
+          With qualified start:                                             OK
+          With lambda:                                                      OK
+          Within nested list of keys:                                       OK
+          Within list of keys:                                              OK
+          Within nested tuple of keys:                                      OK
+          Within tuple of keys:                                             OK
+          Within list:                                                      OK
+          On incorrect branch selector:                                     OK
+      List expressions
+        Get List key from object:                                           OK
+        Ending with a `[]` operator is a noop:                              OK
+          +++ OK, passed 100 tests.
+        Can run operations within list:                                     OK
+      Union expressions
+        Get Union key from object:                                          OK
+        Can run operations after extracting branch:                         OK
+      Phantom expressions
+        Get Phantom object key from object:                                 OK
+          +++ OK, passed 100 tests.
+        Get Phantom object Try key from object:                             OK
+          +++ OK, passed 100 tests.
+        Get Phantom non-object Try key from object:                         OK
+          +++ OK, passed 100 tests.
+      Nested expressions
+        Extracted object from Object can be queried further:                OK
+          +++ OK, passed 100 tests.
+        Extracted object from Maybe can be queried further:                 OK
+          +++ OK, passed 100 tests.
+        Extracted object from Try can be queried further:                   OK
+          +++ OK, passed 100 tests.
+        Extracted object from List can be queried further:                  OK
+          +++ OK, passed 100 tests (85% non-trivial).
+        Extracted objects from list of keys can be queried further:         OK
+          +++ OK, passed 100 tests.
+        Extracted objects from tuple of keys can be queried further:        OK
+          +++ OK, passed 100 tests.
+        Extracted objects from union can be queried further:                OK
+          +++ OK, passed 100 tests.
+    Invalid expressions
+      Empty expression:                                                     OK
+      No operators:                                                         OK
+      Operators after tuple of keys:                                        OK
+      Operators after list of keys:                                         OK
+    Compile-time errors
+      Key not in schema:                                                    OK (0.52s)
+  `unwrap` quasiquoter
+    Valid unwrap definitions
+      Can unwrap a list:                                                    OK
+      Can unwrap a list of keys:                                            OK
+      Can unwrap a tuple of keys:                                           OK
+      Can unwrap a maybe:                                                   OK
+      Can unwrap a sum type:                                                OK
+      Can unwrap an included schema:                                        OK
+      Can unwrap an Object twice:                                           OK
+      Can use unwrapped type:                                               OK
+    Invalid unwrap definitions
+      Unwrap unknown schema:                                                OK
+      Unwrap non-schema:                                                    OK
+      Unwrap key on non-object:                                             OK
+      Unwrap maybe on non-maybe:                                            OK
+      Unwrap list on non-list:                                              OK
+      Unwrap nonexistent key:                                               OK
+      Unwrap list of keys with different types:                             OK
+      Unwrap list of keys on non-object schema:                             OK
+      Unwrap beyond list of keys:                                           OK
+      Unwrap tuple of keys on non-object schema:                            OK
+      Unwrap beyond tuple of keys:                                          OK
+      Unwrap branch on non-branch:                                          OK
+      Unwrap out of bounds branch:                                          OK
+  `schema` quasiquoter
+    Valid schemas
+      Object with Bool field:                                               OK
+      Object with Int field:                                                OK
+      Object with Double field:                                             OK
+      Object with Text field:                                               OK
+      Object with a field with a custom type:                               OK
+      Object with a field with a Maybe type:                                OK
+      Object with a field with a Try type:                                  OK
+      Object with a nested object:                                          OK
+      Object with a nullable nested object:                                 OK
+      Object with a list of nested objects:                                 OK
+      Object with an imported schema:                                       OK
+      Object with a qualified imported schema:                              OK
+      Object with an imported schema that uses a non-imported type:         OK
+      Object with an imported schema that itself imports a schema:          OK
+      Object with an extended schema:                                       OK
+      Object with a qualified extended schema:                              OK
+      Object with an extended schema that uses a non-imported type:         OK
+      Object with an extended schema with a shadowed key:                   OK
+      Object with a qualified extended schema with a shadowed key:          OK
+      Object with a union field:                                            OK
+      Object with a union field with a group:                               OK
+      Object with a phantom key for an object:                              OK
+      Object with a phantom key for a Maybe:                                OK
+      Object with a phantom key for a Try:                                  OK
+      Object with a phantom key for a non-object Try:                       OK
+      Object with a phantom key for a union of valid schemas:               OK
+    Invalid schemas
+      Object with a duplicate key:                                          OK
+      Object with a duplicate phantom key:                                  OK
+      Object with a duplicate key from extending:                           OK
+      Quasiquoter defining a non-object:                                    OK
+      Object with a field with an unknown type:                             OK
+      Object extending a non-schema:                                        OK
+      Object importing an unknown schema:                                   OK
+      Object extending an unknown schema:                                   OK
+      Object with a phantom key for a scalar:                               OK
+      Object with a phantom key for a list:                                 OK
+      Object with a phantom key for a non-object Maybe:                     OK
+      Object with a phantom key for an invalid union:                       OK
+    Keys in schemas
+      Quoted key same as plain key:                                         OK
+      Key with invalid character:                                           OK
+      Key with escaped invalid character:                                   OK
+      Key with trailing escape:                                             OK
+      Quoted key that starts with '//':                                     OK
+      Phantom key that starts with '//':                                    OK
+  `mkGetter` helper
+    Type synonym is generated:                                              OK
+    Getter function is generated:                                           OK
+    mkGetter expression should be a lambda expression:                      OK
+  Enum TH helpers
+    mkEnum
+      mkEnum decode is case insensitive:                                    OK
+        +++ OK, passed 100 tests.
+      mkEnum encode keeps case of constructor:                              OK
+      mkEnum: (fromJust . decode . encode) === id:                          OK
+        +++ OK, passed 100 tests.
+    gen{To,From}JSONEnum
+      genFromJSONEnum decode is case insensitive:                           OK
+        +++ OK, passed 100 tests.
+      genToJSONEnum encode keeps case of constructor:                       OK
+      genFromJSONEnum + genToJSONEnum: (fromJust . decode . encode) === id: OK
+        +++ OK, passed 100 tests.
+  SumType
+    Sanity checks:                                                          OK
+    Decode SumType
+      branch 1:                                                             OK
+        +++ OK, passed 100 tests.
+      branch 2:                                                             OK
+        +++ OK, passed 100 tests.
+      branch 3:                                                             OK
+        +++ OK, passed 100 tests.
+      invalid SumType:                                                      OK
+    fromSumType
+      branch 0 valid:                                                       OK
+        +++ OK, passed 100 tests.
+      branch 0 invalid:                                                     OK
+        +++ OK, passed 100 tests:
+        51% branch 1
+        49% branch 2
+      branch 1 valid:                                                       OK
+        +++ OK, passed 100 tests.
+      branch 1 invalid:                                                     OK
+        +++ OK, passed 100 tests:
+        53% branch 0
+        47% branch 2
+      branch 2 valid:                                                       OK (0.01s)
+        +++ OK, passed 100 tests.
+      branch 2 invalid:                                                     OK
+        +++ OK, passed 100 tests:
+        53% branch 0
+        47% branch 1
+  README Quickstart works:                                                  OK (0.84s)
+
+All 178 tests passed (1.50s)
+Test suite aeson-schemas-test: PASS
+Test suite logged to:
+/tmp/workdir-aeson-schemas/aeson-schemas-1.4.2.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/aeson-schemas-1.4.2.1/t/aeson-schemas-test/test/aeson-schemas-1.4.2.1-aeson-schemas-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

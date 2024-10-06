@@ -1,0 +1,45 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - deriveJsonNoPrefix-0.1.0.1 (lib) (first run)
+ - deriveJsonNoPrefix-0.1.0.1 (test:deriveJsonNoPrefix-test) (first run)
+Configuring library for deriveJsonNoPrefix-0.1.0.1...
+Preprocessing library for deriveJsonNoPrefix-0.1.0.1...
+Building library for deriveJsonNoPrefix-0.1.0.1...
+[1 of 2] Compiling Data.Aeson.DeriveNoPrefix
+[2 of 2] Compiling Paths_deriveJsonNoPrefix
+Configuring test suite 'deriveJsonNoPrefix-test' for deriveJsonNoPrefix-0.1.0.1...
+Preprocessing test suite 'deriveJsonNoPrefix-test' for deriveJsonNoPrefix-0.1.0.1...
+Building test suite 'deriveJsonNoPrefix-test' for deriveJsonNoPrefix-0.1.0.1...
+[1 of 3] Compiling Data.Aeson.DeriveNoPrefixSpecLib
+[2 of 3] Compiling Data.Aeson.DeriveNoPrefixSpec
+
+test/Data/Aeson/DeriveNoPrefixSpec.hs:17:9: error: [GHC-83865]
+    • Couldn't match type: HM.HashMap k0 Json.Value
+                     with: Data.Aeson.KeyMap.KeyMap Json.Value
+      Expected: Json.Object
+        Actual: HM.HashMap k0 Json.Value
+      Type synonyms expanded:
+      Expected type: Data.Aeson.KeyMap.KeyMap Json.Value
+        Actual type: HM.HashMap k0 Json.Value
+    • In the second argument of ‘($)’, namely
+        ‘HM.fromList
+           [("id", Json.String "the id"), ("max", Json.Number 456),
+            ("min", Json.Number 123)]’
+      In the expression:
+        Json.Object
+          $ HM.fromList
+              [("id", Json.String "the id"), ("max", Json.Number 456),
+               ("min", Json.Number 123)]
+      In an equation for ‘jsonVal’:
+          jsonVal
+            = Json.Object
+                $ HM.fromList
+                    [("id", Json.String "the id"), ("max", Json.Number 456),
+                     ("min", Json.Number 123)]
+   |
+17 |         HM.fromList
+   |         ^^^^^^^^^^^...
+[3 of 3] Compiling Paths_deriveJsonNoPrefix
+Error: [Cabal-7125]
+Failed to build test:deriveJsonNoPrefix-test from deriveJsonNoPrefix-0.1.0.1.
+

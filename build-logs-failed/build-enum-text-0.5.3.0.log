@@ -1,0 +1,30 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - enum-text-0.5.3.0 (lib) (first run)
+ - enum-text-0.5.3.0 (test:enum-text-tests) (first run)
+Configuring library for enum-text-0.5.3.0...
+Preprocessing library for enum-text-0.5.3.0...
+Building library for enum-text-0.5.3.0...
+[1 of 2] Compiling Paths_enum_text
+[2 of 2] Compiling Text.Enum.Text
+
+src/Text/Enum/Text.hs:185:12: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+185 | instance a ~ Char => TextParsable [a] where parseText = return . T.unpack
+    |            ^
+Configuring test suite 'enum-text-tests' for enum-text-0.5.3.0...
+Preprocessing test suite 'enum-text-tests' for enum-text-0.5.3.0...
+Building test suite 'enum-text-tests' for enum-text-0.5.3.0...
+doctest-discover: test/doctest-config.json: openFile: does not exist (No such file or directory)
+
+test/Doctest.hs:1:1: error:
+    `doctest-discover' failed in phase `Haskell pre-processor'. (Exit code: 1)
+  |
+1 | {-# OPTIONS_GHC -F -pgmF doctest-discover -optF test/doctest-config.json #-}
+  | ^
+Error: [Cabal-7125]
+Failed to build test:enum-text-tests from enum-text-0.5.3.0.
+

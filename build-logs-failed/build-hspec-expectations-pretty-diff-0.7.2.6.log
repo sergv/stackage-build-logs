@@ -1,0 +1,76 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - hspec-expectations-pretty-diff-0.7.2.6 (lib) (first run)
+ - hspec-expectations-pretty-diff-0.7.2.6 (test:tests) (first run)
+Configuring library for hspec-expectations-pretty-diff-0.7.2.6...
+Preprocessing library for hspec-expectations-pretty-diff-0.7.2.6...
+Building library for hspec-expectations-pretty-diff-0.7.2.6...
+[1 of 3] Compiling Test.Hspec.Expectations.Pretty.Contrib
+[2 of 3] Compiling Test.Hspec.Expectations.Pretty.Matcher
+[3 of 3] Compiling Test.Hspec.Expectations.Pretty
+Configuring test suite 'tests' for hspec-expectations-pretty-diff-0.7.2.6...
+Preprocessing test suite 'tests' for hspec-expectations-pretty-diff-0.7.2.6...
+Building test suite 'tests' for hspec-expectations-pretty-diff-0.7.2.6...
+[1 of 3] Compiling Test.Hspec.Expectations.Pretty.MatcherSpec
+[2 of 3] Compiling Test.Hspec.Expectations.PrettySpec
+
+test/Test/Hspec/Expectations/PrettySpec.hs:35:17: error: [GHC-83865]
+    • Couldn't match expected type ‘Key’
+                  with actual type ‘Data.Text.Internal.Text’
+    • In the first argument of ‘(.=)’, namely ‘pack "foo"’
+      In the expression: pack "foo" .= object [pack "bar" .= Number 123]
+      In the first argument of ‘object’, namely
+        ‘[pack "foo" .= object [pack "bar" .= Number 123]]’
+   |
+35 |       (object [ pack "foo" .= object [ pack "bar" .= Number 123 ] ] `shouldBe` object [ pack "foo" .= object [ pack "bar" .= Number 234, pack "quux" .= Number 567 ] ]) `shouldThrow` expectationFailed "   \ESC[0mObject\ESC[0m\ESC[0m \ESC[0m\ESC[36m(\ESC[0m\ESC[0mfromList\ESC[0m\ESC[0m \ESC[0m\ESC[31m[\ESC[0m\ESC[0m\n   \ESC[0m\ESC[0m    \ESC[0m\ESC[36m(\ESC[0m\ESC[35m\"foo\"\ESC[0m\ESC[36m,\ESC[0m\ESC[0m\n   \ESC[0m\ESC[0m    \ESC[0m\ESC[0mObject\ESC[0m\ESC[0m \ESC[0m\ESC[36m(\ESC[0m\ESC[0mfromList\ESC[0m\ESC[0m \ESC[0m\ESC[31m[\ESC[0m\ESC[0m\n\ESC[31m---\ESC[0m\ESC[0m\ESC[0m        \ESC[0m\ESC[36m(\ESC[0m\ESC[35m\"quux\"\ESC[0m\ESC[36m,\ESC[0m\ESC[0m\n\ESC[31m---\ESC[0m\ESC[0m\ESC[0m        \ESC[0m\ESC[0mNumber\ESC[0m\ESC[0m \ESC[0m\ESC[35m567.0\ESC[0m\ESC[36m)\ESC[0m\ESC[36m,\ESC[0m\ESC[0m\n   \ESC[0m\ESC[0m        \ESC[0m\ESC[36m(\ESC[0m\ESC[35m\"bar\"\ESC[0m\ESC[36m,\ESC[0m\ESC[0m\n\ESC[31m---\ESC[0m\ESC[0m\ESC[0m        \ESC[0m\ESC[0mNumber\ESC[0m\ESC[0m \ESC[0m\ESC[35m234.0\ESC[0m\ESC[36m)\ESC[0m\ESC[0m\n\ESC[32m+++\ESC[0m\ESC[0m\ESC[0m        \ESC[0m\ESC[0mNumber\ESC[0m\ESC[0m \ESC[0m\ESC[35m123.0\ESC[0m\ESC[36m)\ESC[0m\ESC[0m\n   \ESC[0m\ESC[0m    \ESC[0m\ESC[31m]\ESC[0m\ESC[36m)\ESC[0m\ESC[36m)\ESC[0m\ESC[0m\n   \ESC[0m\ESC[31m]\ESC[0m\ESC[36m)\ESC[0m\n"
+   |                 ^^^^^^^^^^
+
+test/Test/Hspec/Expectations/PrettySpec.hs:35:40: error: [GHC-83865]
+    • Couldn't match expected type ‘Key’
+                  with actual type ‘Data.Text.Internal.Text’
+    • In the first argument of ‘(.=)’, namely ‘pack "bar"’
+      In the expression: pack "bar" .= Number 123
+      In the first argument of ‘object’, namely
+        ‘[pack "bar" .= Number 123]’
+   |
+35 |       (object [ pack "foo" .= object [ pack "bar" .= Number 123 ] ] `shouldBe` object [ pack "foo" .= object [ pack "bar" .= Number 234, pack "quux" .= Number 567 ] ]) `shouldThrow` expectationFailed "   \ESC[0mObject\ESC[0m\ESC[0m \ESC[0m\ESC[36m(\ESC[0m\ESC[0mfromList\ESC[0m\ESC[0m \ESC[0m\ESC[31m[\ESC[0m\ESC[0m\n   \ESC[0m\ESC[0m    \ESC[0m\ESC[36m(\ESC[0m\ESC[35m\"foo\"\ESC[0m\ESC[36m,\ESC[0m\ESC[0m\n   \ESC[0m\ESC[0m    \ESC[0m\ESC[0mObject\ESC[0m\ESC[0m \ESC[0m\ESC[36m(\ESC[0m\ESC[0mfromList\ESC[0m\ESC[0m \ESC[0m\ESC[31m[\ESC[0m\ESC[0m\n\ESC[31m---\ESC[0m\ESC[0m\ESC[0m        \ESC[0m\ESC[36m(\ESC[0m\ESC[35m\"quux\"\ESC[0m\ESC[36m,\ESC[0m\ESC[0m\n\ESC[31m---\ESC[0m\ESC[0m\ESC[0m        \ESC[0m\ESC[0mNumber\ESC[0m\ESC[0m \ESC[0m\ESC[35m567.0\ESC[0m\ESC[36m)\ESC[0m\ESC[36m,\ESC[0m\ESC[0m\n   \ESC[0m\ESC[0m        \ESC[0m\ESC[36m(\ESC[0m\ESC[35m\"bar\"\ESC[0m\ESC[36m,\ESC[0m\ESC[0m\n\ESC[31m---\ESC[0m\ESC[0m\ESC[0m        \ESC[0m\ESC[0mNumber\ESC[0m\ESC[0m \ESC[0m\ESC[35m234.0\ESC[0m\ESC[36m)\ESC[0m\ESC[0m\n\ESC[32m+++\ESC[0m\ESC[0m\ESC[0m        \ESC[0m\ESC[0mNumber\ESC[0m\ESC[0m \ESC[0m\ESC[35m123.0\ESC[0m\ESC[36m)\ESC[0m\ESC[0m\n   \ESC[0m\ESC[0m    \ESC[0m\ESC[31m]\ESC[0m\ESC[36m)\ESC[0m\ESC[36m)\ESC[0m\ESC[0m\n   \ESC[0m\ESC[31m]\ESC[0m\ESC[36m)\ESC[0m\n"
+   |                                        ^^^^^^^^^^
+
+test/Test/Hspec/Expectations/PrettySpec.hs:35:89: error: [GHC-83865]
+    • Couldn't match expected type ‘Key’
+                  with actual type ‘Data.Text.Internal.Text’
+    • In the first argument of ‘(.=)’, namely ‘pack "foo"’
+      In the expression:
+        pack "foo"
+          .= object [pack "bar" .= Number 234, pack "quux" .= Number 567]
+      In the first argument of ‘object’, namely
+        ‘[pack "foo"
+            .= object [pack "bar" .= Number 234, pack "quux" .= Number 567]]’
+   |
+35 |       (object [ pack "foo" .= object [ pack "bar" .= Number 123 ] ] `shouldBe` object [ pack "foo" .= object [ pack "bar" .= Number 234, pack "quux" .= Number 567 ] ]) `shouldThrow` expectationFailed "   \ESC[0mObject\ESC[0m\ESC[0m \ESC[0m\ESC[36m(\ESC[0m\ESC[0mfromList\ESC[0m\ESC[0m \ESC[0m\ESC[31m[\ESC[0m\ESC[0m\n   \ESC[0m\ESC[0m    \ESC[0m\ESC[36m(\ESC[0m\ESC[35m\"foo\"\ESC[0m\ESC[36m,\ESC[0m\ESC[0m\n   \ESC[0m\ESC[0m    \ESC[0m\ESC[0mObject\ESC[0m\ESC[0m \ESC[0m\ESC[36m(\ESC[0m\ESC[0mfromList\ESC[0m\ESC[0m \ESC[0m\ESC[31m[\ESC[0m\ESC[0m\n\ESC[31m---\ESC[0m\ESC[0m\ESC[0m        \ESC[0m\ESC[36m(\ESC[0m\ESC[35m\"quux\"\ESC[0m\ESC[36m,\ESC[0m\ESC[0m\n\ESC[31m---\ESC[0m\ESC[0m\ESC[0m        \ESC[0m\ESC[0mNumber\ESC[0m\ESC[0m \ESC[0m\ESC[35m567.0\ESC[0m\ESC[36m)\ESC[0m\ESC[36m,\ESC[0m\ESC[0m\n   \ESC[0m\ESC[0m        \ESC[0m\ESC[36m(\ESC[0m\ESC[35m\"bar\"\ESC[0m\ESC[36m,\ESC[0m\ESC[0m\n\ESC[31m---\ESC[0m\ESC[0m\ESC[0m        \ESC[0m\ESC[0mNumber\ESC[0m\ESC[0m \ESC[0m\ESC[35m234.0\ESC[0m\ESC[36m)\ESC[0m\ESC[0m\n\ESC[32m+++\ESC[0m\ESC[0m\ESC[0m        \ESC[0m\ESC[0mNumber\ESC[0m\ESC[0m \ESC[0m\ESC[35m123.0\ESC[0m\ESC[36m)\ESC[0m\ESC[0m\n   \ESC[0m\ESC[0m    \ESC[0m\ESC[31m]\ESC[0m\ESC[36m)\ESC[0m\ESC[36m)\ESC[0m\ESC[0m\n   \ESC[0m\ESC[31m]\ESC[0m\ESC[36m)\ESC[0m\n"
+   |                                                                                         ^^^^^^^^^^
+
+test/Test/Hspec/Expectations/PrettySpec.hs:35:112: error: [GHC-83865]
+    • Couldn't match expected type ‘Key’
+                  with actual type ‘Data.Text.Internal.Text’
+    • In the first argument of ‘(.=)’, namely ‘pack "bar"’
+      In the expression: pack "bar" .= Number 234
+      In the first argument of ‘object’, namely
+        ‘[pack "bar" .= Number 234, pack "quux" .= Number 567]’
+   |
+35 |       (object [ pack "foo" .= object [ pack "bar" .= Number 123 ] ] `shouldBe` object [ pack "foo" .= object [ pack "bar" .= Number 234, pack "quux" .= Number 567 ] ]) `shouldThrow` expectationFailed "   \ESC[0mObject\ESC[0m\ESC[0m \ESC[0m\ESC[36m(\ESC[0m\ESC[0mfromList\ESC[0m\ESC[0m \ESC[0m\ESC[31m[\ESC[0m\ESC[0m\n   \ESC[0m\ESC[0m    \ESC[0m\ESC[36m(\ESC[0m\ESC[35m\"foo\"\ESC[0m\ESC[36m,\ESC[0m\ESC[0m\n   \ESC[0m\ESC[0m    \ESC[0m\ESC[0mObject\ESC[0m\ESC[0m \ESC[0m\ESC[36m(\ESC[0m\ESC[0mfromList\ESC[0m\ESC[0m \ESC[0m\ESC[31m[\ESC[0m\ESC[0m\n\ESC[31m---\ESC[0m\ESC[0m\ESC[0m        \ESC[0m\ESC[36m(\ESC[0m\ESC[35m\"quux\"\ESC[0m\ESC[36m,\ESC[0m\ESC[0m\n\ESC[31m---\ESC[0m\ESC[0m\ESC[0m        \ESC[0m\ESC[0mNumber\ESC[0m\ESC[0m \ESC[0m\ESC[35m567.0\ESC[0m\ESC[36m)\ESC[0m\ESC[36m,\ESC[0m\ESC[0m\n   \ESC[0m\ESC[0m        \ESC[0m\ESC[36m(\ESC[0m\ESC[35m\"bar\"\ESC[0m\ESC[36m,\ESC[0m\ESC[0m\n\ESC[31m---\ESC[0m\ESC[0m\ESC[0m        \ESC[0m\ESC[0mNumber\ESC[0m\ESC[0m \ESC[0m\ESC[35m234.0\ESC[0m\ESC[36m)\ESC[0m\ESC[0m\n\ESC[32m+++\ESC[0m\ESC[0m\ESC[0m        \ESC[0m\ESC[0mNumber\ESC[0m\ESC[0m \ESC[0m\ESC[35m123.0\ESC[0m\ESC[36m)\ESC[0m\ESC[0m\n   \ESC[0m\ESC[0m    \ESC[0m\ESC[31m]\ESC[0m\ESC[36m)\ESC[0m\ESC[36m)\ESC[0m\ESC[0m\n   \ESC[0m\ESC[31m]\ESC[0m\ESC[36m)\ESC[0m\n"
+   |                                                                                                                ^^^^^^^^^^
+
+test/Test/Hspec/Expectations/PrettySpec.hs:35:138: error: [GHC-83865]
+    • Couldn't match expected type ‘Key’
+                  with actual type ‘Data.Text.Internal.Text’
+    • In the first argument of ‘(.=)’, namely ‘pack "quux"’
+      In the expression: pack "quux" .= Number 567
+      In the first argument of ‘object’, namely
+        ‘[pack "bar" .= Number 234, pack "quux" .= Number 567]’
+   |
+35 |       (object [ pack "foo" .= object [ pack "bar" .= Number 123 ] ] `shouldBe` object [ pack "foo" .= object [ pack "bar" .= Number 234, pack "quux" .= Number 567 ] ]) `shouldThrow` expectationFailed "   \ESC[0mObject\ESC[0m\ESC[0m \ESC[0m\ESC[36m(\ESC[0m\ESC[0mfromList\ESC[0m\ESC[0m \ESC[0m\ESC[31m[\ESC[0m\ESC[0m\n   \ESC[0m\ESC[0m    \ESC[0m\ESC[36m(\ESC[0m\ESC[35m\"foo\"\ESC[0m\ESC[36m,\ESC[0m\ESC[0m\n   \ESC[0m\ESC[0m    \ESC[0m\ESC[0mObject\ESC[0m\ESC[0m \ESC[0m\ESC[36m(\ESC[0m\ESC[0mfromList\ESC[0m\ESC[0m \ESC[0m\ESC[31m[\ESC[0m\ESC[0m\n\ESC[31m---\ESC[0m\ESC[0m\ESC[0m        \ESC[0m\ESC[36m(\ESC[0m\ESC[35m\"quux\"\ESC[0m\ESC[36m,\ESC[0m\ESC[0m\n\ESC[31m---\ESC[0m\ESC[0m\ESC[0m        \ESC[0m\ESC[0mNumber\ESC[0m\ESC[0m \ESC[0m\ESC[35m567.0\ESC[0m\ESC[36m)\ESC[0m\ESC[36m,\ESC[0m\ESC[0m\n   \ESC[0m\ESC[0m        \ESC[0m\ESC[36m(\ESC[0m\ESC[35m\"bar\"\ESC[0m\ESC[36m,\ESC[0m\ESC[0m\n\ESC[31m---\ESC[0m\ESC[0m\ESC[0m        \ESC[0m\ESC[0mNumber\ESC[0m\ESC[0m \ESC[0m\ESC[35m234.0\ESC[0m\ESC[36m)\ESC[0m\ESC[0m\n\ESC[32m+++\ESC[0m\ESC[0m\ESC[0m        \ESC[0m\ESC[0mNumber\ESC[0m\ESC[0m \ESC[0m\ESC[35m123.0\ESC[0m\ESC[36m)\ESC[0m\ESC[0m\n   \ESC[0m\ESC[0m    \ESC[0m\ESC[31m]\ESC[0m\ESC[36m)\ESC[0m\ESC[36m)\ESC[0m\ESC[0m\n   \ESC[0m\ESC[31m]\ESC[0m\ESC[36m)\ESC[0m\n"
+   |                                                                                                                                          ^^^^^^^^^^^
+Error: [Cabal-7125]
+Failed to build test:tests from hspec-expectations-pretty-diff-0.7.2.6.
+

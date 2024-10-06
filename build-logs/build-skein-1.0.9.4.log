@@ -1,0 +1,151 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - skein-1.0.9.4 (lib) (first run)
+ - skein-1.0.9.4 (test:runtests) (first run)
+Configuring library for skein-1.0.9.4...
+Preprocessing library for skein-1.0.9.4...
+Building library for skein-1.0.9.4...
+[1 of 2] Compiling Crypto.Skein.Internal
+
+src/Crypto/Skein/Internal.hsc:101:13: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘memcpy’
+    (imported from Data.ByteString.Internal, but defined in Data.ByteString.Internal.Type):
+    Deprecated: "Use Foreign.Marshal.Utils.copyBytes instead"
+    |
+101 |             BI.memcpy bptr (castPtr ptr) (fromIntegral size256Ctx)
+    |             ^^^^^^^^^
+
+src/Crypto/Skein/Internal.hsc:104:13: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘memcpy’
+    (imported from Data.ByteString.Internal, but defined in Data.ByteString.Internal.Type):
+    Deprecated: "Use Foreign.Marshal.Utils.copyBytes instead"
+    |
+104 |             BI.memcpy (castPtr ptr) (castPtr bs_ptr) (fromIntegral size256Ctx)
+    |             ^^^^^^^^^
+
+src/Crypto/Skein/Internal.hsc:111:13: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘memcpy’
+    (imported from Data.ByteString.Internal, but defined in Data.ByteString.Internal.Type):
+    Deprecated: "Use Foreign.Marshal.Utils.copyBytes instead"
+    |
+111 |             BI.memcpy bptr (castPtr ptr) (fromIntegral size512Ctx)
+    |             ^^^^^^^^^
+
+src/Crypto/Skein/Internal.hsc:114:13: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘memcpy’
+    (imported from Data.ByteString.Internal, but defined in Data.ByteString.Internal.Type):
+    Deprecated: "Use Foreign.Marshal.Utils.copyBytes instead"
+    |
+114 |             BI.memcpy (castPtr ptr) (castPtr bs_ptr) (fromIntegral size512Ctx)
+    |             ^^^^^^^^^
+
+src/Crypto/Skein/Internal.hsc:121:13: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘memcpy’
+    (imported from Data.ByteString.Internal, but defined in Data.ByteString.Internal.Type):
+    Deprecated: "Use Foreign.Marshal.Utils.copyBytes instead"
+    |
+121 |             BI.memcpy bptr (castPtr ptr) (fromIntegral size1024Ctx)
+    |             ^^^^^^^^^
+
+src/Crypto/Skein/Internal.hsc:124:13: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘memcpy’
+    (imported from Data.ByteString.Internal, but defined in Data.ByteString.Internal.Type):
+    Deprecated: "Use Foreign.Marshal.Utils.copyBytes instead"
+    |
+124 |             BI.memcpy (castPtr ptr) (castPtr bs_ptr) (fromIntegral size1024Ctx)
+    |             ^^^^^^^^^
+[2 of 2] Compiling Crypto.Skein
+Configuring test suite 'runtests' for skein-1.0.9.4...
+Preprocessing test suite 'runtests' for skein-1.0.9.4...
+Building test suite 'runtests' for skein-1.0.9.4...
+[1 of 2] Compiling Paths_skein
+[2 of 2] Compiling Main
+
+tests/runtests.hs:2:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+  |
+2 | import Control.Applicative ((<$>))
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/runtests.hs:60:18: warning: [-Wunused-top-binds]
+    Defined but not used: ‘skeinType’
+   |
+60 | data Kat = Kat { skeinType :: SkeinType
+   |                  ^^^^^^^^^
+
+tests/runtests.hs:61:18: warning: [-Wunused-top-binds]
+    Defined but not used: ‘message’
+   |
+61 |                , message   :: B.ByteString
+   |                  ^^^^^^^
+
+tests/runtests.hs:62:18: warning: [-Wunused-top-binds]
+    Defined but not used: ‘macKey’
+   |
+62 |                , macKey    :: Maybe B.ByteString
+   |                  ^^^^^^
+
+tests/runtests.hs:63:18: warning: [-Wunused-top-binds]
+    Defined but not used: ‘result’
+   |
+63 |                , result    :: B.ByteString
+   |                  ^^^^^^
+
+tests/runtests.hs:106:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘([Char], [Char])’ not matched:
+            ([], _)
+            ((p:_), _) where p is not one of {':'}
+            ([':'], _)
+            ((':':p:_), _) where p is not one of {'S'}
+            ...
+    |
+106 |     let (":Skein", '-':xs1) = break (== '-') xs0
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/runtests.hs:108:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘([Char], [Char])’ not matched:
+            ([], _)
+            ((p:_), _) where p is not one of {':'}
+    |
+108 |         (':':_,    xs3)     = break isNumber xs2
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/runtests.hs:139:13: warning: [-Wunused-local-binds]
+    Defined but not used: ‘f’
+    |
+139 |             f = undefined
+    |             ^
+
+tests/runtests.hs:141:13: warning: [-Wunused-local-binds]
+    Defined but not used: ‘p’
+    |
+141 |             p = f t `asTypeOf` digest
+    |             ^
+
+tests/runtests.hs:142:7: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘skeinType’ shadows the existing binding
+      defined at tests/runtests.hs:60:18
+    |
+142 |       skeinType = Skein (get blockLength) (get outputLength)
+    |       ^^^^^^^^^
+
+tests/runtests.hs:144:59: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘macKey’ shadows the existing binding
+      defined at tests/runtests.hs:62:18
+    |
+144 |       myMacKats   = [(msg, macKey, ret) | Kat t msg (Just macKey) ret <- kats, t == skeinType]
+    |                                                           ^^^^^^
+
+tests/runtests.hs:160:33: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘macKey’ shadows the existing binding
+      defined at tests/runtests.hs:62:18
+    |
+160 |        forM_ myMacKats $ \(msg, macKey, ret) -> do
+    |                                 ^^^^^^
+[3 of 3] Linking /tmp/workdir-skein/skein-1.0.9.4/dist-newstyle/build/x86_64-linux/ghc-9.6.6/skein-1.0.9.4/t/runtests/build/runtests/runtests

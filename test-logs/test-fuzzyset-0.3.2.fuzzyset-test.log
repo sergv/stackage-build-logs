@@ -1,0 +1,555 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - fuzzyset-0.3.2 (test:fuzzyset-test) (ephemeral targets)
+Preprocessing test suite 'fuzzyset-test' for fuzzyset-0.3.2...
+Building test suite 'fuzzyset-test' for fuzzyset-0.3.2...
+Running 1 test suites...
+Test suite fuzzyset-test: RUNNING...
+
+Large set
+  Spec[191:9] [✔]
+  Spec[197:9] [✔]
+getMatches (Detectives test data)
+  with Levenshtein [✔]
+  without Levenshtein [✔]
+matches
+  Watson [✔]
+  Gumshoe [✔]
+matchDict
+  lookup "olm" [✔]
+  lookup "-n" [✔]
+  lookup "y " [✔]
+  lookup "wa" [✔]
+  lookup "ne" [✔]
+  lookup "ch" [✔]
+  lookup "cha" [✔]
+norm
+  [2, 4, 3, 3, 3, 3, 2, 3, 2, 2, 2] should equal 9 [✔]
+enclosedIn
+  "covfefe" 'o' should return ocovfefeo [✔]
+grams
+  should return a list of length 8, given the input "charade" and n = 2 [✔]
+  should return a list of length 7, given the input "charade" and n = 3 [✔]
+  should return a list of length 6, given the input "charade" and n = 4 [✔]
+  should return a list of length 5, given the input "charade" and n = 5 [✔]
+  should return a list of length 4, given the input "charade" and n = 6 [✔]
+  should throw an error if n < 2 [✔]
+grams "charade" 2
+  should return ["-c","ch","ha","ar","ra","ad","de","e-"] [✔]
+grams "charade" 2
+  should return ["-c","ch","ha","ar","ra","ad","de","e-"] [✔]
+grams "charade" 3
+  should return ["-ch","cha","har","ara","rad","ade","de-"] [✔]
+grams "aFl1pP!.,nG FL0^ppy+" 2
+  should return ["-a","af","fl","l1","1p","pp","p,",",n","ng","g "," f","fl","l0","0p","pp","py","y-"] [✔]
+gramVector "xxx" 2
+  should return [("-x",1),("xx",2),("x-",1)] [✔]
+gramVector "xxx" 3
+  should return [("-xx",1),("xx-",1),("xxx",1)] [✔]
+gramVector "xxxxxxx" 4
+  should return [("-xxx",1),("xxxx",4),("xxx-",1)] [✔]
+gramVector "bananasananas" 2
+  should return [("-b",1),("ba",1),("an",4),("na",4),("as",2),("sa",1),("s-",1)] [✔]
+gramVector "bananasananas" 3
+  should return [("-ba",1),("ban",1),("ana",4),("nan",2),("nas",2),("asa",1),("san",1),("as-",1)] [✔]
+gramVector "trentsauntsrestaurant" 2
+  should map they key "nt" to 3 [✔]
+  should map they key "au" to 2 [✔]
+  should map they key "ts" to 2 [✔]
+  should map they key "re" to 2 [✔]
+  should map they key "st" to 1 [✔]
+  should map they key "en" to 1 [✔]
+gramVector "trentsauntsrestaurant" 3
+  should map they key "res" to 1 [✔]
+  should map they key "nts" to 2 [✔]
+gramVector "trentsantwantstorentpants" 3
+  should map they key "pan" to 1 [✔]
+  should map they key "twa" to 1 [✔]
+  should map they key "ant" to 3 [✔]
+  should map they key "ren" to 2 [✔]
+  should map they key "ent" to 2 [✔]
+  should map they key "nts" to 3 [✔]
+gramVector "trentsantwantstorentpantstostartrestaurant" 3
+  should map they key "ant" to 4 [✔]
+  should map they key "nts" to 3 [✔]
+  should map they key "sto" to 2 [✔]
+  should map they key "sta" to 2 [✔]
+  should map they key "ren" to 2 [✔]
+  should map they key "tre" to 2 [✔]
+gramVector "trentsantwantstorentpantstostartrestaurant" 2
+  should map they key "an" to 4 [✔]
+  should map they key "st" to 4 [✔]
+  should map they key "re" to 3 [✔]
+  should map they key "ts" to 3 [✔]
+  should map they key "en" to 2 [✔]
+  should map they key "to" to 2 [✔]
+  should map they key "tr" to 2 [✔]
+  should map they key "or" to 1 [✔]
+  should map they key "au" to 1 [✔]
+  should map they key "ur" to 1 [✔]
+gramVector "antsintrentspantswanttrentsauntsrestaurant" 3
+  should map they key "nts" to 5 [✔]
+  should map they key "ant" to 4 [✔]
+  should map they key "ent" to 2 [✔]
+gramVector "asmartantintrentspantswantstorenttrentsauntsrestaurant" 3
+  should map they key "nts" to 5 [✔]
+  should map they key "ant" to 4 [✔]
+  should map they key "ent" to 3 [✔]
+gramVector "buffalo buffalo buffalo buffalo buffalo buffalo" 7
+  should map they key "buffalo" to 6 [✔]
+addToSet defaultSet "aFl1pP!.,nG FL0^ppy+"
+  should return changed status True [✔]
+  should have exactSet = [("afl1pp!.,ng fl0^ppy+","aFl1pP!.,nG FL0^ppy+")] [✔]
+  should return vectorMagnitude = 4.58257569495584 for the 2-grams entry (index 0) [✔]
+  should return vectorMagnitude = 4.0 for the 3-grams entry (index 0) [✔]
+  should return a match dict entry [GramInfo {itemIndex = 0, gramCount = 1}] for "-a" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 0, gramCount = 1}] for "ng" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 0, gramCount = 2}] for "fl" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 0, gramCount = 2}] for "pp" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 0, gramCount = 1}] for "g " [✔]
+  should return a match dict entry [] for "xx" [✔]
+addToSet defaultSet "Trent"
+  should return changed status True [✔]
+  should have exactSet = [("trent","Trent")] [✔]
+  should return vectorMagnitude = 2.449489742783178 for the 2-grams entry (index 0) [✔]
+  should return vectorMagnitude = 2.23606797749979 for the 3-grams entry (index 0) [✔]
+  should return a match dict entry [GramInfo {itemIndex = 0, gramCount = 1}] for "en" [✔]
+defaultSet `add` "Trent" `add` "tent"
+  should have exactSet = [("trent","Trent"),("tent","tent")] [✔]
+  should return vectorMagnitude = 2.449489742783178 for the 2-grams entry (index 0) [✔]
+  should return vectorMagnitude = 2.23606797749979 for the 2-grams entry (index 1) [✔]
+  should return vectorMagnitude = 2.23606797749979 for the 3-grams entry (index 0) [✔]
+  should return vectorMagnitude = 2.0 for the 3-grams entry (index 1) [✔]
+  should return a match dict entry [GramInfo {itemIndex = 0, gramCount = 1},GramInfo {itemIndex = 1, gramCount = 1}] for "en" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 0, gramCount = 1},GramInfo {itemIndex = 1, gramCount = 1}] for "ent" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 1, gramCount = 1}] for "ten" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 0, gramCount = 1},GramInfo {itemIndex = 1, gramCount = 1}] for "-t" [✔]
+defaultSet `add` "Trent" `add` "tent" `add` "restaurant"
+  should have exactSet = [("trent","Trent"),("tent","tent"),("restaurant","restaurant")] [✔]
+  should return vectorMagnitude = 2.449489742783178 for the 2-grams entry (index 0) [✔]
+  should return vectorMagnitude = 2.23606797749979 for the 2-grams entry (index 1) [✔]
+  should return vectorMagnitude = 3.3166247903554 for the 2-grams entry (index 2) [✔]
+  should return vectorMagnitude = 2.23606797749979 for the 3-grams entry (index 0) [✔]
+  should return vectorMagnitude = 2.0 for the 3-grams entry (index 1) [✔]
+  should return vectorMagnitude = 3.1622776601683795 for the 3-grams entry (index 2) [✔]
+  should return a match dict entry [GramInfo {itemIndex = 2, gramCount = 1}] for "tau" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 0, gramCount = 1},GramInfo {itemIndex = 1, gramCount = 1}] for "en" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 1, gramCount = 1}] for "ten" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 2, gramCount = 1}] for "ran" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 2, gramCount = 1}] for "an" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 2, gramCount = 1}] for "ant" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 0, gramCount = 1},GramInfo {itemIndex = 1, gramCount = 1},GramInfo {itemIndex = 2, gramCount = 1}] for "nt-" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 2, gramCount = 1}] for "st" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 2, gramCount = 1}] for "es" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 2, gramCount = 1}] for "est" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 0, gramCount = 1},GramInfo {itemIndex = 2, gramCount = 1}] for "re" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 0, gramCount = 1}] for "-tr" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 2, gramCount = 1}] for "res" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 0, gramCount = 1}] for "tr" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 0, gramCount = 1},GramInfo {itemIndex = 1, gramCount = 1}] for "-t" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 2, gramCount = 1}] for "aur" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 0, gramCount = 1},GramInfo {itemIndex = 1, gramCount = 1}] for "ent" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 2, gramCount = 1}] for "ra" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 2, gramCount = 1}] for "-r" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 0, gramCount = 1}] for "ren" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 1, gramCount = 1}] for "te" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 0, gramCount = 1},GramInfo {itemIndex = 1, gramCount = 1},GramInfo {itemIndex = 2, gramCount = 1}] for "nt" [✔]
+defaultSet `add` "Trent" `add` "tent" `add` "restaurant" `add` "xRftAntnt,!tnRant"
+  should have exactSet = [("trent","Trent"),("tent","tent"),("restaurant","restaurant"),("xrftantnt,!tnrant","xRftAntnt,!tnRant")] [✔]
+  should return vectorMagnitude = 2.449489742783178 for the 2-grams entry (index 0) [✔]
+  should return vectorMagnitude = 2.23606797749979 for the 2-grams entry (index 1) [✔]
+  should return vectorMagnitude = 3.3166247903554 for the 2-grams entry (index 2) [✔]
+  should return vectorMagnitude = 5.196152422706632 for the 2-grams entry (index 3) [✔]
+  should return vectorMagnitude = 2.23606797749979 for the 3-grams entry (index 0) [✔]
+  should return vectorMagnitude = 2.0 for the 3-grams entry (index 1) [✔]
+  should return vectorMagnitude = 3.1622776601683795 for the 3-grams entry (index 2) [✔]
+  should return vectorMagnitude = 4.242640687119285 for the 3-grams entry (index 3) [✔]
+  should return a match dict entry [GramInfo {itemIndex = 2, gramCount = 1}] for "tau" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 0, gramCount = 1},GramInfo {itemIndex = 1, gramCount = 1}] for "en" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 1, gramCount = 1}] for "ten" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 2, gramCount = 1},GramInfo {itemIndex = 3, gramCount = 1}] for "ran" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 3, gramCount = 1}] for "ntn" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 3, gramCount = 1}] for "-xr" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 2, gramCount = 1},GramInfo {itemIndex = 3, gramCount = 2}] for "an" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 2, gramCount = 1},GramInfo {itemIndex = 3, gramCount = 2}] for "ant" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 3, gramCount = 1}] for "t,t" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 0, gramCount = 1},GramInfo {itemIndex = 1, gramCount = 1},GramInfo {itemIndex = 2, gramCount = 1},GramInfo {itemIndex = 3, gramCount = 1}] for "nt-" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 3, gramCount = 1}] for "nt," [✔]
+  should return a match dict entry [GramInfo {itemIndex = 3, gramCount = 1}] for "xr" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 3, gramCount = 1}] for "tan" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 2, gramCount = 1}] for "st" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 2, gramCount = 1}] for "es" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 3, gramCount = 1}] for "fta" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 2, gramCount = 1}] for "est" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 0, gramCount = 1},GramInfo {itemIndex = 2, gramCount = 1}] for "re" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 0, gramCount = 1}] for "-tr" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 2, gramCount = 1}] for "res" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 3, gramCount = 1}] for "xrf" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 0, gramCount = 1}] for "tr" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 3, gramCount = 1}] for ",t" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 3, gramCount = 2}] for "tn" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 0, gramCount = 1},GramInfo {itemIndex = 1, gramCount = 1}] for "-t" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 3, gramCount = 1}] for "rf" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 2, gramCount = 1}] for "aur" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 0, gramCount = 1},GramInfo {itemIndex = 1, gramCount = 1}] for "ent" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 2, gramCount = 1},GramInfo {itemIndex = 3, gramCount = 1}] for "ra" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 2, gramCount = 1}] for "-r" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 2, gramCount = 1}] for "-r" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 0, gramCount = 1}] for "ren" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 3, gramCount = 1}] for "nr" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 1, gramCount = 1}] for "te" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 0, gramCount = 1},GramInfo {itemIndex = 1, gramCount = 1},GramInfo {itemIndex = 2, gramCount = 1},GramInfo {itemIndex = 3, gramCount = 3}] for "nt" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 3, gramCount = 1}] for "-x" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 2, gramCount = 1},GramInfo {itemIndex = 3, gramCount = 1}] for "ta" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 3, gramCount = 1}] for "ft" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 3, gramCount = 1}] for "nra" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 3, gramCount = 1}] for ",tn" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 2, gramCount = 1}] for "-re" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 2, gramCount = 1}] for "ura" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 3, gramCount = 1}] for "tnt" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 2, gramCount = 1}] for "sta" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 3, gramCount = 1}] for "tnr" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 3, gramCount = 1}] for "rft" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 0, gramCount = 1}] for "tre" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 2, gramCount = 1}] for "ur" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 3, gramCount = 1}] for "t," [✔]
+  should return a match dict entry [GramInfo {itemIndex = 0, gramCount = 1},GramInfo {itemIndex = 1, gramCount = 1},GramInfo {itemIndex = 2, gramCount = 1},GramInfo {itemIndex = 3, gramCount = 1}] for "t-" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 2, gramCount = 1}] for "au" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 1, gramCount = 1}] for "-te" [✔]
+FuzzySet 3 4 True mempty mempty mempty `add` ...
+  should have exactSet = [("trent","Trent"),("pants","pants"),("restaurant","restaurant"),("xrf,!tnratantntnt","XrF,!TNrATaNTNTNT")] [✔]
+  should return vectorMagnitude = 2.23606797749979 for the 3-grams entry (index 0) [✔]
+  should return vectorMagnitude = 2.23606797749979 for the 3-grams entry (index 1) [✔]
+  should return vectorMagnitude = 3.1622776601683795 for the 3-grams entry (index 2) [✔]
+  should return vectorMagnitude = 4.47213595499958 for the 3-grams entry (index 3) [✔]
+  should return vectorMagnitude = 2.0 for the 4-grams entry (index 0) [✔]
+  should return vectorMagnitude = 2.0 for the 4-grams entry (index 1) [✔]
+  should return vectorMagnitude = 3.0 for the 4-grams entry (index 2) [✔]
+  should return vectorMagnitude = 4.123105625617661 for the 4-grams entry (index 3) [✔]
+  should return a match dict entry [GramInfo {itemIndex = 3, gramCount = 2}] for "ntnt" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 2, gramCount = 1}] for "tau" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 3, gramCount = 1}] for "xrf" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 2, gramCount = 1}] for "esta" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 1, gramCount = 1}] for "-pa" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 2, gramCount = 1}] for "ran" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 3, gramCount = 2}] for "ntn" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 3, gramCount = 1}] for "-xr" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 1, gramCount = 1}] for "ants" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 3, gramCount = 1}] for "-xrf" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 1, gramCount = 1},GramInfo {itemIndex = 2, gramCount = 1},GramInfo {itemIndex = 3, gramCount = 1}] for "ant" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 2, gramCount = 1}] for "rant" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 3, gramCount = 1}] for "rat" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 3, gramCount = 1}] for "antn" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 0, gramCount = 1},GramInfo {itemIndex = 2, gramCount = 1},GramInfo {itemIndex = 3, gramCount = 1}] for "nt-" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 0, gramCount = 1}] for "rent" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 3, gramCount = 1}] for "rata" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 3, gramCount = 1}] for "tan" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 3, gramCount = 1}] for "tant" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 0, gramCount = 1}] for "-tre" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 2, gramCount = 1}] for "est" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 0, gramCount = 1}] for "-tr" [✔]
+FuzzySet 2 5 True mempty mempty mempty >+< ...
+  should have exactSet = [("trent","Trent"),("restaurant","restaurant"),("aunt","aunt"),("smarty pants","Smarty Pants"),("xrf,!tnratantntnt","XrF,!TNrATaNTNTNT")] [✔]
+  should return vectorMagnitude = 2.449489742783178 for the 2-grams entry (index 0) [✔]
+  should return vectorMagnitude = 3.3166247903554 for the 2-grams entry (index 1) [✔]
+  should return vectorMagnitude = 2.23606797749979 for the 2-grams entry (index 2) [✔]
+  should return vectorMagnitude = 3.605551275463989 for the 2-grams entry (index 3) [✔]
+  should return vectorMagnitude = 5.385164807134504 for the 2-grams entry (index 4) [✔]
+  should return vectorMagnitude = 2.23606797749979 for the 3-grams entry (index 0) [✔]
+  should return vectorMagnitude = 3.1622776601683795 for the 3-grams entry (index 1) [✔]
+  should return vectorMagnitude = 2.0 for the 3-grams entry (index 2) [✔]
+  should return vectorMagnitude = 3.4641016151377544 for the 3-grams entry (index 3) [✔]
+  should return vectorMagnitude = 4.47213595499958 for the 3-grams entry (index 4) [✔]
+  should return vectorMagnitude = 2.0 for the 4-grams entry (index 0) [✔]
+  should return vectorMagnitude = 3.0 for the 4-grams entry (index 1) [✔]
+  should return vectorMagnitude = 1.7320508075688772 for the 4-grams entry (index 2) [✔]
+  should return vectorMagnitude = 3.3166247903554 for the 4-grams entry (index 3) [✔]
+  should return vectorMagnitude = 4.123105625617661 for the 4-grams entry (index 4) [✔]
+  should return vectorMagnitude = 1.7320508075688772 for the 5-grams entry (index 0) [✔]
+  should return vectorMagnitude = 2.8284271247461903 for the 5-grams entry (index 1) [✔]
+  should return vectorMagnitude = 1.4142135623730951 for the 5-grams entry (index 2) [✔]
+  should return vectorMagnitude = 3.1622776601683795 for the 5-grams entry (index 3) [✔]
+  should return vectorMagnitude = 3.7416573867739413 for the 5-grams entry (index 4) [✔]
+  should return a match dict entry [GramInfo {itemIndex = 3, gramCount = 1}] for "pant" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 3, gramCount = 1}] for "y " [✔]
+  should return a match dict entry [GramInfo {itemIndex = 4, gramCount = 1}] for "-xr" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 1, gramCount = 1}] for "rest" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 3, gramCount = 1}] for " p" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 3, gramCount = 1}] for "ty p" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 3, gramCount = 1}] for "rty" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 0, gramCount = 1}] for "-tre" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 2, gramCount = 1}] for "-a" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 3, gramCount = 1}] for "ty" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 4, gramCount = 1}] for "tntnt" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 0, gramCount = 1}] for "tr" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 3, gramCount = 1}] for "ts" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 2, gramCount = 1}] for "aun" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 4, gramCount = 3}] for "tn" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 0, gramCount = 1}] for "-t" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 1, gramCount = 1}] for "aur" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 3, gramCount = 1}] for "-s" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 1, gramCount = 1}] for "-r" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 3, gramCount = 1}] for "rty" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 4, gramCount = 1}] for "tnra" [✔]
+  should return a match dict entry [GramInfo {itemIndex = 0, gramCount = 1},GramInfo {itemIndex = 1, gramCount = 1},GramInfo {itemIndex = 2, gramCount = 1},GramInfo {itemIndex = 3, gramCount = 1},GramInfo {itemIndex = 4, gramCount = 3}] for "nt" [✔]
+values (defaultSet `add` ...)
+  should contain the added elements [✔]
+size (defaultSet >+< ...)
+  should be 5 [✔]
+isEmpty (defaultSet `add` ...)
+  should be False [✔]
+isEmpty defaultSet
+  should be True [✔]
+snd $ (defaultSet `add` "again") `addToSet` "again"
+  should return False [✔]
+get (defaultSet `add` "xxx")
+  should return [(1, "xxx")] [✔]
+matches fromList [("smarty pants","Smarty Pants"),("trent","Trent"),("aunt","aunt"),("restaurant","restaurant")] (gramVector "ant" 3)
+  should return [("trent",1),("restaurant",2),("aunt",1),("smarty pants",1)] [✔]
+matches fromList [("smarty pants","Smarty Pants"),("trent","Trent"),("aunt","aunt"),("restaurant","restaurant")] (gramVector "pant" 3)
+  should return [("trent",1),("restaurant",2),("aunt",1),("smarty pants",2)] [✔]
+matches fromList [("smarty pants","Smarty Pants"),("trent","Trent"),("aunt","aunt"),("restaurant","restaurant")] (gramVector "pants" 3)
+  should return [("restaurant",1),("smarty pants",4)] [✔]
+matches fromList [("smarty pants","Smarty Pants"),("trent","Trent"),("aunt","aunt"),("restaurant","restaurant")] (gramVector "tre" 3)
+  should return [("trent",2)] [✔]
+matches fromList [("smarty pants","Smarty Pants"),("trent","Trent"),("aunt","aunt"),("restaurant","restaurant")] (gramVector "xxx" 3)
+  should return [] [✔]
+matches fromList [("smarty pants","Smarty Pants"),("trent","Trent"),("aunt","aunt"),("restaurant","restaurant")] (gramVector "xxx" 2)
+  should return [] [✔]
+matches fromList [("smarty pants","Smarty Pants"),("trent","Trent"),("aunt","aunt"),("restaurant","restaurant")] (gramVector "tsap" 3)
+  should return [] [✔]
+matches fromList [("smarty pants","Smarty Pants"),("trent","Trent"),("aunt","aunt"),("restaurant","restaurant")] (gramVector "tsap" 2)
+  should return [("trent",1),("smarty pants",1)] [✔]
+matches fromList [("cat","cat"),("smarty pants","Smarty Pants"),("trent","Trent"),("aunt","aunt"),("restaurant","restaurant")] (gramVector "hat" 3)
+  should return [("cat",1)] [✔]
+matches fromList [("cat","cat"),("smarty pants","Smarty Pants"),("trent","Trent"),("aunt","aunt"),("restaurant","restaurant")] (gramVector "anthropology" 3)
+  should return [("restaurant",1),("smarty pants",1)] [✔]
+matches fromList [("cat","cat"),("smarty pants","Smarty Pants"),("trent","Trent"),("aunt","aunt"),("restaurant","restaurant")] (gramVector "spot" 3)
+  should return [] [✔]
+matches fromList [("cat","cat"),("smarty pants","Smarty Pants"),("trent","Trent"),("aunt","aunt"),("restaurant","restaurant")] (gramVector "spot" 2)
+  should return [("trent",1),("restaurant",1),("aunt",1),("smarty pants",1),("cat",1)] [✔]
+matches fromList [("cat","cat"),("smarty pants","Smarty Pants"),("trent","Trent"),("aunt","aunt"),("restaurant","restaurant")] (gramVector "axiom" 3)
+  should return [] [✔]
+matches fromList [("cat","cat"),("smarty pants","Smarty Pants"),("trent","Trent"),("aunt","aunt"),("restaurant","restaurant")] (gramVector "axiom" 2)
+  should return [("aunt",1)] [✔]
+matches fromList [("cat","cat"),("smarty pants","Smarty Pants"),("trent","Trent"),("aunt","aunt"),("polymorphic","polymorphic"),("restaurant","restaurant")] (gramVector "moped" 2)
+  should return [("polymorphic",1)] [✔]
+matches fromList [("bananas","bananas")] (gramVector "ananas" 3)
+  should return [("bananas",7)] [✔]
+matches fromList [("banana","banana")] (gramVector "ananas" 3)
+  should return [("banana",5)] [✔]
+matches fromList [("pennsylvania","Pennsylvania"),("washington","Washington"),("wisconsin","Wisconsin"),("nebraska","Nebraska"),("delaware","Delaware"),("new york","New York"),("puerto rico","Puerto Rico"),("georgia","Georgia"),("kentucky","Kentucky"),("oklahoma","Oklahoma"),("guam","Guam"),("new mexico","New Mexico"),("hawaii","Hawaii"),("northern marianas islands","Northern Marianas Islands"),("nevada","Nevada"),("illinois","Illinois"),("north carolina","North Carolina"),("virginia","Virginia"),("minnesota","Minnesota"),("oregon","Oregon"),("mississippi","Mississippi"),("texas","Texas"),("idaho","Idaho"),("colorado","Colorado"),("indiana","Indiana"),("american samoa","American Samoa"),("arkansas","Arkansas"),("florida","Florida"),("district of columbia","District of Columbia"),("massachusetts","Massachusetts"),("utah","Utah"),("new hampshire","New Hampshire"),("west virginia","West Virginia"),("virgin islands","Virgin Islands"),("arizona","Arizona"),("south dakota","South Dakota"),("wyoming","Wyoming"),("maryland","Maryland"),("vermont","Vermont"),("alaska","Alaska"),("california","California"),("south carolina","South Carolina"),("tennessee","Tennessee"),("kansas","Kansas"),("alabama","Alabama"),("north dakota","North Dakota"),("ohio","Ohio"),("maine","Maine"),("louisiana","Louisiana"),("missouri","Missouri"),("rhode island","Rhode Island"),("connecticut","Connecticut"),("michigan","Michigan"),("iowa","Iowa"),("new jersey","New Jersey"),("montana","Montana")] (gramVector "ia" 3)
+  should return [("california",1),("district of columbia",1),("georgia",1),("pennsylvania",1),("virginia",1),("west virginia",1)] [✔]
+matches fromList [("pennsylvania","Pennsylvania"),("washington","Washington"),("wisconsin","Wisconsin"),("nebraska","Nebraska"),("delaware","Delaware"),("new york","New York"),("puerto rico","Puerto Rico"),("georgia","Georgia"),("kentucky","Kentucky"),("oklahoma","Oklahoma"),("guam","Guam"),("new mexico","New Mexico"),("hawaii","Hawaii"),("northern marianas islands","Northern Marianas Islands"),("nevada","Nevada"),("illinois","Illinois"),("north carolina","North Carolina"),("virginia","Virginia"),("minnesota","Minnesota"),("oregon","Oregon"),("mississippi","Mississippi"),("texas","Texas"),("idaho","Idaho"),("colorado","Colorado"),("indiana","Indiana"),("american samoa","American Samoa"),("arkansas","Arkansas"),("florida","Florida"),("district of columbia","District of Columbia"),("massachusetts","Massachusetts"),("utah","Utah"),("new hampshire","New Hampshire"),("west virginia","West Virginia"),("virgin islands","Virgin Islands"),("arizona","Arizona"),("south dakota","South Dakota"),("wyoming","Wyoming"),("maryland","Maryland"),("vermont","Vermont"),("alaska","Alaska"),("california","California"),("south carolina","South Carolina"),("tennessee","Tennessee"),("kansas","Kansas"),("alabama","Alabama"),("north dakota","North Dakota"),("ohio","Ohio"),("maine","Maine"),("louisiana","Louisiana"),("missouri","Missouri"),("rhode island","Rhode Island"),("connecticut","Connecticut"),("michigan","Michigan"),("iowa","Iowa"),("new jersey","New Jersey"),("montana","Montana")] (gramVector "was" 3)
+  should return [("arkansas",1),("kansas",1),("texas",1),("washington",2)] [✔]
+matches fromList [("pennsylvania","Pennsylvania"),("washington","Washington"),("wisconsin","Wisconsin"),("nebraska","Nebraska"),("delaware","Delaware"),("new york","New York"),("puerto rico","Puerto Rico"),("georgia","Georgia"),("kentucky","Kentucky"),("oklahoma","Oklahoma"),("guam","Guam"),("new mexico","New Mexico"),("hawaii","Hawaii"),("northern marianas islands","Northern Marianas Islands"),("nevada","Nevada"),("illinois","Illinois"),("north carolina","North Carolina"),("virginia","Virginia"),("minnesota","Minnesota"),("oregon","Oregon"),("mississippi","Mississippi"),("texas","Texas"),("idaho","Idaho"),("colorado","Colorado"),("indiana","Indiana"),("american samoa","American Samoa"),("arkansas","Arkansas"),("florida","Florida"),("district of columbia","District of Columbia"),("massachusetts","Massachusetts"),("utah","Utah"),("new hampshire","New Hampshire"),("west virginia","West Virginia"),("virgin islands","Virgin Islands"),("arizona","Arizona"),("south dakota","South Dakota"),("wyoming","Wyoming"),("maryland","Maryland"),("vermont","Vermont"),("alaska","Alaska"),("california","California"),("south carolina","South Carolina"),("tennessee","Tennessee"),("kansas","Kansas"),("alabama","Alabama"),("north dakota","North Dakota"),("ohio","Ohio"),("maine","Maine"),("louisiana","Louisiana"),("missouri","Missouri"),("rhode island","Rhode Island"),("connecticut","Connecticut"),("michigan","Michigan"),("iowa","Iowa"),("new jersey","New Jersey"),("montana","Montana")] (gramVector "ton" 3)
+  should return [("oregon",1),("washington",2)] [✔]
+matches fromList [("pennsylvania","Pennsylvania"),("washington","Washington"),("wisconsin","Wisconsin"),("nebraska","Nebraska"),("delaware","Delaware"),("new york","New York"),("puerto rico","Puerto Rico"),("georgia","Georgia"),("kentucky","Kentucky"),("oklahoma","Oklahoma"),("guam","Guam"),("new mexico","New Mexico"),("hawaii","Hawaii"),("northern marianas islands","Northern Marianas Islands"),("nevada","Nevada"),("illinois","Illinois"),("north carolina","North Carolina"),("virginia","Virginia"),("minnesota","Minnesota"),("oregon","Oregon"),("mississippi","Mississippi"),("texas","Texas"),("idaho","Idaho"),("colorado","Colorado"),("indiana","Indiana"),("american samoa","American Samoa"),("arkansas","Arkansas"),("florida","Florida"),("district of columbia","District of Columbia"),("massachusetts","Massachusetts"),("utah","Utah"),("new hampshire","New Hampshire"),("west virginia","West Virginia"),("virgin islands","Virgin Islands"),("arizona","Arizona"),("south dakota","South Dakota"),("wyoming","Wyoming"),("maryland","Maryland"),("vermont","Vermont"),("alaska","Alaska"),("california","California"),("south carolina","South Carolina"),("tennessee","Tennessee"),("kansas","Kansas"),("alabama","Alabama"),("north dakota","North Dakota"),("ohio","Ohio"),("maine","Maine"),("louisiana","Louisiana"),("missouri","Missouri"),("rhode island","Rhode Island"),("connecticut","Connecticut"),("michigan","Michigan"),("iowa","Iowa"),("new jersey","New Jersey"),("montana","Montana")] (gramVector "ing" 3)
+  should return [("indiana",1),("washington",1),("wyoming",2)] [✔]
+matches fromList [("pennsylvania","Pennsylvania"),("washington","Washington"),("wisconsin","Wisconsin"),("nebraska","Nebraska"),("delaware","Delaware"),("new york","New York"),("puerto rico","Puerto Rico"),("georgia","Georgia"),("kentucky","Kentucky"),("oklahoma","Oklahoma"),("guam","Guam"),("new mexico","New Mexico"),("hawaii","Hawaii"),("northern marianas islands","Northern Marianas Islands"),("nevada","Nevada"),("illinois","Illinois"),("north carolina","North Carolina"),("virginia","Virginia"),("minnesota","Minnesota"),("oregon","Oregon"),("mississippi","Mississippi"),("texas","Texas"),("idaho","Idaho"),("colorado","Colorado"),("indiana","Indiana"),("american samoa","American Samoa"),("arkansas","Arkansas"),("florida","Florida"),("district of columbia","District of Columbia"),("massachusetts","Massachusetts"),("utah","Utah"),("new hampshire","New Hampshire"),("west virginia","West Virginia"),("virgin islands","Virgin Islands"),("arizona","Arizona"),("south dakota","South Dakota"),("wyoming","Wyoming"),("maryland","Maryland"),("vermont","Vermont"),("alaska","Alaska"),("california","California"),("south carolina","South Carolina"),("tennessee","Tennessee"),("kansas","Kansas"),("alabama","Alabama"),("north dakota","North Dakota"),("ohio","Ohio"),("maine","Maine"),("louisiana","Louisiana"),("missouri","Missouri"),("rhode island","Rhode Island"),("connecticut","Connecticut"),("michigan","Michigan"),("iowa","Iowa"),("new jersey","New Jersey"),("montana","Montana")] (gramVector "land" 3)
+  should return [("maryland",3),("northern marianas islands",2),("rhode island",3),("virgin islands",2)] [✔]
+matches fromList [("pennsylvania","Pennsylvania"),("washington","Washington"),("wisconsin","Wisconsin"),("nebraska","Nebraska"),("delaware","Delaware"),("new york","New York"),("puerto rico","Puerto Rico"),("georgia","Georgia"),("kentucky","Kentucky"),("oklahoma","Oklahoma"),("guam","Guam"),("new mexico","New Mexico"),("hawaii","Hawaii"),("northern marianas islands","Northern Marianas Islands"),("nevada","Nevada"),("illinois","Illinois"),("north carolina","North Carolina"),("virginia","Virginia"),("minnesota","Minnesota"),("oregon","Oregon"),("mississippi","Mississippi"),("texas","Texas"),("idaho","Idaho"),("colorado","Colorado"),("indiana","Indiana"),("american samoa","American Samoa"),("arkansas","Arkansas"),("florida","Florida"),("district of columbia","District of Columbia"),("massachusetts","Massachusetts"),("utah","Utah"),("new hampshire","New Hampshire"),("west virginia","West Virginia"),("virgin islands","Virgin Islands"),("arizona","Arizona"),("south dakota","South Dakota"),("wyoming","Wyoming"),("maryland","Maryland"),("vermont","Vermont"),("alaska","Alaska"),("california","California"),("south carolina","South Carolina"),("tennessee","Tennessee"),("kansas","Kansas"),("alabama","Alabama"),("north dakota","North Dakota"),("ohio","Ohio"),("maine","Maine"),("louisiana","Louisiana"),("missouri","Missouri"),("rhode island","Rhode Island"),("connecticut","Connecticut"),("michigan","Michigan"),("iowa","Iowa"),("new jersey","New Jersey"),("montana","Montana")] (gramVector "sas" 3)
+  should return [("arkansas",2),("kansas",2),("texas",1)] [✔]
+matches fromList [("pennsylvania","Pennsylvania"),("washington","Washington"),("wisconsin","Wisconsin"),("nebraska","Nebraska"),("delaware","Delaware"),("new york","New York"),("puerto rico","Puerto Rico"),("georgia","Georgia"),("kentucky","Kentucky"),("oklahoma","Oklahoma"),("guam","Guam"),("new mexico","New Mexico"),("hawaii","Hawaii"),("northern marianas islands","Northern Marianas Islands"),("nevada","Nevada"),("illinois","Illinois"),("north carolina","North Carolina"),("virginia","Virginia"),("minnesota","Minnesota"),("oregon","Oregon"),("mississippi","Mississippi"),("texas","Texas"),("idaho","Idaho"),("colorado","Colorado"),("indiana","Indiana"),("american samoa","American Samoa"),("arkansas","Arkansas"),("florida","Florida"),("district of columbia","District of Columbia"),("massachusetts","Massachusetts"),("utah","Utah"),("new hampshire","New Hampshire"),("west virginia","West Virginia"),("virgin islands","Virgin Islands"),("arizona","Arizona"),("south dakota","South Dakota"),("wyoming","Wyoming"),("maryland","Maryland"),("vermont","Vermont"),("alaska","Alaska"),("california","California"),("south carolina","South Carolina"),("tennessee","Tennessee"),("kansas","Kansas"),("alabama","Alabama"),("north dakota","North Dakota"),("ohio","Ohio"),("maine","Maine"),("louisiana","Louisiana"),("missouri","Missouri"),("rhode island","Rhode Island"),("connecticut","Connecticut"),("michigan","Michigan"),("iowa","Iowa"),("new jersey","New Jersey"),("montana","Montana")] (gramVector "sin" 3)
+  should return [("wisconsin",2)] [✔]
+matches fromList [("pennsylvania","Pennsylvania"),("washington","Washington"),("wisconsin","Wisconsin"),("nebraska","Nebraska"),("delaware","Delaware"),("new york","New York"),("puerto rico","Puerto Rico"),("georgia","Georgia"),("kentucky","Kentucky"),("oklahoma","Oklahoma"),("guam","Guam"),("new mexico","New Mexico"),("hawaii","Hawaii"),("northern marianas islands","Northern Marianas Islands"),("nevada","Nevada"),("illinois","Illinois"),("north carolina","North Carolina"),("virginia","Virginia"),("minnesota","Minnesota"),("oregon","Oregon"),("mississippi","Mississippi"),("texas","Texas"),("idaho","Idaho"),("colorado","Colorado"),("indiana","Indiana"),("american samoa","American Samoa"),("arkansas","Arkansas"),("florida","Florida"),("district of columbia","District of Columbia"),("massachusetts","Massachusetts"),("utah","Utah"),("new hampshire","New Hampshire"),("west virginia","West Virginia"),("virgin islands","Virgin Islands"),("arizona","Arizona"),("south dakota","South Dakota"),("wyoming","Wyoming"),("maryland","Maryland"),("vermont","Vermont"),("alaska","Alaska"),("california","California"),("south carolina","South Carolina"),("tennessee","Tennessee"),("kansas","Kansas"),("alabama","Alabama"),("north dakota","North Dakota"),("ohio","Ohio"),("maine","Maine"),("louisiana","Louisiana"),("missouri","Missouri"),("rhode island","Rhode Island"),("connecticut","Connecticut"),("michigan","Michigan"),("iowa","Iowa"),("new jersey","New Jersey"),("montana","Montana")] (gramVector "new" 3)
+  should return [("nebraska",1),("nevada",1),("new hampshire",2),("new jersey",2),("new mexico",2),("new york",2)] [✔]
+get (fromList [("guam","Guam"),("alaska","Alaska"),("alabama","Alabama")]) "flask"
+  should return a sorted list [✔]
+  should return 1 match(es) [✔]
+  should return a match for the string "Alaska" [✔]
+  having a score close to 0.3651483716701107 [✔]
+get (fromList [("guam","Guam"),("alaska","Alaska"),("alabama","Alabama")]) "lambda"
+  should return a sorted list [✔]
+  should return 1 match(es) [✔]
+  should return a match for the string "Alabama" [✔]
+  having a score close to 0.40089186286863654 [✔]
+get (fromList [("guam","Guam"),("alaska","Alaska"),("alabama","Alabama")]) "lambada"
+  should return a sorted list [✔]
+  should return 1 match(es) [✔]
+  should return a match for the string "Alabama" [✔]
+  having a score close to 0.5 [✔]
+get (fromList [("guam","Guam"),("alaska","Alaska"),("alabama","Alabama")]) "alabama"
+  should return a sorted list [✔]
+  should return 1 match(es) [✔]
+  should return a match for the string "Alabama" [✔]
+  having a score close to 1.0 [✔]
+get (fromList [("guam","Guam"),("alaska","Alaska"),("alabama","Alabama")]) "al"
+  should return a sorted list [✔]
+  should return 2 match(es) [✔]
+  should return a match for the string "Alabama" [✔]
+  having a score close to 0.40824829046386296 [✔]
+  should return a match for the string "Alaska" [✔]
+  having a score close to 0.4364357804719848 [✔]
+get (fromList [("guam","Guam"),("alaska","Alaska"),("alabama","Alabama")]) "albama"
+  should return a sorted list [✔]
+  should return 1 match(es) [✔]
+  should return a match for the string "Alabama" [✔]
+  having a score close to 0.6172133998483676 [✔]
+get (fromList [("guam","Guam"),("alaska","Alaska"),("alabama","Alabama")]) "Alabaska"
+  should return a sorted list [✔]
+  should return 2 match(es) [✔]
+  should return a match for the string "Alabama" [✔]
+  having a score close to 0.5345224838248487 [✔]
+  should return a match for the string "Alaska" [✔]
+  having a score close to 0.7216878364870323 [✔]
+get (fromList [("pennsylvania","Pennsylvania"),("washington","Washington"),("wisconsin","Wisconsin"),("nebraska","Nebraska"),("delaware","Delaware"),("new york","New York"),("puerto rico","Puerto Rico"),("georgia","Georgia"),("kentucky","Kentucky"),("oklahoma","Oklahoma"),("guam","Guam"),("new mexico","New Mexico"),("hawaii","Hawaii"),("northern marianas islands","Northern Marianas Islands"),("nevada","Nevada"),("illinois","Illinois"),("north carolina","North Carolina"),("virginia","Virginia"),("minnesota","Minnesota"),("oregon","Oregon"),("mississippi","Mississippi"),("texas","Texas"),("idaho","Idaho"),("colorado","Colorado"),("indiana","Indiana"),("american samoa","American Samoa"),("arkansas","Arkansas"),("florida","Florida"),("district of columbia","District of Columbia"),("massachusetts","Massachusetts"),("utah","Utah"),("new hampshire","New Hampshire"),("west virginia","West Virginia"),("virgin islands","Virgin Islands"),("arizona","Arizona"),("south dakota","South Dakota"),("wyoming","Wyoming"),("maryland","Maryland"),("vermont","Vermont"),("alaska","Alaska"),("california","California"),("south carolina","South Carolina"),("tennessee","Tennessee"),("kansas","Kansas"),("alabama","Alabama"),("north dakota","North Dakota"),("ohio","Ohio"),("maine","Maine"),("louisiana","Louisiana"),("missouri","Missouri"),("rhode island","Rhode Island"),("connecticut","Connecticut"),("michigan","Michigan"),("iowa","Iowa"),("new jersey","New Jersey"),("montana","Montana")]) "homeland"
+  should return a sorted list [✔]
+  should return 1 match(es) [✔]
+  should return a match for the string "Maryland" [✔]
+  having a score close to 0.37499999999999994 [✔]
+get (fromList [("pennsylvania","Pennsylvania"),("washington","Washington"),("wisconsin","Wisconsin"),("nebraska","Nebraska"),("delaware","Delaware"),("new york","New York"),("puerto rico","Puerto Rico"),("georgia","Georgia"),("kentucky","Kentucky"),("oklahoma","Oklahoma"),("guam","Guam"),("new mexico","New Mexico"),("hawaii","Hawaii"),("northern marianas islands","Northern Marianas Islands"),("nevada","Nevada"),("illinois","Illinois"),("north carolina","North Carolina"),("virginia","Virginia"),("minnesota","Minnesota"),("oregon","Oregon"),("mississippi","Mississippi"),("texas","Texas"),("idaho","Idaho"),("colorado","Colorado"),("indiana","Indiana"),("american samoa","American Samoa"),("arkansas","Arkansas"),("florida","Florida"),("district of columbia","District of Columbia"),("massachusetts","Massachusetts"),("utah","Utah"),("new hampshire","New Hampshire"),("west virginia","West Virginia"),("virgin islands","Virgin Islands"),("arizona","Arizona"),("south dakota","South Dakota"),("wyoming","Wyoming"),("maryland","Maryland"),("vermont","Vermont"),("alaska","Alaska"),("california","California"),("south carolina","South Carolina"),("tennessee","Tennessee"),("kansas","Kansas"),("alabama","Alabama"),("north dakota","North Dakota"),("ohio","Ohio"),("maine","Maine"),("louisiana","Louisiana"),("missouri","Missouri"),("rhode island","Rhode Island"),("connecticut","Connecticut"),("michigan","Michigan"),("iowa","Iowa"),("new jersey","New Jersey"),("montana","Montana")]) "connectedcut"
+  should return a sorted list [✔]
+  should return 1 match(es) [✔]
+  should return a match for the string "Connecticut" [✔]
+  having a score close to 0.6963106238227914 [✔]
+get (fromList [("pennsylvania","Pennsylvania"),("washington","Washington"),("wisconsin","Wisconsin"),("nebraska","Nebraska"),("delaware","Delaware"),("new york","New York"),("puerto rico","Puerto Rico"),("georgia","Georgia"),("kentucky","Kentucky"),("oklahoma","Oklahoma"),("guam","Guam"),("new mexico","New Mexico"),("hawaii","Hawaii"),("northern marianas islands","Northern Marianas Islands"),("nevada","Nevada"),("illinois","Illinois"),("north carolina","North Carolina"),("virginia","Virginia"),("minnesota","Minnesota"),("oregon","Oregon"),("mississippi","Mississippi"),("texas","Texas"),("idaho","Idaho"),("colorado","Colorado"),("indiana","Indiana"),("american samoa","American Samoa"),("arkansas","Arkansas"),("florida","Florida"),("district of columbia","District of Columbia"),("massachusetts","Massachusetts"),("utah","Utah"),("new hampshire","New Hampshire"),("west virginia","West Virginia"),("virgin islands","Virgin Islands"),("arizona","Arizona"),("south dakota","South Dakota"),("wyoming","Wyoming"),("maryland","Maryland"),("vermont","Vermont"),("alaska","Alaska"),("california","California"),("south carolina","South Carolina"),("tennessee","Tennessee"),("kansas","Kansas"),("alabama","Alabama"),("north dakota","North Dakota"),("ohio","Ohio"),("maine","Maine"),("louisiana","Louisiana"),("missouri","Missouri"),("rhode island","Rhode Island"),("connecticut","Connecticut"),("michigan","Michigan"),("iowa","Iowa"),("new jersey","New Jersey"),("montana","Montana")]) "oregano"
+  should return a sorted list [✔]
+  should return 1 match(es) [✔]
+  should return a match for the string "Oregon" [✔]
+  having a score close to 0.4629100498862757 [✔]
+get (fromList [("pennsylvania","Pennsylvania"),("washington","Washington"),("wisconsin","Wisconsin"),("nebraska","Nebraska"),("delaware","Delaware"),("new york","New York"),("puerto rico","Puerto Rico"),("georgia","Georgia"),("kentucky","Kentucky"),("oklahoma","Oklahoma"),("guam","Guam"),("new mexico","New Mexico"),("hawaii","Hawaii"),("northern marianas islands","Northern Marianas Islands"),("nevada","Nevada"),("illinois","Illinois"),("north carolina","North Carolina"),("virginia","Virginia"),("minnesota","Minnesota"),("oregon","Oregon"),("mississippi","Mississippi"),("texas","Texas"),("idaho","Idaho"),("colorado","Colorado"),("indiana","Indiana"),("american samoa","American Samoa"),("arkansas","Arkansas"),("florida","Florida"),("district of columbia","District of Columbia"),("massachusetts","Massachusetts"),("utah","Utah"),("new hampshire","New Hampshire"),("west virginia","West Virginia"),("virgin islands","Virgin Islands"),("arizona","Arizona"),("south dakota","South Dakota"),("wyoming","Wyoming"),("maryland","Maryland"),("vermont","Vermont"),("alaska","Alaska"),("california","California"),("south carolina","South Carolina"),("tennessee","Tennessee"),("kansas","Kansas"),("alabama","Alabama"),("north dakota","North Dakota"),("ohio","Ohio"),("maine","Maine"),("louisiana","Louisiana"),("missouri","Missouri"),("rhode island","Rhode Island"),("connecticut","Connecticut"),("michigan","Michigan"),("iowa","Iowa"),("new jersey","New Jersey"),("montana","Montana")]) "akeloxasas"
+  should return a sorted list [✔]
+  should return 3 match(es) [✔]
+  should return a match for the string "Arkansas" [✔]
+  having a score close to 0.4622501635210243 [✔]
+  should return a match for the string "Kansas" [✔]
+  having a score close to 0.4193139346887673 [✔]
+  should return a match for the string "Texas" [✔]
+  having a score close to 0.45291081365783836 [✔]
+get (fromList [("pennsylvania","Pennsylvania"),("washington","Washington"),("wisconsin","Wisconsin"),("nebraska","Nebraska"),("delaware","Delaware"),("new york","New York"),("puerto rico","Puerto Rico"),("georgia","Georgia"),("kentucky","Kentucky"),("oklahoma","Oklahoma"),("guam","Guam"),("new mexico","New Mexico"),("hawaii","Hawaii"),("northern marianas islands","Northern Marianas Islands"),("nevada","Nevada"),("illinois","Illinois"),("north carolina","North Carolina"),("virginia","Virginia"),("minnesota","Minnesota"),("oregon","Oregon"),("mississippi","Mississippi"),("texas","Texas"),("idaho","Idaho"),("colorado","Colorado"),("indiana","Indiana"),("american samoa","American Samoa"),("arkansas","Arkansas"),("florida","Florida"),("district of columbia","District of Columbia"),("massachusetts","Massachusetts"),("utah","Utah"),("new hampshire","New Hampshire"),("west virginia","West Virginia"),("virgin islands","Virgin Islands"),("arizona","Arizona"),("south dakota","South Dakota"),("wyoming","Wyoming"),("maryland","Maryland"),("vermont","Vermont"),("alaska","Alaska"),("california","California"),("south carolina","South Carolina"),("tennessee","Tennessee"),("kansas","Kansas"),("alabama","Alabama"),("north dakota","North Dakota"),("ohio","Ohio"),("maine","Maine"),("louisiana","Louisiana"),("missouri","Missouri"),("rhode island","Rhode Island"),("connecticut","Connecticut"),("michigan","Michigan"),("iowa","Iowa"),("new jersey","New Jersey"),("montana","Montana")]) "alaskansas"
+  should return a sorted list [✔]
+  should return 3 match(es) [✔]
+  should return a match for the string "Alaska" [✔]
+  having a score close to 0.6454972243679029 [✔]
+  should return a match for the string "Arkansas" [✔]
+  having a score close to 0.5590169943749475 [✔]
+  should return a match for the string "Kansas" [✔]
+  having a score close to 0.6454972243679029 [✔]
+get (fromList [("pennsylvania","Pennsylvania"),("washington","Washington"),("wisconsin","Wisconsin"),("nebraska","Nebraska"),("delaware","Delaware"),("new york","New York"),("puerto rico","Puerto Rico"),("georgia","Georgia"),("kentucky","Kentucky"),("oklahoma","Oklahoma"),("guam","Guam"),("new mexico","New Mexico"),("hawaii","Hawaii"),("northern marianas islands","Northern Marianas Islands"),("nevada","Nevada"),("illinois","Illinois"),("north carolina","North Carolina"),("virginia","Virginia"),("minnesota","Minnesota"),("oregon","Oregon"),("mississippi","Mississippi"),("texas","Texas"),("idaho","Idaho"),("colorado","Colorado"),("indiana","Indiana"),("american samoa","American Samoa"),("arkansas","Arkansas"),("florida","Florida"),("district of columbia","District of Columbia"),("massachusetts","Massachusetts"),("utah","Utah"),("new hampshire","New Hampshire"),("west virginia","West Virginia"),("virgin islands","Virgin Islands"),("arizona","Arizona"),("south dakota","South Dakota"),("wyoming","Wyoming"),("maryland","Maryland"),("vermont","Vermont"),("alaska","Alaska"),("california","California"),("south carolina","South Carolina"),("tennessee","Tennessee"),("kansas","Kansas"),("alabama","Alabama"),("north dakota","North Dakota"),("ohio","Ohio"),("maine","Maine"),("louisiana","Louisiana"),("missouri","Missouri"),("rhode island","Rhode Island"),("connecticut","Connecticut"),("michigan","Michigan"),("iowa","Iowa"),("new jersey","New Jersey"),("montana","Montana")]) "South"
+  should return a sorted list [✔]
+  should return 2 match(es) [✔]
+  should return a match for the string "South Carolina" [✔]
+  having a score close to 0.47809144373375745 [✔]
+  should return a match for the string "South Dakota" [✔]
+  having a score close to 0.5163977794943222 [✔]
+get (fromList [("pennsylvania","Pennsylvania"),("washington","Washington"),("wisconsin","Wisconsin"),("nebraska","Nebraska"),("delaware","Delaware"),("new york","New York"),("puerto rico","Puerto Rico"),("georgia","Georgia"),("kentucky","Kentucky"),("oklahoma","Oklahoma"),("guam","Guam"),("new mexico","New Mexico"),("hawaii","Hawaii"),("northern marianas islands","Northern Marianas Islands"),("nevada","Nevada"),("illinois","Illinois"),("north carolina","North Carolina"),("virginia","Virginia"),("minnesota","Minnesota"),("oregon","Oregon"),("mississippi","Mississippi"),("texas","Texas"),("idaho","Idaho"),("colorado","Colorado"),("indiana","Indiana"),("american samoa","American Samoa"),("arkansas","Arkansas"),("florida","Florida"),("district of columbia","District of Columbia"),("massachusetts","Massachusetts"),("utah","Utah"),("new hampshire","New Hampshire"),("west virginia","West Virginia"),("virgin islands","Virgin Islands"),("arizona","Arizona"),("south dakota","South Dakota"),("wyoming","Wyoming"),("maryland","Maryland"),("vermont","Vermont"),("alaska","Alaska"),("california","California"),("south carolina","South Carolina"),("tennessee","Tennessee"),("kansas","Kansas"),("alabama","Alabama"),("north dakota","North Dakota"),("ohio","Ohio"),("maine","Maine"),("louisiana","Louisiana"),("missouri","Missouri"),("rhode island","Rhode Island"),("connecticut","Connecticut"),("michigan","Michigan"),("iowa","Iowa"),("new jersey","New Jersey"),("montana","Montana")]) "penicillivania"
+  should return a sorted list [✔]
+  should return 1 match(es) [✔]
+  should return a match for the string "Pennsylvania" [✔]
+  having a score close to 0.46291004988627577 [✔]
+get (fromList [("pennsylvania","Pennsylvania"),("washington","Washington"),("wisconsin","Wisconsin"),("nebraska","Nebraska"),("delaware","Delaware"),("new york","New York"),("puerto rico","Puerto Rico"),("georgia","Georgia"),("kentucky","Kentucky"),("oklahoma","Oklahoma"),("guam","Guam"),("new mexico","New Mexico"),("hawaii","Hawaii"),("northern marianas islands","Northern Marianas Islands"),("nevada","Nevada"),("illinois","Illinois"),("north carolina","North Carolina"),("virginia","Virginia"),("minnesota","Minnesota"),("oregon","Oregon"),("mississippi","Mississippi"),("texas","Texas"),("idaho","Idaho"),("colorado","Colorado"),("indiana","Indiana"),("american samoa","American Samoa"),("arkansas","Arkansas"),("florida","Florida"),("district of columbia","District of Columbia"),("massachusetts","Massachusetts"),("utah","Utah"),("new hampshire","New Hampshire"),("west virginia","West Virginia"),("virgin islands","Virgin Islands"),("arizona","Arizona"),("south dakota","South Dakota"),("wyoming","Wyoming"),("maryland","Maryland"),("vermont","Vermont"),("alaska","Alaska"),("california","California"),("south carolina","South Carolina"),("tennessee","Tennessee"),("kansas","Kansas"),("alabama","Alabama"),("north dakota","North Dakota"),("ohio","Ohio"),("maine","Maine"),("louisiana","Louisiana"),("missouri","Missouri"),("rhode island","Rhode Island"),("connecticut","Connecticut"),("michigan","Michigan"),("iowa","Iowa"),("new jersey","New Jersey"),("montana","Montana")]) "Michisota"
+  should return a sorted list [✔]
+  should return 2 match(es) [✔]
+  should return a match for the string "Michigan" [✔]
+  having a score close to 0.4714045207910316 [✔]
+  should return a match for the string "Minnesota" [✔]
+  having a score close to 0.4444444444444444 [✔]
+get (fromList [("pennsylvania","Pennsylvania"),("washington","Washington"),("wisconsin","Wisconsin"),("nebraska","Nebraska"),("delaware","Delaware"),("new york","New York"),("puerto rico","Puerto Rico"),("georgia","Georgia"),("kentucky","Kentucky"),("oklahoma","Oklahoma"),("guam","Guam"),("new mexico","New Mexico"),("hawaii","Hawaii"),("northern marianas islands","Northern Marianas Islands"),("nevada","Nevada"),("illinois","Illinois"),("north carolina","North Carolina"),("virginia","Virginia"),("minnesota","Minnesota"),("oregon","Oregon"),("mississippi","Mississippi"),("texas","Texas"),("idaho","Idaho"),("colorado","Colorado"),("indiana","Indiana"),("american samoa","American Samoa"),("arkansas","Arkansas"),("florida","Florida"),("district of columbia","District of Columbia"),("massachusetts","Massachusetts"),("utah","Utah"),("new hampshire","New Hampshire"),("west virginia","West Virginia"),("virgin islands","Virgin Islands"),("arizona","Arizona"),("south dakota","South Dakota"),("wyoming","Wyoming"),("maryland","Maryland"),("vermont","Vermont"),("alaska","Alaska"),("california","California"),("south carolina","South Carolina"),("tennessee","Tennessee"),("kansas","Kansas"),("alabama","Alabama"),("north dakota","North Dakota"),("ohio","Ohio"),("maine","Maine"),("louisiana","Louisiana"),("missouri","Missouri"),("rhode island","Rhode Island"),("connecticut","Connecticut"),("michigan","Michigan"),("iowa","Iowa"),("new jersey","New Jersey"),("montana","Montana")]) "New Mix"
+  should return a sorted list [✔]
+  should return 3 match(es) [✔]
+  should return a match for the string "New Jersey" [✔]
+  having a score close to 0.35856858280031806 [✔]
+  should return a match for the string "New Mexico" [✔]
+  having a score close to 0.47809144373375745 [✔]
+  should return a match for the string "New York" [✔]
+  having a score close to 0.40089186286863654 [✔]
+get (fromList [("pennsylvania","Pennsylvania"),("washington","Washington"),("wisconsin","Wisconsin"),("nebraska","Nebraska"),("delaware","Delaware"),("new york","New York"),("puerto rico","Puerto Rico"),("georgia","Georgia"),("kentucky","Kentucky"),("oklahoma","Oklahoma"),("guam","Guam"),("new mexico","New Mexico"),("hawaii","Hawaii"),("northern marianas islands","Northern Marianas Islands"),("nevada","Nevada"),("illinois","Illinois"),("north carolina","North Carolina"),("virginia","Virginia"),("minnesota","Minnesota"),("oregon","Oregon"),("mississippi","Mississippi"),("texas","Texas"),("idaho","Idaho"),("colorado","Colorado"),("indiana","Indiana"),("american samoa","American Samoa"),("arkansas","Arkansas"),("florida","Florida"),("district of columbia","District of Columbia"),("massachusetts","Massachusetts"),("utah","Utah"),("new hampshire","New Hampshire"),("west virginia","West Virginia"),("virgin islands","Virgin Islands"),("arizona","Arizona"),("south dakota","South Dakota"),("wyoming","Wyoming"),("maryland","Maryland"),("vermont","Vermont"),("alaska","Alaska"),("california","California"),("south carolina","South Carolina"),("tennessee","Tennessee"),("kansas","Kansas"),("alabama","Alabama"),("north dakota","North Dakota"),("ohio","Ohio"),("maine","Maine"),("louisiana","Louisiana"),("missouri","Missouri"),("rhode island","Rhode Island"),("connecticut","Connecticut"),("michigan","Michigan"),("iowa","Iowa"),("new jersey","New Jersey"),("montana","Montana")]) "Waioming"
+  should return a sorted list [✔]
+  should return 1 match(es) [✔]
+  should return a match for the string "Wyoming" [✔]
+  having a score close to 0.5345224838248487 [✔]
+get (fromList [("pennsylvania","Pennsylvania"),("washington","Washington"),("wisconsin","Wisconsin"),("nebraska","Nebraska"),("delaware","Delaware"),("new york","New York"),("puerto rico","Puerto Rico"),("georgia","Georgia"),("kentucky","Kentucky"),("oklahoma","Oklahoma"),("guam","Guam"),("new mexico","New Mexico"),("hawaii","Hawaii"),("northern marianas islands","Northern Marianas Islands"),("nevada","Nevada"),("illinois","Illinois"),("north carolina","North Carolina"),("virginia","Virginia"),("minnesota","Minnesota"),("oregon","Oregon"),("mississippi","Mississippi"),("texas","Texas"),("idaho","Idaho"),("colorado","Colorado"),("indiana","Indiana"),("american samoa","American Samoa"),("arkansas","Arkansas"),("florida","Florida"),("district of columbia","District of Columbia"),("massachusetts","Massachusetts"),("utah","Utah"),("new hampshire","New Hampshire"),("west virginia","West Virginia"),("virgin islands","Virgin Islands"),("arizona","Arizona"),("south dakota","South Dakota"),("wyoming","Wyoming"),("maryland","Maryland"),("vermont","Vermont"),("alaska","Alaska"),("california","California"),("south carolina","South Carolina"),("tennessee","Tennessee"),("kansas","Kansas"),("alabama","Alabama"),("north dakota","North Dakota"),("ohio","Ohio"),("maine","Maine"),("louisiana","Louisiana"),("missouri","Missouri"),("rhode island","Rhode Island"),("connecticut","Connecticut"),("michigan","Michigan"),("iowa","Iowa"),("new jersey","New Jersey"),("montana","Montana")]) "Landland"
+  should return a sorted list [✔]
+  should return 2 match(es) [✔]
+  should return a match for the string "Maryland" [✔]
+  having a score close to 0.5103103630798287 [✔]
+  should return a match for the string "Rhode Island" [✔]
+  having a score close to 0.41666666666666674 [✔]
+edit distance between "hello" and "yello"
+  should be approximately 0.8 [✔]
+edit distance between "fellow" and "yello"
+  should be approximately 0.6666666666666667 [✔]
+edit distance between "fellow" and "yellow"
+  should be approximately 0.8333333333333334 [✔]
+edit distance between "propeller" and "yellow"
+  should be approximately 0.33333333333333337 [✔]
+edit distance between "propeller" and "teller"
+  should be approximately 0.5555555555555556 [✔]
+edit distance between "balloon" and "spoon"
+  should be approximately 0.4285714285714286 [✔]
+edit distance between "balloon" and "electron"
+  should be approximately 0.25 [✔]
+edit distance between "spectrum" and "electron"
+  should be approximately 0.5 [✔]
+edit distance between "spectrum" and "techno"
+  should be approximately 0.25 [✔]
+edit distance between "technology" and "techno"
+  should be approximately 0.6 [✔]
+edit distance between "technology" and "logic"
+  should be approximately 0.19999999999999996 [✔]
+edit distance between "toxic" and "logic"
+  should be approximately 0.6 [✔]
+edit distance between "sawa" and "sawa"
+  should be approximately 1.0 [✔]
+edit distance between "fez" and "baz"
+  should be approximately 0.33333333333333337 [✔]
+edit distance between "fez" and "baz"
+  should not be close to 0.123 [✔]
+get (fromList [("pennsylvania","Pennsylvania"),("washington","Washington"),("wisconsin","Wisconsin"),("nebraska","Nebraska"),("delaware","Delaware"),("new york","New York"),("puerto rico","Puerto Rico"),("georgia","Georgia"),("kentucky","Kentucky"),("oklahoma","Oklahoma"),("guam","Guam"),("new mexico","New Mexico"),("hawaii","Hawaii"),("northern marianas islands","Northern Marianas Islands"),("nevada","Nevada"),("illinois","Illinois"),("north carolina","North Carolina"),("virginia","Virginia"),("minnesota","Minnesota"),("oregon","Oregon"),("mississippi","Mississippi"),("texas","Texas"),("idaho","Idaho"),("colorado","Colorado"),("indiana","Indiana"),("american samoa","American Samoa"),("arkansas","Arkansas"),("florida","Florida"),("district of columbia","District of Columbia"),("massachusetts","Massachusetts"),("utah","Utah"),("new hampshire","New Hampshire"),("west virginia","West Virginia"),("virgin islands","Virgin Islands"),("arizona","Arizona"),("south dakota","South Dakota"),("wyoming","Wyoming"),("maryland","Maryland"),("vermont","Vermont"),("alaska","Alaska"),("california","California"),("south carolina","South Carolina"),("tennessee","Tennessee"),("kansas","Kansas"),("alabama","Alabama"),("north dakota","North Dakota"),("ohio","Ohio"),("maine","Maine"),("louisiana","Louisiana"),("missouri","Missouri"),("rhode island","Rhode Island"),("connecticut","Connecticut"),("michigan","Michigan"),("iowa","Iowa"),("new jersey","New Jersey"),("montana","Montana")]) "wyome"
+  should return a sorted list [✔]
+  should return 1 match(es) [✔]
+  should return a match for the string "Wyoming" [✔]
+  having a score close to 0.5714285714285714 [✔]
+get (fromList [("pennsylvania","Pennsylvania"),("washington","Washington"),("wisconsin","Wisconsin"),("nebraska","Nebraska"),("delaware","Delaware"),("new york","New York"),("puerto rico","Puerto Rico"),("georgia","Georgia"),("kentucky","Kentucky"),("oklahoma","Oklahoma"),("guam","Guam"),("new mexico","New Mexico"),("hawaii","Hawaii"),("northern marianas islands","Northern Marianas Islands"),("nevada","Nevada"),("illinois","Illinois"),("north carolina","North Carolina"),("virginia","Virginia"),("minnesota","Minnesota"),("oregon","Oregon"),("mississippi","Mississippi"),("texas","Texas"),("idaho","Idaho"),("colorado","Colorado"),("indiana","Indiana"),("american samoa","American Samoa"),("arkansas","Arkansas"),("florida","Florida"),("district of columbia","District of Columbia"),("massachusetts","Massachusetts"),("utah","Utah"),("new hampshire","New Hampshire"),("west virginia","West Virginia"),("virgin islands","Virgin Islands"),("arizona","Arizona"),("south dakota","South Dakota"),("wyoming","Wyoming"),("maryland","Maryland"),("vermont","Vermont"),("alaska","Alaska"),("california","California"),("south carolina","South Carolina"),("tennessee","Tennessee"),("kansas","Kansas"),("alabama","Alabama"),("north dakota","North Dakota"),("ohio","Ohio"),("maine","Maine"),("louisiana","Louisiana"),("missouri","Missouri"),("rhode island","Rhode Island"),("connecticut","Connecticut"),("michigan","Michigan"),("iowa","Iowa"),("new jersey","New Jersey"),("montana","Montana")]) "Louisianaland"
+  should return a sorted list [✔]
+  should return 4 match(es) [✔]
+  should return a match for the string "Louisiana" [✔]
+  having a score close to 0.6923076923076923 [✔]
+  should return a match for the string "Maryland" [✔]
+  having a score close to 0.3846153846153846 [✔]
+  should return a match for the string "Northern Marianas Islands" [✔]
+  having a score close to 0.36 [✔]
+  should return a match for the string "Rhode Island" [✔]
+  having a score close to 0.3846153846153846 [✔]
+get (fromList [("pennsylvania","Pennsylvania"),("washington","Washington"),("wisconsin","Wisconsin"),("nebraska","Nebraska"),("delaware","Delaware"),("new york","New York"),("puerto rico","Puerto Rico"),("georgia","Georgia"),("kentucky","Kentucky"),("oklahoma","Oklahoma"),("guam","Guam"),("new mexico","New Mexico"),("hawaii","Hawaii"),("northern marianas islands","Northern Marianas Islands"),("nevada","Nevada"),("illinois","Illinois"),("north carolina","North Carolina"),("virginia","Virginia"),("minnesota","Minnesota"),("oregon","Oregon"),("mississippi","Mississippi"),("texas","Texas"),("idaho","Idaho"),("colorado","Colorado"),("indiana","Indiana"),("american samoa","American Samoa"),("arkansas","Arkansas"),("florida","Florida"),("district of columbia","District of Columbia"),("massachusetts","Massachusetts"),("utah","Utah"),("new hampshire","New Hampshire"),("west virginia","West Virginia"),("virgin islands","Virgin Islands"),("arizona","Arizona"),("south dakota","South Dakota"),("wyoming","Wyoming"),("maryland","Maryland"),("vermont","Vermont"),("alaska","Alaska"),("california","California"),("south carolina","South Carolina"),("tennessee","Tennessee"),("kansas","Kansas"),("alabama","Alabama"),("north dakota","North Dakota"),("ohio","Ohio"),("maine","Maine"),("louisiana","Louisiana"),("missouri","Missouri"),("rhode island","Rhode Island"),("connecticut","Connecticut"),("michigan","Michigan"),("iowa","Iowa"),("new jersey","New Jersey"),("montana","Montana")]) "ia"
+  should return a sorted list [✔]
+  should return 2 match(es) [✔]
+  should return a match for the string "Idaho" [✔]
+  having a score close to 0.4 [✔]
+  should return a match for the string "Iowa" [✔]
+  having a score close to 0.5 [✔]
+get (fromList [("pennsylvania","Pennsylvania"),("washington","Washington"),("wisconsin","Wisconsin"),("nebraska","Nebraska"),("delaware","Delaware"),("new york","New York"),("puerto rico","Puerto Rico"),("georgia","Georgia"),("kentucky","Kentucky"),("oklahoma","Oklahoma"),("guam","Guam"),("new mexico","New Mexico"),("hawaii","Hawaii"),("northern marianas islands","Northern Marianas Islands"),("nevada","Nevada"),("illinois","Illinois"),("north carolina","North Carolina"),("virginia","Virginia"),("minnesota","Minnesota"),("oregon","Oregon"),("mississippi","Mississippi"),("texas","Texas"),("idaho","Idaho"),("colorado","Colorado"),("indiana","Indiana"),("american samoa","American Samoa"),("arkansas","Arkansas"),("florida","Florida"),("district of columbia","District of Columbia"),("massachusetts","Massachusetts"),("utah","Utah"),("new hampshire","New Hampshire"),("west virginia","West Virginia"),("virgin islands","Virgin Islands"),("arizona","Arizona"),("south dakota","South Dakota"),("wyoming","Wyoming"),("maryland","Maryland"),("vermont","Vermont"),("alaska","Alaska"),("california","California"),("south carolina","South Carolina"),("tennessee","Tennessee"),("kansas","Kansas"),("alabama","Alabama"),("north dakota","North Dakota"),("ohio","Ohio"),("maine","Maine"),("louisiana","Louisiana"),("missouri","Missouri"),("rhode island","Rhode Island"),("connecticut","Connecticut"),("michigan","Michigan"),("iowa","Iowa"),("new jersey","New Jersey"),("montana","Montana")]) "flaska"
+  should return a sorted list [✔]
+  should return 3 match(es) [✔]
+  should return a match for the string "Alaska" [✔]
+  having a score close to 0.8333333333333334 [✔]
+  should return a match for the string "Florida" [✔]
+  having a score close to 0.4285714285714286 [✔]
+  should return a match for the string "Nebraska" [✔]
+  having a score close to 0.5 [✔]
+get (fromList [("pennsylvania","Pennsylvania"),("washington","Washington"),("wisconsin","Wisconsin"),("nebraska","Nebraska"),("delaware","Delaware"),("new york","New York"),("puerto rico","Puerto Rico"),("georgia","Georgia"),("kentucky","Kentucky"),("oklahoma","Oklahoma"),("guam","Guam"),("new mexico","New Mexico"),("hawaii","Hawaii"),("northern marianas islands","Northern Marianas Islands"),("nevada","Nevada"),("illinois","Illinois"),("north carolina","North Carolina"),("virginia","Virginia"),("minnesota","Minnesota"),("oregon","Oregon"),("mississippi","Mississippi"),("texas","Texas"),("idaho","Idaho"),("colorado","Colorado"),("indiana","Indiana"),("american samoa","American Samoa"),("arkansas","Arkansas"),("florida","Florida"),("district of columbia","District of Columbia"),("massachusetts","Massachusetts"),("utah","Utah"),("new hampshire","New Hampshire"),("west virginia","West Virginia"),("virgin islands","Virgin Islands"),("arizona","Arizona"),("south dakota","South Dakota"),("wyoming","Wyoming"),("maryland","Maryland"),("vermont","Vermont"),("alaska","Alaska"),("california","California"),("south carolina","South Carolina"),("tennessee","Tennessee"),("kansas","Kansas"),("alabama","Alabama"),("north dakota","North Dakota"),("ohio","Ohio"),("maine","Maine"),("louisiana","Louisiana"),("missouri","Missouri"),("rhode island","Rhode Island"),("connecticut","Connecticut"),("michigan","Michigan"),("iowa","Iowa"),("new jersey","New Jersey"),("montana","Montana")]) "Alaskansas"
+  should return a sorted list [✔]
+  should return 4 match(es) [✔]
+  should return a match for the string "Alabama" [✔]
+  having a score close to 0.5 [✔]
+  should return a match for the string "Alaska" [✔]
+  having a score close to 0.6 [✔]
+  should return a match for the string "Arkansas" [✔]
+  having a score close to 0.7 [✔]
+  should return a match for the string "Kansas" [✔]
+  having a score close to 0.6 [✔]
+get (fromList [("pennsylvania","Pennsylvania"),("washington","Washington"),("wisconsin","Wisconsin"),("nebraska","Nebraska"),("delaware","Delaware"),("new york","New York"),("puerto rico","Puerto Rico"),("georgia","Georgia"),("kentucky","Kentucky"),("oklahoma","Oklahoma"),("guam","Guam"),("new mexico","New Mexico"),("hawaii","Hawaii"),("northern marianas islands","Northern Marianas Islands"),("nevada","Nevada"),("illinois","Illinois"),("north carolina","North Carolina"),("virginia","Virginia"),("minnesota","Minnesota"),("oregon","Oregon"),("mississippi","Mississippi"),("texas","Texas"),("idaho","Idaho"),("colorado","Colorado"),("indiana","Indiana"),("american samoa","American Samoa"),("arkansas","Arkansas"),("florida","Florida"),("district of columbia","District of Columbia"),("massachusetts","Massachusetts"),("utah","Utah"),("new hampshire","New Hampshire"),("west virginia","West Virginia"),("virgin islands","Virgin Islands"),("arizona","Arizona"),("south dakota","South Dakota"),("wyoming","Wyoming"),("maryland","Maryland"),("vermont","Vermont"),("alaska","Alaska"),("california","California"),("south carolina","South Carolina"),("tennessee","Tennessee"),("kansas","Kansas"),("alabama","Alabama"),("north dakota","North Dakota"),("ohio","Ohio"),("maine","Maine"),("louisiana","Louisiana"),("missouri","Missouri"),("rhode island","Rhode Island"),("connecticut","Connecticut"),("michigan","Michigan"),("iowa","Iowa"),("new jersey","New Jersey"),("montana","Montana")]) "Transylvania"
+  should return a sorted list [✔]
+  should return 2 match(es) [✔]
+  should return a match for the string "California" [✔]
+  having a score close to 0.33333333333333337 [✔]
+  should return a match for the string "Pennsylvania" [✔]
+  having a score close to 0.75 [✔]
+
+Finished in 0.0303 seconds
+439 examples, 0 failures
+Test suite fuzzyset-test: PASS
+Test suite logged to:
+/tmp/workdir-fuzzyset/fuzzyset-0.3.2/dist-newstyle/build/x86_64-linux/ghc-9.6.6/fuzzyset-0.3.2/t/fuzzyset-test/test/fuzzyset-0.3.2-fuzzyset-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

@@ -1,0 +1,32 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - detour-via-sci-1.0.0 (test:doctest) (ephemeral targets)
+Preprocessing test suite 'doctest' for detour-via-sci-1.0.0...
+Building test suite 'doctest' for detour-via-sci-1.0.0...
+Running 1 test suites...
+Test suite doctest: RUNNING...
+
+library/Data/Via/Scientific.hs:51:1: error:
+    Ambiguous module name ‘Language.Haskell.TH’:
+      it was found in multiple packages:
+      ghc-lib-parser-9.6.6.20240701 template-haskell-2.20.0.0
+
+library/Data/Via/Scientific.hs:52:1: error:
+    Ambiguous module name ‘Language.Haskell.TH.Syntax’:
+      it was found in multiple packages:
+      ghc-lib-parser-9.6.6.20240701 template-haskell-2.20.0.0
+library/Data/Via/Scientific.hs:224: failure in expression `instance Show (Q [a]) where show _ = "..."'
+expected: 
+ but got: 
+          ^
+          <interactive>:47:16: error: [GHC-76037]
+              Not in scope: type constructor or class ‘Q’
+
+Examples: 44  Tried: 11  Errors: 0  Failures: 1
+Test suite doctest: FAIL
+Test suite logged to:
+/tmp/workdir-detour-via-sci/detour-via-sci-1.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/detour-via-sci-1.0.0/t/doctest/test/detour-via-sci-1.0.0-doctest.log
+0 of 1 test suites (0 of 1 test cases) passed.
+Error: [Cabal-7125]
+Tests failed for test:doctest from detour-via-sci-1.0.0.
+

@@ -1,0 +1,418 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - ghc-typelits-extra-0.4.7 (lib) (first run)
+ - ghc-typelits-extra-0.4.7 (test:test-ghc-typelits-extra) (first run)
+Configuring library for ghc-typelits-extra-0.4.7...
+Preprocessing library for ghc-typelits-extra-0.4.7...
+Building library for ghc-typelits-extra-0.4.7...
+[1 of 4] Compiling GHC.TypeLits.Extra
+[2 of 4] Compiling GHC.TypeLits.Extra.Solver.Operations
+[3 of 4] Compiling GHC.TypeLits.Extra.Solver.Unify
+[4 of 4] Compiling GHC.TypeLits.Extra.Solver
+Configuring test suite 'test-ghc-typelits-extra' for ghc-typelits-extra-0.4.7...
+Preprocessing test suite 'test-ghc-typelits-extra' for ghc-typelits-extra-0.4.7...
+Building test suite 'test-ghc-typelits-extra' for ghc-typelits-extra-0.4.7...
+[1 of 2] Compiling ErrorTests
+
+tests-ghc-9.4/ErrorTests.hs:17:13: warning: [GHC-83865] [-Wdeferred-type-errors]
+    • Couldn't match type ‘4’ with ‘2’
+      Expected: Proxy (GCD 6 8) -> Proxy 4
+        Actual: Proxy 4 -> Proxy 4
+      Type synonyms expanded:
+      Expected type: Proxy (GCD 6 8) -> Proxy 4
+        Actual type: Proxy 4 -> Proxy 4
+    • In the expression: id
+      In an equation for ‘testFail1’: testFail1 = id
+   |
+17 | testFail1 = id
+   |             ^^
+
+tests-ghc-9.4/ErrorTests.hs:20:13: warning: [GHC-83865] [-Wdeferred-type-errors]
+    • Couldn't match type: 2 + x
+                     with: x + 3
+      Expected: Proxy (GCD 6 8 + x) -> Proxy (x + GCD 6 9)
+        Actual: Proxy (2 + x) -> Proxy (2 + x)
+        NB: ‘+’ is a non-injective type family
+    • In the expression: id
+      In an equation for ‘testFail2’: testFail2 = id
+    • Relevant bindings include
+        testFail2 :: Proxy (GCD 6 8 + x) -> Proxy (x + GCD 6 9)
+          (bound at tests-ghc-9.4/ErrorTests.hs:20:1)
+   |
+20 | testFail2 = id
+   |             ^^
+
+tests-ghc-9.4/ErrorTests.hs:23:13: warning: [GHC-83865] [-Wdeferred-type-errors]
+    • Couldn't match type ‘CLog 3 10’ with ‘2’
+      Expected: Proxy (CLog 3 10) -> Proxy 2
+        Actual: Proxy 2 -> Proxy 2
+      Type synonyms expanded:
+      Expected type: Proxy (CLog 3 10) -> Proxy 2
+        Actual type: Proxy 2 -> Proxy 2
+    • In the expression: id
+      In an equation for ‘testFail3’: testFail3 = id
+   |
+23 | testFail3 = id
+   |             ^^
+
+tests-ghc-9.4/ErrorTests.hs:26:13: warning: [GHC-83865] [-Wdeferred-type-errors]
+    • Couldn't match type: CLog 3 10
+                     with: CLog 2 9
+      Expected: Proxy (CLog 3 10 + x) -> Proxy (x + CLog 2 9)
+        Actual: Proxy (CLog 3 10 + x) -> Proxy (CLog 3 10 + x)
+        NB: ‘CLog’ is a non-injective type family
+    • In the expression: id
+      In an equation for ‘testFail4’: testFail4 = id
+   |
+26 | testFail4 = id
+   |             ^^
+
+tests-ghc-9.4/ErrorTests.hs:29:13: warning: [GHC-83865] [-Wdeferred-type-errors]
+    • Couldn't match type ‘CLog 0 4’ with ‘100’
+      Expected: Proxy (CLog 0 4) -> Proxy 100
+        Actual: Proxy 100 -> Proxy 100
+      Type synonyms expanded:
+      Expected type: Proxy (CLog 0 4) -> Proxy 100
+        Actual type: Proxy 100 -> Proxy 100
+    • In the expression: id
+      In an equation for ‘testFail5’: testFail5 = id
+   |
+29 | testFail5 = id
+   |             ^^
+
+tests-ghc-9.4/ErrorTests.hs:32:13: warning: [GHC-83865] [-Wdeferred-type-errors]
+    • Couldn't match type ‘CLog 1 4’ with ‘100’
+      Expected: Proxy (CLog 1 4) -> Proxy 100
+        Actual: Proxy 100 -> Proxy 100
+      Type synonyms expanded:
+      Expected type: Proxy (CLog 1 4) -> Proxy 100
+        Actual type: Proxy 100 -> Proxy 100
+    • In the expression: id
+      In an equation for ‘testFail6’: testFail6 = id
+   |
+32 | testFail6 = id
+   |             ^^
+
+tests-ghc-9.4/ErrorTests.hs:35:13: warning: [GHC-83865] [-Wdeferred-type-errors]
+    • Couldn't match type ‘CLog 4 0’ with ‘0’
+      Expected: Proxy (CLog 4 0) -> Proxy 0
+        Actual: Proxy 0 -> Proxy 0
+      Type synonyms expanded:
+      Expected type: Proxy (CLog 4 0) -> Proxy 0
+        Actual type: Proxy 0 -> Proxy 0
+    • In the expression: id
+      In an equation for ‘testFail7’: testFail7 = id
+   |
+35 | testFail7 = id
+   |             ^^
+
+tests-ghc-9.4/ErrorTests.hs:38:13: warning: [GHC-25897] [-Wdeferred-type-errors]
+    • Couldn't match type ‘y’ with ‘CLog 1 1’
+      Expected: Proxy (CLog 1 (1 ^ y)) -> Proxy y
+        Actual: Proxy y -> Proxy y
+      Type synonyms expanded:
+      Expected type: Proxy (CLog 1 (1 ^ y)) -> Proxy y
+        Actual type: Proxy y -> Proxy y
+      ‘y’ is a rigid type variable bound by
+        the type signature for:
+          testFail8 :: forall (y :: Natural).
+                       Proxy (CLog 1 (1 ^ y)) -> Proxy y
+        at tests-ghc-9.4/ErrorTests.hs:37:1-44
+    • In the expression: id
+      In an equation for ‘testFail8’: testFail8 = id
+    • Relevant bindings include
+        testFail8 :: Proxy (CLog 1 (1 ^ y)) -> Proxy y
+          (bound at tests-ghc-9.4/ErrorTests.hs:38:1)
+   |
+38 | testFail8 = id
+   |             ^^
+
+tests-ghc-9.4/ErrorTests.hs:41:13: warning: [GHC-25897] [-Wdeferred-type-errors]
+    • Couldn't match type ‘y’ with ‘CLog 0 (0 ^ y)’
+      Expected: Proxy (CLog 0 (0 ^ y)) -> Proxy y
+        Actual: Proxy y -> Proxy y
+      Type synonyms expanded:
+      Expected type: Proxy (CLog 0 (0 ^ y)) -> Proxy y
+        Actual type: Proxy y -> Proxy y
+      ‘y’ is a rigid type variable bound by
+        the type signature for:
+          testFail9 :: forall (y :: Natural).
+                       Proxy (CLog 0 (0 ^ y)) -> Proxy y
+        at tests-ghc-9.4/ErrorTests.hs:40:1-44
+    • In the expression: id
+      In an equation for ‘testFail9’: testFail9 = id
+    • Relevant bindings include
+        testFail9 :: Proxy (CLog 0 (0 ^ y)) -> Proxy y
+          (bound at tests-ghc-9.4/ErrorTests.hs:41:1)
+   |
+41 | testFail9 = id
+   |             ^^
+
+tests-ghc-9.4/ErrorTests.hs:44:14: warning: [GHC-64725] [-Wdeferred-type-errors]
+    • Cannot satisfy: 2 <= 1
+    • In the expression: natVal (Proxy :: Proxy (CLog 1 4))
+      In an equation for ‘testFail10’:
+          testFail10 = natVal (Proxy :: Proxy (CLog 1 4))
+   |
+44 | testFail10 = natVal (Proxy :: Proxy (CLog 1 4))
+   |              ^^^^^^
+
+tests-ghc-9.4/ErrorTests.hs:47:14: warning: [GHC-64725] [-Wdeferred-type-errors]
+    • Cannot satisfy: CLog 2 4 <= CLog 4 4
+    • In the expression:
+        natVal (Proxy :: Proxy ((CLog 4 4) - (CLog 2 4)))
+      In an equation for ‘testFail11’:
+          testFail11 = natVal (Proxy :: Proxy ((CLog 4 4) - (CLog 2 4)))
+   |
+47 | testFail11 = natVal (Proxy :: Proxy ((CLog 4 4) - (CLog 2 4)))
+   |              ^^^^^^
+
+tests-ghc-9.4/ErrorTests.hs:50:14: warning: [GHC-83865] [-Wdeferred-type-errors]
+    • Couldn't match type ‘Div 4 0’ with ‘4’
+      Expected: Proxy (Div 4 0) -> Proxy 4
+        Actual: Proxy 4 -> Proxy 4
+    • In the expression: id
+      In an equation for ‘testFail12’: testFail12 = id
+   |
+50 | testFail12 = id
+   |              ^^
+
+tests-ghc-9.4/ErrorTests.hs:53:14: warning: [GHC-83865] [-Wdeferred-type-errors]
+    • Couldn't match type ‘Mod 4 0’ with ‘4’
+      Expected: Proxy (Mod 4 0) -> Proxy 4
+        Actual: Proxy 4 -> Proxy 4
+    • In the expression: id
+      In an equation for ‘testFail13’: testFail13 = id
+   |
+53 | testFail13 = id
+   |              ^^
+
+tests-ghc-9.4/ErrorTests.hs:56:14: warning: [GHC-83865] [-Wdeferred-type-errors]
+    • Couldn't match type ‘FLog 0 4’ with ‘100’
+      Expected: Proxy (FLog 0 4) -> Proxy 100
+        Actual: Proxy 100 -> Proxy 100
+      Type synonyms expanded:
+      Expected type: Proxy (FLog 0 4) -> Proxy 100
+        Actual type: Proxy 100 -> Proxy 100
+    • In the expression: id
+      In an equation for ‘testFail14’: testFail14 = id
+   |
+56 | testFail14 = id
+   |              ^^
+
+tests-ghc-9.4/ErrorTests.hs:59:14: warning: [GHC-83865] [-Wdeferred-type-errors]
+    • Couldn't match type ‘FLog 1 4’ with ‘100’
+      Expected: Proxy (FLog 1 4) -> Proxy 100
+        Actual: Proxy 100 -> Proxy 100
+      Type synonyms expanded:
+      Expected type: Proxy (FLog 1 4) -> Proxy 100
+        Actual type: Proxy 100 -> Proxy 100
+    • In the expression: id
+      In an equation for ‘testFail15’: testFail15 = id
+   |
+59 | testFail15 = id
+   |              ^^
+
+tests-ghc-9.4/ErrorTests.hs:62:14: warning: [GHC-83865] [-Wdeferred-type-errors]
+    • Couldn't match type ‘FLog 4 0’ with ‘0’
+      Expected: Proxy (FLog 4 0) -> Proxy 0
+        Actual: Proxy 0 -> Proxy 0
+      Type synonyms expanded:
+      Expected type: Proxy (FLog 4 0) -> Proxy 0
+        Actual type: Proxy 0 -> Proxy 0
+    • In the expression: id
+      In an equation for ‘testFail16’: testFail16 = id
+   |
+62 | testFail16 = id
+   |              ^^
+
+tests-ghc-9.4/ErrorTests.hs:65:14: warning: [GHC-83865] [-Wdeferred-type-errors]
+    • Couldn't match type ‘48’ with ‘24’
+      Expected: Proxy (LCM 6 8) -> Proxy 48
+        Actual: Proxy 48 -> Proxy 48
+      Type synonyms expanded:
+      Expected type: Proxy (LCM 6 8) -> Proxy 48
+        Actual type: Proxy 48 -> Proxy 48
+    • In the expression: id
+      In an equation for ‘testFail17’: testFail17 = id
+   |
+65 | testFail17 = id
+   |              ^^
+
+tests-ghc-9.4/ErrorTests.hs:68:14: warning: [GHC-83865] [-Wdeferred-type-errors]
+    • Couldn't match type: 24 + x
+                     with: x + 18
+      Expected: Proxy (LCM 6 8 + x) -> Proxy (x + LCM 6 9)
+        Actual: Proxy (24 + x) -> Proxy (24 + x)
+        NB: ‘+’ is a non-injective type family
+    • In the expression: id
+      In an equation for ‘testFail18’: testFail18 = id
+    • Relevant bindings include
+        testFail18 :: Proxy (LCM 6 8 + x) -> Proxy (x + LCM 6 9)
+          (bound at tests-ghc-9.4/ErrorTests.hs:68:1)
+   |
+68 | testFail18 = id
+   |              ^^
+
+tests-ghc-9.4/ErrorTests.hs:71:14: warning: [GHC-18872] [-Wdeferred-type-errors]
+    • Couldn't match type: FLog 3 0
+                     with: CLog 3 0
+        arising from a use of ‘natVal’
+    • In the expression: natVal (Proxy :: Proxy (Log 3 0))
+      In an equation for ‘testFail19’:
+          testFail19 = natVal (Proxy :: Proxy (Log 3 0))
+   |
+71 | testFail19 = natVal (Proxy :: Proxy (Log 3 0))
+   |              ^^^^^^
+
+tests-ghc-9.4/ErrorTests.hs:74:14: warning: [GHC-18872] [-Wdeferred-type-errors]
+    • Couldn't match type: FLog 3 10
+                     with: CLog 3 10
+        arising from a use of ‘natVal’
+    • In the expression: natVal (Proxy :: Proxy (Log 3 10))
+      In an equation for ‘testFail20’:
+          testFail20 = natVal (Proxy :: Proxy (Log 3 10))
+   |
+74 | testFail20 = natVal (Proxy :: Proxy (Log 3 10))
+   |              ^^^^^^
+
+tests-ghc-9.4/ErrorTests.hs:77:18: warning: [GHC-25897] [-Wdeferred-type-errors]
+    • Couldn't match type ‘a’ with ‘Min a (a * b)’
+      Expected: Proxy (Min a (a * b)) -> Proxy a
+        Actual: Proxy a -> Proxy a
+      ‘a’ is a rigid type variable bound by
+        the type signature for:
+          testFail21 :: forall (a :: Nat) (b :: Natural).
+                        Proxy a -> Proxy b -> Proxy (Min a (a * b)) -> Proxy a
+        at tests-ghc-9.4/ErrorTests.hs:76:1-66
+    • In the expression: id
+      In an equation for ‘testFail21’: testFail21 _ _ = id
+    • Relevant bindings include
+        testFail21 :: Proxy a
+                      -> Proxy b -> Proxy (Min a (a * b)) -> Proxy a
+          (bound at tests-ghc-9.4/ErrorTests.hs:77:1)
+   |
+77 | testFail21 _ _ = id
+   |                  ^^
+
+tests-ghc-9.4/ErrorTests.hs:80:18: warning: [GHC-83865] [-Wdeferred-type-errors]
+    • Couldn't match type: Max a (a * b)
+                     with: a * b
+      Expected: Proxy (Max a (a * b)) -> Proxy (a * b)
+        Actual: Proxy (Max a (a * b)) -> Proxy (Max a (a * b))
+      Type synonyms expanded:
+      Expected type: Proxy (Max a (a * b)) -> Proxy (a * b)
+        Actual type: Proxy (Max a (a * b)) -> Proxy (Max a (a * b))
+    • In the expression: id
+      In an equation for ‘testFail22’: testFail22 _ _ = id
+    • Relevant bindings include
+        testFail22 :: Proxy a
+                      -> Proxy b -> Proxy (Max a (a * b)) -> Proxy (a * b)
+          (bound at tests-ghc-9.4/ErrorTests.hs:80:1)
+   |
+80 | testFail22 _ _ = id
+   |                  ^^
+
+tests-ghc-9.4/ErrorTests.hs:86:14: warning: [GHC-18872] [-Wdeferred-type-errors]
+    • Couldn't match type ‘True’ with ‘False’
+        arising from a use of ‘testFail23'’
+    • In the expression: testFail23' (Proxy @18) (Proxy @3)
+      In an equation for ‘testFail23’:
+          testFail23 = testFail23' (Proxy @18) (Proxy @3)
+   |
+86 | testFail23 = testFail23' (Proxy @18) (Proxy @3)
+   |              ^^^^^^^^^^^
+
+tests-ghc-9.4/ErrorTests.hs:89:20: warning: [GHC-83865] [-Wdeferred-type-errors]
+    • Couldn't match type ‘Data.Type.Ord.OrdCond
+                             (CmpNat z (Max x y)) True True False’
+                     with ‘True’
+      Expected: Proxy (z <=? Max x y) -> Proxy True
+        Actual: Proxy True -> Proxy True
+      Type synonyms expanded:
+      Expected type: Proxy
+                       (Data.Type.Ord.OrdCond
+                          (Data.Type.Ord.Compare z (Max x y)) True True False)
+                     -> Proxy True
+        Actual type: Proxy True -> Proxy True
+    • In the expression: id
+      In an equation for ‘testFail24’: testFail24 _ _ _ = id
+    • Relevant bindings include
+        testFail24 :: Proxy x
+                      -> Proxy y -> Proxy z -> Proxy (z <=? Max x y) -> Proxy True
+          (bound at tests-ghc-9.4/ErrorTests.hs:89:1)
+   |
+89 | testFail24 _ _ _ = id
+   |                    ^^
+
+tests-ghc-9.4/ErrorTests.hs:92:18: warning: [GHC-83865] [-Wdeferred-type-errors]
+    • Couldn't match type ‘Data.Type.Ord.OrdCond
+                             (CmpNat (x + 1) (Max x y)) True True False’
+                     with ‘True’
+      Expected: Proxy ((x + 1) <=? Max x y) -> Proxy True
+        Actual: Proxy True -> Proxy True
+      Type synonyms expanded:
+      Expected type: Proxy
+                       (Data.Type.Ord.OrdCond
+                          (Data.Type.Ord.Compare (x + 1) (Max x y)) True True False)
+                     -> Proxy True
+        Actual type: Proxy True -> Proxy True
+    • In the expression: id
+      In an equation for ‘testFail25’: testFail25 _ _ = id
+    • Relevant bindings include
+        testFail25 :: Proxy x
+                      -> Proxy y -> Proxy ((x + 1) <=? Max x y) -> Proxy True
+          (bound at tests-ghc-9.4/ErrorTests.hs:92:1)
+   |
+92 | testFail25 _ _ = id
+   |                  ^^
+
+tests-ghc-9.4/ErrorTests.hs:96:21: warning: [GHC-25897] [-Wdeferred-type-errors]
+    • Could not deduce ‘Max x y ~ n’
+      from the context: (x <=? n) ~ True
+        bound by the type signature for:
+                   testFail26' :: forall (x :: Nat) (n :: Nat) (y :: Nat).
+                                  ((x <=? n) ~ True) =>
+                                  Proxy x -> Proxy y -> Proxy n -> Proxy (Max x y) -> Proxy n
+        at tests-ghc-9.4/ErrorTests.hs:95:1-99
+      Expected: Proxy (Max x y) -> Proxy n
+        Actual: Proxy n -> Proxy n
+      ‘n’ is a rigid type variable bound by
+        the type signature for:
+          testFail26' :: forall (x :: Nat) (n :: Nat) (y :: Nat).
+                         ((x <=? n) ~ True) =>
+                         Proxy x -> Proxy y -> Proxy n -> Proxy (Max x y) -> Proxy n
+        at tests-ghc-9.4/ErrorTests.hs:95:1-99
+    • In the expression: id
+      In an equation for ‘testFail26'’: testFail26' _ _ _ = id
+    • Relevant bindings include
+        testFail26' :: Proxy x
+                       -> Proxy y -> Proxy n -> Proxy (Max x y) -> Proxy n
+          (bound at tests-ghc-9.4/ErrorTests.hs:96:1)
+   |
+96 | testFail26' _ _ _ = id
+   |                     ^^
+
+tests-ghc-9.4/ErrorTests.hs:101:16: warning: [GHC-83865] [-Wdeferred-type-errors]
+    • Couldn't match type ‘Data.Type.Ord.OrdCond
+                             (CmpNat (n + 2) (n + 1)) True True False’
+                     with ‘True’
+      Expected: Proxy ((n + 2) <=? Max (n + 1) 1) -> Proxy True
+        Actual: Proxy True -> Proxy True
+      Type synonyms expanded:
+      Expected type: Proxy
+                       (Data.Type.Ord.OrdCond
+                          (Data.Type.Ord.Compare (n + 2) (Max (n + 1) 1)) True True False)
+                     -> Proxy True
+        Actual type: Proxy True -> Proxy True
+    • In the expression: id
+      In an equation for ‘testFail27’: testFail27 _ = id
+    • Relevant bindings include
+        testFail27 :: Proxy n
+                      -> Proxy ((n + 2) <=? Max (n + 1) 1) -> Proxy True
+          (bound at tests-ghc-9.4/ErrorTests.hs:101:1)
+    |
+101 | testFail27 _ = id
+    |                ^^
+[2 of 2] Compiling Main
+[3 of 3] Linking /tmp/workdir-ghc-typelits-extra/ghc-typelits-extra-0.4.7/dist-newstyle/build/x86_64-linux/ghc-9.6.6/ghc-typelits-extra-0.4.7/t/test-ghc-typelits-extra/build/test-ghc-typelits-extra/test-ghc-typelits-extra

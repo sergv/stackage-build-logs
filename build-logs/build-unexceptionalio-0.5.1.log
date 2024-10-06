@@ -1,0 +1,107 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - unexceptionalio-0.5.1 (lib) (first run)
+ - unexceptionalio-0.5.1 (test:tests) (first run)
+Configuring library for unexceptionalio-0.5.1...
+Preprocessing library for unexceptionalio-0.5.1...
+Building library for unexceptionalio-0.5.1...
+[1 of 1] Compiling UnexceptionalIO
+
+UnexceptionalIO.hs:201:9: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative UIO’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+201 |         pure = return
+    |         ^^^^^^^^^^^^^
+
+UnexceptionalIO.hs:205:9: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad UIO’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+205 |         return = UIO . return
+    |         ^^^^^^^^^^^^^^^^^^^^^
+Configuring test suite 'tests' for unexceptionalio-0.5.1...
+Preprocessing test suite 'tests' for unexceptionalio-0.5.1...
+Building test suite 'tests' for unexceptionalio-0.5.1...
+[1 of 2] Compiling UnexceptionalIO
+
+UnexceptionalIO.hs:201:9: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative UIO’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+201 |         pure = return
+    |         ^^^^^^^^^^^^^
+
+UnexceptionalIO.hs:205:9: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad UIO’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+205 |         return = UIO . return
+    |         ^^^^^^^^^^^^^^^^^^^^^
+[2 of 2] Compiling Main
+
+tests/suite.hs:21:10: warning: [GHC-06201] [-Wmissing-methods]
+    • No explicit implementation for
+        ‘testClassMethod’
+    • In the instance declaration for ‘TestClass CantTestClass’
+   |
+21 | instance TestClass CantTestClass
+   |          ^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/suite.hs:107:98: warning: [GHC-20125] [-Wmissing-fields]
+    • Fields of ‘BadRecord’ not initialised:
+        badfld :: String
+    • In the first argument of ‘badfld’, namely ‘BadRecord {}’
+      In the second argument of ‘($)’, namely ‘badfld BadRecord {}’
+      In the second argument of ‘($)’, namely
+        ‘print $ badfld BadRecord {}’
+    |
+107 |                         testCase "use uninitialized record field" (fromIOPasses $ print $ badfld BadRecord {}),
+    |                                                                                                  ^^^^^^^^^^^^
+
+tests/suite.hs:108:98: warning: [GHC-20125] [-Wmissing-fields]
+    • Fields of ‘BadRecord’ not initialised:
+        badfld :: String
+    • In the first argument of ‘otherfld’, namely ‘BadRecord {}’
+      In the second argument of ‘($)’, namely ‘otherfld BadRecord {}’
+      In the second argument of ‘($)’, namely
+        ‘print $ otherfld BadRecord {}’
+    |
+108 |                         testCase "use not present record field" (fromIOPasses $ print $ otherfld BadRecord {}),
+    |                                                                                                  ^^^^^^^^^^^^
+
+tests/suite.hs:109:101: warning: [GHC-20125] [-Wmissing-fields]
+    • Fields of ‘BadRecord’ not initialised:
+        badfld :: String
+    • In the expression: BadRecord {}
+      In a record update at field ‘otherfld’,
+      with type constructor ‘BadRecord’
+      and data constructor ‘OtherBadRecord’.
+      In the second argument of ‘($!)’, namely
+        ‘(BadRecord {} {otherfld = "hai"})’
+    |
+109 |                         testCase "update not present record field" (fromIOPasses $ void (return $! (BadRecord {} { otherfld = "hai" })))
+    |                                                                                                     ^^^^^^^^^^^^
+
+tests/suite.hs:109:101: warning: [GHC-20125] [-Wmissing-fields]
+    • Fields of ‘BadRecord’ not initialised:
+        badfld :: String
+    • In the expression: BadRecord {}
+      In the second argument of ‘($!)’, namely
+        ‘(BadRecord {} {otherfld = "hai"})’
+      In the first argument of ‘void’, namely
+        ‘(return $! (BadRecord {} {otherfld = "hai"}))’
+    |
+109 |                         testCase "update not present record field" (fromIOPasses $ void (return $! (BadRecord {} { otherfld = "hai" })))
+    |                                                                                                     ^^^^^^^^^^^^
+[3 of 3] Linking /tmp/workdir-unexceptionalio/unexceptionalio-0.5.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/unexceptionalio-0.5.1/t/tests/build/tests/tests

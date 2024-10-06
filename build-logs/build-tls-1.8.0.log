@@ -1,0 +1,189 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - tls-1.8.0 (lib) (first run)
+ - tls-1.8.0 (test:test-tls) (first run)
+Configuring library for tls-1.8.0...
+Preprocessing library for tls-1.8.0...
+Building library for tls-1.8.0...
+[ 1 of 64] Compiling Network.TLS.Crypto.Types
+[ 2 of 64] Compiling Network.TLS.ErrT
+[ 3 of 64] Compiling Network.TLS.Imports
+[ 4 of 64] Compiling Network.TLS.Backend
+[ 5 of 64] Compiling Network.TLS.Measurement
+[ 6 of 64] Compiling Network.TLS.RNG
+[ 7 of 64] Compiling Network.TLS.Crypto.DH
+[ 8 of 64] Compiling Network.TLS.Extra.FFDHE
+[ 9 of 64] Compiling Network.TLS.Types
+[10 of 64] Compiling Network.TLS.Session
+[11 of 64] Compiling Network.TLS.Compression
+[12 of 64] Compiling Network.TLS.Cap
+[13 of 64] Compiling Network.TLS.Util
+[14 of 64] Compiling Network.TLS.Util.ASN1
+[15 of 64] Compiling Network.TLS.Util.Serialization
+[16 of 64] Compiling Network.TLS.Crypto.IES
+[17 of 64] Compiling Network.TLS.Crypto
+
+Network/TLS/Crypto.hs:112:36: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe DH.Params’ not matched: Nothing
+    |
+112 |                              , let Just prms = dhParamsForGroup grp
+    |                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[18 of 64] Compiling Network.TLS.Struct
+[19 of 64] Compiling Network.TLS.Struct13
+[20 of 64] Compiling Network.TLS.MAC
+[21 of 64] Compiling Network.TLS.Cipher
+[22 of 64] Compiling Network.TLS.Handshake.Control
+[23 of 64] Compiling Network.TLS.Extra.Cipher
+[24 of 64] Compiling Network.TLS.Extra
+[25 of 64] Compiling Network.TLS.Wire
+[26 of 64] Compiling Network.TLS.Packet
+[27 of 64] Compiling Network.TLS.Record.State
+
+Network/TLS/Record/State.hs:89:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative RecordM’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+89 |     pure = return
+   |     ^^^^^^^^^^^^^
+
+Network/TLS/Record/State.hs:93:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad RecordM’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+93 |     return a  = RecordM $ \_ st  -> Right (a, st)
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[28 of 64] Compiling Network.TLS.Record.Types
+[29 of 64] Compiling Network.TLS.Record.Engage
+[30 of 64] Compiling Network.TLS.Record.Disengage
+[31 of 64] Compiling Network.TLS.Record
+[32 of 64] Compiling Network.TLS.Record.Layer
+[33 of 64] Compiling Network.TLS.Packet13
+[34 of 64] Compiling Network.TLS.Handshake.State
+[35 of 64] Compiling Network.TLS.KeySchedule
+[36 of 64] Compiling Network.TLS.Extension
+[37 of 64] Compiling Network.TLS.State
+[38 of 64] Compiling Network.TLS.X509
+[39 of 64] Compiling Network.TLS.Hooks
+[40 of 64] Compiling Network.TLS.Credentials
+[41 of 64] Compiling Network.TLS.Parameters
+[42 of 64] Compiling Network.TLS.Context.Internal
+
+Network/TLS/Context/Internal.hs:336:40: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘Handshake13’ not matched:
+            ClientHello13 _ _ _ _ _
+            ServerHello13 _ _ _ _
+            NewSessionTicket13 _ _ _ _ _
+            EndOfEarlyData13
+            ...
+    |
+336 |     let (matched, others) = partition (\(CertRequest13 c _) -> context == c) l
+    |                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[43 of 64] Compiling Network.TLS.Record.Writing
+[44 of 64] Compiling Network.TLS.Record.Reading
+
+Network/TLS/Record/Reading.hs:16:1: warning: [-Wunused-imports]
+    The import of ‘Control.Monad.Reader’ is redundant
+      except perhaps to import instances from ‘Control.Monad.Reader’
+    To import instances alone, use: import Control.Monad.Reader()
+   |
+16 | import Control.Monad.Reader
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[45 of 64] Compiling Network.TLS.Receiving
+[46 of 64] Compiling Network.TLS.Handshake.State13
+
+Network/TLS/Handshake/State13.hs:57:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Cipher’ not matched: Nothing
+   |
+57 |     let Just usedCipher = stCipher tx
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[47 of 64] Compiling Network.TLS.Handshake.Random
+[48 of 64] Compiling Network.TLS.Sending
+[49 of 64] Compiling Network.TLS.IO
+[50 of 64] Compiling Network.TLS.Handshake.Key
+[51 of 64] Compiling Network.TLS.Handshake.Signature
+[52 of 64] Compiling Network.TLS.Handshake.Process
+[53 of 64] Compiling Network.TLS.Handshake.Common
+
+Network/TLS/Handshake/Common.hs:247:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘CertificateChain’ not matched:
+            CertificateChain []
+    |
+247 |     let CertificateChain (c:_) = cc
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[54 of 64] Compiling Network.TLS.Handshake.Certificate
+[55 of 64] Compiling Network.TLS.Handshake.Common13
+
+Network/TLS/Handshake/Common13.hs:299:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Millisecond’ not matched: Nothing
+    |
+299 |     Just rtt = estimatedRTT tinfo
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[56 of 64] Compiling Network.TLS.Handshake.Server
+
+Network/TLS/Handshake/Server.hs:851:25: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe TLS13TicketInfo’ not matched: Nothing
+    |
+851 |                     let Just tinfo = sessionTicketInfo sdata
+    |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[57 of 64] Compiling Network.TLS.Handshake.Client
+[58 of 64] Compiling Network.TLS.PostHandshake
+[59 of 64] Compiling Network.TLS.Handshake
+[60 of 64] Compiling Network.TLS.Context
+[61 of 64] Compiling Network.TLS.Core
+[62 of 64] Compiling Network.TLS.QUIC
+[63 of 64] Compiling Network.TLS.Internal
+[64 of 64] Compiling Network.TLS
+Configuring test suite 'test-tls' for tls-1.8.0...
+Preprocessing test suite 'test-tls' for tls-1.8.0...
+Building test suite 'test-tls' for tls-1.8.0...
+[1 of 7] Compiling Ciphers
+[2 of 7] Compiling PipeChan
+[3 of 7] Compiling PubKey
+
+Tests/PubKey.hs:126:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘CryptoFailable Ed25519.SecretKey’ not matched:
+            CryptoFailed _
+    |
+126 |     let CryptoPassed priv = Ed25519.secretKey (B.pack bytes)
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Tests/PubKey.hs:132:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘CryptoFailable Ed448.SecretKey’ not matched:
+            CryptoFailed _
+    |
+132 |     let CryptoPassed priv = Ed448.secretKey (B.pack bytes)
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[4 of 7] Compiling Certificate
+
+Tests/Certificate.hs:136:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘ECC.Point’ not matched: ECC.PointO
+    |
+136 |     let ECC.Point x y = ECDSA.public_q key
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[5 of 7] Compiling Marshalling
+[6 of 7] Compiling Connection
+[7 of 7] Compiling Main
+[8 of 8] Linking /tmp/workdir-tls/tls-1.8.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/tls-1.8.0/t/test-tls/build/test-tls/test-tls

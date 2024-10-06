@@ -1,0 +1,127 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - pinch-0.5.2.0 (lib) (first run)
+ - pinch-0.5.2.0 (test:pinch-spec) (first run)
+Configuring library for pinch-0.5.2.0...
+Preprocessing library for pinch-0.5.2.0...
+Building library for pinch-0.5.2.0...
+[ 1 of 20] Compiling Paths_pinch
+[ 2 of 20] Compiling Pinch.Internal.Bits
+[ 3 of 20] Compiling Pinch.Internal.Builder
+
+src/Pinch/Internal/Builder.hs:148:9: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘memcpy’
+    (imported from Data.ByteString.Internal, but defined in Data.ByteString.Internal.Type):
+    Deprecated: "Use Foreign.Marshal.Utils.copyBytes instead"
+    |
+148 |         BI.memcpy dst (src `plusPtr` off) len
+    |         ^^^^^^^^^
+[ 4 of 20] Compiling Pinch.Internal.FoldList
+[ 5 of 20] Compiling Pinch.Internal.Pinchable.Parser
+[ 6 of 20] Compiling Pinch.Internal.TType
+[ 7 of 20] Compiling Pinch.Internal.Value
+[ 8 of 20] Compiling Pinch.Internal.Pinchable
+[ 9 of 20] Compiling Pinch.Internal.Exception
+[10 of 20] Compiling Pinch.Internal.Message
+[11 of 20] Compiling Pinch.Internal.Generic
+[12 of 20] Compiling Pinch.Protocol
+[13 of 20] Compiling Pinch.Protocol.Binary
+[14 of 20] Compiling Pinch.Protocol.Compact
+[15 of 20] Compiling Pinch
+
+src/Pinch.hs:315:28: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+315 |     :: (Pinchable a, Tag a ~ TStruct)
+    |                            ^
+
+src/Pinch.hs:334:28: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+334 |     :: (Pinchable a, Tag a ~ TStruct) => Message -> Either String a
+    |                            ^
+[16 of 20] Compiling Pinch.Transport
+[17 of 20] Compiling Pinch.Internal.RPC
+
+src/Pinch/Internal/RPC.hs:70:27: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+70 | class (Pinchable a, Tag a ~ TStruct) => ThriftResult a where
+   |                           ^
+[18 of 20] Compiling Pinch.Server
+
+src/Pinch/Server.hs:118:38: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+118 |   CallHandler :: (Pinchable c, Tag c ~ TStruct, Pinchable r, Tag r ~ TStruct) => (Context -> c -> IO r) -> Handler
+    |                                      ^
+
+src/Pinch/Server.hs:118:68: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+118 |   CallHandler :: (Pinchable c, Tag c ~ TStruct, Pinchable r, Tag r ~ TStruct) => (Context -> c -> IO r) -> Handler
+    |                                                                    ^
+
+src/Pinch/Server.hs:120:40: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+120 |   OnewayHandler :: (Pinchable c, Tag c ~ TStruct) => (Context -> c -> IO ()) -> Handler
+    |                                        ^
+[19 of 20] Compiling Pinch.Client
+
+src/Pinch/Client.hs:51:36: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+51 |   TCall :: (Pinchable req, Tag req ~ TStruct, Pinchable res, Tag res ~ TStruct)
+   |                                    ^
+
+src/Pinch/Client.hs:51:70: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+51 |   TCall :: (Pinchable req, Tag req ~ TStruct, Pinchable res, Tag res ~ TStruct)
+   |                                                                      ^
+
+src/Pinch/Client.hs:53:38: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+53 |   TOneway :: (Pinchable req, Tag req ~ TStruct) => !T.Text -> !req -> ThriftCall ()
+   |                                      ^
+[20 of 20] Compiling Pinch.Transport.Builder
+Configuring test suite 'pinch-spec' for pinch-0.5.2.0...
+Preprocessing test suite 'pinch-spec' for pinch-0.5.2.0...
+Building test suite 'pinch-spec' for pinch-0.5.2.0...
+[ 1 of 16] Compiling Paths_pinch
+[ 2 of 16] Compiling Pinch.Arbitrary
+[ 3 of 16] Compiling Pinch.ClientServerSpec
+[ 4 of 16] Compiling Pinch.Expectations
+[ 5 of 16] Compiling Pinch.Internal.BuilderParserSpec
+[ 6 of 16] Compiling Pinch.Internal.BuilderSpec
+[ 7 of 16] Compiling Pinch.Internal.FoldListSpec
+[ 8 of 16] Compiling Pinch.Internal.TTypeSpec
+[ 9 of 16] Compiling Pinch.Internal.Util
+[10 of 16] Compiling Pinch.Internal.PinchableSpec
+[11 of 16] Compiling Pinch.Internal.GenericSpec
+[12 of 16] Compiling Pinch.Internal.ValueSpec
+[13 of 16] Compiling Pinch.Protocol.BinarySpec
+[14 of 16] Compiling Pinch.Protocol.CompactSpec
+[15 of 16] Compiling Pinch.TransportSpec
+[16 of 16] Compiling Main
+[17 of 17] Linking /tmp/workdir-pinch/pinch-0.5.2.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/pinch-0.5.2.0/t/pinch-spec/build/pinch-spec/pinch-spec

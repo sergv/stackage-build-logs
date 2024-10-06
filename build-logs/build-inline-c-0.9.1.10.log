@@ -1,0 +1,127 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - inline-c-0.9.1.10 (lib) (first run)
+ - inline-c-0.9.1.10 (test:tests) (first run)
+Configuring library for inline-c-0.9.1.10...
+Preprocessing library for inline-c-0.9.1.10...
+Building library for inline-c-0.9.1.10...
+[1 of 9] Compiling Language.C.Inline.FunPtr
+[2 of 9] Compiling Language.C.Types.Parse
+
+src/Language/C/Types/Parse.hs:96:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+96 | import           Data.Monoid ((<>))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Language/C/Types/Parse.hs:106:1: warning: [-Wunused-imports]
+    The qualified import of ‘Prettyprinter’ is redundant
+      except perhaps to import instances from ‘Prettyprinter’
+    To import instances alone, use: import Prettyprinter()
+    |
+106 | import qualified Prettyprinter as PP
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[3 of 9] Compiling Language.C.Types
+
+src/Language/C/Types.hs:77:1: warning: [-Wunused-imports]
+    The import of ‘Data.Semigroup’ is redundant
+      except perhaps to import instances from ‘Data.Semigroup’
+    To import instances alone, use: import Data.Semigroup()
+   |
+77 | import           Data.Semigroup (Semigroup, (<>))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[4 of 9] Compiling Language.C.Inline.HaskellIdentifier
+
+src/Language/C/Inline/HaskellIdentifier.hs:25:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+25 | import           Data.Monoid ((<>))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[5 of 9] Compiling Language.C.Inline.Context
+
+src/Language/C/Inline/Context.hs:75:1: warning: [-Wunused-imports]
+    The import of ‘Data.Semigroup’ is redundant
+      except perhaps to import instances from ‘Data.Semigroup’
+    To import instances alone, use: import Data.Semigroup()
+   |
+75 | import           Data.Semigroup (Semigroup, (<>))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Language/C/Inline/Context.hs:296:33: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘tuple’ shadows the existing binding
+      bound at src/Language/C/Inline/Context.hs:296:17
+    |
+296 |             let tuple = foldl (\tuple arg -> TH.AppT tuple arg) (TH.PromotedTupleT (length other)) other
+    |                                 ^^^^^
+
+src/Language/C/Inline/Context.hs:461:26: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+    |
+461 |   type VecCtxScalar a :: *
+    |                          ^
+[6 of 9] Compiling Language.C.Inline.Internal
+
+src/Language/C/Inline/Internal.hs:80:36: warning: [-Wunused-imports]
+    The import of ‘unsafePerformIO’
+    from module ‘System.IO.Unsafe’ is redundant
+   |
+80 | import           System.IO.Unsafe (unsafePerformIO, unsafeDupablePerformIO)
+   |                                    ^^^^^^^^^^^^^^^
+
+src/Language/C/Inline/Internal.hs:664:5: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘here’ shadows the existing binding
+      defined at src/Language/C/Inline/Internal.hs:839:1
+    |
+664 |     here <- TH.location
+    |     ^^^^
+[7 of 9] Compiling Language.C.Inline.Unsafe
+[8 of 9] Compiling Language.C.Inline.Interruptible
+[9 of 9] Compiling Language.C.Inline
+
+src/Language/C/Inline.hs:348:26: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+    |
+348 |   type WithPtrsPtrs a :: *
+    |                          ^
+Configuring test suite 'tests' for inline-c-0.9.1.10...
+Preprocessing test suite 'tests' for inline-c-0.9.1.10...
+Building test suite 'tests' for inline-c-0.9.1.10...
+[1 of 5] Compiling Dummy
+[2 of 5] Compiling Language.C.Inline.ContextSpec
+[3 of 5] Compiling Language.C.Inline.ParseSpec
+
+test/Language/C/Inline/ParseSpec.hs:16:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+16 | import           Data.Monoid ((<>))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[4 of 5] Compiling Language.C.Types.ParseSpec
+
+test/Language/C/Types/ParseSpec.hs:90:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding: Patterns of type ‘[[Char]]’ not matched: []
+   |
+90 |           leadingSegment : _ = splitOn "." (unHaskellIdentifier i)
+   |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[5 of 5] Compiling Main
+
+test/tests.hs:6:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+  |
+6 | import           Data.Monoid ((<>))
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[6 of 6] Linking /tmp/workdir-inline-c/inline-c-0.9.1.10/dist-newstyle/build/x86_64-linux/ghc-9.6.6/inline-c-0.9.1.10/t/tests/build/tests/tests

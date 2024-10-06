@@ -1,0 +1,855 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - hspec-core-2.11.9 (test:spec) (ephemeral targets)
+Preprocessing test suite 'spec' for hspec-core-2.11.9...
+Building test suite 'spec' for hspec-core-2.11.9...
+Running 1 test suites...
+Test suite spec: RUNNING...
+
+GetOpt.Declarative.Environment
+  parseEnvironmentOption
+    with NoArg
+      accepts 'yes' [✔]
+      rejects other values [✔]
+    with Flag
+      accepts 'yes' [✔]
+      accepts 'no' [✔]
+      rejects other values [✔]
+    with OptArg
+      accepts valid values [✔]
+      rejects invalid values [✔]
+    with Arg
+      accepts valid values [✔]
+      rejects invalid values [✔]
+GetOpt.Declarative.Util
+  mkUsageInfo
+    restricts output size to 80 characters [✔]
+    condenses help for --no-options [✔]
+Test.Hspec.Core.Clock
+  toMilliseconds
+    converts Seconds to milliseconds [✔]
+  toMicroseconds
+    converts Seconds to microseconds [✔]
+Test.Hspec.Core.Compat
+  showType
+    shows unqualified name of type [✔]
+  showFullType (currently unused)
+    shows fully qualified name of type [✔]
+  lookupEnv
+    returns value of specified environment variable [✔]
+    returns Nothing if specified environment variable is not set [✔]
+Test.Hspec.Core.Config
+  readConfig
+    recognizes options from HSPEC_OPTIONS [✔]
+    recognizes options from HSPEC_* [✔]
+  readConfigFiles
+    reads .hspec [✔]
+    reads ~/.hspec [✔]
+    without $HOME
+      returns empty list [✔]
+    without current directory
+      returns empty list [✔]
+Test.Hspec.Core.Config.Definition
+  splitOn
+    splits a string [✔]
+    splits *arbitrary* strings [✔]
+      +++ OK, passed 100 tests.
+Test.Hspec.Core.Config.Options
+  parseOptions
+    rejects unexpected arguments [✔]
+    rejects unrecognized options [✔]
+    sets configColorMode to ColorAuto [✔]
+    when the same option is specified multiple times
+      gives later occurrences precedence [✔]
+    with --help
+      returns ExitSuccess [✔]
+      prints help [✔]
+    RUNNER OPTIONS
+      gives HSPEC_FAIL_ON precedence over HSPEC_STRICT [✔]
+      gives HSPEC_NO_FAIL_ON precedence over HSPEC_STRICT [✔]
+      with --fail-on-focused
+        sets configFailOnFocused to True [✔]
+      with --fail-on-pending
+        sets configFailOnPending to True [✔]
+      with --fail-on
+        accepts a list of values [✔]
+        with focused
+          sets configFailOnFocused to True [✔]
+        with pending
+          sets configFailOnPending to True [✔]
+      with --no-fail-on
+        inverts --fail-on [✔]
+    with --color
+      sets configColorMode to ColorAlways [✔]
+    with --no-color
+      sets configColorMode to ColorNever [✔]
+    with --diff
+      sets configDiff to True [✔]
+    with --no-diff
+      sets configDiff to False [✔]
+    with --diff-context
+      accepts 0 [✔]
+      accepts positive values [✔]
+      rejects invalid values [✔]
+      with negative values
+        disables the option [✔]
+      with 'full'
+        disables the option [✔]
+    with --diff-command=
+      sets configExternalDiff to Nothing [✔]
+    with --print-slow-items
+      sets configPrintSlowItems to N [✔]
+      defaults N to 10 [✔]
+      rejects invalid values [✔]
+      when N is 0
+        disables the option [✔]
+      when N is negative
+        disables the option [✔]
+    with --qc-max-success
+      sets QuickCheck maxSuccess [✔]
+      when given an invalid argument
+        returns an error message [✔]
+    with --qc-max-shrinks
+      sets QuickCheck maxShrinks [✔]
+    with --depth
+      sets depth parameter for SmallCheck [✔]
+    with --jobs
+      sets number of concurrent jobs [✔]
+      rejects values < 1 [✔]
+    when given a config file
+      uses options from config file [✔]
+      gives command-line options precedence [✔]
+      rejects --help [✔]
+      rejects unrecognized options [✔]
+      rejects ambiguous options [✔]
+      when the same option is specified multiple times
+        gives later occurrences precedence [✔]
+    when given multiple config files
+      gives later config files precedence [✔]
+    when given HSPEC_OPTIONS (deprecated)
+      uses options from HSPEC_OPTIONS [✔]
+      gives command-line options precedence [✔]
+      rejects unrecognized options [✔]
+    when given an option as an environment variable
+      sets config value from environment variable [✔]
+      gives command-line options precedence [✔]
+      warns on unrecognized option values [✔]
+  ignoreConfigFile
+    by default
+      returns False [✔]
+    with --ignore-dot-hspec
+      returns True [✔]
+    with IGNORE_DOT_HSPEC
+      returns True [✔]
+Test.Hspec.Core.Example
+  safeEvaluate
+    forces Result [✔]
+    handles ResultStatus exceptions [✔]
+    forces ResultStatus exceptions [✔]
+    handles other exceptions [✔]
+    forces other exceptions [✔]
+  safeEvaluateResultStatus
+    forces ResultStatus [✔]
+    handles ResultStatus exceptions [✔]
+    forces ResultStatus exceptions [✔]
+    handles other exceptions [✔]
+    forces other exceptions [✔]
+  safeEvaluateExample
+    for Expectation
+      returns Failure if an expectation does not hold [✔]
+      when used with `pending`
+        returns Pending [✔]
+      when used with `pendingWith`
+        includes the optional reason [✔]
+  evaluateExample
+    for Result
+      propagates exceptions [✔]
+      runs around-action [✔]
+      accepts arguments [✔]
+    for Bool
+      returns Success on True [✔]
+      returns Failure on False [✔]
+      propagates exceptions [✔]
+      runs around-action [✔]
+      accepts arguments [✔]
+    for Expectation
+      returns Success if all expectations hold [✔]
+      propagates exceptions [✔]
+      runs around-action [✔]
+    for Property
+      returns Success if property holds [✔]
+      shows the collected labels [✔]
+      returns Failure if property does not hold [✔]
+      shows what falsified it [✔]
+      runs around-action for each single check of the property [✔]
+      pretty-prints exceptions [✔]
+      when used with Expectation
+        when used with shouldBe
+          shows what falsified it [✔]
+        when used with assertEqual
+          includes prefix [✔]
+        when used with assertFailure
+          includes reason [✔]
+        when used with verbose
+          includes verbose output [✔]
+      when used with `pending`
+        returns Pending [✔]
+      when used with `pendingWith`
+        includes the optional reason [✔]
+  Expectation
+    as a QuickCheck property
+      can be quantified [✔]
+      can be used with expectations/HUnit assertions [✔]
+Test.Hspec.Core.Example.Location
+  parseAssertionFailed
+    with pre-GHC-8.* error message
+      extracts source location [✔]
+  extractLocation
+    with pattern match failure in do expression
+      in IO
+        extracts Location [✔]
+    with ErrorCall
+      extracts Location [✔]
+    with PatternMatchFail
+      with single-line source span
+        extracts Location [✔]
+      with multi-line source span
+        extracts Location [✔]
+    with RecConError
+      extracts Location [✔]
+    with NoMethodError
+      extracts Location [✔]
+    with AssertionFailed
+      extracts Location [✔]
+  parseCallStack
+    parses Location from call stack [✔]
+  parseLocation
+    parses Location [✔]
+  parseSourceSpan
+    parses single-line source span [✔]
+    parses multi-line source span [✔]
+Test.Hspec.Core.FailureReport
+  writeFailureReport
+    prints a warning on unexpected exceptions [✔]
+  readFailureReport
+    when configFailureReport is specified
+      reads a failure report from a file [✔]
+      when file does not exist
+        returns Nothing [✔]
+      when file is malformed
+        returns Nothing [✔]
+        prints a warning [✔]
+Test.Hspec.Core.Format
+  monadic
+    on exception
+      propagates [✔]
+      does not hang [✔]
+Test.Hspec.Core.Formatters.Diff
+  diff
+    suppresses excessive diff output [✔]
+    ensures that omitted sections are at least three lines in size [✔]
+      +++ OK, passed 100 tests.
+    with modifications within a line
+      suppresses excessive diff output [✔]
+    with modifications at start / end
+      suppresses excessive diff output [✔]
+  partition
+    with a single shown Char
+      never partitions a character escape [✔]
+        +++ OK, passed 100 tests.
+    with a shown String
+      puts backslash-escaped characters into separate chunks [✔]
+      puts *arbitrary* backslash-escaped characters into separate chunks [✔]
+        +++ OK, passed 100 tests; 138 discarded.
+  breakList
+    with a list where the predicate matches at the beginning and the end
+      breaks the list into pieces [✔]
+    with a list where the predicate does not match at the beginning and the end
+      breaks the list into pieces [✔]
+Test.Hspec.Core.Formatters.Internal
+  extraChunk
+    colorizes chunks [✔]
+    with an all-spaces chunk
+      colorizes background [✔]
+    with an all-newlines chunk
+      colorizes background [✔]
+  missingChunk
+    colorizes chunks [✔]
+    with an all-spaces chunk
+      colorizes background [✔]
+    with an all-newlines chunk
+      colorizes background [✔]
+  write
+    does not span colored output over multiple lines [✔]
+  splitLines
+    splits a string into chunks [✔]
+    splits *arbitrary* strings into chunks [✔]
+      +++ OK, passed 100 tests.
+    puts newlines into separate chunks [✔]
+      +++ OK, passed 100 tests.
+Test.Hspec.Core.Formatters.Pretty
+  pretty2
+    with single-line string literals
+      with --unicode
+        recovers unicode [✔]
+      with --no-unicode
+        does not recover unicode [✔]
+      when expected and actual would be equal after pretty-printing
+        returns the original values unmodified [✔]
+  recoverString
+    recovers a string [✔]
+    recovers the empty string [✔]
+    does not recover a string with leading space [✔]
+    does not recover a string with trailing space [✔]
+    does not recover an empty list [✔]
+  recoverMultiLineString
+    recovers multi-line string literals [✔]
+    does not recover string literals that contain control characters [✔]
+    does not recover string literals that span a single line [✔]
+    does not recover a string with trailing space [✔]
+    does not recover a string with trailing space [✔]
+    when unicode is True
+      recovers string literals that contain unicode [✔]
+    when unicode is False
+      does not recover string literals that contain unicode [✔]
+  pretty
+    pretty-prints records [✔]
+    pretty-prints Just-values [✔]
+    pretty-prints tuples [✔]
+    pretty-prints lists [✔]
+    with --unicode
+      retains unicode characters in record fields [✔]
+      retains unicode characters in list elements [✔]
+    with --no-unicode
+      does not retain unicode characters in record fields [✔]
+      does not retain unicode characters in list elements [✔]
+    with input that looks like a list
+      it returns Nothing [✔]
+    with input that looks like a tuple
+      it returns Nothing [✔]
+    with input that looks like function applications
+      it returns Nothing [✔]
+Test.Hspec.Core.Formatters.Pretty.Parser
+  parseValue
+    parses unit [✔]
+    parses characters [✔]
+    parses strings [✔]
+    accepts rationals [✔]
+    accepts negative rationals [✔]
+    accepts integers [✔]
+    accepts negative integers [✔]
+    accepts floats [✔]
+    accepts negative floats [✔]
+    parses lists [✔]
+    parses tuples [✔]
+    parses Nothing [✔]
+    parses Just [✔]
+    parses nested Just [✔]
+    parses records [✔]
+Test.Hspec.Core.Formatters.Pretty.Unicode
+  ushow
+    retains unicode characters [✔]
+    is inverted by read [✔]
+      +++ OK, passed 100 tests.
+Test.Hspec.Core.Formatters.V1
+  progress
+    exampleSucceeded
+      marks succeeding examples with . [✔]
+    exampleFailed
+      marks failing examples with F [✔]
+    examplePending
+      marks pending examples with . [✔]
+  specdoc
+    displays a header for each thing being described [✔]
+    displays one row for each behavior [✔]
+    outputs an empty line at the beginning (even for non-nested specs) [✔]
+    displays a row for each successful, failed, or pending example [✔]
+    displays a '#' with an additional message for pending examples [✔]
+    with an empty group
+      omits that group from the report [✔]
+    failedFormatter
+      when actual/expected contain newlines
+        adds indentation [✔]
+    footerFormatter
+      without failures
+        shows summary in green if there are no failures [✔]
+      with pending examples
+        shows summary in yellow if there are pending examples [✔]
+      with failures
+        shows summary in red [✔]
+      with both failures and pending examples
+        shows summary in red [✔]
+    same as failed_examples
+      displays a detailed list of failures
+        prints all requirements that are not met [✔]
+        prints the exception type for requirements that fail due to an uncaught exception [✔]
+        prints all descriptions when a nested requirement fails [✔]
+        when a failed example has a source location
+          includes that source location above the error message [✔]
+Test.Hspec.Core.Formatters.V2
+  indentChunks
+    with Original
+      does not indent single-line input [✔]
+      indents multi-line input [✔]
+    with Modified
+      returns the empty list on empty input [✔]
+      does not indent single-line input [✔]
+      indents multi-line input [✔]
+      colorizes whitespace-only input [✔]
+      colorizes whitespace-only lines [✔]
+      colorizes whitespace at the end of the input [✔]
+      splits off whitespace-only segments at the end of a line so that they get colorized [✔]
+      splits off whitespace-only segments at the end of the input so that they get colorized [✔]
+      when next chunk starts with a newline
+        splits off whitespace-only segments at the end of a chunk so that they get colorized [✔]
+      when next chunk starts with spaces followed by a newline
+        splits off whitespace-only segments at the end of a chunk so that they get colorized [✔]
+      when all following chunks only consist of whitespace characters
+        splits off whitespace-only segments at the end of a chunk so that they get colorized [✔]
+      when all following chunks only consist of whitespace characters until the next newline is encountered
+        splits off whitespace-only segments at the end of a chunk so that they get colorized [✔]
+      when next chunk starts with a non-whitespace character
+        does not split off whitespace-only segments at the end of a chunk [✔]
+      when all following chunks only consist of non-newline characters until the next non-whitespace character is encountered
+        does not split off whitespace-only segments at the end of a chunk [✔]
+      with empty lines
+        colorizes indentation [✔]
+  progress
+    formatterItemDone
+      marks succeeding examples with . [✔]
+      marks failing examples with F [✔]
+      marks pending examples with . [✔]
+  checks
+    prints unicode check marks [✔]
+    uses ASCII as a fallback [✔]
+  specdoc
+    displays a header for each thing being described [✔]
+    displays one row for each behavior [✔]
+    outputs an empty line at the beginning (even for non-nested specs) [✔]
+    displays a row for each successful, failed, or pending example [✔]
+    displays a '#' with an additional message for pending examples [✔]
+    with an empty group
+      omits that group from the report [✔]
+    formatterDone
+      recovers unicode from ExpectedButGot [✔]
+      on --expert
+        does not print rerun message [✔]
+      when actual/expected contain newlines
+        adds indentation [✔]
+      without failures
+        shows summary in green if there are no failures [✔]
+      with pending examples
+        shows summary in yellow if there are pending examples [✔]
+    same as failed_examples
+      displays a detailed list of failures
+        prints all requirements that are not met [✔]
+        prints the exception type for requirements that fail due to an uncaught exception [✔]
+        prints all descriptions when a nested requirement fails [✔]
+        when a failed example has a source location
+          includes that source location above the error message [✔]
+  getExpectedTotalCount
+    returns the total number of spec items [✔]
+Test.Hspec.Core.Hooks
+  before
+    runs an action before every spec item [✔]
+    when used with a QuickCheck property
+      runs action before every check of the property [✔]
+  before_
+    runs an action before every spec item [✔]
+    when used multiple times
+      is evaluated outside in [✔]
+    when used with a QuickCheck property
+      runs action before every check of the property [✔]
+      when used multiple times
+        is evaluated outside in [✔]
+  beforeWith
+    transforms spec argument [✔]
+    can be used multiple times [✔]
+  beforeAll
+    runs an action before the first spec item [✔]
+    when specified action throws an exception
+      sets subsequent spec items to pending [✔]
+    when used with an empty list of examples
+      does not run specified action [✔]
+  beforeAll_
+    runs an action before the first spec item [✔]
+    when used multiple times
+      is evaluated outside in [✔]
+  beforeAllWith
+    transforms the spec argument [✔]
+    can be used multiple times [✔]
+    runs an action before the first spec item [✔]
+    when specified action throws an exception
+      sets subsequent spec items to pending [✔]
+    when used with an empty list of examples
+      does not run specified action [✔]
+  after
+    runs an action after every spec item [✔]
+    guarantees that action is run [✔]
+  after_
+    runs an action after every spec item [✔]
+    guarantees that action is run [✔]
+    when used multiple times
+      is evaluated inside out [✔]
+  afterAll
+    runs an action after the last spec item [✔]
+    when used with an empty list of examples
+      does not run specified action [✔]
+    when action throws an exception
+      reports a failure [✔]
+  afterAll_
+    runs an action after the last spec item [✔]
+    when used multiple times
+      is evaluated inside out [✔]
+    when used with an empty list of examples
+      does not run specified action [✔]
+    when action is pending
+      reports pending [✔]
+    when action throws an exception
+      reports a failure [✔]
+    when action is successful
+      does not report anything [✔]
+  around
+    wraps every spec item with an action [✔]
+  around_
+    wraps every spec item with an action [✔]
+    when used multiple times
+      is evaluated outside in [✔]
+  aroundWith
+    wraps every spec item with an action [✔]
+  aroundAll
+    wraps an action around a spec [✔]
+  aroundAll_
+    wraps an action around a spec [✔]
+    wrap actions around a spec in order [✔]
+    does not call actions wrapped around a failing action [✔]
+    does not memoize subject [✔]
+    reports exceptions on acquire [✔]
+    reports exceptions on release [✔]
+  aroundAllWith
+    wraps an action around a spec [✔]
+    wrap actions around a spec in order [✔]
+    does not call actions wrapped around a failing action [✔]
+    reports exceptions on acquire [✔]
+    reports exceptions on release [✔]
+  decompose
+    decomposes a with-style action into acquire / release [✔]
+    when release is called before acquire
+      does nothing [✔]
+    with an exception during resource acquisition
+      propagates that exception [✔]
+    with an exception during resource deallocation
+      propagates that exception [✔]
+Test.Hspec.Core.QuickCheck.Util
+  formatNumbers
+    includes number of tests [✔]
+    pluralizes number of tests [✔]
+    includes number of shrinks [✔]
+    pluralizes number of shrinks [✔]
+  stripSuffix
+    drops the given suffix from a list [✔]
+  splitBy
+    splits a string by a given infix [✔]
+  parseQuickCheckResult
+    with Success
+      parses result [✔]
+      includes labels [✔]
+    with GaveUp
+      parses result [✔]
+      includes verbose output [✔]
+    with NoExpectedFailure
+      parses result [✔]
+      includes verbose output [✔]
+    with cover
+      without checkCoverage
+        parses result [✔]
+        includes verbose output [✔]
+      with checkCoverage
+        parses result [✔]
+        includes verbose output [✔]
+    with Failure
+      with single-line failure reason
+        parses result [✔]
+        includes verbose output [✔]
+      with multi-line failure reason
+        parses result [✔]
+        includes verbose output [✔]
+      with HUnit assertion
+        includes counterexample [✔]
+Test.Hspec.Core.Runner
+  hspec
+    evaluates examples Unmasked [✔]
+    runs finalizers [✔]
+    runs a spec [✔]
+    exits with exitFailure if not all examples pass [✔]
+    allows output to stdout [✔]
+    prints an error message on unrecognized command-line options [✔]
+    stores a failure report in the environment [✔]
+    with --rerun
+      reuses same --seed [✔]
+      reuses same --qc-max-success [✔]
+      reuses same --qc-max-discard [✔]
+      reuses same --qc-max-size [✔]
+      with failing examples
+        only reruns failing examples [✔]
+      without failing examples
+        runs all examples [✔]
+      when there is no failure report in the environment
+        runs all examples [✔]
+        prints a warning to stderr [✔]
+      when parsing of failure report fails
+        runs all examples [✔]
+        prints a warning to stderr [✔]
+      with --rerun-all-on-success
+        after a previously failing rerun succeeds for the first time
+          runs the whole test suite [✔]
+          reruns runIO-actions [✔]
+    does not leak command-line options to examples [✔]
+    when interrupted with ctrl-c
+      prints summary immediately [✔]
+      throws UserInterrupt [✔]
+    with --dry-run
+      produces a report [✔]
+      does not verify anything [✔]
+      ignores afterAll-hooks [✔]
+    with --focused-only
+      when there aren't any focused spec items
+        does not run anything [✔]
+    with --fail-on=empty
+      fails if no spec items have been run [✔]
+    with --fail-on=focused
+      fails on focused spec items [✔]
+    with --fail-on=empty-description
+      fails on items with empty requirement [✔]
+    with --fail-on=pending
+      fails on pending spec items [✔]
+    with --fail-fast
+      stops after first failure [✔]
+      cancels running parallel spec items on failure [✔]
+      works for nested specs [✔]
+      with a cleanup action
+        runs cleanup action [✔]
+        when last leaf fails
+          runs cleanup action exactly once [✔]
+    with --match
+      only runs examples that match a given pattern [✔]
+      only runs examples that match a given pattern (-m and --skip combined) [✔]
+      can be given multiple times [✔]
+    with --pretty
+      pretty-prints Haskell values [✔]
+      uses custom pretty-print functions [✔]
+    with --no-pretty
+      does not pretty-prints Haskell values [✔]
+    when formatting exceptions
+      with --show-exceptions
+        uses `show` [✔]
+      with --display-exceptions
+        uses `displayException` [✔]
+    with --color
+      outputs ColorizedReason [✔]
+    with --no-color
+      strips ANSI sequences from ColorizedReason [✔]
+    with --diff
+      shows colorized diffs [✔]
+    with --no-diff
+      it does not show colorized diffs [✔]
+    with --diff-context
+      suppresses excessive diff output [✔]
+    with --diff-command
+      uses an external diff command [✔]
+    with --print-slow-items
+      prints slow items [✔]
+    with --format
+      uses specified formatter [✔]
+      when given an invalid argument
+        prints an error message to stderr [✔]
+    with --qc-max-success
+      tries QuickCheck properties specified number of times [✔]
+      accepts --maximum-generated-tests as an alias [✔]
+      when run with --rerun
+        takes precedence [✔]
+    with --qc-max-discard
+      passes specified maxDiscardRatio to QuickCheck properties [✔]
+    with --qc-max-size
+      passes specified maxSize to QuickCheck properties [✔]
+    with --qc-max-shrinks
+      passes specified maxShrinks to QuickCheck properties [✔]
+    Test.QuickCheck.Args.chatty
+      when True
+        includes informational output [✔]
+      when False
+        suppresses informational output [✔]
+    with --seed
+      uses specified seed [✔]
+      when run with --rerun
+        takes precedence [✔]
+      when given an invalid argument
+        prints an error message to stderr [✔]
+        exits with exitFailure [✔]
+    with --print-cpu-time
+      includes used CPU time in summary [✔]
+    with --html
+      produces HTML output [✔]
+      marks successful examples with CSS class hspec-success [✔]
+      marks pending examples with CSS class hspec-pending [✔]
+      marks failed examples with CSS class hspec-failure [✔]
+  hspecResult
+    returns a summary of the test run [✔]
+    treats uncaught exceptions as failure [✔]
+    handles unguarded exceptions in runner [✔]
+    uses the specdoc formatter by default [✔]
+    does not let escape error thunks from failure messages [✔]
+    runs specs in parallel [✔]
+    with -j
+      limits parallelism [✔]
+  colorOutputSupported
+    without a terminal device
+      disables color output [✔]
+      with GITHUB_ACTIONS=true
+        enable color output [✔]
+    with a terminal device
+      enable color output [✔]
+      with BUILDKITE=true
+        disables progress reporting [✔]
+      when NO_COLOR is set
+        disables color output [✔]
+  unicodeOutputSupported
+    with UnicodeAlways
+      returns True [✔]
+    with UnicodeNever
+      returns False [✔]
+    with UnicodeAuto
+      when file encoding is UTF-8
+        returns True [✔]
+      when file encoding is not UTF-8
+        returns False [✔]
+  rerunAll
+    with --rerun, --rerun-all-on-success, previous failures, on success
+      returns True [✔]
+    without --rerun
+      returns False [✔]
+    without --rerun-all-on-success
+      returns False [✔]
+    without previous failures
+      returns False [✔]
+    without failure report
+      returns False [✔]
+    on failure
+      returns False [✔]
+Test.Hspec.Core.Runner.Eval
+  mergeResults
+    gives failures from items precedence [✔]
+      +++ OK, passed 100 tests.
+    gives failures from hooks precedence over succeeding items [✔]
+      +++ OK, passed 100 tests.
+    gives failures from hooks precedence over pending items [✔]
+      +++ OK, passed 100 tests.
+    gives pending items precedence over pending hooks [✔]
+      +++ OK, passed 100 tests.
+  traverse
+    when used with Tree
+      walks the tree left-to-right, depth-first [✔]
+Test.Hspec.Core.Runner.JobQueue
+  enqueueJob
+    with Sequential
+      runs actions sequentially [✔]
+    with Concurrent
+      runs actions concurrently [✔]
+Test.Hspec.Core.Runner.PrintSlowSpecItems
+  printSlowSpecItems
+    prints slow spec items [✔]
+    when there are no slow items
+      prints nothing [✔]
+Test.Hspec.Core.Runner.Result
+  Summary
+    can be deconstructed via accessor functions [✔]
+    can be deconstructed via pattern matching [✔]
+    can be deconstructed via RecordWildCards [✔]
+  specResultSuccess
+    when all spec items passed
+      returns True [✔]
+    with a failed spec item
+      returns False [✔]
+    with an empty result list
+      returns True [✔]
+Test.Hspec.Core.Shuffle
+  shuffleForest
+    shuffles a forest [✔]
+    recurses into Node [✔]
+    recurses into NodeWithCleanup [✔]
+  shuffle
+    shuffles a list [✔]
+  mkArray
+    creates an STArray from a list [✔]
+Test.Hspec.Core.Spec
+  getSpecDescriptionPath
+    returns the spec path [✔]
+  describe
+    can be nested [✔]
+    when no description is given
+      uses a default description [✔]
+  xdescribe
+    creates a tree of pending spec items [✔]
+  it
+    takes a description of a desired behavior [✔]
+    takes an example of that behavior [✔]
+    adds source locations [✔]
+  xit
+    creates a pending spec item [✔]
+  pending
+    specifies a pending example [✔]
+  pendingWith
+    specifies a pending example with a reason for why it's pending [✔]
+  focus
+    focuses spec items [✔]
+    when applied to a spec with focused spec items
+      has no effect [✔]
+  parallel
+    marks examples for parallel execution [✔]
+    is applied recursively [✔]
+  sequential
+    marks examples for sequential execution [✔]
+    takes precedence over a later `parallel` [✔]
+Test.Hspec.Core.Tree
+  toModuleName
+    derives a module name from a FilePath [✔]
+Test.Hspec.Core.Util
+  pluralize
+    returns singular when used with 1 [✔]
+    returns plural when used with number greater 1 [✔]
+    returns plural when used with 0 [✔]
+  formatException
+    converts exception to string [✔]
+    when used with an IOException
+      includes the IOErrorType [✔]
+  lineBreaksAt
+    inserts line breaks at word boundaries [✔]
+    preserves existing line breaks [✔]
+  stripAnsi
+    removes ANSI color sequences [✔]
+  safeTry
+    returns Right on success [✔]
+    returns Left on exception [✔]
+    evaluates result to weak head normal form [✔]
+    does not catch asynchronous exceptions [✔]
+  filterPredicate
+    tries to match a pattern against a path [✔]
+    is ambiguous [✔]
+    succeeds on a partial match [✔]
+    succeeds with a pattern that matches the message given in the failure list [✔]
+    with an absolute path that begins or ends with a slash
+      succeeds [✔]
+  formatRequirement
+    creates a sentence from a subject and a requirement [✔]
+    creates a sentence from a subject and a requirement when the subject consists of multiple words [✔]
+    returns the requirement if no subject is given [✔]
+    inserts context separated by commas [✔]
+    joins components of a subject with a dot [✔]
+    properly handles context after a subject that consists of several components [✔]
+
+Finished in 0.1277 seconds
+475 examples, 0 failures
+Test suite spec: PASS
+Test suite logged to:
+/tmp/workdir-hspec-core/hspec-core-2.11.9/dist-newstyle/build/x86_64-linux/ghc-9.6.6/hspec-core-2.11.9/t/spec/test/hspec-core-2.11.9-spec.log
+1 of 1 test suites (1 of 1 test cases) passed.

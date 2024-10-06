@@ -1,0 +1,45 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - RefSerialize-0.4.0 (lib:RefSerialize) (first run)
+Warning: RefSerialize.cabal:30:51: version operators used. To use version
+operators the package needs to specify at least 'cabal-version: >= 1.8'.
+Configuring RefSerialize-0.4.0...
+Preprocessing library for RefSerialize-0.4.0...
+Building library for RefSerialize-0.4.0...
+
+Data/RefSerialize.hs:1:13: warning: [-Wdeprecated-flags]
+    -XOverlappingInstances is deprecated: instead use per-instance pragmas OVERLAPPING/OVERLAPPABLE/OVERLAPS
+  |
+1 | {-# OPTIONS -XOverlappingInstances
+  |             ^^^^^^^^^^^^^^^^^^^^^^
+[1 of 3] Compiling Data.RefSerialize.Serialize
+
+Data/RefSerialize/Serialize.hs:44:9: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘memcpy’
+    (imported from Data.ByteString.Internal, but defined in Data.ByteString.Internal.Type):
+    Deprecated: "Use Foreign.Marshal.Utils.copyBytes instead"
+   |
+44 |         S.memcpy destptr (p `plusPtr` off) (fromIntegral len)
+   |         ^^^^^^^^
+
+Data/RefSerialize/Serialize.hs:77:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad STW’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+77 |     return  x = STW (\s ->  (s, x))
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2 of 3] Compiling Data.RefSerialize.Parser
+
+Data/RefSerialize/Parser.hs:75:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad STR’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+75 |     return  x = STR (\s -> Right (s, x))
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[3 of 3] Compiling Data.RefSerialize

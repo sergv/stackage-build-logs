@@ -1,0 +1,62 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - hw-kafka-client-5.3.0 (lib) (first run)
+ - hw-kafka-client-5.3.0 (test:tests) (first run)
+Configuring library for hw-kafka-client-5.3.0...
+Preprocessing library for hw-kafka-client-5.3.0...
+Building library for hw-kafka-client-5.3.0...
+[ 1 of 19] Compiling Kafka.Internal.RdKafka
+[ 2 of 19] Compiling Kafka.Types
+[ 3 of 19] Compiling Kafka.Internal.Setup
+[ 4 of 19] Compiling Kafka.Dump
+[ 5 of 19] Compiling Kafka.Consumer.Types
+[ 6 of 19] Compiling Kafka.Producer.Types
+[ 7 of 19] Compiling Kafka.Internal.Shared
+
+src/Kafka/Internal/Shared.hs:47:5: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘memcpy’
+    (imported from Data.ByteString.Internal, but defined in Data.ByteString.Internal.Type):
+    Deprecated: "Use Foreign.Marshal.Utils.copyBytes instead"
+   |
+47 |     BSI.memcpy bsptr ptr len
+   |     ^^^^^^^^^^
+[ 8 of 19] Compiling Kafka.Producer.Convert
+[ 9 of 19] Compiling Kafka.Consumer.Subscription
+[10 of 19] Compiling Kafka.Consumer.Convert
+[11 of 19] Compiling Kafka.Metadata
+[12 of 19] Compiling Kafka.Callbacks
+[13 of 19] Compiling Kafka.Producer.Callbacks
+[14 of 19] Compiling Kafka.Producer.ProducerProperties
+[15 of 19] Compiling Kafka.Producer
+[16 of 19] Compiling Kafka.Consumer.Callbacks
+[17 of 19] Compiling Kafka.Consumer.ConsumerProperties
+[18 of 19] Compiling Kafka.Consumer
+[19 of 19] Compiling Kafka.Transaction
+Configuring test suite 'tests' for hw-kafka-client-5.3.0...
+Preprocessing test suite 'tests' for hw-kafka-client-5.3.0...
+Building test suite 'tests' for hw-kafka-client-5.3.0...
+[1 of 3] Compiling Kafka.Consumer.ConsumerRecordMapSpec
+
+tests/Kafka/Consumer/ConsumerRecordMapSpec.hs:30:54: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘crMapKey’ (imported from Kafka.Consumer.Types):
+    Deprecated: "Isn't concern of this library. Use 'first'"
+   |
+30 |       bitraverse id pure testRecord `shouldBe` Just (crMapKey (const testKey) testRecord)
+   |                                                      ^^^^^^^^
+
+tests/Kafka/Consumer/ConsumerRecordMapSpec.hs:33:44: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘crMapValue’ (imported from Kafka.Consumer.Types):
+    Deprecated: "Isn't concern of this library. Use 'second'"
+   |
+33 |       sequence testRecord `shouldBe` Just (crMapValue (const testValue) testRecord)
+   |                                            ^^^^^^^^^^
+
+tests/Kafka/Consumer/ConsumerRecordMapSpec.hs:36:46: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘crMapKV’ (imported from Kafka.Consumer.Types):
+    Deprecated: "Isn't concern of this library. Use 'bimap'"
+   |
+36 |       bisequence testRecord `shouldBe` Just (crMapKV (const testKey) (const testValue) testRecord)
+   |                                              ^^^^^^^
+[2 of 3] Compiling Kafka.Consumer.ConsumerRecordTraverseSpec
+[3 of 3] Compiling Main
+[4 of 4] Linking /tmp/workdir-hw-kafka-client/hw-kafka-client-5.3.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/hw-kafka-client-5.3.0/t/tests/build/tests/tests

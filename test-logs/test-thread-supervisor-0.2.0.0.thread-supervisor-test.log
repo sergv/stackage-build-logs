@@ -1,0 +1,160 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - thread-supervisor-0.2.0.0 (test:thread-supervisor-test) (ephemeral targets)
+Preprocessing test suite 'thread-supervisor-test' for thread-supervisor-0.2.0.0...
+Building test suite 'thread-supervisor-test' for thread-supervisor-0.2.0.0...
+Running 1 test suites...
+Test suite thread-supervisor-test: RUNNING...
+
+Control.Concurrent.Supervisor
+  Actor
+    accepts ActorHandler and returns action with ActorQ [✔]
+      +++ OK, passed 100 tests.
+    can send a message to itself [✔]
+      +++ OK, passed 100 tests.
+  State machine behavior
+    returns result when event handler returns Left [✔]
+    consumes message in the queue until exit [✔]
+    passes next state with Right [✔]
+    runs state machine by consuming messages until handler returns Left [✔]
+  Server
+    has call method which return value synchronously [✔]
+    keeps its own state and cast changes the state [✔]
+    keeps its own state and callIgnore changes the state [✔]
+    keeps its own state and call can change the state [✔]
+    timeouts call method when server is not responding [✔]
+  Monitored IO action
+    reports exit code Normal on normal exit [✔]
+    reports exit code UncaughtException on synchronous exception which wasn't caught [✔]
+    reports exit code Killed when it received asynchronous exception [✔]
+    can nest monitors and notify its normal exit to both [✔]
+    can nest monitors and notify UncaughtException to both [✔]
+    can nest monitors and notify Killed to both [✔]
+    can nest many monitors and notify its normal exit to all [✔]
+    can nest many monitors and notify UncaughtException to all [✔]
+    can nest many monitors and notify Killed to all [✔]
+  SimpleOneForOneSupervisor
+    starts a dynamic child [✔]
+    does not restart finished dynamic child regardless restart type [✔]
+    does not exit itself by massive child crash [✔]
+    kills all children when it is killed [✔]
+    can be killed when children is finishing at the same time [✔]
+  IntenseRestartDetector
+    returns True if 1 crash in 0 maximum restart intensity [✔]
+    returns True if 1 crash in 0 maximum restart intensity regardless with period [✔]
+    returns False if 1 crash in 1 maximum restart intensity [✔]
+    returns True if 2 crash in 1 maximum restart intensity within given period [✔]
+    returns False if 2 crash in 1 maximum restart intensity but longer interval than given period [✔]
+    returns False if 1 crash in 2 maximum restart intensity [✔]
+    returns False if 2 crash in 2 maximum restart intensity [✔]
+    returns True if 3 crash in 2 maximum restart intensity within given period [✔]
+    returns False if 3 crash in 2 maximum restart intensity but longer interval than given period [✔]
+  One-for-one Supervisor with static children
+    automatically starts children based on given ProcessSpec list [✔]
+    automatically restarts finished children with permanent restart type [✔]
+    restarts neither normally finished transient nor temporary child [✔]
+    restarts crashed transient child but does not restart crashed temporary child [✔]
+    restarts killed transient child but does not restart killed temporary child [✔]
+    kills all children when it is killed [✔]
+    can be killed when children is finishing at the same time [✔]
+    intensive normal exit of permanent child causes termination of Supervisor itself [✔]
+    intensive crash of permanent child causes termination of Supervisor itself [✔]
+    intensive killing permanent child causes termination of Supervisor itself [✔]
+    intensive normal exit of transient child does not terminate Supervisor [✔]
+    intensive crash of transient child causes termination of Supervisor itself [✔]
+    intensive killing transient child causes termination of Supervisor itself [✔]
+    intensive normal exit of temporary child does not terminate Supervisor [✔]
+    intensive crash of temporary child does not terminate Supervisor [✔]
+    intensive killing temporary child does not terminate Supervisor [✔]
+    longer interval multiple normal exit of permanent child does not terminate Supervisor [✔]
+    longer interval multiple crash of transient child does not terminate Supervisor [✔]
+    longer interval multiple killing transient child does not terminate Supervisor [✔]
+  One-for-all Supervisor with static children
+    automatically starts children based on given ProcessSpec list [✔]
+    automatically restarts all static children when one of permanent children finished [✔]
+    does not restart children on normal exit of transient or temporary child [✔]
+    restarts all static children when one of transient child crashed or killed [✔]
+    does not restarts any children even if a temporary child crashed [✔]
+    does not restarts any children even if a temporary child killed [✔]
+    kills all children when it is killed [✔]
+    can be killed when children is finishing at the same time [✔]
+    intensive normal exit of permanent child causes termination of Supervisor itself [✔]
+    intensive crash of permanent child causes termination of Supervisor itself [✔]
+    intensive killing permanent child causes termination of Supervisor itself [✔]
+    intensive normal exit of transient child does not terminate Supervisor [✔]
+    intensive crash of transient child causes termination of Supervisor itself [✔]
+    intensive killing transient child causes termination of Supervisor itself [✔]
+    intensive normal exit of temporary child does not terminate Supervisor [✔]
+    intensive crash of temporary child does not terminate Supervisor [✔]
+    intensive killing temporary child does not terminate Supervisor [✔]
+    longer interval multiple normal exit of permanent child does not terminate Supervisor [✔]
+    longer interval multiple crash of transient child does not terminate Supervisor [✔]
+    longer interval multiple killing transient child does not terminate Supervisor [✔]
+Control.Concurrent.SupervisorInternal
+  Inbox receive
+    receives message in sent order [✔]
+      +++ OK, passed 100 tests.
+    blocks until message available [✔]
+    concurrent read and write to the same queue [✔]
+      +++ OK, passed 10 tests.
+  Inbox tryReceive
+    receives message in sent order [✔]
+      +++ OK, passed 100 tests.
+    returns Nothing if no message available [✔]
+  Inbox receiveSelect
+    allows selective receive [✔]
+    returns the first element satisfying supplied predicate [✔]
+    blocks until interesting message arrived [✔]
+    keeps entire content if predicate was never satisfied [✔]
+      +++ OK, passed 100 tests.
+    selectively reads massive number of messages concurrently [✔]
+      +++ OK, passed 10 tests.
+  Inbox tryReceiveSelect
+    returns Nothing if no message available [✔]
+    allows selective receive [✔]
+    returns the first element satisfying supplied predicate [✔]
+    return Nothing when there is no interesting message in the queue [✔]
+    keeps entire content if predicate was never satisfied [✔]
+      +++ OK, passed 100 tests.
+    try selectively reads massive number of messages concurrently [✔]
+      +++ OK, passed 10 tests.
+  Inbox length
+    returns number of queued messages [✔]
+      +++ OK, passed 100 tests.
+    returns number of remaining messages [✔]
+      +++ OK, passed 100 tests.
+    remains unchanged after failing selective receives [✔]
+      +++ OK, passed 100 tests.
+  Bounded Inbox
+    send blocks when the queue is full [✔]
+      +++ OK, passed 100 tests.
+    trySend returns Nothing when the queue is full [✔]
+      +++ OK, passed 100 tests.
+    readling from queue makes room again [✔]
+      +++ OK, passed 100 tests.
+  Concurrent operation Inbox
+    receives messages from concurrent senders [✔]
+      +++ OK, passed 100 tests.
+    can be shared by concurrent receivers [✔]
+      +++ OK, passed 100 tests.
+    can be shared by concurrent senders and receivers [✔]
+      +++ OK, passed 100 tests.
+Data.DelayedQueue
+  DelayedQueue
+    Pop from newEmptyDelayedQueue returns Nothing [✔]
+    Push 1 to delay 0 queue pops 1 then Nothing [✔]
+    Push 1 to delay 1 queue pops Nothing [✔]
+    Push 1 and 2 to delay 1 queue pops 1 then Nothing [✔]
+    Push 1, 2, 3, 4, 5 to delay 3 queue pops 1, 2, Nothing [✔]
+    Push 1 to 5, pop x3, push 6, pop on delay 3 queue results 1, 2, Nothing, 3 [✔]
+    Keeps given number of element [✔]
+      +++ OK, passed 100 tests.
+    Keeps given number of element2 [✔]
+      +++ OK, passed 100 tests.
+
+Finished in 1.2791 seconds
+106 examples, 0 failures
+Test suite thread-supervisor-test: PASS
+Test suite logged to:
+/tmp/workdir-thread-supervisor/thread-supervisor-0.2.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/thread-supervisor-0.2.0.0/t/thread-supervisor-test/test/thread-supervisor-0.2.0.0-thread-supervisor-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

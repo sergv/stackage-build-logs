@@ -1,0 +1,882 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - synthesizer-core-0.8.4 (lib) (first run)
+ - synthesizer-core-0.8.4 (test:test) (first run)
+Configuring library for synthesizer-core-0.8.4...
+Warning: [no-default-language] Packages using 'cabal-version: >= 1.10' and
+before 'cabal-version: 3.4' must specify the 'default-language' field for each
+component (e.g. Haskell98 or Haskell2010). If a component uses different
+languages in different modules then list the other ones in the
+'other-languages' field.
+Preprocessing library for synthesizer-core-0.8.4...
+Building library for synthesizer-core-0.8.4...
+[  1 of 135] Compiling Synthesizer.ApplicativeUtility
+
+src/Synthesizer/ApplicativeUtility.hs:6:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+  |
+6 | import Control.Applicative (Applicative, (<*>), (<$>), liftA2, )
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Synthesizer/ApplicativeUtility.hs:7:1: warning: [-Wunused-imports]
+    The import of ‘Data.Traversable’ is redundant
+      except perhaps to import instances from ‘Data.Traversable’
+    To import instances alone, use: import Data.Traversable()
+  |
+7 | import Data.Traversable (Traversable, sequenceA, )
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[  2 of 135] Compiling Synthesizer.Basic.ComplexModule
+[  3 of 135] Compiling Synthesizer.Basic.Distortion
+[  4 of 135] Compiling Synthesizer.Basic.DistortionControlled
+[  5 of 135] Compiling Synthesizer.Basic.Filter.NonRecursive
+[  6 of 135] Compiling Synthesizer.Basic.Phase
+
+src/Synthesizer/Basic/Phase.hs:213:6: warning: [GHC-95396] [-Winline-rule-shadowing]
+    Rule "Phase.multiply @ Float" may never fire
+      because ‘multiply’ might inline first
+    Suggested fix:
+      Add an INLINE[n] or NOINLINE[n] pragma for ‘multiply’
+    |
+213 |      "Phase.multiply @ Float"  multiply = customMultiply GHC.float2Int  GHC.int2Float;
+    |      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Synthesizer/Basic/Phase.hs:214:6: warning: [GHC-95396] [-Winline-rule-shadowing]
+    Rule "Phase.multiply @ Double" may never fire
+      because ‘multiply’ might inline first
+    Suggested fix:
+      Add an INLINE[n] or NOINLINE[n] pragma for ‘multiply’
+    |
+214 |      "Phase.multiply @ Double" multiply = customMultiply GHC.double2Int GHC.int2Double;
+    |      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Synthesizer/Basic/Phase.hs:216:6: warning: [GHC-95396] [-Winline-rule-shadowing]
+    Rule "Phase.increment @ Float" may never fire
+      because ‘increment’ might inline first
+    Suggested fix:
+      Add an INLINE[n] or NOINLINE[n] pragma for ‘increment’
+    |
+216 |      "Phase.increment @ Float"  increment = \d -> customLift GHC.float2Int  GHC.int2Float  (+d);
+    |      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Synthesizer/Basic/Phase.hs:217:6: warning: [GHC-95396] [-Winline-rule-shadowing]
+    Rule "Phase.increment @ Double" may never fire
+      because ‘increment’ might inline first
+    Suggested fix:
+      Add an INLINE[n] or NOINLINE[n] pragma for ‘increment’
+    |
+217 |      "Phase.increment @ Double" increment = \d -> customLift GHC.double2Int GHC.int2Double (+d);
+    |      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Synthesizer/Basic/Phase.hs:219:6: warning: [GHC-95396] [-Winline-rule-shadowing]
+    Rule "Phase.decrement @ Float" may never fire
+      because ‘decrement’ might inline first
+    Suggested fix:
+      Add an INLINE[n] or NOINLINE[n] pragma for ‘decrement’
+    |
+219 |      "Phase.decrement @ Float"  decrement = \d -> customLift GHC.float2Int  GHC.int2Float  (subtract d);
+    |      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Synthesizer/Basic/Phase.hs:220:6: warning: [GHC-95396] [-Winline-rule-shadowing]
+    Rule "Phase.decrement @ Double" may never fire
+      because ‘decrement’ might inline first
+    Suggested fix:
+      Add an INLINE[n] or NOINLINE[n] pragma for ‘decrement’
+    |
+220 |      "Phase.decrement @ Double" decrement = \d -> customLift GHC.double2Int GHC.int2Double (subtract d);
+    |      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[  7 of 135] Compiling Synthesizer.Basic.Wave
+[  8 of 135] Compiling Synthesizer.Basic.WaveSmoothed
+[  9 of 135] Compiling Synthesizer.Causal.Displacement
+[ 10 of 135] Compiling Synthesizer.Causal.Spatial
+[ 11 of 135] Compiling Synthesizer.Causal.Utility
+[ 12 of 135] Compiling Synthesizer.Causal.Class
+
+src/Synthesizer/Causal/Class.hs:14:34: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+14 | type family ProcessOf (signal :: * -> *) :: * -> * -> *
+   |                                  ^
+
+src/Synthesizer/Causal/Class.hs:14:39: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+14 | type family ProcessOf (signal :: * -> *) :: * -> * -> *
+   |                                       ^
+
+src/Synthesizer/Causal/Class.hs:14:45: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+14 | type family ProcessOf (signal :: * -> *) :: * -> * -> *
+   |                                             ^
+
+src/Synthesizer/Causal/Class.hs:14:50: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+14 | type family ProcessOf (signal :: * -> *) :: * -> * -> *
+   |                                                  ^
+
+src/Synthesizer/Causal/Class.hs:14:55: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+14 | type family ProcessOf (signal :: * -> *) :: * -> * -> *
+   |                                                       ^
+
+src/Synthesizer/Causal/Class.hs:16:52: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+16 | class (Arrow process, ProcessOf (SignalOf process) ~ process) => C process where
+   |                                                    ^
+
+src/Synthesizer/Causal/Class.hs:17:29: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+17 |    type SignalOf process :: * -> *
+   |                             ^
+
+src/Synthesizer/Causal/Class.hs:17:34: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+17 |    type SignalOf process :: * -> *
+   |                                  ^
+[ 13 of 135] Compiling Synthesizer.Format
+[ 14 of 135] Compiling Synthesizer.Frame.Stereo
+[ 15 of 135] Compiling Synthesizer.Basic.Binary
+[ 16 of 135] Compiling Synthesizer.Piecewise
+[ 17 of 135] Compiling Synthesizer.Plain.Builder
+[ 18 of 135] Compiling Synthesizer.Plain.Filter.Recursive
+[ 19 of 135] Compiling Synthesizer.Plain.Filter.Recursive.AllpassPoly
+[ 20 of 135] Compiling Synthesizer.Plain.IO
+[ 21 of 135] Compiling Synthesizer.Plain.File
+
+src/Synthesizer/Plain/File.hs:29:1: warning: [-Wdeprecations]
+    Module ‘Synthesizer.Plain.IO’ is deprecated:
+      "Use Sound.Sox.Signal.List instead."
+   |
+29 | import qualified Synthesizer.Plain.IO as FileL
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Synthesizer/Plain/File.hs:184:21: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘readInt16StreamStrict’
+    (imported from Synthesizer.Plain.IO):
+    Deprecated: "Use Sound.Sox.Signal.List instead."
+    |
+184 |              lift $ FileL.readInt16StreamStrict tmp
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 22 of 135] Compiling Synthesizer.Plain.LorenzAttractor
+[ 23 of 135] Compiling Synthesizer.Plain.Modifier
+[ 24 of 135] Compiling Synthesizer.Plain.Play
+[ 25 of 135] Compiling Synthesizer.Plain.Signal
+
+src/Synthesizer/Plain/Signal.hs:117:3: warning: [GHC-95396] [-Winline-rule-shadowing]
+    Rule "fix1/crochetL" may never fire
+      because ‘crochetL’ might inline first
+    Suggested fix:
+      Add an INLINE[n] or NOINLINE[n] pragma for ‘crochetL’
+    |
+117 |   "fix1/crochetL" forall f a b.
+    |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+src/Synthesizer/Plain/Signal.hs:117:3: warning: [GHC-95396] [-Winline-rule-shadowing]
+    Rule "fix1/crochetL" may never fire
+      because ‘fix1’ might inline first
+    Suggested fix: Add an INLINE[n] or NOINLINE[n] pragma for ‘fix1’
+    |
+117 |   "fix1/crochetL" forall f a b.
+    |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+[ 26 of 135] Compiling Synthesizer.Plain.Oscillator.BandLimited
+[ 27 of 135] Compiling Synthesizer.Plain.Noise
+[ 28 of 135] Compiling Synthesizer.Plain.Filter.Recursive.Integration
+[ 29 of 135] Compiling Synthesizer.Plain.Displacement
+[ 30 of 135] Compiling Synthesizer.Plain.Cut
+[ 31 of 135] Compiling Synthesizer.Plain.Control
+
+src/Synthesizer/Plain/Control.hs:284:8: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[[y]]’ not matched:
+            []
+            [_]
+            [_, _]
+            [_, _, _]
+    |
+284 |    let xs0:xs1:xs2:xs3:_ = tails xs
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 32 of 135] Compiling Synthesizer.Plain.Filter.NonRecursive
+[ 33 of 135] Compiling Synthesizer.Plain.Filter.Recursive.MovingAverage
+[ 34 of 135] Compiling Synthesizer.Plain.Analysis
+
+src/Synthesizer/Plain/Analysis.hs:217:8: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘([IntMap.Key], [y])’ not matched: ([], _)
+    |
+217 |        (startKey:_, elems) = unzip (IntMap.toAscList hist)
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 35 of 135] Compiling Synthesizer.Plain.Filter.LinearPredictive
+[ 36 of 135] Compiling Synthesizer.RandomKnuth
+[ 37 of 135] Compiling Synthesizer.Storable.Repair
+
+src/Synthesizer/Storable/Repair.hs:52:9: warning: [GHC-97441] [-Woverflowed-literals]
+    Literal -1 is out of the Word8 range 0..255
+   |
+52 | down = -1
+   |         ^
+[ 38 of 135] Compiling Synthesizer.Storable.Signal
+[ 39 of 135] Compiling Synthesizer.Storable.Play
+[ 40 of 135] Compiling Synthesizer.Storable.Oscillator
+[ 41 of 135] Compiling Synthesizer.Storable.Generate
+[ 42 of 135] Compiling Synthesizer.Storable.Cut
+[ 43 of 135] Compiling Synthesizer.State.Signal
+
+src/Synthesizer/State/Signal.hs:30:25: warning: [-Wunused-imports]
+    The import of ‘fail’ from module ‘Control.Monad’ is redundant
+   |
+30 |            (>>), (>>=), fail, return, (=<<),
+   |                         ^^^^
+
+src/Synthesizer/State/Signal.hs:95:4: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad T’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+95 |    return = singleton
+   |    ^^^^^^^^^^^^^^^^^^
+[ 44 of 135] Compiling Synthesizer.State.NoiseCustom
+
+src/Synthesizer/State/NoiseCustom.hs:82:17: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘next’
+    (imported from System.Random, but defined in System.Random.Internal):
+    Deprecated: "No longer used"
+   |
+82 |    let (n,g1) = Rnd.next g0
+   |                 ^^^^^^^^
+
+src/Synthesizer/State/NoiseCustom.hs:83:16: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘genRange’
+    (imported from System.Random, but defined in System.Random.Internal):
+    Deprecated: "No longer used"
+   |
+83 |        (l,u) = Rnd.genRange g0
+   |                ^^^^^^^^^^^^
+[ 45 of 135] Compiling Synthesizer.State.Noise
+[ 46 of 135] Compiling Synthesizer.State.Displacement
+[ 47 of 135] Compiling Synthesizer.State.Control
+[ 48 of 135] Compiling Synthesizer.State.Piece
+[ 49 of 135] Compiling Synthesizer.State.Analysis
+
+src/Synthesizer/State/Analysis.hs:224:8: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘([IntMap.Key], [y])’ not matched: ([], _)
+    |
+224 |        (startKey:_, elems) = unzip (IntMap.toAscList hist)
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 50 of 135] Compiling Synthesizer.Interpolation.Class
+[ 51 of 135] Compiling Synthesizer.Interpolation
+
+src/Synthesizer/Interpolation.hs:99:19: warning: [GHC-47082] [-Woperator-whitespace-ext-conflict]
+    The prefix use of a ‘$’ would denote an untyped splice
+      were the TemplateHaskell extension enabled.
+    Suggested fix: Add whitespace after the ‘$’.
+   |
+99 |                  ($t)
+   |                   ^
+[ 52 of 135] Compiling Synthesizer.State.Interpolation
+[ 53 of 135] Compiling Synthesizer.State.Filter.Delay
+[ 54 of 135] Compiling Synthesizer.State.Filter.NonRecursive
+[ 55 of 135] Compiling Synthesizer.Interpolation.Custom
+[ 56 of 135] Compiling Synthesizer.Basic.ToneModulation
+[ 57 of 135] Compiling Synthesizer.Generic.Cut
+[ 58 of 135] Compiling Synthesizer.Generic.CutChunky
+
+src/Synthesizer/Generic/CutChunky.hs:18:25: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+18 |    type Chunk chunky :: *
+   |                         ^
+[ 59 of 135] Compiling Synthesizer.Basic.NumberTheory
+
+private/Synthesizer/Basic/NumberTheory.hs:324:14: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘([a], [a])’ not matched: (_, [])
+    |
+324 |          let (prefix,end:_) =
+    |              ^^^^^^^^^^^^^^^^...
+
+private/Synthesizer/Basic/NumberTheory.hs:696:8: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[Integer]’, ‘[Integer]’ not matched:
+            [] _
+            [_] _
+    |
+696 |       (\(x0:x1:xs) ys -> x0 : x1 : ListHT.mergeBy (<=) xs ys)
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+private/Synthesizer/Basic/NumberTheory.hs:726:8: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[Integer]’, ‘[Integer]’ not matched:
+            [] _
+            [_] _
+            [_, _] _
+    |
+726 |       (\(x0:x1:x2:xs) ys -> x0 : x1 : x2 : ListHT.mergeBy (<=) xs ys)
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 60 of 135] Compiling Synthesizer.Generic.Signal
+
+src/Synthesizer/Generic/Signal.hs:89:31: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+89 |    data Constraints signal :: *
+   |                               ^
+[ 61 of 135] Compiling Synthesizer.PiecewiseConstant.Private
+
+src/Synthesizer/PiecewiseConstant/Private.hs:13:1: warning: [-Wunused-imports]
+    The import of ‘Data.Traversable’ is redundant
+      except perhaps to import instances from ‘Data.Traversable’
+    To import instances alone, use: import Data.Traversable()
+   |
+13 | import Data.Traversable (traverse, )
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 62 of 135] Compiling Synthesizer.PiecewiseConstant.Storable
+[ 63 of 135] Compiling Synthesizer.PiecewiseConstant.Signal
+
+src/Synthesizer/PiecewiseConstant/Signal.hs:35:1: warning: [-Wunused-imports]
+    The qualified import of ‘Prelude’ is redundant
+      except perhaps to import instances from ‘Prelude’
+    To import instances alone, use: import Prelude()
+   |
+35 | import qualified Prelude as P
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 64 of 135] Compiling Synthesizer.PiecewiseConstant.Generic
+[ 65 of 135] Compiling Synthesizer.Generic.Permutation
+
+private/Synthesizer/Generic/Permutation.hs:93:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe (Int, Int)’ not matched: Nothing
+   |
+93 |       let Just (i,j) = PID.diophantine k n m
+   |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 66 of 135] Compiling Synthesizer.Generic.Noise
+[ 67 of 135] Compiling Synthesizer.Generic.LengthSignal
+
+src/Synthesizer/Generic/LengthSignal.hs:44:4: warning: [-Wnoncanonical-monoid-instances]
+    Noncanonical ‘mappend’ definition detected
+    in the instance declaration for ‘Monoid (T sig)’.
+    ‘mappend’ will eventually be removed in favour of ‘(<>)’
+    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+   |
+44 |    mappend (Cons xl xs) (Cons yl ys) =
+   |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+[ 68 of 135] Compiling Synthesizer.Generic.Filter.Recursive.Integration
+[ 69 of 135] Compiling Synthesizer.Generic.Displacement
+[ 70 of 135] Compiling Synthesizer.Generic.Control
+[ 71 of 135] Compiling Synthesizer.Generic.Piece
+[ 72 of 135] Compiling Synthesizer.Generic.Filter.NonRecursive
+
+src/Synthesizer/Generic/Filter/NonRecursive.hs:685:14: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[a]’ not matched:
+            []
+            [_]
+            (_:_:_:_)
+    |
+685 |          let [a0,a1] = SigG.toList (SigL.toSignal a)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Synthesizer/Generic/Filter/NonRecursive.hs:686:14: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[b]’ not matched:
+            []
+            [_]
+            (_:_:_:_)
+    |
+686 |              [b0,b1] = SigG.toList (SigL.toSignal b)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Synthesizer/Generic/Filter/NonRecursive.hs:691:14: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[a]’ not matched:
+            []
+            [_]
+            (_:_:_:_)
+    |
+691 |          let [a0,a1]    = SigG.toList (SigL.toSignal a)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Synthesizer/Generic/Filter/NonRecursive.hs:692:14: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[b]’ not matched:
+            []
+            [_]
+            [_, _]
+            (_:_:_:_:_)
+    |
+692 |              [b0,b1,b2] = SigG.toList (SigL.toSignal b)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Synthesizer/Generic/Filter/NonRecursive.hs:698:14: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[a]’ not matched:
+            []
+            [_]
+            [_, _]
+            (_:_:_:_:_)
+    |
+698 |          let [a0,a1,a2] = SigG.toList (SigL.toSignal a)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Synthesizer/Generic/Filter/NonRecursive.hs:699:14: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[b]’ not matched:
+            []
+            [_]
+            (_:_:_:_)
+    |
+699 |              [b0,b1]    = SigG.toList (SigL.toSignal b)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Synthesizer/Generic/Filter/NonRecursive.hs:705:14: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[a]’ not matched:
+            []
+            [_]
+            [_, _]
+            (_:_:_:_:_)
+    |
+705 |          let [a0,a1,a2] = SigG.toList (SigL.toSignal a)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Synthesizer/Generic/Filter/NonRecursive.hs:706:14: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[b]’ not matched:
+            []
+            [_]
+            [_, _]
+            (_:_:_:_:_)
+    |
+706 |              [b0,b1,b2] = SigG.toList (SigL.toSignal b)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Synthesizer/Generic/Filter/NonRecursive.hs:712:14: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[a]’ not matched:
+            []
+            []
+            []
+            []
+            ...
+    |
+712 |          let [a0,a1,a2,a3] = SigG.toList (SigL.toSignal a)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Synthesizer/Generic/Filter/NonRecursive.hs:713:14: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[b]’ not matched:
+            []
+            []
+            []
+            []
+            ...
+    |
+713 |              [b0,b1,b2,b3] = SigG.toList (SigL.toSignal b)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 73 of 135] Compiling Synthesizer.Storable.Filter.NonRecursive
+
+src/Synthesizer/Storable/Filter/NonRecursive.hs:276:4: warning: [-Wsimplifiable-class-constraints]
+    • The constraint ‘Storable Int’ matches
+        instance Storable Int -- Defined in ‘Foreign.Storable’
+      This makes type inference for inner bindings fragile;
+        either use MonoLocalBinds, or simplify it using the instance
+    • In the type signature:
+        movingAverageModulatedPyramid :: (Field.C a,
+                                          Module.C a v,
+                                          Storable Int,
+                                          Storable v) =>
+                                         a -> Int -> Int -> SigSt.T Int -> SigSt.T v -> SigSt.T v
+    |
+276 |    (Field.C a, Module.C a v, Storable Int, Storable v) =>
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+[ 74 of 135] Compiling Synthesizer.Generic.Analysis
+[ 75 of 135] Compiling Synthesizer.Generic.Cyclic
+[ 76 of 135] Compiling Synthesizer.Generic.Fourier
+
+src/Synthesizer/Generic/Fourier.hs:131:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding: Patterns of type ‘[a]’ not matched: []
+    |
+131 |           r:_ = NumberTheory.primitiveRootsOfUnity modu order
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Synthesizer/Generic/Fourier.hs:282:24: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[(Integer, Integer)]’ not matched: []
+    |
+282 |                    let (q2 : _) = facs
+    |                        ^^^^^^^^^^^^^^^
+
+src/Synthesizer/Generic/Fourier.hs:492:8: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[y]’ not matched:
+            []
+            [_]
+    |
+492 |    let x0:x1:_ = SigG.toList sig
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Synthesizer/Generic/Fourier.hs:500:8: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[y]’ not matched:
+            []
+            [_]
+            [_, _]
+    |
+500 |    let x0:x1:x2:_ = SigG.toList sig
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Synthesizer/Generic/Fourier.hs:522:8: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[y]’ not matched:
+            []
+            [_]
+            [_, _]
+            [_, _, _]
+    |
+522 |    let x0:x1:x2:x3:_ = SigG.toList sig
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Synthesizer/Generic/Fourier.hs:563:8: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[y]’ not matched:
+            []
+            [_]
+            [_, _]
+            [_, _, _]
+            ...
+    |
+563 |    let x0:x1:x2:x3:x4:_ = SigG.toList sig
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 77 of 135] Compiling Synthesizer.ChunkySize
+[ 78 of 135] Compiling Synthesizer.State.Cut
+[ 79 of 135] Compiling Synthesizer.ChunkySize.Cut
+[ 80 of 135] Compiling Synthesizer.ChunkySize.Signal
+[ 81 of 135] Compiling Synthesizer.Causal.Process
+
+src/Synthesizer/Causal/Process.hs:94:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+94 | import Control.Applicative (Applicative, liftA2, pure, (<*>), )
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 82 of 135] Compiling Synthesizer.State.Filter.Recursive.Integration
+[ 83 of 135] Compiling Synthesizer.State.Filter.Recursive.MovingAverage
+[ 84 of 135] Compiling Synthesizer.Plain.Filter.Recursive.SecondOrder
+[ 85 of 135] Compiling Synthesizer.Plain.Filter.Recursive.Universal
+[ 86 of 135] Compiling Synthesizer.Plain.Filter.Recursive.SecondOrderCascade
+[ 87 of 135] Compiling Synthesizer.Plain.Filter.Recursive.FirstOrderComplex
+[ 88 of 135] Compiling Synthesizer.Plain.Filter.Recursive.FirstOrder
+[ 89 of 135] Compiling Synthesizer.State.Filter.Recursive.Comb
+[ 90 of 135] Compiling Synthesizer.Plain.Filter.Recursive.Moog
+[ 91 of 135] Compiling Synthesizer.Plain.Filter.Recursive.Comb
+[ 92 of 135] Compiling Synthesizer.Generic.Filter.Recursive.Comb
+[ 93 of 135] Compiling Synthesizer.Plain.Filter.Recursive.Chebyshev
+[ 94 of 135] Compiling Synthesizer.Plain.Filter.Recursive.Butterworth
+[ 95 of 135] Compiling Synthesizer.Plain.Filter.Recursive.Allpass
+[ 96 of 135] Compiling Synthesizer.Causal.Oscillator.Core
+[ 97 of 135] Compiling Synthesizer.State.ToneModulation
+
+src/Synthesizer/State/ToneModulation.hs:192:16: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe (t, SigS.T t)’ not matched: Nothing
+    |
+192 |            let Just (s,ss) =
+    |                ^^^^^^^^^^^^^...
+[ 98 of 135] Compiling Synthesizer.Generic.Wave
+[ 99 of 135] Compiling Synthesizer.Causal.ToneModulation
+[100 of 135] Compiling Synthesizer.Causal.Filter.Recursive.Integration
+[101 of 135] Compiling Synthesizer.Causal.Cut
+[102 of 135] Compiling Synthesizer.Causal.Analysis
+[103 of 135] Compiling Synthesizer.Causal.Arrow
+[104 of 135] Compiling Synthesizer.Storage
+[105 of 135] Compiling Synthesizer.Utility
+[106 of 135] Compiling Synthesizer.Interpolation.Core
+[107 of 135] Compiling Synthesizer.Interpolation.Module
+[108 of 135] Compiling Synthesizer.Plain.Interpolation
+[109 of 135] Compiling Synthesizer.Plain.ToneModulation
+
+src/Synthesizer/Plain/ToneModulation.hs:249:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘([Int], [(t, Phase.T t)])’ not matched: ([], _)
+    |
+249 |         (skip:skips,coords) =
+    |         ^^^^^^^^^^^^^^^^^^^^^...
+
+src/Synthesizer/Plain/ToneModulation.hs:348:16: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding: Patterns of type ‘[t]’ not matched: []
+    |
+348 |            let (s:ss) = map (\(n,_) -> fromIntegral n / period) shapeOffsets
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[110 of 135] Compiling Synthesizer.Plain.Wave
+[111 of 135] Compiling Synthesizer.Plain.Oscillator
+[112 of 135] Compiling Synthesizer.Plain.Tutorial
+
+src/Synthesizer/Plain/Tutorial.hs:35:1: warning: [-Wunused-imports]
+    The qualified import of ‘Algebra.Module’ is redundant
+      except perhaps to import instances from ‘Algebra.Module’
+    To import instances alone, use: import Algebra.Module()
+   |
+35 | import qualified Algebra.Module as Module -- needed for Haddock
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[113 of 135] Compiling Synthesizer.Plain.Filter.Recursive.Test
+[114 of 135] Compiling Synthesizer.Plain.Filter.Recursive.Hilbert
+[115 of 135] Compiling Synthesizer.Plain.Effect.Glass
+[116 of 135] Compiling Synthesizer.Plain.Instrument
+[117 of 135] Compiling Synthesizer.Plain.Effect
+[118 of 135] Compiling Synthesizer.Plain.Filter.Delay.ST
+[119 of 135] Compiling Synthesizer.Plain.Filter.Delay.List
+[120 of 135] Compiling Synthesizer.Plain.Filter.Delay.Block
+[121 of 135] Compiling Synthesizer.Plain.Filter.Delay
+[122 of 135] Compiling Synthesizer.Plain.Effect.Fly
+[123 of 135] Compiling Synthesizer.Generic.Interpolation
+[124 of 135] Compiling Synthesizer.Generic.Filter.Delay
+[125 of 135] Compiling Synthesizer.Generic.Filter.Recursive.MovingAverage
+[126 of 135] Compiling Synthesizer.Causal.Interpolation
+[127 of 135] Compiling Synthesizer.Causal.Oscillator
+[128 of 135] Compiling Synthesizer.State.Oscillator
+[129 of 135] Compiling Synthesizer.Generic.Loop
+[130 of 135] Compiling Synthesizer.Generic.Oscillator
+[131 of 135] Compiling Synthesizer.Generic.Tutorial
+
+src/Synthesizer/Generic/Tutorial.hs:13:1: warning: [-Wunused-imports]
+    The qualified import of ‘Synthesizer.Plain.Tutorial’ is redundant
+      except perhaps to import instances from ‘Synthesizer.Plain.Tutorial’
+    To import instances alone, use: import Synthesizer.Plain.Tutorial()
+   |
+13 | import qualified Synthesizer.Plain.Tutorial as Tutorial -- needed for Haddock
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Synthesizer/Generic/Tutorial.hs:13:1: warning: [-Wdeprecations]
+    Module ‘Synthesizer.Plain.Tutorial’ is deprecated:
+      "do not import that module, it is only intended for demonstration"
+   |
+13 | import qualified Synthesizer.Plain.Tutorial as Tutorial -- needed for Haddock
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[132 of 135] Compiling Synthesizer.Causal.Filter.NonRecursive
+[133 of 135] Compiling Synthesizer.Zip
+
+src/Synthesizer/Zip.hs:8:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+  |
+8 | import Data.Monoid (Monoid, mempty, mappend, )
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Synthesizer/Zip.hs:9:1: warning: [-Wunused-imports]
+    The import of ‘Data.Semigroup’ is redundant
+      except perhaps to import instances from ‘Data.Semigroup’
+    To import instances alone, use: import Data.Semigroup()
+  |
+9 | import Data.Semigroup (Semigroup, (<>), )
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Synthesizer/Zip.hs:118:4: warning: [-Wnoncanonical-monoid-instances]
+    Noncanonical ‘mappend’ definition detected
+    in the instance declaration for ‘Monoid (T a b)’.
+    ‘mappend’ will eventually be removed in favour of ‘(<>)’
+    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    |
+118 |    mappend (Cons a0 b0) (Cons a1 b1) =
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+[134 of 135] Compiling Synthesizer.CausalIO.Process
+
+src/Synthesizer/CausalIO/Process.hs:42:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+42 | import Data.Monoid (Monoid, mempty, mappend, )
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Synthesizer/CausalIO/Process.hs:43:1: warning: [-Wunused-imports]
+    The import of ‘Data.Semigroup’ is redundant
+      except perhaps to import instances from ‘Data.Semigroup’
+    To import instances alone, use: import Data.Semigroup()
+   |
+43 | import Data.Semigroup (Semigroup, (<>), )
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Synthesizer/CausalIO/Process.hs:211:4: warning: [-Wnoncanonical-monoid-instances]
+    Noncanonical ‘mappend’ definition detected
+    in the instance declaration for ‘Monoid (T a b)’.
+    ‘mappend’ will eventually be removed in favour of ‘(<>)’
+    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    |
+211 |    mappend = append mappend
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^
+[135 of 135] Compiling Synthesizer.CausalIO.Gate
+Configuring test suite 'test' for synthesizer-core-0.8.4...
+Warning: [no-default-language] Packages using 'cabal-version: >= 1.10' and
+before 'cabal-version: 3.4' must specify the 'default-language' field for each
+component (e.g. Haskell98 or Haskell2010). If a component uses different
+languages in different modules then list the other ones in the
+'other-languages' field.
+Preprocessing test suite 'test' for synthesizer-core-0.8.4...
+Building test suite 'test' for synthesizer-core-0.8.4...
+[ 1 of 25] Compiling Synthesizer.Basic.NumberTheory
+
+private/Synthesizer/Basic/NumberTheory.hs:324:14: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘([a], [a])’ not matched: (_, [])
+    |
+324 |          let (prefix,end:_) =
+    |              ^^^^^^^^^^^^^^^^...
+
+private/Synthesizer/Basic/NumberTheory.hs:696:8: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[Integer]’, ‘[Integer]’ not matched:
+            [] _
+            [_] _
+    |
+696 |       (\(x0:x1:xs) ys -> x0 : x1 : ListHT.mergeBy (<=) xs ys)
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+private/Synthesizer/Basic/NumberTheory.hs:726:8: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[Integer]’, ‘[Integer]’ not matched:
+            [] _
+            [_] _
+            [_, _] _
+    |
+726 |       (\(x0:x1:x2:xs) ys -> x0 : x1 : x2 : ListHT.mergeBy (<=) xs ys)
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 2 of 25] Compiling Synthesizer.Generic.Permutation
+
+private/Synthesizer/Generic/Permutation.hs:93:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe (Int, Int)’ not matched: Nothing
+   |
+93 |       let Just (i,j) = PID.diophantine k n m
+   |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 3 of 25] Compiling Test.Sound.Synthesizer.Basic.NumberTheory
+
+test/Test/Sound/Synthesizer/Basic/NumberTheory.hs:171:14: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[Integer]’ not matched:
+            []
+            [_]
+    |
+171 |          let (n0:n1:_) = drop k NT.numbers3Smooth
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/Test/Sound/Synthesizer/Basic/NumberTheory.hs:177:14: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[Integer]’ not matched:
+            []
+            [_]
+    |
+177 |          let (n0:n1:_) = drop k NT.numbers5Smooth
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 4 of 25] Compiling Test.Sound.Synthesizer.Causal.Analysis
+[ 5 of 25] Compiling Test.Sound.Synthesizer.Generic.Cut
+[ 6 of 25] Compiling Test.Sound.Synthesizer.Generic.FourierInteger
+[ 7 of 25] Compiling Test.Sound.Synthesizer.Generic.Permutation
+[ 8 of 25] Compiling Test.Sound.Synthesizer.Plain.Filter.Allpass
+[ 9 of 25] Compiling Test.Sound.Synthesizer.Plain.Filter.FirstOrder
+
+test/Test/Sound/Synthesizer/Plain/Filter/FirstOrder.hs:11:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+11 | import Control.Applicative ((<$), )
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[10 of 25] Compiling Test.Sound.Synthesizer.Plain.NonEmpty
+[11 of 25] Compiling Test.Sound.Synthesizer.Plain.Filter.Hilbert
+[12 of 25] Compiling Test.Sound.Synthesizer.Generic.Filter
+[13 of 25] Compiling Test.Sound.Synthesizer.Plain.Wave
+[14 of 25] Compiling Test.Sound.Synthesizer.Plain.Oscillator
+[15 of 25] Compiling Test.Sound.Synthesizer.Storable.Cut
+[16 of 25] Compiling Test.Utility
+
+test/Test/Utility.hs:11:1: warning: [-Wunused-imports]
+    The qualified import of ‘Data.List.HT’ is redundant
+      except perhaps to import instances from ‘Data.List.HT’
+    To import instances alone, use: import Data.List.HT()
+   |
+11 | import qualified Data.List.HT as ListHT
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[17 of 25] Compiling Test.Sound.Synthesizer.Plain.Interpolation
+[18 of 25] Compiling Test.Sound.Synthesizer.Basic.ToneModulation
+[19 of 25] Compiling Test.Sound.Synthesizer.Plain.ToneModulation
+[20 of 25] Compiling Test.Sound.Synthesizer.Plain.Filter
+[21 of 25] Compiling Test.Sound.Synthesizer.Plain.Control
+[22 of 25] Compiling Test.Sound.Synthesizer.Plain.Analysis
+[23 of 25] Compiling Test.Sound.Synthesizer.Generic.ToneModulation
+[24 of 25] Compiling Test.Sound.Synthesizer.Generic.Fourier
+[25 of 25] Compiling Main
+[26 of 26] Linking /tmp/workdir-synthesizer-core/synthesizer-core-0.8.4/dist-newstyle/build/x86_64-linux/ghc-9.6.6/synthesizer-core-0.8.4/t/test/build/test/test

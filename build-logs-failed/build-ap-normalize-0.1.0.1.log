@@ -1,0 +1,150 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - ap-normalize-0.1.0.1 (lib) (first run)
+ - ap-normalize-0.1.0.1 (test:example-test) (first run)
+ - ap-normalize-0.1.0.1 (test:assoc-test) (first run)
+Configuring library for ap-normalize-0.1.0.1...
+Preprocessing library for ap-normalize-0.1.0.1...
+Building library for ap-normalize-0.1.0.1...
+[1 of 3] Compiling ApNormalize.DList
+[2 of 3] Compiling ApNormalize.Aps
+
+src/ApNormalize/Aps.hs:19:29: warning: [-Wunused-imports]
+    The import of ‘liftA2’
+    from module ‘Control.Applicative’ is redundant
+   |
+19 | import Control.Applicative (liftA2, liftA3)
+   |                             ^^^^^^
+[3 of 3] Compiling ApNormalize
+Configuring test suite 'example-test' for ap-normalize-0.1.0.1...
+Preprocessing test suite 'example-test' for ap-normalize-0.1.0.1...
+Building test suite 'example-test' for ap-normalize-0.1.0.1...
+[1 of 1] Compiling Main
+test/example.hs:49:1: traverseNormal === traverseNaive failed expectedly.
+test/example.hs:50:1: traverseNormal === traverseAN passed.
+test/example.hs:51:1: traverseNormal === traverseTree passed.
+inspection testing successful
+      expected successes: 2
+       expected failures: 1
+[2 of 2] Linking /tmp/workdir-ap-normalize/ap-normalize-0.1.0.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/ap-normalize-0.1.0.1/t/example-test/build/example-test/example-test
+Configuring test suite 'assoc-test' for ap-normalize-0.1.0.1...
+Preprocessing test suite 'assoc-test' for ap-normalize-0.1.0.1...
+Building test suite 'assoc-test' for ap-normalize-0.1.0.1...
+[1 of 1] Compiling Main
+test/assoc.hs:60:147: assoc1'_'Aps === assoc2'_'Aps failed expectedly.
+test/assoc.hs:63:163: assoc1'_'ApDList ==- assoc2'_'ApDList passed.
+test/assoc.hs:68:115: assoc1'_'IO === assoc2'_'IO passed.
+test/assoc.hs:69:123: assoc1'_'ST === assoc2'_'ST passed.
+test/assoc.hs:70:123: assoc1'_'STM === assoc2'_'STM passed.
+test/assoc.hs:71:139: assoc1'_'Maybe === assoc2'_'Maybe passed.
+test/assoc.hs:72:223: assoc1'_'ProductMaybe === assoc2'_'ProductMaybe passed.
+test/assoc.hs:73:155: assoc1'_'Either === assoc2'_'Either passed.
+test/assoc.hs:74:155: assoc1'_'Reader === assoc2'_'Reader passed.
+test/assoc.hs:75:167: assoc1'_'State ==- assoc2'_'State passed.
+test/assoc.hs:76:179: assoc1'_'SState ==- assoc2'_'SState passed.
+test/assoc.hs:77:151: assoc1'_'Cont === assoc2'_'Cont passed.
+test/assoc.hs:81:191: assoc1'_'AccumEndo === assoc2'_'AccumEndo passed.
+test/assoc.hs:82:199: assoc1'_'WriterEndo === assoc2'_'WriterEndo passed.
+test/assoc.hs:83:191: assoc1'_'RWSEndo ==- assoc2'_'RWSEndo failed:
+LHS:
+    assoc1'_'RWSEndo = assoc1'_'RWSEndo_sd9R `cast` <Co:68> :: ...
+    
+    lvl_se0n
+      = \ @c @a @b ds_dcHB ds_dcHC ds_dcHD -> (ds_dcHB, ds_dcHC, ds_dcHD)
+    
+    $wassoc1'_'RWSEndo
+      = \ @r @w @s @a @b @c x y z eta_se8q eta_se8r ->
+          let {
+            ds2_sdZu
+              = $fAlternativeRWST3
+                  $fMonoidEndo
+                  $fFunctorIdentity
+                  $fMonadIdentity
+                  lvl_se0n
+                  x
+                  y
+                  eta_se8q
+                  eta_se8r } in
+          let {
+            ds3_sdZw
+              = (z `cast` <Co:7> :: ...)
+                  eta_se8q
+                  (case ds2_sdZu `cast` <Co:10> :: ... of { (f, s', w2) -> s' }) } in
+          (# case ds2_sdZu `cast` <Co:10> :: ... of { (f, s', w2) ->
+             f (case ds3_sdZw `cast` <Co:6> :: ... of { (x, s'', w') -> x })
+             },
+             case ds3_sdZw `cast` <Co:6> :: ... of { (x, s'', w') -> s'' },
+             (\ x ->
+                case ds2_sdZu `cast` <Co:10> :: ... of { (f, s', w2) ->
+                (w2 `cast` <Co:2> :: ...)
+                  (case ds3_sdZw `cast` <Co:6> :: ... of { (x, s'', w') ->
+                   (w' `cast` <Co:2> :: ...) x
+                   })
+                })
+             `cast` <Co:3> :: ... #)
+    
+    assoc1'_'RWSEndo_sd9R
+      = \ @r @w @s @a @b @c x y z eta_se8q eta_se8r ->
+          case $wassoc1'_'RWSEndo x y z eta_se8q eta_se8r of
+          { (# ww, ww, ww #) ->
+          (ww, ww, ww) `cast` <Co:10> :: ...
+          }
+    
+RHS:
+    assoc2'_'RWSEndo = assoc2'_'RWSEndo_sd9T `cast` <Co:50> :: ...
+    
+    lvl_se0o = \ @c @b ds_dcHt ds_dcHu -> (ds_dcHt, ds_dcHu)
+    
+    $wassoc2'_'RWSEndo
+      = \ @r @w @s @a @b @c x y z eta_se8M eta_se8N ->
+          let { ds_sdZy = (x `cast` <Co:7> :: ...) eta_se8M eta_se8N } in
+          let {
+            ds1_sdZA
+              = $fAlternativeRWST3
+                  $fMonoidEndo
+                  $fFunctorIdentity
+                  $fMonadIdentity
+                  lvl_se0o
+                  y
+                  z
+                  eta_se8M
+                  (case ds_sdZy `cast` <Co:6> :: ... of { (a1, s', w1) -> s' }) } in
+          (# case ds1_sdZA `cast` <Co:8> :: ... of { (x, s'', w') ->
+             case x of { (y, z) ->
+             (case ds_sdZy `cast` <Co:6> :: ... of { (a1, s', w1) -> a1 }, y, z)
+             }
+             },
+             case ds1_sdZA `cast` <Co:8> :: ... of { (x, s'', w') -> s'' },
+             (\ x ->
+                case ds_sdZy `cast` <Co:6> :: ... of { (a1, s', w1) ->
+                (w1 `cast` <Co:2> :: ...)
+                  (case ds1_sdZA `cast` <Co:8> :: ... of { (x, s'', w') ->
+                   (w' `cast` <Co:2> :: ...) x
+                   })
+                })
+             `cast` <Co:3> :: ... #)
+    
+    assoc2'_'RWSEndo_sd9T
+      = \ @r @w @s @a @b @c x y z eta_se8M eta_se8N ->
+          case $wassoc2'_'RWSEndo x y z eta_se8M eta_se8N of
+          { (# ww, ww, ww #) ->
+          (ww, ww, ww) `cast` <Co:10> :: ...
+          }
+    
+test/assoc.hs:84:158: assoc1'_'Accum === assoc2'_'Accum failed expectedly.
+test/assoc.hs:85:166: assoc1'_'Writer === assoc2'_'Writer failed expectedly.
+test/assoc.hs:86:158: assoc1'_'RWS === assoc2'_'RWS failed expectedly.
+test/assoc.hs:89:123: assoc1'_'List === assoc2'_'List failed expectedly.
+test/assoc.hs:90:155: assoc1'_'ZipList === assoc2'_'ZipList failed expectedly.
+test/assoc.hs:91:155: assoc1'_'Select === assoc2'_'Select failed expectedly.
+
+test/assoc.hs: error:
+    inspection testing unsuccessful
+          expected successes: 13
+           expected failures: 7
+         unexpected failures: 1
+
+<no location info>: error: ExitFailure 1
+Error: [Cabal-7125]
+Failed to build test:assoc-test from ap-normalize-0.1.0.1.
+

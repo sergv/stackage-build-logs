@@ -1,0 +1,83 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - path-io-1.8.2 (test:tests) (ephemeral targets)
+Preprocessing test suite 'tests' for path-io-1.8.2...
+Building test suite 'tests' for path-io-1.8.2...
+Running 1 test suites...
+Test suite tests: RUNNING...
+
+listDir
+  lists directory [✔]
+listDirRel
+  lists directory [✔]
+listDirRecur
+  lists directory recursively [✔]
+listDirRecurRel
+  lists directory recursively [✔]
+listDirRecurWith
+  lists directory recursively using predicates [✔]
+walkDir Finish
+  Finishes only after finding what it is looking for [✔]
+copyDirRecur
+  when source directory is editable
+    copies directory [✔]
+  when source directory is read-only
+    copies directory just as well (preserving permissions) [✘]
+copyDirRecur'
+  when source directory is read-only
+    copies directory but now it's editable [✔]
+findFile
+  finds a file lazily [✔]
+removeDirLink
+  remove dir link [✔]
+listDirRecur Cyclic
+  lists directory trees having traversal cycles [✔]
+getCurrentDir
+  returns current dir [✔]
+setCurrentDir
+  sets current dir [✔]
+withCurrentDir
+  temporarily modifies current dir [✔]
+walkDirRel
+  does not throw exceptions [✔]
+getHomeDir
+  home dir is influenced by environment variable HOME [✔]
+getTempDir
+  temp dir is influenced by environment variable TMPDIR [✔]
+getXdgDir Data
+  XDG data dir is influenced by environment variable XDG_DATA_HOME [✔]
+getXdgDir Config
+  XDG config dir is influenced by environment variable XDG_CONFIG_HOME [✔]
+getXdgDir Cache
+  XDG cache dir is influenced by environment variable XDG_CACHE_HOME [✔]
+
+Failures:
+
+  tests/Main.hs:131:27: 
+  1) copyDirRecur, when source directory is read-only, copies directory just as well (preserving permissions)
+       expected: Permissions {
+                   readable = True,
+                   writable = False,
+                   executable = False,
+                   searchable = True
+                 }
+        but got: Permissions {
+                   readable = True,
+                   writable = True,
+                   executable = False,
+                   searchable = True
+                 }
+
+  To rerun use: --match "/copyDirRecur/when source directory is read-only/copies directory just as well (preserving permissions)/" --seed 1243742286
+
+Randomized with seed 1243742286
+
+Finished in 0.0112 seconds
+21 examples, 1 failure
+Test suite tests: FAIL
+Test suite logged to:
+/tmp/workdir-path-io/path-io-1.8.2/dist-newstyle/build/x86_64-linux/ghc-9.6.6/path-io-1.8.2/t/tests/test/path-io-1.8.2-tests.log
+0 of 1 test suites (0 of 1 test cases) passed.
+Error: [Cabal-7125]
+Tests failed for test:tests from path-io-1.8.2.
+

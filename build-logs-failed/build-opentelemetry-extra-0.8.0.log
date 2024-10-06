@@ -1,0 +1,241 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - opentelemetry-extra-0.8.0 (lib) (first run)
+ - opentelemetry-extra-0.8.0 (test:unit-tests) (first run)
+ - opentelemetry-extra-0.8.0 (exe:eventlog-to-zipkin) (first run)
+ - opentelemetry-extra-0.8.0 (exe:eventlog-to-tracy) (first run)
+ - opentelemetry-extra-0.8.0 (exe:eventlog-to-chrome) (first run)
+ - opentelemetry-extra-0.8.0 (exe:eventlog-summary) (first run)
+Configuring library for opentelemetry-extra-0.8.0...
+Preprocessing library for opentelemetry-extra-0.8.0...
+Building library for opentelemetry-extra-0.8.0...
+[1 of 5] Compiling OpenTelemetry.Common
+[2 of 5] Compiling OpenTelemetry.Debug
+[3 of 5] Compiling OpenTelemetry.EventlogStreaming_Internal
+[4 of 5] Compiling OpenTelemetry.ChromeExporter
+
+src/OpenTelemetry/ChromeExporter.hs:61:1-14: warning: [GHC-38417] [-Wmissing-signatures]
+    Top-level binding with no type signature:
+      jChromeEndSpan :: Span -> J.Json
+   |
+61 | jChromeEndSpan Span {..} =
+   | ^^^^^^^^^^^^^^
+
+src/OpenTelemetry/ChromeExporter.hs:39:1-16: warning: [GHC-38417] [-Wmissing-signatures]
+    Top-level binding with no type signature:
+      jChromeBeginSpan :: Span -> J.Json
+   |
+39 | jChromeBeginSpan Span {..} =
+   | ^^^^^^^^^^^^^^^^
+
+src/OpenTelemetry/ChromeExporter.hs:30:1-12: warning: [GHC-38417] [-Wmissing-signatures]
+    Top-level binding with no type signature:
+      jChromeEvent :: ChromeEvent -> J.Json
+   |
+30 | jChromeEvent (ChromeEvent threadId SpanEvent {..}) =
+   | ^^^^^^^^^^^^
+[5 of 5] Compiling OpenTelemetry.ZipkinExporter
+Configuring test suite 'unit-tests' for opentelemetry-extra-0.8.0...
+Preprocessing test suite 'unit-tests' for opentelemetry-extra-0.8.0...
+Building test suite 'unit-tests' for opentelemetry-extra-0.8.0...
+[1 of 6] Compiling Arbitrary
+
+unit-tests/Arbitrary.hs:69:15-30: error: [GHC-39999]
+    • Ambiguous type variables ‘af0’,
+                               ‘bf0’ arising from a use of ‘genericArbitrary’
+      prevents the constraint ‘(FiniteSum
+                                  OpenTelemetryEventlogEvent
+                                  (GHC.Generics.M1
+                                     GHC.Generics.C
+                                     (GHC.Generics.MetaCons
+                                        "DeclareInstrumentEv" GHC.Generics.PrefixI False)
+                                     (GHC.Generics.S1
+                                        (GHC.Generics.MetaSel
+                                           Nothing
+                                           GHC.Generics.NoSourceUnpackedness
+                                           GHC.Generics.NoSourceStrictness
+                                           GHC.Generics.DecidedLazy)
+                                        (GHC.Generics.Rec0 InstrumentType)
+                                      GHC.Generics.:*: (GHC.Generics.S1
+                                                          (GHC.Generics.MetaSel
+                                                             Nothing
+                                                             GHC.Generics.NoSourceUnpackedness
+                                                             GHC.Generics.NoSourceStrictness
+                                                             GHC.Generics.DecidedLazy)
+                                                          (GHC.Generics.Rec0 InstrumentId)
+                                                        GHC.Generics.:*: GHC.Generics.S1
+                                                                           (GHC.Generics.MetaSel
+                                                                              Nothing
+                                                                              GHC.Generics.NoSourceUnpackedness
+                                                                              GHC.Generics.NoSourceStrictness
+                                                                              GHC.Generics.DecidedLazy)
+                                                                           (GHC.Generics.Rec0
+                                                                              InstrumentName))))
+                                  (GHC.Generics.M1
+                                     GHC.Generics.C
+                                     (GHC.Generics.MetaCons
+                                        "MetricCaptureEv" GHC.Generics.PrefixI False)
+                                     (GHC.Generics.S1
+                                        (GHC.Generics.MetaSel
+                                           Nothing
+                                           GHC.Generics.NoSourceUnpackedness
+                                           GHC.Generics.NoSourceStrictness
+                                           GHC.Generics.DecidedLazy)
+                                        (GHC.Generics.Rec0 InstrumentId)
+                                      GHC.Generics.:*: GHC.Generics.S1
+                                                         (GHC.Generics.MetaSel
+                                                            Nothing
+                                                            GHC.Generics.NoSourceUnpackedness
+                                                            GHC.Generics.NoSourceStrictness
+                                                            GHC.Generics.DecidedLazy)
+                                                         (GHC.Generics.Rec0 Int)))
+                                  af0
+                                  bf0)’ from being solved.
+      Probable fix: use a type annotation to specify what ‘af0’,
+                                                          ‘bf0’ should be.
+      Potentially matching instances:
+        instance (FiniteSumElem self b, Finite self a ~ False,
+                  Finite self b ~ True) =>
+                 FiniteSum self a b False True
+          -- Defined in ‘Test.QuickCheck.Arbitrary.Generic’
+        instance (FiniteSumElem self a, Finite self a ~ True,
+                  Finite self b ~ False) =>
+                 FiniteSum self a b True False
+          -- Defined in ‘Test.QuickCheck.Arbitrary.Generic’
+        instance (FiniteSumElem self a, FiniteSumElem self b,
+                  Finite self a ~ True, Finite self b ~ True) =>
+                 FiniteSum self a b True True
+          -- Defined in ‘Test.QuickCheck.Arbitrary.Generic’
+    • In the expression: genericArbitrary
+      In an equation for ‘arbitrary’: arbitrary = genericArbitrary
+      In the instance declaration for
+        ‘Arbitrary OpenTelemetryEventlogEvent’
+   |
+69 |   arbitrary = genericArbitrary
+   |               ^^^^^^^^^^^^^^^^
+
+unit-tests/Arbitrary.hs:1:1: error: [GHC-95822]
+    solveWanteds: too many iterations (limit = 4)
+      Unsolved: WC {}
+      Simples: {}
+    Suggested fix:
+      Set limit with -fconstraint-solver-iterations=n; n=0 for no limit
+  |
+1 | {-# LANGUAGE DeriveGeneric #-}
+  | ^
+
+unit-tests/Arbitrary.hs:1:1: error: [GHC-95822]
+    solveWanteds: too many iterations (limit = 4)
+      Unsolved: WC {wc_simple =
+                      [W] $dFiniteSum_a8Pb {7}:: FiniteSum
+                                                   OpenTelemetryEventlogEvent
+                                                   (GHC.Generics.M1
+                                                      GHC.Generics.C
+                                                      (GHC.Generics.MetaCons
+                                                         "DeclareInstrumentEv"
+                                                         GHC.Generics.PrefixI
+                                                         False)
+                                                      (GHC.Generics.S1
+                                                         (GHC.Generics.MetaSel
+                                                            Nothing
+                                                            GHC.Generics.NoSourceUnpackedness
+                                                            GHC.Generics.NoSourceStrictness
+                                                            GHC.Generics.DecidedLazy)
+                                                         (GHC.Generics.Rec0 InstrumentType)
+                                                       GHC.Generics.:*: (GHC.Generics.S1
+                                                                           (GHC.Generics.MetaSel
+                                                                              Nothing
+                                                                              GHC.Generics.NoSourceUnpackedness
+                                                                              GHC.Generics.NoSourceStrictness
+                                                                              GHC.Generics.DecidedLazy)
+                                                                           (GHC.Generics.Rec0
+                                                                              InstrumentId)
+                                                                         GHC.Generics.:*: GHC.Generics.S1
+                                                                                            (GHC.Generics.MetaSel
+                                                                                               Nothing
+                                                                                               GHC.Generics.NoSourceUnpackedness
+                                                                                               GHC.Generics.NoSourceStrictness
+                                                                                               GHC.Generics.DecidedLazy)
+                                                                                            (GHC.Generics.Rec0
+                                                                                               InstrumentName))))
+                                                   (GHC.Generics.M1
+                                                      GHC.Generics.C
+                                                      (GHC.Generics.MetaCons
+                                                         "MetricCaptureEv"
+                                                         GHC.Generics.PrefixI
+                                                         False)
+                                                      (GHC.Generics.S1
+                                                         (GHC.Generics.MetaSel
+                                                            Nothing
+                                                            GHC.Generics.NoSourceUnpackedness
+                                                            GHC.Generics.NoSourceStrictness
+                                                            GHC.Generics.DecidedLazy)
+                                                         (GHC.Generics.Rec0 InstrumentId)
+                                                       GHC.Generics.:*: GHC.Generics.S1
+                                                                          (GHC.Generics.MetaSel
+                                                                             Nothing
+                                                                             GHC.Generics.NoSourceUnpackedness
+                                                                             GHC.Generics.NoSourceStrictness
+                                                                             GHC.Generics.DecidedLazy)
+                                                                          (GHC.Generics.Rec0 Int)))
+                                                   af0
+                                                   bf0 (CDictCan(psc))}
+      Simples: {[W] $dFiniteSum_a8Pb {7}:: FiniteSum
+                                             OpenTelemetryEventlogEvent
+                                             (GHC.Generics.M1
+                                                GHC.Generics.C
+                                                (GHC.Generics.MetaCons
+                                                   "DeclareInstrumentEv" GHC.Generics.PrefixI False)
+                                                (GHC.Generics.S1
+                                                   (GHC.Generics.MetaSel
+                                                      Nothing
+                                                      GHC.Generics.NoSourceUnpackedness
+                                                      GHC.Generics.NoSourceStrictness
+                                                      GHC.Generics.DecidedLazy)
+                                                   (GHC.Generics.Rec0 InstrumentType)
+                                                 GHC.Generics.:*: (GHC.Generics.S1
+                                                                     (GHC.Generics.MetaSel
+                                                                        Nothing
+                                                                        GHC.Generics.NoSourceUnpackedness
+                                                                        GHC.Generics.NoSourceStrictness
+                                                                        GHC.Generics.DecidedLazy)
+                                                                     (GHC.Generics.Rec0
+                                                                        InstrumentId)
+                                                                   GHC.Generics.:*: GHC.Generics.S1
+                                                                                      (GHC.Generics.MetaSel
+                                                                                         Nothing
+                                                                                         GHC.Generics.NoSourceUnpackedness
+                                                                                         GHC.Generics.NoSourceStrictness
+                                                                                         GHC.Generics.DecidedLazy)
+                                                                                      (GHC.Generics.Rec0
+                                                                                         InstrumentName))))
+                                             (GHC.Generics.M1
+                                                GHC.Generics.C
+                                                (GHC.Generics.MetaCons
+                                                   "MetricCaptureEv" GHC.Generics.PrefixI False)
+                                                (GHC.Generics.S1
+                                                   (GHC.Generics.MetaSel
+                                                      Nothing
+                                                      GHC.Generics.NoSourceUnpackedness
+                                                      GHC.Generics.NoSourceStrictness
+                                                      GHC.Generics.DecidedLazy)
+                                                   (GHC.Generics.Rec0 InstrumentId)
+                                                 GHC.Generics.:*: GHC.Generics.S1
+                                                                    (GHC.Generics.MetaSel
+                                                                       Nothing
+                                                                       GHC.Generics.NoSourceUnpackedness
+                                                                       GHC.Generics.NoSourceStrictness
+                                                                       GHC.Generics.DecidedLazy)
+                                                                    (GHC.Generics.Rec0 Int)))
+                                             af0
+                                             bf0 (CDictCan(psc))}
+    Suggested fix:
+      Set limit with -fconstraint-solver-iterations=n; n=0 for no limit
+  |
+1 | {-# LANGUAGE DeriveGeneric #-}
+  | ^
+[2 of 6] Compiling LogEventSerializer
+[5 of 6] Compiling TestPropagation
+Error: [Cabal-7125]
+Failed to build test:unit-tests from opentelemetry-extra-0.8.0.
+

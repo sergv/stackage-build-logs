@@ -1,0 +1,267 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - c2hs-0.28.8 (exe:c2hs) (first run)
+ - c2hs-0.28.8 (test:test-system) (first run)
+ - c2hs-0.28.8 (test:test-bugs) (first run)
+Configuring executable 'c2hs' for c2hs-0.28.8...
+Preprocessing executable 'c2hs' for c2hs-0.28.8...
+Building executable 'c2hs' for c2hs-0.28.8...
+[ 1 of 26] Compiling C2HS.C.Info
+[ 2 of 26] Compiling C2HS.Config
+[ 3 of 26] Compiling C2HS.Switches
+[ 4 of 26] Compiling Control.StateTrans
+
+src/Control/StateTrans.hs:77:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+77 | import Control.Applicative (Applicative(..))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Control/StateTrans.hs:80:1: warning: [-Wdodgy-imports]
+    Module ‘Prelude’ does not export ‘catch’
+   |
+80 | import Prelude hiding (catch)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Control/StateTrans.hs:109:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative (STB bs gs)’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+109 |   pure  = return
+    |   ^^^^^^^^^^^^^^
+
+src/Control/StateTrans.hs:113:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad (STB bs gs)’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+113 |   return = yield
+    |   ^^^^^^^^^^^^^^
+[ 5 of 26] Compiling Data.Errors
+[ 6 of 26] Compiling Data.Attributes
+[ 7 of 26] Compiling Control.StateBase
+
+src/Control/StateBase.hs:59:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+59 | import Control.Applicative (Applicative(..))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Control/StateBase.hs:61:1: warning: [-Wunused-imports]
+    The import of ‘Control.Monad.Fail’ is redundant
+      except perhaps to import instances from ‘Control.Monad.Fail’
+    To import instances alone, use: import Control.Monad.Fail()
+   |
+61 | import Control.Monad.Fail (MonadFail (..))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Control/StateBase.hs:94:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative (PreCST e s)’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+94 |   pure  = return
+   |   ^^^^^^^^^^^^^^
+
+src/Control/StateBase.hs:98:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad (PreCST e s)’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+98 |   return = yield
+   |   ^^^^^^^^^^^^^^
+[ 8 of 26] Compiling Data.NameSpaces
+[ 9 of 26] Compiling C2HS.C.Attrs
+[10 of 26] Compiling C2HS.C.Builtin
+[11 of 26] Compiling Paths_c2hs
+[12 of 26] Compiling C2HS.Version
+[13 of 26] Compiling System.CIO
+[14 of 26] Compiling Control.State
+[15 of 26] Compiling C2HS.State
+[16 of 26] Compiling C2HS.C.Trav
+
+src/C2HS/C/Trav.hs:471:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘CDeclaration NodeInfo’ not matched:
+            CStaticAssert _ _ _
+            CDecl _ [] _
+            CDecl _ ((Nothing, _, _):_) _
+            CDecl _ (((Just _), _, _):_:_) _
+    |
+471 |   let CDecl _ [(Just declr, _, _)] _ = ide `simplifyDecl` decl
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[17 of 26] Compiling C2HS.C.Names
+[18 of 26] Compiling C2HS.C
+[19 of 26] Compiling Text.Lexers
+[20 of 26] Compiling C2HS.CHS.Lexer
+
+src/C2HS/CHS/Lexer.hs:534:33: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding: Patterns of type ‘[Name]’ not matched: []
+    |
+534 |     action' str pos state = let name:ns = namesup state
+    |                                 ^^^^^^^^^^^^^^^^^^^^^^^
+
+src/C2HS/CHS/Lexer.hs:700:14: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘String’, ‘Position’, ‘CHSLexerState’ not matched:
+            [] _ _
+    |
+700 |              \t@(ld:spdir) pos s ->      -- strip off the "\n" or "\0"
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+src/C2HS/CHS/Lexer.hs:927:27: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[Char]’, ‘Position’ not matched: [] _
+    |
+927 |               `lexaction` \(_:ds) pos -> Just (con pos (read ds))
+    |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[21 of 26] Compiling C2HS.CHS
+
+src/C2HS/CHS.hs:841:24: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding: Patterns of type ‘[String]’ not matched: []
+    |
+841 |                    let versline:chi = ls
+    |                        ^^^^^^^^^^^^^^^^^
+
+src/C2HS/CHS.hs:851:24: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe (String, String)’ not matched: Nothing
+    |
+851 |                    let Just (myMajor, myMinor) = majorMinor version
+    |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[22 of 26] Compiling C2HS.Gen.Monad
+[23 of 26] Compiling C2HS.Gen.Wrapper
+
+src/C2HS/Gen/Wrapper.hs:117:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘CDeclaration
+                            Language.C.Data.Node.NodeInfo’ not matched:
+            CStaticAssert _ _ _
+            CDecl _ [] _
+            CDecl _ ((Nothing, _, _):_) _
+            CDecl _ (((Just _), (Just _), _):_) _
+            ...
+    |
+117 |   let (CDecl specs [(Just decl, Nothing, Nothing)] n) = fixEmpty din idx
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[24 of 26] Compiling C2HS.Gen.Header
+[25 of 26] Compiling C2HS.Gen.Bind
+
+src/C2HS/Gen/Bind.hs:146:1: warning: [-Wunused-imports]
+    The import of ‘C2HS.Switches’ is redundant
+      except perhaps to import instances from ‘C2HS.Switches’
+    To import instances alone, use: import C2HS.Switches()
+    |
+146 | import C2HS.Switches   (platformSB)
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/C2HS/Gen/Bind.hs:939:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe (CInitializer NodeInfo)’ not matched:
+            Nothing
+    |
+939 |     let (Just ini) = initDeclr cdecl
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/C2HS/Gen/Bind.hs:998:25: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘(Maybe String, Integer)’ not matched:
+            (Nothing, _)
+    |
+998 |     let enumVals = map (\(Just i, e) -> (i, e)) $ filter (isJust . fst) $
+    |                         ^^^^^^^^^^^^^^^^^^^^^^
+
+src/C2HS/Gen/Bind.hs:1295:22: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding: Patterns of type ‘[String]’ not matched: []
+     |
+1295 |                      (l:ls) = lines code
+     |                      ^^^^^^^^^^^^^^^^^^^
+
+src/C2HS/Gen/Bind.hs:2183:29: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘CDeclaration NodeInfo’ not matched:
+            CStaticAssert _ _ _
+            CStaticAssert _ _ _
+            CDecl _ [] _
+            CDecl _ [] _
+            ...
+     |
+2183 |                         let CDecl specs [(declr, init', _)] at =
+     |                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+src/C2HS/Gen/Bind.hs:2516:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘CDeclaration NodeInfo’ not matched:
+            CStaticAssert _ _ _
+            CStaticAssert _ _ _
+            CStaticAssert _ _ _
+            CStaticAssert _ _ _
+            ...
+     |
+2516 |       let CDecl specs [(declr, init', _)] at = ide `simplifyDecl` cdecl'
+     |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[26 of 26] Compiling Main
+
+src/Main.hs:576:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[String]’ not matched:
+            []
+            [_]
+            [_, _]
+            (_:_:_:_:_)
+    |
+576 |         [versMajor, versMinor, versRev] = map show $ DV.versionBranch versnum
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[27 of 27] Linking /tmp/workdir-c2hs/c2hs-0.28.8/dist-newstyle/build/x86_64-linux/ghc-9.6.6/c2hs-0.28.8/x/c2hs/build/c2hs/c2hs
+Configuring test suite 'test-system' for c2hs-0.28.8...
+Preprocessing test suite 'test-system' for c2hs-0.28.8...
+Building test suite 'test-system' for c2hs-0.28.8...
+
+<no location info>: warning: [GHC-32850] [-Wmissing-home-modules]
+    These modules are needed for compilation but not listed in your .cabal file's other-modules for ‘c2hs-0.28.8-inplace-test-system’ :
+        Paths_c2hs
+[1 of 2] Compiling Paths_c2hs
+[2 of 2] Compiling Main
+
+<no location info>: warning: [GHC-32850] [-Wmissing-home-modules]
+    These modules are needed for compilation but not listed in your .cabal file's other-modules for ‘c2hs-0.28.8-inplace-test-system’ :
+        Paths_c2hs
+[3 of 3] Linking /tmp/workdir-c2hs/c2hs-0.28.8/dist-newstyle/build/x86_64-linux/ghc-9.6.6/c2hs-0.28.8/t/test-system/build/test-system/test-system
+Configuring test suite 'test-bugs' for c2hs-0.28.8...
+Preprocessing test suite 'test-bugs' for c2hs-0.28.8...
+Building test suite 'test-bugs' for c2hs-0.28.8...
+
+<no location info>: warning: [GHC-32850] [-Wmissing-home-modules]
+    These modules are needed for compilation but not listed in your .cabal file's other-modules for ‘c2hs-0.28.8-inplace-test-bugs’ :
+        Paths_c2hs
+[1 of 2] Compiling Paths_c2hs
+[2 of 2] Compiling Main
+
+<no location info>: warning: [GHC-32850] [-Wmissing-home-modules]
+    These modules are needed for compilation but not listed in your .cabal file's other-modules for ‘c2hs-0.28.8-inplace-test-bugs’ :
+        Paths_c2hs
+[3 of 3] Linking /tmp/workdir-c2hs/c2hs-0.28.8/dist-newstyle/build/x86_64-linux/ghc-9.6.6/c2hs-0.28.8/t/test-bugs/build/test-bugs/test-bugs

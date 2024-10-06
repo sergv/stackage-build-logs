@@ -1,0 +1,62 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - servant-subscriber-0.7.0.0 (lib) (first run)
+ - servant-subscriber-0.7.0.0 (exe:subscriber-psGenerator) (first run)
+Configuring library for servant-subscriber-0.7.0.0...
+Preprocessing library for servant-subscriber-0.7.0.0...
+Building library for servant-subscriber-0.7.0.0...
+[1 of 8] Compiling Servant.Subscriber.Subscribable
+
+src/Servant/Subscriber/Subscribable.hs:78:78: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+78 |   IsValidEndpoint (Verb (method :: k1) (statusCode :: Nat) (contentTypes :: [*]) (a :: *)) = ()
+   |                                                                              ^
+
+src/Servant/Subscriber/Subscribable.hs:78:88: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+78 |   IsValidEndpoint (Verb (method :: k1) (statusCode :: Nat) (contentTypes :: [*]) (a :: *)) = ()
+   |                                                                                        ^
+
+src/Servant/Subscriber/Subscribable.hs:80:10: warning: [GHC-06201] [-Wmissing-methods]
+    • No explicit implementation for
+        ‘hoistServerWithContext’
+    • In the instance declaration for
+        ‘HasServer (Subscribable :> sublayout) context’
+   |
+80 | instance HasServer sublayout context => HasServer (Subscribable :> sublayout) context where
+   |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2 of 8] Compiling Servant.Subscriber.Types
+[3 of 8] Compiling Servant.Subscriber.Request
+[4 of 8] Compiling Servant.Subscriber.Response
+[5 of 8] Compiling Servant.Subscriber.Backend
+[6 of 8] Compiling Servant.Subscriber.Client
+[7 of 8] Compiling Servant.Subscriber.Backend.Wai
+
+src/Servant/Subscriber/Backend/Wai.hs:47:7: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘requestBody’ (imported from Network.Wai.Internal):
+    Deprecated: "requestBody's name is misleading because it only gets a partial chunk of the body. Use getRequestBodyChunk instead when getting the field, and setRequestBodyChunks when setting the field."
+   |
+47 |     , Wai.requestBody = waiBody
+   |       ^^^^^^^^^^^^^^^
+[8 of 8] Compiling Servant.Subscriber
+
+src/Servant/Subscriber.hs:61:11: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘forkPingThread’
+    (imported from Network.WebSockets.Connection):
+    Deprecated: "Use 'withPingThread' instead"
+   |
+61 |           forkPingThread connection 28
+   |           ^^^^^^^^^^^^^^
+Configuring executable 'subscriber-psGenerator' for servant-subscriber-0.7.0.0...
+Preprocessing executable 'subscriber-psGenerator' for servant-subscriber-0.7.0.0...
+Building executable 'subscriber-psGenerator' for servant-subscriber-0.7.0.0...
+[1 of 1] Compiling Main
+[2 of 2] Linking /tmp/workdir-servant-subscriber/servant-subscriber-0.7.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/servant-subscriber-0.7.0.0/x/subscriber-psGenerator/build/subscriber-psGenerator/subscriber-psGenerator

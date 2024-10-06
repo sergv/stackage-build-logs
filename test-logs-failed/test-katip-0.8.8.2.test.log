@@ -1,0 +1,89 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - katip-0.8.8.2 (test:test) (ephemeral targets)
+Preprocessing test suite 'test' for katip-0.8.8.2...
+Building test suite 'test' for katip-0.8.8.2...
+Running 1 test suites...
+Test suite test: RUNNING...
+katip
+  Katip
+    JSON cycle Item:                                                    OK (0.02s)
+      +++ OK, passed 100 tests.
+    JSON cycle verbosity:                                               OK
+      +++ OK, passed 100 tests.
+    Eq Item
+      itemApp:                                                          OK
+        +++ OK, passed 100 tests.
+      itemEnv:                                                          OK
+        +++ OK, passed 100 tests.
+      itemSeverity:                                                     OK
+        +++ OK, passed 100 tests.
+      itemThread:                                                       OK
+        +++ OK, passed 100 tests.
+      itemHost:                                                         OK
+        +++ OK, passed 100 tests.
+      itemProcess:                                                      OK
+        +++ OK, passed 100 tests.
+      itemPayload:                                                      OK (0.01s)
+        +++ OK, passed 100 tests.
+      itemMessage:                                                      OK
+        +++ OK, passed 100 tests.
+      itemTime:                                                         OK
+        +++ OK, passed 100 tests.
+      itemNamespace:                                                    OK
+        +++ OK, passed 100 tests.
+      itemLoc:                                                          OK (0.01s)
+        +++ OK, passed 100 tests.
+    renderSeverity/textToSeverity cycle:                                OK
+      +++ OK, passed 100 tests.
+    processIDToText/textToProcessID cycle:                              OK
+      +++ OK, passed 100 tests.
+    processIDToText is just the number:                                 OK
+    logContexts
+      overwrites with the right-hand side (right-bias):                 OK
+      respects payloadKeys for each constituent payload:                OK
+    closeScribe
+      removes the specified scribe:                                     OK
+      does nothing for a missing scribe:                                OK
+      re-throws finalizer exceptions:                                   OK
+    closeScribes
+      returns a log env with no scribes:                                OK
+      throws the first exception encountered after closing all scribes: OK
+    logging
+      logs in order with contexts, namespaces, etc:                     OK
+      Katip.Monadic.logLocM:                                            FAIL
+        Exception: Prelude.head: empty list
+        CallStack (from HasCallStack):
+          error, called at libraries/base/GHC/List.hs:1644:3 in base:GHC.List
+          errorEmptyList, called at libraries/base/GHC/List.hs:87:11 in base:GHC.List
+          badHead, called at libraries/base/GHC/List.hs:93:48 in base:GHC.List
+          head, called at src/Katip/Core.hs:1155:24 in katip-0.8.8.2-inplace:Katip.Core
+          getLoc, called at src/Katip/Monadic.hs:322:20 in katip-0.8.8.2-inplace:Katip.Monadic
+          logLocM, called at test/Katip/Tests.hs:165:80 in katip-0.8.8.2-inplace-test:Katip.Tests
+        Use -p '/Katip.Monadic.logLocM/' to rerun this test only.
+  Katip.Format.Time
+    formatAsLogTime:                                                    OK
+    formatAsIso8601:                                                    OK
+    formatAsIso8601 Aeson:                                              OK
+    LogTime same as Date.Time:                                          OK
+      +++ OK, passed 100 tests.
+    ISO 8601 same as Date.Time:                                         OK
+      +++ OK, passed 100 tests.
+    ISO 8601 same as Aeson:                                             OK
+      +++ OK, passed 100 tests.
+  Katip.Scribes.Handle
+    logs the correct data:                                              OK
+    logs correct data to a file:                                        OK
+    Text-golden:                                                        OK
+      Golden file did not exist; created
+    Json-golden:                                                        OK
+      Golden file did not exist; created
+
+1 out of 35 tests failed (0.09s)
+Test suite test: FAIL
+Test suite logged to:
+/tmp/workdir-katip/katip-0.8.8.2/dist-newstyle/build/x86_64-linux/ghc-9.6.6/katip-0.8.8.2/t/test/test/katip-0.8.8.2-test.log
+0 of 1 test suites (0 of 1 test cases) passed.
+Error: [Cabal-7125]
+Tests failed for test:test from katip-0.8.8.2.
+

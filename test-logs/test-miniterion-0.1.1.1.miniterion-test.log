@@ -1,0 +1,477 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - miniterion-0.1.1.1 (test:miniterion-test) (ephemeral targets)
+Preprocessing test suite 'miniterion-test' for miniterion-0.1.1.1...
+Building test suite 'miniterion-test' for miniterion-0.1.1.1...
+Running 1 test suites...
+Test suite miniterion-test: RUNNING...
+benchmarking fib-nf/4 All
+  benchmarkable
+    fib:                                                      
+mean                 28.79 ns
+std dev              1.968 ns
+
+benchmarking fib-nf/8 
+mean                 203.8 ns
+std dev              12.27 ns
+
+benchmarking fib-whnf/4 
+mean                 29.55 ns
+std dev              2.564 ns
+
+benchmarking fib-whnf/8 
+mean                 205.0 ns
+std dev              14.12 ns
+
+benchmarking wcIO/nfIO OK (2.50s)
+    wcIO:                                                     
+mean                 46.10 μs
+std dev              4.439 μs
+
+benchmarking wcIO/whnfIO 
+mean                 47.71 μs
+std dev              4.015 μs
+
+benchmarking wcIO/nfAppIO 
+mean                 47.51 μs
+std dev              1.566 μs
+
+benchmarking wcIO/whnfAppIO 
+mean                 46.98 μs
+std dev              2.785 μs
+
+OK (1.58s)
+    env
+      wc with env:                                            benchmarking wc 
+mean                 33.12 μs
+std dev              1.494 μs
+
+OKbenchmarking wc  (0.26s)
+    perBatchEnv
+      wc with perBatchEnv:                                    
+mean                 33.17 μs
+std dev              2.798 μs
+
+OKbenchmarking wc 
+mean                 39.63 μs
+std dev              2.353 μs
+
+ (0.14s)
+    perRunEnv
+      wc with perRunEnv:                                      OK
+      perRunEnv with time limit:                              benchmarking fib 
+mean                 20.83 ms
+std dev              1.208 ms
+
+OKbenchmarking ...  (3.31s)
+    interactive
+      simple function:                                        
+mean                 8.422 ns
+std dev              674.0 ps
+
+OKMicrobenchmark suite - built with miniterion 0.1.1.1
+
+USAGE:
+  miniterion-test [OPTIONS] [PATTERN]...
+
+ARGS:
+  <PATTERN>...  Pattern(s) to select running benchmarks. If no pattern was
+                given, run all benchmarks. Multiple patterns are combined
+                with 'OR'. Selections are done by prefix match by default.
+                See also "--match" option below.
+
+OPTIONS:
+  -h       --help                Show this help text
+  -L SECS  --time-limit=SECS     Time limit to run a benchmark
+                                 (default: no timeout)
+           --baseline=FILE       File to read CSV summary from as baseline
+           --csv=FILE            File to write CSV summary to
+           --fail-if-faster=NUM  Upper bound acceptable speed up in percents. If a
+                                 benchmark is unacceptable faster than baseline (see
+                                 --baseline), it will be reported as failed
+           --fail-if-slower=NUM  Upper bound acceptable slow down in percents. If a
+                                 benchmark is unacceptable slower than baseline (see
+                                 --baseline), it will be reported as failed
+  -s NUM   --stdev=NUM           Target relative standard deviation of measurement
+                                 in percents (default: 5)
+           --time-mode=cpu|wall  Whether to measure CPU ("cpu") time or wall-clock
+                                 time ("wall") (default: cpu)
+  -v INT   --verbosity=INT       Verbosity level (default: 1)
+  -m MODE  --match=MODE          How to match benchmark names ("prefix", "glob",
+                                 "pattern" (substring), or "ipattern")
+  -l       --list                List benchmarks
+           --version             Show version info
+
+ (0.15s)
+  options
+    help with long option:                                    OK
+    help with short option:                                   Microbenchmark suite - built with miniterion 0.1.1.1
+
+USAGE:
+  miniterion-test [OPTIONS] [PATTERN]...
+
+ARGS:
+  <PATTERN>...  Pattern(s) to select running benchmarks. If no pattern was
+                given, run all benchmarks. Multiple patterns are combined
+                with 'OR'. Selections are done by prefix match by default.
+                See also "--match" option below.
+
+OPTIONS:
+  -h       --help                Show this help text
+  -L SECS  --time-limit=SECS     Time limit to run a benchmark
+                                 (default: no timeout)
+           --baseline=FILE       File to read CSV summary from as baseline
+           --csv=FILE            File to write CSV summary to
+           --fail-if-faster=NUM  Upper bound acceptable speed up in percents. If a
+                                 benchmark is unacceptable faster than baseline (see
+                                 --baseline), it will be reported as failed
+           --fail-if-slower=NUM  Upper bound acceptable slow down in percents. If a
+                                 benchmark is unacceptable slower than baseline (see
+                                 --baseline), it will be reported as failed
+  -s NUM   --stdev=NUM           Target relative standard deviation of measurement
+                                 in percents (default: 5)
+           --time-mode=cpu|wall  Whether to measure CPU ("cpu") time or wall-clock
+                                 time ("wall") (default: cpu)
+  -v INT   --verbosity=INT       Verbosity level (default: 1)
+  -m MODE  --match=MODE          How to match benchmark names ("prefix", "glob",
+                                 "pattern" (substring), or "ipattern")
+  -l       --list                List benchmarks
+           --version             Show version info
+
+built with miniterion 0.1.1.1
+OK
+    show version info:                                        OKfib/4
+
+    listing names with long option:                           OKfib/4
+
+    listing names with short option:                          OKfib/4
+
+    listing name of benchmark using env:                      OK
+miniterion-test: uninitialized env
+use irrefutable pattern in the function taking the env.
+Try `miniterion-test --help' for more information.
+    listing name of benchmark using env and pat:              fib/a
+fib/b
+OK
+    listing name of benchmark using env and irrefultable pat: OK
+benchmarking fib/4     stdev option:                                             
+mean                 31.88 ns
+std dev              6.062 ns
+
+OKbenchmarking fib/4  (0.07s)
+    short stdev option:                                       
+mean                 32.01 ns
+std dev              10.55 ns
+
+OKbenchmarking fib/4 
+mean                 581.0 ns
+std dev              0.000 ps
+
+ (0.04s)
+    infinit stdev:                                            OK
+    invalid stdev arg:                                        miniterion-test: invalid argument `foo' for `--stdev'
+Try `miniterion-test --help' for more information.
+OK
+miniterion-test: option `--stdev' requires an argument NUM
+Try `miniterion-test --help' for more information.
+    missing stdev arg:                                        OKbenchmarking fib/4 
+    cpu clock for time-mode option:                           
+mean                 33.83 ns
+std dev              2.552 ns
+
+OKbenchmarking fib/4  (0.57s)
+    wall clock for time-mode option:                          
+mean                 32.46 ns
+std dev              2.610 ns
+
+miniterion-test: invalid argument `blah' for `--time-mode'
+Try `miniterion-test --help' for more information.
+OK (0.14s)
+    invalid time-mode option:                                 miniterion-test: invalid argument `foo' for `--time-limit'
+Try `miniterion-test --help' for more information.
+OK
+    invalid timeout option:                                   OK
+    verbosity 0:                                              OKbenchmarking fib/4  (0.14s)
+    verbosity 1:                                              
+mean                 31.96 ns
+std dev              2.946 ns
+
+OKbenchmarking fib/4 
+1 iteration gives 631000 ps, alloc: 0 copied: 0 max: 0
+2 iterations give 531000 ps, alloc: 0 copied: 0 max: 0
+4 iterations give 582000 ps, alloc: 0 copied: 0 max: 0
+8 iterations give 591000 ps, alloc: 0 copied: 0 max: 0
+16 iterations give 902000 ps, alloc: 0 copied: 0 max: 0
+32 iterations give 1413000 ps, alloc: 0 copied: 0 max: 0
+64 iterations give 2455000 ps, alloc: 0 copied: 0 max: 0
+128 iterations give 4478000 ps, alloc: 0 copied: 0 max: 0
+256 iterations give 8566000 ps, alloc: 0 copied: 0 max: 0
+512 iterations give 17684000 ps, alloc: 0 copied: 0 max: 0
+1024 iterations give 32922000 ps, alloc: 0 copied: 0 max: 0
+2048 iterations give 65362000 ps, alloc: 0 copied: 0 max: 0
+4096 iterations give 130274000 ps, alloc: 0 copied: 0 max: 0
+8192 iterations give 261490000 ps, alloc: 0 copied: 0 max: 0
+16384 iterations give 521829000 ps, alloc: 0 copied: 0 max: 0
+32768 iterations give 1050833000 ps, alloc: 0 copied: 0 max: 0
+65536 iterations give 2085233000 ps, alloc: 0 copied: 0 max: 0
+131072 iterations give 4165828000 ps, alloc: 0 copied: 0 max: 0
+ (0.27s)
+    verbosity 2:                                              262144 iterations give 8361523000 ps, alloc: 0 copied: 0 max: 0
+524288 iterations give 16664428000 ps, alloc: 0 copied: 0 max: 0
+1048576 iterations give 33340753000 ps, alloc: 0 copied: 0 max: 0
+2097152 iterations give 66712063000 ps, alloc: 0 copied: 0 max: 0
+
+mean                 31.81 ns
+std dev              2.584 ns
+
+miniterion-test: invalid argument `foo' for `--verbosity'
+Try `miniterion-test --help' for more information.
+OK (0.14s)
+    invalid verbosity:                                        miniterion-test: invalid argument `100' for `--verbosity'
+Try `miniterion-test --help' for more information.
+OK
+    out of range verbosity:                                   OK
+miniterion-test: invalid option `--no-such-option'
+Try `miniterion-test --help' for more information.
+    non existing option:                                      OK
+  skipping
+    selecting benchmarks:                                     OK
+    selecting benchmarks, skipping group:                     OK
+    no matching benchmark:                                    OK
+miniterion-test: uninitialized env
+use irrefutable pattern in the function taking the env.
+Try `miniterion-test --help' for more information.
+    selecting under env, strict:                              miniterion-test: uninitialized env under `b'
+use irrefutable pattern in the function taking the env.
+Try `miniterion-test --help' for more information.
+OK
+    selecting under env, strict, under group:                 OKbenchmarking a/a1/succ 
+    selecting under env:                                      
+mean                 9.255 ns
+std dev              644.0 ps
+
+benchmarking a/a1/pred 
+mean                 9.720 ns
+std dev              840.0 ps
+
+benchmarking a/a2/succ 
+mean                 9.530 ns
+std dev              644.0 ps
+
+benchmarking a/a2/pred 
+mean                 9.536 ns
+std dev              652.0 ps
+
+OKbenchmarking foobar  (0.81s)
+  substr
+    substring match (case sensitive):                         OKbenchmarking foobar 
+    substring match (case insensitive):                       OK
+benchmarking foobar     prefix match:                                             OK
+    invalid match mode:                                       miniterion-test: invalid argument `no_such_mode' for `--match'
+Try `miniterion-test --help' for more information.
+OKbenchmarking foo 
+  glob
+    simple pattern:                                           OK
+benchmarking foo     pattern with '?':                                         benchmarking foo OK
+    pattern with '*':                                         OKbenchmarking foo 
+    pattern with '*' at the end:                              OK
+    escaping with '\':                                        benchmarking foo? OKbenchmarking foo foo foo? 
+    escape after '*':                                         OK
+benchmarking foo     repeated stars:                                           OKbenchmarking foo 
+    simple bracket:                                           OK
+benchmarking foo     bracket with range:                                       OK
+benchmarking foo     bracket with negation:                                    OKbenchmarking foo 
+    bracket with negation and range:                          OK
+benchmarking !-oo     bracket with escapes:                                     OKbenchmarking ]oo 
+    char class starting with `]':                             OK
+benchmarking -oo     char class ending with `-':                               benchmarking foo OK
+    char class `[!]a-]':                                      miniterion-test: unbalanced bracket in glob pattern `[foo'
+Try `miniterion-test --help' for more information.
+OK
+    unbalanced bracket:                                       OKbenchmarking fib/4 
+  csv
+    writing slow.csv:                                         
+mean                 30.08 ns
+std dev              2.836 ns
+
+benchmarking fib/8 
+mean                 194.3 ns
+std dev              8.232 ns
+
+benchmarking fib/16 
+mean                 9.801 μs
+std dev              666.1 ns
+
+OKbenchmarking fib/4  (1.06s)
+    comparing with baseline:                                  
+mean                 31.32 ns       (same as baseline)
+std dev              2.590 ns
+
+benchmarking fib/8 
+mean                 17.40 ns (91% less than baseline)
+std dev              1.282 ns
+
+benchmarking fib/16 
+mean                 21.72 ns (99% less than baseline)
+std dev              1.296 ns
+
+OK (0.47s)
+    non-existing baseline:                                    miniterion-test: cannot read file `nosuch.csv' for `--baseline'
+Try `miniterion-test --help' for more information.
+benchmarking group "one"/a/succ OK
+    names containing double quotes:                           
+mean                 9.106 ns
+std dev              830.0 ps
+
+benchmarking group "one"/a/pred 
+mean                 9.540 ns
+std dev              656.0 ps
+
+benchmarking group "one"/b/succ 
+mean                 9.323 ns
+std dev              656.0 ps
+
+benchmarking group "one"/b/pred 
+mean                 9.532 ns
+std dev              640.0 ps
+
+benchmarking group two/"a" 
+mean                 9.166 ns
+std dev              644.0 ps
+
+benchmarking group two/"b" 
+mean                 9.139 ns
+std dev              644.0 ps
+
+benchmarking group three/'"' 
+mean                 9.140 ns
+std dev              640.0 ps
+
+benchmarking group three/"'" 
+mean                 9.149 ns
+std dev              648.0 ps
+
+benchmarking group "one"/a/succ OK (1.27s)
+    reading baseline containing quotes:                       
+mean                 9.115 ns       (same as baseline)
+std dev              696.0 ps
+
+benchmarking group "one"/a/pred 
+mean                 9.537 ns       (same as baseline)
+std dev              648.0 ps
+
+benchmarking group "one"/b/succ 
+mean                 9.326 ns       (same as baseline)
+std dev              640.0 ps
+
+benchmarking group "one"/b/pred 
+mean                 9.539 ns       (same as baseline)
+std dev              696.0 ps
+
+benchmarking group two/"a" 
+mean                 9.144 ns       (same as baseline)
+std dev              668.0 ps
+
+benchmarking group two/"b" 
+mean                 9.347 ns       (same as baseline)
+std dev              642.0 ps
+
+benchmarking group three/'"' 
+mean                 9.545 ns       (same as baseline)
+std dev              320.0 ps
+
+benchmarking group three/"'" 
+mean                 9.548 ns       (same as baseline)
+std dev              642.0 ps
+
+OKbenchmarking fib/4  (1.45s)
+    writing fast.csv:                                         
+mean                 29.86 ns
+std dev              2.564 ns
+
+benchmarking fib/8 
+mean                 16.39 ns
+std dev              692.0 ps
+
+benchmarking fib/16 
+mean                 22.09 ns
+std dev              686.0 ps
+
+benchmarking fib/4 OK (0.78s)
+    fail if slower:                                           
+mean                 32.39 ns       (same as baseline)
+std dev              698.0 ps
+
+benchmarking fib/8 FAIL
+mean                 217.5 ns (1227% more than baseline)
+std dev              20.53 ns
+
+benchmarking fib/16 FAIL
+mean                 10.21 μs (46095% more than baseline)
+std dev              670.4 ns
+
+
+2 out of 3 benchmarks failed:
+  - fib/8 (too slow)
+  - fib/16 (too slow)
+OKbenchmarking fib/16  (0.83s)
+    fail if slower, with match:                               FAIL
+mean                 10.19 μs (46035% more than baseline)
+std dev              666.3 ns
+
+
+1 out of 1 benchmark failed:
+  - fib/16 (too slow)
+miniterion-test: invalid argument `foo' for `--fail-if-slower'
+Try `miniterion-test --help' for more information.
+OK (0.17s)
+    fail if slower, invalid arg:                              OKbenchmarking fib/4 
+    fail if faster:                                           
+mean                 33.24 ns (10% more than baseline)
+std dev              2.596 ns
+
+benchmarking fib/8 FAIL
+mean                 14.68 ns (92% less than baseline)
+std dev              1.288 ns
+
+benchmarking fib/16 FAIL
+mean                 19.64 ns (99% less than baseline)
+std dev              1.442 ns
+
+
+2 out of 3 benchmarks failed:
+  - fib/8 (too fast)
+  - fib/16 (too fast)
+miniterion-test: invalid argument `foo' for `--fail-if-faster'
+Try `miniterion-test --help' for more information.
+OK (0.44s)
+    fail if faster, invalid arg:                              OK
+benchmarking fib/32   timeout
+    time limit, long name:                                    FAIL
+Timed out while running this benchmark
+
+
+1 out of 1 benchmark failed:
+  - fib/32 (timed out)
+OKbenchmarking fib/32 
+FAIL
+Timed out while running this benchmark
+    time limit, short name:                                   
+
+1 out of 1 benchmark failed:
+  - fib/32 (timed out)
+benchmarking fib/32 OK
+    time limit, return before the limit:                      
+mean                 20.94 ms
+std dev              423.8 μs
+
+miniterion-test: invalid argument `foo' for `--time-limit'
+Try `miniterion-test --help' for more information.
+OK (0.65s)
+    invalid time limit arg:                                   OK
+
+All 71 tests passed (17.23s)
+Test suite miniterion-test: PASS
+Test suite logged to:
+/tmp/workdir-miniterion/miniterion-0.1.1.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/miniterion-0.1.1.1/t/miniterion-test/test/miniterion-0.1.1.1-miniterion-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

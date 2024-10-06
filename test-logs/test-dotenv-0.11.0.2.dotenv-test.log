@@ -1,0 +1,85 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - dotenv-0.11.0.2 (test:dotenv-test) (ephemeral targets)
+Preprocessing test suite 'dotenv-test' for dotenv-0.11.0.2...
+Building test suite 'dotenv-test' for dotenv-0.11.0.2...
+Running 1 test suites...
+Test suite dotenv-test: RUNNING...
+
+Configuration.Dotenv
+  load
+    loads the given list of configuration options to the environment [✔]
+    preserves existing settings when overload is false [✔]
+    overrides existing settings when overload is true [✔]
+    loads the last set value in config list with duplicates [✔]
+  loadFile
+    loads the configuration options to the environment from a file [✔]
+    respects predefined settings when overload is false [✔]
+    overrides predefined settings when overload is true [✔]
+    loads the last set value in dotenv file with duplicates [✔]
+    when the .env.example is present
+      when the needed env vars are missing
+        should fail with an error call [✔]
+      when the needed env vars are not missing
+        should succeed when loading all of the needed env vars [✔]
+        succeeds when variable is preset [✔]
+  parseFile
+    returns variables from a file without changing the environment [✔]
+    recognizes unicode characters [✔]
+    recognises environment variables [✔]
+    recognises previous variables [✔]
+    recognises commands [✔]
+    recognizes blank variable [✔]
+  onMissingFile
+    when target file is present
+      loading works as usual [✔]
+    when target file is missing
+      executes supplied handler instead [✔]
+  onDuplicatedKeys
+    when duplicates are forbidden
+      throws an error on duplicated keys [✔]
+      works as usual when there is no duplicated keys [✔]
+Configuration.Dotenv.Parse
+  parse
+    parses unquoted values [✔]
+    parses values with spaces around equal signs [✔]
+    parses double-quoted values [✔]
+    parses single-quoted values [✔]
+    parses escaped double quotes [✔]
+    supports CRLF line breaks [✔]
+    parses empty values [✔]
+    parses unquoted interpolated values [✔]
+    parses double-quoted interpolated values [✔]
+    parses single-quoted interpolated values as literals [✔]
+    does not parse if line format is incorrect [✔]
+    expands newlines in quoted strings [✔]
+    does not parse variables with hyphens in the name [✔]
+    parses variables with "_" in the name [✔]
+    parses variables with digits after the first character [✔]
+    allows vertical spaces after a quoted variable [✔]
+    does not parse variable names beginning with a digit [✔]
+    strips unquoted values [✔]
+    ignores empty lines [✔]
+    ignores inline comments after unquoted arguments [✔]
+    ignores inline comments after quoted arguments [✔]
+    allows "#" in quoted values [✔]
+    ignores comment lines [✔]
+    doesn't allow more configuration options after a quoted value [✔]
+    $(command) interpolation
+      parses a simple command [✔]
+      parses a command anywhere in the value [✔]
+      parses a command with arguments [✔]
+      parses a command with quoted arguments [✔]
+      parses a command with arguments separated by newlines [✔]
+    parses empty content (when the file is empty) [✔]
+Configuration.Dotenv.Text
+  parseFile
+    returns variables from a file without changing the environment [✔]
+    recognizes unicode characters [✔]
+
+Finished in 0.0292 seconds
+53 examples, 0 failures
+Test suite dotenv-test: PASS
+Test suite logged to:
+/tmp/workdir-dotenv/dotenv-0.11.0.2/dist-newstyle/build/x86_64-linux/ghc-9.6.6/dotenv-0.11.0.2/t/dotenv-test/test/dotenv-0.11.0.2-dotenv-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

@@ -1,0 +1,76 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - sequenceTools-1.5.3.1 (test:sequenceToolsTests) (ephemeral targets)
+Preprocessing test suite 'sequenceToolsTests' for sequenceTools-1.5.3.1...
+Building test suite 'sequenceToolsTests' for sequenceTools-1.5.3.1...
+Running 1 test suites...
+Test suite sequenceToolsTests: RUNNING...
+
+SequenceTools.PileupCaller
+  callToDosage
+    should return Nothing for missing call [✔]
+    should return Nothing for haploid non-congruent call [✔]
+    should return 0 for haploid ref call [✔]
+    should return 1 for haploid alt call [✔]
+    should return Nothing for diploid non-congruent call [✔]
+    should return 0 for diploid hom-ref call [✔]
+    should return 1 for diploid het call [✔]
+    should return 2 for diploid hom-alt call [✔]
+  callRandomDiploid
+    should return Missing for A [✔]
+    should return AC for AC [✔]
+    should return 50% het for AACC [✔]
+  callRandomAllele
+    should return A for AAA [✔]
+    should return C for C [✔]
+    should return A,C or G for ACG roughly with 30% each [✔]
+  callMajorityAllele
+    should call A from AAA [✔]
+    should call A from AAAAA with ds [✔]
+    should call Missing from AA with ds 3 [✔]
+    should call A from AAC [✔]
+    should call C from ACC [✔]
+    should call 50/50 from AACC [✔]
+  findMajorityAllele
+    should return A for AAC [✔]
+    should return C for ACC [✔]
+    should return AC for AACC [✔]
+  callGenotypeFromPileup
+    should return missing if pileup below minDepth [✔]
+    should not return missing if pileup above minDepth [✔]
+  dosageToEigenstratGeno
+    should give Hom-Ref for 0 pseudo-haploid [✔]
+    should give Hom-Alt for 1 pseudo-haploid [✔]
+    should give Missing for Nothing pseudo-haploid [✔]
+    should give Hom-Ref for 0 diploid [✔]
+    should give Het for 1 diploid [✔]
+    should give Hom-Alt for 2 diploid [✔]
+    should give Missing for Nothing diploid [✔]
+  freqSumtoEigenstrat
+    should convert a freqSum example correctly to eigenstrat [✔]
+    should convert a freqSum example with rsId correctly to eigenstrat [✔]
+  filterTransitions
+    should remove transitions with SkipTransitions [✔]
+    should mark transitions as missing with TransitionsMissing [✔]
+    should output all sites with AllSites [✔]
+    should output all sites with SingleStrandMode [✔]
+  cleanSSdamageAllSamples
+    should not remove anything if not C/T or G/A SNP [✔]
+    should remove forward reads from C/T SNPs [✔]
+    should remove reverse reads from G/A SNPs [✔]
+SequenceTools.Utils
+  sampleWithoutReplacement
+    should return Nothing if sample 1 from empty list [✔]
+    should return one item if sample 1 from 1 [✔]
+    should return an empty list of 0 sampled from 0 [✔]
+    should return an empty list if 0 sampled from 1 [✔]
+    should return Nothing if 2 sampled from 1 [✔]
+    should return 2 items if 2 sampled from 2 [✔]
+    should return a non-duplicate subset of ABCDEFGHIJ if 4 are sampled [✔]
+
+Finished in 0.0036 seconds
+48 examples, 0 failures
+Test suite sequenceToolsTests: PASS
+Test suite logged to:
+/tmp/workdir-sequenceTools/sequenceTools-1.5.3.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/sequenceTools-1.5.3.1/t/sequenceToolsTests/test/sequenceTools-1.5.3.1-sequenceToolsTests.log
+1 of 1 test suites (1 of 1 test cases) passed.

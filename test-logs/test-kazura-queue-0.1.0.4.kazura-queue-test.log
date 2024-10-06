@@ -1,0 +1,314 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - kazura-queue-0.1.0.4 (test:kazura-queue-test) (ephemeral targets)
+Preprocessing test suite 'kazura-queue-test' for kazura-queue-0.1.0.4...
+Building test suite 'kazura-queue-test' for kazura-queue-0.1.0.4...
+Running 1 test suites...
+Test suite kazura-queue-test: RUNNING...
+
+WVar basic specs
+  WVar
+    takeWVar
+      when WVar is fresh
+        takes the value without blocking [✔]
+      when WVar is updating
+        blocks until WVar becomes fresh [✔]
+    tryTakeWVar
+      when WVar is fresh
+        takes the value without blocking [✔]
+      when WVar is updating
+        takes the latest value without blocking [✔]
+    when WVar is fresh
+      writes the value without blocking [✔]
+    when WVar is updating
+      writes the value without blocking [✔]
+    readWVar
+      when WVar is fresh
+        reads the value without blocking [✔]
+      when WVar is updating
+        reads the value without blocking [✔]
+    readFreshWVar
+      when WVar is fresh
+        reads the value without blocking [✔]
+      when WVar is updating
+        blocks until WVar becomes fresh [✔]
+    readFreshWVar
+      when WVar is fresh
+        reads the value without blocking [✔]
+      when WVar is updating
+        reads the value without blocking [✔]
+  WCached
+    takeWCached
+      when WVar is fresh
+        takes the latest value without blocking [✔]
+      when WVar is updating
+        blocks until WVar becomes fresh [✔]
+      when WVar is fresh but cache staled
+        takes the latest value without blocking [✔]
+      when WVar is updating and cache staled
+        blocks until WVar becomes fresh [✔]
+    tryTakeWCached
+      when WVar is fresh
+        takes the value without blocking [✔]
+      when WVar is updating
+        fails but reads the latest value without blocking [✔]
+      when WVar is fresh but cache staled
+        fails but reads the latest value without blocking [✔]
+      when WVar is updating and cache staled
+        fails but reads the latest value without blocking [✔]
+    putWCached
+      when WVar is fresh
+        writes the value without blocking [✔]
+      when WVar is updating
+        writes the value without blocking [✔]
+      when WVar is fresh but cache staled
+        writes the value without blocking [✔]
+      when WVar is updating and cache staled
+        writes the value without blocking [✔]
+    tryPutWCached
+      when WVar is fresh
+        writes the value without blocking [✔]
+      when WVar is updating
+        writes the value without blocking [✔]
+      when WVar is fresh but cache staled
+        fails to write the value without blocking [✔]
+      when WVar is updating and cache staled
+        fails to write the value without blocking [✔]
+    readWCached
+      when WVar is fresh
+        reads the latest value in the ticket [✔]
+      when WVar is updating
+        reads the latest value in the ticket [✔]
+      when WVar is fresh but cache staled
+        reads the old value in the ticket [✔]
+      when WVar is updating and cache staled
+        reads the old value in the ticket [✔]
+    readFreshWCached
+      when WVar is fresh
+        reads the latest value without blocking [✔]
+      when WVar is updating
+        blocks until WVar becomes fresh [✔]
+      when WVar is fresh but cache staled
+        reads the old value without blocking [✔]
+      when WVar is updating and cache staled
+        reads the old value without blocking [✔]
+    tryReadFreshWCached
+      when WVar is fresh
+        reads the value without blocking [✔]
+      when WVar is updating
+        reads the value without blocking [✔]
+      when WVar is fresh but cache staled
+        reads the old value without blocking [✔]
+      when WVar is updating and cache staled
+        reads the old value without blocking [✔]
+WVar concurrent specs
+  WVar
+    takeWVar
+      when WVar is fresh
+        takes the value before or after putWVar [✔]
+          +++ OK, passed 100 tests.
+        take different value [✔]
+          +++ OK, passed 100 tests.
+      when WVar is updating
+        takes the value after putWVar [✔]
+          +++ OK, passed 100 tests.
+        take different value [✔]
+          +++ OK, passed 100 tests.
+    tryTakeWVar
+      when WVar is fresh
+        takes the value before or after putWVar [✔]
+          +++ OK, passed 100 tests.
+        all read same value but only one succeeded [✔]
+          +++ OK, passed 100 tests.
+      when WVar is updating
+        takes the value before(failure) or after(success) putWVar [✔]
+          +++ OK, passed 100 tests.
+        all read same value and fail [✔]
+          +++ OK, passed 100 tests.
+    readFreshWVar
+      when WVar is fresh
+        reads the value before or after putWVar [✔]
+          +++ OK, passed 100 tests.
+        read same value [✔]
+          +++ OK, passed 100 tests.
+      when WVar is updating
+        reads the value after putWVar [✔]
+          +++ OK, passed 100 tests.
+        read same value [✔]
+          +++ OK, passed 100 tests.
+    tryReadWVar
+      when WVar is fresh
+        reads the old value [✔]
+          +++ OK, passed 100 tests.
+        all read same value and succeed [✔]
+          +++ OK, passed 100 tests.
+      when WVar is updating
+        reads the value before(failure) or after(success) putWVar [✔]
+          +++ OK, passed 100 tests.
+        all read same value and fail [✔]
+          +++ OK, passed 100 tests.
+  WCached
+    takeWCached
+      when WVar is fresh
+        takes the value before or after putWCached [✔]
+          +++ OK, passed 100 tests.
+        take different value [✔]
+          +++ OK, passed 100 tests.
+      when WVar is updating
+        takes the value after putWCached [✔]
+          +++ OK, passed 100 tests.
+        take different value [✔]
+          +++ OK, passed 100 tests.
+      when WVar is fresh but cache staled
+        takes the value before or after putWCached [✔]
+          +++ OK, passed 100 tests.
+        take different value [✔]
+          +++ OK, passed 100 tests.
+      when WVar is updating and cache staled
+        takes the value after putWCached [✔]
+          +++ OK, passed 100 tests.
+        take different value [✔]
+          +++ OK, passed 100 tests.
+    tryTakeWCached
+      when WVar is fresh
+        takes the value before(failure)/after(success) putWCached [✔]
+          +++ OK, passed 100 tests.
+        all read same value but only one succeeded [✔]
+          +++ OK, passed 100 tests.
+      when WVar is updating
+        takes the value before or after putWCached with failure [✔]
+          +++ OK, passed 100 tests.
+        all read same value and fail [✔]
+          +++ OK, passed 100 tests.
+      when WVar is fresh but cache staled
+        takes the value before or after putWCached with failure [✔]
+          +++ OK, passed 100 tests.
+        all read same value and fail [✔]
+          +++ OK, passed 100 tests.
+      when WVar is updating and cache staled
+        takes the value before or after putWCached with failure [✔]
+          +++ OK, passed 100 tests.
+        all read same value and fail [✔]
+          +++ OK, passed 100 tests.
+    readFreshWCached
+      when WVar is fresh
+        reads the value before or after putWCached [✔]
+          +++ OK, passed 100 tests.
+        read same value [✔]
+          +++ OK, passed 100 tests.
+      when WVar is updating
+        reads the value after putWCached [✔]
+          +++ OK, passed 100 tests.
+        read same value [✔]
+          +++ OK, passed 100 tests.
+      when WVar is fresh but cache staled
+        reads the value before or after putWCached [✔]
+          +++ OK, passed 100 tests.
+        read same value [✔]
+          +++ OK, passed 100 tests.
+      when WVar is updating and cache staled
+        reads the value after putWCached [✔]
+          +++ OK, passed 100 tests.
+        read same value [✔]
+          +++ OK, passed 100 tests.
+    tryReadWCached
+      when WVar is fresh
+        reads the old value and succeed [✔]
+          +++ OK, passed 100 tests.
+        all read same value and succeed [✔]
+          +++ OK, passed 100 tests.
+      when WVar is updating
+        reads the old value and fail [✔]
+          +++ OK, passed 100 tests.
+        all read same value and fail [✔]
+          +++ OK, passed 100 tests.
+      when WVar is fresh but cache staled
+        reads the old value and succeed [✔]
+          +++ OK, passed 100 tests.
+        all read same value and succeed [✔]
+          +++ OK, passed 100 tests.
+      when WVar is updating
+        reads the old value and fail [✔]
+          +++ OK, passed 100 tests.
+        all read same value and fail [✔]
+          +++ OK, passed 100 tests.
+  combination
+    tryTakeWCached and putWCached perform atomic modification [✔]
+      +++ OK, passed 100 tests.
+KazuraQueue basic specs
+  writeQueue
+    when Queue is empty
+      write the value without blocking [✔]
+    when some items in Queue
+      write the value without blocking [✔]
+  readQueue
+    when Queue is empty
+      blocks until some one writes item [✔]
+      block and awake out of order (values are in order) [✔]
+    when Queue is empty
+      the item in a Queue is not evaluated by write/read [✔]
+    when Queue is empty
+      the item in a Queue can be garbage collected after read [✔]
+    when some items in Queue
+      read one value without blocking [✔]
+  tryReadQueue
+    when Queue is empty
+      immediately returns without reading value [✔]
+      read value after writing [✔]
+    when some items in Queue
+      read one value without blocking [✔]
+KazuraQueue concurrent specs
+  writeQueue
+    when some items in Queue
+      write and read values concurrently [✔]
+        +++ OK, passed 100 tests.
+  readQueue
+    when Queue is empty
+      values are read in order (thread awakes out of order) [✔]
+        +++ OK, passed 100 tests.
+  tryReadQueue
+    when some items in Queue
+      values are read in order [✔]
+        +++ OK, passed 100 tests.
+    when Queue is empty
+      read value after writing [✔]
+        +++ OK, passed 100 tests.
+  readWriteQueueSpec
+    when Queue is empty
+      read/write = 1/1 [✔]
+        +++ OK, passed 100 tests.
+      read/write = 1/10 [✔]
+        +++ OK, passed 100 tests.
+      read/write = 10/1 [✔]
+        +++ OK, passed 100 tests.
+      read/write = 10/10 [✔]
+        +++ OK, passed 100 tests.
+  tryReadWriteQueueSpec
+    when Queue is empty
+      read/write = 1/1 [✔]
+        +++ OK, passed 100 tests.
+      read/write = 1/10 [✔]
+        +++ OK, passed 100 tests.
+      read/write = 10/1 [✔]
+        +++ OK, passed 100 tests.
+      read/write = 10/10 [✔]
+        +++ OK, passed 100 tests.
+  readQueueWithExceptionSpec
+    when Queue is empty
+      read/write = 1/1 [✔]
+        +++ OK, passed 100 tests.
+      read/write = 1/10 [✔]
+        +++ OK, passed 100 tests.
+      read/write = 10/1 [✔]
+        +++ OK, passed 100 tests.
+      read/write = 10/10 [✔]
+        +++ OK, passed 100 tests.
+      read/write ratio random 100000 [✔]
+        +++ OK, passed 100 tests.
+
+Finished in 173.6786 seconds
+116 examples, 0 failures
+Test suite kazura-queue-test: PASS
+Test suite logged to:
+/tmp/workdir-kazura-queue/kazura-queue-0.1.0.4/dist-newstyle/build/x86_64-linux/ghc-9.6.6/kazura-queue-0.1.0.4/t/kazura-queue-test/test/kazura-queue-0.1.0.4-kazura-queue-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

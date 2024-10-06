@@ -1,0 +1,81 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - ipython-kernel-0.11.0.0 (lib) (first run)
+Configuring library for ipython-kernel-0.11.0.0...
+Preprocessing library for ipython-kernel-0.11.0.0...
+Building library for ipython-kernel-0.11.0.0...
+[1 of 6] Compiling IHaskell.IPython.Message.UUID
+[2 of 6] Compiling IHaskell.IPython.Types
+
+src/IHaskell/IPython/Types.hs:49:1: warning: [-Wunused-imports]
+    The import of ‘Data.Semigroup’ is redundant
+      except perhaps to import instances from ‘Data.Semigroup’
+    To import instances alone, use: import Data.Semigroup()
+   |
+49 | import           Data.Semigroup (Semigroup)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[3 of 6] Compiling IHaskell.IPython.Message.Parser
+
+src/IHaskell/IPython/Message/Parser.hs:56:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Object’ not matched: Nothing
+   |
+56 |     Just result = decode $ Lazy.fromStrict headerData :: Maybe Object
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/IHaskell/IPython/Message/Parser.hs:61:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Result
+                            (MessageType, Username, IHaskell.IPython.Message.UUID.UUID,
+                             IHaskell.IPython.Message.UUID.UUID)’ not matched:
+            Error _
+   |
+61 |     Success (messageType, username, messageUUID, sessionUUID) = flip parse result $ \obj -> do
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+src/IHaskell/IPython/Message/Parser.hs:69:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Metadata’ not matched: Nothing
+   |
+69 |     Just metadataMap = fmap Metadata $ decode $ Lazy.fromStrict metadata
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/IHaskell/IPython/Message/Parser.hs:133:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe (KM.KeyMap Value)’ not matched: Nothing
+    |
+133 |       Just decoded = decode content
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/IHaskell/IPython/Message/Parser.hs:134:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Result
+                            (Data.Text.Internal.Text, Bool, Bool, Bool)’ not matched:
+            Error _
+    |
+134 |       Success (code, silent, storeHistory, allowStdin) = parse parser decoded
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/IHaskell/IPython/Message/Parser.hs:190:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe a’ not matched: Nothing
+    |
+190 |     Just decoded = decode content
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[4 of 6] Compiling IHaskell.IPython.ZeroMQ
+
+src/IHaskell/IPython/ZeroMQ.hs:29:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+29 | import           Data.Monoid ((<>))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[5 of 6] Compiling IHaskell.IPython.Kernel
+[6 of 6] Compiling IHaskell.IPython.EasyKernel

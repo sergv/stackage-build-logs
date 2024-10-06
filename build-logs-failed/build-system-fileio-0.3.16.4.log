@@ -1,0 +1,190 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - system-fileio-0.3.16.4 (lib) (first run)
+ - system-fileio-0.3.16.4 (test:filesystem_tests) (first run)
+Configuring library for system-fileio-0.3.16.4...
+Preprocessing library for system-fileio-0.3.16.4...
+Building library for system-fileio-0.3.16.4...
+[1 of 1] Compiling Filesystem
+
+lib/Filesystem.hs:19:1: warning: [GHC-94817] [-Wtabs]
+    Tab character found here, and in 350 further locations.
+    Suggested fix: Please use spaces instead.
+   |
+19 |         (
+   | ^^^^^^^^
+
+lib/Filesystem.hs:79:48: warning: [-Wunused-imports]
+    The import of ‘when’ from module ‘Control.Monad’ is redundant
+   |
+79 | import           Control.Monad (forM_, unless, when)
+   |                                                ^^^^
+
+lib/Filesystem.hs:95:1: warning: [-Wunused-imports]
+    The import of ‘System.IO.Error’ is redundant
+      except perhaps to import instances from ‘System.IO.Error’
+    To import instances alone, use: import System.IO.Error()
+   |
+95 | import           System.IO.Error (IOError)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+lib/Filesystem.hs:928:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘throwErrnoPathIfMinus1’
+    |
+928 | throwErrnoPathIfMinus1 loc path = CError.throwErrnoPathIfMinus1 loc (encodeString path)
+    | ^^^^^^^^^^^^^^^^^^^^^^
+In file included from /usr/include/dirent.h:25,
+
+                 from lib/hssystemfileio-unix.c:9:0: error: 
+
+/usr/include/features.h:194:3: error:
+     warning: #warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE" [-Wcpp]
+      194 | # warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE"
+          |   ^~~~~~~
+    |
+194 | # warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE"
+    |   ^
+lib/hssystemfileio-unix.c: In function ‘hssystemfileio_readdir’:
+
+lib/hssystemfileio-unix.c:57:17: error:
+     warning: ‘readdir_r’ is deprecated [-Wdeprecated-declarations]
+       57 |                 int rc = readdir_r(dir, dirent, &dirent_result);
+          |                 ^~~
+   |
+57 |                 int rc = readdir_r(dir, dirent, &dirent_result);
+   |                 ^
+
+In file included from lib/hssystemfileio-unix.c:9:0: error: 
+
+/usr/include/dirent.h:183:12: error:
+     note: declared here
+      183 | extern int readdir_r (DIR *__restrict __dirp,
+          |            ^~~~~~~~~
+    |
+183 | extern int readdir_r (DIR *__restrict __dirp,
+    |            ^
+In file included from /usr/include/dirent.h:25,
+
+                 from lib/hssystemfileio-unix.c:9:0: error: 
+
+/usr/include/features.h:194:3: error:
+     warning: #warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE" [-Wcpp]
+      194 | # warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE"
+          |   ^~~~~~~
+    |
+194 | # warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE"
+    |   ^
+lib/hssystemfileio-unix.c: In function ‘hssystemfileio_readdir’:
+
+lib/hssystemfileio-unix.c:57:17: error:
+     warning: ‘readdir_r’ is deprecated [-Wdeprecated-declarations]
+       57 |                 int rc = readdir_r(dir, dirent, &dirent_result);
+          |                 ^~~
+   |
+57 |                 int rc = readdir_r(dir, dirent, &dirent_result);
+   |                 ^
+
+In file included from lib/hssystemfileio-unix.c:9:0: error: 
+
+/usr/include/dirent.h:183:12: error:
+     note: declared here
+      183 | extern int readdir_r (DIR *__restrict __dirp,
+          |            ^~~~~~~~~
+    |
+183 | extern int readdir_r (DIR *__restrict __dirp,
+    |            ^
+Configuring test suite 'filesystem_tests' for system-fileio-0.3.16.4...
+Preprocessing test suite 'filesystem_tests' for system-fileio-0.3.16.4...
+Building test suite 'filesystem_tests' for system-fileio-0.3.16.4...
+[1 of 4] Compiling FilesystemTests.Util
+
+tests/FilesystemTests/Util.hs:8:1: warning: [GHC-94817] [-Wtabs]
+    Tab character found here, and in 11 further locations.
+    Suggested fix: Please use spaces instead.
+  |
+8 |         ( assertionsWithTemp
+  | ^^^^^^^^
+[2 of 4] Compiling FilesystemTests.Posix
+
+tests/FilesystemTests/Posix.hs:663:29: error: [GHC-83865]
+    • Couldn't match expected type: PosixIO.OpenFileFlags
+                                    -> IO System.Posix.Types.Fd
+                  with actual type: IO System.Posix.Types.Fd
+    • The function ‘PosixIO.openFd’ is applied to four value arguments,
+        but its type ‘GHC.IO.FilePath
+                      -> PosixIO.OpenMode
+                      -> PosixIO.OpenFileFlags
+                      -> IO System.Posix.Types.Fd’
+        has only three
+      In the second argument of ‘($)’, namely
+        ‘PosixIO.openFd
+           "/dev/null" PosixIO.ReadOnly Nothing PosixIO.defaultFileFlags’
+      In a stmt of a 'do' block:
+        nullfd1 <- liftIO
+                     $ PosixIO.openFd
+                         "/dev/null" PosixIO.ReadOnly Nothing PosixIO.defaultFileFlags
+    |
+663 |         nullfd1 <- liftIO $ PosixIO.openFd "/dev/null" PosixIO.ReadOnly Nothing PosixIO.defaultFileFlags
+    |                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/FilesystemTests/Posix.hs:663:73: error: [GHC-83865]
+    • Couldn't match expected type ‘PosixIO.OpenFileFlags’
+                  with actual type ‘Maybe a0’
+    • In the third argument of ‘PosixIO.openFd’, namely ‘Nothing’
+      In the second argument of ‘($)’, namely
+        ‘PosixIO.openFd
+           "/dev/null" PosixIO.ReadOnly Nothing PosixIO.defaultFileFlags’
+      In a stmt of a 'do' block:
+        nullfd1 <- liftIO
+                     $ PosixIO.openFd
+                         "/dev/null" PosixIO.ReadOnly Nothing PosixIO.defaultFileFlags
+    |
+663 |         nullfd1 <- liftIO $ PosixIO.openFd "/dev/null" PosixIO.ReadOnly Nothing PosixIO.defaultFileFlags
+    |                                                                         ^^^^^^^
+
+tests/FilesystemTests/Posix.hs:668:29: error: [GHC-83865]
+    • Couldn't match expected type: PosixIO.OpenFileFlags
+                                    -> IO System.Posix.Types.Fd
+                  with actual type: IO System.Posix.Types.Fd
+    • The function ‘PosixIO.openFd’ is applied to four value arguments,
+        but its type ‘GHC.IO.FilePath
+                      -> PosixIO.OpenMode
+                      -> PosixIO.OpenFileFlags
+                      -> IO System.Posix.Types.Fd’
+        has only three
+      In the second argument of ‘($)’, namely
+        ‘PosixIO.openFd
+           "/dev/null" PosixIO.ReadOnly Nothing PosixIO.defaultFileFlags’
+      In a stmt of a 'do' block:
+        nullfd2 <- liftIO
+                     $ PosixIO.openFd
+                         "/dev/null" PosixIO.ReadOnly Nothing PosixIO.defaultFileFlags
+    |
+668 |         nullfd2 <- liftIO $ PosixIO.openFd "/dev/null" PosixIO.ReadOnly Nothing PosixIO.defaultFileFlags
+    |                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/FilesystemTests/Posix.hs:668:73: error: [GHC-83865]
+    • Couldn't match expected type ‘PosixIO.OpenFileFlags’
+                  with actual type ‘Maybe a1’
+    • In the third argument of ‘PosixIO.openFd’, namely ‘Nothing’
+      In the second argument of ‘($)’, namely
+        ‘PosixIO.openFd
+           "/dev/null" PosixIO.ReadOnly Nothing PosixIO.defaultFileFlags’
+      In a stmt of a 'do' block:
+        nullfd2 <- liftIO
+                     $ PosixIO.openFd
+                         "/dev/null" PosixIO.ReadOnly Nothing PosixIO.defaultFileFlags
+    |
+668 |         nullfd2 <- liftIO $ PosixIO.openFd "/dev/null" PosixIO.ReadOnly Nothing PosixIO.defaultFileFlags
+    |                                                                         ^^^^^^^
+[3 of 4] Compiling FilesystemTests.Windows
+
+tests/FilesystemTests/Windows.hs:8:1: warning: [GHC-94817] [-Wtabs]
+    Tab character found here, and in 47 further locations.
+    Suggested fix: Please use spaces instead.
+  |
+8 |         ( suite_Windows
+  | ^^^^^^^^
+Error: [Cabal-7125]
+Failed to build test:filesystem_tests from system-fileio-0.3.16.4.
+

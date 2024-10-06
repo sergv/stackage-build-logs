@@ -1,0 +1,192 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - getopt-generics-0.13.1.0 (test:spec) (ephemeral targets)
+Preprocessing test suite 'spec' for getopt-generics-0.13.1.0...
+Building test suite 'spec' for getopt-generics-0.13.1.0...
+Running 1 test suites...
+Test suite spec: RUNNING...
+
+Docs
+  shell protocols
+    Test01 [✔]
+    CustomOption [✔]
+    Simple [✔]
+    Test02 [✔]
+    Test03 [✔]
+    Test04 [✔]
+    RecordType [✔]
+    CustomOptionRecord [✔]
+Modifiers
+  AddShortOption
+    allows modifiers for short options [✔]
+    allows modifiers in camelCase [✔]
+    includes the short option in the help [✔]
+  RenameOption
+    allows renaming options [✔]
+    when shadowing earlier modifiers with later modifiers
+      uses the later renaming [✔]
+      disregards the earlier renaming [✔]
+    contains renamed options in error messages [✔]
+    ModifiersSpec[53:5] [✔]
+  AddVersionFlag
+    implements --version [✔]
+    --help takes precedence over --version [✔]
+    --version shows up in help output [✔]
+  AddOptionHelp
+    allows specifying a flag specific help [✔]
+    uses the last AddOptionHelp if multiple are given [✔]
+ModifiersSpec.RenameOptions
+  RenameOptions
+    allows renaming all flags [✔]
+    works on camelCase field names [✔]
+    missing options messages show renamed options [✔]
+    can be used to rename a single field [✔]
+    allows stripping a common prefix [✔]
+ModifiersSpec.UseForPositionalArguments
+  allows positionalArguments [✔]
+  disallows specifying the option used for positional arguments [✔]
+  complains about fields that don't have type [String] [✔]
+  includes the type of positional arguments in the help output in upper-case [✔]
+  complains about multiple PositionalArguments fields [✔]
+  when used without selector
+    automatically uses positional arguments for [Int] [✔]
+    automatically uses positional arguments for [String] [✔]
+WithCli
+  withCli
+    no arguments
+      executes the operation in case of no command line arguments [✔]
+      produces nice error messages [✔]
+    1 argument
+      parses Ints [✔]
+      error parsing [✔]
+      record types
+        parses command line arguments [✔]
+    optional positional arguments with Maybe
+      allows optional positional arguments [✔]
+      allows multiple optional positional arguments [✔]
+      allows optional positional arguments after non-optional arguments [✔]
+      disallows optional positional arguments before non-optional ones with a proper error message [✔]
+      shows optional arguments with nested square brackets in help output [✔]
+WithCli.Argument
+  Option.Double
+    parses doubles [✔]
+    renders as NUMBER in help and error output [✔]
+    parses doubles that start with a dot [✔]
+  Option.Float
+    parses floats [✔]
+    renders as NUMBER in help and error output [✔]
+WithCli.HasArguments
+  parseBool
+    parses 'true' as True [✔]
+    parses 'True' as True [✔]
+    parses 'tRue' as True [✔]
+    parses 'TRUE' as True [✔]
+    parses 'yes' as True [✔]
+    parses 'yEs' as True [✔]
+    parses 'on' as True [✔]
+    parses 'oN' as True [✔]
+    parses 'false' as False [✔]
+    parses 'False' as False [✔]
+    parses 'falSE' as False [✔]
+    parses 'FALSE' as False [✔]
+    parses 'no' as False [✔]
+    parses 'nO' as False [✔]
+    parses 'off' as False [✔]
+    parses 'ofF' as False [✔]
+    parses every positive integer as true [✔]
+      +++ OK, passed 100 tests; 119 discarded.
+    parses every non-positive integer as false [✔]
+      +++ OK, passed 100 tests; 86 discarded.
+    doesn't parse 'foo' [✔]
+WithCli.Modifier
+  insertWith
+    combines existing values with the given function [✔]
+  getVersion
+    returns the version [✔]
+WithCli.Normalize
+  normalize
+    is idempotent [✔]
+      +++ OK, passed 100 tests.
+    replaces underscores with dashes [✔]
+    doesn't modify digits [✔]
+    when there's one valid character it returns only dashes and lower case characters [✔]
+      +++ OK, passed 100 tests; 32 discarded.
+    when there are no valid characters it returns its input [✔]
+      +++ OK, passed 100 tests.
+    replaces camelCase with dashes [✔]
+      +++ OK, passed 100 tests; 51 discarded.
+  matches
+    matches normalized strings [✔]
+      +++ OK, passed 100 tests.
+    matches unnormalized strings [✔]
+      +++ OK, passed 100 tests.
+WithCli.Parser
+  runParser
+    works [✔]
+WithCli.Pure
+  withCliPure
+    works for no arguments [✔]
+    works for one argument [✔]
+    works for two arguments [✔]
+WithCli.Pure.Record
+  withCliPure (record types)
+    allows optional arguments [✔]
+    allows boolean flags [✔]
+    allows overwriting String options [✔]
+    with invalid arguments
+      prints out an error [✔]
+      prints errors for missing options [✔]
+      prints out an error for unparseable options [✔]
+      complains about unused positional arguments [✔]
+      complains about invalid overwritten options [✔]
+    --help
+      implements --help [✔]
+      contains help message about --help [✔]
+      does not contain trailing spaces [✔]
+      complains when the options datatype is not allowed [✔]
+      outputs a header including "[OPTIONS]" [✔]
+  parseArguments
+    allows interpreting multiple uses of the same option as lists [✔]
+    complains about invalid list arguments [✔]
+  parseArguments
+    turns camelCase selectors to lowercase and seperates with a dash [✔]
+    help does not contain camelCase flags [✔]
+    error messages don't contain camelCase flags [✔]
+  parseArguments
+    ignores leading underscores in field names [✔]
+  parseArguments
+    WithoutSelectors
+      populates fields without selectors from positional arguments [✔]
+      has good help output for positional arguments [✔]
+      has good error messages for missing positional arguments [✔]
+      complains about additional positional arguments [✔]
+      allows using tuples [✔]
+WithCli.Result
+  Result
+    >>
+      collects errors [✔]
+    |>
+      shortcuts directly without collecting other errors [✔]
+  handleResult
+    OutputAndExit
+foo
+      throws ExitSuccess [✔]
+    Errors
+foo
+      throws an ExitFailure [✔]
+  sanitizeMessage
+    removes empty lines [✔]
+      +++ OK, passed 100 tests.
+    adds a newline at the end if missing [✔]
+      +++ OK, passed 100 tests; 20 discarded.
+    only strips spaces [✔]
+      +++ OK, passed 100 tests.
+    removes trailing spaces [✔]
+      +++ OK, passed 100 tests.
+
+Finished in 0.0643 seconds
+113 examples, 0 failures
+Test suite spec: PASS
+Test suite logged to:
+/tmp/workdir-getopt-generics/getopt-generics-0.13.1.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/getopt-generics-0.13.1.0/t/spec/test/getopt-generics-0.13.1.0-spec.log
+1 of 1 test suites (1 of 1 test cases) passed.

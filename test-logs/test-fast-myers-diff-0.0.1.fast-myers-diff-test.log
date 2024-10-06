@@ -1,0 +1,78 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - fast-myers-diff-0.0.1 (test:fast-myers-diff-test) (ephemeral targets)
+Preprocessing test suite 'fast-myers-diff-test' for fast-myers-diff-0.0.1...
+Building test suite 'fast-myers-diff-test' for fast-myers-diff-0.0.1...
+Running 1 test suites...
+Test suite fast-myers-diff-test: RUNNING...
+
+getEditScript
+  works for "" "" [] [✔]
+  works for "a" "a" [] [✔]
+  works for "a" "b" [Delete 0 1,Insert 1 0 1] [✔]
+  works for "ab" "ac" [Delete 1 1,Insert 2 1 1] [✔]
+  works for "b" "aba" [Insert 0 0 1,Insert 1 2 1] [✔]
+  works for "abc" "acb" [Delete 1 1,Insert 3 2 1] [✔]
+  works for "aaa" "aba" [Delete 0 1,Insert 2 1 1] [✔]
+  works for "foofoo" "foo" [Delete 1 1,Delete 3 1,Delete 5 1] [✔]
+  works for "foo" "foofoo" [Insert 1 1 1,Insert 2 3 1,Insert 3 5 1] [✔]
+computeDiffFromEditScript
+  works for "" "" [] [] [✔]
+  works for "a" "a" [] [Both 'a' 'a'] [✔]
+  works for "a" "b" [Delete 0 1,Insert 1 0 1] [First 'a',Second 'b'] [✔]
+  works for "ab" "ac" [Delete 1 1,Insert 2 1 1] [Both 'a' 'a',First 'b',Second 'c'] [✔]
+  works for "b" "aba" [Insert 0 0 1,Insert 1 2 1] [Second 'a',Both 'b' 'b',Second 'a'] [✔]
+  works for "abc" "acb" [Delete 1 1,Insert 3 2 1] [Both 'a' 'a',First 'b',Both 'c' 'c',Second 'b'] [✔]
+  works for "aaa" "aba" [Delete 0 1,Insert 2 1 1] [First 'a',Both 'a' 'a',Second 'b',Both 'a' 'a'] [✔]
+  works for "foofoo" "foo" [Delete 1 1,Delete 3 1,Delete 5 1] [Both 'f' 'f',First 'o',Both 'o' 'o',First 'f',Both 'o' 'o',First 'o'] [✔]
+  works for "foo" "foofoo" [Insert 1 1 1,Insert 2 3 1,Insert 3 5 1] [Both 'f' 'f',Second 'o',Both 'o' 'o',Second 'f',Both 'o' 'o',Second 'o'] [✔]
+getVectorDiff
+  works for "" "" [] [✔]
+  works for "a" "a" [Both 'a' 'a'] [✔]
+  works for "a" "b" [First 'a',Second 'b'] [✔]
+  works for "ab" "ac" [Both 'a' 'a',First 'b',Second 'c'] [✔]
+  works for "aaa" "aba" [First 'a',Both 'a' 'a',Second 'b',Both 'a' 'a'] [✔]
+  works for "abgdef" "gh" [First 'a',First 'b',Both 'g' 'g',First 'd',First 'e',Second 'h',First 'f'] [✔]
+  works for "foofoo" "foo" [Both 'f' 'f',First 'o',Both 'o' 'o',First 'f',Both 'o' 'o',First 'o'] [✔]
+  says that any list is entirely different from the empty list (left) [✔]
+    +++ OK, passed 100 tests.
+  says that any list is entirely different from the empty list (right) [✔]
+    +++ OK, passed 100 tests.
+  does not find diffs in identical strings [✔]
+    +++ OK, passed 100 tests.
+  only puts equal characters in 'Both' [✔]
+    +++ OK, passed 100 tests.
+  lets you rebuild the old vector [✔]
+    +++ OK, passed 100 tests.
+  lets you rebuild the new vector [✔]
+    +++ OK, passed 100 tests.
+  is the same thing as getGroupedVectorDiff, but unrolled (unroll grouped) [✔]
+    +++ OK, passed 100 tests.
+getGroupedVectorDiff
+  says that any list is entirely different from the empty list (left) [✔]
+    +++ OK, passed 100 tests.
+  says that any list is entirely different from the empty list (right) [✔]
+    +++ OK, passed 100 tests.
+  does not find diffs in identical strings [✔]
+    +++ OK, passed 100 tests.
+  only puts equal vectors in 'Both' [✔]
+    +++ OK, passed 100 tests.
+  lets you rebuild the old vector [✔]
+    +++ OK, passed 100 tests.
+  lets you rebuild the new vector [✔]
+    +++ OK, passed 100 tests.
+  is the same thing as getVectorDiff, but rolled up and squished (rollup individual) [✔]
+    +++ OK, passed 100 tests.
+getStringDiff
+  can output a large diff quickly enough if there is no diff [✔]
+  can output a large diff quickly enough if it's only diff [✔]
+getTextDiff
+  can output a large diff quickly enough if there is no diff [✔]
+  can output a large diff quickly enough if it's only diff [✔]
+
+Finished in 0.2131 seconds
+43 examples, 0 failures
+Test suite fast-myers-diff-test: PASS
+Test suite logged to:
+/tmp/workdir-fast-myers-diff/fast-myers-diff-0.0.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/fast-myers-diff-0.0.1/t/fast-myers-diff-test/test/fast-myers-diff-0.0.1-fast-myers-diff-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

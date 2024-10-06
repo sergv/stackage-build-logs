@@ -1,0 +1,44 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - amazonka-test-2.0 (lib) (first run)
+Configuring library for amazonka-test-2.0...
+Preprocessing library for amazonka-test-2.0...
+Building library for amazonka-test-2.0...
+[1 of 6] Compiling Test.Amazonka.Diff
+[2 of 6] Compiling Test.Amazonka.Orphans
+[3 of 6] Compiling Test.Amazonka.Assert
+[4 of 6] Compiling Test.Amazonka.TH
+[5 of 6] Compiling Test.Amazonka.Prelude
+[6 of 6] Compiling Test.Amazonka.Fixture
+
+src/Test/Amazonka/Fixture.hs:97:7: warning: [GHC-20125] [-Wmissing-fields]
+    • Fields of ‘Client.Response’ not initialised:
+        responseOriginalRequest :: Client.Request
+        responseEarlyHints :: HTTP.ResponseHeaders
+    • In the expression:
+        Client.Response
+          {responseStatus = HTTP.status200, responseVersion = HTTP.http11,
+           responseHeaders = mempty, responseBody = Conduit.sourceLbs lbs,
+           responseCookieJar = mempty,
+           responseClose' = Client.ResponseClose (pure ())}
+      In an equation for ‘rs’:
+          rs
+            = Client.Response
+                {responseStatus = HTTP.status200, responseVersion = HTTP.http11,
+                 responseHeaders = mempty, responseBody = Conduit.sourceLbs lbs,
+                 responseCookieJar = mempty,
+                 responseClose' = Client.ResponseClose (pure ())}
+      In an equation for ‘testResponse’:
+          testResponse s p lbs
+            = do y <- runResourceT (response pure s p rs)
+                 return $! first show (Client.responseBody <$> y)
+            where
+                rs
+                  = Client.Response
+                      {responseStatus = HTTP.status200, responseVersion = HTTP.http11,
+                       responseHeaders = mempty, responseBody = Conduit.sourceLbs lbs,
+                       responseCookieJar = mempty,
+                       responseClose' = Client.ResponseClose (pure ())}
+   |
+97 |       Client.Response
+   |       ^^^^^^^^^^^^^^^...

@@ -1,0 +1,217 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - range-0.3.0.2 (lib) (first run)
+ - range-0.3.0.2 (test:test-range) (first run)
+Configuring library for range-0.3.0.2...
+Preprocessing library for range-0.3.0.2...
+Building library for range-0.3.0.2...
+[ 1 of 12] Compiling Data.Range.Data
+[ 2 of 12] Compiling Data.Range.Operators
+[ 3 of 12] Compiling Data.Range.Util
+[ 4 of 12] Compiling Data.Range.Spans
+[ 5 of 12] Compiling Data.Range.RangeInternal
+
+Data/Range/RangeInternal.hs:63:11: warning: [GHC-56147]
+    Rule "load/export" ignored
+    Defining user rules is disabled under Safe Haskell
+   |
+63 | {-# RULES "load/export" [1] forall x. loadRanges (exportRangeMerge x) = x #-}
+   |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 6 of 12] Compiling Data.Range.Algebra.Internal
+[ 7 of 12] Compiling Data.Range.Algebra.Range
+[ 8 of 12] Compiling Data.Range.Algebra.Predicate
+[ 9 of 12] Compiling Data.Range.Algebra
+[10 of 12] Compiling Data.Range
+[11 of 12] Compiling Data.Range.Parser
+[12 of 12] Compiling Data.Ranges
+
+Data/Ranges.hs:37:1: warning: [-Wunused-imports]
+    The import of ‘Data.Semigroup’ is redundant
+      except perhaps to import instances from ‘Data.Semigroup’
+    To import instances alone, use: import Data.Semigroup()
+   |
+37 | import Data.Semigroup
+   | ^^^^^^^^^^^^^^^^^^^^^
+
+Data/Ranges.hs:56:4: warning: [-Wnoncanonical-monoid-instances]
+    Noncanonical ‘mappend’ definition detected
+    in the instance declaration for ‘Monoid (Ranges a)’.
+    ‘mappend’ will eventually be removed in favour of ‘(<>)’
+    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+   |
+56 |    mappend (Ranges a) (Ranges b) = Ranges . R.mergeRanges $ a ++ b
+   |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Configuring test suite 'test-range' for range-0.3.0.2...
+Preprocessing test suite 'test-range' for range-0.3.0.2...
+Building test suite 'test-range' for range-0.3.0.2...
+
+<no location info>: warning: [GHC-32850] [-Wmissing-home-modules]
+    These modules are needed for compilation but not listed in your .cabal file's other-modules for ‘range-0.3.0.2-inplace-test-range’ :
+        Data.Range
+        Data.Range.Algebra
+        Data.Range.Algebra.Internal
+        Data.Range.Algebra.Predicate
+        Data.Range.Algebra.Range
+        Data.Range.Data
+        Data.Range.Operators
+        Data.Range.RangeInternal
+        Data.Range.Spans
+        Data.Range.Util
+[ 1 of 12] Compiling Data.Range.Data
+[ 2 of 12] Compiling Data.Range.Operators
+[ 3 of 12] Compiling Data.Range.Util
+[ 4 of 12] Compiling Data.Range.Spans
+[ 5 of 12] Compiling Data.Range.RangeInternal
+
+Data/Range/RangeInternal.hs:63:11: warning: [GHC-56147]
+    Rule "load/export" ignored
+    Defining user rules is disabled under Safe Haskell
+   |
+63 | {-# RULES "load/export" [1] forall x. loadRanges (exportRangeMerge x) = x #-}
+   |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 6 of 12] Compiling Data.Range.Algebra.Internal
+[ 7 of 12] Compiling Data.Range.Algebra.Range
+[ 8 of 12] Compiling Data.Range.Algebra.Predicate
+[ 9 of 12] Compiling Data.Range.Algebra
+[10 of 12] Compiling Data.Range
+[11 of 12] Compiling Test.RangeMerge
+
+Test/RangeMerge.hs:69:1: warning: [GHC-38417] [-Wmissing-signatures]
+    Top-level binding with no type signature:
+      test_loadRM :: test-framework-0.8.2.0:Test.Framework.Core.Test
+   |
+69 | test_loadRM = testGroup "loadRanges function"
+   | ^^^^^^^^^^^
+
+Test/RangeMerge.hs:76:1: warning: [GHC-38417] [-Wmissing-signatures]
+    Top-level binding with no type signature:
+      test_invertRM :: test-framework-0.8.2.0:Test.Framework.Core.Test
+   |
+76 | test_invertRM = testGroup "invertRM function"
+   | ^^^^^^^^^^^^^
+
+Test/RangeMerge.hs:86:1: warning: [GHC-38417] [-Wmissing-signatures]
+    Top-level binding with no type signature:
+      test_unionRM :: test-framework-0.8.2.0:Test.Framework.Core.Test
+   |
+86 | test_unionRM = testGroup "unionRangeMerges function"
+   | ^^^^^^^^^^^^
+
+Test/RangeMerge.hs:99:1: warning: [GHC-38417] [-Wmissing-signatures]
+    Top-level binding with no type signature:
+      test_intersectionRM :: test-framework-0.8.2.0:Test.Framework.Core.Test
+   |
+99 | test_intersectionRM = testGroup "intersectionRangeMerges function"
+   | ^^^^^^^^^^^^^^^^^^^
+
+Test/RangeMerge.hs:112:1: warning: [GHC-38417] [-Wmissing-signatures]
+    Top-level binding with no type signature:
+      test_complex_laws :: test-framework-0.8.2.0:Test.Framework.Core.Test
+    |
+112 | test_complex_laws = testGroup "complex set theory rules"
+    | ^^^^^^^^^^^^^^^^^
+
+Test/RangeMerge.hs:117:1: warning: [GHC-38417] [-Wmissing-signatures]
+    Top-level binding with no type signature:
+      rangeMergeTestCases :: [test-framework-0.8.2.0:Test.Framework.Core.Test]
+    |
+117 | rangeMergeTestCases =
+    | ^^^^^^^^^^^^^^^^^^^
+[12 of 12] Compiling Main
+
+Test/Range.hs:11:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+11 | import Control.Applicative ((<$>), (<*>))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Test/Range.hs:51:1: warning: [GHC-38417] [-Wmissing-signatures]
+    Top-level binding with no type signature:
+      tests_inRange :: test-framework-0.8.2.0:Test.Framework.Core.Test
+   |
+51 | tests_inRange = testGroup "inRange Function"
+   | ^^^^^^^^^^^^^
+
+Test/Range.hs:53:6: warning: [GHC-18042] [-Wtype-defaults]
+    • Defaulting the type variable ‘a0’ to type ‘Integer’ in the following constraints
+        (Integral a0)
+          arising from a use of ‘testProperty’ at Test/Range.hs:53:6-17
+        (Num a0)
+          arising from a use of ‘testProperty’ at Test/Range.hs:53:6-17
+        (Eq a0)
+          arising from a use of ‘testProperty’ at Test/Range.hs:53:6-17
+        (Show a0)
+          arising from a use of ‘testProperty’ at Test/Range.hs:53:6-17
+        (Ord a0)
+          arising from a use of ‘prop_singleton_not_in_range’
+          at Test/Range.hs:53:53-79
+    • In the expression:
+        testProperty
+          "unequal singletons not in range" prop_singleton_not_in_range
+      In the second argument of ‘testGroup’, namely
+        ‘[testProperty "equal singletons in range" prop_singleton_in_range,
+          testProperty
+            "unequal singletons not in range" prop_singleton_not_in_range,
+          testProperty
+            "spans contain values in their middles" prop_span_contains,
+          testProperty
+            "infinite ranges contain everything"
+            prop_infinite_range_contains_everything]’
+      In the expression:
+        testGroup
+          "inRange Function"
+          [testProperty "equal singletons in range" prop_singleton_in_range,
+           testProperty
+             "unequal singletons not in range" prop_singleton_not_in_range,
+           testProperty
+             "spans contain values in their middles" prop_span_contains,
+           testProperty
+             "infinite ranges contain everything"
+             prop_infinite_range_contains_everything]
+   |
+53 |    , testProperty "unequal singletons not in range" prop_singleton_not_in_range
+   |      ^^^^^^^^^^^^
+
+Test/Range.hs:88:1: warning: [GHC-38417] [-Wmissing-signatures]
+    Top-level binding with no type signature:
+      test_ranges_invert :: test-framework-0.8.2.0:Test.Framework.Core.Test
+   |
+88 | test_ranges_invert = testGroup "invert function for ranges"
+   | ^^^^^^^^^^^^^^^^^^
+
+Test/Range.hs:107:1: warning: [GHC-38417] [-Wmissing-signatures]
+    Top-level binding with no type signature:
+      test_algebra_equivalence :: test-framework-0.8.2.0:Test.Framework.Core.Test
+    |
+107 | test_algebra_equivalence = testGroup "algebra equivalence"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^
+
+Test/Range.hs:112:1: warning: [GHC-38417] [-Wmissing-signatures]
+    Top-level binding with no type signature:
+      tests :: [test-framework-0.8.2.0:Test.Framework.Core.Test]
+    |
+112 | tests =
+    | ^^^^^
+
+Test/Range.hs:119:1: warning: [GHC-38417] [-Wmissing-signatures]
+    Top-level binding with no type signature: main :: IO ()
+    |
+119 | main = defaultMain tests
+    | ^^^^
+
+<no location info>: warning: [GHC-32850] [-Wmissing-home-modules]
+    These modules are needed for compilation but not listed in your .cabal file's other-modules for ‘range-0.3.0.2-inplace-test-range’ :
+        Data.Range
+        Data.Range.Algebra
+        Data.Range.Algebra.Internal
+        Data.Range.Algebra.Predicate
+        Data.Range.Algebra.Range
+        Data.Range.Data
+        Data.Range.Operators
+        Data.Range.RangeInternal
+        Data.Range.Spans
+        Data.Range.Util
+[13 of 13] Linking /tmp/workdir-range/range-0.3.0.2/dist-newstyle/build/x86_64-linux/ghc-9.6.6/range-0.3.0.2/t/test-range/build/test-range/test-range

@@ -1,0 +1,42 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - genvalidity-typed-uuid-0.1.0.1 (test:typed-uuid-test) (ephemeral targets)
+Preprocessing test suite 'typed-uuid-test' for genvalidity-typed-uuid-0.1.0.1...
+Building test suite 'typed-uuid-test' for genvalidity-typed-uuid-0.1.0.1...
+Running 1 test suites...
+Test suite typed-uuid-test: RUNNING...
+
+Data.UUID.Typed
+  Eq (UUID Int)
+    (==) :: (UUID Int) -> (UUID Int) -> Bool
+      is reflexive for "valid (UUID Int)"s [✔]
+        +++ OK, passed 100 tests.
+      is symmetric for "valid (UUID Int)"s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "valid (UUID Int)"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a /= b) for "valid (UUID Int)"s [✔]
+        +++ OK, passed 100 tests.
+    (/=) :: (UUID Int) -> (UUID Int) -> Bool
+      is antireflexive for "valid (UUID Int)"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a == b) for "valid (UUID Int)"s [✔]
+        +++ OK, passed 100 tests.
+  GenValid (UUID Int)
+    genValid   :: Gen (UUID Int)
+      only generates valid '(UUID Int)'s [✔]
+        +++ OK, passed 100 tests.
+  JSON (UUID Int) (valid)
+    encode :: (UUID Int) -> Data.ByteString.Lazy.ByteString
+      never fails to encode a "valid (UUID Int)" [✔]
+        +++ OK, passed 100 tests.
+    decode :: Data.ByteString.Lazy.ByteString -> Either String (UUID Int)
+      ensures that encode and decode are inverses for "valid (UUID Int)"'s [✔]
+        +++ OK, passed 100 tests.
+
+Finished in 0.0012 seconds
+9 examples, 0 failures
+Test suite typed-uuid-test: PASS
+Test suite logged to:
+/tmp/workdir-genvalidity-typed-uuid/genvalidity-typed-uuid-0.1.0.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/genvalidity-typed-uuid-0.1.0.1/t/typed-uuid-test/test/genvalidity-typed-uuid-0.1.0.1-typed-uuid-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

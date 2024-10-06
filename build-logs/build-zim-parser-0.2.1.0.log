@@ -1,0 +1,293 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - zim-parser-0.2.1.0 (lib) (first run)
+ - zim-parser-0.2.1.0 (test:spec) (first run)
+Configuring library for zim-parser-0.2.1.0...
+Preprocessing library for zim-parser-0.2.1.0...
+Building library for zim-parser-0.2.1.0...
+[1 of 2] Compiling Codec.Archive.Zim.Parser
+
+src/Codec/Archive/Zim/Parser.hs:361:16: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘$$’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use runConduit and .|"
+    |
+361 |     hdr <- src $$ sinkGet parseZimHeader
+    |                ^^
+
+src/Codec/Archive/Zim/Parser.hs:378:24: warning: [GHC-68441] [-Wdeprecations]
+    In the use of type constructor or class ‘Sink’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use ConduitT directly"
+    |
+378 | parseByteStringsNul :: Sink B8.ByteString IO [B8.ByteString]
+    |                        ^^^^
+
+src/Codec/Archive/Zim/Parser.hs:379:55: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘=$’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use .|"
+    |
+379 | parseByteStringsNul = conduitGet getLazyByteStringNul =$ loop id
+    |                                                       ^^
+
+src/Codec/Archive/Zim/Parser.hs:381:53: warning: [GHC-68441] [-Wdeprecations]
+    In the use of type constructor or class ‘Sink’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use ConduitT directly"
+    |
+381 |     loop :: ([B8.ByteString] -> [B8.ByteString]) -> Sink BL.ByteString IO [B8.ByteString]
+    |                                                     ^^^^
+
+src/Codec/Archive/Zim/Parser.hs:394:19: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘$$’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use runConduit and .|"
+    |
+394 |   mimeList <- src $$ parseByteStringsNul
+    |                   ^^
+
+src/Codec/Archive/Zim/Parser.hs:434:33: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘$$’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use runConduit and .|"
+    |
+434 |     dePos <- srcStart urlPtrPos $$ sinkGet getWord64le
+    |                                 ^^
+
+src/Codec/Archive/Zim/Parser.hs:435:20: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘$$’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use runConduit and .|"
+    |
+435 |     srcStart dePos $$ sinkGet parseZimDirEnt
+    |                    ^^
+
+src/Codec/Archive/Zim/Parser.hs:442:26: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘$$’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use runConduit and .|"
+    |
+442 |     urlIndex <- srcTitle $$ sinkGet getWord32le
+    |                          ^^
+
+src/Codec/Archive/Zim/Parser.hs:451:23: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘$$’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use runConduit and .|"
+    |
+451 |   (pos0, pos1) <- src $$ sinkGet $ (,) <$> getWord64le <*> getWord64le
+    |                       ^^
+
+src/Codec/Archive/Zim/Parser.hs:459:20: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘$$’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use runConduit and .|"
+    |
+459 |   bs <- srcCluster $$ sinkGet getRemainingLazyByteString
+    |                    ^^
+
+src/Codec/Archive/Zim/Parser.hs:473:23: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘$$’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use runConduit and .|"
+    |
+473 |   (pos0, pos1) <- src $$ sinkGet $ (,) <$> getWord32le <*> getWord32le
+    |                       ^^
+
+src/Codec/Archive/Zim/Parser.hs:500:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘(Maybe Int, Maybe Int)’ not matched:
+            (Nothing, _)
+            ((Just _), Nothing)
+    |
+500 |         let (Just c, Just b) = (zimDeClusterNumber de, zimDeBlobNumber de)
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Codec/Archive/Zim/Parser.hs:635:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe (TitleIndex, ZimDirEnt)’ not matched:
+            Nothing
+    |
+635 |             Just (TitleIndex ubi, ub') = ub
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2 of 2] Compiling Paths_zim_parser
+Configuring test suite 'spec' for zim-parser-0.2.1.0...
+Preprocessing test suite 'spec' for zim-parser-0.2.1.0...
+Building test suite 'spec' for zim-parser-0.2.1.0...
+[1 of 3] Compiling Codec.Archive.Zim.Parser
+
+src/Codec/Archive/Zim/Parser.hs:361:16: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘$$’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use runConduit and .|"
+    |
+361 |     hdr <- src $$ sinkGet parseZimHeader
+    |                ^^
+
+src/Codec/Archive/Zim/Parser.hs:378:24: warning: [GHC-68441] [-Wdeprecations]
+    In the use of type constructor or class ‘Sink’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use ConduitT directly"
+    |
+378 | parseByteStringsNul :: Sink B8.ByteString IO [B8.ByteString]
+    |                        ^^^^
+
+src/Codec/Archive/Zim/Parser.hs:379:55: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘=$’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use .|"
+    |
+379 | parseByteStringsNul = conduitGet getLazyByteStringNul =$ loop id
+    |                                                       ^^
+
+src/Codec/Archive/Zim/Parser.hs:381:53: warning: [GHC-68441] [-Wdeprecations]
+    In the use of type constructor or class ‘Sink’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use ConduitT directly"
+    |
+381 |     loop :: ([B8.ByteString] -> [B8.ByteString]) -> Sink BL.ByteString IO [B8.ByteString]
+    |                                                     ^^^^
+
+src/Codec/Archive/Zim/Parser.hs:394:19: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘$$’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use runConduit and .|"
+    |
+394 |   mimeList <- src $$ parseByteStringsNul
+    |                   ^^
+
+src/Codec/Archive/Zim/Parser.hs:434:33: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘$$’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use runConduit and .|"
+    |
+434 |     dePos <- srcStart urlPtrPos $$ sinkGet getWord64le
+    |                                 ^^
+
+src/Codec/Archive/Zim/Parser.hs:435:20: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘$$’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use runConduit and .|"
+    |
+435 |     srcStart dePos $$ sinkGet parseZimDirEnt
+    |                    ^^
+
+src/Codec/Archive/Zim/Parser.hs:442:26: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘$$’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use runConduit and .|"
+    |
+442 |     urlIndex <- srcTitle $$ sinkGet getWord32le
+    |                          ^^
+
+src/Codec/Archive/Zim/Parser.hs:451:23: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘$$’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use runConduit and .|"
+    |
+451 |   (pos0, pos1) <- src $$ sinkGet $ (,) <$> getWord64le <*> getWord64le
+    |                       ^^
+
+src/Codec/Archive/Zim/Parser.hs:459:20: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘$$’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use runConduit and .|"
+    |
+459 |   bs <- srcCluster $$ sinkGet getRemainingLazyByteString
+    |                    ^^
+
+src/Codec/Archive/Zim/Parser.hs:473:23: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘$$’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use runConduit and .|"
+    |
+473 |   (pos0, pos1) <- src $$ sinkGet $ (,) <$> getWord32le <*> getWord32le
+    |                       ^^
+
+src/Codec/Archive/Zim/Parser.hs:500:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘(Maybe Int, Maybe Int)’ not matched:
+            (Nothing, _)
+            ((Just _), Nothing)
+    |
+500 |         let (Just c, Just b) = (zimDeClusterNumber de, zimDeBlobNumber de)
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Codec/Archive/Zim/Parser.hs:635:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe (TitleIndex, ZimDirEnt)’ not matched:
+            Nothing
+    |
+635 |             Just (TitleIndex ubi, ub') = ub
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2 of 3] Compiling Codec.Archive.Zim.ParserSpec
+
+test/Codec/Archive/Zim/ParserSpec.hs:97:17: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[(Int, ZimDirEnt)]’ not matched:
+            []
+            [(_, _)]
+            ((_, _):(_, _):_:_)
+   |
+97 |             let [(lb, _), (ub, _)] = res
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/Codec/Archive/Zim/ParserSpec.hs:109:17: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[(Int, ZimDirEnt)]’ not matched:
+            []
+            [(_, _)]
+            ((_, _):(_, _):_:_)
+    |
+109 |             let [(lb, _), (ub, _)] = res
+    |                 ^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/Codec/Archive/Zim/ParserSpec.hs:116:17: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[(Int, ZimDirEnt)]’ not matched:
+            []
+            [(_, _)]
+            ((_, _):(_, _):_:_)
+    |
+116 |             let [(lb, _), (ub, _)] = res
+    |                 ^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/Codec/Archive/Zim/ParserSpec.hs:123:17: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[(Int, ZimDirEnt)]’ not matched:
+            []
+            ((_, _):_:_)
+    |
+123 |             let [(r, _)] = res
+    |                 ^^^^^^^^^^^^^^
+
+test/Codec/Archive/Zim/ParserSpec.hs:134:17: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe
+                            (B8.ByteString, BL.ByteString)’ not matched:
+            Nothing
+    |
+134 |             let Just (m, c) = res
+    |                 ^^^^^^^^^^^^^^^^^
+
+test/Codec/Archive/Zim/ParserSpec.hs:152:45: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘(B8.ByteString,
+                           Maybe (B8.ByteString, BL.ByteString))’ not matched:
+            (_, Nothing)
+    |
+152 |                 (url, res) `shouldSatisfy` (\(_, Just (_, bs)) -> BL.length bs > 0)
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[3 of 3] Compiling Main
+[4 of 4] Linking /tmp/workdir-zim-parser/zim-parser-0.2.1.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/zim-parser-0.2.1.0/t/spec/build/spec/spec

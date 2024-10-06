@@ -1,0 +1,44 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - valida-base-0.2.0 (lib) (first run)
+ - valida-base-0.2.0 (test:valida-test) (first run)
+Configuring library for valida-base-0.2.0...
+Preprocessing library for valida-base-0.2.0...
+Building library for valida-base-0.2.0...
+[1 of 8] Compiling Paths_valida_base
+[2 of 8] Compiling Valida.Utils
+[3 of 8] Compiling Valida.Validation
+
+src/Valida/Validation.hs:142:10: warning: [GHC-06201] [-Wmissing-methods]
+    • No explicit implementation for
+        ‘Data.Bitraversable.bitraverse’
+    • In the instance declaration for ‘Bitraversable Validation’
+    |
+142 | instance Bitraversable Validation
+    |          ^^^^^^^^^^^^^^^^^^^^^^^^
+[4 of 8] Compiling Valida.ValidationRule
+[5 of 8] Compiling Valida.Combinators
+
+src/Valida/Combinators.hs:73:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+73 | import Control.Applicative (Applicative (liftA2))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[6 of 8] Compiling Valida.ValidationUtils
+[7 of 8] Compiling Valida.Validator
+[8 of 8] Compiling Valida
+Configuring test suite 'valida-test' for valida-base-0.2.0...
+Preprocessing test suite 'valida-test' for valida-base-0.2.0...
+Building test suite 'valida-test' for valida-base-0.2.0...
+[1 of 4] Compiling Gen
+[2 of 4] Compiling Paths_valida_base
+[3 of 4] Compiling Utils
+[4 of 4] Compiling Main
+
+test/Spec.hs: warning: [-Wmissed-specialisations]
+    Could not specialise imported function ‘GHC.Base.$fMonoidMaybe_$c<>’
+      when specialising ‘Valida.Combinators.</>4’
+    Probable fix: add INLINABLE pragma on ‘GHC.Base.$fMonoidMaybe_$c<>’
+[5 of 5] Linking /tmp/workdir-valida-base/valida-base-0.2.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/valida-base-0.2.0/t/valida-test/build/valida-test/valida-test

@@ -1,0 +1,248 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - math-functions-0.3.4.4 (lib) (first run)
+ - math-functions-0.3.4.4 (test:math-function-tests) (first run)
+Configuring library for math-functions-0.3.4.4...
+Preprocessing library for math-functions-0.3.4.4...
+Building library for math-functions-0.3.4.4...
+[ 1 of 11] Compiling Numeric.MathFunctions.Comparison
+[ 2 of 11] Compiling Numeric.MathFunctions.Constants
+[ 3 of 11] Compiling Numeric.Polynomial
+[ 4 of 11] Compiling Numeric.Polynomial.Chebyshev
+[ 5 of 11] Compiling Numeric.RootFinding
+[ 6 of 11] Compiling Numeric.Series
+
+Numeric/Series.hs:29:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+29 | import Control.Applicative
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 7 of 11] Compiling Numeric.SpecFunctions.Compat
+[ 8 of 11] Compiling Numeric.SpecFunctions.Internal
+
+Numeric/SpecFunctions/Internal.hs:859:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Root Double’ not matched:
+            NotBracketed
+            SearchFailed
+    |
+859 |         Root x0 = newtonRaphson def{newtonTol=RelTol 1e-8} (lower, x_guess, upper) func
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 9 of 11] Compiling Numeric.SpecFunctions.Extra
+[10 of 11] Compiling Numeric.SpecFunctions
+[11 of 11] Compiling Numeric.Sum
+
+Numeric/Sum.hs:56:1: warning: [-Wunused-imports]
+    The import of ‘Data.Semigroup’ is redundant
+      except perhaps to import instances from ‘Data.Semigroup’
+    To import instances alone, use: import Data.Semigroup()
+   |
+56 | import Data.Semigroup               (Semigroup(..)) -- Needed for GHC <8.4
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Configuring test suite 'math-function-tests' for math-functions-0.3.4.4...
+Preprocessing test suite 'math-function-tests' for math-functions-0.3.4.4...
+Building test suite 'math-function-tests' for math-functions-0.3.4.4...
+[1 of 8] Compiling Tests.Helpers
+[2 of 8] Compiling Tests.Comparison
+[3 of 8] Compiling Tests.Chebyshev
+[4 of 8] Compiling Tests.RootFinding
+
+tests/Tests/RootFinding.hs:6:1: warning: [-Wunused-imports]
+    The import of ‘Test.Tasty.HUnit’ is redundant
+      except perhaps to import instances from ‘Test.Tasty.HUnit’
+    To import instances alone, use: import Test.Tasty.HUnit()
+  |
+6 | import Test.Tasty.HUnit
+  | ^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/RootFinding.hs:27:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Root Double’ not matched:
+            NotBracketed
+            SearchFailed
+   |
+27 |         let Root r = newtonRaphson def{newtonTol=RelTol 0} (1,1000,1000)
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+tests/Tests/RootFinding.hs:39:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Root Double’ not matched:
+            NotBracketed
+            SearchFailed
+   |
+39 |         Root r = ridders def{riddersTol = tol} (0, pi/2) (\x -> sin x - 0.525)
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/RootFinding.hs:44:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Root Double’ not matched:
+            NotBracketed
+            SearchFailed
+   |
+44 |         Root r = newtonRaphson def{newtonTol=tol} (0, pi/4, pi/2) (\x -> (sin x - 0.525, cos x))
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[5 of 8] Compiling Tests.SpecFunctions.Tables
+[6 of 8] Compiling Tests.SpecFunctions
+
+tests/Tests/SpecFunctions.hs:71:44: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[Double]’ not matched:
+            []
+            [_]
+            (_:_:_:_)
+   |
+71 |         forTable "tests/tables/erfc.dat" $ \[x, exact] ->
+   |                                            ^^^^^^^^^^^^^^...
+
+tests/Tests/SpecFunctions.hs:74:50: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[Double]’ not matched:
+            []
+            [_]
+            (_:_:_:_)
+   |
+74 |         forTable "tests/tables/erfc-large.dat" $ \[x, exact] ->
+   |                                                  ^^^^^^^^^^^^^^...
+
+tests/Tests/SpecFunctions.hs:78:43: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[Double]’ not matched:
+            []
+            [_]
+            (_:_:_:_)
+   |
+78 |         forTable "tests/tables/erf.dat" $ \[x, exact] -> do
+   |                                           ^^^^^^^^^^^^^^^^^...
+
+tests/Tests/SpecFunctions.hs:87:45: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[Double]’ not matched:
+            []
+            [_]
+            (_:_:_:_)
+   |
+87 |         forTable "tests/tables/expm1.dat" $ \[x, exact] ->
+   |                                             ^^^^^^^^^^^^^^...
+
+tests/Tests/SpecFunctions.hs:90:45: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[Double]’ not matched:
+            []
+            [_]
+            (_:_:_:_)
+   |
+90 |         forTable "tests/tables/log1p.dat" $ \[x, exact] ->
+   |                                             ^^^^^^^^^^^^^^...
+
+tests/Tests/SpecFunctions.hs:96:48: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[Double]’ not matched:
+            []
+            [_]
+            (_:_:_:_)
+   |
+96 |         forTable "tests/tables/loggamma.dat" $ \[x, exact] -> do
+   |                                                ^^^^^^^^^^^^^^^^^...
+
+tests/Tests/SpecFunctions.hs:108:46: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[Double]’ not matched:
+            []
+            [_]
+            [_, _]
+            (_:_:_:_:_)
+    |
+108 |         forTable "tests/tables/igamma.dat" $ \[a,x,exact] -> do
+    |                                              ^^^^^^^^^^^^^^^^^^...
+
+tests/Tests/SpecFunctions.hs:126:47: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[Double]’ not matched:
+            []
+            [_]
+            [_, _]
+            (_:_:_:_:_)
+    |
+126 |         forTable "tests/tables/logbeta.dat" $ \[p,q,exact] ->
+    |                                               ^^^^^^^^^^^^^^^...
+
+tests/Tests/SpecFunctions.hs:177:45: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[Double]’ not matched:
+            []
+            [_]
+            (_:_:_:_)
+    |
+177 |       forTable "tests/tables/digamma.dat" $ \[x, exact] ->
+    |                                             ^^^^^^^^^^^^^^...
+
+tests/Tests/SpecFunctions.hs:199:47: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[Double]’ not matched:
+            []
+            [_]
+            (_:_:_:_)
+    |
+199 |       forTable "tests/tables/factorial.dat" $ \[i,exact] ->
+    |                                               ^^^^^^^^^^^^^...
+
+tests/Tests/SpecFunctions.hs:427:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘invIBetaIsInverse’
+    |
+427 | invIBetaIsInverse (abs -> p) (abs -> q) (range01 -> x) =
+    | ^^^^^^^^^^^^^^^^^
+
+tests/Tests/SpecFunctions.hs:449:5: warning: [-Wunused-local-binds]
+    Defined but not used: ‘ok’
+    |
+449 |     ok approx exact = approx
+    |     ^^
+
+tests/Tests/SpecFunctions.hs:449:15: warning: [-Wunused-matches]
+    Defined but not used: ‘exact’
+    |
+449 |     ok approx exact = approx
+    |               ^^^^^
+[7 of 8] Compiling Tests.Sum
+
+tests/Tests/Sum.hs:5:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+  |
+5 | import Control.Applicative ((<$>))
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/Sum.hs:11:1: warning: [-Wunused-imports]
+    The import of ‘Test.QuickCheck’ is redundant
+      except perhaps to import instances from ‘Test.QuickCheck’
+    To import instances alone, use: import Test.QuickCheck()
+   |
+11 | import Test.QuickCheck (Arbitrary(..))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[8 of 8] Compiling Main
+
+tests/tests.hs:2:1: warning: [-Wunused-imports]
+    The qualified import of ‘Tests.Chebyshev’ is redundant
+      except perhaps to import instances from ‘Tests.Chebyshev’
+    To import instances alone, use: import Tests.Chebyshev()
+  |
+2 | import qualified Tests.Chebyshev
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[9 of 9] Linking /tmp/workdir-math-functions/math-functions-0.3.4.4/dist-newstyle/build/x86_64-linux/ghc-9.6.6/math-functions-0.3.4.4/t/math-function-tests/build/math-function-tests/math-function-tests

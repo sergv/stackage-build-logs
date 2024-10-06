@@ -1,0 +1,79 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - ip-1.7.8 (lib) (first run)
+ - ip-1.7.8 (test:test) (first run)
+ - ip-1.7.8 (test:spec) (first run)
+Configuring library for ip-1.7.8...
+Preprocessing library for ip-1.7.8...
+Building library for ip-1.7.8...
+[ 1 of 11] Compiling Data.Text.Builder.Common.Compat
+[ 2 of 11] Compiling Data.Text.Builder.Common.Internal
+[ 3 of 11] Compiling Data.Text.Builder.Variable
+[ 4 of 11] Compiling Data.Word.Synthetic.Word12
+
+src/Data/Word/Synthetic/Word12.hs:191:1: warning: [GHC-95396] [-Winline-rule-shadowing]
+    Rule "fromIntegral/Word8->Word12" may never fire
+      because ‘fromIntegral’ might inline first
+    Suggested fix:
+      Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
+    |
+191 | "fromIntegral/Word8->Word12" fromIntegral = \x -> case x of Compat.W8# y -> W12# y
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Data/Word/Synthetic/Word12.hs:192:1: warning: [GHC-95396] [-Winline-rule-shadowing]
+    Rule "fromIntegral/Word12->Word12" may never fire
+      because ‘fromIntegral’ might inline first
+    Suggested fix:
+      Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
+    |
+192 | "fromIntegral/Word12->Word12" fromIntegral = id :: Word12 -> Word12
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Data/Word/Synthetic/Word12.hs:193:1: warning: [GHC-95396] [-Winline-rule-shadowing]
+    Rule "fromIntegral/Word12->Integer" may never fire
+      because ‘fromIntegral’ might inline first
+    Suggested fix:
+      Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
+    |
+193 | "fromIntegral/Word12->Integer" fromIntegral = toInteger :: Word12 -> Integer
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Data/Word/Synthetic/Word12.hs:194:1: warning: [GHC-95396] [-Winline-rule-shadowing]
+    Rule "fromIntegral/a->Word12" may never fire
+      because ‘fromIntegral’ might inline first
+    Suggested fix:
+      Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
+    |
+194 | "fromIntegral/a->Word12" fromIntegral = \x -> case fromIntegral x of W# x# -> W12# (narrow12Word# x#)
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Data/Word/Synthetic/Word12.hs:195:1: warning: [GHC-95396] [-Winline-rule-shadowing]
+    Rule "fromIntegral/Word12->a" may never fire
+      because ‘fromIntegral’ might inline first
+    Suggested fix:
+      Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
+    |
+195 | "fromIntegral/Word12->a" fromIntegral = \(W12# x#) -> fromIntegral (W# x#)
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 5 of 11] Compiling Data.Text.Builder.Fixed
+[ 6 of 11] Compiling Data.ByteString.Builder.Fixed
+[ 7 of 11] Compiling Net.IPv4
+[ 8 of 11] Compiling Net.IPv6
+[ 9 of 11] Compiling Net.IP
+[10 of 11] Compiling Net.Mac
+[11 of 11] Compiling Net.Types
+Configuring test suite 'test' for ip-1.7.8...
+Preprocessing test suite 'test' for ip-1.7.8...
+Building test suite 'test' for ip-1.7.8...
+[1 of 5] Compiling IPv4ByteString1
+[2 of 5] Compiling IPv4Text1
+[3 of 5] Compiling IPv4Text2
+[4 of 5] Compiling Naive
+[5 of 5] Compiling Main
+[6 of 6] Linking /tmp/workdir-ip/ip-1.7.8/dist-newstyle/build/x86_64-linux/ghc-9.6.6/ip-1.7.8/t/test/build/test/test
+Configuring test suite 'spec' for ip-1.7.8...
+Preprocessing test suite 'spec' for ip-1.7.8...
+Building test suite 'spec' for ip-1.7.8...
+[1 of 2] Compiling Net.IPv4Spec
+[2 of 2] Compiling Main
+[3 of 3] Linking /tmp/workdir-ip/ip-1.7.8/dist-newstyle/build/x86_64-linux/ghc-9.6.6/ip-1.7.8/t/spec/build/spec/spec

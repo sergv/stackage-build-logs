@@ -1,0 +1,116 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - combinatorial-0.1.1 (lib) (first run)
+ - combinatorial-0.1.1 (test:combinatorial-test) (first run)
+Configuring library for combinatorial-0.1.1...
+Preprocessing library for combinatorial-0.1.1...
+Building library for combinatorial-0.1.1...
+[ 1 of 14] Compiling Combinatorics.MaxNim
+[ 2 of 14] Compiling Combinatorics.Utility
+[ 3 of 14] Compiling Polynomial
+[ 4 of 14] Compiling Combinatorics.TreeDepth
+
+src/Combinatorics/TreeDepth.hs:114:40: warning: [GHC-47082] [-Woperator-whitespace-ext-conflict]
+    The prefix use of a ‘%’ would denote a multiplicity annotation
+      were the LinearTypes extension enabled.
+    Suggested fix: Add whitespace after the ‘%’.
+    |
+114 | nodeDegreeProb = zipWith (\den -> map (%den)) (scanl1 (*) [1 ..]) nodeDegree
+    |                                        ^
+[ 5 of 14] Compiling PowerSeries
+[ 6 of 14] Compiling Combinatorics.Private
+
+src/Combinatorics/Private.hs:168:30: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction: Patterns of type ‘[a]’ not matched: []
+    |
+168 |             GT -> concatMap (\(y:ys) -> map (y:) (go (r-1) ys)) . init . tails
+    |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 7 of 14] Compiling Combinatorics.Partitions
+[ 8 of 14] Compiling Combinatorics.Coin
+[ 9 of 14] Compiling Combinatorics
+[10 of 14] Compiling Combinatorics.Permutation.WithoutSomeFixpoints
+[11 of 14] Compiling Combinatorics.PaperStripGame
+
+src/Combinatorics/PaperStripGame.hs:90:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[Integer]’, ‘[Integer]’ not matched:
+            [] _
+            [_] _
+   |
+90 |    foldr (\(x0:x1:xs) ys -> x0 : x1 : PS.add xs ys) [] $
+   |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[12 of 14] Compiling Combinatorics.Mastermind
+[13 of 14] Compiling Combinatorics.CardPairs
+
+src/Combinatorics/CardPairs.hs:190:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘CardCount Integer’, ‘[Card]’ not matched: _ []
+    |
+190 |    foldl (\n (card:_) ->
+    |           ^^^^^^^^^^^^^^...
+[14 of 14] Compiling Combinatorics.BellNumbers
+Configuring test suite 'combinatorial-test' for combinatorial-0.1.1...
+Preprocessing test suite 'combinatorial-test' for combinatorial-0.1.1...
+Building test suite 'combinatorial-test' for combinatorial-0.1.1...
+[ 1 of 19] Compiling Combinatorics.Utility
+[ 2 of 19] Compiling Polynomial
+[ 3 of 19] Compiling PowerSeries
+[ 4 of 19] Compiling Combinatorics.Private
+
+src/Combinatorics/Private.hs:168:30: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction: Patterns of type ‘[a]’ not matched: []
+    |
+168 |             GT -> concatMap (\(y:ys) -> map (y:) (go (r-1) ys)) . init . tails
+    |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 5 of 19] Compiling Combinatorics.Partitions
+[ 6 of 19] Compiling Combinatorics
+[ 7 of 19] Compiling Combinatorics.Permutation.WithoutSomeFixpoints
+[ 8 of 19] Compiling Combinatorics.Mastermind
+[ 9 of 19] Compiling Combinatorics.CardPairs
+
+src/Combinatorics/CardPairs.hs:190:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘CardCount Integer’, ‘[Card]’ not matched: _ []
+    |
+190 |    foldl (\n (card:_) ->
+    |           ^^^^^^^^^^^^^^...
+[10 of 19] Compiling Combinatorics.BellNumbers
+[11 of 19] Compiling Test.Combinatorics.CardPairs
+[12 of 19] Compiling Test.Combinatorics.Mastermind
+[13 of 19] Compiling Test.Combinatorics.Partitions
+[14 of 19] Compiling Test.Combinatorics.Permutation.WithoutSomeFixpoints
+
+src/Combinatorics/Permutation/WithoutSomeFixpoints.hs:9:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+  |
+9 | >>> import Control.Applicative ((<$>))
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[15 of 19] Compiling Test.Utility
+[16 of 19] Compiling Test.Combinatorics.BellNumbers
+[17 of 19] Compiling Test.Combinatorics
+
+src/Combinatorics.hs:58:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+58 | >>> import Control.Applicative (liftA2, (<$>))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[18 of 19] Compiling Test.Combinatorics.Private
+
+src/Combinatorics/Private.hs:23:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+23 | >>> import Control.Applicative ((<$>))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[19 of 19] Compiling Main
+[20 of 20] Linking /tmp/workdir-combinatorial/combinatorial-0.1.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/combinatorial-0.1.1/t/combinatorial-test/build/combinatorial-test/combinatorial-test

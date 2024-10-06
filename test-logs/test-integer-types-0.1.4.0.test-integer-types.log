@@ -1,0 +1,201 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - integer-types-0.1.4.0 (test:test-integer-types) (ephemeral targets)
+Preprocessing test suite 'test-integer-types' for integer-types-0.1.4.0...
+Building test suite 'test-integer-types' for integer-types-0.1.4.0...
+Running 1 test suites...
+Test suite test-integer-types: RUNNING...
+
+absoluteDifference @A @B works the same as converting through Integer
+  A = Integer, B = Integer [✔]
+      ✓ property passed 1000 tests.
+  A = Natural, B = Natural [✔]
+      ✓ property passed 1000 tests.
+  A = Positive, B = Positive [✔]
+      ✓ property passed 1000 tests.
+  A = Signed, B = Signed [✔]
+      ✓ property passed 1000 tests.
+  A = Positive, B = Natural [✔]
+      ✓ property passed 1000 tests.
+  A = Natural, B = Positive [✔]
+      ✓ property passed 1000 tests.
+  A = Signed, B = Natural [✔]
+      ✓ property passed 1000 tests.
+  A = Natural, B = Signed [✔]
+      ✓ property passed 1000 tests.
+  A = Integer, B = Natural [✔]
+      ✓ property passed 1000 tests.
+  A = Natural, B = Integer [✔]
+      ✓ property passed 1000 tests.
+  A = Signed, B = Positive [✔]
+      ✓ property passed 1000 tests.
+  A = Positive, B = Signed [✔]
+      ✓ property passed 1000 tests.
+  A = Signed, B = Integer [✔]
+      ✓ property passed 1000 tests.
+  A = Integer, B = Signed [✔]
+      ✓ property passed 1000 tests.
+  A = Positive, B = Integer [✔]
+      ✓ property passed 1000 tests.
+  A = Integer, B = Positive [✔]
+      ✓ property passed 1000 tests.
+(+) behaves the same in A as in Integer
+  A = Positive [✔]
+      ✓ property passed 1000 tests.
+  A = Signed [✔]
+      ✓ property passed 1000 tests.
+addOne in A behaves the same as (+ 1) in Integer
+  A = Natural [✔]
+      ✓ property passed 1000 tests.
+  A = Positive [✔]
+      ✓ property passed 1000 tests.
+  A = Signed [✔]
+      ✓ property passed 1000 tests.
+convert (convert x) = x
+  A = Integer, B = Signed [✔]
+      ✓ property passed 100 tests.
+  A = Signed,  B = Integer [✔]
+      ✓ property passed 100 tests.
+narrow (convert x) = Just x
+  A = Natural,  B = Integer [✔]
+      ✓ property passed 1000 tests.
+  A = Natural,  B = Signed [✔]
+      ✓ property passed 1000 tests.
+  A = Positive, B = Integer [✔]
+      ✓ property passed 1000 tests.
+  A = Positive, B = Signed [✔]
+      ✓ property passed 1000 tests.
+  A = Positive, B = Natural [✔]
+      ✓ property passed 1000 tests.
+narrow x = (Just y | convert y = x) or Nothing
+  A = Integer, B = Natural [✔]
+      ✓ property passed 1000 tests.
+  A = Signed,  B = Natural [✔]
+      ✓ property passed 1000 tests.
+  A = Integer, B = Positive [✔]
+      ✓ property passed 1000 tests.
+  A = Signed,  B = Positive [✔]
+      ✓ property passed 1000 tests.
+  A = Natural, B = Positive [✔]
+      ✓ property passed 1000 tests.
+deepseq @Signed
+  can succeed [✔]
+  can force an error [✔]
+  can force an error in sign [✔]
+  can force an error in magnitude [✔]
+Enum @Positive
+  [a ..]
+    counts upward [✔]
+    can start with 1 [✔]
+  [a .. b]
+    counts upward [✔]
+    can start with 1 [✔]
+    does not count downward [✔]
+    can return 1 item [✔]
+  [a, b ..]
+    can count upward by 1 [✔]
+    can count downward by 1 [✔]
+    can count upward by 2 [✔]
+    can count downward by 2 [✔]
+    can count downward by 2 without exactly reaching its lower bound [✔]
+    can repeat 1 item indefinitely [✔]
+  [a, b .. c]
+    can count upward by 1 [✔]
+    can count downward by 1 [✔]
+    can count upward by 2 [✔]
+    can count upward without exactly reaching its upper bound [✔]
+    can count downward by 2 [✔]
+    can count downward by 2 without exactly reaching its lower bound [✔]
+    can count downward with a lower bound of 1 [✔]
+    can repeat 1 item indefinitely [✔]
+    can return 1 item [✔]
+    can return an empty list [✔]
+toFinite x = (Just y | fromInteger y = x) or Nothing
+  A = Integer,  B = Int  [✔]
+      ✓ property passed 1000 tests.
+  A = Integer,  B = Word [✔]
+      ✓ property passed 1000 tests.
+  A = Natural,  B = Int  [✔]
+      ✓ property passed 1000 tests.
+  A = Natural,  B = Word [✔]
+      ✓ property passed 1000 tests.
+  A = Positive, B = Int  [✔]
+      ✓ property passed 1000 tests.
+  A = Positive, B = Word [✔]
+      ✓ property passed 1000 tests.
+  A = Signed,   B = Int  [✔]
+      ✓ property passed 1000 tests.
+  A = Signed,   B = Word [✔]
+      ✓ property passed 1000 tests.
+fromFinite x = narrow (toInteger x)
+  A = Int,  B = Integer  [✔]
+      ✓ property passed 100 tests.
+  A = Word, B = Integer [✔]
+      ✓ property passed 100 tests.
+  A = Int,  B = Natural  [✔]
+      ✓ property passed 100 tests.
+  A = Word, B = Natural [✔]
+      ✓ property passed 100 tests.
+  A = Int,  B = Positive  [✔]
+      ✓ property passed 100 tests.
+  A = Word, B = Positive [✔]
+      ✓ property passed 100 tests.
+  A = Int,  B = Signed  [✔]
+      ✓ property passed 100 tests.
+  A = Word, B = Signed [✔]
+      ✓ property passed 100 tests.
+increase in A behaves the same as (+) in Integer
+  A = Natural [✔]
+      ✓ property passed 1000 tests.
+  A = Integer [✔]
+      ✓ property passed 1000 tests.
+  A = Positive [✔]
+      ✓ property passed 1000 tests.
+  A = Signed [✔]
+      ✓ property passed 1000 tests.
+strictlyIncrease in A behaves the same as (+) in Integer
+  A = Natural [✔]
+      ✓ property passed 1000 tests.
+  A = Integer [✔]
+      ✓ property passed 1000 tests.
+  A = Positive [✔]
+      ✓ property passed 1000 tests.
+  A = Signed [✔]
+      ✓ property passed 1000 tests.
+length
+  Natural [✔]
+  Positive [✔]
+(*) behaves the same in A as in Integer
+  A = Positive [✔]
+      ✓ property passed 1000 tests.
+  A = Signed [✔]
+      ✓ property passed 1000 tests.
+subtract in A behaves the same as (-) in B
+  A = Natural,  B = Signed [✔]
+      ✓ property passed 1000 tests.
+  A = Natural,  B = Integer [✔]
+      ✓ property passed 1000 tests.
+  A = Positive, B = Signed [✔]
+      ✓ property passed 1000 tests.
+  A = Positive, B = Integer [✔]
+      ✓ property passed 1000 tests.
+(-) in A behaves the same as (-) in Integer if the result is in A, undefined otherwise
+  A = Positive [✔]
+      ✓ property passed 1000 tests.
+subtractOne in A behaves the same as (- 1) in Integer
+  A = Positive [✔]
+      ✓ property passed 1000 tests.
+  A = Signed [✔]
+      ✓ property passed 1000 tests.
+yolo (yolo x) = x, if Integer x is in range of A
+  A = Positive [✔]
+      ✓ property passed 100 tests.
+  A = Natural  [✔]
+      ✓ property passed 100 tests.
+
+Finished in 0.4376 seconds
+96 examples, 0 failures
+Test suite test-integer-types: PASS
+Test suite logged to:
+/tmp/workdir-integer-types/integer-types-0.1.4.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/integer-types-0.1.4.0/t/test-integer-types/test/integer-types-0.1.4.0-test-integer-types.log
+1 of 1 test suites (1 of 1 test cases) passed.

@@ -1,0 +1,160 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - req-3.13.2 (test:pure-tests) (ephemeral targets)
+Preprocessing test suite 'pure-tests' for req-3.13.2...
+Building test suite 'pure-tests' for req-3.13.2...
+Running 1 test suites...
+Test suite pure-tests: RUNNING...
+
+Network.HTTP.Req
+  config
+    getHttpConfig has effect on resulting request [✔]
+      +++ OK, passed 100 tests.
+  methods
+    GET
+      affects name of HTTP method [✔]
+    POST
+      affects name of HTTP method [✔]
+    HEAD
+      affects name of HTTP method [✔]
+    PUT
+      affects name of HTTP method [✔]
+    DELETE
+      affects name of HTTP method [✔]
+    TRACE
+      affects name of HTTP method [✔]
+    CONNECT
+      affects name of HTTP method [✔]
+    OPTIONS
+      affects name of HTTP method [✔]
+    PATCH
+      affects name of HTTP method [✔]
+  urls
+    http
+      sets all the params correctly [✔]
+        +++ OK, passed 100 tests.
+    https
+      sets all the params correctly [✔]
+        +++ OK, passed 100 tests.
+    (/~)
+      attaches a path piece that is URL-encoded [✔]
+        +++ OK, passed 100 tests.
+    (/:)
+      attaches a path piece that is URL-encoded [✔]
+        +++ OK, passed 100 tests.
+    useHttpURI
+      does not recognize non-http schemes [✔]
+        +++ OK, passed 100 tests.
+      accepts correct URLs [✔]
+        +++ OK, passed 100 tests; 108 discarded.
+    useHttpsURI
+      does not recognize non-https schemes [✔]
+        +++ OK, passed 100 tests.
+      parses correct URLs [✔]
+        +++ OK, passed 100 tests; 108 discarded.
+    useURI
+      does not recognize non-http and non-https schemes [✔]
+        +++ OK, passed 100 tests.
+      parses correct URLs [✔]
+        +++ OK, passed 100 tests; 108 discarded.
+    renderUrl
+      http
+        empty path
+          renders correctly [✔]
+        non-empty path
+          renders correctly [✔]
+      http
+        empty path
+          renders correctly [✔]
+        non-empty path
+          renders correctly [✔]
+  bodies
+    NoReqBody
+      sets body to empty byte string [✔]
+    ReqBodyJson
+      sets body to correct lazy byte string [✔]
+        +++ OK, passed 100 tests.
+    ReqBodyBs
+      sets body to specified strict byte string [✔]
+        +++ OK, passed 100 tests.
+    ReqBodyLbs
+      sets body to specified lazy byte string [✔]
+        +++ OK, passed 100 tests.
+    ReqBodyUrlEnc
+      sets body to correct lazy byte string [✔]
+        +++ OK, passed 100 tests.
+  query params
+    FormUrlEncodedParam
+      formToQuery
+        should produce the same parameters as F.urlEncodeFormStable [✔]
+          +++ OK, passed 100 tests.
+      paramToList
+        should reproduce the parameters given by queryParam [✔]
+          +++ OK, passed 100 tests.
+    Option
+      paramToList
+        should reproduce the parameters given by queryParam [✔]
+          +++ OK, passed 100 tests.
+  optional parameters
+    header
+      sets specified header value [✔]
+        +++ OK, passed 100 tests.
+      left header wins [✔]
+        +++ OK, passed 100 tests.
+      overwrites headers set by other parts of the lib [✔]
+        +++ OK, passed 100 tests.
+    cookieJar
+      cookie jar is set without modifications [✔]
+        +++ OK, passed 100 tests.
+    basicAuth
+      sets Authorization header to correct value [✔]
+        +++ OK, passed 100 tests.
+      overwrites manual setting of header [✔]
+        +++ OK, passed 100 tests.
+      left auth option wins [✔]
+        +++ OK, passed 100 tests.
+    oAuth2Bearer
+      sets Authorization header to correct value [✔]
+        +++ OK, passed 100 tests.
+      overwrites manual setting of header [✔]
+        +++ OK, passed 100 tests.
+      left auth option wins [✔]
+        +++ OK, passed 100 tests.
+    ProxyAuthorization
+      sets Authorization header to correct value [✔]
+        +++ OK, passed 100 tests.
+    oAuth2Token
+      sets Authorization header to correct value [✔]
+        +++ OK, passed 100 tests.
+      overwrites manual setting of header [✔]
+        +++ OK, passed 100 tests.
+      left auth option wins [✔]
+        +++ OK, passed 100 tests.
+    port
+      sets port overwriting the defaults [✔]
+        +++ OK, passed 100 tests.
+    decompress
+      sets decompress function overwriting the defaults [✔]
+        +++ OK, passed 100 tests.
+    httpVersion
+      sets HTTP version overwriting the defaults [✔]
+        +++ OK, passed 100 tests.
+    quasiquoter
+      works for valid urls [✔]
+        +++ OK, passed 1 test.
+Template Haskell error: 1:4:
+  |
+1 | not a url
+  |    ^
+unexpected space
+expecting '#', '%', '/', ':', '?', '@', end of input, sub-delimiter, or unreserved character
+
+      doesn't work for invalid urls [✔]
+        +++ OK, passed 1 test.
+
+Finished in 2.7158 seconds
+51 examples, 0 failures
+Test suite pure-tests: PASS
+Test suite logged to:
+/tmp/workdir-req/req-3.13.2/dist-newstyle/build/x86_64-linux/ghc-9.6.6/req-3.13.2/t/pure-tests/test/req-3.13.2-pure-tests.log
+1 of 1 test suites (1 of 1 test cases) passed.

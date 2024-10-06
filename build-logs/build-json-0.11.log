@@ -1,0 +1,85 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - json-0.11 (lib) (first run)
+Configuring library for json-0.11...
+Preprocessing library for json-0.11...
+Building library for json-0.11...
+[1 of 7] Compiling Text.JSON.Types
+[2 of 7] Compiling Text.JSON.String
+
+Text/JSON/String.hs:40:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+40 | import Control.Applicative((<$>))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Text/JSON/String.hs:42:37: warning: [-Wunused-imports]
+    The import of ‘digitToInt’ from module ‘Data.Char’ is redundant
+   |
+42 | import Data.Char (isSpace, isDigit, digitToInt)
+   |                                     ^^^^^^^^^^
+
+Text/JSON/String.hs:43:44: warning: [-Wunused-imports]
+    The import of ‘%’ from module ‘Data.Ratio’ is redundant
+   |
+43 | import Data.Ratio (numerator, denominator, (%))
+   |                                            ^^^
+
+Text/JSON/String.hs:44:26: warning: [-Wunused-imports]
+    The import of ‘readDec’ from module ‘Numeric’ is redundant
+   |
+44 | import Numeric (readHex, readDec, showHex, readSigned, readFloat)
+   |                          ^^^^^^^
+
+Text/JSON/String.hs:54:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative GetJSON’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+54 |   pure  = return
+   |   ^^^^^^^^^^^^^^
+
+Text/JSON/String.hs:58:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad GetJSON’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+58 |   return x        = GetJSON (\s -> Right (x,s))
+   |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[3 of 7] Compiling Text.JSON.ReadP
+[4 of 7] Compiling Text.JSON.Pretty
+[5 of 7] Compiling Text.JSON.Parsec
+[6 of 7] Compiling Text.JSON
+
+Text/JSON.hs:48:1: warning: [-Wunused-imports]
+    The import of ‘Control.Monad.Fail’ is redundant
+      except perhaps to import instances from ‘Control.Monad.Fail’
+    To import instances alone, use: import Control.Monad.Fail()
+   |
+48 | import Control.Monad.Fail (MonadFail (..))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Text/JSON.hs:127:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative Result’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+127 |   pure  = return
+    |   ^^^^^^^^^^^^^^
+
+Text/JSON.hs:140:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad Result’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+140 |   return x      = Ok x
+    |   ^^^^^^^^^^^^^^^^^^^^
+[7 of 7] Compiling Text.JSON.Generic

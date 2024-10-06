@@ -1,0 +1,52 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - tztime-0.1.1.0 (test:tztime-test) (ephemeral targets)
+Preprocessing test suite 'tztime-test' for tztime-0.1.1.0...
+Building test suite 'tztime-test' for tztime-0.1.1.0...
+Running 1 test suites...
+Test suite tztime-test: RUNNING...
+test/Tree.hs
+  Test.Data.Time.TZTime
+    FromLocalTime
+      fromLocalTimeStrict at gaps:                                               OK
+      fromLocalTimeStrict at odd gaps
+        Australia/Lord_Howe:                                                     OK
+        Pacific/Apia:                                                            OK
+      fromLocalTimeStrict at overlaps:                                           OK
+      fromLocalTimeStrict at odd overlaps:                                       OK
+    QQ
+      parses valid unambiguous times:                                            OK
+      fails when time zone is unknown:                                           OK
+      fails when time is valid but offset is invalid:                            OK
+      fails when time lands on a gap:                                            OK
+      is ambiguous when time lands on an overlap:                                OK
+      is not ambiguous when time lands on an overlap and an offset is specified: OK
+      fails when time lands on an overlap and the offset is invalid:             OK
+      fails when theres extra input:                                             OK
+      ignores surrounding whitespace:                                            OK
+    Read
+      parses valid unambiguous times:                                            OK
+      fails when time zone is unknown:                                           OK
+      fails when time is valid but offset is invalid:                            OK
+      fails when time lands on a gap:                                            OK
+      is ambiguous when time lands on an overlap:                                OK
+      is not ambiguous when time lands on an overlap and an offset is specified: OK
+      fails when time lands on an overlap and the offset is invalid:             OK
+      returns remaining input:                                                   OK
+      read show roundtrip:                                                       OK
+    Show
+      TZTime:                                                                    OK
+      TZError:                                                                   OK
+    atStartOfDay at gaps:                                                        OK
+    atStartOfDay at overlaps
+      America/Havana:                                                            OK
+      America/St_Johns:                                                          OK
+    addTime and diffTZTime operate on the universal time line:                   OK
+    composing modifiers:                                                         OK
+    addCalendar zero equals id:                                                  OK
+
+All 31 tests passed (0.00s)
+Test suite tztime-test: PASS
+Test suite logged to:
+/tmp/workdir-tztime/tztime-0.1.1.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/tztime-0.1.1.0/t/tztime-test/test/tztime-0.1.1.0-tztime-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

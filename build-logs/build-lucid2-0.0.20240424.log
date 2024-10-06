@@ -1,0 +1,100 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - lucid2-0.0.20240424 (lib) (first run)
+ - lucid2-0.0.20240424 (test:test) (first run)
+Configuring library for lucid2-0.0.20240424...
+Preprocessing library for lucid2-0.0.20240424...
+Building library for lucid2-0.0.20240424...
+[1 of 6] Compiling Blaze.ByteString.Builder.Char.Utf8
+[2 of 6] Compiling Blaze.ByteString.Builder.Html.Word
+[3 of 6] Compiling Blaze.ByteString.Builder.Html.Utf8
+[4 of 6] Compiling Lucid.Base
+
+src/Lucid/Base.hs:120:13: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+120 | instance (a ~ (),Monad m) => Semigroup (HtmlT m a) where
+    |             ^
+
+src/Lucid/Base.hs:124:13: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+124 | instance (a ~ (),Monad m) => Monoid (HtmlT m a) where
+    |             ^
+
+src/Lucid/Base.hs:126:3: warning: [-Wnoncanonical-monoid-instances]
+    Noncanonical ‘mappend’ definition detected
+    in the instance declaration for ‘Monoid (HtmlT m a)’.
+    ‘mappend’ will eventually be removed in favour of ‘(<>)’
+    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    |
+126 |   mappend = liftA2 mappend
+    |   ^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Lucid/Base.hs:134:21: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+134 | instance (Monad m,a ~ ()) => IsString (HtmlT m a) where
+    |                     ^
+
+src/Lucid/Base.hs:138:13: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+138 | instance (m ~ Identity) => Show (HtmlT m a) where
+    |             ^
+
+src/Lucid/Base.hs:149:13: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+149 | instance (a ~ (), m ~ Identity) => ToHtml (HtmlT m a) where
+    |             ^
+
+src/Lucid/Base.hs:149:21: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+149 | instance (a ~ (), m ~ Identity) => ToHtml (HtmlT m a) where
+    |                     ^
+
+src/Lucid/Base.hs:208:21: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+208 | instance (Monad m,f ~ HtmlT m a) => Term [Attributes] (f -> HtmlT m a) where
+    |                     ^
+
+src/Lucid/Base.hs:232:31: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+232 | instance (Monad m,ToHtml f, a ~ ()) => TermRaw [Attributes] (f -> HtmlT m a) where
+    |                               ^
+
+src/Lucid/Base.hs:237:21: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+237 | instance (Monad m,a ~ ()) => TermRaw Text (HtmlT m a) where
+    |                     ^
+[5 of 6] Compiling Lucid.Html5
+[6 of 6] Compiling Lucid
+Configuring test suite 'test' for lucid2-0.0.20240424...
+Preprocessing test suite 'test' for lucid2-0.0.20240424...
+Building test suite 'test' for lucid2-0.0.20240424...
+[1 of 1] Compiling Main
+[2 of 2] Linking /tmp/workdir-lucid2/lucid2-0.0.20240424/dist-newstyle/build/x86_64-linux/ghc-9.6.6/lucid2-0.0.20240424/t/test/build/test/test

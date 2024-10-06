@@ -1,0 +1,279 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - lentil-1.5.6.0 (test:test) (ephemeral targets)
+Preprocessing test suite 'test' for lentil-1.5.6.0...
+Building test suite 'test' for lentil-1.5.6.0...
+Running 1 test suites...
+Test suite test: RUNNING...
+
+Lentil.Args
+  lOpts
+    parses options [✔]
+Lentil.Export
+  tags2String
+    converts tags to plain string, intercalated by ' ' [✔]
+  tags2StringPretty
+    converts tags to string, with open/close delimiters [✔]
+  issues2CSV
+    exports issues to CSV [✔]
+  issues2Compiler
+    exports issues to compiler-like output format [✔]
+  issues2Xml
+    exports issues to xml output format [✔]
+  issues2File
+    exports file list [✔]
+    does not duplicate files [✔]
+Lentil.File
+  findIssues
+5 source files [                  ]   0%5 source files [******************] 100%
+    scans directories to find issues [✔]
+5 source files [                  ]   0%5 source files [******************] 100%
+5 source files [                  ]   0%5 source files [******************] 100%
+    allows to add specific folders [✔]
+1 source files [                  ]   0%1 source files [******************] 100%
+    accepts filenames instead of dirs, too [✔]
+2 source files [                  ]   0%2 source files [******************] 100%
+    excludes some folders [✔]
+4 source files [                  ]   0%4 source files [******************] 100%
+    excludes files [✔]
+1 source files [                  ]   0%1 source files [******************] 100%
+    excludes subfolders [✔]
+1 source files [                  ]   0%1 source files [******************] 100%
+    exludes . and _ folders [✔]
+test/test-files/test-proj/base-case/zxczd: test/test-files/test-proj/base-case/zxczd: getSymbolicLinkStatus: does not exist (No such file or directory)
+0 source files [                  ] 100%
+    doesn't crash on wrong file [✔]
+5 source files [                  ]   0%5 source files [******************] 100%
+5 source files [                  ]   0%5 source files [******************] 100%
+    does search outside $PWD [✔]
+3 source files [                  ]   0%3 source files [******************] 100%
+    does recognised capitalised ext names [✔]
+4 source files [                  ]   0%4 source files [******************] 100%
+    does recognised capitalised ext names in aliases [✔]
+Lentil.Helpers
+  someTill (megaparsec reexport)
+    behaves like manyTill on non-empty string [✔]
+    fails on empty string (while manyTill does not) [✔]
+    has the same behaviour as manyTill on 1 char w/o end char [✔]
+  aliasp
+    parses an extension alias [✔]
+    fails on incorrect input [✔]
+Lentil.Parse.Issue
+  normaliseFlagword
+    normalises the capitalisation of a flag-word [✔]
+    normalises capitalisation midword [✔]
+    correctly handles empty strings [✔]
+  ciString
+    parses a case insensitive string [✔]
+  eoft
+    parses a textfile end of file [✔]
+    or an eof without '\n' [✔]
+  blankline
+    parses an empty line [✔]
+    deals with eof blanklines too [✔]
+  htmlify
+    removes unneeded whitespace [✔]
+    removes newlines too [✔]
+  tag
+    parses a tag [✔]
+    should not allow whitespace inside a tag [✔]
+  incipit
+    parses the initial section of an issue, returns nothing [✔]
+    parses the initial section of an issue (user-defined flagword) [✔]
+    parses the initial sect. (user-defined, normalising) [✔]
+    doesn't work without previous newline [✔]
+    doesn't work with longer matches (todoodle) [✔]
+    doesn't work if you don't add a space after : [✔]
+    does allow you to omit the : [✔]
+    is case unsensitive in flag-word [✔]
+    doesn't allow anything before flag-words [✔]
+    fails if we are not at the beginning of line [✔]
+  tags
+    parses a series of tags, sep by whitespace [✔]
+    allows ending whitespace [✔]
+  freeText
+    parses a free form text [✔]
+    can be ended by tags/fields [✔]
+    trims extra whitespace [✔]
+    cannot be ended by new issue on same line [✔]
+    cannot be ended by new issue on new-but-not-beginning-of-line [✔]
+    can be ended by blank line [✔]
+    can be ended by incomplete blank line (eof) [✔]
+  issue
+    parses an issue [✔]
+    parses tagless/fieldless issues too [✔]
+    parses an issue not ended by \n [✔]
+    doesn't display the eventual \n at eof [✔]
+    does accept a lone (naked) todo [✔]
+    issues declared with fixme get a free [fixme] tag [✔]
+    doesn't parse tags non separated by a space [✔]
+    does parse an empty todo [✔]
+    does parse an empty fixme [✔]
+    does parse an empty todo + tags [✔]
+    does parse tags before description [✔]
+    works without newline too [✔]
+  issues
+    parses multiple issues [✔]
+    parses multiple issues, first starting w/ newline [✔]
+    parses multiple issues, first whitespaced [✔]
+    does not parse multiple issues if on the same line [✔]
+    parses two issues, tagless, if the second starts on nl [✔]
+    doesn't pick issues in the middle of a sentence [✔]
+    does not choke on quasi-incipit [✔]
+Lentil.Parse.Run
+  issueFinder - specific
+1 source files [                  ]   0%1 source files [******************] 100%
+    doesn't parse contiguous line/block as a single issue [✔]
+1 source files [                  ]   0%1 source files [******************] 100%
+    contiguous line/block is not single issue (custom flagwords) [✔]
+1 source files [                  ]   0%1 source files [******************] 100%
+    parses a .xyz file as if it were a .c file [✔]
+1 source files [                  ]   0%1 source files [******************] 100%
+    parses user-defined flagword [✔]
+1 source files [                  ]   0%1 source files [******************] 100%
+    parses user-defined flagword (CI) [✔]
+  commentParser - languages
+1 source files [                  ]   0%1 source files [******************] 100%
+    parses a plain text source [✔]
+1 source files [                  ]   0%1 source files [******************] 100%
+    parses a haskell source [✔]
+1 source files [                  ]   0%1 source files [******************] 100%
+    parses a C source [✔]
+1 source files [                  ]   0%1 source files [******************] 100%
+    parses a Pascal source [✔]
+1 source files [                  ]   0%1 source files [******************] 100%
+    parses a javascript source [✔]
+1 source files [                  ]   0%1 source files [******************] 100%
+    parses a python source [✔]
+1 source files [                  ]   0%1 source files [******************] 100%
+    parses a ruby source [✔]
+1 source files [                  ]   0%1 source files [******************] 100%
+    parses a perl source [✔]
+1 source files [                  ]   0%1 source files [******************] 100%
+    parses a shell script source [✔]
+1 source files [                  ]   0%1 source files [******************] 100%
+    parses a Nix source [✔]
+1 source files [                  ]   0%1 source files [******************] 100%
+    parses an Xml source [✔]
+1 source files [                  ]   0%1 source files [******************] 100%
+    parses an erlang source [✔]
+1 source files [                  ]   0%1 source files [******************] 100%
+    parses an OCaml source [✔]
+1 source files [                  ]   0%1 source files [******************] 100%
+    parses a Rust source [✔]
+1 source files [                  ]   0%1 source files [******************] 100%
+    parses a Standard ML source [✔]
+1 source files [                  ]   0%1 source files [******************] 100%
+    parses an rst+sphinx document [✔]
+1 source files [                  ]   0%1 source files [******************] 100%
+    parses a org-mode source [✔]
+1 source files [                  ]   0%1 source files [******************] 100%
+    parses an R source [✔]
+1 source files [                  ]   0%1 source files [******************] 100%
+    parses a Forth source [✔]
+1 source files [                  ]   0%1 source files [******************] 100%
+    parses a YAML source [✔]
+1 source files [                  ]   0%1 source files [******************] 100%
+    parses a LaTeX source [✔]
+Lentil.Parse.Source
+  lineComment
+    parses a line comment [✔]
+    fails without trailing \n [✔]
+    for single-char line-comments, erases repeating of such char [✔]
+    does not erease repeating for multi-char line-comments [✔]
+  blockComment
+    parses a block comment [✔]
+  litString
+    parses code string [✔]
+    parses code string with escaped " inside [✔]
+    parses code string with comments symbols inside [✔]
+    parses escape character (Pascal, SQL) [✔]
+  litChar
+    parses a string literal character inside (common) [✔]
+    parses escaped characters too (common) [✔]
+    parses an erlang-style char [✔]
+  program
+    parses program instructions till eof [✔]
+    stops at single-line comment [✔]
+    stops at blockcomment [✔]
+    stops at literal string [✔]
+    stops at literal char [✔]
+    stops at ' which is not a literal char [✔]
+  rstTodo
+    parses a reStructuredText+sphinx todo directive [✔]
+    fails if directive is not at the beginning of line [✔]
+  rstOther
+    parses a reStructuredText+sphinx other-than-todo directive part [✔]
+  rstDocmuentPart
+    parses a reStructuredText+sphinx document part: todo [✔]
+    parses a reStructuredText+sphinx document part: non-todo [✔]
+  orgTodo
+    parses a single line orgmode todo [✔]
+    deeper levels [✔]
+    doesn't parse next line [✔]
+    parses INACTIVE item [✔]
+    parses priority level [✔]
+  orgListSingle
+    parses a list-like orgmode todo [✔]
+    `+` format [✔]
+    number/dot format [✔]
+    number/parens format [✔]
+    does not parse done items [✔]
+  orgListMulti
+    parses a list-like orgmode todo, multiline [✔]
+    stops at new list marker [✔]
+    does not stop at new list marker without newline [✔]
+    stops at blank line list marker [✔]
+  source
+    parses one piece of source (line-comment) [✔]
+    parses one piece of source (block-comment) [✔]
+    parses one piece of source (string-literal) [✔]
+    parses a string for language with ' and " available [✔]
+    parses one piece of source (char-literal) [✔]
+    parses one piece of source (program instructions) [✔]
+    should not choke on en empty file [✔]
+  groupLineComms
+    groups line comments [✔]
+  comms2Tuple
+    groups comments [✔]
+Lentil.Print
+  alignNumber
+    right aligns an integer [✔]
+Lentil.Query
+  filter*
+    filters by Filepath [✔]
+    filters by Description [✔]
+    filters by Tag [✔]
+    filters by Tag 'label' [✔]
+    filters by using regexps [✔]
+  negFilter
+    negates a filter [✔]
+    cancels itself on a double negation [✔]
+    filters by empty values (description) [✔]
+    filters by empty values (tags) [✔]
+  filter(And|Or)
+    chains (boolean and) multiple filters [✔]
+    chains (boolean or) multiple filters [✔]
+  sortIssues
+    sorts Issues [✔]
+    sorts Issues in descending order [✔]
+    smart sorts strings containing naturals [✔]
+  sortTag
+    sorts by partial tag, empty fields first [✔]
+  chainSorts
+    sequences sort functions [✔]
+  groupIssues
+    group isses [✔]
+  tagPop
+    outputs tag popularity list [✔]
+Lentil.Type
+  prettyFP
+    eliminates ./ from beginning of fp, if present [✔]
+    doesn't change fp if ./ is not there at begin-of-fp [✔]
+
+Finished in 0.0146 seconds
+167 examples, 0 failures
+Test suite test: PASS
+Test suite logged to:
+/tmp/workdir-lentil/lentil-1.5.6.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/lentil-1.5.6.0/t/test/test/lentil-1.5.6.0-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

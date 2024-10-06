@@ -1,0 +1,471 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - persistent-sqlite-2.13.3.0 (test:test) (ephemeral targets)
+Preprocessing test suite 'test' for persistent-sqlite-2.13.3.0...
+Building test suite 'test' for persistent-sqlite-2.13.3.0...
+Running 1 test suites...
+Test suite test: RUNNING...
+Migrating: CREATE TABLE "simple_cascade_child"("id" INTEGER PRIMARY KEY,"ref" INTEGER NOT NULL REFERENCES "simple_cascade" ON DELETE CASCADE ON UPDATE RESTRICT)
+Migrating: CREATE TABLE "simple_cascade"("id" INTEGER PRIMARY KEY,"name" INTEGER NOT NULL)
+Migrating: CREATE TABLE "parent"("name" INTEGER NOT NULL, PRIMARY KEY ("name"))
+Migrating: CREATE TABLE "child"("id" INTEGER PRIMARY KEY,"pname" INTEGER NOT NULL, CONSTRAINT "childfkparent" FOREIGN KEY("pname") REFERENCES "parent"("name") ON DELETE CASCADE ON UPDATE CASCADE)
+Migrating: CREATE TABLE "parent_implicit"("id" INTEGER PRIMARY KEY,"name" INTEGER NOT NULL)
+Migrating: CREATE TABLE "child_implicit"("id" INTEGER PRIMARY KEY,"pname" INTEGER NOT NULL,"parent_id" INTEGER NOT NULL, CONSTRAINT "child_implicitfkparent" FOREIGN KEY("parent_id") REFERENCES "parent_implicit"("id") ON DELETE CASCADE ON UPDATE CASCADE)
+Migrating: CREATE TABLE "parent_composite"("name" INTEGER NOT NULL,"last_name" INTEGER NOT NULL, PRIMARY KEY ("name","last_name"))
+Migrating: CREATE TABLE "child_composite"("id" INTEGER PRIMARY KEY,"pname" INTEGER NOT NULL,"plast_name" INTEGER NOT NULL, CONSTRAINT "child_compositefkparent" FOREIGN KEY("pname","plast_name") REFERENCES "parent_composite"("name","last_name") ON DELETE CASCADE)
+Migrating: CREATE TABLE "self_referenced"("name" INTEGER NOT NULL,"pname" INTEGER NOT NULL, PRIMARY KEY ("name"), CONSTRAINT "self_referencedfkparent" FOREIGN KEY("pname") REFERENCES "self_referenced"("name") ON DELETE CASCADE)
+Migrating: CREATE TABLE "a"("id" INTEGER PRIMARY KEY,"aa" INTEGER NOT NULL,"ab" INTEGER NOT NULL,CONSTRAINT "u1" UNIQUE ("aa"))
+Migrating: CREATE TABLE "b"("id" INTEGER PRIMARY KEY,"ba" INTEGER NOT NULL,"bb" INTEGER NOT NULL, CONSTRAINT "bfk_a" FOREIGN KEY("ba") REFERENCES "a"("aa") ON DELETE CASCADE)
+Migrating: CREATE TABLE "a_composite"("id" INTEGER PRIMARY KEY,"aa" INTEGER NOT NULL,"ab" INTEGER NOT NULL,CONSTRAINT "u2" UNIQUE ("aa","ab"))
+Migrating: CREATE TABLE "b_composite"("id" INTEGER PRIMARY KEY,"ba" INTEGER NOT NULL,"bb" INTEGER NOT NULL, CONSTRAINT "b_compositefk_a_composite" FOREIGN KEY("ba","bb") REFERENCES "a_composite"("aa","ab") ON DELETE CASCADE)
+Migrating: CREATE TABLE "b_explicit"("id" INTEGER PRIMARY KEY,"ba" INTEGER NOT NULL, CONSTRAINT "b_explicitfk_a_i" FOREIGN KEY("ba") REFERENCES "a"("id") ON DELETE CASCADE)
+Migrating: CREATE TABLE "chain"("id" INTEGER PRIMARY KEY,"name" INTEGER NOT NULL,"previous" INTEGER NULL, CONSTRAINT "chainfk_chain" FOREIGN KEY("previous") REFERENCES "chain"("id") ON DELETE SET NULL)
+Migrating: CREATE TABLE "chain2"("id" INTEGER PRIMARY KEY,"name" INTEGER NOT NULL,"previous" INTEGER NULL, CONSTRAINT "chain2fk_chain" FOREIGN KEY("previous") REFERENCES "chain2"("id") ON DELETE CASCADE)
+Migrating: CREATE TABLE "chain3"("id" INTEGER PRIMARY KEY,"name" INTEGER NOT NULL,"previous" INTEGER NULL REFERENCES "chain3" ON DELETE CASCADE ON UPDATE RESTRICT)
+Migrating: CREATE TABLE "Person"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL,"age" INTEGER NOT NULL,"color" VARCHAR NULL,CONSTRAINT "PersonNameKey" UNIQUE ("name"))
+Migrating: CREATE TABLE "Person1"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL,"age" INTEGER NOT NULL)
+Migrating: CREATE TABLE "PersonMaybeAge"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL,"age" INTEGER NULL)
+Migrating: CREATE TABLE "PersonMay"("id" INTEGER PRIMARY KEY,"name" VARCHAR NULL,"color" VARCHAR NULL)
+Migrating: CREATE TABLE "Pet"("id" INTEGER PRIMARY KEY,"ownerId" INTEGER NOT NULL REFERENCES "Person" ON DELETE RESTRICT ON UPDATE RESTRICT,"name" VARCHAR NOT NULL,"type" VARCHAR NOT NULL)
+Migrating: CREATE TABLE "MaybeOwnedPet"("id" INTEGER PRIMARY KEY,"ownerId" INTEGER NULL REFERENCES "Person" ON DELETE RESTRICT ON UPDATE RESTRICT,"name" VARCHAR NOT NULL,"type" VARCHAR NOT NULL)
+Migrating: CREATE TABLE "NeedsPet"("id" INTEGER PRIMARY KEY,"petKey" INTEGER NOT NULL REFERENCES "Pet" ON DELETE RESTRICT ON UPDATE RESTRICT)
+Migrating: CREATE TABLE "OutdoorPet"("id" INTEGER PRIMARY KEY,"ownerId" INTEGER NOT NULL REFERENCES "Person" ON DELETE RESTRICT ON UPDATE RESTRICT,"collar" VARCHAR NOT NULL,"type" VARCHAR NOT NULL)
+Migrating: CREATE TABLE "UserPT"("id" INTEGER PRIMARY KEY,"ident" VARCHAR NOT NULL,"password" VARCHAR NULL,CONSTRAINT "UniqueUserPT" UNIQUE ("ident"))
+Migrating: CREATE TABLE "EmailPT"("id" INTEGER PRIMARY KEY,"email" VARCHAR NOT NULL,"user" INTEGER NULL REFERENCES "UserPT" ON DELETE RESTRICT ON UPDATE RESTRICT,"verkey" VARCHAR NULL,CONSTRAINT "UniqueEmailPT" UNIQUE ("email"))
+Migrating: CREATE TABLE "Upsert"("id" INTEGER PRIMARY KEY,"email" VARCHAR NOT NULL,"attr" VARCHAR NOT NULL,"extra" VARCHAR NOT NULL,"age" INTEGER NOT NULL,CONSTRAINT "UniqueUpsert" UNIQUE ("email"))
+Migrating: CREATE TABLE "UpsertBy"("id" INTEGER PRIMARY KEY,"email" VARCHAR NOT NULL,"city" VARCHAR NOT NULL,"attr" VARCHAR NOT NULL,CONSTRAINT "UniqueUpsertBy" UNIQUE ("email"),CONSTRAINT "UniqueUpsertByCity" UNIQUE ("city"))
+Migrating: CREATE TABLE "Strict"("id" INTEGER PRIMARY KEY,"yes" INTEGER NOT NULL,"no" INTEGER NOT NULL,"def" INTEGER NOT NULL)
+Migrating: CREATE TABLE "DudeWeirdColumns"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL,"foo" INTEGER NULL,CONSTRAINT "UniqueName" UNIQUE ("name"))
+Migrating: CREATE TABLE "Relationship"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL,"parent" INTEGER NULL REFERENCES "Relationship" ON DELETE RESTRICT ON UPDATE RESTRICT)
+Migrating: CREATE TABLE "MutA"("id" INTEGER PRIMARY KEY,"mutB" INTEGER NOT NULL REFERENCES "MutB" ON DELETE RESTRICT ON UPDATE RESTRICT)
+Migrating: CREATE TABLE "MutB"("id" INTEGER PRIMARY KEY,"mutA" INTEGER NOT NULL REFERENCES "MutA" ON DELETE RESTRICT ON UPDATE RESTRICT)
+Migrating: CREATE TABLE "no_prefix1"("id" INTEGER PRIMARY KEY,"some_field_name" INTEGER NOT NULL)
+Migrating: CREATE TABLE "no_prefix2"("id" INTEGER PRIMARY KEY,"some_other_field_name" INTEGER NOT NULL,"unprefixed_ref" INTEGER NOT NULL REFERENCES "no_prefix1" ON DELETE RESTRICT ON UPDATE RESTRICT)
+Migrating: CREATE TABLE "no_prefix_sum"("id" INTEGER PRIMARY KEY,"unprefixed_left" INTEGER NULL,"unprefixed_right" VARCHAR NULL)
+Migrating: CREATE TABLE "custom_prefix1"("id" INTEGER PRIMARY KEY,"custom_field_name" INTEGER NOT NULL)
+Migrating: CREATE TABLE "custom_prefix2"("id" INTEGER PRIMARY KEY,"other_custom_field_name" INTEGER NOT NULL,"custom_prefixed_ref" INTEGER NOT NULL REFERENCES "custom_prefix1" ON DELETE RESTRICT ON UPDATE RESTRICT)
+Migrating: CREATE TABLE "custom_prefix_sum"("id" INTEGER PRIMARY KEY,"custom_prefixed_left" INTEGER NULL,"custom_prefixed_right" VARCHAR NULL)
+Migrating: CREATE TABLE "OnlyName"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL)
+Migrating: CREATE TABLE "HasEmbed"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL,"embed" VARCHAR NOT NULL)
+Migrating: CREATE TABLE "HasEmbeds"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL,"embed" VARCHAR NOT NULL,"double" VARCHAR NOT NULL)
+Migrating: CREATE TABLE "HasListEmbed"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL,"list" VARCHAR NOT NULL)
+Migrating: CREATE TABLE "HasSetEmbed"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL,"set" VARCHAR NOT NULL)
+Migrating: CREATE TABLE "HasMap"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL,"map" VARCHAR NOT NULL)
+Migrating: CREATE TABLE "HasList"("id" INTEGER PRIMARY KEY,"list" VARCHAR NOT NULL)
+Migrating: CREATE TABLE "EmbedsHasMap"("id" INTEGER PRIMARY KEY,"name" VARCHAR NULL,"embed" VARCHAR NOT NULL)
+Migrating: CREATE TABLE "InList"("id" INTEGER PRIMARY KEY,"one" INTEGER NOT NULL,"two" INTEGER NOT NULL)
+Migrating: CREATE TABLE "ListEmbed"("id" INTEGER PRIMARY KEY,"nested" VARCHAR NOT NULL,"one" INTEGER NOT NULL,"two" INTEGER NOT NULL)
+Migrating: CREATE TABLE "User"("id" INTEGER PRIMARY KEY,"ident" VARCHAR NOT NULL,"password" VARCHAR NULL,"profile" VARCHAR NOT NULL)
+Migrating: CREATE TABLE "Profile"("id" INTEGER PRIMARY KEY,"firstName" VARCHAR NOT NULL,"lastName" VARCHAR NOT NULL,"contact" VARCHAR NULL)
+Migrating: CREATE TABLE "Contact"("id" INTEGER PRIMARY KEY,"phone" INTEGER NOT NULL,"email" VARCHAR NOT NULL)
+Migrating: CREATE TABLE "Account"("id" INTEGER PRIMARY KEY,"userIds" VARCHAR NOT NULL,"name" VARCHAR NULL,"customDomains" VARCHAR NOT NULL)
+Migrating: CREATE TABLE "HasNestedList"("id" INTEGER PRIMARY KEY,"list" VARCHAR NOT NULL)
+Migrating: CREATE TABLE "IntList"("id" INTEGER PRIMARY KEY,"ints" VARCHAR NOT NULL)
+Migrating: CREATE TABLE "MapIdValue"("id" INTEGER PRIMARY KEY,"map" VARCHAR NOT NULL)
+Migrating: CREATE TABLE "HasArrayWithEntities"("id" INTEGER PRIMARY KEY,"hasEntity" VARCHAR NOT NULL,"arrayWithEntities" VARCHAR NOT NULL)
+Migrating: CREATE TABLE "SelfList"("id" INTEGER PRIMARY KEY,"reference" VARCHAR NOT NULL)
+Migrating: CREATE TABLE "SelfMaybe"("id" INTEGER PRIMARY KEY,"reference" VARCHAR NULL)
+CREATE TABLE "simple_cascade_child"("id" INTEGER PRIMARY KEY,"ref" INTEGER NOT NULL REFERENCES "simple_cascade" ON DELETE CASCADE ON UPDATE RESTRICT);
+CREATE TABLE "simple_cascade"("id" INTEGER PRIMARY KEY,"name" INTEGER NOT NULL);
+CREATE TABLE "parent"("name" INTEGER NOT NULL, PRIMARY KEY ("name"));
+CREATE TABLE "child"("id" INTEGER PRIMARY KEY,"pname" INTEGER NOT NULL, CONSTRAINT "childfkparent" FOREIGN KEY("pname") REFERENCES "parent"("name") ON DELETE CASCADE ON UPDATE CASCADE);
+CREATE TABLE "parent_implicit"("id" INTEGER PRIMARY KEY,"name" INTEGER NOT NULL);
+CREATE TABLE "child_implicit"("id" INTEGER PRIMARY KEY,"pname" INTEGER NOT NULL,"parent_id" INTEGER NOT NULL, CONSTRAINT "child_implicitfkparent" FOREIGN KEY("parent_id") REFERENCES "parent_implicit"("id") ON DELETE CASCADE ON UPDATE CASCADE);
+CREATE TABLE "parent_composite"("name" INTEGER NOT NULL,"last_name" INTEGER NOT NULL, PRIMARY KEY ("name","last_name"));
+CREATE TABLE "child_composite"("id" INTEGER PRIMARY KEY,"pname" INTEGER NOT NULL,"plast_name" INTEGER NOT NULL, CONSTRAINT "child_compositefkparent" FOREIGN KEY("pname","plast_name") REFERENCES "parent_composite"("name","last_name") ON DELETE CASCADE);
+CREATE TABLE "self_referenced"("name" INTEGER NOT NULL,"pname" INTEGER NOT NULL, PRIMARY KEY ("name"), CONSTRAINT "self_referencedfkparent" FOREIGN KEY("pname") REFERENCES "self_referenced"("name") ON DELETE CASCADE);
+CREATE TABLE "a"("id" INTEGER PRIMARY KEY,"aa" INTEGER NOT NULL,"ab" INTEGER NOT NULL,CONSTRAINT "u1" UNIQUE ("aa"));
+CREATE TABLE "b"("id" INTEGER PRIMARY KEY,"ba" INTEGER NOT NULL,"bb" INTEGER NOT NULL, CONSTRAINT "bfk_a" FOREIGN KEY("ba") REFERENCES "a"("aa") ON DELETE CASCADE);
+CREATE TABLE "a_composite"("id" INTEGER PRIMARY KEY,"aa" INTEGER NOT NULL,"ab" INTEGER NOT NULL,CONSTRAINT "u2" UNIQUE ("aa","ab"));
+CREATE TABLE "b_composite"("id" INTEGER PRIMARY KEY,"ba" INTEGER NOT NULL,"bb" INTEGER NOT NULL, CONSTRAINT "b_compositefk_a_composite" FOREIGN KEY("ba","bb") REFERENCES "a_composite"("aa","ab") ON DELETE CASCADE);
+CREATE TABLE "b_explicit"("id" INTEGER PRIMARY KEY,"ba" INTEGER NOT NULL, CONSTRAINT "b_explicitfk_a_i" FOREIGN KEY("ba") REFERENCES "a"("id") ON DELETE CASCADE);
+CREATE TABLE "chain"("id" INTEGER PRIMARY KEY,"name" INTEGER NOT NULL,"previous" INTEGER NULL, CONSTRAINT "chainfk_chain" FOREIGN KEY("previous") REFERENCES "chain"("id") ON DELETE SET NULL);
+CREATE TABLE "chain2"("id" INTEGER PRIMARY KEY,"name" INTEGER NOT NULL,"previous" INTEGER NULL, CONSTRAINT "chain2fk_chain" FOREIGN KEY("previous") REFERENCES "chain2"("id") ON DELETE CASCADE);
+CREATE TABLE "chain3"("id" INTEGER PRIMARY KEY,"name" INTEGER NOT NULL,"previous" INTEGER NULL REFERENCES "chain3" ON DELETE CASCADE ON UPDATE RESTRICT);
+CREATE TABLE "Person"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL,"age" INTEGER NOT NULL,"color" VARCHAR NULL,CONSTRAINT "PersonNameKey" UNIQUE ("name"));
+CREATE TABLE "Person1"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL,"age" INTEGER NOT NULL);
+CREATE TABLE "PersonMaybeAge"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL,"age" INTEGER NULL);
+CREATE TABLE "PersonMay"("id" INTEGER PRIMARY KEY,"name" VARCHAR NULL,"color" VARCHAR NULL);
+CREATE TABLE "Pet"("id" INTEGER PRIMARY KEY,"ownerId" INTEGER NOT NULL REFERENCES "Person" ON DELETE RESTRICT ON UPDATE RESTRICT,"name" VARCHAR NOT NULL,"type" VARCHAR NOT NULL);
+CREATE TABLE "MaybeOwnedPet"("id" INTEGER PRIMARY KEY,"ownerId" INTEGER NULL REFERENCES "Person" ON DELETE RESTRICT ON UPDATE RESTRICT,"name" VARCHAR NOT NULL,"type" VARCHAR NOT NULL);
+CREATE TABLE "NeedsPet"("id" INTEGER PRIMARY KEY,"petKey" INTEGER NOT NULL REFERENCES "Pet" ON DELETE RESTRICT ON UPDATE RESTRICT);
+CREATE TABLE "OutdoorPet"("id" INTEGER PRIMARY KEY,"ownerId" INTEGER NOT NULL REFERENCES "Person" ON DELETE RESTRICT ON UPDATE RESTRICT,"collar" VARCHAR NOT NULL,"type" VARCHAR NOT NULL);
+CREATE TABLE "UserPT"("id" INTEGER PRIMARY KEY,"ident" VARCHAR NOT NULL,"password" VARCHAR NULL,CONSTRAINT "UniqueUserPT" UNIQUE ("ident"));
+CREATE TABLE "EmailPT"("id" INTEGER PRIMARY KEY,"email" VARCHAR NOT NULL,"user" INTEGER NULL REFERENCES "UserPT" ON DELETE RESTRICT ON UPDATE RESTRICT,"verkey" VARCHAR NULL,CONSTRAINT "UniqueEmailPT" UNIQUE ("email"));
+CREATE TABLE "Upsert"("id" INTEGER PRIMARY KEY,"email" VARCHAR NOT NULL,"attr" VARCHAR NOT NULL,"extra" VARCHAR NOT NULL,"age" INTEGER NOT NULL,CONSTRAINT "UniqueUpsert" UNIQUE ("email"));
+CREATE TABLE "UpsertBy"("id" INTEGER PRIMARY KEY,"email" VARCHAR NOT NULL,"city" VARCHAR NOT NULL,"attr" VARCHAR NOT NULL,CONSTRAINT "UniqueUpsertBy" UNIQUE ("email"),CONSTRAINT "UniqueUpsertByCity" UNIQUE ("city"));
+CREATE TABLE "Strict"("id" INTEGER PRIMARY KEY,"yes" INTEGER NOT NULL,"no" INTEGER NOT NULL,"def" INTEGER NOT NULL);
+CREATE TABLE "DudeWeirdColumns"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL,"foo" INTEGER NULL,CONSTRAINT "UniqueName" UNIQUE ("name"));
+CREATE TABLE "Relationship"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL,"parent" INTEGER NULL REFERENCES "Relationship" ON DELETE RESTRICT ON UPDATE RESTRICT);
+CREATE TABLE "MutA"("id" INTEGER PRIMARY KEY,"mutB" INTEGER NOT NULL REFERENCES "MutB" ON DELETE RESTRICT ON UPDATE RESTRICT);
+CREATE TABLE "MutB"("id" INTEGER PRIMARY KEY,"mutA" INTEGER NOT NULL REFERENCES "MutA" ON DELETE RESTRICT ON UPDATE RESTRICT);
+CREATE TABLE "no_prefix1"("id" INTEGER PRIMARY KEY,"some_field_name" INTEGER NOT NULL);
+CREATE TABLE "no_prefix2"("id" INTEGER PRIMARY KEY,"some_other_field_name" INTEGER NOT NULL,"unprefixed_ref" INTEGER NOT NULL REFERENCES "no_prefix1" ON DELETE RESTRICT ON UPDATE RESTRICT);
+CREATE TABLE "no_prefix_sum"("id" INTEGER PRIMARY KEY,"unprefixed_left" INTEGER NULL,"unprefixed_right" VARCHAR NULL);
+CREATE TABLE "custom_prefix1"("id" INTEGER PRIMARY KEY,"custom_field_name" INTEGER NOT NULL);
+CREATE TABLE "custom_prefix2"("id" INTEGER PRIMARY KEY,"other_custom_field_name" INTEGER NOT NULL,"custom_prefixed_ref" INTEGER NOT NULL REFERENCES "custom_prefix1" ON DELETE RESTRICT ON UPDATE RESTRICT);
+CREATE TABLE "custom_prefix_sum"("id" INTEGER PRIMARY KEY,"custom_prefixed_left" INTEGER NULL,"custom_prefixed_right" VARCHAR NULL);
+CREATE TABLE "OnlyName"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL);
+CREATE TABLE "HasEmbed"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL,"embed" VARCHAR NOT NULL);
+CREATE TABLE "HasEmbeds"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL,"embed" VARCHAR NOT NULL,"double" VARCHAR NOT NULL);
+CREATE TABLE "HasListEmbed"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL,"list" VARCHAR NOT NULL);
+CREATE TABLE "HasSetEmbed"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL,"set" VARCHAR NOT NULL);
+CREATE TABLE "HasMap"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL,"map" VARCHAR NOT NULL);
+CREATE TABLE "HasList"("id" INTEGER PRIMARY KEY,"list" VARCHAR NOT NULL);
+CREATE TABLE "EmbedsHasMap"("id" INTEGER PRIMARY KEY,"name" VARCHAR NULL,"embed" VARCHAR NOT NULL);
+CREATE TABLE "InList"("id" INTEGER PRIMARY KEY,"one" INTEGER NOT NULL,"two" INTEGER NOT NULL);
+CREATE TABLE "ListEmbed"("id" INTEGER PRIMARY KEY,"nested" VARCHAR NOT NULL,"one" INTEGER NOT NULL,"two" INTEGER NOT NULL);
+CREATE TABLE "User"("id" INTEGER PRIMARY KEY,"ident" VARCHAR NOT NULL,"password" VARCHAR NULL,"profile" VARCHAR NOT NULL);
+CREATE TABLE "Profile"("id" INTEGER PRIMARY KEY,"firstName" VARCHAR NOT NULL,"lastName" VARCHAR NOT NULL,"contact" VARCHAR NULL);
+CREATE TABLE "Contact"("id" INTEGER PRIMARY KEY,"phone" INTEGER NOT NULL,"email" VARCHAR NOT NULL);
+CREATE TABLE "Account"("id" INTEGER PRIMARY KEY,"userIds" VARCHAR NOT NULL,"name" VARCHAR NULL,"customDomains" VARCHAR NOT NULL);
+CREATE TABLE "HasNestedList"("id" INTEGER PRIMARY KEY,"list" VARCHAR NOT NULL);
+CREATE TABLE "IntList"("id" INTEGER PRIMARY KEY,"ints" VARCHAR NOT NULL);
+CREATE TABLE "MapIdValue"("id" INTEGER PRIMARY KEY,"map" VARCHAR NOT NULL);
+CREATE TABLE "HasArrayWithEntities"("id" INTEGER PRIMARY KEY,"hasEntity" VARCHAR NOT NULL,"arrayWithEntities" VARCHAR NOT NULL);
+CREATE TABLE "SelfList"("id" INTEGER PRIMARY KEY,"reference" VARCHAR NOT NULL);
+CREATE TABLE "SelfMaybe"("id" INTEGER PRIMARY KEY,"reference" VARCHAR NULL);
+CREATE TABLE "foo_embed_order"("id" INTEGER PRIMARYMigrating: CREATE TABLE "foo_embed_order"("id" INTEGER PRIMARY KEY,"bars" VARCHAR NOT NULL)
+Migrating: CREATE TABLE "bar_embed_order"("id" INTEGER PRIMARY KEY,"b" VARCHAR NOT NULL,"u" VARCHAR NOT NULL,"g" VARCHAR NOT NULL)
+Migrating: CREATE TABLE "number"("id" INTEGER PRIMARY KEY,"intx" INTEGER NOT NULL,"int32" INTEGER NOT NULL,"word32" INTEGER NOT NULL,"int64" INTEGER NOT NULL,"word64" INTEGER NOT NULL)
+Migrating: CREATE TABLE "test_non_null"("id" INTEGER PRIMARY KEY,"field_a" INTEGER NOT NULL,CONSTRAINT "UniqueTestNonNull" UNIQUE ("field_a"))
+Migrating: CREATE TABLE "test_null"("id" INTEGER PRIMARY KEY,"field_a" INTEGER NOT NULL,"field_b" INTEGER NULL,CONSTRAINT "UniqueTestNonNullSqlName" UNIQUE ("field_a","field_b"))
+Migrating: CREATE TABLE "test_checkmark"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL,"value" VARCHAR NOT NULL,"active" BOOLEAN NULL,CONSTRAINT "unique_test_checkmark" UNIQUE ("name","active"))
+Migrating: CREATE TABLE "max_len"("id" INTEGER PRIMARY KEY,"text1" VARCHAR NOT NULL,"text2" VARCHAR NOT NULL,"bs1" BLOB NOT NULL,"bs2" BLOB NOT NULL,"str1" VARCHAR NOT NULL,"str2" VARCHAR NOT NULL,CONSTRAINT "m_l_text1" UNIQUE ("text1"),CONSTRAINT "m_l_text2" UNIQUE ("text2"),CONSTRAINT "m_l_bs1" UNIQUE ("bs1"),CONSTRAINT "m_l_bs2" UNIQUE ("bs2"),CONSTRAINT "m_l_str1" UNIQUE ("str1"),CONSTRAINT "m_l_str2" UNIQUE ("str2"))
+Migrating: CREATE TABLE "maybe_field_def_entity"("id" INTEGER PRIMARY KEY,"optional_string" VARCHAR NULL,"optional_int" INTEGER NULL)
+Migrating: CREATE TABLE "type_lit_field_defs_numeric"("id" INTEGER PRIMARY KEY,"one" INTEGER NOT NULL,"twenty" INTEGER NOT NULL)
+Migrating: CREATE TABLE "type_lit_field_defs_labelled"("id" INTEGER PRIMARY KEY,"one" INTEGER NOT NULL,"twenty" INTEGER NOT NULL)
+Migrating: CREATE TABLE "sub_type"("id" INTEGER PRIMARY KEY,"object" VARCHAR NOT NULL)
+Migrating: CREATE TABLE "menu_object"("id" INTEGER PRIMARY KEY,"sub" VARCHAR NULL)
+Migrating: CREATE TABLE "test_parent"("name" VARCHAR NOT NULL,"name2" VARCHAR NOT NULL,"age" INTEGER NOT NULL,"extra44" VARCHAR NOT NULL, PRIMARY KEY ("name","name2","age"))
+Migrating: CREATE TABLE "test_child"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL,"name2" VARCHAR NOT NULL,"age" INTEGER NOT NULL,"extra4" VARCHAR NOT NULL, CONSTRAINT "test_childfkparent" FOREIGN KEY("name","name2","age") REFERENCES "test_parent"("name","name2","age"))
+Migrating: CREATE TABLE "citizen"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL,"age" INTEGER NULL)
+Migrating: CREATE TABLE "address"("id" INTEGER PRIMARY KEY,"address" VARCHAR NOT NULL,"country" VARCHAR NOT NULL)
+Migrating: CREATE TABLE "citizen_address"("citizen" INTEGER NOT NULL REFERENCES "citizen" ON DELETE RESTRICT ON UPDATE RESTRICT,"address" INTEGER NOT NULL REFERENCES "address" ON DELETE RESTRICT ON UPDATE RESTRICT, PRIMARY KEY ("citizen","address"))
+Migrating: CREATE TABLE "primary_composite_with_other_nullable_fields"("foo" VARCHAR NOT NULL,"bar" VARCHAR NOT NULL,"baz" VARCHAR NULL, PRIMARY KEY ("foo","bar"))
+Migrating: CREATE TABLE "target"("id" INTEGER PRIMARY KEY,"field1" INTEGER NOT NULL,"field2" VARCHAR NOT NULL,CONSTRAINT "unique_target" UNIQUE ("field1","field2"))
+Migrating: CREATE TABLE "source"("id" INTEGER PRIMARY KEY,"field3" INTEGER NOT NULL,"field4" INTEGER NOT NULL REFERENCES "target" ON DELETE RESTRICT ON UPDATE RESTRICT)
+Migrating: CREATE TABLE "custom_sql_id"("id" INTEGER NOT NULL, PRIMARY KEY ("id"))
+Migrating: CREATE TABLE "fo"("foo" INTEGER NOT NULL,"bar" INTEGER NOT NULL, PRIMARY KEY ("foo"),CONSTRAINT "unique_bar" UNIQUE ("bar"))
+Migrating: CREATE TABLE "ba"("id" INTEGER PRIMARY KEY,"foo" INTEGER NOT NULL,"baz" INTEGER NOT NULL,CONSTRAINT "unique_baz" UNIQUE ("baz"))
+Migrating: CREATE TABLE "only_primary_key"("foo" INTEGER NOT NULL,"name" VARCHAR NOT NULL, PRIMARY KEY ("foo"))
+Migrating: CREATE TABLE "key_table"("id" INTEGER PRIMARY KEY,"key" VARCHAR NOT NULL)
+Migrating: CREATE TABLE "id_table"("id" DATE PRIMARY KEY,"name" VARCHAR NOT NULL,"key_table_embed" VARCHAR NULL)
+Migrating: CREATE TABLE "lower_case_table"("my_id" INTEGER PRIMARY KEY,"full_name" VARCHAR NOT NULL)
+Migrating: CREATE TABLE "ref_table"("id" INTEGER PRIMARY KEY,"something_else" INTEGER NOT NULL,"lct" INTEGER NOT NULL REFERENCES "lower_case_table" ON DELETE RESTRICT ON UPDATE RESTRICT,"text" VARCHAR NOT NULL,CONSTRAINT "unique_ref_table" UNIQUE ("something_else"))
+Migrating: CREATE TABLE "foreign_id_table"("id" INTEGER PRIMARY KEY,"id_id" DATE NOT NULL REFERENCES "id_table" ON DELETE RESTRICT ON UPDATE RESTRICT)
+Migrating: CREATE TABLE "blog_post"("id" INTEGER PRIMARY KEY,"article" VARCHAR NOT NULL)
+Migrating: CREATE TABLE "foo"("name" VARCHAR NOT NULL, PRIMARY KEY ("name"))
+Migrating: CREATE TABLE "bar"("id" INTEGER PRIMARY KEY,"quux" VARCHAR NOT NULL REFERENCES "foo" ON DELETE RESTRICT ON UPDATE RESTRICT)
+Migrating: CREATE TABLE "trees"("name" VARCHAR NOT NULL,"parent" VARCHAR NULL, PRIMARY KEY ("name"), CONSTRAINT "treesfkparent" FOREIGN KEY("parent") REFERENCES "trees"("name"))
+Migrating: CREATE TABLE "composite_primary"("name" VARCHAR NOT NULL,"age" INTEGER NOT NULL, PRIMARY KEY ("name","age"))
+Migrating: CREATE TABLE "tweet"("tweet_id" INTEGER NOT NULL,"status_text" varchar(170) NOT NULL, PRIMARY KEY ("tweet_id"),CONSTRAINT "unique_tweet_id" UNIQUE ("tweet_id"))
+Migrating: CREATE TABLE "tweet_url"("id" INTEGER PRIMARY KEY,"tweet_id" INTEGER NOT NULL REFERENCES "tweet" ON DELETE RESTRICT ON UPDATE RESTRICT,"tweet_url" varchar(255) NOT NULL,"final_url" varchar(255) NULL,CONSTRAINT "unique_tweet_id_tweet_url" UNIQUE ("tweet_id","tweet_url"))
+Migrating: CREATE TABLE "varying_lengths"("id" INTEGER PRIMARY KEY,"field1" INTEGER NOT NULL,"field2" varchar(5) NOT NULL)
+Migrating: CREATE TABLE "Wombat"("name" varchar(80) NOT NULL, PRIMARY KEY ("name"))
+Migrating: CREATE TABLE "table_an_extremely_fantastically_super_long_name_parent"("id" INTEGER PRIMARY KEY,"field1" INTEGER NOT NULL)
+Migrating: CREATE TABLE "table_an_extremely_fantastically_super_long_name_child"("id" INTEGER PRIMARY KEY,"column_an_extremely_fantastically_super_long_name_parent_id" INTEGER NOT NULL REFERENCES "table_an_extremely_fantastically_super_long_name_parent" ON DELETE RESTRICT ON UPDATE RESTRICT)
+ KEY,"bars" VARCHAR NOT NULL);
+CREATE TABLE "bar_embed_order"("id" INTEGER PRIMARY KEY,"b" VARCHAR NOT NULL,"u" VARCHAR NOT NULL,"g" VARCHAR NOT NULL);
+CREATE TABLE "number"("id" INTEGER PRIMARY KEY,"intx" INTEGER NOT NULL,"int32" INTEGER NOT NULL,"word32" INTEGER NOT NULL,"int64" INTEGER NOT NULL,"word64" INTEGER NOT NULL);
+CREATE TABLE "test_non_null"("id" INTEGER PRIMARY KEY,"field_a" INTEGER NOT NULL,CONSTRAINT "UniqueTestNonNull" UNIQUE ("field_a"));
+CREATE TABLE "test_null"("id" INTEGER PRIMARY KEY,"field_a" INTEGER NOT NULL,"field_b" INTEGER NULL,CONSTRAINT "UniqueTestNonNullSqlName" UNIQUE ("field_a","field_b"));
+CREATE TABLE "test_checkmark"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL,"value" VARCHAR NOT NULL,"active" BOOLEAN NULL,CONSTRAINT "unique_test_checkmark" UNIQUE ("name","active"));
+CREATE TABLE "max_len"("id" INTEGER PRIMARY KEY,"text1" VARCHAR NOT NULL,"text2" VARCHAR NOT NULL,"bs1" BLOB NOT NULL,"bs2" BLOB NOT NULL,"str1" VARCHAR NOT NULL,"str2" VARCHAR NOT NULL,CONSTRAINT "m_l_text1" UNIQUE ("text1"),CONSTRAINT "m_l_text2" UNIQUE ("text2"),CONSTRAINT "m_l_bs1" UNIQUE ("bs1"),CONSTRAINT "m_l_bs2" UNIQUE ("bs2"),CONSTRAINT "m_l_str1" UNIQUE ("str1"),CONSTRAINT "m_l_str2" UNIQUE ("str2"));
+CREATE TABLE "maybe_field_def_entity"("id" INTEGER PRIMARY KEY,"optional_string" VARCHAR NULL,"optional_int" INTEGER NULL);
+CREATE TABLE "type_lit_field_defs_numeric"("id" INTEGER PRIMARY KEY,"one" INTEGER NOT NULL,"twenty" INTEGER NOT NULL);
+CREATE TABLE "type_lit_field_defs_labelled"("id" INTEGER PRIMARY KEY,"one" INTEGER NOT NULL,"twenty" INTEGER NOT NULL);
+CREATE TABLE "sub_type"("id" INTEGER PRIMARY KEY,"object" VARCHAR NOT NULL);
+CREATE TABLE "menu_object"("id" INTEGER PRIMARY KEY,"sub" VARCHAR NULL);
+CREATE TABLE "test_parent"("name" VARCHAR NOT NULL,"name2" VARCHAR NOT NULL,"age" INTEGER NOT NULL,"extra44" VARCHAR NOT NULL, PRIMARY KEY ("name","name2","age"));
+CREATE TABLE "test_child"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL,"name2" VARCHAR NOT NULL,"age" INTEGER NOT NULL,"extra4" VARCHAR NOT NULL, CONSTRAINT "test_childfkparent" FOREIGN KEY("name","name2","age") REFERENCES "test_parent"("name","name2","age"));
+CREATE TABLE "citizen"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL,"age" INTEGER NULL);
+CREATE TABLE "address"("id" INTEGER PRIMARY KEY,"address" VARCHAR NOT NULL,"country" VARCHAR NOT NULL);
+CREATE TABLE "citizen_address"("citizen" INTEGER NOT NULL REFERENCES "citizen" ON DELETE RESTRICT ON UPDATE RESTRICT,"address" INTEGER NOT NULL REFERENCES "address" ON DELETE RESTRICT ON UPDATE RESTRICT, PRIMARY KEY ("citizen","address"));
+CREATE TABLE "primary_composite_with_other_nullable_fields"("foo" VARCHAR NOT NULL,"bar" VARCHAR NOT NULL,"baz" VARCHAR NULL, PRIMARY KEY ("foo","bar"));
+CREATE TABLE "target"("id" INTEGER PRIMARY KEY,"field1" INTEGER NOT NULL,"field2" VARCHAR NOT NULL,CONSTRAINT "unique_target" UNIQUE ("field1","field2"));
+CREATE TABLE "source"("id" INTEGER PRIMARY KEY,"field3" INTEGER NOT NULL,"field4" INTEGER NOT NULL REFERENCES "target" ON DELETE RESTRICT ON UPDATE RESTRICT);
+CREATE TABLE "custom_sql_id"("id" INTEGER NOT NULL, PRIMARY KEY ("id"));
+CREATE TABLE "fo"("foo" INTEGER NOT NULL,"bar" INTEGER NOT NULL, PRIMARY KEY ("foo"),CONSTRAINT "unique_bar" UNIQUE ("bar"));
+CREATE TABLE "ba"("id" INTEGER PRIMARY KEY,"foo" INTEGER NOT NULL,"baz" INTEGER NOT NULL,CONSTRAINT "unique_baz" UNIQUE ("baz"));
+CREATE TABLE "only_primary_key"("foo" INTEGER NOT NULL,"name" VARCHAR NOT NULL, PRIMARY KEY ("foo"));
+CREATE TABLE "key_table"("id" INTEGER PRIMARY KEY,"key" VARCHAR NOT NULL);
+CREATE TABLE "id_table"("id" DATE PRIMARY KEY,"name" VARCHAR NOT NULL,"key_table_embed" VARCHAR NULL);
+CREATE TABLE "lower_case_table"("my_id" INTEGER PRIMARY KEY,"full_name" VARCHAR NOT NULL);
+CREATE TABLE "ref_table"("id" INTEGER PRIMARY KEY,"something_else" INTEGER NOT NULL,"lct" INTEGER NOT NULL REFERENCES "lower_case_table" ON DELETE RESTRICT ON UPDATE RESTRICT,"text" VARCHAR NOT NULL,CONSTRAINT "unique_ref_table" UNIQUE ("something_else"));
+CREATE TABLE "foreign_id_table"("id" INTEGER PRIMARY KEY,"id_id" DATE NOT NULL REFERENCES "id_table" ON DELETE RESTRICT ON UPDATE RESTRICT);
+CREATE TABLE "blog_post"("id" INTEGER PRIMARY KEY,"article" VARCHAR NOT NULL);
+CREATE TABLE "foo"("name" VARCHAR NOT NULL, PRIMARY KEY ("name"));
+CREATE TABLE "bar"("id" INTEGER PRIMARY KEY,"quux" VARCHAR NOT NULL REFERENCES "foo" ON DELETE RESTRICT ON UPDATE RESTRICT);
+CREATE TABLE "trees"("name" VARCHAR NOT NULL,"parent" VARCHAR NULL, PRIMARY KEY ("name"), CONSTRAINT "treesfkparent" FOREIGN KEY("parent") REFERENCES "trees"("name"));
+CREATE TABLE "composite_primary"("name" VARCHAR NOT NULL,"age" INTEGER NOT NULL, PRIMARY KEY ("name","age"));
+CREATE TABLE "tweet"("tweet_id" INTEGER NOT NULL,"status_text" varchar(170) NOT NULL, PRIMARY KEY ("tweet_id"),CONSTRAINT "unique_tweet_id" UNIQUE ("tweet_id"));
+CREATE TABLE "tweet_url"("id" INTEGER PRIMARY KEY,"tweet_id" INTEGER NOT NULL REFERENCES "tweet" ON DELETE RESTRICT ON UPDATE RESTRICT,"tweet_url" varchar(255) NOT NULL,"final_url" varchar(255) NULL,CONSTRAINT "unique_tweet_id_tweet_url" UNIQUE ("tweet_id","tweet_url"));
+CREATE TABLE "varying_lengths"("id" INTEGER PRIMARY KEY,"field1" INTEGER NOT NULL,"field2" varchar(5) NOT NULL);
+CREATE TABLE "Wombat"("name" varchar(80) NOT NULL, PRIMARY KEY ("name"));
+CREATE TABLE "table_an_extremely_fantastically_super_long_name_parent"("id" INTEGER PRIMARY KEY,"field1" INTEGER NOT NULL);
+CREATE TABLE "table_an_extremely_fantastically_super_long_name_child"("id" INTEGER PRIMARY KEY,"column_an_extremely_fantastically_super_long_name_parent_id" INTEGER NOT NULL REFERENCES "table_an_extremely_fantastically_super_long_name_parent" ON DELETE RESTRICT ON UPDATE RESTRICT);
+
+Database
+  Persist
+    Sqlite
+      CompositeSpec
+        properly migrates to a composite primary key (issue #669) [✔]
+        test migrating sparse composite primary keys (issue #1184) [✔]
+rename specs
+  LowerCaseTable
+    LowerCaseTable has the right sql name [✔]
+  user specified id, insertKey, no default= [✔]
+  extra blocks [✔]
+data type specs
+  handles all types [✔]
+html
+  works [✔]
+embedded entities
+  simple entities [✔]
+  query for equality of embeded entity [✔]
+  Set [✔]
+  Set empty [✔]
+  exception [✔]
+  ListEmbed [✔]
+  ListEmbed empty [✔]
+  List empty [✔]
+  NonEmpty List wrapper [✔]
+  Map [✔]
+  Map empty [✔]
+  Embeds a Map [✔]
+  Embeds a Map empty [✔]
+  Embeds a Map with ids as values [✔]
+embedded entities
+  preserves ordering [✔]
+  PersistMap PersistValue serializaion [✔]
+Large Numbers
+  preserves their values in the database [✔]
+uniqueness constraints
+  are respected for non-nullable Ints [✔]
+  are respected for nullable Ints [✔]
+  work for Checkmark [✔]
+Maximum length attribute
+  truncates values that are too long [✔]
+Maybe Field Definitions
+  runs appropriate migrations [✔]
+Type Lit Field Definitions
+  runs appropriate migrations [✔]
+recursive definitions
+  mutually recursive [✔]
+sum types
+  works [✔]
+MigrationOnly field
+  getEntityFields
+    should have two fields [✔]
+    should not have any migration only fields [✔]
+  getEntityFieldsDatabase
+    should have three fields [✔]
+    should have at one migration only field [✔]
+  doesn't have the field in the Haskell entity [✔]
+persistent
+  SafeToRemove
+    DudeWeirdColumns
+      can insert and get [✔]
+      can putMany [✔]
+  fieldLens [✔]
+  FilterAnd [] [✔]
+  Filter In [✔]
+  order of opts is irrelevant [✔]
+  passes the general tests [✔]
+  persistIdField [✔]
+  !=. [✔]
+  Double Maybe [✔]
+  and/or [✔]
+  deleteWhere [✔]
+  deleteBy [✔]
+  delete [✔]
+  toPathPiece . fromPathPiece [✔]
+    +++ OK, passed 100 tests.
+  replace [✔]
+  getBy [✔]
+  updateGet [✔]
+  repsertMany
+    adds new rows when no conflicts [✔]
+    handles conflicts by replacing old keys with new records [✔]
+  updateWhere [✔]
+  selectList [✔]
+  selectSource [✔]
+  selectFirst [✔]
+  selectKeys [✔]
+  insertMany_ with no arguments [✔]
+  insertEntityMany [✔]
+  insertBy [✔]
+  insertKey [✔]
+  insertEntity [✔]
+  insertRecord [✔]
+  getEntity [✔]
+  getJustEntity [✔]
+  repsert [✔]
+  retrieves a belongsToJust association [✔]
+  retrieves a belongsTo association [✔]
+  derivePersistField [✔]
+  derivePersistFieldJSON [✔]
+  idIn [✔]
+  In [✔]
+  toJSON
+    serializes [✔]
+  strictness
+    bang [✔]
+    tilde [✔]
+    blank [✔]
+  documentation syntax
+    provides comments on entity def [✔]
+    provides comments on the field [✔]
+FilterOr
+  FilterOr [] [✔]
+  ||. [] [✔]
+ReadWriteTest
+  SqlReadBackend
+    type checks on all PersistStoreRead functions [✔]
+    type checks on all PersistQueryRead functions [✔]
+    type checks on PersistUniqueRead functions [✔]
+  SqlWriteBackend
+    type checks on PersistStoreWrite and Read functions [✔]
+    type checks on PersistQueryWrite and Read functions [✔]
+    type checks on PersistUniqueWrite/Read functions [✔]
+rawSql
+  2+2 [✔]
+  ?-? [✔]
+  NULL [✔]
+  entity [✔]
+  order-proof [✔]
+  permits prefixes [✔]
+  OUTER JOIN [✔]
+  handles lower casing [✔]
+  commit/rollback [✔]
+  queries with large number of results [✔]
+UpsertTests
+  upsert
+    adds a new row with no updates [✔]
+    keeps the existing row [✔]
+    updates an existing row - assignment [✔]
+    updates existing row - addition  [✔]
+  upsertBy
+    adds a new row with no updates [✔]
+    keeps the existing row [✔]
+    updates an existing row [✔]
+    updates by the appropriate constraint [✔]
+  maybe update [✔]
+  putMany
+    adds new rows when entity has no unique constraints [✔]
+    adds new rows when no conflicts [✔]
+    handles conflicts by replacing old keys with new records [✔]
+mpsNoPrefix
+  works [✔]
+  IsSqlKey instance [✔]
+mpsCustomPrefix
+  works [✔]
+empty entity
+  inserts [✔]
+composite
+  primary keys
+    insertWithKey [✔]
+    repsert [✔]
+    Insert [✔]
+    Id field [✔]
+    Filter by Id with 'not equal' [✔]
+    Filter by Id with 'in' [✔]
+    Filter by Id with 'not in' [✔]
+    Filter by Id with 'not in' with no data [✔]
+    Extract Parent Foreign Key from Child value [✔]
+    Validate Key contents [✔]
+    Delete [✔]
+    Update [✔]
+    Replace Parent [✔]
+    Replace Child [✔]
+    Insert Many to Many [✔]
+    insertMany [✔]
+    RawSql Key instance [✔]
+    RawSql Entity instance [✔]
+PersistUniqueTest
+  getBy
+    works to pull a record from the database [✔]
+  insertUniqueEntity
+    inserts a value if no conflicts are present [✔]
+    does not insert if the record is entirely the same [✔]
+    does not insert if there is a primary key conflict [✔]
+    does not insert if there is a unique key conflict [✔]
+  checkUniqueUpdateable
+    with standard id
+      returns the unique constraint that failed [✔]
+      returns Nothing if no constraint conflict exists [✔]
+    with Primary
+      conflicts with itself [✔]
+      returns the key that failed [✔]
+  upsert
+    OnlyPrimaryKey
+      can upsert [✔]
+    Fo
+      cannot upsert [✔]
+      can upsertBy [✔]
+  OnlyPrimaryKey
+    has unique constraints [✔]
+primary key reference
+  insert a primary reference [✔]
+  uses RawSql for a Primary key [✔]
+  keyFromRecordM
+    works on singleton case [✔]
+    works on multiple fields [✔]
+Custom persist field
+  should read what it wrote [✔]
+custom primary key reference
+  can insert a Tweet [✔]
+is idempotent [✔]
+doesn't migrate equivalent types
+  works [✔]
+foreign keys options
+  delete cascades [✔]
+  update cascades [✔]
+  delete Composite cascades [✔]
+  delete self referenced cascades [✔]
+  delete cascade works on simple references [✔]
+  delete cascades with explicit Reference [✔]
+  delete cascades with explicit Composite Reference [✔]
+  delete cascades with explicit Composite Reference [✔]
+  delete cascades with explicit Id field [✔]
+  deletes sets null with self reference [✔]
+  deletes cascades with self reference to the whole chain [✔]
+  deletes cascades with field self reference to the whole chain [✔]
+  EntityDef
+    parses into fieldCascade [✔]
+    shouldn't have cascade in extras [✔]
+IsolationLevel
+  insertOnDuplicateKeyUpdate
+    ReadUncommitted works [✔]
+  insertOnDuplicateKeyUpdate
+    ReadCommitted works [✔]
+  insertOnDuplicateKeyUpdate
+    RepeatableRead works [✔]
+  insertOnDuplicateKeyUpdate
+    Serializable works [✔]
+Migration
+  is idempotent [✔]
+  really is idempotent [✔]
+  can add an extra column [✔]
+Long identifiers
+  migrating is idempotent [✔]
+  migrating really is idempotent [✔]
+PersistLiteral field
+Migrating: CREATE TABLE "gen_test"("id" INTEGER PRIMARY KEY,"field_one" VARCHAR NULL,"field_two" VARCHAR NULL,"field_three" VARCHAR NULL GENERATED ALWAYS AS (COALESCE(field_one,field_two)) STORED)
+Migrating: CREATE TABLE "gen_migrate_test"("id" INTEGER PRIMARY KEY,"sickness" INTEGER NOT NULL,"cromulence" INTEGER NOT NULL GENERATED ALWAYS AS (5) STORED)
+  should read a generated column [✔]
+Migrating: CREATE TABLE "gen_migrate_test"("id" INTEGER PRIMARY KEY,"sickness" INTEGER NOT NULL GENERATED ALWAYS AS (3) STORED,"cromulence" INTEGER NOT NULL)
+  should support adding or removing generation expressions from columns [✔]
+issue #328 [✔]
+issue #339 [✔]
+issue #564 [✔]
+issue #527 [✔]
+afterException [✔]
+
+Finished in 0.9807 seconds
+186 examples, 0 failures
+Test suite test: PASS
+Test suite logged to:
+/tmp/workdir-persistent-sqlite/persistent-sqlite-2.13.3.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/persistent-sqlite-2.13.3.0/t/test/test/persistent-sqlite-2.13.3.0-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

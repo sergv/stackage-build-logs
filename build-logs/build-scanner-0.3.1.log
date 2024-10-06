@@ -1,0 +1,47 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - scanner-0.3.1 (lib) (first run)
+ - scanner-0.3.1 (test:spec) (first run)
+Configuring library for scanner-0.3.1...
+Preprocessing library for scanner-0.3.1...
+Building library for scanner-0.3.1...
+[1 of 5] Compiling Prelude
+[2 of 5] Compiling Data.Either
+[3 of 5] Compiling Scanner.OctetPredicates
+[4 of 5] Compiling Scanner.Internal
+
+lib/Scanner/Internal.hs:49:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative Scanner’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+49 |   pure = return
+   |   ^^^^^^^^^^^^^
+
+lib/Scanner/Internal.hs:54:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘(*>) = (>>)’ definition detected
+    in the instance declaration for ‘Applicative Scanner’.
+    Move definition from ‘(>>)’ to ‘(*>)’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+54 |   (*>) = (>>)
+   |   ^^^^^^^^^^^
+
+lib/Scanner/Internal.hs:61:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad Scanner’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+61 |   return a = Scanner $ \bs next ->
+   |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+[5 of 5] Compiling Scanner
+Configuring test suite 'spec' for scanner-0.3.1...
+Preprocessing test suite 'spec' for scanner-0.3.1...
+Building test suite 'spec' for scanner-0.3.1...
+[1 of 3] Compiling Prelude
+[2 of 3] Compiling Data.Either
+[3 of 3] Compiling Main
+[4 of 4] Linking /tmp/workdir-scanner/scanner-0.3.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/scanner-0.3.1/t/spec/build/spec/spec

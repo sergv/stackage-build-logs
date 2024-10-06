@@ -1,0 +1,105 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - storablevector-0.2.13.2 (lib) (first run)
+ - storablevector-0.2.13.2 (test:test) (first run)
+Configuring library for storablevector-0.2.13.2...
+Preprocessing library for storablevector-0.2.13.2...
+Building library for storablevector-0.2.13.2...
+[ 1 of 15] Compiling Data.StorableVector.Memory
+[ 2 of 15] Compiling Data.StorableVector.Cursor
+[ 3 of 15] Compiling Data.StorableVector.Base
+[ 4 of 15] Compiling Data.StorableVector
+
+src/Data/StorableVector.hs:245:5: warning: [-Wnoncanonical-monoid-instances]
+    Noncanonical ‘mappend’ definition detected
+    in the instance declaration for ‘Monoid (Vector a)’.
+    ‘mappend’ will eventually be removed in favour of ‘(<>)’
+    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    |
+245 |     mappend = append
+    |     ^^^^^^^^^^^^^^^^
+
+src/Data/StorableVector.hs:720:8: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘(Vector b, Maybe (acc, Vector a))’ not matched:
+            (_, Nothing)
+    |
+720 |    let (bs, Just (acc2, _)) =
+    |        ^^^^^^^^^^^^^^^^^^^^^^...
+
+src/Data/StorableVector.hs:738:8: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘(Vector b, Maybe (acc, Vector a))’ not matched:
+            (_, Nothing)
+    |
+738 |    let (bs, Just (acc2, _)) =
+    |        ^^^^^^^^^^^^^^^^^^^^^^...
+[ 5 of 15] Compiling Data.StorableVector.Lazy.PointerPrivateIndex
+[ 6 of 15] Compiling Data.StorableVector.Pointer
+[ 7 of 15] Compiling Data.StorableVector.Lazy.PointerPrivate
+[ 8 of 15] Compiling Data.StorableVector.Lazy
+
+src/Data/StorableVector/Lazy.hs:166:5: warning: [-Wnoncanonical-monoid-instances]
+    Noncanonical ‘mappend’ definition detected
+    in the instance declaration for ‘Monoid (Vector a)’.
+    ‘mappend’ will eventually be removed in favour of ‘(<>)’
+    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    |
+166 |     mappend = append
+    |     ^^^^^^^^^^^^^^^^
+
+src/Data/StorableVector/Lazy.hs:210:4: warning: [-Wnoncanonical-monoid-instances]
+    Noncanonical ‘mappend’ definition detected
+    in the instance declaration for ‘Monoid ChunkSize’.
+    ‘mappend’ will eventually be removed in favour of ‘(<>)’
+    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    |
+210 |    mappend (ChunkSize x) (ChunkSize y) = ChunkSize (x+y)
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 9 of 15] Compiling Data.StorableVector.Lazy.Typed
+
+src/Data/StorableVector/Lazy/Typed.hs:190:5: warning: [-Wnoncanonical-monoid-instances]
+    Noncanonical ‘mappend’ definition detected
+    in the instance declaration for ‘Monoid (Vector size a)’.
+    ‘mappend’ will eventually be removed in favour of ‘(<>)’
+    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    |
+190 |     mappend = append
+    |     ^^^^^^^^^^^^^^^^
+[10 of 15] Compiling Data.StorableVector.Lazy.Pointer
+[11 of 15] Compiling Data.StorableVector.Lazy.Pattern
+[12 of 15] Compiling Data.StorableVector.ST.Private
+[13 of 15] Compiling Data.StorableVector.ST.Strict
+[14 of 15] Compiling Data.StorableVector.ST.Lazy
+[15 of 15] Compiling Data.StorableVector.Lazy.Builder
+
+src/Data/StorableVector/Lazy/Builder.hs:26:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+26 | import Data.Monoid (Monoid(mempty, mappend), )
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Data/StorableVector/Lazy/Builder.hs:27:1: warning: [-Wunused-imports]
+    The import of ‘Data.Semigroup’ is redundant
+      except perhaps to import instances from ‘Data.Semigroup’
+    To import instances alone, use: import Data.Semigroup()
+   |
+27 | import Data.Semigroup (Semigroup((<>)), )
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Configuring test suite 'test' for storablevector-0.2.13.2...
+Preprocessing test suite 'test' for storablevector-0.2.13.2...
+Building test suite 'test' for storablevector-0.2.13.2...
+[1 of 5] Compiling Alternative.Lazy
+[2 of 5] Compiling Test.Lazy
+[3 of 5] Compiling Test.Utility
+[4 of 5] Compiling Test.Strict
+[5 of 5] Compiling Main
+[6 of 6] Linking /tmp/workdir-storablevector/storablevector-0.2.13.2/dist-newstyle/build/x86_64-linux/ghc-9.6.6/storablevector-0.2.13.2/t/test/build/test/test

@@ -1,0 +1,259 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - bv-little-1.3.2 (test:Test-Suite) (ephemeral targets)
+Preprocessing test suite 'Test-Suite' for bv-little-1.3.2...
+Building test suite 'Test-Suite' for bv-little-1.3.2...
+Running 1 test suites...
+Test suite Test-Suite: RUNNING...
+BitVector tests
+  Properties of Bits
+    ∀ i ≥ 0, clearBit zeroBits i === zeroBits:                                                                        OK
+      +++ OK, passed 100 tests.
+    ∀ i ≥ 0, setBit   zeroBits i === bit i:                                                                           OK
+      +++ OK, passed 100 tests.
+    ∀ i ≥ 0, testBit  zeroBits i === False:                                                                           OK
+      +++ OK, passed 100 tests.
+             popCount zeroBits   === 0:                                                                               OK
+    complement === omap not:                                                                                          OK
+      +++ OK, passed 100 tests.
+    (`setBit` i) === (.|. bit i):                                                                                     OK
+      +++ OK, passed 100 tests.
+    (`clearBit` i) === (.&. complement (bit i)):                                                                      OK
+      +++ OK, passed 100 tests.
+    (`complementBit` i) === (`xor` bit i):                                                                            OK
+      +++ OK, passed 100 tests.
+    (`testBit` i) . (`setBit` n):                                                                                     OK
+      +++ OK, passed 100 tests.
+    not  . (`testBit` i) . (`clearBit` i):                                                                            OK
+      +++ OK, passed 100 tests.
+    (`shiftL`  i) === (`shift`   i):                                                                                  OK
+      +++ OK, passed 100 tests.
+    (`shiftR`  i) === (`shift`  -i):                                                                                  OK
+      +++ OK, passed 100 tests.
+    (`rotateL` i) === (`rotate`  i):                                                                                  OK
+      +++ OK, passed 100 tests.
+    (`rotateR` i) === (`rotate` -i):                                                                                  OK
+      +++ OK, passed 100 tests.
+    (`rotateR` i) . (`rotateL` i) === id:                                                                             OK
+      +++ OK, passed 100 tests.
+    (`rotateL` i) . (`rotateR` i) === id:                                                                             OK
+      +++ OK, passed 100 tests.
+  Properties of FiniteBits
+    bitSize === finiteBitSize:                                                                                        OK
+      +++ OK, passed 100 tests.
+    bitSizeMaybe === Just . finiteBitSize:                                                                            OK
+      +++ OK, passed 100 tests.
+    dimension === finiteBitSize:                                                                                      OK
+      +++ OK, passed 100 tests.
+    countLeadingZeros <= finiteBitSize:                                                                               OK
+      +++ OK, passed 100 tests.
+    countTrailingZeros <= finiteBitSize:                                                                              OK
+      +++ OK, passed 100 tests.
+    length . toBits === finiteBitSize:                                                                                OK
+      +++ OK, passed 100 tests.
+    length . takeWhile not === countLeadingZeros . fromBits:                                                          OK
+      +++ OK, passed 100 tests.
+    length . takeWhile not . toBits === countLeadingZeros:                                                            OK
+      +++ OK, passed 100 tests.
+    length . takeWhile not . reverse === countTrailingZeros . fromBits:                                               OK
+      +++ OK, passed 100 tests.
+    length . takeWhile not . reverse . toBits === countTrailingZeros:                                                 OK
+      +++ OK, passed 100 tests.
+  Properties of Hashable
+    a == b -=> (hashWithSalt a) === (hashWithSalt b):                                                                 OK (0.02s)
+      +++ OK, passed 10000 tests.
+  Properties of a MonoAdjustable
+    oadjust id k === id:                                                                                              OK
+      +++ OK, passed 100 tests.
+    oadjust (f . g) k === oadjust f k . oadjust g k:                                                                  OK
+      +++ OK, passed 100 tests.
+    oadjust f k === omapWithKey (\i -> if i == k then f else id):                                                     OK
+      +++ OK, passed 100 tests.
+    oreplace k v === oreplace k v . oadjust f k:                                                                      OK
+      +++ OK, passed 100 tests.
+    oreplace (f v) k === oadjust f k . oreplace k v:                                                                  OK
+      +++ OK, passed 100 tests.
+  Properties of a MonoFunctor
+    omap id === id:                                                                                                   OK
+      +++ OK, passed 100 tests.
+    omap (f . g)  === omap f . omap g:                                                                                OK
+      +++ OK, passed 100 tests.
+  Properties of MonoFoldable
+    ofoldr f z t === appEndo (ofoldMap (Endo . f) t ) z:                                                              OK
+      +++ OK, passed 100 tests.
+    ofoldl' f z t === appEndo (getDual (ofoldMap (Dual . Endo . flip f) t)) z:                                        OK
+      +++ OK, passed 100 tests.
+    ofoldr f z === ofoldr f z . otoList:                                                                              OK
+      +++ OK, passed 100 tests.
+    ofoldl' f z === ofoldl' f z . otoList:                                                                            OK
+      +++ OK, passed 100 tests.
+    ofoldr1Ex f === foldr1 f . otoList:                                                                               OK
+      +++ OK, passed 100 tests.
+    ofoldl1Ex' f === foldl1 f . otoList:                                                                              OK
+      +++ OK, passed 100 tests.
+    oall f === getAll . ofoldMap (All . f):                                                                           OK
+      +++ OK, passed 100 tests.
+    oany f === getAny . ofoldMap (Any . f):                                                                           OK
+      +++ OK, passed 100 tests.
+    olength === length . otoList:                                                                                     OK
+      +++ OK, passed 100 tests.
+    onull === (0 ==) . olength:                                                                                       OK
+      +++ OK, passed 100 tests.
+    headEx === getFirst . ofoldMap1Ex First:                                                                          OK
+      +++ OK, passed 100 tests.
+    lastEx === getLast . ofoldMap1Ex Last:                                                                            OK
+      +++ OK, passed 100 tests.
+    oelem e /== onotElem e:                                                                                           OK
+      +++ OK, passed 100 tests.
+  Properties of MonoFoldableWithKey
+    otoKeyedList === zip [0..] . otoList:                                                                             OK
+      +++ OK, passed 100 tests.
+    ofoldMapWithKey (const f) === ofoldMap f:                                                                         OK
+      +++ OK, passed 100 tests.
+    ofoldrWithKey (const f) === ofoldr f:                                                                             OK
+      +++ OK, passed 100 tests.
+    ofoldlWithKey (const . f) === ofoldl f:                                                                           OK
+      +++ OK, passed 100 tests.
+    ofoldMapWithKey f === foldMap (uncurry f) . otoKeyedList:                                                         OK
+      +++ OK, passed 100 tests.
+    ofoldrWithKey f === foldr (uncurry f) . otoKeyedList:                                                             OK
+      +++ OK, passed 100 tests.
+    ofoldlWithKey f === foldl (uncurry . f) . otoKeyedList:                                                           OK
+      +++ OK, passed 100 tests.
+  Properties of a MonoKeyed
+    omapWithKey (const id) === id:                                                                                    OK
+      +++ OK, passed 100 tests.
+    omapWithKey (\k -> f k . g k)  === omapWithKey f . omapWithKey g:                                                 OK
+      +++ OK, passed 100 tests.
+  Properties of MonoTraversable
+    t . otraverse f === otraverse (t . f):                                                                            OK
+      +++ OK, passed 100 tests.
+    otraverse Identity === Identity:                                                                                  OK
+      +++ OK, passed 100 tests.
+    otraverse (Compose . fmap g . f) === Compose . fmap (otraverse g) . otraverse f:                                  OK
+      +++ OK, passed 100 tests.
+    otraverse === omapM:                                                                                              OK
+      +++ OK, passed 100 tests.
+  Properties of MonoTraversableWithKey
+    t . otraverseWithKey f === otraverseWithKey (\k -> t . f k):                                                      OK
+      +++ OK, passed 100 tests.
+    otraverseWithKey (const Identity) === Identity:                                                                   OK
+      +++ OK, passed 100 tests.
+    otraverseWithKey (\k -> Compose . fmap (g k) . f k) === Compose . fmap (otraverseWithKey g) . otraverseWithKey f: OK
+      +++ OK, passed 100 tests.
+    otraverseWithKey === omapWithKeyM:                                                                                OK
+      +++ OK, passed 100 tests.
+  Properties of a MonoZip
+    ozipWith const u u === ozipWith (const id) u u === u:                                                             OK
+      +++ OK, passed 100 tests.
+    ozipWith (flip f) x y === ozipWith f y x:                                                                         OK
+      +++ OK, passed 100 tests.
+    ozipWith (\a b -> f (g a) (h b)) x y === ozipWith f (omap g x) (omap h y):                                        OK
+      +++ OK, passed 100 tests.
+  Properties of a MonoZipWithKey
+    ozipWithKey (const f) === ozipWith f:                                                                             OK
+      +++ OK, passed 100 tests.
+  Properties of a Monoid
+    left identity:                                                                                                    OK
+      +++ OK, passed 100 tests.
+    right identity:                                                                                                   OK
+      +++ OK, passed 100 tests.
+    mempty is associative:                                                                                            OK
+      +++ OK, passed 100 tests.
+    mconcat === foldr (<>) mempty:                                                                                    OK
+      +++ OK, passed 100 tests.
+  Properties of NFData
+    rnf result is finite:                                                                                             OK
+      +++ OK, passed 100 tests.
+  Properties of an Ordering
+    ordering preserves symmetry:                                                                                      OK
+      +++ OK, passed 100 tests.
+    ordering is transitive (total):                                                                                   OK
+      +++ OK, passed 100 tests.
+  Properties of a Semigroup
+    (<>) is associative:                                                                                              OK (0.03s)
+      +++ OK, passed 10000 tests.
+    sconcat === foldr1 (<>):                                                                                          OK
+      +++ OK, passed 100 tests.
+    stimes n === mconcat . replicate n:                                                                               OK
+      +++ OK, passed 100 tests.
+  Properties of Show
+    show result is finite:                                                                                            OK
+      +++ OK, passed 100 tests.
+    show result is non-null:                                                                                          OK
+      +++ OK, passed 100 tests.
+  Properties of TextShow
+    textshow and show result agree:                                                                                   OK
+      +++ OK, passed 100 tests.
+  BitVector properties
+    otoList === toBits:                                                                                               OK
+      +++ OK, passed 100 tests.
+    dimension === length . toBits:                                                                                    OK
+      +++ OK, passed 100 tests.
+    dimension === finiteBitSize:                                                                                      OK
+      +++ OK, passed 100 tests.
+    fromBits . toBits === id:                                                                                         OK
+      +++ OK, passed 100 tests.
+    isZeroVector zeroBits:                                                                                            OK
+    isZeroVector === (0 ==) . popCount:                                                                               OK
+      +++ OK, passed 100 tests.
+    isZeroVector === all not . toBits:                                                                                OK
+      +++ OK, passed 100 tests.
+    (0 ==) . toUnsignedNumber -=> isZeroVector:                                                                       OK
+      +++ OK, passed 100 tests.
+    toSignedNumber . fromNumber === id:                                                                               OK
+      +++ OK, passed 100 tests.
+    isSigned == const False:                                                                                          OK
+      +++ OK, passed 100 tests.
+    i >  j -=> subRange (i,j) === const zeroBits:                                                                     OK
+      +++ OK, passed 100 tests.
+    i <= j -=> dimension . subRange (i,j) === const (j - i + 1):                                                      OK
+      +++ OK, passed 100 tests.
+  BitVector rank/select
+    select (bit i) 0 === i:                                                                                           OK
+      +++ OK, passed 100 tests.
+    select (bit x .|. bit y) 0 === min (select (bit x) 0) (select (bit y) 0):                                         OK
+      +++ OK, passed 100 tests.
+    rank (bit x .|. bit y) (max x y + 1) === rank (bit x) (x+1) + rank (bit y) (y+1):                                 OK
+      +++ OK, passed 100 tests.
+    rank (bit i) (i+1) === i:                                                                                         OK
+      +++ OK, passed 100 tests.
+    rank <$> id <*> dimension === popCount:                                                                           OK
+      +++ OK, passed 100 tests.
+    rank bv i === length . filter id . take i . toBits bv:                                                            OK
+      +++ OK, passed 100 tests.
+    rank bv (select bv i) === i:                                                                                      OK
+      +++ OK, passed 100 tests.
+  Equivalence of a MonoFunctor
+    omap f === fromBits . map f . toBits:                                                                             OK (0.06s)
+      2044 tests completed
+  Equivalence of a MonoFoldable
+    oall f === all f . otoList:                                                                                       OK (0.06s)
+      2044 tests completed
+    oany f === any f . otoList:                                                                                       OK (0.06s)
+      2044 tests completed
+    ofoldr1Ex  f === foldr1 f . otoList:                                                                              OK (1.34s)
+      8176 tests completed
+    ofoldl1Ex' f === foldl1 f . otoList:                                                                              OK (1.36s)
+      8176 tests completed
+    headEx === head . otoList:                                                                                        OK
+      511 tests completed
+    lastEx === last . otoList:                                                                                        OK
+      511 tests completed
+    maximumByEx f === maximumBy f . otoList:                                                                          OK (56.27s)
+      41391 tests completed
+    minimumByEx f === minimumBy f . otoList:                                                                          OK (55.44s)
+      41391 tests completed
+    oelem e === oelem e . otoList:                                                                                    OK (0.03s)
+      1022 tests completed
+    onotElem e === onotElem e . otoList:                                                                              OK (0.02s)
+      1022 tests completed
+  Equivalence of a MonoZip
+    ozipWith f x === fromBits . zipWith f . (toBits x) . toBits:                                                      OK (0.26s)
+      3600 tests completed
+
+All 112 tests passed (114.99s)
+Test suite Test-Suite: PASS
+Test suite logged to:
+/tmp/workdir-bv-little/bv-little-1.3.2/dist-newstyle/build/x86_64-linux/ghc-9.6.6/bv-little-1.3.2/t/Test-Suite/test/bv-little-1.3.2-Test-Suite.log
+1 of 1 test suites (1 of 1 test cases) passed.

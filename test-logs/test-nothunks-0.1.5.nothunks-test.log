@@ -1,0 +1,181 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - nothunks-0.1.5 (test:nothunks-test) (ephemeral targets)
+Preprocessing test suite 'nothunks-test' for nothunks-0.1.5...
+Building test suite 'nothunks-test' for nothunks-0.1.5...
+Running 1 test suites...
+Test suite nothunks-test: RUNNING...
+Tests
+  NoThunks.Class
+    Sanity
+      IntNotNF:          OK
+          ✓ <interactive> passed 1 test.
+      IntIsNF:           OK
+          ✓ <interactive> passed 1 test.
+      Pair:              OK
+          ✓ <interactive> passed 1 test.
+      Fn:                OK
+          ✓ <interactive> passed 1 test.
+      IO:                OK
+          ✓ <interactive> passed 1 test.
+    InspectHeap
+      Int:               OK
+          ✓ <interactive> passed 1000 tests.
+            Just ["Int"] 53% ██████████▋·········
+            Nothing      47% █████████▎··········
+      IntInt:            OK (0.01s)
+          ✓ <interactive> passed 1000 tests.
+            Just ["(,)"]       52% ██████████▎·········
+            Just ["Int","(,)"] 37% ███████▎············
+            Nothing            12% ██▎·················
+      ListInt:           OK (0.01s)
+          ✓ <interactive> passed 1000 tests.
+            Just ["Int","List"] 25% █████···············
+            Just ["List"]       41% ████████▎···········
+            Nothing             33% ██████▋·············
+      IntListInt:        OK (0.02s)
+          ✓ <interactive> passed 1000 tests.
+            Just ["(,)"]              49% █████████▊··········
+            Just ["Int","(,)"]        26% █████▏··············
+            Just ["Int","List","(,)"]  6% █▏··················
+            Just ["List","(,)"]       11% ██▎·················
+            Nothing                    8% █▌··················
+      SeqInt:              [91m✗[0m [91mEXPECTED FAILURE failed at test/Test/NoThunks/Class.hs:176:7
+    after 7 tests.
+    shrink path: 7:[0m
+    Just ["Int","Seq"][m [0m14%[m [0m██▊[91m[0m[90m·················[0m[m[0m
+    Nothing           [m [0m71%[m [0m██████████████▎[91m[0m[90m·····[0m[m[0m
+  
+        [m┏━━[0m [mtest/Test/NoThunks/Class.hs[0m [m━━━[0m
+    [m163[0m [m┃[0m [mtestWithModel :: forall a. FromModel a[0m
+    [m164[0m [m┃[0m [m              => (Maybe ThunkInfo -> Maybe [String] -> Bool)[0m
+    [m165[0m [m┃[0m [m              -> Proxy a[0m
+    [m166[0m [m┃[0m [m              -- ^ Compare @ThunkInfo@. When we use 'noThunks' this[0m
+    [m167[0m [m┃[0m [m              -- can just be @(==)@; however, when we use 'isNormalForm', the[0m
+    [m168[0m [m┃[0m [m              -- context we will get from the model will be too detailed.[0m
+    [m169[0m [m┃[0m [m              -> Property[0m
+    [m170[0m [m┃[0m [mtestWithModel compareInfo _proxy = withTests 1000 $ property $ do[0m
+    [35m171[0m [m┃[0m [m    m :: Model a <- forAll genModel[0m
+    [35m   [0m [m┃[0m     [35m│ [0m[35mWrap[0m
+    [35m   [0m [m┃[0m     [35m│ [0m[35m  { unwrap =[0m
+    [35m   [0m [m┃[0m     [35m│ [0m[35m      SeqEnqueue[0m
+    [35m   [0m [m┃[0m     [35m│ [0m[35m        (IntValue 0)[0m
+    [35m   [0m [m┃[0m     [35m│ [0m[35m        (SeqEnqueue[0m
+    [35m   [0m [m┃[0m     [35m│ [0m[35m           (IntValue 0)[0m
+    [35m   [0m [m┃[0m     [35m│ [0m[35m           (SeqEnqueue[0m
+    [35m   [0m [m┃[0m     [35m│ [0m[35m              (IntValue 0)[0m
+    [35m   [0m [m┃[0m     [35m│ [0m[35m              (SeqEnqueue[0m
+    [35m   [0m [m┃[0m     [35m│ [0m[35m                 (IntValue 0)[0m
+    [35m   [0m [m┃[0m     [35m│ [0m[35m                 (SeqEnqueue (IntValue 0) (SeqEnqueue (IntValue 0) SeqEmpty)))))[0m
+    [35m   [0m [m┃[0m     [35m│ [0m[35m  }[0m
+    [m172[0m [m┃[0m [m    collect $ modelUnexpected [] m[0m
+    [m173[0m [m┃[0m [m    fromModel m $ \a -> do[0m
+    [35m174[0m [m┃[0m [m      annotate $ show $ modelIsNF [] m[0m
+    [35m   [0m [m┃[0m       [35m│ [0m[35mIsNF[0m
+    [m175[0m [m┃[0m [m      isNF <- liftIO $ noThunks [] a[0m
+    [91m176[0m [m┃[0m [91;1m      Hedgehog.diff isNF compareInfo (modelUnexpected [] m)[0m
+    [91m   [0m [m┃[0m       [91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+    [91m   [0m [m┃[0m       [m│ [0m[m━━━ Failed ([0m[31m- lhs[0m[m) ([0m[32m+ rhs[0m[m) ━━━[0m
+    [91m   [0m [m┃[0m       [m│ [0m[31m- Just ThunkInfo { thunkContext = [ "..." , "Seq Int" ] }[0m
+    [91m   [0m [m┃[0m       [m│ [0m[32m+ Nothing[0m
+  
+    [mThis failure can be reproduced by running:[0m
+    [m>[0m [mrecheckAt (Seed 8985985637498079188 8907573035249705421) "7:" EXPECTED FAILURE[0m
+  
+OK (0.01s)
+          ✓ <interactive> passed 1 test.
+    Model
+      Int:               OK
+          ✓ <interactive> passed 1000 tests.
+            Just ["Int"] 48% █████████▌··········
+            Nothing      52% ██████████▍·········
+      IntInt:            OK (0.01s)
+          ✓ <interactive> passed 1000 tests.
+            Just ["(,)"]       47% █████████▍··········
+            Just ["Int","(,)"] 38% ███████▌············
+            Nothing            15% ██▉·················
+      ListInt:           OK (0.01s)
+          ✓ <interactive> passed 1000 tests.
+            Just ["Int","List"] 22% ████▍···············
+            Just ["List"]       45% █████████···········
+            Nothing             32% ██████▍·············
+      IntListInt:        OK (0.02s)
+          ✓ <interactive> passed 1000 tests.
+            Just ["(,)"]              50% ██████████··········
+            Just ["Int","(,)"]        26% █████▏··············
+            Just ["Int","List","(,)"]  5% ▉···················
+            Just ["List","(,)"]       11% ██▎·················
+            Nothing                    8% █▋··················
+      SeqInt:            OK (0.05s)
+          ✓ <interactive> passed 1000 tests.
+            Just ["Int","Seq"] 44% ████████▊···········
+            Nothing            56% ███████████▏········
+      AllowThunksIn:     OK (0.02s)
+          ✓ <interactive> passed 1000 tests.
+            Just ["Int","field2","Record"] 25% █████···············
+            Just ["Record"]                50% █████████▉··········
+            Nothing                        25% █████···············
+      Fn:                OK
+          ✓ <interactive> passed 1000 tests.
+            Just ["->"] 25% █████···············
+            Nothing     75% ███████████████·····
+      IO:                OK
+          ✓ <interactive> passed 1000 tests.
+            Just ["IO"] 25% ████▉···············
+            Nothing     75% ███████████████·····
+      ThunkFreeFn:       OK
+          ✓ <interactive> passed 1000 tests.
+            Just ["->"]       26% █████▏··············
+            Just ["...","->"] 38% ███████▌············
+            Nothing           36% ███████▎············
+      ThunkFreeIO:       OK
+          ✓ <interactive> passed 1000 tests.
+            Just ["...","IO"] 37% ███████▍············
+            Just ["IO"]       25% █████···············
+            Nothing           38% ███████▌············
+    MutableVars
+      IORef
+        NotNF:           OK
+            ✓ <interactive> passed 1 test.
+        NF:              OK
+            ✓ <interactive> passed 1 test.
+        NotNFPure:       OK
+            ✓ <interactive> passed 1 test.
+        NFPure:          OK
+            ✓ <interactive> passed 1 test.
+        NotNFAtomically: OK
+            ✓ <interactive> passed 1 test.
+        NFAtomically:    OK
+            ✓ <interactive> passed 1 test.
+      MVar
+        NotNF:           OK
+            ✓ <interactive> passed 1 test.
+        NF:              OK
+            ✓ <interactive> passed 1 test.
+        NotNFPure:       OK
+            ✓ <interactive> passed 1 test.
+        NFPure:          OK
+            ✓ <interactive> passed 1 test.
+        NotNFAtomically: OK
+            ✓ <interactive> passed 1 test.
+        NFAtomically:    OK
+            ✓ <interactive> passed 1 test.
+      TVar
+        NotNF:           OK
+            ✓ <interactive> passed 1 test.
+        NF:              OK
+            ✓ <interactive> passed 1 test.
+        NotNFPure:       OK
+            ✓ <interactive> passed 1 test.
+        NFPure:          OK
+            ✓ <interactive> passed 1 test.
+        NotNFAtomically: OK
+            ✓ <interactive> passed 1 test.
+        NFAtomically:    OK
+            ✓ <interactive> passed 1 test.
+
+All 38 tests passed (0.20s)
+Test suite nothunks-test: PASS
+Test suite logged to:
+/tmp/workdir-nothunks/nothunks-0.1.5/dist-newstyle/build/x86_64-linux/ghc-9.6.6/nothunks-0.1.5/t/nothunks-test/test/nothunks-0.1.5-nothunks-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

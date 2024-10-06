@@ -1,0 +1,76 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - envparse-0.5.0 (test:spec) (ephemeral targets)
+Preprocessing test suite 'spec' for envparse-0.5.0...
+Building test suite 'spec' for envparse-0.5.0...
+Running 1 test suites...
+Test suite spec: RUNNING...
+
+Env
+  parsing
+    parsing the environment with the noop parser always succeeds [✔]
+    parsing the environment with the failing parser always fails [✔]
+    looking for the non-existing env var fails [✔]
+    looking for the existing env var is a success [✔]
+    looking for many existing env vars is a success [✔]
+    looking for the existing env var selects the active flag value [✔]
+    looking for the existing but empty env var selects the default flag value [✔]
+    looking for the non-existing env var selects the default flag value [✔]
+    readers
+      can use a reader to parse the env var value [✔]
+      can use a custom reader [✔]
+      'nonempty' weeds out variables set to the empty string [✔]
+      var has a default value
+        malformed value is passed by the user
+          fails to parse [✔]
+    alternatives
+      can look through a list of alternatives [✔]
+      variables can have default values [✔]
+    modifiers
+      the latter modifier overwrites the former [✔]
+      ‘prefixed’ modifier changes the names of the variables [✔]
+      ‘prefixed’ modifier can be nested [✔]
+    does not unset parsed variables [✔]
+    some variables are marked as sensitive
+      unsets them [✔]
+      parsing fails
+hi
+
+Available environment variables:
+
+  BAR                    b
+  FOO                    a
+
+Parsing errors:
+
+  BAR has value "bar" that cannot be parsed
+        does not unset any variables [✔]
+      unsetting multiple variables
+        unsets them [✔]
+    #18
+      behaves reasonably [✔]
+Env.Generic
+  FooBar
+    can be parsed using the Generic parser [✔]
+  Qux
+    can be parsed using the Generic parser [✔]
+Env.Internal.Parser
+  str
+    works with String [✔]
+    works with Text [✔]
+  splitOn
+    splits the string on a separator character [✔]
+    splits the empty string into the empty list [✔]
+    creates an extra element for leading and trailing separators [✔]
+    is nicely composable  [✔]
+  char
+    one character [✔]
+    empty [✔]
+    many characters [✔]
+
+Finished in 0.0011 seconds
+33 examples, 0 failures
+Test suite spec: PASS
+Test suite logged to:
+/tmp/workdir-envparse/envparse-0.5.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/envparse-0.5.0/t/spec/test/envparse-0.5.0-spec.log
+1 of 1 test suites (1 of 1 test cases) passed.

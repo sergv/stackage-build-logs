@@ -1,0 +1,32 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - csp-1.4.0 (lib) (first run)
+ - csp-1.4.0 (test:tests) (first run)
+Configuring library for csp-1.4.0...
+Preprocessing library for csp-1.4.0...
+Building library for csp-1.4.0...
+[1 of 1] Compiling Control.Monad.CSP
+
+src/Control/Monad/CSP.hs:107:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative (CSP r)’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+107 |     pure  = return
+    |     ^^^^^^^^^^^^^^
+
+src/Control/Monad/CSP.hs:112:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad (CSP r)’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+112 |     return a = CSP (\_ -> return a)
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Configuring test suite 'tests' for csp-1.4.0...
+Preprocessing test suite 'tests' for csp-1.4.0...
+Building test suite 'tests' for csp-1.4.0...
+[1 of 1] Compiling Main
+[2 of 2] Linking /tmp/workdir-csp/csp-1.4.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/csp-1.4.0/t/tests/build/tests/tests

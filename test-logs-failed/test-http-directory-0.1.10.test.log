@@ -1,0 +1,94 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - http-directory-0.1.10 (test:test) (ephemeral targets)
+Preprocessing test suite 'test' for http-directory-0.1.10...
+Building test suite 'test' for http-directory-0.1.10...
+Running 1 test suites...
+Test suite test: RUNNING...
+
+httpDirectory
+  empty httpbin [✔]
+  fedora releases [✔]
+  my src hackage [✔]
+  self hackage [✔]
+  self hackage [✔]
+https://httpbin.org/404
+  404 [✔]
+httpExists
+  google [✔]
+  404 [✔]
+  domain [✔]
+httpExists'
+  google [✔]
+  404 [✔]
+  domain [✔]
+httpFileSize
+  httpbin/get [✔]
+  httpbin/0B [✔]
+  httpbin/64B [✔]
+  cabal [✔]
+httpFileSize'
+  httpbin/get [✔]
+  httpbin/0B [✔]
+  httpbin/64B [✔]
+  cabal [✔]
+httpLastModified
+  haskell [✔]
+  haskell [✔]
+httpFileSizeTime
+  haskell [✔]
+httpRedirect
+  httpbingo [✘]
+  httpbingo' [✘]
+  3 redirs [✘]
+isHttpUrl
+  http [✔]
+  non-http [✔]
+trailingSlash
+  add [✔]
+  idempotent [✔]
+  remove [✔]
+  remove all [✔]
++/+
+  join [✔]
+  join/ [✔]
+  /join [✔]
+  /join/ [✔]
+  join / [✔]
+  identity [✔]
+  /identity [✔]
+
+Failures:
+
+  test/Spec.hs:124:21: 
+  1) httpRedirect httpbingo
+       expected: True
+        but got: False
+
+  To rerun use: --match "/httpRedirect/httpbingo/" --seed 1263021335
+
+  test/Spec.hs:128:21: 
+  2) httpRedirect httpbingo'
+       expected: True
+        but got: False
+
+  To rerun use: --match "/httpRedirect/httpbingo'/" --seed 1263021335
+
+  test/Spec.hs:133:21: 
+  3) httpRedirect 3 redirs
+       expected: 2
+        but got: 0
+
+  To rerun use: --match "/httpRedirect/3 redirs/" --seed 1263021335
+
+Randomized with seed 1263021335
+
+Finished in 7.0264 seconds
+39 examples, 3 failures
+Test suite test: FAIL
+Test suite logged to:
+/tmp/workdir-http-directory/http-directory-0.1.10/dist-newstyle/build/x86_64-linux/ghc-9.6.6/http-directory-0.1.10/t/test/test/http-directory-0.1.10-test.log
+0 of 1 test suites (0 of 1 test cases) passed.
+Error: [Cabal-7125]
+Tests failed for test:test from http-directory-0.1.10.
+

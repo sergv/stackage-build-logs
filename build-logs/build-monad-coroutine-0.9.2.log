@@ -1,0 +1,48 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - monad-coroutine-0.9.2 (lib) (first run)
+Configuring library for monad-coroutine-0.9.2...
+Warning: [no-default-language] Packages using 'cabal-version: >= 1.10' and
+before 'cabal-version: 3.4' must specify the 'default-language' field for each
+component (e.g. Haskell98 or Haskell2010). If a component uses different
+languages in different modules then list the other ones in the
+'other-languages' field.
+Preprocessing library for monad-coroutine-0.9.2...
+Building library for monad-coroutine-0.9.2...
+[1 of 3] Compiling Control.Monad.Coroutine
+[2 of 3] Compiling Control.Monad.Coroutine.Nested
+
+Control/Monad/Coroutine/Nested.hs:74:21: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+74 |    type Parent c :: * -> *
+   |                     ^
+
+Control/Monad/Coroutine/Nested.hs:74:26: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+74 |    type Parent c :: * -> *
+   |                          ^
+
+Control/Monad/Coroutine/Nested.hs:86:62: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+86 | instance {-# OVERLAPPABLE #-} (Functor a, ChildFunctor d, d' ~ Parent d, AncestorFunctor a d') => AncestorFunctor a d where
+   |                                                              ^
+
+Control/Monad/Coroutine/Nested.hs:90:70: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+90 | liftParent :: forall m p c x. (Monad m, Functor p, ChildFunctor c, p ~ Parent c) => Coroutine p m x -> Coroutine c m x
+   |                                                                      ^
+[3 of 3] Compiling Control.Monad.Coroutine.SuspensionFunctors

@@ -1,0 +1,49 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - monad-resumption-0.1.4.0 (lib) (first run)
+Configuring library for monad-resumption-0.1.4.0...
+Preprocessing library for monad-resumption-0.1.4.0...
+Building library for monad-resumption-0.1.4.0...
+[1 of 4] Compiling Control.Monad.Resumption
+
+Control/Monad/Resumption.hs:25:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad (ResT m)’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+25 |   return x = ResT $ return $ Left x
+   |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Control/Monad/Resumption.hs:44:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative (ResT m)’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+44 |   pure = return
+   |   ^^^^^^^^^^^^^
+[2 of 4] Compiling Control.Monad.Resumption.Reactive
+
+Control/Monad/Resumption/Reactive.hs:19:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad (ReacT input output m)’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+19 |   return = ReacT . return . Left
+   |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Control/Monad/Resumption/Reactive.hs:38:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for
+      ‘Applicative (ReacT input output m)’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+38 |   pure  = return
+   |   ^^^^^^^^^^^^^^
+[3 of 4] Compiling Control.Monad.Resumption.Connectors
+[4 of 4] Compiling Paths_monad_resumption

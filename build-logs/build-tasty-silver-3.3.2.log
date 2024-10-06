@@ -1,0 +1,40 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - tasty-silver-3.3.2 (lib) (first run)
+ - tasty-silver-3.3.2 (test:test) (first run)
+Configuring library for tasty-silver-3.3.2...
+Preprocessing library for tasty-silver-3.3.2...
+Building library for tasty-silver-3.3.2...
+[1 of 6] Compiling Test.Tasty.Silver.Filter
+
+Test/Tasty/Silver/Filter.hs:129:20: warning: [GHC-62161] [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In a \case alternative:
+        Patterns of type ‘TestTree’ not matched: After _ _ _
+    |
+129 |     filter' path = \case
+    |                    ^^^^^...
+[2 of 6] Compiling Test.Tasty.Silver.Interactive.Run
+
+Test/Tasty/Silver/Interactive/Run.hs:37:1: warning: [GHC-62161] [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In an equation for ‘wrapRunTest'’:
+        Patterns of type ‘TestPath’,
+                         ‘forall t.
+                          IsTest t =>
+                          TestPath
+                          -> TestName -> OptionSet -> t -> (Progress -> IO ()) -> IO Result’,
+                         ‘TestTree’ not matched:
+            _ _ (After _ _ _)
+   |
+37 | wrapRunTest' tp f (SingleTest n t) = SingleTest n (CustomTestExec t (f (tp <//> n) n))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+[3 of 6] Compiling Test.Tasty.Silver.Internal
+[4 of 6] Compiling Test.Tasty.Silver.Interactive
+[5 of 6] Compiling Test.Tasty.Silver.Advanced
+[6 of 6] Compiling Test.Tasty.Silver
+Configuring test suite 'test' for tasty-silver-3.3.2...
+Preprocessing test suite 'test' for tasty-silver-3.3.2...
+Building test suite 'test' for tasty-silver-3.3.2...
+[1 of 1] Compiling Main
+[2 of 2] Linking /tmp/workdir-tasty-silver/tasty-silver-3.3.2/dist-newstyle/build/x86_64-linux/ghc-9.6.6/tasty-silver-3.3.2/t/test/build/test/test

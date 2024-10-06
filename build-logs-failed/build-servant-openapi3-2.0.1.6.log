@@ -1,0 +1,105 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - servant-openapi3-2.0.1.6 (lib:servant-openapi3, test:doctests, test:spec) (first run)
+[1 of 2] Compiling Main             ( /tmp/workdir-servant-openapi3/servant-openapi3-2.0.1.6/dist-newstyle/build/x86_64-linux/ghc-9.6.6/servant-openapi3-2.0.1.6/setup/setup.hs, /tmp/workdir-servant-openapi3/servant-openapi3-2.0.1.6/dist-newstyle/build/x86_64-linux/ghc-9.6.6/servant-openapi3-2.0.1.6/setup/Main.o )
+[2 of 2] Linking /tmp/workdir-servant-openapi3/servant-openapi3-2.0.1.6/dist-newstyle/build/x86_64-linux/ghc-9.6.6/servant-openapi3-2.0.1.6/setup/setup
+Configuring servant-openapi3-2.0.1.6...
+Preprocessing test suite 'doctests' for servant-openapi3-2.0.1.6..
+Building test suite 'doctests' for servant-openapi3-2.0.1.6..
+[1 of 2] Compiling Build_doctests
+[2 of 2] Compiling Main
+[3 of 3] Linking /tmp/workdir-servant-openapi3/servant-openapi3-2.0.1.6/dist-newstyle/build/x86_64-linux/ghc-9.6.6/servant-openapi3-2.0.1.6/build/doctests/doctests
+Preprocessing library for servant-openapi3-2.0.1.6..
+Building library for servant-openapi3-2.0.1.6..
+[ 1 of 10] Compiling Servant.OpenApi.Internal.Orphans
+
+src/Servant/OpenApi/Internal/Orphans.hs:16:10: warning: [-Wsimplifiable-class-constraints]
+    • The constraint ‘Typeable (SourceT m a)’ matches
+        a built-in instance
+      This makes type inference for inner bindings fragile;
+        either use MonoLocalBinds, or simplify it using the instance
+    • In the instance declaration for ‘ToSchema (SourceT m a)’
+   |
+16 | instance (Typeable (SourceT m a), ToSchema a) => ToSchema (SourceT m a) where
+   |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 2 of 10] Compiling Servant.OpenApi.Internal.TypeLevel.API
+
+src/Servant/OpenApi/Internal/TypeLevel/API.hs:14:1: warning: [-Wunused-imports]
+    The import of ‘Servant.API.Generic’ is redundant
+      except perhaps to import instances from ‘Servant.API.Generic’
+    To import instances alone, use: import Servant.API.Generic()
+   |
+14 | import           Servant.API.Generic (ToServantApi)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Servant/OpenApi/Internal/TypeLevel/API.hs:88:34: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+88 | type family BodyTypes' c api :: [*] where
+   |                                  ^
+[ 3 of 10] Compiling Servant.OpenApi.Internal
+
+src/Servant/OpenApi/Internal.hs:42:1: warning: [-Wunused-imports]
+    The import of ‘Servant.API.Generic’ is redundant
+      except perhaps to import instances from ‘Servant.API.Generic’
+    To import instances alone, use: import Servant.API.Generic()
+   |
+42 | import           Servant.API.Generic        (ToServantApi)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Servant/OpenApi/Internal.hs:242:10: warning: [-Wsimplifiable-class-constraints]
+    • The constraint ‘Typeable (WithStatus s a)’ matches
+        a built-in instance
+      This makes type inference for inner bindings fragile;
+        either use MonoLocalBinds, or simplify it using the instance
+    • In the instance declaration for ‘ToSchema (WithStatus s a)’
+    |
+242 | instance (Typeable (WithStatus s a), ToSchema a) => ToSchema (WithStatus s a) where
+    |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 4 of 10] Compiling Servant.OpenApi.Internal.TypeLevel.TMap
+[ 5 of 10] Compiling Servant.OpenApi.Internal.TypeLevel.Every
+
+src/Servant/OpenApi/Internal/TypeLevel/Every.hs:51:37: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+51 | class EveryTF cs x => Every (cs :: [* -> Constraint]) (x :: *) where
+   |                                     ^
+
+src/Servant/OpenApi/Internal/TypeLevel/Every.hs:51:61: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+51 | class EveryTF cs x => Every (cs :: [* -> Constraint]) (x :: *) where
+   |                                                             ^
+[ 6 of 10] Compiling Servant.OpenApi.Internal.TypeLevel
+[ 7 of 10] Compiling Servant.OpenApi.Internal.Test
+[ 8 of 10] Compiling Servant.OpenApi.Test
+[ 9 of 10] Compiling Servant.OpenApi
+[10 of 10] Compiling Servant.OpenApi.TypeLevel
+Preprocessing test suite 'spec' for servant-openapi3-2.0.1.6..
+Building test suite 'spec' for servant-openapi3-2.0.1.6..
+[1 of 2] Compiling Servant.OpenApiSpec
+
+test/Servant/OpenApiSpec.hs:42:14: error: [GHC-39999]
+    • No instance for ‘HasOpenApi
+                         (WithResource Int :> Servant.Test.ComprehensiveAPI.GET)’
+        arising from a use of ‘toOpenApi’
+    • In the expression: toOpenApi comprehensiveAPI
+      In an equation for ‘_x’: _x = toOpenApi comprehensiveAPI
+      In the second argument of ‘($)’, namely
+        ‘do let _x = toOpenApi comprehensiveAPI
+            True `shouldBe` True’
+   |
+42 |     let _x = toOpenApi comprehensiveAPI
+   |              ^^^^^^^^^
+Error: [Cabal-7125]
+Failed to build servant-openapi3-2.0.1.6.
+

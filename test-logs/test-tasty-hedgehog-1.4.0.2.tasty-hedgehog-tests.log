@@ -1,0 +1,78 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - tasty-hedgehog-1.4.0.2 (test:tasty-hedgehog-tests) (ephemeral targets)
+Preprocessing test suite 'tasty-hedgehog-tests' for tasty-hedgehog-1.4.0.2...
+Building test suite 'tasty-hedgehog-tests' for tasty-hedgehog-1.4.0.2...
+Running 1 test suites...
+Test suite tasty-hedgehog-tests: RUNNING...
+tasty-hedgehog tests
+  reverse involutive:          OK
+      ✓ <interactive> passed 100 tests.
+        empty  2% ▍···················
+        small 30% ██████··············
+        large 70% ██████████████······
+  badReverse involutive fails: FAIL (expected)
+      ✗ <interactive> failed at test/Main.hs:17:11
+        after 3 tests and 1 shrink.
+        shrink path: 3:b
+      
+           ┏━━ test/Main.hs ━━━
+        15 ┃ test_involutive :: (MonadTest m, Eq a, Show a) => (a -> a) -> a -> m ()
+        16 ┃ test_involutive f x =
+        17 ┃   f (f x) === x
+           ┃   ^^^^^^^^^^^^^
+           ┃   │ ━━━ Failed (- lhs) (+ rhs) ━━━
+           ┃   │ - ""
+           ┃   │ + "a"
+        
+           ┏━━ test/Main.hs ━━━
+        33 ┃ prop_badReverse_involutive :: Property
+        34 ┃ prop_badReverse_involutive =
+        35 ┃   property $ do
+        36 ┃     xs <- forAll genAlphaList
+           ┃     │ "a"
+        37 ┃     test_involutive badReverse xs
+      
+        This failure can be reproduced by running:
+        > recheckAt (Seed 6375826234083953941 11858441317582688563) "3:b" <property>
+      
+    Use "--pattern '$NF ~ /badReverse involutive fails/' --hedgehog-replay '3:b Seed 6375826234083953941 11858441317582688563'" to reproduce from the command-line.
+     (expected failure)
+  reverse involutive:          OK
+      ✓ prop_reverse_involutive passed 100 tests.
+        empty  9% █▊··················
+        small 38% ███████▌············
+        large 62% ████████████▍·······
+  badReverse involutive fails: FAIL (expected)
+      ✗ prop_badReverse_involutive failed at test/Main.hs:17:11
+        after 2 tests and 1 shrink.
+        shrink path: 2:b
+      
+           ┏━━ test/Main.hs ━━━
+        15 ┃ test_involutive :: (MonadTest m, Eq a, Show a) => (a -> a) -> a -> m ()
+        16 ┃ test_involutive f x =
+        17 ┃   f (f x) === x
+           ┃   ^^^^^^^^^^^^^
+           ┃   │ ━━━ Failed (- lhs) (+ rhs) ━━━
+           ┃   │ - ""
+           ┃   │ + "a"
+        
+           ┏━━ test/Main.hs ━━━
+        33 ┃ prop_badReverse_involutive :: Property
+        34 ┃ prop_badReverse_involutive =
+        35 ┃   property $ do
+        36 ┃     xs <- forAll genAlphaList
+           ┃     │ "a"
+        37 ┃     test_involutive badReverse xs
+      
+        This failure can be reproduced by running:
+        > recheckAt (Seed 6794524707960773028 5336844151366331221) "2:b" prop_badReverse_involutive
+      
+    Use "--pattern '$NF ~ /badReverse involutive fails/' --hedgehog-replay '2:b Seed 6794524707960773028 5336844151366331221'" to reproduce from the command-line.
+     (expected failure)
+
+All 4 tests passed (0.01s)
+Test suite tasty-hedgehog-tests: PASS
+Test suite logged to:
+/tmp/workdir-tasty-hedgehog/tasty-hedgehog-1.4.0.2/dist-newstyle/build/x86_64-linux/ghc-9.6.6/tasty-hedgehog-1.4.0.2/t/tasty-hedgehog-tests/test/tasty-hedgehog-1.4.0.2-tasty-hedgehog-tests.log
+1 of 1 test suites (1 of 1 test cases) passed.

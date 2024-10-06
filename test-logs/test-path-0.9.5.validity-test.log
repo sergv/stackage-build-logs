@@ -1,0 +1,210 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - path-0.9.5 (test:validity-test) (ephemeral targets)
+Preprocessing test suite 'validity-test' for path-0.9.5...
+Building test suite 'validity-test' for path-0.9.5...
+Running 1 test suites...
+Test suite validity-test: RUNNING...
+
+GenValid (Path Abs File)
+  genValid   :: Gen (Path Abs File)
+    only generates valid '(Path Abs File)'s [✔]
+      +++ OK, passed 100 tests.
+shrinkValid :: (Path Abs File -> [Path Abs File])
+  preserves validity [✔]
+    +++ OK, passed 100 tests.
+  never shrinks to itself for valid values [✔]
+    +++ OK, passed 100 tests.
+GenValid (Path Rel File)
+  genValid   :: Gen (Path Rel File)
+    only generates valid '(Path Rel File)'s [✔]
+      +++ OK, passed 100 tests.
+shrinkValid :: (Path Rel File -> [Path Rel File])
+  preserves validity [✔]
+    +++ OK, passed 100 tests.
+  never shrinks to itself for valid values [✔]
+    +++ OK, passed 100 tests.
+GenValid (Path Abs Dir)
+  genValid   :: Gen (Path Abs Dir)
+    only generates valid '(Path Abs Dir)'s [✔]
+      +++ OK, passed 100 tests.
+shrinkValid :: (Path Abs Dir -> [Path Abs Dir])
+  preserves validity [✔]
+    +++ OK, passed 100 tests.
+  never shrinks to itself for valid values [✔]
+    +++ OK, passed 100 tests.
+GenValid (Path Rel Dir)
+  genValid   :: Gen (Path Rel Dir)
+    only generates valid '(Path Rel Dir)'s [✔]
+      +++ OK, passed 100 tests.
+shrinkValid :: (Path Rel Dir -> [Path Rel Dir])
+  preserves validity [✔]
+    +++ OK, passed 100 tests.
+  never shrinks to itself for valid values [✔]
+    +++ OK, passed 100 tests.
+GenValid (SomeBase Dir)
+  genValid   :: Gen (SomeBase Dir)
+    only generates valid '(SomeBase Dir)'s [✔]
+      +++ OK, passed 100 tests.
+shrinkValid :: (SomeBase Dir -> [SomeBase Dir])
+  preserves validity [✔]
+    +++ OK, passed 100 tests.
+  never shrinks to itself for valid values [✔]
+    +++ OK, passed 100 tests.
+GenValid (SomeBase File)
+  genValid   :: Gen (SomeBase File)
+    only generates valid '(SomeBase File)'s [✔]
+      +++ OK, passed 100 tests.
+shrinkValid :: (SomeBase File -> [SomeBase File])
+  preserves validity [✔]
+    +++ OK, passed 100 tests.
+  never shrinks to itself for valid values [✔]
+    +++ OK, passed 100 tests.
+Parsing
+  Path Abs Dir
+    Produces valid paths when it succeeds [✔]
+      +++ OK, passed 100 tests.
+  Path Rel Dir
+    Produces valid paths when it succeeds [✔]
+      +++ OK, passed 100 tests.
+  Path Abs File
+    Produces valid paths when it succeeds [✔]
+      +++ OK, passed 100 tests.
+  Path Rel File
+    Produces valid paths when it succeeds [✔]
+      +++ OK, passed 100 tests.
+  SomeBase Dir
+    Produces valid paths when it succeeds [✔]
+      +++ OK, passed 100 tests.
+  SomeBase file
+    Produces valid paths when it succeeds [✔]
+      +++ OK, passed 100 tests.
+Operations
+  (</>)
+    produces a valid path on when creating valid absolute file paths [✔]
+      +++ OK, passed 100 tests.
+    produces a valid path on when creating valid absolute directory paths [✔]
+      +++ OK, passed 100 tests.
+    produces a valid path on when creating valid relative file paths [✔]
+      +++ OK, passed 100 tests.
+    produces a valid path on when creating valid relative directory paths [✔]
+      +++ OK, passed 100 tests.
+  stripProperPrefix
+    stripProperPrefix parent (parent </> child) = child Path Abs Dir Path Rel Dir [✔]
+      +++ OK, passed 100 tests.
+    stripProperPrefix parent (parent </> child) = child Path Rel Dir Path Rel Dir [✔]
+      +++ OK, passed 100 tests.
+    stripProperPrefix parent (parent </> child) = child Path Abs Dir Path Rel File [✔]
+      +++ OK, passed 100 tests.
+    stripProperPrefix parent (parent </> child) = child Path Rel Dir Path Rel File [✔]
+      +++ OK, passed 100 tests.
+    produces a valid path on when passed a valid absolute file paths [✔]
+      +++ OK, passed 100 tests.
+    produces a valid path on when passed a valid absolute directory paths [✔]
+      +++ OK, passed 100 tests.
+    produces a valid path on when passed a valid relative file paths [✔]
+      +++ OK, passed 100 tests.
+    produces a valid path on when passed a valid relative directory paths [✔]
+      +++ OK, passed 100 tests.
+  isProperPrefixOf
+    isProperPrefixOf parent (parent </> child) Path Abs Dir Path Rel Dir [✔]
+      +++ OK, passed 100 tests.
+    isProperPrefixOf parent (parent </> child) Path Rel Dir Path Rel Dir [✔]
+      +++ OK, passed 100 tests.
+    isProperPrefixOf parent (parent </> child) Path Abs Dir Path Rel File [✔]
+      +++ OK, passed 100 tests.
+    isProperPrefixOf parent (parent </> child) Path Rel Dir Path Rel File [✔]
+      +++ OK, passed 100 tests.
+  parent
+    produces a valid path on when passed a valid file path [✔]
+      +++ OK, passed 100 tests.
+    produces a valid path on when passed a valid directory path [✔]
+      +++ OK, passed 100 tests.
+    produces a valid path on when passed a valid abs file path [✔]
+      +++ OK, passed 100 tests.
+    produces a valid path on when passed a valid rel file path [✔]
+      +++ OK, passed 100 tests.
+    produces a valid path on when passed a valid abs directory path [✔]
+      +++ OK, passed 100 tests.
+    produces a valid path on when passed a valid rel directory path [✔]
+      +++ OK, passed 100 tests.
+  splitDrive
+    produces valid paths on when passed a valid directory path [✔]
+      +++ OK, passed 100 tests.
+    produces valid paths on when passed a valid file path [✔]
+      +++ OK, passed 100 tests.
+  takeDrive
+    produces a valid path on when passed a valid directory path [✔]
+      +++ OK, passed 100 tests.
+    produces a valid path on when passed a valid file path [✔]
+      +++ OK, passed 100 tests.
+  filename
+    filename (parent </> $(mkRelFile filename)) == filename $(mkRelFile filename) Path Abs Dir [✔]
+      +++ OK, passed 100 tests.
+    filename (parent </> $(mkRelFile filename)) == filename $(mkRelFile filename) Path Rel Dir [✔]
+      +++ OK, passed 100 tests.
+    filename (some:parent </> $(mkRelFile filename)) == filename $(mkRelFile filename) SomeBase Dir [✔]
+      +++ OK, passed 100 tests.
+    produces a valid path on when passed a valid absolute path [✔]
+      +++ OK, passed 100 tests.
+    produces a valid path on when passed a valid relative path [✔]
+      +++ OK, passed 100 tests.
+    produces a valid filename when passed some valid base path [✔]
+      +++ OK, passed 100 tests.
+  dirname
+    dirname parent </> $(mkRelDir dirname)) == dirname $(mkRelDir dirname) Path Abs Dir [✔]
+      +++ OK, passed 100 tests.
+    dirname parent </> $(mkRelDir dirname)) == dirname $(mkRelDir dirname) Path Rel Dir [✔]
+      +++ OK, passed 100 tests.
+    dirname (some:parent </> $(mkRelDir dirname)) == dirname $(mkRelDir dirname) SomeBase Dir [✔]
+      +++ OK, passed 100 tests.
+    produces a valid path on when passed a valid absolute path [✔]
+      +++ OK, passed 100 tests.
+    produces a valid path on when passed a valid relative path [✔]
+      +++ OK, passed 100 tests.
+    produces a valid path when passed some valid longer path [✔]
+      +++ OK, passed 100 tests.
+Extensions
+  if addExtension a b succeeds then parseRelFile b succeeds - 1 [✔]
+    +++ OK, passed 100 tests.
+  if addExtension a b succeeds then parseRelFile b succeeds - 2 [✔]
+    +++ OK, passed 100 tests.
+  Adding an extension is like adding the extension to the end if it succeeds Path Abs File [✔]
+    +++ OK, passed 100 tests.
+  Adding an extension is like adding the extension to the end if it succeeds Path Rel File [✔]
+    +++ OK, passed 100 tests.
+  splitExtension output joins to result in the original file Path Abs File [✔]
+    +++ OK, passed 100 tests.
+  splitExtension output joins to result in the original file Path Rel File [✔]
+    +++ OK, passed 100 tests.
+  splitExtension generates a valid filename and valid extension Path Abs File [✔]
+    +++ OK, passed 100 tests.
+  splitExtension generates a valid filename and valid extension Path Rel File [✔]
+    +++ OK, passed 100 tests.
+  splitExtension >=> uncurry addExtension . swap == return Path Abs File [✔]
+    +++ OK, passed 100 tests.
+  splitExtension >=> uncurry addExtension . swap == return Path Rel File [✔]
+    +++ OK, passed 100 tests.
+  an extension that was added can be split off again Path Abs File [✔]
+    +++ OK, passed 100 tests.
+  an extension that was added can be split off again Path Rel File [✔]
+    +++ OK, passed 100 tests.
+  fileExtension == (fmap snd) . splitExtension Path Abs File [✔]
+    +++ OK, passed 100 tests.
+  fileExtension == (fmap snd) . splitExtension Path Rel File [✔]
+    +++ OK, passed 100 tests.
+  an extension that was added is considered to be there Path Abs File [✔]
+    +++ OK, passed 100 tests.
+  an extension that was added is considered to be there Path Rel File [✔]
+    +++ OK, passed 100 tests.
+  (fileExtension >=> flip replaceExtension file) file == return file Path Abs File [✔]
+    +++ OK, passed 100 tests.
+  (fileExtension >=> flip replaceExtension file) file == return file Path Rel File [✔]
+    +++ OK, passed 100 tests.
+
+Finished in 0.8037 seconds
+80 examples, 0 failures
+Test suite validity-test: PASS
+Test suite logged to:
+/tmp/workdir-path/path-0.9.5/dist-newstyle/build/x86_64-linux/ghc-9.6.6/path-0.9.5/t/validity-test/test/path-0.9.5-validity-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

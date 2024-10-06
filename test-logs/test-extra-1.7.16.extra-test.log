@@ -1,0 +1,658 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - extra-1.7.16 (test:extra-test) (ephemeral targets)
+Preprocessing test suite 'extra-test' for extra-1.7.16...
+Building test suite 'extra-test' for extra-1.7.16...
+Running 1 test suites...
+Test suite extra-test: RUNNING...
+withTempFile
++++ OK, passed 1 test.
+captureOutput
++++ OK, passed 1 test.
+\(x :: IO Int) -> void (once x) == pure ()
++++ OK, passed 100 tests.
+\(x :: IO Int) -> join (once x) == x
++++ OK, passed 100 tests.
+\(x :: IO Int) -> (do y <- once x; y; y) == x
++++ OK, passed 100 tests.
+\(x :: IO Int) -> (do y <- once x; y ||| y) == x
++++ OK, passed 100 tests.
+\(x :: IO Int) -> join (onceFork x) == x
++++ OK, passed 100 tests.
+\(x :: IO Int) -> (do a <- onceFork x; a; a) == x
++++ OK, passed 100 tests.
+stringException "test"                           == pure "test"
++++ OK, passed 1 test.
+stringException ("test" ++ undefined)            == pure "test<Exception>"
++++ OK, passed 1 test.
+stringException ("test" ++ undefined ++ "hello") == pure "test<Exception>"
++++ OK, passed 1 test.
+stringException ['t','e','s','t',undefined]      == pure "test<Exception>"
++++ OK, passed 1 test.
+ignore (print 1)    == print 1
++++ OK, passed 1 test.
+ignore (fail "die") == pure ()
++++ OK, passed 1 test.
+catch (errorIO "Hello") (\(ErrorCall x) -> pure x) == pure "Hello"
++++ OK, passed 1 test.
+seq (errorIO "foo") (print 1) == print 1
++++ OK, passed 1 test.
+catch (assertIO True  >> pure 1) (\(x :: AssertionFailed) -> pure 2) == pure 1
++++ OK, passed 1 test.
+seq (assertIO False) (print 1) == print 1
++++ OK, passed 1 test.
+retry 1 (print "x")  == print "x"
++++ OK, passed 1 test.
+retry 3 (fail "die") == fail "die"
++++ OK, passed 1 test.
+whenJust Nothing  print == pure ()
++++ OK, passed 1 test.
+whenJust (Just 1) print == print 1
++++ OK, passed 1 test.
+pureIf @Maybe True  5 == Just 5
++++ OK, passed 1 test.
+pureIf @Maybe False 5 == Nothing
++++ OK, passed 1 test.
+pureIf @[]    True  5 == [5]
++++ OK, passed 1 test.
+pureIf @[]    False 5 == []
++++ OK, passed 1 test.
+whenMaybe True  (print 1) == fmap Just (print 1)
++++ OK, passed 1 test.
+whenMaybe False (print 1) == pure Nothing
++++ OK, passed 1 test.
+\(x :: Maybe ()) -> unit x == x
++++ OK, passed 100 tests.
+fold1M (\x y -> Just x) [] == undefined
++++ OK, passed 1 test.
+fold1M (\x y -> Just $ x + y) [1, 2, 3] == Just 6
++++ OK, passed 1 test.
+partitionM (Just . even) [1,2,3] == Just ([2], [1,3])
++++ OK, passed 1 test.
+partitionM (const Nothing) [1,2,3] == Nothing
++++ OK, passed 1 test.
+loop (\x -> if x < 10 then Left $ x * 2 else Right $ show x) 1 == "16"
++++ OK, passed 1 test.
+Just True  ||^ undefined  == Just True
++++ OK, passed 1 test.
+Just False ||^ Just True  == Just True
++++ OK, passed 1 test.
+Just False ||^ Just False == Just False
++++ OK, passed 1 test.
+Just False &&^ undefined  == Just False
++++ OK, passed 1 test.
+Just True  &&^ Just True  == Just True
++++ OK, passed 1 test.
+Just True  &&^ Just False == Just False
++++ OK, passed 1 test.
+anyM Just [False,True ,undefined] == Just True
++++ OK, passed 1 test.
+anyM Just [False,False,undefined] == undefined
++++ OK, passed 1 test.
+\(f :: Int -> Maybe Bool) xs -> anyM f xs == orM (map f xs)
++++ OK, passed 100 tests.
+allM Just [True,False,undefined] == Just False
++++ OK, passed 1 test.
+allM Just [True,True ,undefined] == undefined
++++ OK, passed 1 test.
+\(f :: Int -> Maybe Bool) xs -> anyM f xs == orM (map f xs)
++++ OK, passed 100 tests.
+orM [Just False,Just True ,undefined] == Just True
++++ OK, passed 1 test.
+orM [Just False,Just False,undefined] == undefined
++++ OK, passed 1 test.
+\xs -> Just (or xs) == orM (map Just xs)
++++ OK, passed 100 tests.
+andM [Just True,Just False,undefined] == Just False
++++ OK, passed 1 test.
+andM [Just True,Just True ,undefined] == undefined
++++ OK, passed 1 test.
+\xs -> Just (and xs) == andM (map Just xs)
++++ OK, passed 100 tests.
+findM (Just . isUpper) "teST"             == Just (Just 'S')
++++ OK, passed 1 test.
+findM (Just . isUpper) "test"             == Just Nothing
++++ OK, passed 1 test.
+findM (Just . const True) ["x",undefined] == Just (Just "x")
++++ OK, passed 1 test.
+fromLeft 1 (Left 3) == 3
++++ OK, passed 1 test.
+fromLeft 1 (Right "foo") == 1
++++ OK, passed 1 test.
+fromRight 1 (Right 3) == 3
++++ OK, passed 1 test.
+fromRight 1 (Left "foo") == 1
++++ OK, passed 1 test.
+\x -> fromLeft' (Left  x) == x
++++ OK, passed 100 tests.
+\x -> fromLeft' (Right x) == undefined
++++ OK, passed 100 tests.
+\x -> fromRight' (Right x) == x
++++ OK, passed 100 tests.
+\x -> fromRight' (Left  x) == undefined
++++ OK, passed 100 tests.
+\x -> fromEither (Left x ) == x
++++ OK, passed 100 tests.
+\x -> fromEither (Right x) == x
++++ OK, passed 100 tests.
+\a b -> maybeToEither a (Just b) == Right b
++++ OK, passed 100 tests.
+\a -> maybeToEither a Nothing == Left a
++++ OK, passed 100 tests.
+\x -> eitherToMaybe (Left x) == Nothing
++++ OK, passed 100 tests.
+\x -> eitherToMaybe (Right x) == Just x
++++ OK, passed 100 tests.
+mapLeft show (Left 1) == Left "1"
++++ OK, passed 1 test.
+mapLeft show (Right True) == Right True
++++ OK, passed 1 test.
+mapRight show (Left 1) == Left 1
++++ OK, passed 1 test.
+mapRight show (Right True) == Right "True"
++++ OK, passed 1 test.
+\xs -> repeatedly (splitAt 3) xs  == chunksOf 3 xs
++++ OK, passed 100 tests.
+\xs -> repeatedly word1 (trim xs) == words xs
++++ OK, passed 100 tests.
+\xs -> repeatedly line1 xs == lines xs
++++ OK, passed 100 tests.
+disjoint [1,2,3] [4,5] == True
++++ OK, passed 1 test.
+disjoint [1,2,3] [4,1] == False
++++ OK, passed 1 test.
+disjointOrd [1,2,3] [4,5] == True
++++ OK, passed 1 test.
+disjointOrd [1,2,3] [4,1] == False
++++ OK, passed 1 test.
+disjointOrdBy (compare `on` (`mod` 7)) [1,2,3] [4,5] == True
++++ OK, passed 1 test.
+disjointOrdBy (compare `on` (`mod` 7)) [1,2,3] [4,8] == False
++++ OK, passed 1 test.
+anySame [1,1,2] == True
++++ OK, passed 1 test.
+anySame [1,2,3] == False
++++ OK, passed 1 test.
+anySame (1:2:1:undefined) == True
++++ OK, passed 1 test.
+anySame [] == False
++++ OK, passed 1 test.
+\xs -> anySame xs == (length (nub xs) < length xs)
++++ OK, passed 100 tests.
+allSame [1,1,2] == False
++++ OK, passed 1 test.
+allSame [1,1,1] == True
++++ OK, passed 1 test.
+allSame [1]     == True
++++ OK, passed 1 test.
+allSame []      == True
++++ OK, passed 1 test.
+allSame (1:1:2:undefined) == False
++++ OK, passed 1 test.
+\xs -> allSame xs == (length (nub xs) <= 1)
++++ OK, passed 100 tests.
+headDef 1 []      == 1
++++ OK, passed 1 test.
+headDef 1 [2,3,4] == 2
++++ OK, passed 1 test.
+\x xs -> headDef x xs == fromMaybe x (listToMaybe xs)
++++ OK, passed 100 tests.
+lastDef 1 []      == 1
++++ OK, passed 1 test.
+lastDef 1 [2,3,4] == 4
++++ OK, passed 1 test.
+\x xs -> lastDef x xs == last (x:xs)
++++ OK, passed 100 tests.
+[2,3,4] !? 1    == Just 3
++++ OK, passed 1 test.
+[2,3,4] !? (-1) == Nothing
++++ OK, passed 1 test.
+[]      !? 0    == Nothing
++++ OK, passed 1 test.
+notNull []  == False
++++ OK, passed 1 test.
+notNull [1] == True
++++ OK, passed 1 test.
+\xs -> notNull xs == not (null xs)
++++ OK, passed 100 tests.
+list 1 (\v _ -> v - 2) [5,6,7] == 3
++++ OK, passed 1 test.
+list 1 (\v _ -> v - 2) []      == 1
++++ OK, passed 1 test.
+\nil cons xs -> maybe nil (uncurry cons) (uncons xs) == list nil cons xs
++++ OK, passed 100 tests.
+unsnoc "test" == Just ("tes",'t')
++++ OK, passed 1 test.
+unsnoc ""     == Nothing
++++ OK, passed 1 test.
+\xs -> unsnoc xs == if null xs then Nothing else Just (init xs, last xs)
++++ OK, passed 100 tests.
+cons 't' "est" == "test"
++++ OK, passed 1 test.
+\x xs -> uncons (cons x xs) == Just (x,xs)
++++ OK, passed 100 tests.
+snoc "tes" 't' == "test"
++++ OK, passed 1 test.
+\xs x -> unsnoc (snoc xs x) == Just (xs,x)
++++ OK, passed 100 tests.
+enumerate == [False, True]
++++ OK, passed 1 test.
+takeEnd 3 "hello"  == "llo"
++++ OK, passed 1 test.
+takeEnd 5 "bye"    == "bye"
++++ OK, passed 1 test.
+takeEnd (-1) "bye" == ""
++++ OK, passed 1 test.
+\i xs -> takeEnd i xs `isSuffixOf` xs
++++ OK, passed 100 tests.
+\i xs -> length (takeEnd i xs) == min (max 0 i) (length xs)
++++ OK, passed 100 tests.
+dropEnd 3 "hello"  == "he"
++++ OK, passed 1 test.
+dropEnd 5 "bye"    == ""
++++ OK, passed 1 test.
+dropEnd (-1) "bye" == "bye"
++++ OK, passed 1 test.
+\i xs -> dropEnd i xs `isPrefixOf` xs
++++ OK, passed 100 tests.
+\i xs -> length (dropEnd i xs) == max 0 (length xs - max 0 i)
++++ OK, passed 100 tests.
+\i -> take 3 (dropEnd 5 [i..]) == take 3 [i..]
++++ OK, passed 100 tests.
+splitAtEnd 3 "hello" == ("he","llo")
++++ OK, passed 1 test.
+splitAtEnd 3 "he"    == ("", "he")
++++ OK, passed 1 test.
+\i xs -> uncurry (++) (splitAt i xs) == xs
++++ OK, passed 100 tests.
+\i xs -> splitAtEnd i xs == (dropEnd i xs, takeEnd i xs)
++++ OK, passed 100 tests.
+\i xs -> zip [i..] xs == zipFrom i xs
++++ OK, passed 100 tests.
+zipFrom False [1..3] == [(False,1),(True, 2)]
++++ OK, passed 1 test.
+\i xs -> zipWithFrom (,) i xs == zipFrom i xs
++++ OK, passed 100 tests.
+concatUnzip [("a","AB"),("bc","C")] == ("abc","ABC")
++++ OK, passed 1 test.
+concatUnzip3 [("a","AB",""),("bc","C","123")] == ("abc","ABC","123")
++++ OK, passed 1 test.
+takeWhileEnd even [2,3,4,6] == [4,6]
++++ OK, passed 1 test.
+trim      "  hello   " == "hello"
++++ OK, passed 1 test.
+trimStart "  hello   " == "hello   "
++++ OK, passed 1 test.
+trimEnd   "  hello   " == "  hello"
++++ OK, passed 1 test.
+\s -> trim s == trimEnd (trimStart s)
++++ OK, passed 100 tests.
+lower "This is A TEST" == "this is a test"
++++ OK, passed 1 test.
+lower "" == ""
++++ OK, passed 1 test.
+upper "This is A TEST" == "THIS IS A TEST"
++++ OK, passed 1 test.
+upper "" == ""
++++ OK, passed 1 test.
+word1 "" == ("", "")
++++ OK, passed 1 test.
+word1 "keyword rest of string" == ("keyword","rest of string")
++++ OK, passed 1 test.
+word1 "  keyword\n  rest of string" == ("keyword","rest of string")
++++ OK, passed 1 test.
+\s -> fst (word1 s) == concat (take 1 $ words s)
++++ OK, passed 100 tests.
+\s -> words (snd $ word1 s) == drop 1 (words s)
++++ OK, passed 100 tests.
+line1 "" == ("", "")
++++ OK, passed 1 test.
+line1 "test" == ("test","")
++++ OK, passed 1 test.
+line1 "test\n" == ("test","")
++++ OK, passed 1 test.
+line1 "test\nrest" == ("test","rest")
++++ OK, passed 1 test.
+line1 "test\nrest\nmore" == ("test","rest\nmore")
++++ OK, passed 1 test.
+escapeHTML "this is a test" == "this is a test"
++++ OK, passed 1 test.
+escapeHTML "<b>\"g&t\"</n>" == "&lt;b&gt;&quot;g&amp;t&quot;&lt;/n&gt;"
++++ OK, passed 1 test.
+escapeHTML "t'was another test" == "t&#39;was another test"
++++ OK, passed 1 test.
+\xs -> unescapeHTML (escapeHTML xs) == xs
++++ OK, passed 100 tests.
+escapeJSON "this is a test" == "this is a test"
++++ OK, passed 1 test.
+escapeJSON "\ttab\nnewline\\" == "\\ttab\\nnewline\\\\"
++++ OK, passed 1 test.
+escapeJSON "\ESC[0mHello" == "\\u001b[0mHello"
++++ OK, passed 1 test.
+\xs -> unescapeJSON (escapeJSON xs) == xs
++++ OK, passed 100 tests.
+groupOn abs [1,-1,2] == [[1,-1], [2]]
++++ OK, passed 1 test.
+groupOnKey abs [1,-1,2] == [(1, [1,-1]), (2, [2])]
++++ OK, passed 1 test.
+maximumOn id [] == undefined
++++ OK, passed 1 test.
+maximumOn length ["test","extra","a"] == "extra"
++++ OK, passed 1 test.
+minimumOn id [] == undefined
++++ OK, passed 1 test.
+minimumOn length ["test","extra","a"] == "a"
++++ OK, passed 1 test.
+groupSort [(1,'t'),(3,'t'),(2,'e'),(2,'s')] == [(1,"t"),(2,"es"),(3,"t")]
++++ OK, passed 1 test.
+\xs -> map fst (groupSort xs) == sort (nub (map fst xs))
++++ OK, passed 100 tests.
+\xs -> concatMap snd (groupSort xs) == map snd (sortOn fst xs)
++++ OK, passed 100 tests.
+groupSortOn length ["test","of","sized","item"] == [["of"],["test","item"],["sized"]]
++++ OK, passed 1 test.
+groupSortBy (compare `on` length) ["test","of","sized","item"] == [["of"],["test","item"],["sized"]]
++++ OK, passed 1 test.
+sum' [1, 2, 3] == 6
++++ OK, passed 1 test.
+sumOn' read ["1", "2", "3"] == 6
++++ OK, passed 1 test.
+product' [1, 2, 4] == 8
++++ OK, passed 1 test.
+productOn' read ["1", "2", "4"] == 8
++++ OK, passed 1 test.
+merge "ace" "bd" == "abcde"
++++ OK, passed 1 test.
+\xs ys -> merge (sort xs) (sort ys) == sort (xs ++ ys)
++++ OK, passed 100 tests.
+replace "el" "_" "Hello Bella" == "H_lo B_la"
++++ OK, passed 1 test.
+replace "el" "e" "Hello"       == "Helo"
++++ OK, passed 1 test.
+replace "" "x" "Hello"         == "xHxexlxlxox"
++++ OK, passed 1 test.
+replace "" "x" ""              == "x"
++++ OK, passed 1 test.
+\xs ys -> replace xs xs ys == ys
++++ OK, passed 100 tests.
+breakEnd isLower "youRE" == ("you","RE")
++++ OK, passed 1 test.
+breakEnd isLower "youre" == ("youre","")
++++ OK, passed 1 test.
+breakEnd isLower "YOURE" == ("","YOURE")
++++ OK, passed 1 test.
+\f xs -> breakEnd (not . f) xs == spanEnd f  xs
++++ OK, passed 100 tests.
+spanEnd isUpper "youRE" == ("you","RE")
++++ OK, passed 1 test.
+spanEnd (not . isSpace) "x y z" == ("x y ","z")
++++ OK, passed 1 test.
+\f xs -> uncurry (++) (spanEnd f xs) == xs
++++ OK, passed 100 tests.
+\f xs -> spanEnd f xs == swap (both reverse (span f (reverse xs)))
++++ OK, passed 100 tests.
+wordsBy (== ':') "::xyz:abc::123::" == ["xyz","abc","123"]
++++ OK, passed 1 test.
+\s -> wordsBy isSpace s == words s
++++ OK, passed 100 tests.
+linesBy (== ':') "::xyz:abc::123::" == ["","","xyz","abc","","123",""]
++++ OK, passed 1 test.
+\s -> linesBy (== '\n') s == lines s
++++ OK, passed 100 tests.
+linesBy (== ';') "my;list;here;" == ["my","list","here"]
++++ OK, passed 1 test.
+firstJust id [Nothing,Just 3]  == Just 3
++++ OK, passed 1 test.
+firstJust id [Nothing,Nothing] == Nothing
++++ OK, passed 1 test.
+drop1 ""         == ""
++++ OK, passed 1 test.
+drop1 "test"     == "est"
++++ OK, passed 1 test.
+\xs -> drop 1 xs == drop1 xs
++++ OK, passed 100 tests.
+dropEnd1 ""         == ""
++++ OK, passed 1 test.
+dropEnd1 "test"     == "tes"
++++ OK, passed 1 test.
+\xs -> dropEnd 1 xs == dropEnd1 xs
++++ OK, passed 100 tests.
+mconcatMap Sum [1,2,3] == Sum 6
++++ OK, passed 1 test.
+\f xs -> mconcatMap f xs == concatMap f xs
++++ OK, passed 100 tests.
+breakOn "::" "a::b::c" == ("a", "::b::c")
++++ OK, passed 1 test.
+breakOn "/" "foobar"   == ("foobar", "")
++++ OK, passed 1 test.
+\needle haystack -> let (prefix,match) = breakOn needle haystack in prefix ++ match == haystack
++++ OK, passed 100 tests.
+breakOnEnd "::" "a::b::c" == ("a::b::", "c")
++++ OK, passed 1 test.
+splitOn "\r\n" "a\r\nb\r\nd\r\ne" == ["a","b","d","e"]
++++ OK, passed 1 test.
+splitOn "aaa"  "aaaXaaaXaaaXaaa"  == ["","X","X","X",""]
++++ OK, passed 1 test.
+splitOn "x"    "x"                == ["",""]
++++ OK, passed 1 test.
+splitOn "x"    ""                 == [""]
++++ OK, passed 1 test.
+\s x -> s /= "" ==> intercalate s (splitOn s x) == x
++++ OK, passed 100 tests; 16 discarded.
+\c x -> splitOn [c] x                           == split (==c) x
++++ OK, passed 100 tests.
+split (== 'a') "aabbaca" == ["","","bb","c",""]
++++ OK, passed 1 test.
+split (== 'a') ""        == [""]
++++ OK, passed 1 test.
+split (== ':') "::xyz:abc::123::" == ["","","xyz","abc","","123","",""]
++++ OK, passed 1 test.
+split (== ',') "my,list,here" == ["my","list","here"]
++++ OK, passed 1 test.
+dropWhileEnd  isSpace "ab cde  " == "ab cde"
++++ OK, passed 1 test.
+dropWhileEnd' isSpace "ab cde  " == "ab cde"
++++ OK, passed 1 test.
+last (dropWhileEnd  even [undefined,3]) == undefined
++++ OK, passed 1 test.
+last (dropWhileEnd' even [undefined,3]) == 3
++++ OK, passed 1 test.
+head (dropWhileEnd  even (3:undefined)) == 3
++++ OK, passed 1 test.
+head (dropWhileEnd' even (3:undefined)) == undefined
++++ OK, passed 1 test.
+dropPrefix "Mr. " "Mr. Men" == "Men"
++++ OK, passed 1 test.
+dropPrefix "Mr. " "Dr. Men" == "Dr. Men"
++++ OK, passed 1 test.
+dropSuffix "!" "Hello World!"  == "Hello World"
++++ OK, passed 1 test.
+dropSuffix "!" "Hello World!!" == "Hello World!"
++++ OK, passed 1 test.
+dropSuffix "!" "Hello World."  == "Hello World."
++++ OK, passed 1 test.
+stripSuffix "bar" "foobar" == Just "foo"
++++ OK, passed 1 test.
+stripSuffix ""    "baz"    == Just "baz"
++++ OK, passed 1 test.
+stripSuffix "foo" "quux"   == Nothing
++++ OK, passed 1 test.
+stripInfix "::" "a::b::c" == Just ("a", "b::c")
++++ OK, passed 1 test.
+stripInfix "/" "foobar"   == Nothing
++++ OK, passed 1 test.
+stripInfixEnd "::" "a::b::c" == Just ("a::b", "c")
++++ OK, passed 1 test.
+chunksOf 3 "my test" == ["my ","tes","t"]
++++ OK, passed 1 test.
+chunksOf 3 "mytest"  == ["myt","est"]
++++ OK, passed 1 test.
+chunksOf 8 ""        == []
++++ OK, passed 1 test.
+chunksOf 0 "test"    == undefined
++++ OK, passed 1 test.
+nubSort "this is a test" == " aehist"
++++ OK, passed 1 test.
+\xs -> nubSort xs == nub (sort xs)
++++ OK, passed 100 tests.
+nubSortOn length ["a","test","of","this"] == ["a","of","test"]
++++ OK, passed 1 test.
+nubSortBy (compare `on` length) ["a","test","of","this"] == ["a","of","test"]
++++ OK, passed 1 test.
+nubOrd "this is a test" == "this ae"
++++ OK, passed 1 test.
+nubOrd (take 4 ("this" ++ undefined)) == "this"
++++ OK, passed 1 test.
+\xs -> nubOrd xs == nub xs
++++ OK, passed 100 tests.
+nubOrdOn length ["a","test","of","this"] == ["a","test","of"]
++++ OK, passed 1 test.
+nubOrdBy (compare `on` length) ["a","test","of","this"] == ["a","test","of"]
++++ OK, passed 1 test.
+zipWithLongest (,) "a" "xyz" == [(Just 'a', Just 'x'), (Nothing, Just 'y'), (Nothing, Just 'z')]
++++ OK, passed 1 test.
+zipWithLongest (,) "a" "x" == [(Just 'a', Just 'x')]
++++ OK, passed 1 test.
+zipWithLongest (,) "" "x" == [(Nothing, Just 'x')]
++++ OK, passed 1 test.
+compareLength [1,2,3] 1 == GT
++++ OK, passed 1 test.
+compareLength [1,2] 2 == EQ
++++ OK, passed 1 test.
+\(xs :: [Int]) n -> compareLength xs n == compare (length xs) n
++++ OK, passed 100 tests.
+compareLength (1:2:3:undefined) 2 == GT
++++ OK, passed 1 test.
+comparingLength [1,2,3] [False] == GT
++++ OK, passed 1 test.
+comparingLength [1,2] "ab" == EQ
++++ OK, passed 1 test.
+\(xs :: [Int]) (ys :: [Int]) -> comparingLength xs ys == Data.Ord.comparing length xs ys
++++ OK, passed 100 tests.
+comparingLength [1,2] (1:2:3:undefined) == LT
++++ OK, passed 1 test.
+comparingLength (1:2:3:undefined) [1,2] == GT
++++ OK, passed 1 test.
+mwhen True  "test" == "test"
++++ OK, passed 1 test.
+mwhen False "test" == ""
++++ OK, passed 1 test.
+first succ (1,"test") == (2,"test")
++++ OK, passed 1 test.
+second reverse (1,"test") == (1,"tset")
++++ OK, passed 1 test.
+firstM (\x -> [x-1, x+1]) (1,"test") == [(0,"test"),(2,"test")]
++++ OK, passed 1 test.
+secondM (\x -> [reverse x, x]) (1,"test") == [(1,"tset"),(1,"test")]
++++ OK, passed 1 test.
+(succ *** reverse) (1,"test") == (2,"tset")
++++ OK, passed 1 test.
+(succ &&& pred) 1 == (2,0)
++++ OK, passed 1 test.
+dupe 12 == (12, 12)
++++ OK, passed 1 test.
+both succ (1,2) == (2,3)
++++ OK, passed 1 test.
+first3 succ (1,1,1) == (2,1,1)
++++ OK, passed 1 test.
+second3 succ (1,1,1) == (1,2,1)
++++ OK, passed 1 test.
+third3 succ (1,1,1) == (1,1,2)
++++ OK, passed 1 test.
+\x -> readVersion (showVersion x) == x
++++ OK, passed 100 tests.
+readVersion "hello" == undefined
++++ OK, passed 1 test.
+showDP 4 pi == "3.1416"
++++ OK, passed 1 test.
+showDP 0 pi == "3"
++++ OK, passed 1 test.
+showDP 2 3  == "3.00"
++++ OK, passed 1 test.
+withTempDir $ \dir -> do writeFile (dir </> "foo.txt") ""; withCurrentDirectory dir $ doesFileExist "foo.txt"
++++ OK, passed 1 test.
+withTempDir $ \dir -> do writeFile (dir </> "test.txt") ""; (== [dir </> "test.txt"]) <$> listContents dir
++++ OK, passed 1 test.
+listTest listContents ["bar.txt","foo/baz.txt","zoo"] ["bar.txt","foo","zoo"]
++++ OK, passed 1 test.
+listTest listDirectories ["bar.txt","foo/baz.txt","zoo"] ["foo"]
++++ OK, passed 1 test.
+listTest listFiles ["bar.txt","foo/baz.txt","zoo"] ["bar.txt","zoo"]
++++ OK, passed 1 test.
+listTest listFilesRecursive ["bar.txt","zoo","foo" </> "baz.txt"] ["bar.txt","zoo","foo" </> "baz.txt"]
++++ OK, passed 1 test.
+listTest (listFilesInside $ pure . not . isPrefixOf "." . takeFileName)    ["bar.txt","foo" </> "baz.txt",".foo" </> "baz2.txt", "zoo"] ["bar.txt","zoo","foo" </> "baz.txt"]
++++ OK, passed 1 test.
+listTest (listFilesInside $ const $ pure False) ["bar.txt"] []
++++ OK, passed 1 test.
+isWindows == (os == "mingw32")
++++ OK, passed 1 test.
+\(filter isHexDigit -> s) -> fmap (== s) $ withTempFile $ \file -> do writeFile file s; readFile' file
++++ OK, passed 100 tests.
+\s -> withTempFile $ \file -> do writeFileUTF8 file s; fmap (== s) $ readFileUTF8' file
++++ OK, passed 100 tests.
+\(ASCIIString s) -> withTempFile $ \file -> do writeFileBinary file s; fmap (== s) $ readFileBinary' file
++++ OK, passed 100 tests.
+captureOutput (print 1) == pure ("1\n",())
++++ OK, passed 1 test.
+withTempFile doesFileExist == pure True
++++ OK, passed 1 test.
+(doesFileExist =<< withTempFile pure) == pure False
++++ OK, passed 1 test.
+withTempFile readFile' == pure ""
++++ OK, passed 1 test.
+withTempDir doesDirectoryExist == pure True
++++ OK, passed 1 test.
+(doesDirectoryExist =<< withTempDir pure) == pure False
++++ OK, passed 1 test.
+withTempDir listFiles == pure []
++++ OK, passed 1 test.
+fileEq "does_not_exist1" "does_not_exist2" == undefined
++++ OK, passed 1 test.
+fileEq "does_not_exist" "does_not_exist" == undefined
++++ OK, passed 1 test.
+withTempFile $ \f1 -> fileEq "does_not_exist" f1 == undefined
++++ OK, passed 1 test.
+withTempFile $ \f1 -> withTempFile $ \f2 -> fileEq f1 f2
++++ OK, passed 1 test.
+withTempFile $ \f1 -> withTempFile $ \f2 -> writeFile f1 "a" >> writeFile f2 "a" >> fileEq f1 f2
++++ OK, passed 1 test.
+withTempFile $ \f1 -> withTempFile $ \f2 -> writeFile f1 "a" >> writeFile f2 "b" >> notM (fileEq f1 f2)
++++ OK, passed 1 test.
+fmap (round . fst) (duration $ sleep 1) == pure 1
++++ OK, passed 1 test.
+timeout (-3) (print 1) == pure Nothing
++++ OK, passed 1 test.
+timeout 0.1  (print 1) == fmap Just (print 1)
++++ OK, passed 1 test.
+do (t, _) <- duration $ timeout 0.1 $ sleep 1000; print t; pure $ t < 1
+0.10022375800000001
++++ OK, passed 1 test.
+timeout 0.1  (sleep 2 >> print 1) == pure Nothing
++++ OK, passed 1 test.
+showDuration 3.435   == "3.44s"
++++ OK, passed 1 test.
+showDuration 623.8   == "10m24s"
++++ OK, passed 1 test.
+showDuration 62003.8 == "17h13m"
++++ OK, passed 1 test.
+showDuration 1e8     == "27777h47m"
++++ OK, passed 1 test.
+do f <- offsetTime; xs <- replicateM 10 f; pure $ xs == sort xs
++++ OK, passed 1 test.
+do (a,_) <- duration $ sleep 1; pure $ a >= 1 && a <= 1.5
++++ OK, passed 1 test.
+Extra export
++++ OK, passed 1 test.
+withTempFile
+....done
+withTempDir
+....done
+retry
++++ OK, passed 1 test.
+barrier
+Success (323 tests)
+Test suite extra-test: PASS
+Test suite logged to:
+/tmp/workdir-extra/extra-1.7.16/dist-newstyle/build/x86_64-linux/ghc-9.6.6/extra-1.7.16/t/extra-test/test/extra-1.7.16-extra-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

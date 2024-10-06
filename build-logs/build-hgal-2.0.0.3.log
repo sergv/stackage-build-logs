@@ -1,0 +1,48 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - hgal-2.0.0.3 (lib) (first run)
+ - hgal-2.0.0.3 (test:hgal-test) (first run)
+Configuring library for hgal-2.0.0.3...
+Preprocessing library for hgal-2.0.0.3...
+Building library for hgal-2.0.0.3...
+[1 of 5] Compiling Data.Graph.Construction
+[2 of 5] Compiling Data.Graph.Partition
+
+src/Data/Graph/Partition.hs:90:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘([[a]], [[a]])’ not matched: (_, [])
+   |
+90 |   where (before, largest:after) = break hasMaxLength list
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[3 of 5] Compiling Data.Graph.Permutation
+[4 of 5] Compiling Data.Graph.Automorphism
+[5 of 5] Compiling Paths_hgal
+Configuring test suite 'hgal-test' for hgal-2.0.0.3...
+Preprocessing test suite 'hgal-test' for hgal-2.0.0.3...
+Building test suite 'hgal-test' for hgal-2.0.0.3...
+[1 of 5] Compiling Bench
+[2 of 5] Compiling Paths_hgal
+[3 of 5] Compiling Shuffle
+
+test/Shuffle.hs:39:5: warning: [GHC-62161] [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In an equation for ‘shuffle1'’:
+        Patterns of type ‘Tree a’, ‘[Int]’ not matched: (Node _ _ _) []
+   |
+39 |     shuffle1' (Leaf e) [] = [e]
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+test/Shuffle.hs:53:5: warning: [GHC-62161] [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In an equation for ‘extract_tree’:
+        Patterns of type ‘Int’, ‘Tree a’ not matched:
+            p (Leaf _) where p is not one of {0, 1}
+            0 (Leaf _)
+            1 (Leaf _)
+   |
+53 |     extract_tree 0 (Node _ (Leaf e) r) = (e,r)
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+[4 of 5] Compiling Sudoku
+[5 of 5] Compiling Main
+[6 of 6] Linking /tmp/workdir-hgal/hgal-2.0.0.3/dist-newstyle/build/x86_64-linux/ghc-9.6.6/hgal-2.0.0.3/t/hgal-test/build/hgal-test/hgal-test

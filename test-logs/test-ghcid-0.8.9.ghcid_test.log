@@ -1,0 +1,87 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - ghcid-0.8.9 (test:ghcid_test) (ephemeral targets)
+Preprocessing test suite 'ghcid_test' for ghcid-0.8.9...
+Building test suite 'ghcid_test' for ghcid-0.8.9...
+Running 1 test suites...
+Test suite ghcid_test: RUNNING...
+Tests
+  Utility tests
+    dropPrefix
+      Prefix not found:                                    OK
+      Empty prefix:                                        OK
+      Prefix found once:                                   OK
+      Prefix found twice:                                  OK
+    wordWrap
+      Max 0:                                               OK
+      Max 2:                                               OK
+  Parser tests
+    Show Modules:                                          OK
+    Show Paths:                                            OK
+    Load Parsing:                                          OK
+    GHC 8.2 Load Parsing:                                  OK
+    Load Parsing when -ferror-spans is enabled:            OK
+    Module cycle:                                          OK
+    Module cycle with itself:                              OK
+    Escape codes as enabled by -fdiagnostics-color=always: OK
+    Starting ghci with a non-existent filename:            OK
+  API test
+    No files:                                              %STDOUT: GHCi, version 9.6.6: https://www.haskell.org/ghc/  :? for help
+%STDOUT2: GHCi, version 9.6.6: https://www.haskell.org/ghc/  :? for help
+%STDIN: import qualified System.IO as INTERNAL_GHCID
+%STDIN: :unset +t +s
+%STDIN: :set prompt #~GHCID-START~#
+%STDIN: :set prompt-cont #~GHCID-START~#
+%STDIN: :set -fno-break-on-exception
+%STDIN: :set -fno-break-on-error
+%STDIN: :set -v1
+%STDIN: :set -fno-hide-source-paths
+%STDIN: 
+INTERNAL_GHCID.putStrLn ['#','~','G','H','C','I','D','-','F','I','N','I','S','H','-','1','~','#']
+INTERNAL_GHCID.hPutStrLn INTERNAL_GHCID.stderr ['#','~','G','H','C','I','D','-','F','I','N','I','S','H','-','1','~','#']
+GHCi, version 9.6.6: https://www.haskell.org/ghc/  :? for help
+%STDOUT: ghci> ghci> ghci> ghci> #~GHCID-START~##~GHCID-START~##~GHCID-START~##~GHCID-START~##~GHCID-START~##~GHCID-START~##~GHCID-START~##~GHCID-FINISH-1~#
+%STDERR: #~GHCID-FINISH-1~#
+%STDIN: :show modules
+%STDIN: 
+INTERNAL_GHCID.putStrLn ['#','~','G','H','C','I','D','-','F','I','N','I','S','H','-','2','~','#']
+INTERNAL_GHCID.hPutStrLn INTERNAL_GHCID.stderr ['#','~','G','H','C','I','D','-','F','I','N','I','S','H','-','2','~','#']
+%STDOUT: #~GHCID-START~##~GHCID-START~##~GHCID-START~##~GHCID-START~##~GHCID-FINISH-2~#
+%STDERR: #~GHCID-FINISH-2~#
+%STDIN: 
+%STDIN: 
+INTERNAL_GHCID.putStrLn ['#','~','G','H','C','I','D','-','F','I','N','I','S','H','-','3','~','#']
+INTERNAL_GHCID.hPutStrLn INTERNAL_GHCID.stderr ['#','~','G','H','C','I','D','-','F','I','N','I','S','H','-','3','~','#']
+%STDOUT: #~GHCID-START~##~GHCID-START~##~GHCID-START~##~GHCID-START~##~GHCID-FINISH-3~#
+%STDERR: #~GHCID-FINISH-3~#
+%STDIN: :show modules
+%STDIN: 
+INTERNAL_GHCID.putStrLn ['#','~','G','H','C','I','D','-','F','I','N','I','S','H','-','4','~','#']
+INTERNAL_GHCID.hPutStrLn INTERNAL_GHCID.stderr ['#','~','G','H','C','I','D','-','F','I','N','I','S','H','-','4','~','#']
+%STDOUT: #~GHCID-START~##~GHCID-START~##~GHCID-START~##~GHCID-START~##~GHCID-FINISH-4~#
+%STDERR: #~GHCID-FINISH-4~#
+%STDIN: import Data.List
+%STDIN: 
+INTERNAL_GHCID.putStrLn ['#','~','G','H','C','I','D','-','F','I','N','I','S','H','-','5','~','#']
+INTERNAL_GHCID.hPutStrLn INTERNAL_GHCID.stderr ['#','~','G','H','C','I','D','-','F','I','N','I','S','H','-','5','~','#']
+%STDOUT: #~GHCID-START~##~GHCID-START~##~GHCID-START~##~GHCID-START~##~GHCID-FINISH-5~#
+%STDERR: #~GHCID-FINISH-5~#
+%STDIN: nub "test"
+%STDIN: 
+INTERNAL_GHCID.putStrLn ['#','~','G','H','C','I','D','-','F','I','N','I','S','H','-','6','~','#']
+INTERNAL_GHCID.hPutStrLn INTERNAL_GHCID.stderr ['#','~','G','H','C','I','D','-','F','I','N','I','S','H','-','6','~','#']
+%STDOUT: #~GHCID-START~##~GHCID-START~#"tes"
+%STDOUT: #~GHCID-START~##~GHCID-START~##~GHCID-FINISH-6~#
+%STDERR: #~GHCID-FINISH-6~#
+%STDIN: :quit
+%STDIN: 
+INTERNAL_GHCID.putStrLn ['#','~','G','H','C','I','D','-','F','I','N','I','S','H','-','7','~','#']
+INTERNAL_GHCID.hPutStrLn INTERNAL_GHCID.stderr ['#','~','G','H','C','I','D','-','F','I','N','I','S','H','-','7','~','#']
+%STDOUT: #~GHCID-START~##~GHCID-START~#Leaving GHCi.
+OK (0.16s)
+
+All 16 tests passed (0.16s)
+Test suite ghcid_test: PASS
+Test suite logged to:
+/tmp/workdir-ghcid/ghcid-0.8.9/dist-newstyle/build/x86_64-linux/ghc-9.6.6/ghcid-0.8.9/t/ghcid_test/test/ghcid-0.8.9-ghcid_test.log
+1 of 1 test suites (1 of 1 test cases) passed.

@@ -1,0 +1,114 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - yesod-test-1.6.16 (test:test) (ephemeral targets)
+Preprocessing test suite 'test' for yesod-test-1.6.16...
+Building test suite 'test' for yesod-test-1.6.16...
+Running 1 test suites...
+Test suite test: RUNNING...
+
+CSS selector parsing
+  elements [✔]
+  child elements [✔]
+  comma [✔]
+find by selector
+  XHTML [✔]
+  HTML [✔]
+  form.foo input[name=_token][type=hidden][value] [✔]
+  descendents and children [✔]
+  hyphenated classes [✔]
+  descendents [✔]
+HTML parsing
+  XHTML [✔]
+  HTML [✔]
+identifying text-based bodies
+  matches content-types with an explicit UTF-8 charset [✔]
+  matches content-types with an ASCII charset [✔]
+  matches content-types that we assume are UTF-8 [✔]
+  doesn't match content-type headers that are binary data [✔]
+basic usage
+  tests1
+    tests1a [✔]
+    tests1b [✔]
+    tests1c [✔]
+  tests2
+    type-safe URLs [✔]
+    type-safe URLs with query-string [✔]
+06/Oct/2024:14:57:59 +0000 [Error#yesod-core] No foo
+CallStack (from HasCallStack):
+  error, called at test/main.hs:570:24 in yesod-test-1.6.16-inplace-test:Main @(yesod-core-1.6.26.0-6ccaf1f9a5bb3ae213f9db91f26d8eae8b993949a0487a4592e7e9fc7515e726:Yesod.Core.Class.Yesod src/Yesod/Core/Class/Yesod.hs:705:6)
+    post params [✔]
+    get params [✔]
+    labels [✔]
+    labels WForm [✔]
+    finding html [✔]
+    finds the CSRF token by css selector [✔]
+    can follow a link via clickOn [✔]
+  custom error message
+    returns the message pass to areqMsg [✔]
+    returns the message pass to mreqMsg [✔]
+    returns the message pass to wreqMsg [✔]
+  utf8 paths
+    from path [✔]
+שלום
+    from path, type-safe URL [✔]
+    from WAI [✔]
+  labels
+    can click checkbox [✔]
+  byLabel-related tests
+    fails with "More than one label contained" error [✔]
+    byLabelExact performs an exact match over the given label name [✔]
+    byLabelContain looks for the labels which contain the given label name [✔]
+    byLabelContain throws an error if it finds multiple labels [✔]
+    bySelectorLabelContain looks for the selector and label which contain the given label name [✔]
+    bySelectorLabelContain throws an error if the selector matches multiple elements [✔]
+    byLabelPrefix matches over the prefix of the labels [✔]
+    byLabelPrefix throws an error if it finds multiple labels [✔]
+    byLabelSuffix matches over the suffix of the labels [✔]
+    byLabelSuffix throws an error if it finds multiple labels [✔]
+  Content-Type handling
+    can set a content-type [✔]
+    adds the form-urlencoded Content-Type if you add parameters [✔]
+    defaults to no Content-Type [✔]
+    returns a 415 for the wrong Content-Type [✔]
+cookies
+Foo
+  should send the cookie #730 [✔]
+  should 422 on the cookie named key [✔]
+  should be able to delete a cookie [✔]
+  should be able to clear all cookies [✔]
+  should be able to modify cookies [✔]
+CSRF with cookies/headers
+  Should receive a CSRF cookie and add its value to the headers [✔]
+06/Oct/2024:14:57:59 +0000 [Warn#yesod-core] A valid CSRF token wasn't present. Because the request could have been forged, it's been rejected altogether.
+If you're a developer of this site, these tips will help you debug the issue:
+- Read the Yesod.Core.Handler docs of the yesod-core package for details on CSRF protection.
+- Check that your HTTP client is persisting cookies between requests, like a browser does.
+- By default, the CSRF token is sent to the client in a cookie named XSRF-TOKEN.
+- The server is looking for the token in the following locations:
+  - An HTTP header named X-XSRF-TOKEN (which is not currently set)
+  - A POST parameter named _token (which is not currently set) @(yesod-core-1.6.26.0-6ccaf1f9a5bb3ae213f9db91f26d8eae8b993949a0487a4592e7e9fc7515e726:Yesod.Core.Handler src/Yesod/Core/Handler.hs:1666:6)
+  Should 403 requests if we don't add the CSRF token [✔]
+test redirects
+  follows 303 redirects when requested [✔]
+  follows 301 redirects when requested [✔]
+  returns a Left when no redirect was returned [✔]
+route parsing in tests
+  parses location header into a route [✔]
+  returns a Left when no redirect was returned [✔]
+modifying site value
+  can change site value [✔]
+Basic Authentication
+  rejects no header [✔]
+  rejects incorrect header [✔]
+  accepts correct header [✔]
+JSON parsing
+  checks for a json array [✔]
+  checks for valid content-type [✔]
+  checks for valid JSON parse [✔]
+
+Finished in 0.0129 seconds
+67 examples, 0 failures
+Test suite test: PASS
+Test suite logged to:
+/tmp/workdir-yesod-test/yesod-test-1.6.16/dist-newstyle/build/x86_64-linux/ghc-9.6.6/yesod-test-1.6.16/t/test/test/yesod-test-1.6.16-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

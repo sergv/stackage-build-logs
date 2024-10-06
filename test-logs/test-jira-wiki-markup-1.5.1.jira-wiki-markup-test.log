@@ -1,0 +1,284 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - jira-wiki-markup-1.5.1 (test:jira-wiki-markup-test) (ephemeral targets)
+Preprocessing test suite 'jira-wiki-markup-test' for jira-wiki-markup-1.5.1...
+Building test suite 'jira-wiki-markup-test' for jira-wiki-markup-1.5.1...
+Running 1 test suites...
+Test suite jira-wiki-markup-test: RUNNING...
+jira-wiki-markup
+  Parser
+    Inline
+      components
+        str
+          simple word:                                          OK
+          non-special symbols:                                  OK
+          umlauts:                                              OK
+          mix of alphanums and non-special chars:               OK
+          space fails:                                          OK
+        specialChar
+          plain special char:                                   OK
+          escaped symbol:                                       OK
+        dash
+          en dash:                                              OK
+          em dash:                                              OK
+        emoji
+          smiling face:                                         OK
+          winking face:                                         OK
+          checkmark:                                            OK
+          red x:                                                OK
+          thumbs up:                                            OK
+          green star:                                           OK
+          may not be followed by a letter:                      OK
+        whitespace
+          space:                                                OK
+          tab:                                                  OK
+          nonbreaking space fails:                              OK
+          zero width space fails:                               OK
+          newline fails:                                        OK
+        entity
+          named entity:                                         OK
+          numerical entity:                                     OK
+          invalid entity:                                       OK
+          space:                                                OK
+          symbol:                                               OK
+          number without hash:                                  OK
+          no name:                                              OK
+        styled
+          deleted:                                              OK
+          symbol before closing char:                           OK
+          emphasis
+            single word:                                        OK
+            multi word:                                         OK
+            forced markup:                                      OK
+            symbol before opening underscore:                   OK
+            neither symbol nor space before opening underscore: OK
+            disallow space after opening underscore:            OK
+            require word boundary after closing underscore:     OK
+            disallow newline in markup:                         OK
+            zero with space as word boundary:                   OK
+          inserted:                                             OK
+          strong:                                               OK
+          subscript:                                            OK
+          superscript:                                          OK
+        monospaced:                                             OK
+        linebreak
+          linebreak before text:                                OK
+          double-backslash linebreak:                           OK
+          linebreak at eof fails:                               OK
+          linebreak before blank line fails:                    OK
+          linebreak before list fails:                          OK
+          linebreak before header fails:                        OK
+          three backslashes do not cause a linebreak:           OK
+        anchor:                                                 OK
+        autolink
+          hypertext link:                                       OK
+          link followed by text:                                OK
+          email:                                                OK
+          braces cannot be in bare links:                       OK
+          file URIs are not autolinks:                          OK
+        citation
+          name:                                                 OK
+          with markup:                                          OK
+        link
+          unaliased link:                                       OK
+          aliased link:                                         OK
+          alias with emphasis:                                  OK
+          alias with URL:                                       OK
+          link to anchor:                                       OK
+          mail address:                                         OK
+          attachment link
+            simple attachment:                                  OK
+            attachment without description:                     OK
+            filename with space and unicode:                    OK
+          smart links
+            smart link:                                         OK
+            smart card:                                         OK
+          user link:                                            OK
+          user without description:                             OK
+        image
+          local file:                                           OK
+          no newlines:                                          OK
+          thumbnail:                                            OK
+          parameters:                                           OK
+          quoted parameter:                                     OK
+          first character cannot be a space:                    OK
+        color
+          colored word:                                         OK
+          hex color:                                            OK
+          hex color without hash:                               OK
+      inline parser
+        simple sentence:                                        OK
+        with entity:                                            OK
+        autolink followed by pipe:                              OK
+        autolink followed by pipe:                              OK
+        backslash-escaped char:                                 OK
+        icon after word:                                        OK
+        smiley after word:                                      OK
+        escaped smiley after word:                              OK
+        smiley between words:                                   OK
+        smiley within word:                                     OK
+        backslash is literal if it's not necessary:             OK
+        dash with spaces:                                       OK
+        forced markup:                                          OK
+        color in sentence:                                      OK
+        hypen between numbers:                                  OK
+        ascii arrows:                                           OK
+        long ascii arrow:                                       OK
+    Blocks
+      components
+        para
+          two lines:                                            OK
+          ended by newline:                                     OK
+          ended by eof:                                         OK
+          ended by spaces and newline:                          OK
+          ended by blank line:                                  OK
+          deleted text after linebreak:                         OK
+        header
+          Level 1:                                              OK
+          many spaces before title:                             OK
+          no space after dot:                                   OK
+          empty header:                                         OK
+          Level 6:                                              OK
+          Level 7 fails:                                        OK
+          Level 0 fails:                                        OK
+          leading spaces are disallowed:                        OK
+        horizontalRule
+          single ruler:                                         OK
+        list
+          single item list:                                     OK
+          simple list:                                          OK
+          list followed by different list:                      OK
+          nested lists:                                         OK
+          deeply nested list:                                   OK
+          markers can vary:                                     OK
+          single nested list after paragraph:                   OK
+          multiple nested lists after paragraph:                OK
+          item after nested list:                               OK
+          nested lists:                                         OK
+          indentation is ignored:                               OK
+        Table
+          single cell:                                          OK
+          header cell:                                          OK
+          2x2 table:                                            OK
+          row headeres:                                         OK
+          list in table:                                        OK
+          multiple line cells:                                  OK
+          multiple lists in cell:                               OK
+          empty cell in row:                                    OK
+        code
+          no language:                                          OK
+          with language:                                        OK
+          with parameters:                                      OK
+          with language and parameter:                          OK
+        noformat
+          no parameters:                                        OK
+          with parameters:                                      OK
+          without newline:                                      OK
+        panel
+          two-line paragraph:                                   OK
+          list:                                                 OK
+          with parameters:                                      OK
+        color
+          single paragraph:                                     OK
+          paragraph preceeded by newline:                       OK
+        blockQuote
+          single line right before eof:                         OK
+          single line blockquote:                               OK
+          single line w\o leading space:                        OK
+          multiline block quote:                                OK
+          multi-paragraph block quote:                          OK
+          condensed block quote:                                OK
+      block combinations
+        single paragraph:                                       OK
+        para before header:                                     OK
+        para after header:                                      OK
+        para before horizontal rule:                            OK
+        para after horizontal rule:                             OK
+        para before blockquote:                                 OK
+        para after blockquote:                                  OK
+        para after list:                                        OK
+        successive lists of same type:                          OK
+        para before table:                                      OK
+        para after table:                                       OK
+        para after blankline terminated table:                  OK
+        para before code:                                       OK
+        para after code:                                        OK
+        para before noformat:                                   OK
+        para after noformat:                                    OK
+    doc
+      empty document:                                           OK
+      simple document:                                          OK
+      leading blank lines:                                      OK
+    plainText
+      word:                                                     OK
+      words:                                                    OK
+      smiley:                                                   OK
+      smiley and text:                                          OK
+      icon after word:                                          OK
+      icon-sequence at start of word:                           OK
+      icon-sequence followed by digit:                          OK
+      special chars:                                            OK
+  Printer
+    doc
+      empty document:                                           OK
+    blocks
+      simple paragraph:                                         OK
+      two paragraphs:                                           OK
+      header
+        simple:                                                 OK
+        header:                                                 OK
+      horizontal rule:                                          OK
+      color:                                                    OK
+      list
+        simple list:                                            OK
+        nested list:                                            OK
+      table:                                                    OK
+      para after table:                                         OK
+      para after list:                                          OK
+      block quote
+        single-line block quote:                                OK
+        multi-line block quote:                                 OK
+        multi-paragraph block quote:                            OK
+      panel
+        simple panel:                                           OK
+        panel with title:                                       OK
+    isolated inline
+      SpecialChar:                                              OK
+      AutoLink:                                                 OK
+      citation:                                                 OK
+      Emoji:                                                    OK
+      thumbnail:                                                OK
+      image attributes:                                         OK
+      link
+        external link:                                          OK
+        email link:                                             OK
+        attachment:                                             OK
+        attachment without description:                         OK
+        attachment with space and Unicode:                      OK
+        user:                                                   OK
+        smart link:                                             OK
+        smart card:                                             OK
+      Styled Emphasis:                                          OK
+      Styled Strong:                                            OK
+      Colored inlines:                                          OK
+    combined inlines
+      opening brace between words:                              OK
+      other special char between words:                         OK
+      special char before word:                                 OK
+      markup within word:                                       OK
+      markup followed by punctuation:                           OK
+      colon as last character:                                  OK
+      semicolon is escaped before close paren:                  OK
+      colon is not escaped before space:                        OK
+      colon is not escaped before non-emoji word:               OK
+      closing brace between spaces:                             OK
+      colon not escaped before opening paren:                   OK
+      question marks
+        escaped if followed by question mark:                   OK
+        unescaped before space:                                 OK
+
+All 224 tests passed (0.00s)
+Test suite jira-wiki-markup-test: PASS
+Test suite logged to:
+/tmp/workdir-jira-wiki-markup/jira-wiki-markup-1.5.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/jira-wiki-markup-1.5.1/t/jira-wiki-markup-test/test/jira-wiki-markup-1.5.1-jira-wiki-markup-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

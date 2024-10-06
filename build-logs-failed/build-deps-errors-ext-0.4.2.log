@@ -1,0 +1,212 @@
+Resolving dependencies...
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - binary-ext-2.0.4 (lib) (requires build)
+Starting     binary-ext-2.0.4 (lib)
+Building     binary-ext-2.0.4 (lib)
+
+Failed to build binary-ext-2.0.4.
+Build log (
+/tmp/stackage-work/build-logs/ghc-9.6.6/binary-ext-2.0.4-f761107e6a0fa77065ce65d7c29bf4d7bf5d4cf7c5d86d10f9863e9c02e3f527.log
+):
+Configuring library for binary-ext-2.0.4...
+Preprocessing library for binary-ext-2.0.4...
+Building library for binary-ext-2.0.4...
+
+on the commandline: warning: [-Wdeprecated-flags]
+    -fmax-pmcheck-iterations=100000000 is deprecated: use -fmax-pmcheck-models instead
+[ 1 of 13] Compiling Control.Monad.Error.Map
+
+src/Control/Monad/Error/Map.hs:66:27: error:
+    Ambiguous occurrence ‘mapError’
+    It could refer to
+       either ‘Control.Monad.Error.Class.mapError’,
+              imported from ‘Control.Monad.Error.Class’ at src/Control/Monad/Error/Map.hs:51:1-32
+           or ‘Control.Monad.Error.Map.mapError’,
+              defined at src/Control/Monad/Error/Map.hs:59:3
+   |
+66 |   mapError f = ExceptT . (mapError f <$>) . runExceptT
+   |                           ^^^^^^^^
+
+src/Control/Monad/Error/Map.hs:70:27: error:
+    Ambiguous occurrence ‘mapError’
+    It could refer to
+       either ‘Control.Monad.Error.Class.mapError’,
+              imported from ‘Control.Monad.Error.Class’ at src/Control/Monad/Error/Map.hs:51:1-32
+           or ‘Control.Monad.Error.Map.mapError’,
+              defined at src/Control/Monad/Error/Map.hs:59:3
+   |
+70 |   mapError f = transPipe (mapError f)
+   |                           ^^^^^^^^
+
+src/Control/Monad/Error/Map.hs:80:3: error:
+    Ambiguous occurrence ‘mapError’
+    It could refer to
+       either ‘Control.Monad.Error.Class.mapError’,
+              imported from ‘Control.Monad.Error.Class’ at src/Control/Monad/Error/Map.hs:51:1-32
+           or ‘Control.Monad.Error.Map.mapError’,
+              defined at src/Control/Monad/Error/Map.hs:59:3
+   |
+80 |   mapError (either (error "?=>>") id)
+   |   ^^^^^^^^
+
+src/Control/Monad/Error/Map.hs:81:17: error:
+    Ambiguous occurrence ‘mapError’
+    It could refer to
+       either ‘Control.Monad.Error.Class.mapError’,
+              imported from ‘Control.Monad.Error.Class’ at src/Control/Monad/Error/Map.hs:51:1-32
+           or ‘Control.Monad.Error.Map.mapError’,
+              defined at src/Control/Monad/Error/Map.hs:59:3
+   |
+81 |   $ catchError (mapError Left action)
+   |                 ^^^^^^^^
+
+src/Control/Monad/Error/Map.hs:82:34: error:
+    Ambiguous occurrence ‘mapError’
+    It could refer to
+       either ‘Control.Monad.Error.Class.mapError’,
+              imported from ‘Control.Monad.Error.Class’ at src/Control/Monad/Error/Map.hs:51:1-32
+           or ‘Control.Monad.Error.Map.mapError’,
+              defined at src/Control/Monad/Error/Map.hs:59:3
+   |
+82 |   $ ((throwError . Right) =<<) . mapError absurd . mapper . either id (error "?=>>")
+   |                                  ^^^^^^^^
+
+src/Control/Monad/Error/Map.hs:92:3: error:
+    Ambiguous occurrence ‘mapError’
+    It could refer to
+       either ‘Control.Monad.Error.Class.mapError’,
+              imported from ‘Control.Monad.Error.Class’ at src/Control/Monad/Error/Map.hs:51:1-32
+           or ‘Control.Monad.Error.Map.mapError’,
+              defined at src/Control/Monad/Error/Map.hs:59:3
+   |
+92 |   mapError (fromMaybe (error "?>>"))
+   |   ^^^^^^^^
+
+src/Control/Monad/Error/Map.hs:93:17: error:
+    Ambiguous occurrence ‘mapError’
+    It could refer to
+       either ‘Control.Monad.Error.Class.mapError’,
+              imported from ‘Control.Monad.Error.Class’ at src/Control/Monad/Error/Map.hs:51:1-32
+           or ‘Control.Monad.Error.Map.mapError’,
+              defined at src/Control/Monad/Error/Map.hs:59:3
+   |
+93 |   $ catchError (mapError (const Nothing) action)
+   |                 ^^^^^^^^
+
+src/Control/Monad/Error/Map.hs:94:37: error:
+    Ambiguous occurrence ‘mapError’
+    It could refer to
+       either ‘Control.Monad.Error.Class.mapError’,
+              imported from ‘Control.Monad.Error.Class’ at src/Control/Monad/Error/Map.hs:51:1-32
+           or ‘Control.Monad.Error.Map.mapError’,
+              defined at src/Control/Monad/Error/Map.hs:59:3
+   |
+94 |   $ const $ (throwError . Just) =<< mapError absurd mapper
+   |                                     ^^^^^^^^
+
+src/Control/Monad/Error/Map.hs:102:15: error:
+    Ambiguous occurrence ‘mapError’
+    It could refer to
+       either ‘Control.Monad.Error.Class.mapError’,
+              imported from ‘Control.Monad.Error.Class’ at src/Control/Monad/Error/Map.hs:51:1-32
+           or ‘Control.Monad.Error.Map.mapError’,
+              defined at src/Control/Monad/Error/Map.hs:59:3
+    |
+102 | option'' !x = mapError (error "Control.Monad.Error.Map.option''") $ mapError (const ()) (Just <$> x) `mplus` return Nothing
+    |               ^^^^^^^^
+
+src/Control/Monad/Error/Map.hs:102:69: error:
+    Ambiguous occurrence ‘mapError’
+    It could refer to
+       either ‘Control.Monad.Error.Class.mapError’,
+              imported from ‘Control.Monad.Error.Class’ at src/Control/Monad/Error/Map.hs:51:1-32
+           or ‘Control.Monad.Error.Map.mapError’,
+              defined at src/Control/Monad/Error/Map.hs:59:3
+    |
+102 | option'' !x = mapError (error "Control.Monad.Error.Map.option''") $ mapError (const ()) (Just <$> x) `mplus` return Nothing
+    |                                                                     ^^^^^^^^
+
+src/Control/Monad/Error/Map.hs:160:21: error:
+    Ambiguous occurrence ‘mapError’
+    It could refer to
+       either ‘Control.Monad.Error.Class.mapError’,
+              imported from ‘Control.Monad.Error.Class’ at src/Control/Monad/Error/Map.hs:51:1-32
+           or ‘Control.Monad.Error.Map.mapError’,
+              defined at src/Control/Monad/Error/Map.hs:59:3
+    |
+160 |       !t <- many'' (mapError (const ()) sep >> mapError (const ()) x)
+    |                     ^^^^^^^^
+
+src/Control/Monad/Error/Map.hs:160:48: error:
+    Ambiguous occurrence ‘mapError’
+    It could refer to
+       either ‘Control.Monad.Error.Class.mapError’,
+              imported from ‘Control.Monad.Error.Class’ at src/Control/Monad/Error/Map.hs:51:1-32
+           or ‘Control.Monad.Error.Map.mapError’,
+              defined at src/Control/Monad/Error/Map.hs:59:3
+    |
+160 |       !t <- many'' (mapError (const ()) sep >> mapError (const ()) x)
+    |                                                ^^^^^^^^
+
+src/Control/Monad/Error/Map.hs:173:17: error:
+    Ambiguous occurrence ‘mapError’
+    It could refer to
+       either ‘Control.Monad.Error.Class.mapError’,
+              imported from ‘Control.Monad.Error.Class’ at src/Control/Monad/Error/Map.hs:51:1-32
+           or ‘Control.Monad.Error.Map.mapError’,
+              defined at src/Control/Monad/Error/Map.hs:59:3
+    |
+173 |   !t <- many'' (mapError (const ()) sep >> mapError (const ()) x)
+    |                 ^^^^^^^^
+
+src/Control/Monad/Error/Map.hs:173:44: error:
+    Ambiguous occurrence ‘mapError’
+    It could refer to
+       either ‘Control.Monad.Error.Class.mapError’,
+              imported from ‘Control.Monad.Error.Class’ at src/Control/Monad/Error/Map.hs:51:1-32
+           or ‘Control.Monad.Error.Map.mapError’,
+              defined at src/Control/Monad/Error/Map.hs:59:3
+    |
+173 |   !t <- many'' (mapError (const ()) sep >> mapError (const ()) x)
+    |                                            ^^^^^^^^
+[ 4 of 13] Compiling Data.Conduit.Parsers.PutS
+
+src/Data/Conduit/Parsers/PutS.hs:41:27: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+41 |   type EncodingToken s :: *
+   |                           ^
+
+src/Data/Conduit/Parsers/PutS.hs:89:44: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+89 | instance (EncodingState s, EncodingToken s ~ (), Monad m) => IsString (PutM s i S.Text m ()) where
+   |                                            ^
+[ 5 of 13] Compiling Data.Conduit.Parsers.Binary
+[10 of 13] Compiling Data.Conduit.Parsers.Text.Gen
+
+src/Data/Conduit/Parsers/Text/Gen.hs:42:41: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+42 | class (EncodingState s, EncodingToken s ~ ()) => DefaultTextGenState s where
+   |                                         ^
+
+src/Data/Conduit/Parsers/Text/Gen.hs:44:44: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+44 | instance (EncodingState s, EncodingToken s ~ ()) => DefaultTextGenState s where
+   |                                            ^
+[13 of 13] Compiling Paths_binary_ext
+Error: [Cabal-7125]
+Failed to build binary-ext-2.0.4. See the build log above for details.
+

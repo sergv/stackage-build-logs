@@ -1,0 +1,37 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - quickcheck-higherorder-0.1.0.1 (test:qcho-test) (ephemeral targets)
+Preprocessing test suite 'qcho-test' for quickcheck-higherorder-0.1.0.1...
+Building test suite 'qcho-test' for quickcheck-higherorder-0.1.0.1...
+Running 1 test suites...
+Test suite qcho-test: RUNNING...
+tests
+  Function
+    qc
+      trivial-Int:    OK
+        +++ OK, passed 100 tests.
+      trivial-Bool:   OK
+        +++ OK, passed 100 tests.
+      trivial-Either: OK
+        +++ OK, passed 100 tests.
+      bad-Int:        OK
+        +++ OK, failed as expected. Falsified (after 2 tests and 44 shrinks):
+        \a0 -> case a0 1 :: Int of { 0 -> 1 ; _ -> 0 }
+        \a0 -> 0
+        0 /= 1
+      bad-Bool:       OK
+        +++ OK, failed as expected. Falsified (after 3 tests and 15 shrinks):
+        \a0 -> case a0 True :: Bool of { True -> True ; _ -> False }
+        \a0 -> False
+        True /= False
+      bad-Either:     OK
+        +++ OK, failed as expected. Falsified (after 13 tests and 5 shrinks):
+        \a0 -> case a0 (Right ()) :: Either _ _ of { Right a2 -> Right () ; _ -> Left () }
+        \a0 -> Left ()
+        Right () /= Left ()
+
+All 6 tests passed (0.00s)
+Test suite qcho-test: PASS
+Test suite logged to:
+/tmp/workdir-quickcheck-higherorder/quickcheck-higherorder-0.1.0.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/quickcheck-higherorder-0.1.0.1/t/qcho-test/test/quickcheck-higherorder-0.1.0.1-qcho-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

@@ -1,0 +1,96 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - lsp-2.3.0.0 (lib) (first run)
+ - lsp-2.3.0.0 (test:lsp-test) (first run)
+Configuring library for lsp-2.3.0.0...
+Preprocessing library for lsp-2.3.0.0...
+Building library for lsp-2.3.0.0...
+
+src/Language/LSP/VFS.hs:12:14: warning: [-Wdeprecated-flags]
+    -XTypeInType is deprecated: use -XDataKinds and -XPolyKinds instead
+   |
+12 | {-# LANGUAGE TypeInType #-}
+   |              ^^^^^^^^^^
+
+src/Language/LSP/Server/Core.hs:15:14: warning: [-Wdeprecated-flags]
+    -XTypeInType is deprecated: use -XDataKinds and -XPolyKinds instead
+   |
+15 | {-# LANGUAGE TypeInType #-}
+   |              ^^^^^^^^^^
+
+src/Language/LSP/Server/Processing.hs:13:14: warning: [-Wdeprecated-flags]
+    -XTypeInType is deprecated: use -XDataKinds and -XPolyKinds instead
+   |
+13 | {-# LANGUAGE TypeInType #-}
+   |              ^^^^^^^^^^
+[1 of 7] Compiling Language.LSP.Diagnostics
+[2 of 7] Compiling Language.LSP.VFS
+[3 of 7] Compiling Language.LSP.Server.Core
+[4 of 7] Compiling Language.LSP.Server.Processing
+
+src/Language/LSP/Server/Processing.hs:99:22: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+99 | processMessage :: (m ~ LspM config) => LogAction m (WithSeverity LspProcessingLog) -> BSL.ByteString -> m ()
+   |                      ^
+
+src/Language/LSP/Server/Processing.hs:407:14: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+407 | handle :: (m ~ LspM config) => LogAction m (WithSeverity LspProcessingLog) -> SClientMethod meth -> TClientMessage meth -> m ()
+    |              ^
+
+src/Language/LSP/Server/Processing.hs:422:6: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+422 |   (m ~ LspM config) =>
+    |      ^
+
+src/Language/LSP/Server/Processing.hs:497:29: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+497 | progressCancelHandler :: (m ~ LspM config) => LogAction m (WithSeverity LspProcessingLog) -> TMessage Method_WindowWorkDoneProgressCancel -> m ()
+    |                             ^
+
+src/Language/LSP/Server/Processing.hs:526:36: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+526 | handleDidChangeConfiguration :: (m ~ LspM config) => LogAction m (WithSeverity LspProcessingLog) -> TMessage Method_WorkspaceDidChangeConfiguration -> m ()
+    |                                    ^
+
+src/Language/LSP/Server/Processing.hs:543:6: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+543 |   (m ~ LspM config, n ~ WriterT [WithSeverity VfsLog] (State VFS)) =>
+    |      ^
+
+src/Language/LSP/Server/Processing.hs:543:23: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+543 |   (m ~ LspM config, n ~ WriterT [WithSeverity VfsLog] (State VFS)) =>
+    |                       ^
+[5 of 7] Compiling Language.LSP.Logging
+[6 of 7] Compiling Language.LSP.Server.Control
+[7 of 7] Compiling Language.LSP.Server
+Configuring test suite 'lsp-test' for lsp-2.3.0.0...
+Preprocessing test suite 'lsp-test' for lsp-2.3.0.0...
+Building test suite 'lsp-test' for lsp-2.3.0.0...
+[1 of 4] Compiling DiagnosticsSpec
+[2 of 4] Compiling VspSpec
+[3 of 4] Compiling Spec
+[4 of 4] Compiling Main
+[5 of 5] Linking /tmp/workdir-lsp/lsp-2.3.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/lsp-2.3.0.0/t/lsp-test/build/lsp-test/lsp-test

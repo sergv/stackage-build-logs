@@ -1,0 +1,124 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - trie-simple-0.4.2 (test:trie-simple-test) (ephemeral targets)
+Preprocessing test suite 'trie-simple-test' for trie-simple-0.4.2...
+Building test suite 'trie-simple-test' for trie-simple-0.4.2...
+Running 1 test suites...
+Test suite trie-simple-test: RUNNING...
+
+Data.Trie.Map
+  toList empty = [] [✔]
+  toList (just a) = [([], a)] [✔]
+    +++ OK, passed 100 tests.
+  toList (singleton k a) = [(k,a)] [✔]
+    +++ OK, passed 100 tests.
+  toAscList . fromList = Map.toAscList . Map.fromList [✔]
+    +++ OK, passed 100 tests.
+  toAscList . fromListWith op = Map.toAscList . Map.fromListWith op [✔]
+    +++ OK, passed 100 tests.
+  fromAscList . sortBy (comparing fst) = fromList [✔]
+    +++ OK, passed 100 tests.
+  fromAscListWith op . sortBy (comparing fst) = fromListWith op [✔]
+    +++ OK, passed 100 tests.
+  fromMap . Map.fromList = fromList [✔]
+    +++ OK, passed 100 tests.
+  null . toList = null [✔]
+    +++ OK, passed 100 tests.
+  length . toList = count [✔]
+    +++ OK, passed 100 tests.
+  keys = map fst . toList [✔]
+    +++ OK, passed 100 tests.
+  elems = map snd . toList [✔]
+    +++ OK, passed 100 tests.
+  keysTSet = TSet.fromAscList . keys [✔]
+    +++ OK, passed 100 tests.
+  fromTSet id = fromAscList . map (\k -> (k,k)) . TSet.toAscList [✔]
+    +++ OK, passed 100 tests.
+  member k t = (k `Map.member` toMap t) [✔]
+    +++ OK, passed 100 tests.
+  lookup k t = (k `Map.lookup` toMap t) [✔]
+    +++ OK, passed 100 tests.
+  lookup (k ++ l) t == lookup l (snd (match k t)) [✔]
+    +++ OK, passed 100 tests.
+  toMap (insert k 1 a) = Map.insert k 1 (toMap a) [✔]
+    +++ OK, passed 100 tests.
+  toMap (delete k a) = Map.delete k (toMap a) [✔]
+    +++ OK, passed 100 tests.
+  toMap (insertWith op k v a) = Map.insertWith op k v (toMap a) [✔]
+    +++ OK, passed 100 tests.
+  toMap (deleteWith sub k v a) = Map.update (sub v) k (toMap a) [✔]
+    +++ OK, passed 100 tests.
+  toMap (adjust (*2) k a) = Map.adjust (*2) k (toMap a) [✔]
+    +++ OK, passed 100 tests.
+  toMap (alter alterer k a) = Map.alter alterer k (toMap a) [✔]
+    +++ OK, passed 100 tests.
+  toMap (union a b) = Map.union (toMap a) (toMap b) [✔]
+    +++ OK, passed 100 tests.
+  toMap (unionWith f a b) = Map.unionWith f (toMap a) (toMap b) [✔]
+    +++ OK, passed 100 tests.
+  toMap (intersection a b) = Map.intersection (toMap a) (toMap b) [✔]
+    +++ OK, passed 100 tests.
+  toMap (difference a b) = Map.difference (toMap a) (toMap b) [✔]
+    +++ OK, passed 100 tests.
+  appendWith = appendWithSpec [✔]
+    +++ OK, passed 100 tests.
+  validTMap (union a b) [✔]
+    +++ OK, passed 100 tests.
+  validTMap (intersection a b) [✔]
+    +++ OK, passed 100 tests.
+  validTMap (difference a b) [✔]
+    +++ OK, passed 100 tests.
+  validTMap (append a b) [✔]
+    +++ OK, passed 100 tests.
+Data.Trie.Set
+  enumerate empty = [] [✔]
+  enumerate epsilon = [[]] [✔]
+  enumerate . singleton = (:[]) [✔]
+    +++ OK, passed 100 tests.
+  enumerate . fromList = Set.toAscList . Set.fromList [✔]
+    +++ OK, passed 100 tests.
+  null . enumerate = null [✔]
+    +++ OK, passed 100 tests.
+  length . enumerate = count [✔]
+    +++ OK, passed 100 tests.
+  toSet (insert xs a) = Set.insert xs (toSet a) [✔]
+    +++ OK, passed 100 tests.
+  toSet (delete xs a) = Set.delete xs (toSet a) [✔]
+    +++ OK, passed 100 tests.
+  member t = (`Set.member` toSet t) [✔]
+    +++ OK, passed 100 tests.
+  forAll (str `in` enumerate t). member str t [✔]
+    +++ OK, passed 100 tests.
+  member (xs ++ ys) t = member ys (beginWith t xs) [✔]
+    +++ OK, passed 100 tests.
+  toSet (union a b) = Set.union (toSet a) (toSet b) [✔]
+    +++ OK, passed 100 tests.
+  toSet (intersection a b) = Set.intersection (toSet a) (toSet b) [✔]
+    +++ OK, passed 100 tests.
+  toSet (difference a b) = Set.difference (toSet a) (toSet b) [✔]
+    +++ OK, passed 100 tests.
+  toSet (append a b) = setAppend (toSet a) (toSet b) [✔]
+    +++ OK, passed 100 tests.
+  validTSet (union a b) [✔]
+    +++ OK, passed 100 tests.
+  validTSet (intersection a b) [✔]
+    +++ OK, passed 100 tests.
+  validTSet (difference a b) [✔]
+    +++ OK, passed 100 tests.
+  validTSet (append a b) [✔]
+    +++ OK, passed 100 tests.
+  toSet (prefixes a) = setPrefixes (toSet a) [✔]
+    +++ OK, passed 100 tests.
+  toSet (suffixes a) = setSuffixes (toSet a) [✔]
+    +++ OK, passed 100 tests.
+  fromAscList . sort = fromList [✔]
+    +++ OK, passed 100 tests.
+  fromSet . Set.fromList = fromList [✔]
+    +++ OK, passed 100 tests.
+
+Finished in 5.6612 seconds
+55 examples, 0 failures
+Test suite trie-simple-test: PASS
+Test suite logged to:
+/tmp/workdir-trie-simple/trie-simple-0.4.2/dist-newstyle/build/x86_64-linux/ghc-9.6.6/trie-simple-0.4.2/t/trie-simple-test/test/trie-simple-0.4.2-trie-simple-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

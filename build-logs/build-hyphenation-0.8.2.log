@@ -1,0 +1,37 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - hyphenation-0.8.2 (lib) (first run)
+Configuring library for hyphenation-0.8.2...
+Preprocessing library for hyphenation-0.8.2...
+Building library for hyphenation-0.8.2...
+[1 of 7] Compiling Paths_hyphenation
+[2 of 7] Compiling Text.Hyphenation.ByteStringLazyCompat
+[3 of 7] Compiling Text.Hyphenation.Exception
+[4 of 7] Compiling Text.Hyphenation.Pattern
+[5 of 7] Compiling Text.Hyphenation.Hyphenator
+[6 of 7] Compiling Text.Hyphenation.Language
+
+src/Text/Hyphenation/Language.hs:88:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe String’ not matched: Nothing
+   |
+88 |         Just hyp = unzipUtf8 . Lazy.fromStrict <$> lookup ("hyph-" ++ affix ++ ".hyp.txt.gz") hyphenatorFiles
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Text/Hyphenation/Language.hs:89:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe String’ not matched: Nothing
+   |
+89 |         Just pat = unzipUtf8 . Lazy.fromStrict <$> lookup ("hyph-" ++ affix ++ ".pat.txt.gz") hyphenatorFiles
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Text/Hyphenation/Language.hs:90:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe String’ not matched: Nothing
+   |
+90 |         Just chr = unzipUtf8 . Lazy.fromStrict <$> lookup ("hyph-" ++ affix ++ ".chr.txt.gz") hyphenatorFiles
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[7 of 7] Compiling Text.Hyphenation

@@ -1,0 +1,185 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - zip-2.0.1 (test:tests) (ephemeral targets)
+Preprocessing test suite 'tests' for zip-2.0.1...
+Building test suite 'tests' for zip-2.0.1...
+Running 1 test suites...
+Test suite tests: RUNNING...
+
+mkEntrySelector
+  when absolute paths are passed
+    they are rejected [✔]
+      +++ OK, passed 100 tests.
+  when paths with trailing path separator are passed
+    they are rejected [✔]
+  when paths with dot as path segment are passed
+    they are rejected [✔]
+  when paths with double dot as path segment are passed
+    they are rejected [✔]
+  when too long paths are passed
+    rejects them [✔]
+  when correct paths are passed
+    adequately represents them [✔]
+unEntrySelector
+  when entry selector exists
+    has corresponding path [✔]
+      +++ OK, passed 100 tests.
+getEntryName
+  when entry selector exists
+    has corresponding representation [✔]
+      +++ OK, passed 100 tests.
+decodeCP437
+  when ASCII-compatible subset is used
+    has the same result as decoding UTF-8 [✔]
+      +++ OK, passed 100 tests.
+  when non-ASCII subset is used
+    is decoded correctly [✔]
+fromFileMode
+  UNIX helpers
+    toFileMode . fromFileMode == id .&. 0x0fffff [✔]
+      +++ OK, passed 100 tests.
+    toFileMode == toFileMode . fromFileMode . toFileMode [✔]
+      +++ OK, passed 100 tests.
+createArchive
+  when called with non-existent path and empty recipe
+    creates correct representation of empty archive [✔]
+  when called with an occupied path
+    overwrites it [✔]
+withArchive
+  when called with non-existent path
+    throws 'isDoesNotExistError' exception [✔]
+  when called with occupied path (empty file)
+    throws 'ParsingFailed' exception [✔]
+  when called with occupied path (empty archive)
+    does not overwrite the file unnecessarily [✔]
+archive comment
+  when new archive is created
+    returns no archive comment [✔]
+  when comment contains end of central directory signature
+    reads it without problems [✔]
+  when comment is committed (delete/set)
+    reads it and updates [✔]
+      +++ OK, passed 100 tests.
+  when comment is committed (set/delete)
+    reads it and updates [✔]
+      +++ OK, passed 100 tests.
+  when pre-existing comment is overwritten
+    returns the new comment [✔]
+      +++ OK, passed 100 tests.
+  when pre-existing comment is deleted
+    actually deletes it [✔]
+      +++ OK, passed 100 tests.
+getEntryDesc
+  always returns correct description [✔]
+    +++ OK, passed 100 tests.
+version needed
+  writes correct version that is needed to extract archive [✔]
+    +++ OK, passed 100 tests.
+addEntry
+  when an entry is added
+    is there [✔]
+      +++ OK, passed 100 tests.
+sinkEntry
+  when an entry is sunk
+    is there [✔]
+      +++ OK, passed 100 tests.
+loadEntry
+  when an entry is loaded
+    is there [✔]
+      +++ OK, passed 100 tests.
+copyEntry
+  when entry is copied form another archive
+    is there [✔]
+      +++ OK, passed 100 tests.
+checkEntry
+  when entry is intact
+    passes the check [✔]
+      +++ OK, passed 100 tests.
+  when entry is corrupted
+    does not pass the check [✔]
+      +++ OK, passed 100 tests; 13 discarded.
+recompress
+  when recompression is used
+    gets recompressed [✔]
+      +++ OK, passed 100 tests.
+entry comment
+  when comment is committed (delete/set)
+    reads it and updates [✔]
+      +++ OK, passed 100 tests.
+  when comment is committed (set/delete)
+    reads it and updates [✔]
+      +++ OK, passed 100 tests.
+  when pre-existing comment is overwritten
+    returns the new comment [✔]
+      +++ OK, passed 100 tests.
+  when pre-existing comment is deleted
+    actually deletes it [✔]
+      +++ OK, passed 100 tests.
+setModTime
+  when mod time is set (after creation)
+    reads it and updates [✔]
+      +++ OK, passed 100 tests.
+  when mod time is set (before creation)
+    has no effect [✔]
+      +++ OK, passed 100 tests.
+extra field
+  when extra field is committed (delete/set)
+    reads it and updates [✔]
+      +++ OK, passed 100 tests; 4 discarded.
+  when extra field is committed (set/delete)
+    reads it and updates [✔]
+      +++ OK, passed 100 tests; 4 discarded.
+  when pre-existing extra field is overwritten
+    reads it and updates [✔]
+      +++ OK, passed 100 tests; 3 discarded.
+  when pre-existing extra field is deleted
+    actually deletes it [✔]
+      +++ OK, passed 100 tests; 4 discarded.
+setExternalFileAttrsSpec
+  when an external file attribute is added (after creation)
+    sets a custom external file attribute [✔]
+      +++ OK, passed 100 tests.
+renameEntry
+  when renaming after editing of new entry
+    produces correct result [✔]
+      +++ OK, passed 100 tests.
+  when renaming existing entry
+    gets renamed [✔]
+      +++ OK, passed 100 tests.
+deleteEntry
+  when deleting after editing of new entry
+    produces correct result [✔]
+      +++ OK, passed 100 tests.
+  when deleting existing entry
+    gets deleted [✔]
+      +++ OK, passed 100 tests.
+forEntries
+  affects all existing entries [✔]
+    +++ OK, passed 100 tests.
+undoEntryChanges
+  cancels all actions for specified entry [✔]
+    +++ OK, passed 100 tests.
+undoArchiveChanges
+  cancels archive comment editing [✔]
+    +++ OK, passed 100 tests.
+  cancels archive comment deletion [✔]
+    +++ OK, passed 100 tests.
+undoAll
+  cancels all editing at once [✔]
+    +++ OK, passed 100 tests.
+consistency
+  can save and restore arbitrary archive [✔]
+    +++ OK, passed 100 tests.
+packDirRecur'
+  packs arbitrary directory recursively [✔]
+    +++ OK, passed 100 tests.
+unpackInto
+  unpacks archive contents into directory [✔]
+    +++ OK, passed 100 tests.
+
+Finished in 1.9927 seconds
+55 examples, 0 failures
+Test suite tests: PASS
+Test suite logged to:
+/tmp/workdir-zip/zip-2.0.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/zip-2.0.1/t/tests/test/zip-2.0.1-tests.log
+1 of 1 test suites (1 of 1 test cases) passed.

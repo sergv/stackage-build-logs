@@ -1,0 +1,141 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - pretty-relative-time-0.3.0.0 (test:pretty-relative-time-test) (ephemeral targets)
+Preprocessing test suite 'pretty-relative-time-test' for pretty-relative-time-0.3.0.0...
+Building test suite 'pretty-relative-time-test' for pretty-relative-time-0.3.0.0...
+Running 1 test suites...
+Test suite pretty-relative-time-test: RUNNING...
+
+Text.Time.Pretty
+  Eq DaysAgo
+    (==) :: DaysAgo -> DaysAgo -> Bool
+      is reflexive for "valid DaysAgo"s [✔]
+        +++ OK, passed 100 tests.
+      is symmetric for "valid DaysAgo"s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "valid DaysAgo"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a /= b) for "valid DaysAgo"s [✔]
+        +++ OK, passed 100 tests.
+    (/=) :: DaysAgo -> DaysAgo -> Bool
+      is antireflexive for "valid DaysAgo"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a == b) for "valid DaysAgo"s [✔]
+        +++ OK, passed 100 tests.
+  GenValid DaysAgo
+    genValid   :: Gen DaysAgo
+      only generates valid 'DaysAgo's [✔]
+        +++ OK, passed 100 tests.
+  daysAgo
+    produces valid TimeAgos [✔]
+      +++ OK, passed 100 tests.
+    is the inverse of daysAgoToDays [✔]
+      +++ OK, passed 100 tests.
+  daysAgoToDays
+    produces valid results [✔]
+      +++ OK, passed 100 tests.
+    is the inverse of daysAgo for just days [✔]
+      +++ OK, passed 100 tests.
+    is the inverse of daysAgo [✔]
+      +++ OK, passed 100 tests.
+  renderDaysAgoAuto
+    produces valid Strings [✔]
+      +++ OK, passed 100 tests.
+    renders these simple examples well
+      Renders DaysAgo {daysAgoSign = GT, daysAgoYears = 5, daysAgoMonths = 0, daysAgoWeeks = 0, daysAgoDays = 0} as "5 years ago" [✔]
+      Renders DaysAgo {daysAgoSign = GT, daysAgoYears = 0, daysAgoMonths = 4, daysAgoWeeks = 0, daysAgoDays = 0} as "4 months ago" [✔]
+      Renders DaysAgo {daysAgoSign = GT, daysAgoYears = 0, daysAgoMonths = 0, daysAgoWeeks = 3, daysAgoDays = 0} as "3 weeks ago" [✔]
+      Renders DaysAgo {daysAgoSign = GT, daysAgoYears = 0, daysAgoMonths = 0, daysAgoWeeks = 0, daysAgoDays = 2} as "2 days ago" [✔]
+      Renders DaysAgo {daysAgoSign = GT, daysAgoYears = 0, daysAgoMonths = 0, daysAgoWeeks = 0, daysAgoDays = 1} as "yesterday" [✔]
+      Renders DaysAgo {daysAgoSign = EQ, daysAgoYears = 0, daysAgoMonths = 0, daysAgoWeeks = 0, daysAgoDays = 0} as "today" [✔]
+      Renders DaysAgo {daysAgoSign = LT, daysAgoYears = 0, daysAgoMonths = 0, daysAgoWeeks = 0, daysAgoDays = 1} as "tomorrow" [✔]
+      Renders DaysAgo {daysAgoSign = LT, daysAgoYears = 0, daysAgoMonths = 0, daysAgoWeeks = 0, daysAgoDays = 2} as "in 2 days" [✔]
+      Renders DaysAgo {daysAgoSign = LT, daysAgoYears = 0, daysAgoMonths = 0, daysAgoWeeks = 3, daysAgoDays = 0} as "in 3 weeks" [✔]
+      Renders DaysAgo {daysAgoSign = LT, daysAgoYears = 0, daysAgoMonths = 4, daysAgoWeeks = 0, daysAgoDays = 0} as "in 4 months" [✔]
+      Renders DaysAgo {daysAgoSign = LT, daysAgoYears = 5, daysAgoMonths = 0, daysAgoWeeks = 0, daysAgoDays = 0} as "in 5 years" [✔]
+    handles singular nouns well
+      Renders DaysAgo {daysAgoSign = GT, daysAgoYears = 1, daysAgoMonths = 0, daysAgoWeeks = 0, daysAgoDays = 0} as "1 year ago" [✔]
+      Renders DaysAgo {daysAgoSign = GT, daysAgoYears = 0, daysAgoMonths = 1, daysAgoWeeks = 0, daysAgoDays = 0} as "1 month ago" [✔]
+      Renders DaysAgo {daysAgoSign = GT, daysAgoYears = 0, daysAgoMonths = 0, daysAgoWeeks = 1, daysAgoDays = 0} as "1 week ago" [✔]
+      Renders DaysAgo {daysAgoSign = GT, daysAgoYears = 0, daysAgoMonths = 0, daysAgoWeeks = 0, daysAgoDays = 1} as "yesterday" [✔]
+      Renders DaysAgo {daysAgoSign = LT, daysAgoYears = 0, daysAgoMonths = 0, daysAgoWeeks = 0, daysAgoDays = 1} as "tomorrow" [✔]
+      Renders DaysAgo {daysAgoSign = LT, daysAgoYears = 0, daysAgoMonths = 0, daysAgoWeeks = 1, daysAgoDays = 0} as "in 1 week" [✔]
+      Renders DaysAgo {daysAgoSign = LT, daysAgoYears = 0, daysAgoMonths = 1, daysAgoWeeks = 0, daysAgoDays = 0} as "in 1 month" [✔]
+      Renders DaysAgo {daysAgoSign = LT, daysAgoYears = 1, daysAgoMonths = 0, daysAgoWeeks = 0, daysAgoDays = 0} as "in 1 year" [✔]
+  Eq TimeAgo
+    (==) :: TimeAgo -> TimeAgo -> Bool
+      is reflexive for "valid TimeAgo"s [✔]
+        +++ OK, passed 100 tests.
+      is symmetric for "valid TimeAgo"s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "valid TimeAgo"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a /= b) for "valid TimeAgo"s [✔]
+        +++ OK, passed 100 tests.
+    (/=) :: TimeAgo -> TimeAgo -> Bool
+      is antireflexive for "valid TimeAgo"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a == b) for "valid TimeAgo"s [✔]
+        +++ OK, passed 100 tests.
+  GenValid TimeAgo
+    genValid   :: Gen TimeAgo
+      only generates valid 'TimeAgo's [✔]
+        +++ OK, passed 100 tests.
+  timeAgo
+    produces valid TimeAgo's [✔]
+      +++ OK, passed 100 tests.
+    is the inverse of timeAgoToDiffTime [✔]
+      +++ OK, passed 100 tests.
+  timeAgoToDiffTime
+    produces valid DiffTime's [✔]
+      +++ OK, passed 100 tests.
+    is the inverse of timeAgo for just picoseconds [✔]
+      +++ OK, passed 100 tests.
+    is the inverse of timeAgo [✔]
+      +++ OK, passed 100 tests.
+  renderTimeAgoAuto
+    produces valid Strings's [✔]
+      +++ OK, passed 100 tests.
+    renders these simple examples well
+      Renders TimeAgo {timeAgoSign = GT, timeAgoDaysAgo = DaysAgo {daysAgoSign = GT, daysAgoYears = 2, daysAgoMonths = 0, daysAgoWeeks = 0, daysAgoDays = 0}, timeAgoHours = 0, timeAgoMinutes = 0, timeAgoSeconds = 0, timeAgoPicoSeconds = 0} as "2 years ago" [✔]
+      Renders TimeAgo {timeAgoSign = GT, timeAgoDaysAgo = DaysAgo {daysAgoSign = GT, daysAgoYears = 0, daysAgoMonths = 3, daysAgoWeeks = 0, daysAgoDays = 0}, timeAgoHours = 0, timeAgoMinutes = 0, timeAgoSeconds = 0, timeAgoPicoSeconds = 0} as "3 months ago" [✔]
+      Renders TimeAgo {timeAgoSign = GT, timeAgoDaysAgo = DaysAgo {daysAgoSign = GT, daysAgoYears = 0, daysAgoMonths = 0, daysAgoWeeks = 4, daysAgoDays = 0}, timeAgoHours = 0, timeAgoMinutes = 0, timeAgoSeconds = 0, timeAgoPicoSeconds = 0} as "4 weeks ago" [✔]
+      Renders TimeAgo {timeAgoSign = GT, timeAgoDaysAgo = DaysAgo {daysAgoSign = GT, daysAgoYears = 0, daysAgoMonths = 0, daysAgoWeeks = 0, daysAgoDays = 5}, timeAgoHours = 0, timeAgoMinutes = 0, timeAgoSeconds = 0, timeAgoPicoSeconds = 0} as "5 days ago" [✔]
+      Renders TimeAgo {timeAgoSign = GT, timeAgoDaysAgo = DaysAgo {daysAgoSign = GT, daysAgoYears = 0, daysAgoMonths = 0, daysAgoWeeks = 0, daysAgoDays = 0}, timeAgoHours = 6, timeAgoMinutes = 0, timeAgoSeconds = 0, timeAgoPicoSeconds = 0} as "6 hours ago" [✔]
+      Renders TimeAgo {timeAgoSign = GT, timeAgoDaysAgo = DaysAgo {daysAgoSign = GT, daysAgoYears = 0, daysAgoMonths = 0, daysAgoWeeks = 0, daysAgoDays = 0}, timeAgoHours = 0, timeAgoMinutes = 7, timeAgoSeconds = 0, timeAgoPicoSeconds = 0} as "7 minutes ago" [✔]
+      Renders TimeAgo {timeAgoSign = GT, timeAgoDaysAgo = DaysAgo {daysAgoSign = GT, daysAgoYears = 0, daysAgoMonths = 0, daysAgoWeeks = 0, daysAgoDays = 0}, timeAgoHours = 0, timeAgoMinutes = 0, timeAgoSeconds = 8, timeAgoPicoSeconds = 0} as "8 seconds ago" [✔]
+      Renders TimeAgo {timeAgoSign = GT, timeAgoDaysAgo = DaysAgo {daysAgoSign = GT, daysAgoYears = 0, daysAgoMonths = 0, daysAgoWeeks = 0, daysAgoDays = 0}, timeAgoHours = 0, timeAgoMinutes = 0, timeAgoSeconds = 0, timeAgoPicoSeconds = 9} as "just now" [✔]
+      Renders TimeAgo {timeAgoSign = EQ, timeAgoDaysAgo = DaysAgo {daysAgoSign = EQ, daysAgoYears = 0, daysAgoMonths = 0, daysAgoWeeks = 0, daysAgoDays = 0}, timeAgoHours = 0, timeAgoMinutes = 0, timeAgoSeconds = 0, timeAgoPicoSeconds = 0} as "just now" [✔]
+      Renders TimeAgo {timeAgoSign = LT, timeAgoDaysAgo = DaysAgo {daysAgoSign = GT, daysAgoYears = 2, daysAgoMonths = 0, daysAgoWeeks = 0, daysAgoDays = 0}, timeAgoHours = 0, timeAgoMinutes = 0, timeAgoSeconds = 0, timeAgoPicoSeconds = 0} as "in 2 years" [✔]
+      Renders TimeAgo {timeAgoSign = LT, timeAgoDaysAgo = DaysAgo {daysAgoSign = GT, daysAgoYears = 0, daysAgoMonths = 3, daysAgoWeeks = 0, daysAgoDays = 0}, timeAgoHours = 0, timeAgoMinutes = 0, timeAgoSeconds = 0, timeAgoPicoSeconds = 0} as "in 3 months" [✔]
+      Renders TimeAgo {timeAgoSign = LT, timeAgoDaysAgo = DaysAgo {daysAgoSign = GT, daysAgoYears = 0, daysAgoMonths = 0, daysAgoWeeks = 4, daysAgoDays = 0}, timeAgoHours = 0, timeAgoMinutes = 0, timeAgoSeconds = 0, timeAgoPicoSeconds = 0} as "in 4 weeks" [✔]
+      Renders TimeAgo {timeAgoSign = LT, timeAgoDaysAgo = DaysAgo {daysAgoSign = GT, daysAgoYears = 0, daysAgoMonths = 0, daysAgoWeeks = 0, daysAgoDays = 5}, timeAgoHours = 0, timeAgoMinutes = 0, timeAgoSeconds = 0, timeAgoPicoSeconds = 0} as "in 5 days" [✔]
+      Renders TimeAgo {timeAgoSign = LT, timeAgoDaysAgo = DaysAgo {daysAgoSign = GT, daysAgoYears = 0, daysAgoMonths = 0, daysAgoWeeks = 0, daysAgoDays = 0}, timeAgoHours = 6, timeAgoMinutes = 0, timeAgoSeconds = 0, timeAgoPicoSeconds = 0} as "in 6 hours" [✔]
+      Renders TimeAgo {timeAgoSign = LT, timeAgoDaysAgo = DaysAgo {daysAgoSign = GT, daysAgoYears = 0, daysAgoMonths = 0, daysAgoWeeks = 0, daysAgoDays = 0}, timeAgoHours = 0, timeAgoMinutes = 7, timeAgoSeconds = 0, timeAgoPicoSeconds = 0} as "in 7 minutes" [✔]
+      Renders TimeAgo {timeAgoSign = LT, timeAgoDaysAgo = DaysAgo {daysAgoSign = GT, daysAgoYears = 0, daysAgoMonths = 0, daysAgoWeeks = 0, daysAgoDays = 0}, timeAgoHours = 0, timeAgoMinutes = 0, timeAgoSeconds = 8, timeAgoPicoSeconds = 0} as "in 8 seconds" [✔]
+      Renders TimeAgo {timeAgoSign = LT, timeAgoDaysAgo = DaysAgo {daysAgoSign = GT, daysAgoYears = 0, daysAgoMonths = 0, daysAgoWeeks = 0, daysAgoDays = 0}, timeAgoHours = 0, timeAgoMinutes = 0, timeAgoSeconds = 0, timeAgoPicoSeconds = 9} as "just now" [✔]
+    handles singular nouns well
+      Renders TimeAgo {timeAgoSign = GT, timeAgoDaysAgo = DaysAgo {daysAgoSign = GT, daysAgoYears = 1, daysAgoMonths = 0, daysAgoWeeks = 0, daysAgoDays = 0}, timeAgoHours = 0, timeAgoMinutes = 0, timeAgoSeconds = 0, timeAgoPicoSeconds = 0} as "1 year ago" [✔]
+      Renders TimeAgo {timeAgoSign = GT, timeAgoDaysAgo = DaysAgo {daysAgoSign = GT, daysAgoYears = 0, daysAgoMonths = 1, daysAgoWeeks = 0, daysAgoDays = 0}, timeAgoHours = 0, timeAgoMinutes = 0, timeAgoSeconds = 0, timeAgoPicoSeconds = 0} as "1 month ago" [✔]
+      Renders TimeAgo {timeAgoSign = GT, timeAgoDaysAgo = DaysAgo {daysAgoSign = GT, daysAgoYears = 0, daysAgoMonths = 0, daysAgoWeeks = 1, daysAgoDays = 0}, timeAgoHours = 0, timeAgoMinutes = 0, timeAgoSeconds = 0, timeAgoPicoSeconds = 0} as "1 week ago" [✔]
+      Renders TimeAgo {timeAgoSign = GT, timeAgoDaysAgo = DaysAgo {daysAgoSign = GT, daysAgoYears = 0, daysAgoMonths = 0, daysAgoWeeks = 0, daysAgoDays = 1}, timeAgoHours = 0, timeAgoMinutes = 0, timeAgoSeconds = 0, timeAgoPicoSeconds = 0} as "1 day ago" [✔]
+      Renders TimeAgo {timeAgoSign = GT, timeAgoDaysAgo = DaysAgo {daysAgoSign = GT, daysAgoYears = 0, daysAgoMonths = 0, daysAgoWeeks = 0, daysAgoDays = 0}, timeAgoHours = 1, timeAgoMinutes = 0, timeAgoSeconds = 0, timeAgoPicoSeconds = 0} as "1 hour ago" [✔]
+      Renders TimeAgo {timeAgoSign = GT, timeAgoDaysAgo = DaysAgo {daysAgoSign = GT, daysAgoYears = 0, daysAgoMonths = 0, daysAgoWeeks = 0, daysAgoDays = 0}, timeAgoHours = 0, timeAgoMinutes = 1, timeAgoSeconds = 0, timeAgoPicoSeconds = 0} as "1 minute ago" [✔]
+      Renders TimeAgo {timeAgoSign = GT, timeAgoDaysAgo = DaysAgo {daysAgoSign = GT, daysAgoYears = 0, daysAgoMonths = 0, daysAgoWeeks = 0, daysAgoDays = 0}, timeAgoHours = 0, timeAgoMinutes = 0, timeAgoSeconds = 1, timeAgoPicoSeconds = 0} as "1 second ago" [✔]
+      Renders TimeAgo {timeAgoSign = GT, timeAgoDaysAgo = DaysAgo {daysAgoSign = GT, daysAgoYears = 0, daysAgoMonths = 0, daysAgoWeeks = 0, daysAgoDays = 0}, timeAgoHours = 0, timeAgoMinutes = 0, timeAgoSeconds = 0, timeAgoPicoSeconds = 1} as "just now" [✔]
+      Renders TimeAgo {timeAgoSign = EQ, timeAgoDaysAgo = DaysAgo {daysAgoSign = EQ, daysAgoYears = 0, daysAgoMonths = 0, daysAgoWeeks = 0, daysAgoDays = 0}, timeAgoHours = 0, timeAgoMinutes = 0, timeAgoSeconds = 0, timeAgoPicoSeconds = 0} as "just now" [✔]
+      Renders TimeAgo {timeAgoSign = LT, timeAgoDaysAgo = DaysAgo {daysAgoSign = GT, daysAgoYears = 1, daysAgoMonths = 0, daysAgoWeeks = 0, daysAgoDays = 0}, timeAgoHours = 0, timeAgoMinutes = 0, timeAgoSeconds = 0, timeAgoPicoSeconds = 0} as "in 1 year" [✔]
+      Renders TimeAgo {timeAgoSign = LT, timeAgoDaysAgo = DaysAgo {daysAgoSign = GT, daysAgoYears = 0, daysAgoMonths = 1, daysAgoWeeks = 0, daysAgoDays = 0}, timeAgoHours = 0, timeAgoMinutes = 0, timeAgoSeconds = 0, timeAgoPicoSeconds = 0} as "in 1 month" [✔]
+      Renders TimeAgo {timeAgoSign = LT, timeAgoDaysAgo = DaysAgo {daysAgoSign = GT, daysAgoYears = 0, daysAgoMonths = 0, daysAgoWeeks = 1, daysAgoDays = 0}, timeAgoHours = 0, timeAgoMinutes = 0, timeAgoSeconds = 0, timeAgoPicoSeconds = 0} as "in 1 week" [✔]
+      Renders TimeAgo {timeAgoSign = LT, timeAgoDaysAgo = DaysAgo {daysAgoSign = GT, daysAgoYears = 0, daysAgoMonths = 0, daysAgoWeeks = 0, daysAgoDays = 1}, timeAgoHours = 0, timeAgoMinutes = 0, timeAgoSeconds = 0, timeAgoPicoSeconds = 0} as "in 1 day" [✔]
+      Renders TimeAgo {timeAgoSign = LT, timeAgoDaysAgo = DaysAgo {daysAgoSign = GT, daysAgoYears = 0, daysAgoMonths = 0, daysAgoWeeks = 0, daysAgoDays = 0}, timeAgoHours = 1, timeAgoMinutes = 0, timeAgoSeconds = 0, timeAgoPicoSeconds = 0} as "in 1 hour" [✔]
+      Renders TimeAgo {timeAgoSign = LT, timeAgoDaysAgo = DaysAgo {daysAgoSign = GT, daysAgoYears = 0, daysAgoMonths = 0, daysAgoWeeks = 0, daysAgoDays = 0}, timeAgoHours = 0, timeAgoMinutes = 1, timeAgoSeconds = 0, timeAgoPicoSeconds = 0} as "in 1 minute" [✔]
+      Renders TimeAgo {timeAgoSign = LT, timeAgoDaysAgo = DaysAgo {daysAgoSign = GT, daysAgoYears = 0, daysAgoMonths = 0, daysAgoWeeks = 0, daysAgoDays = 0}, timeAgoHours = 0, timeAgoMinutes = 0, timeAgoSeconds = 1, timeAgoPicoSeconds = 0} as "in 1 second" [✔]
+      Renders TimeAgo {timeAgoSign = LT, timeAgoDaysAgo = DaysAgo {daysAgoSign = GT, daysAgoYears = 0, daysAgoMonths = 0, daysAgoWeeks = 0, daysAgoDays = 0}, timeAgoHours = 0, timeAgoMinutes = 0, timeAgoSeconds = 0, timeAgoPicoSeconds = 1} as "just now" [✔]
+
+Finished in 0.0180 seconds
+79 examples, 0 failures
+Test suite pretty-relative-time-test: PASS
+Test suite logged to:
+/tmp/workdir-pretty-relative-time/pretty-relative-time-0.3.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/pretty-relative-time-0.3.0.0/t/pretty-relative-time-test/test/pretty-relative-time-0.3.0.0-pretty-relative-time-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

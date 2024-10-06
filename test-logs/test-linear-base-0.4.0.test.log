@@ -1,0 +1,215 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - linear-base-0.4.0 (test:test) (ephemeral targets)
+Preprocessing test suite 'test' for linear-base-0.4.0...
+Building test suite 'test' for linear-base-0.4.0...
+Running 1 test suites...
+Test suite test: RUNNING...
+All tests
+  Functional tests
+    Mutable array tests
+      ∀ s,i,x. read (alloc s x) i = x:                                                  OK (0.07s)
+          ✓ readAlloc passed 100 tests.
+      ∀ a,s,x,i. read (snd (allocBeside s x a)) i = x:                                  OK (0.45s)
+          ✓ allocBeside passed 100 tests.
+      ∀ s,a,i. i < length a, read (resize s 42 a) i = read a i:                         OK (0.46s)
+          ✓ readResize passed 100 tests.
+      ∀ a,i,x. read (write a i x) i = x :                                               OK (0.46s)
+          ✓ readWrite1 passed 100 tests.
+      ∀ a,i,j/=i,x. read (write a j x) i = read a i:                                    OK (0.57s)
+          ✓ readWrite2 passed 100 tests.
+      ∀ s,x. len (alloc s x) = s:                                                       OK (0.05s)
+          ✓ lenAlloc passed 100 tests.
+      ∀ a,i,x. len (write a i x) = len a:                                               OK (0.48s)
+          ✓ lenWrite passed 100 tests.
+      ∀ a,s,x. len (resize s x a) = s:                                                  OK (0.43s)
+          ✓ lenResizeSeed passed 100 tests.
+      ∀ a,ix. toList . write a ix = (\l -> take ix l ++ [a] ++ drop (ix+1) l) . toList: OK (0.51s)
+          ✓ writeRef passed 100 tests.
+      ∀ ix. read ix a = (toList a) !! i:                                                OK (0.46s)
+          ✓ readRef passed 100 tests.
+      size = length . toList:                                                           OK (0.47s)
+          ✓ sizeRef passed 100 tests.
+      ∀ a,s,x. resize s x a = take s (toList a ++ repeat x):                            OK (0.53s)
+          ✓ resizeRef passed 100 tests.
+      ∀ s,n. slice s n = take s . drop n:                                               OK (0.46s)
+          ✓ sliceRef passed 100 tests.
+      f <$> fromList xs == fromList (f <$> xs):                                         OK (0.50s)
+          ✓ refFmap passed 100 tests.
+      toList . fromList = id:                                                           OK (0.50s)
+          ✓ refToListFromList passed 100 tests.
+      toList . freeze . fromList = id:                                                  OK (0.46s)
+          ✓ refFreeze passed 100 tests.
+      dup2 produces identical arrays:                                                   OK (0.52s)
+          ✓ refDupable passed 100 tests.
+      do not reorder reads and writes:                                                  OK
+          ✓ readAndWriteTest passed 1 test.
+      do not evaluate values unnecesesarily:                                            OK (0.05s)
+          ✓ strictnessTest passed 1 test.
+    Mutable vector tests
+      ∀ s,i,x. read (constant s x) i = x:                                               OK (0.03s)
+          ✓ readConst passed 100 tests.
+      ∀ a,i,x. read (write a i x) i = x :                                               OK (0.40s)
+          ✓ readWrite1 passed 100 tests.
+      ∀ a,i,j/=i,x. read (write a j x) i = read a i:                                    OK (0.47s)
+          ✓ readWrite2 passed 100 tests.
+      ∀ a,x,(i < len a). read (push a x) i = read a i:                                  OK (0.46s)
+          ✓ readPush1 passed 100 tests.
+      ∀ a,x. read (push a x) (len a) = x:                                               OK (0.36s)
+          ✓ readPush2 passed 100 tests.
+      ∀ s,x. len (constant s x) = s:                                                    OK
+          ✓ lenConst passed 100 tests.
+      ∀ a,i,x. len (write a i x) = len a:                                               OK (0.49s)
+          ✓ lenWrite passed 100 tests.
+      ∀ a,x. len (push a x) = 1 + len a:                                                OK (0.40s)
+          ✓ lenPush passed 100 tests.
+      write ix a v = (\l -> take ix l ++ [a] ++ drop (ix+1) l) . toList:                OK (0.46s)
+          ✓ refWrite passed 100 tests.
+      fst $ modify f ix v = snd $ f ((toList v) !! ix):                                 OK (0.49s)
+          ✓ refModify1 passed 100 tests.
+      snd (modify f i v) = write (toList v) i (fst (f ((toList v) !! i)))):             OK (0.38s)
+          ✓ refModify2 passed 100 tests.
+      toList . push x = snoc x . toList:                                                OK (0.46s)
+          ✓ refPush passed 100 tests.
+      toList . pop = init . toList:                                                     OK (0.29s)
+          ✓ refPop passed 100 tests.
+      read ix v = (toList v) !! ix:                                                     OK (0.46s)
+          ✓ refRead passed 100 tests.
+      size = length . toList:                                                           OK (0.48s)
+          ✓ refSize passed 100 tests.
+      toList . shrinkToFit = toList:                                                    OK (0.51s)
+          ✓ refShrinkToFit passed 100 tests.
+      pop . push _ = id:                                                                OK (0.51s)
+          ✓ refPopPush passed 100 tests.
+      push . pop = id:                                                                  OK (0.45s)
+          ✓ refPushPop passed 100 tests.
+      slice s n = take s . drop n:                                                      OK (0.37s)
+          ✓ refSlice passed 100 tests.
+      toList . fromList = id:                                                           OK (0.44s)
+          ✓ refToListFromList passed 100 tests.
+      toList can be implemented with repeated pops:                                     OK (0.44s)
+          ✓ refToListViaPop passed 100 tests.
+      fromList can be implemented with repeated pushes:                                 OK (0.41s)
+          ✓ refFromListViaPush passed 100 tests.
+      toList works with extra capacity:                                                 OK (0.36s)
+          ✓ refToListWithExtraCapacity passed 100 tests.
+      fromList xs <> fromList ys = fromList (xs <> ys):                                 OK (0.82s)
+          ✓ refMappend passed 100 tests.
+      mapMaybe f (fromList xs) = fromList (mapMaybe f xs):                              OK (0.33s)
+          ✓ refMapMaybe passed 100 tests.
+      filter f (fromList xs) = fromList (filter f xs):                                  OK (0.54s)
+          ✓ refFilter passed 100 tests.
+      f <$> fromList xs == fromList (f <$> xs):                                         OK (0.42s)
+          ✓ refFmap passed 100 tests.
+      toList . freeze . fromList = id:                                                  OK (0.60s)
+          ✓ refFreeze passed 100 tests.
+      push on an empty vector should succeed:                                           OK
+          ✓ snocOnEmptyVector passed 1 test.
+      do not reorder reads and writes:                                                  OK
+          ✓ readAndWriteTest passed 1 test.
+    Mutable hashmap tests
+      ∀ k,v,m. lookup k (insert m k v) = Just v:                                        OK (9.25s)
+          ✓ lookupInsert1 passed 1000 tests.
+      ∀ k,v,m,k'/=k. lookup k'(insert m k v) = lookup k' m:                             OK (9.43s)
+          ✓ lookuInsert2 passed 1000 tests.
+      ∀ k,m. lookup k (delete m k) = Nothing:                                           OK (9.28s)
+          ✓ lookupDelete1 passed 1000 tests.
+      ∀ k,m,k'/=k. lookup k' (delete m k) = lookup k' m:                                OK (9.45s)
+          ✓ lookupDelete2 passed 1000 tests.
+      ∀ k,v,m. member k (insert m k v) = True:                                          OK (9.48s)
+          ✓ memberInsert passed 1000 tests.
+      ∀ k,m. member k (delete m k) = False:                                             OK (9.33s)
+          ✓ memberDelete passed 1000 tests.
+      ∀ k,v,m. size (insert (m-k) k v) = 1+ size (m-k):                                 OK (9.35s)
+          ✓ sizeInsert passed 1000 tests.
+      ∀ k,m with k. size (delete m k) + 1 = size m:                                     OK (9.42s)
+          ✓ deleteSize passed 1000 tests.
+      insert k v h = fromList (toList h ++ [(k,v)]):                                    OK (9.50s)
+          ✓ refInsert passed 1000 tests.
+      delete k h = fromList (filter (!= k . fst) (toList h)):                           OK (9.27s)
+          ✓ refDelete passed 1000 tests.
+      fst . lookup k h = lookup k (toList h):                                           OK (9.44s)
+          ✓ refLookup passed 1000 tests.
+      mapMaybe f h = fromList . mapMaybe (uncurry f) . toList:                          OK (9.45s)
+          ✓ refMap passed 1000 tests.
+      size = length . toList:                                                           OK (9.33s)
+          ✓ refSize passed 1000 tests.
+      toList . fromList = id:                                                           OK (9.62s)
+          ✓ refToListFromList passed 1000 tests.
+      filter f (fromList xs) = fromList (filter f xs):                                  OK (9.52s)
+          ✓ refFilter passed 1000 tests.
+      fromList xs <> fromList ys = fromList (xs <> ys):                                 OK (11.44s)
+          ✓ refMappend passed 1000 tests.
+      unionWith reference:                                                              OK (11.60s)
+          ✓ refUnionWith passed 1000 tests.
+      intersectionWith reference:                                                       OK (11.60s)
+          ✓ refIntersectionWith passed 1000 tests.
+      toList . shrinkToFit = toList:                                                    OK (9.42s)
+          ✓ shrinkToFitTest passed 1000 tests.
+    Mutable set tests
+      ∀ x. member (insert s x) x = True:                                                OK (0.39s)
+          ✓ memberInsert1 passed 100 tests.
+      ∀ x,y/=x. member (insert s x) y = member s y:                                     OK (0.40s)
+          ✓ memberInsert2 passed 100 tests.
+      ∀ x. member (delete s x) x = False:                                               OK (0.50s)
+          ✓ memberDelete1 passed 100 tests.
+      ∀ x,y/=x. member (delete s x) y = member s y:                                     OK (0.46s)
+          ✓ memberDelete2 passed 100 tests.
+      ∀ s, x \in s. size (insert s x) = size s:                                         OK (0.62s)
+          ✓ sizeInsert1 passed 100 tests.
+      ∀ s, x \notin s. size (insert s x) = size s + 1:                                  OK (0.68s)
+          ✓ sizeInsert2 passed 100 tests.
+      ∀ s, x \in s. size (delete s x) = size s - 1:                                     OK (0.43s)
+          ✓ sizeDelete1 passed 100 tests.
+      ∀ s, x \notin s. size (delete s x) = size s:                                      OK (0.62s)
+          ✓ sizeDelete2 passed 100 tests.
+      sort . nub = sort . toList:                                                       OK (0.72s)
+          ✓ toListFromList passed 100 tests.
+      member x s = elem x (toList s):                                                   OK (0.55s)
+          ✓ memberHomomorphism passed 100 tests.
+      size = length . toList:                                                           OK (0.61s)
+          ✓ sizeHomomorphism passed 100 tests.
+      sort . nub ((toList s) ∪ (toList s')) = sort . toList (s ∪ s'):                   OK (1.45s)
+          ✓ unionHomomorphism passed 100 tests.
+      sort . nub ((toList s) ∩ (toList s')) = sort . toList (s ∩ s'):                   OK (1.45s)
+          ✓ intersecHomomorphism passed 100 tests.
+    Destination array tests
+      alloc . mirror = id:                                                              OK (0.39s)
+          ✓ roundTrip passed 100 tests.
+      alloc . replicate = V.replicate:                                                  OK
+          ✓ replicateTest passed 100 tests.
+      alloc . fill = V.singleton:                                                       OK (0.02s)
+          ✓ fillTest passed 100 tests.
+      alloc n . fromFunction (+s) = V.fromEnum n s:                                     OK
+          ✓ fromFuncEnum passed 100 tests.
+    Polarized arrays
+      Push.alloc . transfer . Pull.fromVector = id:                                     OK (0.69s)
+          ✓ polarRoundTrip passed 100 tests.
+      Push.append ~ Vec.append:                                                         OK (1.39s)
+          ✓ pushAppend passed 100 tests.
+      Push.make ~ Vec.replicate:                                                        OK (0.03s)
+          ✓ pushMake passed 100 tests.
+      Pull.append ~ Vec.append:                                                         OK (1.03s)
+          ✓ pullAppend passed 100 tests.
+      Pull.asList . Pull.fromVector ~ id:                                               OK (0.64s)
+          ✓ pullAsList passed 100 tests.
+      Pull.singleton x = [x]:                                                           OK
+          ✓ pullSingleton passed 100 tests.
+      Pull.splitAt ~ splitAt:                                                           OK (0.64s)
+          ✓ pullSplitAt passed 100 tests.
+      Pull.make ~ Vec.replicate:                                                        OK (0.07s)
+          ✓ pullMake passed 100 tests.
+      Pull.zip ~ zip:                                                                   OK (1.21s)
+          ✓ pullZip passed 100 tests.
+  Inspection tests
+    Inspection testing of elim and make for V
+      make3 ==- manualMake3:                                                            OK
+      elim3 ==- manualElim3:                                                            OK
+    Inspection testing of elim for Replicator
+      elim3 === manualElim3:                                                            OK
+
+All 97 tests passed (12.11s)
+Test suite test: PASS
+Test suite logged to:
+/tmp/workdir-linear-base/linear-base-0.4.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/linear-base-0.4.0/t/test/test/linear-base-0.4.0-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

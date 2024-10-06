@@ -1,0 +1,239 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - graphql-1.2.0.3 (test:graphql-test) (ephemeral targets)
+Preprocessing test suite 'graphql-test' for graphql-1.2.0.3...
+Building test suite 'graphql-test' for graphql-1.2.0.3...
+Running 1 test suites...
+Test suite graphql-test: RUNNING...
+
+Language.GraphQL.AST.Document
+  Document
+    shows objects [✔]
+  Description
+    keeps content when merging with no description [✔]
+Language.GraphQL.AST.Encoder
+  value
+    null value
+      minified [✔]
+      pretty [✔]
+    minified
+      escapes \ [✔]
+      escapes double quotes [✔]
+      escapes \f [✔]
+      escapes \n [✔]
+      escapes \r [✔]
+      escapes \t [✔]
+      escapes backspace [✔]
+      escapes Unicode for chars less than 0010
+        Null [✔]
+        bell [✔]
+      escapes Unicode for char less than 0020
+        DLE [✔]
+        EM [✔]
+      encodes without escape
+        space [✔]
+        ~ [✔]
+    pretty
+      uses strings for short string values [✔]
+      uses block strings for text with new lines, with newline symbol [✔]
+      uses block strings for text with new lines, with CR symbol [✔]
+      uses block strings for text with new lines, with CR symbol followed by newline [✔]
+      encodes as one line string if has escaped symbols [✔]
+        +++ OK, passed 100 tests.
+      Hello world [✔]
+      has only newlines [✔]
+      has newlines and one symbol at the begining [✔]
+      has newlines and one symbol at the end [✔]
+      has newlines and one symbol in the middle [✔]
+      skip trailing whitespaces [✔]
+  definition
+    indents block strings in arguments [✔]
+  operationType
+    produces lowercase mutation operation type [✔]
+  typeSystemDefinition
+    produces a schema with an indented operation type definition [✔]
+    encodes a scalar type definition [✔]
+    encodes an interface definition [✔]
+    encodes an union definition [✔]
+    encodes an enum definition [✔]
+    encodes an input type [✔]
+Language.GraphQL.AST.Lexer
+  Lexer
+    Reference tests
+      accepts BOM header [✔]
+      lexes strings [✔]
+      lexes block string [✔]
+      lexes numbers [✔]
+      lexes punctuation [✔]
+    Implementation tests
+      lexes empty block strings [✔]
+      lexes ampersand [✔]
+      lexes schema extensions [✔]
+      fails if the given token doesn't match [✔]
+Language.GraphQL.AST.Parser
+  Parser
+    accepts BOM header [✔]
+    Arguments
+      accepts block strings as argument [✔]
+      accepts strings as argument [✔]
+      accepts int as argument1 [✔]
+      accepts boolean as argument [✔]
+      accepts float as argument [✔]
+      accepts empty list as argument [✔]
+      accepts two required arguments [✔]
+      accepts two string arguments [✔]
+      accepts two block string arguments [✔]
+      accepts any arguments [✔]
+        +++ OK, passed 100 tests.
+    parses minimal schema definition [✔]
+    parses minimal scalar definition [✔]
+    parses ImplementsInterfaces [✔]
+    parses a  type without ImplementsInterfaces [✔]
+    parses ArgumentsDefinition in an ObjectDefinition [✔]
+    parses minimal union type definition [✔]
+    parses minimal interface type definition [✔]
+    parses minimal enum type definition [✔]
+    parses minimal input object type definition [✔]
+    parses minimal input enum definition with an optional pipe [✔]
+    parses two minimal directive definitions [✔]
+    parses a directive definition with a default empty list argument [✔]
+    parses schema extension with a new directive [✔]
+    parses schema extension with an operation type definition [✔]
+    parses schema extension with an operation type and directive [✔]
+    parses an object extension [✔]
+    rejects variables in DefaultValue [✔]
+    rejects empty selection set [✔]
+    parses documents beginning with a comment [✔]
+    parses subscriptions [✔]
+Language.GraphQL.Error
+  parseError
+    generates response with a single error [✔]
+Language.GraphQL.Execute
+  execute
+    rejects recursive fragments [✔]
+    Query
+      skips unknown fields [✔]
+      merges selections [✔]
+      errors on invalid output enum values [✔]
+      gives location information for non-null unions [✔]
+      gives location information for invalid interfaces [✔]
+      gives location information for failed result coercion [✔]
+      gives location information for failed result coercion [✔]
+      sets data to null if a root field isn't nullable [✔]
+      detects nullability errors [✔]
+      returns list elements in the original order [✔]
+      Arguments
+        gives location information for invalid scalar arguments [✔]
+        puts an object in a list if needed [✔]
+      queryError
+        throws operation name is required error [✔]
+        throws operation not found error [✔]
+        throws variable coercion error [✔]
+        throws variable unkown input type error [✔]
+      Error path
+        at the beggining of the list [✔]
+    Subscription
+      subscribes [✔]
+Language.GraphQL.Execute.Coerce
+  coerceInputLiteral
+    coerces enums [✔]
+    fails with non-existing enum value [✔]
+    coerces integers to IDs [✔]
+    coerces nulls [✔]
+    wraps singleton lists [✔]
+Language.GraphQL.Execute.OrderedMap
+  OrderedMap
+    creates an empty map [✔]
+    creates a singleton [✔]
+    combines inserted vales [✔]
+    shows the map [✔]
+    traverses a map of just values [✔]
+    traverses a map with a Nothing [✔]
+    combines two maps preserving the order of the second one [✔]
+    replaces existing values [✔]
+Language.GraphQL.Type.Out
+  Value
+    supports overloaded strings [✔]
+Language.GraphQL.Validate.Rules
+  document
+    executableDefinitionsRule
+      rejects type definitions [✔]
+    singleFieldSubscriptionsRule
+      rejects multiple subscription root fields [✔]
+      rejects multiple subscription root fields coming from a fragment [✔]
+      finds corresponding subscription fragment [✔]
+    loneAnonymousOperationRule
+      rejects multiple anonymous operations [✔]
+    uniqueOperationNamesRule
+      rejects operations with the same name [✔]
+    uniqueFragmentNamesRule
+      rejects fragments with the same name [✔]
+    fragmentSpreadTargetDefinedRule
+      rejects the fragment spread without a target [✔]
+    fragmentSpreadTypeExistenceRule
+      rejects fragment spreads without an unknown target type [✔]
+      rejects inline fragments without a target [✔]
+    fragmentsOnCompositeTypesRule
+      rejects fragments on scalar types [✔]
+      rejects inline fragments on scalar types [✔]
+    noUnusedFragmentsRule
+      rejects unused fragments [✔]
+    noFragmentCyclesRule
+      rejects spreads that form cycles [✔]
+    uniqueArgumentNamesRule
+      rejects duplicate field arguments [✔]
+    uniqueDirectiveNamesRule
+      rejects more than one directive per location [✔]
+    uniqueVariableNamesRule
+      rejects duplicate variables [✔]
+    variablesAreInputTypesRule
+      rejects non-input types as variables [✔]
+    noUndefinedVariablesRule
+      rejects undefined variables [✔]
+      gets variable location inside an input object [✔]
+      gets variable location inside an array [✔]
+    noUnusedVariablesRule
+      rejects unused variables [✔]
+      detects variables in properties of input objects [✔]
+    uniqueInputFieldNamesRule
+      rejects duplicate fields in input objects [✔]
+    fieldsOnCorrectTypeRule
+      rejects undefined fields [✔]
+    scalarLeafsRule
+      rejects scalar fields with not empty selection set [✔]
+    knownArgumentNamesRule
+      rejects field arguments missing in the type [✔]
+      rejects directive arguments missing in the definition [✔]
+    knownDirectiveNamesRule
+      rejects undefined directives [✔]
+    knownInputFieldNamesRule
+      rejects undefined input object fields [✔]
+    directivesInValidLocationsRule
+      rejects directives in invalid locations [✔]
+    overlappingFieldsCanBeMergedRule
+      fails to merge fields of mismatching types [✔]
+      fails if the arguments of the same field don't match [✔]
+      fails to merge same-named field and alias [✔]
+      looks for fields after a successfully merged field pair [✔]
+    possibleFragmentSpreadsRule
+      rejects object inline spreads outside object scope [✔]
+      rejects object named spreads outside object scope [✔]
+    providedRequiredInputFieldsRule
+      rejects missing required input fields [✔]
+    providedRequiredArgumentsRule
+      checks for (non-)nullable arguments [✔]
+    variablesInAllowedPositionRule
+      rejects wrongly typed variable arguments [✔]
+      rejects wrongly typed variable arguments [✔]
+    valuesOfCorrectTypeRule
+      rejects values of incorrect types [✔]
+      uses the location of a single list value [✔]
+      validates input object properties once [✔]
+      checks for required list members [✔]
+
+Finished in 0.0282 seconds
+155 examples, 0 failures
+Test suite graphql-test: PASS
+Test suite logged to:
+/tmp/workdir-graphql/graphql-1.2.0.3/dist-newstyle/build/x86_64-linux/ghc-9.6.6/graphql-1.2.0.3/t/graphql-test/test/graphql-1.2.0.3-graphql-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

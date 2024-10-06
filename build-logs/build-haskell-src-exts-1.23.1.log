@@ -1,0 +1,358 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - haskell-src-exts-1.23.1 (lib) (first run)
+ - haskell-src-exts-1.23.1 (test:test) (first run)
+Configuring library for haskell-src-exts-1.23.1...
+Preprocessing library for haskell-src-exts-1.23.1...
+unused rules: 3
+Building library for haskell-src-exts-1.23.1...
+[ 1 of 18] Compiling Language.Haskell.Exts.Extension
+[ 2 of 18] Compiling Language.Haskell.Exts.ExtScheme
+[ 3 of 18] Compiling Language.Haskell.Exts.SrcLoc
+[ 4 of 18] Compiling Language.Haskell.Exts.Syntax
+[ 5 of 18] Compiling Language.Haskell.Exts.ParseSyntax
+[ 6 of 18] Compiling Language.Haskell.Exts.Pretty
+
+src/Language/Haskell/Exts/Pretty.hs:119:9: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘(>>)’ definition detected
+    in the instance declaration for ‘Monad (DocM s)’.
+    ‘(>>)’ will eventually be removed in favour of ‘(*>)’
+    Either remove definition for ‘(>>)’ (recommended) or define as ‘(>>) = (*>)’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+119 |         (>>) = then_DocM
+    |         ^^^^^^^^^^^^^^^^
+
+src/Language/Haskell/Exts/Pretty.hs:120:9: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad (DocM s)’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+120 |         return = retDocM
+    |         ^^^^^^^^^^^^^^^^
+[ 7 of 18] Compiling Language.Haskell.Exts.Fixity
+[ 8 of 18] Compiling Language.Haskell.Exts.Comments
+[ 9 of 18] Compiling Language.Haskell.Exts.ParseMonad
+
+src/Language/Haskell/Exts/ParseMonad.hs:101:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad ParseResult’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+101 |   return = ParseOk
+    |   ^^^^^^^^^^^^^^^^
+
+src/Language/Haskell/Exts/ParseMonad.hs:245:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative P’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+245 |   pure = return
+    |   ^^^^^^^^^^^^^
+
+src/Language/Haskell/Exts/ParseMonad.hs:249:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad P’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+249 |     return a = P $ \_i _x _y _l _ch s _m -> Ok s a
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Language/Haskell/Exts/ParseMonad.hs:357:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative (Lex r)’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+357 |     pure = return
+    |     ^^^^^^^^^^^^^
+
+src/Language/Haskell/Exts/ParseMonad.hs:361:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad (Lex r)’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+361 |     return a = Lex $ \k -> k a
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Language/Haskell/Exts/ParseMonad.hs:363:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘(>>)’ definition detected
+    in the instance declaration for ‘Monad (Lex r)’.
+    ‘(>>)’ will eventually be removed in favour of ‘(*>)’
+    Either remove definition for ‘(>>)’ (recommended) or define as ‘(>>) = (*>)’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+363 |     Lex v >> Lex w = Lex $ \k -> v (\_ -> w k)
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Language/Haskell/Exts/ParseMonad.hs:380:32: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding: Patterns of type ‘[Char]’ not matched: []
+    |
+380 |                         -> let (newCh:rest)= if n > 0 then drop (n-1) r else (ch:r)
+    |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Language/Haskell/Exts/ParseMonad.hs:401:29: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[Char]’, ‘Int’ not matched: [] _
+    |
+401 | lexTab = Lex $ \cont -> P $ \(_:r) x -> runP (cont ()) r (nextTab x)
+    |                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[10 of 18] Compiling Language.Haskell.Exts.ParseUtils
+
+src/Language/Haskell/Exts/ParseUtils.hs:824:43: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding: Patterns of type ‘[Pat L]’ not matched: []
+    |
+824 |                                  else let (a:bs) = ps
+    |                                           ^^^^^^^^^^^
+
+src/Language/Haskell/Exts/ParseUtils.hs:856:44: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[SrcSpan]’ not matched:
+            []
+            [_]
+            (_:_:_:_)
+    |
+856 |                                        let [x,y] = srcInfoPoints l
+    |                                            ^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Language/Haskell/Exts/ParseUtils.hs:906:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding: Patterns of type ‘[SrcSpan]’ not matched: []
+    |
+906 |   let (b:_) = srcInfoPoints loc in return (name,typ,b)
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Language/Haskell/Exts/ParseUtils.hs:1289:17: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘(Int, Either SrcSpan (CName L))’ not matched:
+            (_, (Right _))
+     |
+1289 |                (\(n,Left s) -> EWildcard (noInfoSpan s) n)
+     |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[11 of 18] Compiling Language.Haskell.Exts.InternalLexer
+[12 of 18] Compiling Language.Haskell.Exts.Lexer
+[13 of 18] Compiling Language.Haskell.Exts.InternalParser
+[14 of 18] Compiling Language.Haskell.Exts.Parser
+[15 of 18] Compiling Language.Haskell.Exts.ExactPrint
+
+src/Language/Haskell/Exts/ExactPrint.hs:50:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative EP’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+50 |   pure = return
+   |   ^^^^^^^^^^^^^
+
+src/Language/Haskell/Exts/ExactPrint.hs:54:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad EP’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+54 |   return x = EP $ \l cs -> (x, l, cs, id)
+   |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Language/Haskell/Exts/ExactPrint.hs:381:18: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding: Patterns of type ‘[SrcSpan]’ not matched: []
+    |
+381 |              let (x:pts') = pts
+    |                  ^^^^^^^^^^^^^^
+
+src/Language/Haskell/Exts/ExactPrint.hs:702:21: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding: Patterns of type ‘[SrcSpan]’ not matched: []
+    |
+702 |                 let (p:pts') = pts
+    |                     ^^^^^^^^^^^^^^
+
+src/Language/Haskell/Exts/ExactPrint.hs:742:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding: Patterns of type ‘[SrcSpan]’ not matched: []
+    |
+742 |         let (pat:pts) = srcInfoPoints l
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Language/Haskell/Exts/ExactPrint.hs:1748:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding: Patterns of type ‘[SrcSpan]’ not matched: []
+     |
+1748 |         let (opt:pts) = srcInfoPoints l
+     |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[16 of 18] Compiling Language.Haskell.Exts.Build
+[17 of 18] Compiling Language.Preprocessor.Unlit
+
+src/Language/Preprocessor/Unlit.hs:17:25: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘x’ shadows the existing binding
+      bound at src/Language/Preprocessor/Unlit.hs:14:17
+   |
+17 |          allProg (('\\':x):xs) |  "end{code}"`isPrefixOf`x = Blank : classify xs
+   |                         ^
+
+src/Language/Preprocessor/Unlit.hs:17:28: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘xs’ shadows the existing binding
+      bound at src/Language/Preprocessor/Unlit.hs:14:20
+   |
+17 |          allProg (('\\':x):xs) |  "end{code}"`isPrefixOf`x = Blank : classify xs
+   |                            ^^
+
+src/Language/Preprocessor/Unlit.hs:18:19: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘x’ shadows the existing binding
+      bound at src/Language/Preprocessor/Unlit.hs:14:17
+   |
+18 |          allProg (x:xs) = Program x:allProg xs
+   |                   ^
+
+src/Language/Preprocessor/Unlit.hs:18:21: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘xs’ shadows the existing binding
+      bound at src/Language/Preprocessor/Unlit.hs:14:20
+   |
+18 |          allProg (x:xs) = Program x:allProg xs
+   |                     ^^
+
+src/Language/Preprocessor/Unlit.hs:27:11: warning: [-Wunused-matches]
+    Defined but not used: ‘x’
+   |
+27 | classify (x:xs)                 = Comment:classify xs
+   |           ^
+
+src/Language/Preprocessor/Unlit.hs:46:17: warning: [-Wunused-matches]
+    Defined but not used: ‘y’
+   |
+46 | adjacent file n y@(Program _) (x@Comment      :xs) = error (message file n "program" "comment")
+   |                 ^
+
+src/Language/Preprocessor/Unlit.hs:46:32: warning: [-Wunused-matches]
+    Defined but not used: ‘x’
+   |
+46 | adjacent file n y@(Program _) (x@Comment      :xs) = error (message file n "program" "comment")
+   |                                ^
+
+src/Language/Preprocessor/Unlit.hs:46:48: warning: [-Wunused-matches]
+    Defined but not used: ‘xs’
+   |
+46 | adjacent file n y@(Program _) (x@Comment      :xs) = error (message file n "program" "comment")
+   |                                                ^^
+
+src/Language/Preprocessor/Unlit.hs:47:10: warning: [-Wunused-matches]
+    Defined but not used: ‘file’
+   |
+47 | adjacent file n y@(Program _) (x@(Include i f):xs) = x: adjacent f    i     y xs
+   |          ^^^^
+
+src/Language/Preprocessor/Unlit.hs:47:15: warning: [-Wunused-matches]
+    Defined but not used: ‘n’
+   |
+47 | adjacent file n y@(Program _) (x@(Include i f):xs) = x: adjacent f    i     y xs
+   |               ^
+
+src/Language/Preprocessor/Unlit.hs:49:17: warning: [-Wunused-matches]
+    Defined but not used: ‘y’
+   |
+49 | adjacent file n y@Comment     (x@(Program _)  :xs) = error (message file n "comment" "program")
+   |                 ^
+
+src/Language/Preprocessor/Unlit.hs:49:32: warning: [-Wunused-matches]
+    Defined but not used: ‘x’
+   |
+49 | adjacent file n y@Comment     (x@(Program _)  :xs) = error (message file n "comment" "program")
+   |                                ^
+
+src/Language/Preprocessor/Unlit.hs:49:48: warning: [-Wunused-matches]
+    Defined but not used: ‘xs’
+   |
+49 | adjacent file n y@Comment     (x@(Program _)  :xs) = error (message file n "comment" "program")
+   |                                                ^^
+
+src/Language/Preprocessor/Unlit.hs:50:10: warning: [-Wunused-matches]
+    Defined but not used: ‘file’
+   |
+50 | adjacent file n y@Comment     (x@(Include i f):xs) = x: adjacent f    i     y xs
+   |          ^^^^
+
+src/Language/Preprocessor/Unlit.hs:50:15: warning: [-Wunused-matches]
+    Defined but not used: ‘n’
+   |
+50 | adjacent file n y@Comment     (x@(Include i f):xs) = x: adjacent f    i     y xs
+   |               ^
+
+src/Language/Preprocessor/Unlit.hs:52:10: warning: [-Wunused-matches]
+    Defined but not used: ‘file’
+   |
+52 | adjacent file n y@Blank       (x@(Include i f):xs) = x: adjacent f    i     y xs
+   |          ^^^^
+
+src/Language/Preprocessor/Unlit.hs:52:15: warning: [-Wunused-matches]
+    Defined but not used: ‘n’
+   |
+52 | adjacent file n y@Blank       (x@(Include i f):xs) = x: adjacent f    i     y xs
+   |               ^
+
+src/Language/Preprocessor/Unlit.hs:54:34: warning: [-Wunused-matches]
+    Defined but not used: ‘next’
+   |
+54 | adjacent file n _             (x@next         :xs) = x: adjacent file (n+1) x xs
+   |                                  ^^^^
+
+src/Language/Preprocessor/Unlit.hs:55:10: warning: [-Wunused-matches]
+    Defined but not used: ‘file’
+   |
+55 | adjacent file n _             []                   = []
+   |          ^^^^
+
+src/Language/Preprocessor/Unlit.hs:55:15: warning: [-Wunused-matches]
+    Defined but not used: ‘n’
+   |
+55 | adjacent file n _             []                   = []
+   |               ^
+
+src/Language/Preprocessor/Unlit.hs:69:22: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘s’ shadows the existing binding
+      bound at src/Language/Preprocessor/Unlit.hs:66:9
+   |
+69 |   lines' ('\^M':'\n':s) acc = acc [] : lines' s id      -- DOS
+   |                      ^
+
+src/Language/Preprocessor/Unlit.hs:70:17: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘s’ shadows the existing binding
+      bound at src/Language/Preprocessor/Unlit.hs:66:9
+   |
+70 |   lines' ('\^M':s)      acc = acc [] : lines' s id      -- MacOS
+   |                 ^
+
+src/Language/Preprocessor/Unlit.hs:71:16: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘s’ shadows the existing binding
+      bound at src/Language/Preprocessor/Unlit.hs:66:9
+   |
+71 |   lines' ('\n':s)       acc = acc [] : lines' s id      -- Unix
+   |                ^
+
+src/Language/Preprocessor/Unlit.hs:72:13: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘s’ shadows the existing binding
+      bound at src/Language/Preprocessor/Unlit.hs:66:9
+   |
+72 |   lines' (c:s)          acc = lines' s (acc . (c:))
+   |             ^
+[18 of 18] Compiling Language.Haskell.Exts
+Configuring test suite 'test' for haskell-src-exts-1.23.1...
+Preprocessing test suite 'test' for haskell-src-exts-1.23.1...
+Building test suite 'test' for haskell-src-exts-1.23.1...
+[1 of 2] Compiling Extensions
+[2 of 2] Compiling Main
+[3 of 3] Linking /tmp/workdir-haskell-src-exts/haskell-src-exts-1.23.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/haskell-src-exts-1.23.1/t/test/build/test/test

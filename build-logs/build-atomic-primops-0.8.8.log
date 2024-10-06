@@ -1,0 +1,77 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - atomic-primops-0.8.8 (lib) (first run)
+Configuring library for atomic-primops-0.8.8...
+Preprocessing library for atomic-primops-0.8.8...
+Building library for atomic-primops-0.8.8...
+[1 of 3] Compiling Data.Atomics.Internal
+
+Data/Atomics/Internal.hs:52:20: warning: [-Wunused-top-binds]
+    Defined but not used: data constructor ‘Ticket’
+   |
+52 | newtype Ticket a = Ticket Any
+   |                    ^^^^^^^^^^
+[2 of 3] Compiling Data.Atomics.Counter
+
+Data/Atomics/Counter.hs:114:7: warning: [GHC-21030] [-Wunbanged-strict-patterns]
+    Pattern bindings containing unlifted types should use
+    an outermost bang pattern:
+      (# s2#, res# #) = casIntArray# mba# 0# old# new# s1#
+    |
+114 |   let (# s2#, res# #) = casIntArray# mba# 0# old# new# s1# in
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Data/Atomics/Counter.hs:133:7: warning: [GHC-21030] [-Wunbanged-strict-patterns]
+    Pattern bindings containing unlifted types should use
+    an outermost bang pattern:
+      (# s2#, res #) = fetchAddIntArray# mba# 0# incr# s1#
+    |
+133 |   let (# s2#, res #) = fetchAddIntArray# mba# 0# incr# s1# in
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Data/Atomics/Counter.hs:140:7: warning: [GHC-21030] [-Wunbanged-strict-patterns]
+    Pattern bindings containing unlifted types should use
+    an outermost bang pattern:
+      (# s2#, _ #) = fetchAddIntArray# mba# 0# incr# s1#
+    |
+140 |   let (# s2#, _ #) = fetchAddIntArray# mba# 0# incr# s1# in
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[3 of 3] Compiling Data.Atomics
+
+Data/Atomics.hs:58:1: warning: [-Wdodgy-imports]
+    Module ‘GHC.IORef’ does not export ‘atomicModifyIORef’
+   |
+58 | import GHC.IORef hiding (atomicModifyIORef)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Data/Atomics.hs:154:7: warning: [GHC-21030] [-Wunbanged-strict-patterns]
+    Pattern bindings containing unlifted types should use
+    an outermost bang pattern:
+      (# s2#, res #) = casIntArray# mba# ix# old# new# s1#
+    |
+154 |   let (# s2#, res #) = casIntArray# mba# ix# old# new# s1# in
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Data/Atomics.hs:169:7: warning: [GHC-21030] [-Wunbanged-strict-patterns]
+    Pattern bindings containing unlifted types should use
+    an outermost bang pattern:
+      (# s2#, res #) = fetchAddIntArray# mba# offset# incr# s1#
+    |
+169 |   let (# s2#, res #) = fetchAddIntArray# mba# offset# incr# s1# in
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Data/Atomics.hs:222:11: warning: [GHC-21030] [-Wunbanged-strict-patterns]
+    Pattern bindings containing unlifted types should use
+    an outermost bang pattern:
+      (# s2#, res #) = atomicOp# mba# offset# val# s1#
+    |
+222 |       let (# s2#, res #) = atomicOp# mba# offset# val# s1# in
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Data/Atomics.hs:234:7: warning: [GHC-21030] [-Wunbanged-strict-patterns]
+    Pattern bindings containing unlifted types should use
+    an outermost bang pattern:
+      (# s2#, res #) = fetchAddIntArray# mba# offset# incr# s1#
+    |
+234 |   let (# s2#, res #) = fetchAddIntArray# mba# offset# incr# s1# in
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

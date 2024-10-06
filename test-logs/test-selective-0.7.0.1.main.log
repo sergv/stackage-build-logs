@@ -1,0 +1,121 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - selective-0.7.0.1 (test:main) (ephemeral targets)
+Preprocessing test suite 'main' for selective-0.7.0.1...
+Building test suite 'main' for selective-0.7.0.1...
+Running 1 test suites...
+Test suite main: RUNNING...
+[OK] [Tests.pingPong] Free.getEffects pingPongS == [Read,Write "pong"]
+[OK] [Tests.pingPong] Free.getNecessaryEffects pingPongS == [Read]
+[OK] [Tests.pingPong] Free.Rigid.getEffects pingPongS == [Read,Write "pong"]
+[OK] [Tests.Build.cyclicDeps] dependenciesOver (fromJust $ cyclic "B1") == ["C1","B2","A2"]
+[OK] [Tests.Build.cyclicDeps] dependenciesOver cyclic "B2") == ["C1","A1","B1"]
+[OK] [Tests.Build.cyclicDeps] dependenciesUnder (fromJust $ cyclic "B1") == ["C1"]
+[OK] [Tests.Build.cyclicDeps] dependenciesUnder cyclic "B2") == ["C1"]
+[OK] [Tests.Build.taskBindDeps] dependenciesOver taskBind == ["A1","A2","C5","C6","A2","D5","D6"]
+[OK] [Tests.Build.taskBindDeps] dependenciesUnder taskBind == ["A1"]
+[OK] [Tests.Build.runBuildDeps] runBuild (fromJust $ cyclic "B1") == [Fetch "C1",Fetch "B2",Fetch "A2"]
+[OK] [Tests.Over.Laws] Identity: (x <*? pure id) == (either id id <$> x)
+[OK] [Tests.Over.Laws] Distributivity: (pure x <*? (y *> z)) == ((pure x <*? y) *> (pure x <*? z))
+[OK] [Tests.Over.Laws] Associativity: take a look at tests/Laws.hs
+[OK] [Tests.Over.Theorems] Apply a pure function to the result: (f <$> select x y) == (select (second f <$> x) ((f .) <$> y))
+[OK] [Tests.Over.Theorems] Apply a pure function to the Left case of the first argument: (select (first f <$> x) y) == (select x ((. f) <$> y))
+[OK] [Tests.Over.Theorems] Apply a pure function to the second argument: (select x (f <$> y)) == (select (first (flip f) <$> x) ((&) <$> y))
+[OK] [Tests.Over.Theorems] Generalised identity: (x <*? pure y) == (either y id <$> x)
+[OK] [Tests.Over.Theorems] (f <*> g) == (f `apS` g)
+[OK] [Tests.Over.Theorems] Interchange: (x *> (y <*? z)) == ((x *> y) <*? z)
+[OK, expected failure] [Tests.Over.Properties] pure-right: pure (Right x) <*? y = pure x
+[OK] [Tests.Over.Properties] pure-left: pure (Left x) <*? y = ($x) <$> y
+[OK] [Tests.Under.Laws] Identity: (x <*? pure id) == (either id id <$> x)
+[OK] [Tests.Under.Laws] Distributivity: (pure x <*? (y *> z)) == ((pure x <*? y) *> (pure x <*? z))
+[OK] [Tests.Under.Laws] Associativity: take a look at tests/Laws.hs
+[OK] [Tests.Under.Theorems] Apply a pure function to the result: (f <$> select x y) == (select (second f <$> x) ((f .) <$> y))
+[OK] [Tests.Under.Theorems] Apply a pure function to the Left case of the first argument: (select (first f <$> x) y) == (select x ((. f) <$> y))
+[OK] [Tests.Under.Theorems] Apply a pure function to the second argument: (select x (f <$> y)) == (select (first (flip f) <$> x) ((&) <$> y))
+[OK] [Tests.Under.Theorems] Generalised identity: (x <*? pure y) == (either y id <$> x)
+[OK, expected failure] [Tests.Under.Theorems] (f <*> g) == (f `apS` g)
+[OK] [Tests.Under.Theorems] Interchange: (x *> (y <*? z)) == ((x *> y) <*? z)
+[OK] [Tests.Under.Properties] pure-right: pure (Right x) <*? y = pure x
+[OK, expected failure] [Tests.Under.Properties] pure-left: pure (Left x) <*? y = ($x) <$> y
+[OK] [Tests.Validation.Laws] Identity: (x <*? pure id) == (either id id <$> x)
+[OK] [Tests.Validation.Laws] Distributivity: (pure x <*? (y *> z)) == ((pure x <*? y) *> (pure x <*? z))
+[OK] [Tests.Validation.Laws] Associativity: take a look at tests/Laws.hs
+[OK] [Tests.Validation.Theorems] Apply a pure function to the result: (f <$> select x y) == (select (second f <$> x) ((f .) <$> y))
+[OK] [Tests.Validation.Theorems] Apply a pure function to the Left case of the first argument: (select (first f <$> x) y) == (select x ((. f) <$> y))
+[OK] [Tests.Validation.Theorems] Apply a pure function to the second argument: (select x (f <$> y)) == (select (first (flip f) <$> x) ((&) <$> y))
+[OK] [Tests.Validation.Theorems] Generalised identity: (x <*? pure y) == (either y id <$> x)
+[OK, expected failure] [Tests.Validation.Theorems] (f <*> g) == (f `apS` g)
+[OK, expected failure] [Tests.Validation.Theorems] Interchange: (x *> (y <*? z)) == ((x *> y) <*? z)
+[OK] [Tests.Validation.Properties] pure-right: pure (Right x) <*? y = pure x
+[OK] [Tests.Validation.Properties] pure-left: pure (Left x) <*? y = ($x) <$> y
+[OK] [Tests.Validation.validationExample] shape (Success True) (Success 1) (Failure ["width?"]) (Failure ["height?"])
+[OK] [Tests.Validation.validationExample] shape (Success False) (Failure ["radius?"]) (Success 2) (Success 3)
+[OK] [Tests.Validation.validationExample] shape (Success False) (Failure ["radius?"]) (Success 2) (Failure ["height?"])
+[OK] [Tests.Validation.validationExample] shape (Success False) (Success 1) (Failure ["width?"]) (Failure ["height?"])
+[OK] [Tests.Validation.validationExample] shape (Failure ["choice?"]) (Failure ["radius?"]) (Success 2) (Failure ["height?"])
+[OK] [Tests.Validation.validationExample] twoShapes s1 s2
+[OK] [Tests.ArrowMonad (->).Laws] Identity: (x <*? pure id) == (either id id <$> x)
+[OK] [Tests.ArrowMonad (->).Laws] Distributivity: (pure x <*? (y *> z)) == ((pure x <*? y) *> (pure x <*? z))
+[OK] [Tests.ArrowMonad (->).Laws] Associativity: take a look at tests/Laws.hs
+[OK] [Tests.ArrowMonad (->).Laws] select == selectM
+[OK] [Tests.ArrowMonad (->).Laws] select == selectA
+[OK] [Tests.ArrowMonad (->).Theorems] Apply a pure function to the result: (f <$> select x y) == (select (second f <$> x) ((f .) <$> y))
+[OK] [Tests.ArrowMonad (->).Theorems] Apply a pure function to the Left case of the first argument: (select (first f <$> x) y) == (select x ((. f) <$> y))
+[OK] [Tests.ArrowMonad (->).Theorems] Apply a pure function to the second argument: (select x (f <$> y)) == (select (first (flip f) <$> x) ((&) <$> y))
+[OK] [Tests.ArrowMonad (->).Theorems] Generalised identity: (x <*? pure y) == (either y id <$> x)
+[OK] [Tests.ArrowMonad (->).Theorems] (f <*> g) == (f `apS` g)
+[OK] [Tests.ArrowMonad (->).Theorems] Interchange: (x *> (y <*? z)) == ((x *> y) <*? z)
+[OK] [Tests.ArrowMonad (->).Properties] pure-right: pure (Right x) <*? y = pure x
+[OK] [Tests.ArrowMonad (->).Properties] pure-left: pure (Left x) <*? y = ($x) <$> y
+[OK] [Tests.Maybe.Laws] Identity: (x <*? pure id) == (either id id <$> x)
+[OK] [Tests.Maybe.Laws] Distributivity: (pure x <*? (y *> z)) == ((pure x <*? y) *> (pure x <*? z))
+[OK] [Tests.Maybe.Laws] Associativity: take a look at tests/Laws.hs
+[OK] [Tests.Maybe.Laws] select == selectM
+[OK] [Tests.Maybe.Theorems] Apply a pure function to the result: (f <$> select x y) == (select (second f <$> x) ((f .) <$> y))
+[OK] [Tests.Maybe.Theorems] Apply a pure function to the Left case of the first argument: (select (first f <$> x) y) == (select x ((. f) <$> y))
+[OK] [Tests.Maybe.Theorems] Apply a pure function to the second argument: (select x (f <$> y)) == (select (first (flip f) <$> x) ((&) <$> y))
+[OK] [Tests.Maybe.Theorems] Generalised identity: (x <*? pure y) == (either y id <$> x)
+[OK] [Tests.Maybe.Theorems] (f <*> g) == (f `apS` g)
+[OK] [Tests.Maybe.Theorems] Interchange: (x *> (y <*? z)) == ((x *> y) <*? z)
+[OK] [Tests.Maybe.Properties] pure-right: pure (Right x) <*? y = pure x
+[OK] [Tests.Maybe.Properties] pure-left: pure (Left x) <*? y = ($x) <$> y
+[OK] [Tests.Identity.Laws] Identity: (x <*? pure id) == (either id id <$> x)
+[OK] [Tests.Identity.Laws] Distributivity: (pure x <*? (y *> z)) == ((pure x <*? y) *> (pure x <*? z))
+[OK] [Tests.Identity.Laws] Associativity: take a look at tests/Laws.hs
+[OK] [Tests.Identity.Laws] select == selectM
+[OK] [Tests.Identity.Theorems] Apply a pure function to the result: (f <$> select x y) == (select (second f <$> x) ((f .) <$> y))
+[OK] [Tests.Identity.Theorems] Apply a pure function to the Left case of the first argument: (select (first f <$> x) y) == (select x ((. f) <$> y))
+[OK] [Tests.Identity.Theorems] Apply a pure function to the second argument: (select x (f <$> y)) == (select (first (flip f) <$> x) ((&) <$> y))
+[OK] [Tests.Identity.Theorems] Generalised identity: (x <*? pure y) == (either y id <$> x)
+[OK] [Tests.Identity.Theorems] (f <*> g) == (f `apS` g)
+[OK] [Tests.Identity.Theorems] Interchange: (x *> (y <*? z)) == ((x *> y) <*? z)
+[OK] [Tests.Identity.Properties] pure-right: pure (Right x) <*? y = pure x
+[OK] [Tests.Identity.Properties] pure-left: pure (Left x) <*? y = ($x) <$> y
+[OK] [Tests.Writer.Laws] Identity: (x <*? pure id) == (either id id <$> x)
+[OK] [Tests.Writer.Laws] Distributivity: (pure x <*? (y *> z)) == ((pure x <*? y) *> (pure x <*? z))
+[OK] [Tests.Writer.Laws] Associativity: take a look at tests/Laws.hs
+[OK] [Tests.Writer.Laws] select == selectM
+[OK] [Tests.Writer.Theorems] Apply a pure function to the result: (f <$> select x y) == (select (second f <$> x) ((f .) <$> y))
+[OK] [Tests.Writer.Theorems] Apply a pure function to the Left case of the first argument: (select (first f <$> x) y) == (select x ((. f) <$> y))
+[OK] [Tests.Writer.Theorems] Apply a pure function to the second argument: (select x (f <$> y)) == (select (first (flip f) <$> x) ((&) <$> y))
+[OK] [Tests.Writer.Theorems] Generalised Identity: (x <*? pure y) == (either y id <$> x)
+[OK] [Tests.Writer.Theorems] (f <*> g) == (f `apS` g)
+[OK] [Tests.Writer.Theorems] Interchange: (x *> (y <*? z)) == ((x *> y) <*? z)
+[OK] [Tests.Writer.Properties] pure-right: pure (Right x) <*? y = pure x
+[OK] [Tests.Writer.Properties] pure-left: pure (Left x) <*? y = ($x) <$> y
+[OK] [Tests.Except.Laws] Identity: (x <*? pure id) == (either id id <$> x)
+[OK] [Tests.Except.Laws] Distributivity: (pure x <*? (y *> z)) == ((pure x <*? y) *> (pure x <*? z))
+[OK] [Tests.Except.Laws] Associativity: take a look at tests/Laws.hs
+[OK] [Tests.Except.Laws] select == selectM
+[OK] [Tests.Except.Theorems] Apply a pure function to the result: (f <$> select x y) == (select (second f <$> x) ((f .) <$> y))
+[OK] [Tests.Except.Theorems] Apply a pure function to the Left case of the first argument: (select (first f <$> x) y) == (select x ((. f) <$> y))
+[OK] [Tests.Except.Theorems] Apply a pure function to the second argument: (select x (f <$> y)) == (select (first (flip f) <$> x) ((&) <$> y))
+[OK] [Tests.Except.Theorems] Generalised Identity: (x <*? pure y) == (either y id <$> x)
+[OK] [Tests.Except.Theorems] (f <*> g) == (f `apS` g)
+[OK] [Tests.Except.Theorems] Interchange: (x *> (y <*? z)) == ((x *> y) <*? z)
+[OK] [Tests.Except.Properties] pure-right: pure (Right x) <*? y = pure x
+[OK] [Tests.Except.Properties] pure-left: pure (Left x) <*? y = ($x) <$> y
+Test suite main: PASS
+Test suite logged to:
+/tmp/workdir-selective/selective-0.7.0.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/selective-0.7.0.1/t/main/test/selective-0.7.0.1-main.log
+1 of 1 test suites (1 of 1 test cases) passed.

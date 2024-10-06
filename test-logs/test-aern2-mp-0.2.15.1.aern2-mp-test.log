@@ -1,0 +1,699 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - aern2-mp-0.2.15.1 (test:aern2-mp-test) (ephemeral targets)
+Preprocessing test suite 'aern2-mp-test' for aern2-mp-0.2.15.1...
+Building test suite 'aern2-mp-test' for aern2-mp-0.2.15.1...
+Running 1 test suites...
+Test suite aern2-mp-test: RUNNING...
+
+AERN2.MP.Ball
+  MPBall
+    CanSetPrecision MPBall
+      set then get [✔]
+        +++ OK, passed 100 tests.
+      setPrecision x ~ x [✔]
+        +++ OK, passed 100 tests.
+    conversion
+      Integer -> MPBall -> Integer [✔]
+        +++ OK, passed 100 tests.
+    order
+      HasEq MPBall MPBall, HasEq MPBall MPBall
+        has reflexive == [✔]
+          +++ OK, passed 100 tests.
+        has anti-reflexive /= [✔]
+          +++ OK, passed 100 tests.
+        has stronly commutative == [✔]
+          +++ OK, passed 100 tests.
+        has stronly commutative /= [✔]
+          +++ OK, passed 100 tests.
+        has stronly transitive == [✔]
+          +++ OK, passed 100 tests.
+      HasEq Int MPBall, HasEq MPBall Rational
+        has reflexive == [✔]
+          +++ OK, passed 100 tests.
+        has anti-reflexive /= [✔]
+          +++ OK, passed 100 tests.
+        has stronly commutative == [✔]
+          +++ OK, passed 100 tests.
+        has stronly commutative /= [✔]
+          +++ OK, passed 100 tests.
+        has stronly transitive == [✔]
+          +++ OK, passed 100 tests.
+      CanTestZero MPBall
+        converted non-zero Integer is not isCertainlyZero [✔]
+          +++ OK, passed 100 tests; 15 discarded.
+        converted non-zero Integer is isCertainlyNonZero [✔]
+          +++ OK, passed 100 tests; 15 discarded.
+        converted 0.0 is not isCertainlyNonZero [✔]
+      HasOrd MPBall MPBall, HasOrd MPBall MPBall
+        has reflexive >= [✔]
+          +++ OK, passed 100 tests.
+        has reflexive <= [✔]
+          +++ OK, passed 100 tests.
+        has anti-reflexive > [✔]
+          +++ OK, passed 100 tests.
+        has anti-reflexive < [✔]
+          +++ OK, passed 100 tests.
+        > stronly implies >= [✔]
+          +++ OK, passed 100 tests.
+        < stronly implies <= [✔]
+          +++ OK, passed 100 tests.
+        has stronly equivalent > and < [✔]
+          +++ OK, passed 100 tests.
+        has stronly equivalent >= and <= [✔]
+          +++ OK, passed 100 tests.
+        has stronly transitive < [✔]
+          +++ OK, passed 100 tests.
+      HasOrd Int MPBall, HasOrd MPBall Rational
+        has reflexive >= [✔]
+          +++ OK, passed 100 tests.
+        has reflexive <= [✔]
+          +++ OK, passed 100 tests.
+        has anti-reflexive > [✔]
+          +++ OK, passed 100 tests.
+        has anti-reflexive < [✔]
+          +++ OK, passed 100 tests.
+        > stronly implies >= [✔]
+          +++ OK, passed 100 tests.
+        < stronly implies <= [✔]
+          +++ OK, passed 100 tests.
+        has stronly equivalent > and < [✔]
+          +++ OK, passed 100 tests.
+        has stronly equivalent >= and <= [✔]
+          +++ OK, passed 100 tests.
+        has stronly transitive < [✔]
+          +++ OK, passed 100 tests.
+    min/max/abs
+      CanNeg MPBall
+        ignores double negation [✔]
+          +++ OK, passed 100 tests.
+        takes 0 to 0 [✔]
+        takes positive to negative [✔]
+          +++ OK, passed 100 tests; 189 discarded.
+        takes negative to positive [✔]
+          +++ OK, passed 100 tests; 248 discarded.
+      Function abs returns a valid result for valid MPBall inputs [✔]
+        +++ OK, passed 100 tests.
+      CanAbs MPBall
+        is idempotent [✔]
+          +++ OK, passed 100 tests.
+        is identity on non-negative arguments [✔]
+          +++ OK, passed 100 tests; 188 discarded.
+        is negation on non-positive arguments [✔]
+          +++ OK, passed 100 tests; 233 discarded.
+        does not give negative results [✔]
+          +++ OK, passed 100 tests.
+      Function min returns a valid result for valid MPBall, MPBall inputs [✔]
+        +++ OK, passed 100 tests.
+      Function max returns a valid result for valid MPBall, MPBall inputs [✔]
+        +++ OK, passed 100 tests.
+      CanMinMax MPBall MPBall, CanMinMax MPBall MPBall
+        `min` is not larger than its arguments [✔]
+          +++ OK, passed 100 tests.
+        `max` is not smaller than its arguments [✔]
+          +++ OK, passed 100 tests.
+        has idempotent `min` [✔]
+          +++ OK, passed 100 tests.
+        has idempotent `max` [✔]
+          +++ OK, passed 100 tests.
+        has commutative `min` [✔]
+          +++ OK, passed 100 tests.
+        has commutative `max` [✔]
+          +++ OK, passed 100 tests.
+        has associative `min` [✔]
+          +++ OK, passed 100 tests.
+        has associative `max` [✔]
+          +++ OK, passed 100 tests.
+      CanMinMax MPBall Integer, CanMinMax Integer MPBall
+        `min` is not larger than its arguments [✔]
+          +++ OK, passed 100 tests.
+        `max` is not smaller than its arguments [✔]
+          +++ OK, passed 100 tests.
+        has idempotent `min` [✔]
+          +++ OK, passed 100 tests.
+        has idempotent `max` [✔]
+          +++ OK, passed 100 tests.
+        has commutative `min` [✔]
+          +++ OK, passed 100 tests.
+        has commutative `max` [✔]
+          +++ OK, passed 100 tests.
+        has associative `min` [✔]
+          +++ OK, passed 100 tests.
+        has associative `max` [✔]
+          +++ OK, passed 100 tests.
+    ring
+      Function add returns a valid result for valid MPBall, MPBall inputs [✔]
+        +++ OK, passed 100 tests.
+      CanAdd MPBall MPBall, CanAdd MPBall MPBall
+        absorbs 0 [✔]
+          +++ OK, passed 100 tests.
+        is commutative [✔]
+          +++ OK, passed 100 tests.
+        is associative [✔]
+          +++ OK, passed 100 tests.
+        increases when positive [✔]
+          +++ OK, passed 100 tests; 223 discarded.
+        decreases when negative [✔]
+          +++ OK, passed 100 tests; 237 discarded.
+      CanAddSameType MPBall
+        has sum working over integers [✔]
+          +++ OK, passed 100 tests.
+        has sum [] = 0 [✔]
+          +++ OK, passed 1 test.
+      CanAdd Int MPBall, CanAdd MPBall Rational
+        absorbs 0 [✔]
+          +++ OK, passed 100 tests.
+        is commutative [✔]
+          +++ OK, passed 100 tests.
+        is associative [✔]
+          +++ OK, passed 100 tests.
+        increases when positive [✔]
+          +++ OK, passed 100 tests; 107 discarded.
+        decreases when negative [✔]
+          +++ OK, passed 100 tests; 136 discarded.
+      CanAdd Integer MPBall, CanAdd MPBall Int
+        absorbs 0 [✔]
+          +++ OK, passed 100 tests.
+        is commutative [✔]
+          +++ OK, passed 100 tests.
+        is associative [✔]
+          +++ OK, passed 100 tests.
+        increases when positive [✔]
+          +++ OK, passed 100 tests; 107 discarded.
+        decreases when negative [✔]
+          +++ OK, passed 100 tests; 136 discarded.
+      Function sub returns a valid result for valid MPBall, MPBall inputs [✔]
+        +++ OK, passed 100 tests.
+      CanSub MPBall MPBall
+        x-0 = x [✔]
+          +++ OK, passed 100 tests.
+        x-x = 0 [✔]
+          +++ OK, passed 100 tests.
+        x-y = x+(-y) [✔]
+          +++ OK, passed 100 tests.
+      CanSub MPBall Integer
+        x-0 = x [✔]
+          +++ OK, passed 100 tests.
+        x-x = 0 [✔]
+          +++ OK, passed 100 tests.
+        x-y = x+(-y) [✔]
+          +++ OK, passed 100 tests.
+      CanSub Integer MPBall
+        x-0 = x [✔]
+          +++ OK, passed 100 tests.
+        x-x = 0 [✔]
+          +++ OK, passed 100 tests.
+        x-y = x+(-y) [✔]
+          +++ OK, passed 100 tests.
+      CanSub MPBall Int
+        x-0 = x [✔]
+          +++ OK, passed 100 tests.
+        x-x = 0 [✔]
+          +++ OK, passed 100 tests.
+        x-y = x+(-y) [✔]
+          +++ OK, passed 100 tests.
+      CanSub Int MPBall
+        x-0 = x [✔]
+          +++ OK, passed 100 tests.
+        x-x = 0 [✔]
+          +++ OK, passed 100 tests.
+        x-y = x+(-y) [✔]
+          +++ OK, passed 100 tests.
+      Function mul returns a valid result for valid MPBall, MPBall inputs [✔]
+        +++ OK, passed 100 tests.
+      CanMul MPBall MPBall, CanMul MPBall MPBall
+        absorbs 1 [✔]
+          +++ OK, passed 100 tests.
+        is commutative [✔]
+          +++ OK, passed 100 tests.
+        is associative [✔]
+          +++ OK, passed 100 tests.
+        distributes over addition [✔]
+          +++ OK, passed 100 tests.
+      CanMulSameType MPBall
+        has product working over integers [✔]
+          +++ OK, passed 100 tests.
+        has product [] = 1 [✔]
+          +++ OK, passed 1 test.
+      CanMul Int MPBall, CanMul MPBall Rational
+        absorbs 1 [✔]
+          +++ OK, passed 100 tests.
+        is commutative [✔]
+          +++ OK, passed 100 tests.
+        is associative [✔]
+          +++ OK, passed 100 tests.
+        distributes over addition [✔]
+          +++ OK, passed 100 tests.
+    field
+      Function divide returns a valid result for valid MPBall, MPBall inputs [✔]
+        +++ OK, passed 100 tests; 64 discarded.
+      CanDiv MPBall MPBall
+        recip(recip x) = x [✔]
+          +++ OK, passed 100 tests; 72 discarded.
+        x/1 = x [✔]
+          +++ OK, passed 100 tests.
+        x/x = 1 [✔]
+          +++ OK, passed 100 tests; 72 discarded.
+        x/y = x*(1/y) [✔]
+          +++ OK, passed 100 tests; 64 discarded.
+      CanDiv Integer MPBall
+        recip(recip x) = x [✔]
+          +++ OK, passed 100 tests; 15 discarded.
+        x/1 = x [✔]
+          +++ OK, passed 100 tests.
+        x/x = 1 [✔]
+          +++ OK, passed 100 tests; 15 discarded.
+        x/y = x*(1/y) [✔]
+          +++ OK, passed 100 tests; 64 discarded.
+      CanDiv MPBall Int
+        recip(recip x) = x [✔]
+          +++ OK, passed 100 tests; 72 discarded.
+        x/1 = x [✔]
+          +++ OK, passed 100 tests.
+        x/x = 1 [✔]
+          +++ OK, passed 100 tests; 72 discarded.
+        x/y = x*(1/y) [✔]
+          +++ OK, passed 100 tests; 15 discarded.
+      CanDiv MPBall Rational
+        recip(recip x) = x [✔]
+          +++ OK, passed 100 tests; 72 discarded.
+        x/1 = x [✔]
+          +++ OK, passed 100 tests.
+        x/x = 1 [✔]
+          +++ OK, passed 100 tests; 72 discarded.
+        x/y = x*(1/y) [✔]
+          +++ OK, passed 100 tests; 10 discarded.
+    elementary
+      CanExp MPBall
+        exp(x) >= 0 [✔]
+          +++ OK, passed 100 tests.
+        exp(-x) == 1/(exp x) [✔]
+          +++ OK, passed 100 tests.
+        exp(x+y) = exp(x)*exp(y) [✔]
+          +++ OK, passed 100 tests.
+      CanLog MPBall
+        log(1/x) == -(log x) [✔]
+          +++ OK, passed 100 tests; 3 discarded.
+        log(x*y) = log(x)+log(y) [✔]
+          +++ OK, passed 100 tests; 3 discarded.
+        log(exp x) == x [✔]
+          +++ OK, passed 100 tests.
+      CanSqrt MPBall
+        sqrt(x) >= 0 [✔]
+          +++ OK, passed 100 tests; 188 discarded.
+        sqrt(x)^2 = x [✔]
+          +++ OK, passed 100 tests; 188 discarded.
+      CanSinCos MPBall
+        -1 <= sin(x) <= 1 [✔]
+          +++ OK, passed 100 tests.
+        -1 <= cos(x) <= 1 [✔]
+          +++ OK, passed 100 tests.
+        cos(x)^2 + sin(x)^2 = 1 [✔]
+          +++ OK, passed 100 tests.
+        sin(x-y) = sin(x)cos(y) - cos(x)sin(y) [✔]
+          +++ OK, passed 100 tests.
+        cos(x-y) = cos(x)cos(y) + sin(x)sin(y) [✔]
+          +++ OK, passed 100 tests.
+        sin(x) < x < tan(x) for x in [0,pi/2] [✔]
+          +++ OK, passed 100 tests; 521 discarded.
+AERN2.MP.Dyadic
+  Dyadic
+    conversion
+      Integer -> Dyadic -> Integer [✔]
+        +++ OK, passed 100 tests.
+    conversion
+      Dyadic -> Rational -> Dyadic [✔]
+        +++ OK, passed 100 tests.
+    order
+      HasEq Dyadic Dyadic, HasEq Dyadic Dyadic
+        has reflexive == [✔]
+          +++ OK, passed 100 tests.
+        has anti-reflexive /= [✔]
+          +++ OK, passed 100 tests.
+        has stronly commutative == [✔]
+          +++ OK, passed 100 tests.
+        has stronly commutative /= [✔]
+          +++ OK, passed 100 tests.
+        has stronly transitive == [✔]
+          +++ OK, passed 100 tests.
+      HasEq Int Dyadic, HasEq Dyadic Rational
+        has reflexive == [✔]
+          +++ OK, passed 100 tests.
+        has anti-reflexive /= [✔]
+          +++ OK, passed 100 tests.
+        has stronly commutative == [✔]
+          +++ OK, passed 100 tests.
+        has stronly commutative /= [✔]
+          +++ OK, passed 100 tests.
+        has stronly transitive == [✔]
+          +++ OK, passed 100 tests.
+      CanTestZero Dyadic
+        converted non-zero Integer is not isCertainlyZero [✔]
+          +++ OK, passed 100 tests; 15 discarded.
+        converted non-zero Integer is isCertainlyNonZero [✔]
+          +++ OK, passed 100 tests; 15 discarded.
+        converted 0.0 is not isCertainlyNonZero [✔]
+      HasOrd Dyadic Dyadic, HasOrd Dyadic Dyadic
+        has reflexive >= [✔]
+          +++ OK, passed 100 tests.
+        has reflexive <= [✔]
+          +++ OK, passed 100 tests.
+        has anti-reflexive > [✔]
+          +++ OK, passed 100 tests.
+        has anti-reflexive < [✔]
+          +++ OK, passed 100 tests.
+        > stronly implies >= [✔]
+          +++ OK, passed 100 tests.
+        < stronly implies <= [✔]
+          +++ OK, passed 100 tests.
+        has stronly equivalent > and < [✔]
+          +++ OK, passed 100 tests.
+        has stronly equivalent >= and <= [✔]
+          +++ OK, passed 100 tests.
+        has stronly transitive < [✔]
+          +++ OK, passed 100 tests.
+      HasOrd Int Dyadic, HasOrd Dyadic Rational
+        has reflexive >= [✔]
+          +++ OK, passed 100 tests.
+        has reflexive <= [✔]
+          +++ OK, passed 100 tests.
+        has anti-reflexive > [✔]
+          +++ OK, passed 100 tests.
+        has anti-reflexive < [✔]
+          +++ OK, passed 100 tests.
+        > stronly implies >= [✔]
+          +++ OK, passed 100 tests.
+        < stronly implies <= [✔]
+          +++ OK, passed 100 tests.
+        has stronly equivalent > and < [✔]
+          +++ OK, passed 100 tests.
+        has stronly equivalent >= and <= [✔]
+          +++ OK, passed 100 tests.
+        has stronly transitive < [✔]
+          +++ OK, passed 100 tests.
+    min/max/abs
+      CanNeg Dyadic
+        ignores double negation [✔]
+          +++ OK, passed 100 tests.
+        takes 0 to 0 [✔]
+        takes positive to negative [✔]
+          +++ OK, passed 100 tests; 82 discarded.
+        takes negative to positive [✔]
+          +++ OK, passed 100 tests; 144 discarded.
+      CanAbs Dyadic
+        is idempotent [✔]
+          +++ OK, passed 100 tests.
+        is identity on non-negative arguments [✔]
+          +++ OK, passed 100 tests; 72 discarded.
+        is negation on non-positive arguments [✔]
+          +++ OK, passed 100 tests; 103 discarded.
+        does not give negative results [✔]
+          +++ OK, passed 100 tests.
+      CanMinMax Dyadic Dyadic, CanMinMax Dyadic Dyadic
+        `min` is not larger than its arguments [✔]
+          +++ OK, passed 100 tests.
+        `max` is not smaller than its arguments [✔]
+          +++ OK, passed 100 tests.
+        has idempotent `min` [✔]
+          +++ OK, passed 100 tests.
+        has idempotent `max` [✔]
+          +++ OK, passed 100 tests.
+        has commutative `min` [✔]
+          +++ OK, passed 100 tests.
+        has commutative `max` [✔]
+          +++ OK, passed 100 tests.
+        has associative `min` [✔]
+          +++ OK, passed 100 tests.
+        has associative `max` [✔]
+          +++ OK, passed 100 tests.
+      CanMinMax Dyadic Integer, CanMinMax Integer Dyadic
+        `min` is not larger than its arguments [✔]
+          +++ OK, passed 100 tests.
+        `max` is not smaller than its arguments [✔]
+          +++ OK, passed 100 tests.
+        has idempotent `min` [✔]
+          +++ OK, passed 100 tests.
+        has idempotent `max` [✔]
+          +++ OK, passed 100 tests.
+        has commutative `min` [✔]
+          +++ OK, passed 100 tests.
+        has commutative `max` [✔]
+          +++ OK, passed 100 tests.
+        has associative `min` [✔]
+          +++ OK, passed 100 tests.
+        has associative `max` [✔]
+          +++ OK, passed 100 tests.
+      min Dyadic Rational (dyadic only) [✔]
+        +++ OK, passed 100 tests.
+      max Dyadic Rational (dyadic only) [✔]
+        +++ OK, passed 100 tests.
+    ring
+      CanAdd Dyadic Dyadic, CanAdd Dyadic Dyadic
+        absorbs 0 [✔]
+          +++ OK, passed 100 tests.
+        is commutative [✔]
+          +++ OK, passed 100 tests.
+        is associative [✔]
+          +++ OK, passed 100 tests.
+        increases when positive [✔]
+          +++ OK, passed 100 tests; 132 discarded.
+        decreases when negative [✔]
+          +++ OK, passed 100 tests; 104 discarded.
+      CanAddSameType Dyadic
+        has sum working over integers [✔]
+          +++ OK, passed 100 tests.
+        has sum [] = 0 [✔]
+          +++ OK, passed 1 test.
+      CanAdd Int Dyadic, CanAdd Dyadic Integer
+        absorbs 0 [✔]
+          +++ OK, passed 100 tests.
+        is commutative [✔]
+          +++ OK, passed 100 tests.
+        is associative [✔]
+          +++ OK, passed 100 tests.
+        increases when positive [✔]
+          +++ OK, passed 100 tests; 107 discarded.
+        decreases when negative [✔]
+          +++ OK, passed 100 tests; 136 discarded.
+      CanAdd Integer Dyadic, CanAdd Dyadic Int
+        absorbs 0 [✔]
+          +++ OK, passed 100 tests.
+        is commutative [✔]
+          +++ OK, passed 100 tests.
+        is associative [✔]
+          +++ OK, passed 100 tests.
+        increases when positive [✔]
+          +++ OK, passed 100 tests; 107 discarded.
+        decreases when negative [✔]
+          +++ OK, passed 100 tests; 136 discarded.
+      Dyadic + Rational (dyadic only) [✔]
+        +++ OK, passed 100 tests.
+      CanSub Dyadic Dyadic
+        x-0 = x [✔]
+          +++ OK, passed 100 tests.
+        x-x = 0 [✔]
+          +++ OK, passed 100 tests.
+        x-y = x+(-y) [✔]
+          +++ OK, passed 100 tests.
+      CanSub Dyadic Integer
+        x-0 = x [✔]
+          +++ OK, passed 100 tests.
+        x-x = 0 [✔]
+          +++ OK, passed 100 tests.
+        x-y = x+(-y) [✔]
+          +++ OK, passed 100 tests.
+      CanSub Integer Dyadic
+        x-0 = x [✔]
+          +++ OK, passed 100 tests.
+        x-x = 0 [✔]
+          +++ OK, passed 100 tests.
+        x-y = x+(-y) [✔]
+          +++ OK, passed 100 tests.
+      CanSub Dyadic Int
+        x-0 = x [✔]
+          +++ OK, passed 100 tests.
+        x-x = 0 [✔]
+          +++ OK, passed 100 tests.
+        x-y = x+(-y) [✔]
+          +++ OK, passed 100 tests.
+      CanSub Int Dyadic
+        x-0 = x [✔]
+          +++ OK, passed 100 tests.
+        x-x = 0 [✔]
+          +++ OK, passed 100 tests.
+        x-y = x+(-y) [✔]
+          +++ OK, passed 100 tests.
+      Dyadic - Rational (dyadic only) [✔]
+        +++ OK, passed 100 tests.
+      CanMul Dyadic Dyadic, CanMul Dyadic Dyadic
+        absorbs 1 [✔]
+          +++ OK, passed 100 tests.
+        is commutative [✔]
+          +++ OK, passed 100 tests.
+        is associative [✔]
+          +++ OK, passed 100 tests.
+        distributes over addition [✔]
+          +++ OK, passed 100 tests.
+      CanMulSameType Dyadic
+        has product working over integers [✔]
+          +++ OK, passed 100 tests.
+        has product [] = 1 [✔]
+          +++ OK, passed 1 test.
+      CanMul Int Dyadic, CanMul Dyadic Integer
+        absorbs 1 [✔]
+          +++ OK, passed 100 tests.
+        is commutative [✔]
+          +++ OK, passed 100 tests.
+        is associative [✔]
+          +++ OK, passed 100 tests.
+        distributes over addition [✔]
+          +++ OK, passed 100 tests.
+      Dyadic * Rational (dyadic only) [✔]
+        +++ OK, passed 100 tests.
+      CanPow Dyadic Integer
+        x^0 = 1 [✔]
+          +++ OK, passed 100 tests.
+        x^1 = x [✔]
+          +++ OK, passed 100 tests.
+        x^(y+1) = x*x^y [✔]
+          +++ OK, passed 100 tests; 90 discarded.
+AERN2.MP.Float
+  MPFloat
+    CanSetPrecision MPFloat
+      set then get [✔]
+        +++ OK, passed 100 tests; 6 discarded.
+      setPrecision x ~ x [✔]
+        +++ OK, passed 100 tests.
+    CanRound MPFloat
+      holds floor x <= x <= ceiling x [✔]
+        +++ OK, passed 100 tests; 3 discarded.
+      holds floor x <= round x <= ceiling x [✔]
+        +++ OK, passed 100 tests; 3 discarded.
+      0 <= ceiling x - floor x <= 1 [✔]
+        +++ OK, passed 100 tests; 3 discarded.
+      holds floor x = round x = ceiling x for integers [✔]
+        +++ OK, passed 100 tests.
+    CanNeg MPFloat
+      ignores double negation [✔]
+        +++ OK, passed 100 tests.
+      takes 0 to 0 [✔]
+      takes positive to negative [✔]
+        +++ OK, passed 100 tests; 110 discarded.
+      takes negative to positive [✔]
+        +++ OK, passed 100 tests; 163 discarded.
+    CanAbs MPFloat
+      is idempotent [✔]
+        +++ OK, passed 100 tests.
+      is identity on non-negative arguments [✔]
+        +++ OK, passed 100 tests; 73 discarded.
+      is negation on non-positive arguments [✔]
+        +++ OK, passed 100 tests; 125 discarded.
+      does not give negative results [✔]
+        +++ OK, passed 100 tests; 3 discarded.
+    CanMinMax MPFloat MPFloat, CanMinMax MPFloat MPFloat
+      `min` is not larger than its arguments [✔]
+        +++ OK, passed 100 tests; 10 discarded.
+      `max` is not smaller than its arguments [✔]
+        +++ OK, passed 100 tests; 10 discarded.
+      has idempotent `min` [✔]
+        +++ OK, passed 100 tests; 3 discarded.
+      has idempotent `max` [✔]
+        +++ OK, passed 100 tests; 3 discarded.
+      has commutative `min` [✔]
+        +++ OK, passed 100 tests; 10 discarded.
+      has commutative `max` [✔]
+        +++ OK, passed 100 tests; 10 discarded.
+      has associative `min` [✔]
+        +++ OK, passed 100 tests; 13 discarded.
+      has associative `max` [✔]
+        +++ OK, passed 100 tests; 13 discarded.
+    special values
+      0 * infinity = NaN [✔]
+      infinity / infinity = NaN [✔]
+      infinity - infinity = NaN [✔]
+    approximate addition
+      down <= up [✔]
+        +++ OK, passed 100 tests.
+      up ~ down [✔]
+        +++ OK, passed 100 tests.
+      absorbs 0 [✔]
+        +++ OK, passed 100 tests; 3 discarded.
+      approximately commutative [✔]
+        +++ OK, passed 100 tests.
+      approximately associative [✔]
+        +++ OK, passed 100 tests.
+    approximate subtraction
+      down <= up [✔]
+        +++ OK, passed 100 tests.
+      up ~ down [✔]
+        +++ OK, passed 100 tests.
+      same as negate and add [✔]
+        +++ OK, passed 100 tests.
+    approximate multiplication
+      down <= up [✔]
+        +++ OK, passed 100 tests.
+      up ~ down [✔]
+        +++ OK, passed 100 tests.
+      absorbs 1 [✔]
+        +++ OK, passed 100 tests.
+      approximately commutative [✔]
+        +++ OK, passed 100 tests.
+      approximately associative [✔]
+        +++ OK, passed 100 tests; 13 discarded.
+      approximately distributes over addition [✔]
+        +++ OK, passed 100 tests; 13 discarded.
+    approximate division
+      down <= up [✔]
+        +++ OK, passed 100 tests.
+      up ~ down [✔]
+        +++ OK, passed 100 tests; 15 discarded.
+      recip(recip x) = x [✔]
+        +++ OK, passed 100 tests; 11 discarded.
+      x/1 = x [✔]
+        +++ OK, passed 100 tests.
+      x/x = 1 [✔]
+        +++ OK, passed 100 tests.
+      x/y = x*(1/y) [✔]
+        +++ OK, passed 100 tests.
+    approximate sqrt
+      down <= up [✔]
+        +++ OK, passed 100 tests.
+      sqrt(x) >= 0 [✔]
+        +++ OK, passed 100 tests.
+      sqrt(x)^2 ~ x [✔]
+        +++ OK, passed 100 tests.
+    approximate exp
+      down <= up [✔]
+        +++ OK, passed 100 tests.
+      exp(-x) == 1/(exp x) [✔]
+        +++ OK, passed 100 tests.
+      exp(x+y) = exp(x)*exp(y) [✔]
+        +++ OK, passed 100 tests.
+    approximate log
+      down <= up [✔]
+        +++ OK, passed 100 tests.
+      log(1/x) == -(log x) [✔]
+        +++ OK, passed 100 tests.
+      log(x*y) = log(x)+log(y) [✔]
+        +++ OK, passed 100 tests.
+      log(exp x) == x [✔]
+        +++ OK, passed 100 tests.
+    approximate sine
+      down <= up [✔]
+        +++ OK, passed 100 tests.
+      in [-1,1] [✔]
+        +++ OK, passed 100 tests.
+    approximate cosine
+      down <= up [✔]
+        +++ OK, passed 100 tests.
+      in [-1,1] [✔]
+        +++ OK, passed 100 tests.
+      cos(x)^2 + sin(x)^2 = 1 [✔]
+        +++ OK, passed 100 tests; 3 discarded.
+
+Finished in 6.9219 seconds
+304 examples, 0 failures
+Test suite aern2-mp-test: PASS
+Test suite logged to:
+/tmp/workdir-aern2-mp/aern2-mp-0.2.15.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/aern2-mp-0.2.15.1/t/aern2-mp-test/test/aern2-mp-0.2.15.1-aern2-mp-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

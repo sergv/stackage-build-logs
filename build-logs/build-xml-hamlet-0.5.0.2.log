@@ -1,0 +1,49 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - xml-hamlet-0.5.0.2 (lib) (first run)
+ - xml-hamlet-0.5.0.2 (test:test) (first run)
+Configuring library for xml-hamlet-0.5.0.2...
+Preprocessing library for xml-hamlet-0.5.0.2...
+Building library for xml-hamlet-0.5.0.2...
+[1 of 2] Compiling Text.Hamlet.XMLParse
+
+Text/Hamlet/XMLParse.hs:16:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+16 | import Control.Applicative ((<$>), Applicative (..))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Text/Hamlet/XMLParse.hs:25:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad Result’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+25 |     return = Ok
+   |     ^^^^^^^^^^^
+
+Text/Hamlet/XMLParse.hs:35:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative Result’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+35 |     pure = return
+   |     ^^^^^^^^^^^^^
+[2 of 2] Compiling Text.Hamlet.XML
+Configuring test suite 'test' for xml-hamlet-0.5.0.2...
+Preprocessing test suite 'test' for xml-hamlet-0.5.0.2...
+Building test suite 'test' for xml-hamlet-0.5.0.2...
+[1 of 1] Compiling Main
+
+test/main.hs:156:35: warning: [GHC-47082] [-Woperator-whitespace-ext-conflict]
+    The prefix use of a ‘$’ would denote an untyped splice
+      were the TemplateHaskell extension enabled.
+    Suggested fix: Add whitespace after the ‘$’.
+    |
+156 |     it "allow embedding comments" $[xml|^{comment}|] @?= comment
+    |                                   ^
+[2 of 2] Linking /tmp/workdir-xml-hamlet/xml-hamlet-0.5.0.2/dist-newstyle/build/x86_64-linux/ghc-9.6.6/xml-hamlet-0.5.0.2/t/test/build/test/test

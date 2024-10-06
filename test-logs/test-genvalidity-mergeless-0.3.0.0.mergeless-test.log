@@ -1,0 +1,264 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - genvalidity-mergeless-0.3.0.0 (test:mergeless-test) (ephemeral targets)
+Preprocessing test suite 'mergeless-test' for genvalidity-mergeless-0.3.0.0...
+Building test suite 'mergeless-test' for genvalidity-mergeless-0.3.0.0...
+Running 1 test suites...
+Test suite mergeless-test: RUNNING...
+
+Data.Mergeless.Collection
+  GenValid (ClientStore ClientId Int Int)
+    genValid   :: Gen (ClientStore ClientId Int Int)
+      only generates valid '(ClientStore ClientId Int Int)'s [✔]
+        +++ OK, passed 100 tests.
+  JSON (ClientStore ClientId Int Int) (valid)
+    encode :: (ClientStore ClientId Int Int) -> Data.ByteString.Lazy.ByteString
+      never fails to encode a "valid (ClientStore ClientId Int Int)" [✔]
+        +++ OK, passed 100 tests.
+    decode :: Data.ByteString.Lazy.ByteString -> Either String (ClientStore ClientId Int Int)
+      ensures that encode and decode are inverses for "valid (ClientStore ClientId Int Int)"'s [✔]
+        +++ OK, passed 100 tests.
+  GenValid (SyncRequest ClientId Int Int)
+    genValid   :: Gen (SyncRequest ClientId Int Int)
+      only generates valid '(SyncRequest ClientId Int Int)'s [✔]
+        +++ OK, passed 100 tests.
+  JSON (SyncRequest ClientId Int Int) (valid)
+    encode :: (SyncRequest ClientId Int Int) -> Data.ByteString.Lazy.ByteString
+      never fails to encode a "valid (SyncRequest ClientId Int Int)" [✔]
+        +++ OK, passed 100 tests.
+    decode :: Data.ByteString.Lazy.ByteString -> Either String (SyncRequest ClientId Int Int)
+      ensures that encode and decode are inverses for "valid (SyncRequest ClientId Int Int)"'s [✔]
+        +++ OK, passed 100 tests.
+  GenValid (SyncResponse ClientId Int Int)
+    genValid   :: Gen (SyncResponse ClientId Int Int)
+      only generates valid '(SyncResponse ClientId Int Int)'s [✔]
+        +++ OK, passed 100 tests.
+  JSON (SyncResponse ClientId Int Int) (valid)
+    encode :: (SyncResponse ClientId Int Int) -> Data.ByteString.Lazy.ByteString
+      never fails to encode a "valid (SyncResponse ClientId Int Int)" [✔]
+        +++ OK, passed 100 tests.
+    decode :: Data.ByteString.Lazy.ByteString -> Either String (SyncResponse ClientId Int Int)
+      ensures that encode and decode are inverses for "valid (SyncResponse ClientId Int Int)"'s [✔]
+        +++ OK, passed 100 tests.
+  GenValid (ServerStore Int Int)
+    genValid   :: Gen (ServerStore Int Int)
+      only generates valid '(ServerStore Int Int)'s [✔]
+        +++ OK, passed 100 tests.
+  JSON (ServerStore Int Int) (valid)
+    encode :: (ServerStore Int Int) -> Data.ByteString.Lazy.ByteString
+      never fails to encode a "valid (ServerStore Int Int)" [✔]
+        +++ OK, passed 100 tests.
+    decode :: Data.ByteString.Lazy.ByteString -> Either String (ServerStore Int Int)
+      ensures that encode and decode are inverses for "valid (ServerStore Int Int)"'s [✔]
+        +++ OK, passed 100 tests.
+  emptyStore
+    is valid [✔]
+  storeSize
+    does not crash [✔]
+      +++ OK, passed 100 tests.
+    adding an item makes the store bigger [✔]
+      +++ OK, passed 100 tests.
+    deleting an unsynced item after adding it leaves the store with the original size [✔]
+      +++ OK, passed 100 tests.
+    deleting a synced item after adding it leaves the store with the original size [✔]
+      +++ OK, passed 100 tests.
+  addItemToClientStore
+    produces valid stores [✔]
+      +++ OK, passed 100 tests.
+  deleteUnsyncedFromClientStore
+    produces valid stores [✔]
+      +++ OK, passed 100 tests.
+  deleteSyncedFromClientStore
+    produces valid stores [✔]
+      +++ OK, passed 100 tests.
+  emptySyncRequest
+    is valid [✔]
+  makeSyncRequest
+    produces valid sync requests [✔]
+      +++ OK, passed 100 tests.
+  mergeSyncResponse
+    produces valid sync stores [✔]
+      +++ OK, passed 100 tests.
+    adds the single item that the server tells it to add to an empty client store [✔]
+      +++ OK, passed 100 tests.
+    deletes items that the server instructed to be deleted [✔]
+      +++ OK, passed 100 tests.
+  processServerSync
+    deterministic UUIDs
+      Single client
+        Single-item
+          succesfully downloads a single item from the server for an empty client [✔]
+            +++ OK, passed 100 tests.
+          succesfully uploads a single item to the server for an empty server [✔]
+            +++ OK, passed 100 tests.
+        Multi-item
+          succesfully downloads everything from the server for an empty client [✔]
+            +++ OK, passed 100 tests.
+          succesfully uploads everything to the server for an empty server [✔]
+            +++ OK, passed 100 tests.
+          is idempotent with one client [✔]
+            +++ OK, passed 100 tests.
+      Multiple clients
+        Single-item
+          successfully syncs an addition accross to a second client [✔]
+            +++ OK, passed 100 tests.
+          succesfully syncs a deletion across to a second client [✔]
+            +++ OK, passed 100 tests.
+          does not run into a conflict if two clients both try to sync a deletion [✔]
+            +++ OK, passed 100 tests.
+        Multiple items
+          makes no change if the sync request reflects the same local state with an empty sync response [✔]
+            +++ OK, passed 100 tests.
+          successfully syncs additions accross to a second client [✔]
+            +++ OK, passed 100 tests.
+          succesfully syncs deletions across to a second client [✔]
+            +++ OK, passed 100 tests.
+          does not run into a conflict if two clients both try to sync a deletion [✔]
+            +++ OK, passed 100 tests.
+      General properties
+        produces valid results [✔]
+          +++ OK, passed 100 tests.
+        successfully syncs two clients using a central store [✔]
+          +++ OK, passed 100 tests.
+        ensures that syncing is idempotent [✔]
+          +++ OK, passed 100 tests.
+Data.Mergeless.Item
+  Eq (ClientItem Int)
+    (==) :: (ClientItem Int) -> (ClientItem Int) -> Bool
+      is reflexive for "valid (ClientItem Int)"s [✔]
+        +++ OK, passed 100 tests.
+      is symmetric for "valid (ClientItem Int)"s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "valid (ClientItem Int)"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a /= b) for "valid (ClientItem Int)"s [✔]
+        +++ OK, passed 100 tests.
+    (/=) :: (ClientItem Int) -> (ClientItem Int) -> Bool
+      is antireflexive for "valid (ClientItem Int)"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a == b) for "valid (ClientItem Int)"s [✔]
+        +++ OK, passed 100 tests.
+  GenValid (ClientItem Int)
+    genValid   :: Gen (ClientItem Int)
+      only generates valid '(ClientItem Int)'s [✔]
+        +++ OK, passed 100 tests.
+  JSON (ClientItem Int) (valid)
+    encode :: (ClientItem Int) -> Data.ByteString.Lazy.ByteString
+      never fails to encode a "valid (ClientItem Int)" [✔]
+        +++ OK, passed 100 tests.
+    decode :: Data.ByteString.Lazy.ByteString -> Either String (ClientItem Int)
+      ensures that encode and decode are inverses for "valid (ClientItem Int)"'s [✔]
+        +++ OK, passed 100 tests.
+  Eq (ItemSyncRequest Int)
+    (==) :: (ItemSyncRequest Int) -> (ItemSyncRequest Int) -> Bool
+      is reflexive for "valid (ItemSyncRequest Int)"s [✔]
+        +++ OK, passed 100 tests.
+      is symmetric for "valid (ItemSyncRequest Int)"s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "valid (ItemSyncRequest Int)"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a /= b) for "valid (ItemSyncRequest Int)"s [✔]
+        +++ OK, passed 100 tests.
+    (/=) :: (ItemSyncRequest Int) -> (ItemSyncRequest Int) -> Bool
+      is antireflexive for "valid (ItemSyncRequest Int)"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a == b) for "valid (ItemSyncRequest Int)"s [✔]
+        +++ OK, passed 100 tests.
+  GenValid (ItemSyncRequest Int)
+    genValid   :: Gen (ItemSyncRequest Int)
+      only generates valid '(ItemSyncRequest Int)'s [✔]
+        +++ OK, passed 100 tests.
+  JSON (ItemSyncRequest Int) (valid)
+    encode :: (ItemSyncRequest Int) -> Data.ByteString.Lazy.ByteString
+      never fails to encode a "valid (ItemSyncRequest Int)" [✔]
+        +++ OK, passed 100 tests.
+    decode :: Data.ByteString.Lazy.ByteString -> Either String (ItemSyncRequest Int)
+      ensures that encode and decode are inverses for "valid (ItemSyncRequest Int)"'s [✔]
+        +++ OK, passed 100 tests.
+  Eq (ItemSyncResponse Int)
+    (==) :: (ItemSyncResponse Int) -> (ItemSyncResponse Int) -> Bool
+      is reflexive for "valid (ItemSyncResponse Int)"s [✔]
+        +++ OK, passed 100 tests.
+      is symmetric for "valid (ItemSyncResponse Int)"s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "valid (ItemSyncResponse Int)"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a /= b) for "valid (ItemSyncResponse Int)"s [✔]
+        +++ OK, passed 100 tests.
+    (/=) :: (ItemSyncResponse Int) -> (ItemSyncResponse Int) -> Bool
+      is antireflexive for "valid (ItemSyncResponse Int)"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a == b) for "valid (ItemSyncResponse Int)"s [✔]
+        +++ OK, passed 100 tests.
+  GenValid (ItemSyncResponse Int)
+    genValid   :: Gen (ItemSyncResponse Int)
+      only generates valid '(ItemSyncResponse Int)'s [✔]
+        +++ OK, passed 100 tests.
+  JSON (ItemSyncResponse Int) (valid)
+    encode :: (ItemSyncResponse Int) -> Data.ByteString.Lazy.ByteString
+      never fails to encode a "valid (ItemSyncResponse Int)" [✔]
+        +++ OK, passed 100 tests.
+    decode :: Data.ByteString.Lazy.ByteString -> Either String (ItemSyncResponse Int)
+      ensures that encode and decode are inverses for "valid (ItemSyncResponse Int)"'s [✔]
+        +++ OK, passed 100 tests.
+  Eq (ServerItem Int)
+    (==) :: (ServerItem Int) -> (ServerItem Int) -> Bool
+      is reflexive for "valid (ServerItem Int)"s [✔]
+        +++ OK, passed 100 tests.
+      is symmetric for "valid (ServerItem Int)"s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "valid (ServerItem Int)"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a /= b) for "valid (ServerItem Int)"s [✔]
+        +++ OK, passed 100 tests.
+    (/=) :: (ServerItem Int) -> (ServerItem Int) -> Bool
+      is antireflexive for "valid (ServerItem Int)"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a == b) for "valid (ServerItem Int)"s [✔]
+        +++ OK, passed 100 tests.
+  GenValid (ServerItem Int)
+    genValid   :: Gen (ServerItem Int)
+      only generates valid '(ServerItem Int)'s [✔]
+        +++ OK, passed 100 tests.
+  JSON (ServerItem Int) (valid)
+    encode :: (ServerItem Int) -> Data.ByteString.Lazy.ByteString
+      never fails to encode a "valid (ServerItem Int)" [✔]
+        +++ OK, passed 100 tests.
+    decode :: Data.ByteString.Lazy.ByteString -> Either String (ServerItem Int)
+      ensures that encode and decode are inverses for "valid (ServerItem Int)"'s [✔]
+        +++ OK, passed 100 tests.
+  makeItemSyncrequest
+    produces valid requests [✔]
+      +++ OK, passed 100 tests.
+  mergeItemSyncResponse
+    produces valid client items [✔]
+      +++ OK, passed 100 tests.
+  processItemSync
+    produces valid tuples [✔]
+      +++ OK, passed 100 tests.
+  processItemSync
+    Interaction
+      makes no changes if the sync request reflects the state of the empty server [✔]
+      makes no changes if the sync request reflects the state of the full server [✔]
+        +++ OK, passed 100 tests.
+    Client changes
+      adds the item that the client tells the server to add [✔]
+        +++ OK, passed 100 tests.
+      deletes the item that the client tells the server to delete [✔]
+        +++ OK, passed 100 tests.
+    Server changes
+      tells the client that there is a new item at the server side [✔]
+        +++ OK, passed 100 tests.
+      tells the client that there is a deleted item at the server side [✔]
+    High level properties
+      it always possible to add an item from scratch [✔]
+        +++ OK, passed 100 tests.
+      is idempotent with one client [✔]
+        +++ OK, passed 100 tests.
+
+Finished in 0.0592 seconds
+87 examples, 0 failures
+Test suite mergeless-test: PASS
+Test suite logged to:
+/tmp/workdir-genvalidity-mergeless/genvalidity-mergeless-0.3.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/genvalidity-mergeless-0.3.0.0/t/mergeless-test/test/genvalidity-mergeless-0.3.0.0-mergeless-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

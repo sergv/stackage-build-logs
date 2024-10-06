@@ -1,0 +1,52 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - streaming-0.2.4.0 (test:spec) (ephemeral targets)
+Preprocessing test suite 'spec' for streaming-0.2.4.0...
+Building test suite 'spec' for streaming-0.2.4.0...
+Running 1 test suites...
+Test suite spec: RUNNING...
+
+slidingWindowMin
+  works with a few simple cases [✔]
+  produces no results with empty streams [✔]
+    +++ OK, passed 100 tests.
+  behaves like a (S.map Foldable.minimum) (slidingWindow) for non-empty streams [✔]
+    +++ OK, passed 100 tests.
+  behaves like identity when window size is 1 [✔]
+    +++ OK, passed 100 tests.
+  produces a prefix when the stream elements are sorted [✔]
+    +++ OK, passed 100 tests; 28 discarded.
+slidingWindowMinBy
+  prefers earlier elements when several elements compare equal [✔]
+  behaves like a (S.map (Foldable.minimumBy f)) (slidingWindow) for non-empty streams [✔]
+    +++ OK, passed 100 tests.
+slidingWindowMinOn
+  behaves like a (S.map (Foldable.minimumBy (comparing p))) (slidingWindow) for non-empty streams [✔]
+    +++ OK, passed 100 tests.
+  does not force the projected value to WHNF [✔]
+    +++ OK, passed 100 tests; 28 discarded.
+slidingWindowMax
+  produces no results with empty streams [✔]
+    +++ OK, passed 100 tests.
+  behaves like a (S.map Foldable.maximum) (slidingWindow n s) for non-empty streams [✔]
+    +++ OK, passed 100 tests.
+  behaves like identity when window size is 1 [✔]
+    +++ OK, passed 100 tests.
+  produces a suffix when the stream elements are sorted [✔]
+    +++ OK, passed 100 tests; 28 discarded.
+slidingWindowMaxBy
+  prefers later elements when several elements compare equal [✔]
+  behaves like a (S.map (Foldable.maximumBy f)) (slidingWindow) for non-empty streams [✔]
+    +++ OK, passed 100 tests.
+slidingWindowMaxOn
+  behaves like a (S.map (Foldable.maximumBy (comparing p))) (slidingWindow) for non-empty streams [✔]
+    +++ OK, passed 100 tests.
+  does not force the projected value to WHNF [✔]
+    +++ OK, passed 100 tests; 28 discarded.
+
+Finished in 0.0119 seconds
+17 examples, 0 failures
+Test suite spec: PASS
+Test suite logged to:
+/tmp/workdir-streaming/streaming-0.2.4.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/streaming-0.2.4.0/t/spec/test/streaming-0.2.4.0-spec.log
+1 of 1 test suites (1 of 1 test cases) passed.

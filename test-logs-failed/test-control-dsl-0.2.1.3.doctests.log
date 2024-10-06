@@ -1,0 +1,92 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - control-dsl-0.2.1.3 (test:doctests) (ephemeral targets)
+Preprocessing test suite 'doctests' for control-dsl-0.2.1.3...
+Building test suite 'doctests' for control-dsl-0.2.1.3...
+Running 1 test suites...
+Test suite doctests: RUNNING...
+
+/tmp/workdir-control-dsl/control-dsl-0.2.1.3/src/Control/Dsl/Empty.hs:23:10: error: [GHC-39999]
+    • Could not deduce ‘PolyCont Empty a Void’
+      from the context: PolyCont Empty a Void
+        bound by the type signature for:
+                   empty :: forall {k} a. PolyCont Empty a Void => a
+        at /tmp/workdir-control-dsl/control-dsl-0.2.1.3/src/Control/Dsl/Empty.hs:23:10-35
+      The type variable ‘k0’ is ambiguous
+      Potentially matching instance:
+        instance [overlap ok] Control.Applicative.Alternative m =>
+                              PolyCont Empty (m a) Void
+          -- Defined at /tmp/workdir-control-dsl/control-dsl-0.2.1.3/src/Control/Dsl/Empty.hs:16:27
+    • In the ambiguity check for ‘empty’
+      To defer the ambiguity check to use sites, enable AllowAmbiguousTypes
+      In the type signature: empty :: PolyCont Empty a Void => a
+
+/tmp/workdir-control-dsl/control-dsl-0.2.1.3/src/Control/Dsl/Return.hs:67:1: error: [GHC-39999]
+    • Could not deduce ‘PolyCont (Return r') r Void’
+      from the context: PolyCont (Return r') r Void
+        bound by the inferred type for ‘return’:
+                   forall {k} {r'} {r}. PolyCont (Return r') r Void => r' -> r
+        at /tmp/workdir-control-dsl/control-dsl-0.2.1.3/src/Control/Dsl/Return.hs:67:1-40
+      The type variable ‘k0’ is ambiguous
+      Potentially matching instances:
+        instance PolyCont (Return r) r Void
+          -- Defined at /tmp/workdir-control-dsl/control-dsl-0.2.1.3/src/Control/Dsl/Return.hs:19:10
+        instance [overlap ok] Applicative m =>
+                              PolyCont (Return r) (m r) Void
+          -- Defined at /tmp/workdir-control-dsl/control-dsl-0.2.1.3/src/Control/Dsl/Return.hs:75:27
+    • In the ambiguity check for the inferred type for ‘return’
+      To defer the ambiguity check to use sites, enable AllowAmbiguousTypes
+      When checking the inferred type
+        return :: forall {k} {r'} {r}.
+                  PolyCont (Return r') r Void =>
+                  r' -> r
+/tmp/workdir-control-dsl/control-dsl-0.2.1.3/src/Control/Dsl.hs:214: failure in expression `import Control.Dsl.Cont'
+expected: 
+ but got: 
+          ^
+          <interactive>:1:1: error:
+              attempting to use module ‘main:Control.Dsl.Cont’ (/tmp/workdir-control-dsl/control-dsl-0.2.1.3/src/Control/Dsl/Cont.hs) which is not loaded
+
+/tmp/workdir-control-dsl/control-dsl-0.2.1.3/src/Control/Dsl/Yield.hs:32: failure in expression `import Control.Dsl'
+expected: 
+ but got: 
+          ^
+          <interactive>:1:1: error:
+              attempting to use module ‘main:Control.Dsl’ (/tmp/workdir-control-dsl/control-dsl-0.2.1.3/src/Control/Dsl.hs) which is not loaded
+
+/tmp/workdir-control-dsl/control-dsl-0.2.1.3/src/Control/Dsl/State/State.hs:27: failure in expression `import Control.Dsl.State'
+expected: 
+ but got: 
+          ^
+          <interactive>:1:1: error:
+              attempting to use module ‘main:Control.Dsl.State’ (/tmp/workdir-control-dsl/control-dsl-0.2.1.3/src/Control/Dsl/State.hs) which is not loaded
+
+/tmp/workdir-control-dsl/control-dsl-0.2.1.3/src/Control/Dsl/Dsl.hs:51: failure in expression `import Control.Dsl.State.Get'
+expected: 
+ but got: 
+          ^
+          <interactive>:1:1: error:
+              attempting to use module ‘main:Control.Dsl.State.Get’ (/tmp/workdir-control-dsl/control-dsl-0.2.1.3/src/Control/Dsl/State/Get.hs) which is not loaded
+
+/tmp/workdir-control-dsl/control-dsl-0.2.1.3/src/Control/Dsl/Cont.hs:24: failure in expression `import Control.Dsl.Yield'
+expected: 
+ but got: 
+          ^
+          <interactive>:1:1: error:
+              attempting to use module ‘main:Control.Dsl.Yield’ (/tmp/workdir-control-dsl/control-dsl-0.2.1.3/src/Control/Dsl/Yield.hs) which is not loaded
+
+/tmp/workdir-control-dsl/control-dsl-0.2.1.3/src/Control/Dsl/Return.hs:38: failure in expression `import Control.Dsl.Return'
+expected: 
+ but got: 
+          ^
+          <interactive>:1:1: error:
+              attempting to use module ‘main:Control.Dsl.Return’ (/tmp/workdir-control-dsl/control-dsl-0.2.1.3/src/Control/Dsl/Return.hs) which is not loaded
+
+Examples: 108  Tried: 42  Errors: 0  Failures: 6
+Test suite doctests: FAIL
+Test suite logged to:
+/tmp/workdir-control-dsl/control-dsl-0.2.1.3/dist-newstyle/build/x86_64-linux/ghc-9.6.6/control-dsl-0.2.1.3/t/doctests/test/control-dsl-0.2.1.3-doctests.log
+0 of 1 test suites (0 of 1 test cases) passed.
+Error: [Cabal-7125]
+Tests failed for test:doctests from control-dsl-0.2.1.3.
+

@@ -1,0 +1,189 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - hashids-1.1.1.0 (test:hashids-test) (ephemeral targets)
+Preprocessing test suite 'hashids-test' for hashids-1.1.1.0...
+Building test suite 'hashids-test' for hashids-1.1.1.0...
+Running 1 test suites...
+Test suite hashids-test: RUNNING...
+━━━ Test.Web.Hashids.Property ━━━
+  ✗ prop_tripping failed at test/Test/Web/Hashids/Property.hs:27:21
+    after 1 test.
+    shrink path: 1:
+  
+       ┏━━ test/Test/Web/Hashids/Property.hs ━━━
+    25 ┃ prop_tripping :: Property
+    26 ┃ prop_tripping =
+    27 ┃     withTests 500 $ property $ do
+       ┃     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       ┃     │ ━━━ Exception (ErrorCall) ━━━
+       ┃     │ all numbers must be non-negative
+       ┃     │ CallStack (from HasCallStack):
+       ┃     │   error, called at src/Web/Hashids.hs:426:24 in hashids-1.1.1.0-inplace:Web.Hashids
+    28 ┃         context <- forAll genHashidsContext
+    29 ┃         x       <- forAll (Gen.integral Range.constantBounded)
+    30 ┃         tripping x (encode context) (decode context)
+  
+    This failure can be reproduced by running:
+    > recheckAt (Seed 2338024457247037650 13525814105623846541) "1:" prop_tripping
+  
+  ✗ prop_trippingUsingSalt failed at test/Test/Web/Hashids/Property.hs:34:21
+    after 1 test.
+    shrink path: 1:
+  
+       ┏━━ test/Test/Web/Hashids/Property.hs ━━━
+    32 ┃ prop_trippingUsingSalt :: Property
+    33 ┃ prop_trippingUsingSalt =
+    34 ┃     withTests 500 $ property $ do
+       ┃     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       ┃     │ ━━━ Exception (ErrorCall) ━━━
+       ┃     │ all numbers must be non-negative
+       ┃     │ CallStack (from HasCallStack):
+       ┃     │   error, called at src/Web/Hashids.hs:426:24 in hashids-1.1.1.0-inplace:Web.Hashids
+    35 ┃         salt <- forAll genSalt
+    36 ┃         x    <- forAll (Gen.integral Range.constantBounded)
+    37 ┃         tripping x (encodeUsingSalt salt) (decodeUsingSalt salt)
+  
+    This failure can be reproduced by running:
+    > recheckAt (Seed 2338024457247037650 13525814105623846541) "1:" prop_trippingUsingSalt
+  
+  ✗ prop_encNotEqualToPlain failed at test/Test/Web/Hashids/Property.hs:46:9
+    after 1 test and 103 shrinks.
+    shrink path: 1:aBbgDb2Db3Cb4Cb3Dc3Ed2E2d2G2iJ2mK2mKlGfMf2OrA55
+  
+       ┏━━ test/Test/Web/Hashids/Property.hs ━━━
+    39 ┃ prop_encNotEqualToPlain :: Property
+    40 ┃ prop_encNotEqualToPlain =
+    41 ┃     withTests 500 $ property $ do
+    42 ┃         context <- forAll genHashidsContext
+       ┃         │ Context
+       ┃         │   { guards = "b"
+       ┃         │   , seps = "fuich"
+       ┃         │   , salt = "a"
+       ┃         │   , minHashLength = 1
+       ┃         │   , alphabet = "mqklpadreg"
+       ┃         │   }
+    43 ┃         x       <- forAll (Gen.integral Range.constantBounded)
+       ┃         │ -1
+    44 ┃         let hashids     = encode context x
+    45 ┃             xByteString = C.pack $ show x
+    46 ┃         assert $ hashids /= xByteString
+       ┃         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       ┃         │ ━━━ Exception (ErrorCall) ━━━
+       ┃         │ all numbers must be non-negative
+       ┃         │ CallStack (from HasCallStack):
+       ┃         │   error, called at src/Web/Hashids.hs:426:24 in hashids-1.1.1.0-inplace:Web.Hashids
+  
+    This failure can be reproduced by running:
+    > recheckAt (Seed 2338024457247037650 13525814105623846541) "1:aBbgDb2Db3Cb4Cb3Dc3Ed2E2d2G2iJ2mK2mKlGfMf2OrA55" prop_encNotEqualToPlain
+  
+  ✗ prop_encDifferentSaltsNotEqual failed at test/Test/Web/Hashids/Property.hs:58:9
+    after 2 tests and 165 shrinks.
+    shrink path: 2:b10BFbA3b2A3eCdCeCdFd2EdEdEdEfEgFeFhGiHgIgMjLkJ2bgBa2B2a3B2a2C2bFhGiG2jHiJh2Ji3KmLiLkMlOc4JmA62
+  
+       ┏━━ test/Test/Web/Hashids/Property.hs ━━━
+    48 ┃ prop_encDifferentSaltsNotEqual :: Property
+    49 ┃ prop_encDifferentSaltsNotEqual =
+    50 ┃     withTests 500 $ property $ do
+    51 ┃         salt1    <- forAll genSalt
+       ┃         │ "a"
+    52 ┃         salt2    <- forAll genSalt
+       ┃         │ "a"
+    53 ┃         context1 <- forAll (genHashidsContextWithSalt salt1)
+       ┃         │ Context
+       ┃         │   { guards = "a"
+       ┃         │   , seps = "cihIf"
+       ┃         │   , salt = "a"
+       ┃         │   , minHashLength = 1
+       ┃         │   , alphabet = "lpgkmJbqde"
+       ┃         │   }
+    54 ┃         context2 <- forAll (genHashidsContextWithSalt salt2)
+       ┃         │ Context
+       ┃         │   { guards = "b"
+       ┃         │   , seps = "futcs"
+       ┃         │   , salt = "a"
+       ┃         │   , minHashLength = 1
+       ┃         │   , alphabet = "vyqrxadzep"
+       ┃         │   }
+    55 ┃         x        <- forAll (Gen.integral Range.constantBounded)
+       ┃         │ -1
+    56 ┃         let hashids1 = encode context1 x
+    57 ┃             hashids2 = encode context2 x
+    58 ┃         assert $ hashids1 /= hashids2
+       ┃         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       ┃         │ ━━━ Exception (ErrorCall) ━━━
+       ┃         │ all numbers must be non-negative
+       ┃         │ CallStack (from HasCallStack):
+       ┃         │   error, called at src/Web/Hashids.hs:426:24 in hashids-1.1.1.0-inplace:Web.Hashids
+  
+    This failure can be reproduced by running:
+    > recheckAt (Seed 2338024457247037650 13525814105623846541) "2:b10BFbA3b2A3eCdCeCdFd2EdEdEdEfEgFeFhGiHgIgMjLkJ2bgBa2B2a3B2a2C2bFhGiG2jHiJh2Ji3KmLiLkMlOc4JmA62" prop_encDifferentSaltsNotEqual
+  
+  ✗ prop_encOnlyConsistsOfAlphabet failed at test/Test/Web/Hashids/Property.hs:67:9
+    after 1 test and 104 shrinks.
+    shrink path: 1:bfDa2CaBaB2aB4cAbC3eFdFd2F2eGfH2gHgHiDgJcA61
+  
+       ┏━━ test/Test/Web/Hashids/Property.hs ━━━
+    60 ┃ prop_encOnlyConsistsOfAlphabet :: Property
+    61 ┃ prop_encOnlyConsistsOfAlphabet =
+    62 ┃     withTests 500 $ property $ do
+    63 ┃         alphabet <- forAll genAlphabet
+       ┃         │ "IPabcdefgilopqrz"
+    64 ┃         context  <- forAll (genHashidsContextWithAlphabet alphabet)
+       ┃         │ Context
+       ┃         │   { guards = "b"
+       ┃         │   , seps = "iIcf"
+       ┃         │   , salt = "a"
+       ┃         │   , minHashLength = 1
+       ┃         │   , alphabet = "Pdeplzqgrao"
+       ┃         │   }
+    65 ┃         x        <- forAll (Gen.integral Range.constantBounded)
+       ┃         │ -1
+    66 ┃         let hashids = encode context x
+    67 ┃         assert $ not $ C.any ((flip notElem) alphabet) hashids
+       ┃         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       ┃         │ ━━━ Exception (ErrorCall) ━━━
+       ┃         │ all numbers must be non-negative
+       ┃         │ CallStack (from HasCallStack):
+       ┃         │   error, called at src/Web/Hashids.hs:426:24 in hashids-1.1.1.0-inplace:Web.Hashids
+  
+    This failure can be reproduced by running:
+    > recheckAt (Seed 2338024457247037650 13525814105623846541) "1:bfDa2CaBaB2aB4cAbC3eFdFd2F2eGfH2gHgHiDgJcA61" prop_encOnlyConsistsOfAlphabet
+  
+  ✗ prop_encMinLength failed at test/Test/Web/Hashids/Property.hs:76:9
+    after 1 test and 113 shrinks.
+    shrink path: 1:bBGdBdEb2C2b2C2b2C2bD6eC4eC3d2C3d2C2eD2eDgJgHa61
+  
+       ┏━━ test/Test/Web/Hashids/Property.hs ━━━
+    69 ┃ prop_encMinLength :: Property
+    70 ┃ prop_encMinLength =
+    71 ┃     withTests 500 $ property $ do
+    72 ┃         minHashLength <- forAll genMinHashLength
+       ┃         │ 1
+    73 ┃         context       <- forAll (genHashidsContextWithMinLen minHashLength)
+       ┃         │ Context
+       ┃         │   { guards = "k"
+       ┃         │   , seps = "icKV"
+       ┃         │   , salt = "a"
+       ┃         │   , minHashLength = 1
+       ┃         │   , alphabet = "almqoxrnwbp"
+       ┃         │   }
+    74 ┃         x             <- forAll (Gen.integral Range.constantBounded)
+       ┃         │ -1
+    75 ┃         let hashids = encode context x
+    76 ┃         assert $ BS.length hashids >= minHashLength
+       ┃         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       ┃         │ ━━━ Exception (ErrorCall) ━━━
+       ┃         │ all numbers must be non-negative
+       ┃         │ CallStack (from HasCallStack):
+       ┃         │   error, called at src/Web/Hashids.hs:426:24 in hashids-1.1.1.0-inplace:Web.Hashids
+  
+    This failure can be reproduced by running:
+    > recheckAt (Seed 2338024457247037650 13525814105623846541) "1:bBGdBdEb2C2b2C2b2C2bD6eC4eC3d2C3d2C2eD2eDgJgHa61" prop_encMinLength
+  
+  ✓ prop_decComplete passed 500 tests.
+  ✓ prop_decCompleteLooksValid passed 500 tests.
+  ✗ 6 failed, 2 succeeded.
+Test suite hashids-test: PASS
+Test suite logged to:
+/tmp/workdir-hashids/hashids-1.1.1.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/hashids-1.1.1.0/t/hashids-test/test/hashids-1.1.1.0-hashids-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

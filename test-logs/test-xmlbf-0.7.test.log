@@ -1,0 +1,92 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - xmlbf-0.7 (test:test) (ephemeral targets)
+Preprocessing test suite 'test' for xmlbf-0.7...
+Building test suite 'test' for xmlbf-0.7...
+Running 1 test suites...
+Test suite test: RUNNING...
+main
+  text'
+    text: empty or one:                              OK
+      +++ OK, passed 100 tests.
+    text: like text':                                OK
+      +++ OK, passed 100 tests.
+  element
+    empty name:                                      OK
+    name with leading whitespace:                    OK
+    name with trailing whitespace:                   OK
+    empty attribute:                                 OK
+    attribute with leading whitespace:               OK
+    attribute with trailing whitespace:              OK
+  Encoding
+    empty:                                           OK
+    xml: <x a="y"></x>:                              OK
+    xml: <x a="y" b=""></x>:                         OK
+    xml: <x a="y" b="z"></x>:                        OK
+    xml: <x>foo</x>:                                 OK
+    xml: <x>foobar</x>:                              OK
+    xml: <x><y></y></x>:                             OK
+    xml: <x><y></y><z></z></x>:                      OK
+    xml: <x></x><y></y>:                             OK
+  Parsing
+    endOfInput:                                      OK
+    endOfInput: Not end of input yet:                OK
+    text': empty:                                    OK
+    text': blank:                                    OK
+    text': space:                                    OK
+    text': missing:                                  OK
+    text':                                           OK
+    text': concat:                                   OK
+    text': twice:                                    OK
+    any element: empty:                              OK
+    any element: text:                               OK
+    any element: pure:                               OK
+    any element: name:                               OK
+    element: empty:                                  OK
+    element: Missing element:                        OK
+    element: pure:                                   OK
+    element: name:                                   OK
+    element: leading whitespace:                     OK
+    element: text':                                  OK
+    element: nested:                                 OK
+    element: nested with leading whitespace:         OK
+    element: twice:                                  OK
+    attr:                                            OK
+    attr: Missing:                                   OK
+    attrs: empty:                                    OK
+    attrs:                                           OK
+    attrs: twice:                                    OK
+    fail: empty:                                     OK
+    fail:                                            OK
+    children: empty:                                 OK
+    children: top empty:                             OK
+    children: top 1 node:                            OK
+    children: top 1 node twice:                      OK
+    children: top 2 nodes:                           OK
+    children: 1 node:                                OK
+    children: 1 node twice:                          OK
+    children: 2 successive text' nodes:              OK
+    children: 2 text' nodes twice:                   OK
+    children: 3 nodes:                               OK
+    children: 3 nodes twice:                         OK
+    parserT (runParserT pAnyElement) == pAnyElement: OK
+      +++ OK, passed 100 tests.
+    parserT (runParserT pText) == pText:             OK
+      +++ OK, passed 100 tests.
+    ParserT StateT:                                  OK
+  Backtracking
+    Alternative:                                     OK
+    MonadPlus:                                       OK
+  fixpoints
+    dfpos: depth-first post-order?:                  OK
+    dfpos: output single node:                       OK
+    dfpos: output multiple nodes:                    OK
+    dfpre: depth-first pre-order?:                   OK
+    dfpre: output single node:                       OK
+    dfpre: output multiple nodes:                    OK
+
+All 68 tests passed (0.00s)
+Test suite test: PASS
+Test suite logged to:
+/tmp/workdir-xmlbf/xmlbf-0.7/dist-newstyle/build/x86_64-linux/ghc-9.6.6/xmlbf-0.7/t/test/test/xmlbf-0.7-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

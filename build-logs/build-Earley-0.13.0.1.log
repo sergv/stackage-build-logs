@@ -1,0 +1,184 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - Earley-0.13.0.1 (lib) (first run)
+ - Earley-0.13.0.1 (test:tests) (first run)
+Configuring library for Earley-0.13.0.1...
+Preprocessing library for Earley-0.13.0.1...
+Building library for Earley-0.13.0.1...
+[1 of 8] Compiling Text.Earley.Grammar
+
+Text/Earley/Grammar.hs:74:3: warning: [-Wnoncanonical-monoid-instances]
+    Noncanonical ‘mappend’ definition detected
+    in the instance declaration for ‘Monoid (Prod r e t a)’.
+    ‘mappend’ will eventually be removed in favour of ‘(<>)’
+    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+   |
+74 |   mappend = liftA2 mappend
+   |   ^^^^^^^^^^^^^^^^^^^^^^^^
+
+Text/Earley/Grammar.hs:123:31: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+123 | instance (IsString t, Eq t, a ~ t) => IsString (Prod r e t a) where
+    |                               ^
+
+Text/Earley/Grammar.hs:157:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative (Grammar r)’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+157 |   pure  = return
+    |   ^^^^^^^^^^^^^^
+
+Text/Earley/Grammar.hs:161:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad (Grammar r)’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+161 |   return = Return
+    |   ^^^^^^^^^^^^^^^
+[2 of 8] Compiling Text.Earley.Generator.Internal
+
+Text/Earley/Generator/Internal.hs:16:1: warning: [-Wunused-imports]
+    The import of ‘Data.Semigroup’ is redundant
+      except perhaps to import instances from ‘Data.Semigroup’
+    To import instances alone, use: import Data.Semigroup()
+   |
+16 | import Data.Semigroup
+   | ^^^^^^^^^^^^^^^^^^^^^
+
+Text/Earley/Generator/Internal.hs:78:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative (Results s t)’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+78 |   pure  = return
+   |   ^^^^^^^^^^^^^^
+
+Text/Earley/Generator/Internal.hs:86:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad (Results t s)’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+86 |   return x = Results $ pure [(x, mempty)]
+   |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Text/Earley/Generator/Internal.hs:96:3: warning: [-Wnoncanonical-monoid-instances]
+    Noncanonical ‘mappend’ definition detected
+    in the instance declaration for ‘Monoid (Results s t a)’.
+    ‘mappend’ will eventually be removed in favour of ‘(<>)’
+    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+   |
+96 |   mappend = (<|>)
+   |   ^^^^^^^^^^^^^^^
+[3 of 8] Compiling Text.Earley.Generator
+[4 of 8] Compiling Text.Earley.Derived
+
+Text/Earley/Derived.hs:3:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+  |
+3 | import Control.Applicative hiding (many)
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[5 of 8] Compiling Text.Earley.Parser.Internal
+
+Text/Earley/Parser/Internal.hs:16:1: warning: [-Wunused-imports]
+    The import of ‘Data.Semigroup’ is redundant
+      except perhaps to import instances from ‘Data.Semigroup’
+    To import instances alone, use: import Data.Semigroup()
+   |
+16 | import Data.Semigroup
+   | ^^^^^^^^^^^^^^^^^^^^^
+
+Text/Earley/Parser/Internal.hs:78:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative (Results s)’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+78 |   pure  = return
+   |   ^^^^^^^^^^^^^^
+
+Text/Earley/Parser/Internal.hs:86:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad (Results s)’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+86 |   return = Results . pure . pure
+   |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Text/Earley/Parser/Internal.hs:96:3: warning: [-Wnoncanonical-monoid-instances]
+    Noncanonical ‘mappend’ definition detected
+    in the instance declaration for ‘Monoid (Results s a)’.
+    ‘mappend’ will eventually be removed in favour of ‘(<>)’
+    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+   |
+96 |   mappend = (<|>)
+   |   ^^^^^^^^^^^^^^^
+[6 of 8] Compiling Text.Earley.Parser
+[7 of 8] Compiling Text.Earley
+[8 of 8] Compiling Text.Earley.Mixfix
+Configuring test suite 'tests' for Earley-0.13.0.1...
+Preprocessing test suite 'tests' for Earley-0.13.0.1...
+Building test suite 'tests' for Earley-0.13.0.1...
+[ 1 of 14] Compiling Arbitrary
+[ 2 of 14] Compiling Empty
+[ 3 of 14] Compiling Expr
+[ 4 of 14] Compiling Generator
+
+tests/Generator.hs:2:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+  |
+2 | import Control.Applicative
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 5 of 14] Compiling InlineAlts
+[ 6 of 14] Compiling Issue11
+
+tests/Issue11.hs:3:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+  |
+3 | import Control.Applicative
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 7 of 14] Compiling Issue14
+[ 8 of 14] Compiling Lambda
+
+tests/Lambda.hs:5:1: warning: [-Wunused-imports]
+    The import of ‘Data.Foldable’ is redundant
+      except perhaps to import instances from ‘Data.Foldable’
+    To import instances alone, use: import Data.Foldable()
+  |
+5 | import Data.Foldable
+  | ^^^^^^^^^^^^^^^^^^^^
+[ 9 of 14] Compiling Mixfix
+
+tests/Mixfix.hs:2:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+  |
+2 | import Control.Applicative
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[10 of 14] Compiling Optional
+[11 of 14] Compiling ReversedWords
+[12 of 14] Compiling UnbalancedPars
+[13 of 14] Compiling VeryAmbiguous
+[14 of 14] Compiling Main
+[15 of 15] Linking /tmp/workdir-Earley/Earley-0.13.0.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/Earley-0.13.0.1/t/tests/build/tests/tests

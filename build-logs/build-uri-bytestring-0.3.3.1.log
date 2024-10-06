@@ -1,0 +1,44 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - uri-bytestring-0.3.3.1 (lib) (first run)
+ - uri-bytestring-0.3.3.1 (test:test) (first run)
+Configuring library for uri-bytestring-0.3.3.1...
+Preprocessing library for uri-bytestring-0.3.3.1...
+Building library for uri-bytestring-0.3.3.1...
+[1 of 5] Compiling URI.ByteString.Types
+[2 of 5] Compiling URI.ByteString.Lens
+[3 of 5] Compiling URI.ByteString.Internal
+
+src/URI/ByteString/Internal.hs:112:24: warning: [-Wunused-record-wildcards]
+    No variables bound in the record wildcard match are used
+      Possible fix: omit the ‘..’
+    |
+112 | toAbsolute _ uri@(URI {..}) = uri
+    |                        ^^
+
+src/URI/ByteString/Internal.hs:148:29: warning: [-Wunused-record-wildcards]
+    No variables bound in the record wildcard match are used
+      Possible fix: omit the ‘..’
+    |
+148 | normalizeURIRef o uri@(URI {..})       = normalizeURI o uri
+    |                             ^^
+[4 of 5] Compiling URI.ByteString
+[5 of 5] Compiling URI.ByteString.QQ
+Configuring test suite 'test' for uri-bytestring-0.3.3.1...
+Preprocessing test suite 'test' for uri-bytestring-0.3.3.1...
+Building test suite 'test' for uri-bytestring-0.3.3.1...
+[1 of 4] Compiling URI.ByteString.Generators
+[2 of 4] Compiling URI.ByteStringQQTests
+[3 of 4] Compiling URI.ByteStringTests
+
+test/URI/ByteStringTests.hs:471:34: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Either
+                            URIParseError (URIRef Absolute)’ not matched:
+            Left _
+    |
+471 |     normalizeURIBS opts bs = let Right x = parseURI laxURIParserOptions bs
+    |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[4 of 4] Compiling Main
+[5 of 5] Linking /tmp/workdir-uri-bytestring/uri-bytestring-0.3.3.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/uri-bytestring-0.3.3.1/t/test/build/test/test

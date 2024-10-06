@@ -1,0 +1,46 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - dbcleaner-0.1.3 (test:spec) (ephemeral targets)
+Preprocessing test suite 'spec' for dbcleaner-0.1.3...
+Building test suite 'spec' for dbcleaner-0.1.3...
+Running 1 test suites...
+Test suite spec: RUNNING...
+
+Database.DBCleaner.PostgreSQLSimple
+  withPGConnection
+    when strategy is Transaction
+      deletes all records create inside the transaction [✘]
+    when strategy is Truncation
+      truncates all the tables of the schema [✘]
+
+Failures:
+
+  test/Database/DBCleaner/PostgreSQLSimpleSpec.hs:47:7: 
+  1) Database.DBCleaner.PostgreSQLSimple.withPGConnection, when strategy is Transaction, deletes all records create inside the transaction
+       uncaught exception: IOException of type OtherError
+       libpq: failed (connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: No such file or directory
+       	Is the server running locally and accepting connections on that socket?
+       )
+
+  To rerun use: --match "/Database.DBCleaner.PostgreSQLSimple/withPGConnection/when strategy is Transaction/deletes all records create inside the transaction/" --seed 315463009
+
+  test/Database/DBCleaner/PostgreSQLSimpleSpec.hs:57:7: 
+  2) Database.DBCleaner.PostgreSQLSimple.withPGConnection, when strategy is Truncation, truncates all the tables of the schema
+       uncaught exception: IOException of type OtherError
+       libpq: failed (connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: No such file or directory
+       	Is the server running locally and accepting connections on that socket?
+       )
+
+  To rerun use: --match "/Database.DBCleaner.PostgreSQLSimple/withPGConnection/when strategy is Truncation/truncates all the tables of the schema/" --seed 315463009
+
+Randomized with seed 315463009
+
+Finished in 0.0011 seconds
+2 examples, 2 failures
+Test suite spec: FAIL
+Test suite logged to:
+/tmp/workdir-dbcleaner/dbcleaner-0.1.3/dist-newstyle/build/x86_64-linux/ghc-9.6.6/dbcleaner-0.1.3/t/spec/test/dbcleaner-0.1.3-spec.log
+0 of 1 test suites (0 of 1 test cases) passed.
+Error: [Cabal-7125]
+Tests failed for test:spec from dbcleaner-0.1.3.
+

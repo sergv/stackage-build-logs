@@ -1,0 +1,622 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - tidal-1.9.5 (test:tests) (ephemeral targets)
+Preprocessing test suite 'tests' for tidal-1.9.5...
+Building test suite 'tests' for tidal-1.9.5...
+Running 1 test suites...
+Test suite tests: RUNNING...
+
+Sound.Tidal.Core
+  Elemental patterns
+    are in range [0, 1]
+      [32msine[m
+      [32mcosine[m
+      [32msaw[m
+      [32misaw[m
+      [32mtri[m
+      [32msquare[m
+    have correctly-scaled bipolar variants
+      [32msine[m
+      [32mcosine[m
+      [32msaw[m
+      [32misaw[m
+      [32mtri[m
+      [32msquare[m
+  append
+    [32mcan switch between the cycles from two pures[m
+  cat
+    [32mcan switch between the cycles from three pures[m
+    [32mcan extract nested revs[m
+  fastCat
+    can switch between the cycles from three pures inside one cycle
+      [32m1[m
+      [32m5/3[m
+    works with zero-length queries
+      [32m0[m
+      [32m1/3[m
+  rev
+    [32mmirrors events[m
+    [32mreturns the original if you reverse it twice[m
+  |>|
+    creates silence when
+      [32mfirst argument silent[m
+      [32msecond argument silent[m
+    [32mcreates the same pattern when left argument has the same structure[m
+    [32mcan extract rev from first argument[m
+    [32mis assiociative[m
+    [32mis commutative in all arguments except the rightmost[m
+  stack
+    [32mis neutral with silence[m
+    [32mcan create silence[m
+    [32mfollows commutative laws[m
+    [32mfollows assiociative laws[m
+    [32mcan extract nested revs[m
+  fast
+    [32mis neutral with speedup 1[m
+    mutes, when there is
+      [32msilence in first argument[m
+      [32msilence in second argument[m
+      [32mspeedup by 0[m
+    [32mis reciprocal to slow[m
+    [32mcan be reversed by reciprocal speedup[m
+    [32mpreserves structure[m
+  slow
+    [32mis neutral with slowdown 1[m
+    mutes, when there is
+      [32msilence in first argument[m
+      [32msilence in second argument[m
+      [32mspeedup by 0[m
+    [32mis reciprocal to fast[m
+    [32mcan be reversed by reciprocal slowdown[m
+    [32mpreserves structure[m
+  compress
+    [32msquashes cycles to the start of a cycle[m
+    [32msquashes cycles to the end of a cycle[m
+    [32msquashes cycles to the middle of a cycle[m
+  saw
+    goes from 0 up to 1 every cycle
+      [32m0[m
+      [32m0.25[m
+      [32m0.5[m
+      [32m0.75[m
+    [32mcan be added to[m
+    [32mworks on the left of <*>[m
+    [32mworks on the right of <*>[m
+    can be reversed
+      [32mworks with whole cycles[m
+      [32mworks with half cycles[m
+      [32mworks with inset points[m
+  tri
+    [32mgoes from 0 up to 1 and back every cycle[m
+    [32mcan be added to[m
+  every
+    [32m`every n id` doesn't change the pattern's structure[m
+Sound.Tidal.Parse
+  parseBP_E
+    [32mcan parse strings[m
+    [32mcan parse ints[m
+    [32mcan parse pattern groups[m
+    [32mcan parse pattern groups shorthand [m
+    [32mcan alternate with <>[m
+    [32mcan slow with /[m
+    [32mcan speed up with *[m
+    [32mcan elongate with _[m
+    [32mcan replicate with ![m
+    [32mcan replicate with ! inside {}[m
+    [32mcan replicate with ! and number[m
+    [32mcan degrade with ?[m
+    [32mcan degrade with ? and number[m
+    [32mcan degrade with ? for double patterns[m
+    [32mcan handle ? on replicated value[m
+    [32mcan handle ? on streched value[m
+    [32mcan stretch with @[m
+    [32mcan do polymeter with {}[m
+    [32mcan parse .. with ints[m
+    [32mcan parse .. with rationals[m
+    [32mcan parse .. with doubles[m
+    [32mcan parse .. with doubles, without spaces[m
+    [32mcan parse .. with notes[m
+    [32mcan parse .. with notes, without spaces[m
+    [32mcan handle repeats (!) and durations (@) with <>[m
+    [32mcan handle repeats (!) and durations (@) with <> (with ints)[m
+    [32mcan handle fractional durations[m
+    [32mcan handle fractional durations (with rationals)[m
+    [32mcan handle ratio shortands on a fraction[m
+    [32mcan handle ratio shortands on a floating point number[m
+    cannot handle fractional with floating point numerator or denominator
+      [32mshouldThrow[m
+    [32mcan parse a chord[m
+    [32mcan parse two chords[m
+    [32mcan parse c chords[m
+    [32mcan parse various chords[m
+    [32mcan parse note chords[m
+    [32mcan invert chords[m
+    [32mcan invert chords using a number[m
+    [32mspread chords over a range[m
+    [32mcan open chords[m
+    [32mcan drop notes in a chord[m
+    [32mcan apply multiple modifiers[m
+    [32mcan pattern modifiers[m
+    [32mcan pattern chord names[m
+    [32mcan pattern chord notes[m
+    [32mhandle trailing and leading whitespaces[m
+    [32mcan parse negative ratio shorthands[m
+    [32mcan parse multiplied ratio shorthands[m
+    [32mcan parse exponential notation value for pattern double[m
+    [32mcan parse negative exponential notation value for pattern double[m
+    [32mcan parse ratio shortand on exponential notation value[m
+    [32mcan parse euclid pattern[m
+    [32mcan parse euclid bool pattern[m
+    [32mdoesn't crash on zeroes (1)[m
+    [32mdoesn't crash on zeroes (2)[m
+    [32mdoesn't crash on zeroes (3)[m
+    can't parse a floating point number as int
+      [32mshouldThrow[m
+    [32mcan correctly parse multiplied boolean patterns 1[m
+    [32mcan correctly parse multiplied boolean patterns 2[m
+Sound.Tidal.Params
+  VF params
+    [32mshould parse fractional ratio[m
+    [32mshould parse correctly floating point number[m
+  VN params
+    [32mshould parse note value[m
+    [32mshould parse n value[m
+    [32mshould parse correctly floating point number[m
+Sound.Tidal.Pattern
+  Arc
+    [32mArc is a Functor: Apply a given function to the start and end values of an Arc[m
+  whole
+    [32mreturns the whole Arc in an Event[m
+  part
+    [32mreturns the part Arc in an Event[m
+  value
+    [32mreturns the event value in an Event[m
+  wholeStart
+    [32mretrieve the onset of an event: the start of the whole Arc[m
+  eventHasOnset
+    [32mreturn True when the start values of the two arcs in an event are equal[m
+    [32mreturn False when the start values of the two arcs in an event are not equal[m
+  pure
+    [32mfills a whole cycle[m
+    [32mreturns the part of an pure that you ask for, preserving the whole[m
+    [32mgives correct fragments when you go over cycle boundaries[m
+    works with zero-length queries
+      [32m0[m
+      [32m1/3[m
+  _fastGap
+    [32mcopes with cross-cycle queries[m
+    [32mdoes not return events outside of the query[m
+  <*>
+    [32mcan apply a pattern of values to a pattern of values[m
+    [32mcan take structure from the left[m
+    [32mcan take structure from the right[m
+    can take structure from the both sides
+      [32mone[m
+      [32mtwo[m
+    [32mobeys pure id <*> v = v[m
+    [32mobeys pure f <*> pure x = pure (f x)[m
+    [32mobeys u <*> pure y = pure ($ y) <*> u[m
+    [32mobeys pure (.) <*> u <*> v <*> w = u <*> (v <*> w)[m
+  <*
+    [32mcan apply a pattern of values to a pattern of functions[m
+    [32mdoesn't take structure from the right[m
+  *>
+    can apply a pattern of values to a pattern of functions
+      [32mworks within cycles[m
+      [32mworks across cycles[m
+    [32mdoesn't take structure from the left[m
+  arcCycles
+    leaves a unit cycle intact
+      [32m(0,1)[m
+      [32m(3,4)[m
+    splits a cycle at cycle boundaries
+      [32m(0,1.1)[m
+      [32m(1,2,1)[m
+      [32m(3 + (1%3),5.1)[m
+  unwrap
+    preserves inner structure
+      [32mone[m
+      [32mtwo[m
+    preserves outer structure
+      [32mone[m
+      [32mtwo[m
+    [32mgives events whole/part timespans that are an intersection of that of inner and outer events[m
+  squeezeJoin
+    [32mcompresses cycles to fit outer 'whole' timearc of event[m
+    [32mpreserves cycle number of inner patterns[m
+  >>=
+    [32mcan apply functions to patterns[m
+    [32mcan add two patterns together[m
+    [32mconforms to (return v) >>= f = f v[m
+    [32mconforms to m >>= return ≡ m[m
+  rotR
+    [32mworks over two cycles[m
+    [32mworks over one cycle[m
+    [32mworks with zero width queries[m
+  comparePD
+    [32mallows split events to be compared[m
+  controlI
+    [32mcan retrieve values from state[m
+  wholeStart
+    [32mretrieve first element of a tuple, inside first element of a tuple, inside the first of another[m
+  wholeStop
+    [32mretrieve the end time from the first Arc in an Event[m
+  eventPartStart
+    [32mretrieve the start time of the second Arc in an Event[m
+  eventPartStop
+    [32mretrieve the end time of the second Arc in an Event[m
+  eventPart
+    [32mretrieve the second Arc in an Event[m
+  eventValue
+    [32mretrieve the second value from a tuple[m
+  eventHasOnset
+    [32mreturn True when the start values of the two arcs in an event are equal[m
+    [32mreturn False when the start values of the two arcs in an event are not equal[m
+  sam
+    [32mstart of a cycle, round down time value[m
+  nextSam
+    [32mthe end point of the current cycle, and start of the next[m
+  arcCycles
+    [32mif start time is greater than end time return empty list[m
+    [32mif start time is equal to end time return empty list[m
+    [32mif start and end time round down to same value return list of (start, end)[m
+    [32mif start time is less than end time and start time does not round down to same value as end time[m
+  arcCyclesZW
+    [32mif start and end time are equal return list of (start, end)[m
+    [32mif start and end time are not equal call arcCycles (start, end) with same rules as above[m
+    [32mif start time is less than end time[m
+    [32mif start time is greater than end time[m
+  mapCycle
+    [32mApply a function to the Arc values minus the start value rounded down (sam'), adding both results to sam' to obtain the new Arc value[m
+  toTime
+    [32mConvert a number of type Real to a Time value of type Rational, Int test[m
+    [32mConvert a number of type Double to a Time value of type Rational[m
+  cyclePos
+    [32mSubtract a Time value from its value rounded down (the start of the cycle)[m
+    [32mIf no difference between a given Time and the start of the cycle[m
+  isIn
+    [32mCheck given Time is inside a given Arc value, Time is greater than start and less than end Arc values[m
+    [32mGiven Time is equal to the Arc start value[m
+    [32mGiven Time is less than the Arc start value[m
+    [32mGiven Time is greater than the Arc end value[m
+  onsetIn
+    [32mIf the beginning of an Event is within a given Arc, same rules as 'isIn'[m
+    [32mBeginning of Event is equal to beggining of given Arc[m
+    [32mBeginning of an Event is less than the start of the Arc[m
+    [32mStart of Event is greater than the start of the given Arc[m
+  subArc
+    [32mChecks if an Arc is within another, returns Just (max $ (fst a1) (fst a2), min $ (snd a1) (snd a2)) if so, otherwise Nothing[m
+    [32mif max (fst arc1) (fst arc2) <= min (snd arc1) (snd arc2) return Just (max (fst arc1) (fst arc2), min...)[m
+  timeToCycleArc
+    [32mgiven a Time value return the Arc in which it resides[m
+  cyclesInArc
+    [32mReturn a list of cycles in a given arc, if start is greater than end return empty list[m
+    [32mIf start value of Arc is equal to end value return list with start value rounded down[m
+    [32mif start of Arc is less than end return list of start rounded down to end rounded up minus one[m
+  cycleArcsInArc
+    [32mgenerates a list of Arcs based on the cycles found within a given a Arc[m
+  isAdjacent
+    [32mif the given Events are adjacent parts of the same whole[m
+    [32mif first Arc of of first Event is not equal to first Arc of second Event[m
+    [32mif the value of the first Event does not equal the value of the second Event[m
+    [32msecond value of second Arc of first Event not equal to first value of second Arc in second Event...[m
+  defragParts
+    [32mif empty list with no events return empty list[m
+    [32mif list consists of only one Event return it as is[m
+    [32mif list contains adjacent Events return list with Parts combined[m
+    [32mif list contains more than one Event none of which are adjacent, return List as is[m
+  sect
+    [32mtake two Arcs and return - Arc (max of two starts) (min of two ends)[m
+  hull
+    [32mtake two Arcs anre return - Arc (min of two starts) (max of two ends)[m
+  withResultArc
+    [32mapply given function to the Arcs[m
+  applyFIS
+    [32mapply Float function when value of type VF[m
+    [32mapply Int function when value of type VI[m
+    [32mapply String function when value of type VS[m
+  fNum2
+    [32mapply Int function for two Int values[m
+    [32mapply float function when given two float values[m
+    [32mapply float function when one float and one int value given[m
+  getI
+    [32mget Just value when Int value is supplied[m
+    [32mget floored value when float value is supplied[m
+    [32mget if String value is supplied[m
+  getF
+    [32mget Just value when Float value is supplied[m
+    [32mget converted value if Int value is supplied[m
+  getS
+    [32mget Just value when String value is supplied[m
+    [32mget Nothing if Int value is not supplied[m
+  filterValues
+    [32mremove Events above given threshold[m
+    [32mremove Events below given threshold[m
+  filterWhen
+    [32mfilter below given threshold[m
+    [32mfilter above given threshold[m
+  compressArc
+    [32mreturn empty if start time is greater than end time[m
+    [32mreturn empty if start time or end time are greater than 1[m
+    [32mreturn empty if start or end are less than zero[m
+    [32motherwise compress difference between start and end values of Arc[m
+Sound.Tidal.Control
+  echo
+    [32mshould echo the event by the specified time and multiply the gain factor[m
+  echoWith
+    [32mshould echo the event by the specified time and apply the specified function[m
+  stutWith
+    [32mcan mimic stut[m
+  splice
+    [32mcan beatslice[m
+Sound.Tidal.Scales
+  scale
+    5 note scales
+      [32mcan transform notes correctly over 2 octaves - minPent[m
+      [32mcan transform notes correctly over 2 octaves - majPent[m
+      [32mcan transform notes correctly over 2 octaves - ritusen[m
+      [32mcan transform notes correctly over 2 octaves - egyptian[m
+      [32mcan transform notes correctly over 2 octaves - kumai[m
+      [32mcan transform notes correctly over 2 octaves - hirajoshi[m
+      [32mcan transform notes correctly over 2 octaves - iwato[m
+      [32mcan transform notes correctly over 2 octaves - chinese[m
+      [32mcan transform notes correctly over 2 octaves - indian[m
+      [32mcan transform notes correctly over 2 octaves - pelog[m
+      [32mcan transform notes correctly over 2 octaves - prometheus[m
+      [32mcan transform notes correctly over 2 octaves - scriabin[m
+      [32mcan transform notes correctly over 2 octaves - gong[m
+      [32mcan transform notes correctly over 2 octaves - shang[m
+      [32mcan transform notes correctly over 2 octaves - jiao[m
+      [32mcan transform notes correctly over 2 octaves - zhi[m
+      [32mcan transform notes correctly over 2 octaves - yu[m
+    6 note scales
+      [32mcan transform notes correctly over 2 octaves - whole[m
+      [32mcan transform notes correctly over 2 octaves - wholetone[m
+      [32mcan transform notes correctly over 2 octaves - augmented[m
+      [32mcan transform notes correctly over 2 octaves - augmented2[m
+      [32mcan transform notes correctly over 2 octaves - hexMajor7[m
+      [32mcan transform notes correctly over 2 octaves - hexPhrygian[m
+      [32mcan transform notes correctly over 2 octaves - hexDorian[m
+      [32mcan transform notes correctly over 2 octaves - hexSus[m
+      [32mcan transform notes correctly over 2 octaves - hexMajor6[m
+      [32mcan transform notes correctly over 2 octaves - hexAeolian[m
+    7 note scales
+      [32mcan transform notes correctly over 2 octaves - major[m
+      [32mcan transform notes correctly over 2 octaves - ionian[m
+      [32mcan transform notes correctly over 2 octaves - dorian[m
+      [32mcan transform notes correctly over 2 octaves - aeolian[m
+      [32mcan transform notes correctly over 2 octaves - aeolian[m
+      [32mcan transform notes correctly over 2 octaves - minor[m
+      [32mcan transform notes correctly over 2 octaves - locrian[m
+      [32mcan transform notes correctly over 2 octaves - harmonicMinor[m
+      [32mcan transform notes correctly over 2 octaves - harmonicMajor[m
+      [32mcan transform notes correctly over 2 octaves - melodicMinor[m
+      [32mcan transform notes correctly over 2 octaves - melodicMinorDesc[m
+      [32mcan transform notes correctly over 2 octaves - melodicMajor[m
+      [32mcan transform notes correctly over 2 octaves - bartok[m
+      [32mcan transform notes correctly over 2 octaves - hindu[m
+      [32mcan transform notes correctly over 2 octaves - todi[m
+      [32mcan transform notes correctly over 2 octaves - purvi[m
+      [32mcan transform notes correctly over 2 octaves - marva[m
+      [32mcan transform notes correctly over 2 octaves - bhairav[m
+      [32mcan transform notes correctly over 2 octaves - ahirbhairav[m
+      [32mcan transform notes correctly over 2 octaves - superLocrian[m
+      [32mcan transform notes correctly over 2 octaves - romanianMinor[m
+      [32mcan transform notes correctly over 2 octaves - hungarianMinor[m
+      [32mcan transform notes correctly over 2 octaves - neapolitanMinor[m
+      [32mcan transform notes correctly over 2 octaves - enigmatic[m
+      [32mcan transform notes correctly over 2 octaves - spanish[m
+      [32mcan transform notes correctly over 2 octaves - leadingWhole[m
+      [32mcan transform notes correctly over 2 octaves - lydianMinor[m
+      [32mcan transform notes correctly over 2 octaves - neapolitanMajor[m
+      [32mcan transform notes correctly over 2 octaves - locrianMajor[m
+    8 note scales
+      [32mcan transform notes correctly over 2 octaves - diminished[m
+      [32mcan transform notes correctly over 2 octaves - octatonic[m
+      [32mcan transform notes correctly over 2 octaves - diminished2[m
+      [32mcan transform notes correctly over 2 octaves - octatonic2[m
+    modes of limited transposition
+      [32mcan transform notes correctly over 2 octaves - messiaen1[m
+      [32mcan transform notes correctly over 2 octaves - messiaen2[m
+      [32mcan transform notes correctly over 2 octaves - messiaen3[m
+      [32mcan transform notes correctly over 2 octaves - messiaen4[m
+      [32mcan transform notes correctly over 2 octaves - messiaen5[m
+      [32mcan transform notes correctly over 2 octaves - messiaen6[m
+      [32mcan transform notes correctly over 2 octaves - messiaen7[m
+    12 note scales
+      [32mcan transform notes correctly over 2 octaves - chromatic[m
+    edge cases
+      [32mresponds to unknown scales by mapping to octaves[m
+      [32mcorrectly maps negative numbers[m
+Sound.Tidal.Chords
+  chord
+    chord length adjustments
+      [32mcan remove notes from the end of the list when length given is less than the standard chord length[m
+      [32mcan do nothing when the length given is the same as the standard chord length[m
+      [32mcan append chord notes at higher octaves to the list when length given is greater than the standard chord length[m
+    open voiced chords
+      [32mcan subtract 12 from the first and third element of a list, and sort them in ascending numerical order[m
+      [32mnot crash if chord length is < 3[m
+    chord inversions
+      [32mcan add 12 to the first element of a list, and sort in ascending numeric order (1st inversion)[m
+      [32mcan add 12 to the first two elements of a list, and sort in ascending numeric order (2nd inversion)[m
+      [32mcan add 12 to the first three elements of a list, and sort in ascending numeric order (3rd inversion)[m
+    edge cases
+      [32mgracefully handle an inversion when there are more inversions than notes in the chord (4th inversion of a 3 note chord)[m
+Sound.Tidal.Stream
+  toDatum
+    [32mshould convert VN to osc float[m
+  substitutePath
+    [32mshould return same string if no params are specified[m
+    [32mshould substitute values for params if present[m
+    [32mshould return Nothing if a param is not present[m
+  getString
+    [32mshould return Nothing for missing params[m
+    [32mshould work for strings[m
+    [32mshould work for params with fallback expressions[m
+    [32mshould work for missing params with fallback expressions[m
+Sound.Tidal.UI
+  _chop
+    [32mcan chop in two bits[m
+    [32mcan be slowed[m
+    [32mcan chop a chop[m
+  segment
+    [32mcan turn a single event into multiple events[m
+    [32mcan turn a continuous pattern into multiple discrete events[m
+    [32mcan hold a value over multiple cycles[m
+  rolledBy
+    [32mshifts each start of events in a list correctly[m
+    [32mshifts each start of events in a list correctly in reverse order[m
+    [32mtrims the result pattern if it becomes larger than the original pattern[m
+    [32mdoes nothing for continous functions[m
+    [32mdoes nothing when passing zero as time value[m
+  sometimesBy
+    [32mdoes nothing when set at 0% probability[m
+    [32mapplies the 'rev' function when set at 100% probability[m
+  sometimesBy'
+    [32mdoes nothing when set at 0% probability -- using const[m
+  rand
+    generates a (pseudo-)random number between zero & one
+      [32mat the start of a cycle[m
+      [32mat 1/4 of a cycle[m
+      [32mat 3/4 of a cycle[m
+  irand
+    generates a (pseudo-random) integer between zero & i
+      [32mat the start of a cycle[m
+      [32mat 1/4 of a cycle[m
+      [32mis patternable[m
+  range
+    scales a pattern to the supplied range
+      from 3 to 4
+        [32mat the start of a cycle[m
+        [32mat 1/4 of a cycle[m
+        [32mat 3/4 of a cycle[m
+      from -1 to 1
+        [32mat 1/2 of a cycle[m
+      from 4 to 2
+        [32mat the start of a cycle[m
+        [32mat 1/4 of a cycle[m
+        [32mat 3/4 of a cycle[m
+      from 10 to 10
+        [32mat 1/2 of a cycle[m
+  rot
+    [32mrotates values in a pattern irrespective of structure[m
+    [32mworks with negative values[m
+    [32mworks with complex patterns[m
+  ply
+    [32mcan ply chords[m
+    [32mcan pattern the ply factor[m
+  press
+    [32mcan syncopate a pattern[m
+  pressBy
+    [32mcan syncopate a pattern by a given amount[m
+  fix
+    [32mcan apply functions conditionally[m
+    [32mworks with complex matches[m
+    [32mleaves unmatched controls in place[m
+    [32mignores silence[m
+    [32mtreats polyphony as 'or'[m
+  unfix
+    [32mdoes the opposite of fix[m
+  contrast
+    [32mdoes both fix and unfix[m
+  contrastRange
+    [32mmatches using a pattern of ranges[m
+  euclidFull
+    [32mcan match against silence[m
+  snowball
+    [32macummulates a transform version of a pattern and appends the result - addition[m
+  soak
+    [32mapplies a transform and then appends the result -- addition[m
+    [32mapplies a transform and then appends the result -- slow[m
+    [32mapplies a transform and then appends the result -- addition patterns[m
+  euclid
+    matches examples in Toussaint's paper
+      [32mx ~[m
+      [32mx ~ ~[m
+      [32mx ~ ~ ~[m
+      [32mx ~ ~ x ~ ~ x ~ ~ x ~ ~[m
+      [32mx ~ x ~ ~[m
+      [32mx x x ~[m
+      [32mx ~ x ~ x[m
+      [32mx ~ x ~ x ~ ~[m
+      [32mx ~ ~ x ~ ~ x ~[m
+      [32mx ~ x ~ x ~ x[m
+      [32mx ~ x ~ x ~ x ~ ~[m
+      [32mx ~ ~ x ~ ~ x ~ ~ x ~[m
+      [32mx x x x x ~[m
+      [32mx ~ x x ~ x x[m
+      [32mx ~ x x ~ x x ~[m
+      [32mx ~ x ~ x ~ x ~ x[m
+      [32mx ~ x ~ x ~ x ~ x ~ ~[m
+      [32mx ~ ~ x ~ x ~ ~ x ~ x ~[m
+      [32mx ~ ~ x ~ ~ x ~ ~ x ~ ~ x ~ ~ ~[m
+      [32mx x x x x x x ~[m
+      [32mx ~ x x ~ x ~ x x ~ x ~[m
+      [32mx ~ ~ x ~ x ~ x ~ ~ x ~ x ~ x ~[m
+      [32mx ~ x x ~ x ~ x ~ x x ~ x ~ x ~[m
+      [32mx ~ ~ x ~ x ~ x ~ x ~ x ~ ~ x ~ x ~ x ~ x ~ x ~[m
+      [32mx ~ x x ~ x ~ x ~ x ~ x ~ x x ~ x ~ x ~ x ~ x ~[m
+    [32mcan be called with a negative first value to give the inverse[m
+    [32mcan be called with a negative first value to give the inverse (patternable)[m
+  wedge
+    [32mshould not freeze tidal amount is 1[m
+    [32mshould not freeze tidal amount is 0[m
+  bite
+    [32mcan slice a pattern into bits[m
+    [32mcan slice a pattern into patternable bits number[m
+  chooseBy
+    [32mchooses from elements based on closest scaled double value[m
+    [32mnever gets an index out of bounds[m
+  arpeggiate
+    [32mcan arpeggiate[m
+    [32mcan arpeggiate[m
+    [32mcan arpeggiate a 'sped up' pattern[m
+  chunk
+    [32mcan chunk a rev pattern[m
+    [32mcan chunk a fast pattern[m
+    [32mshould chunk backward with a negative number[m
+  binary
+    [32mconverts a number to a pattern of boolean[m
+  binaryN
+    [32mconverts a number to a pattern of boolean of specified length[m
+    [32mconverts a number to a pattern of boolean of specified patternable length[m
+  off
+    [32msuperimposes and shifts pattern[m
+  loopFirst
+    [32mplays the first cycle[m
+  loopCycles
+    [32mplays the first n cycles[m
+  timeLoop
+    [32mcan loop time[m
+  timeLoop
+    [32mcan pattern time[m
+  necklace
+    [32mcan specify rhythm by IOI[m
+  quantise
+    [32mcan quantise notes[m
+Sound.Tidal.Utils
+  delta
+    [32msubtracts the second element of a tuple from the first[m
+  [32mapplies function to both elements of tuple[m
+  [32mapply function to first element of tuple[m
+  [32mapply function to second element of tuple[m
+  [32mreturn midpoint between first and second tuple value[m
+  [32mreturn of two lists, with unique values to each list[m
+  [32mwrap around indexing[m
+  [32msafe list indexing[m
+  [32mlist accumulation with given list elements[m
+  [32mindex elements in list[m
+  [32msplit list by given pred[m
+NFData, forcing and catching exceptions
+  instance NFData (Pattern a)
+    rnf forces argument
+      [32mshouldThrow[m
+
+  -----
+Runtime: 0.033590926s
+[32mSuccesses: 445, Pending: 0, Failures: 0[m
+Test suite tests: PASS
+Test suite logged to:
+/tmp/workdir-tidal/tidal-1.9.5/dist-newstyle/build/x86_64-linux/ghc-9.6.6/tidal-1.9.5/t/tests/test/tidal-1.9.5-tests.log
+1 of 1 test suites (1 of 1 test cases) passed.

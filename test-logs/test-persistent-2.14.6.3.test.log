@@ -1,0 +1,412 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - persistent-2.14.6.3 (test:test) (ephemeral targets)
+Preprocessing test suite 'test' for persistent-2.14.6.3...
+Building test suite 'test' for persistent-2.14.6.3...
+Running 1 test suites...
+Test suite test: RUNNING...
+
+Database
+  Persist
+    THSpec
+      SumSpec
+        should warn [✔]
+      mkPersistWith
+        finds references
+          BestToppingIceCream [✔]
+          BestToppingOtherCream [✔]
+          BestToppingKeyCream [✔]
+          BestToppingQualifiedKeyCream [✔]
+          BestToppingMaybeCream [✔]
+          BestToppingNullableCream [✔]
+          BestToppingMaybeQualifiedCream [✔]
+          BestToppingMaybeQualifiedKeyCream [✔]
+          BestToppingMaybeKeyCream [✔]
+      KindEntities
+        should support DataKinds in entity definition [✔]
+      NestedSymbolsInType
+        should support nested parens [✔]
+        should support deeply nested parens + square brackets [✔]
+      OverloadedLabels
+        works for monomorphic labels [✔]
+        works for polymorphic labels [✔]
+        works for id labels [✔]
+        works for Primary labels [✔]
+      Shared Primary Keys
+        PersistFieldSql
+          should match underlying key [✔]
+        User
+          has default ID key, SqlInt64 [✔]
+          has equivalent SqlType from sqlType and entityId [✔]
+        Profile
+          has same ID key type as User [✔]
+          has equivalent SqlType from sqlType and entityId [✔]
+        Profile2
+          has same ID key type as User [✔]
+          has equivalent SqlType from sqlType and entityId [✔]
+        getEntityId FieldDef
+          should match underlying primary key [✔]
+        DayKeyTable
+          has equivalent SqlType from sqlType and entityId [✔]
+          sqlType has Day type [✔]
+          getSqlType has Day type [✔]
+        RefDayKey
+          has equivalent SqlType from sqlType and entityId [✔]
+          has same sqltype as underlying [✔]
+          has the right fieldType [✔]
+          has the right type [✔]
+          has a foreign ref [✔]
+      Shared Primary Keys Imported
+        PersistFieldSql
+          should match underlying key [✔]
+        getEntityId FieldDef
+          should match underlying primary key [✔]
+        foreign reference should work
+          should have a foreign reference [‐]
+            # PENDING: issue #1289
+      ImplicitIdColSpec
+        UserKey
+          has type Text -> Key User [✔]
+        getEntityId
+          has SqlString SqlType [✔]
+          has Text FieldType [‐]
+            # PENDING: currently returns UserId, may not be an issue
+      MaybeFieldDefs
+        should support literal `Maybe` declaration in entity definition [✔]
+      TypeLitFieldDefs
+        should support numeric type literal fields in entity definition [✔]
+        should support string based type literal fields in entity definition [✔]
+      MigrationOnlySpec
+        HasMigrationOnly
+          getEntityFields
+            has one field [✔]
+          getEntityFieldsDatabase
+            has two fields [✔]
+          toPersistFields
+            should have one field [✔]
+          fromPersistValues
+            should work with only item in list [✔]
+      compiles [✔]
+      EmbedSpec
+        ModelWithList
+          has the right type [✔]
+          has the right sqltype [✔]
+        MapIdValue
+          has the right type [✔]
+          has the right sqltype [✔]
+        HasMap
+          has the right type [✔]
+          has the right sqltype [✔]
+        SomeThing
+          toEmbedEntityDef
+            should have the same field count as Haskell fields [✔]
+        EmbedThing
+          generates the right constructor [✔]
+        SelfEmbed
+          fieldReference
+            has self reference [✔]
+          toEmbedEntityDef
+            has the same field count as regular def [✔]
+      DiscoverEntitiesSpec
+        should have all three entities [✔]
+      MultiBlockSpec
+        MBBar
+          Foreign Key Works
+            User reference works [✔]
+            Primary key reference works [✔]
+            Thing ref works (same block) [✔]
+            ThingAuto ref works (same block) [✔]
+      ForeignRefSpec
+        HasCustomName
+          should have a custom db name [✔]
+        should compile [✔]
+        ForeignPrimarySource
+          has the right type [✔]
+        Cascade
+          Explicit
+            should have a single foreign reference defined [✔]
+            ChildExplicit
+              should have the right target table [✔]
+              should have the right cascade behavior [✔]
+              is not nullable [✔]
+              is to the Primary key [✔]
+          Implicit
+            ChildImplicit
+              parentId has reference [✔]
+      {to,from}PersistValues
+        NormalModel
+          toPersistValues [✔]
+          fromPersistValues [✔]
+        PrimaryModel
+          toPersistValues [✔]
+          fromPersistValues [✔]
+        IsMigrationOnly
+          toPersistValues [✔]
+          fromPersistValues [✔]
+        mkInsertValues
+          NormalModel
+            has all values [✔]
+          PrimaryModel
+            has all values [✔]
+          IsMigrationOnly
+            has all values [✔]
+        parseEntityValues
+          NormalModel
+            parses [✔]
+          PrimaryModel
+            parses [✔]
+          IsMigrationOnly
+            parses [✔]
+        entityValues
+          NormalModel
+            renders as you would expect [✔]
+            round trips with parseEntityValues [✔]
+          PrimaryModel
+            renders as you would expect [✔]
+            round trips with parseEntityValues [✔]
+          IsMigrationOnly
+            renders as you would expect [✔]
+            round trips with parseEntityValues [✔]
+          HasListField
+            renders as you would expect [✔]
+            round trips with parseEntityValues [✔]
+          HasNonEmptyListField
+            renders as you would expect [✔]
+            round trips with parseEntityValues [✔]
+          HasNonEmptyListKeyField
+            renders as you would expect [✔]
+            round trips with parseEntityValues [✔]
+      JsonEncodingSpec
+        encodes without an ID field [✔]
+        decodes without an ID field [✔]
+        has informative decoder errors [✔]
+        works with a Primary [✔]
+          +++ OK, passed 100 tests.
+        excuse me what [✔]
+          +++ OK, passed 100 tests.
+        round trip works with composite key [✔]
+          +++ OK, passed 100 tests.
+        works with a composite key [✔]
+          +++ OK, passed 100 tests.
+      CommentSpec
+        has entity comments [✔]
+        fieldComments
+          has the right name comments [✔]
+      EntityHaddockSpec
+        generates entity Haddock [✔]
+        generates field Haddock [✔]
+      CompositeKeyStyleSpec
+        mpsCamelCaseCompositeKeySelector is False
+          Should generate Legacy style key selectors [✔]
+        mpsCamelCaseCompositeKeySelector is True
+          Should generate CamelCase style key selectors [✔]
+      QualifiedReference [✔]
+      TestDefaultKeyCol
+        should be a BackendKey SqlBackend [✔]
+      HasDefaultId
+        should have usual db name [✔]
+        should have usual haskell name [✔]
+        should have correct underlying sql type [✔]
+        persistfieldsql should be right [✔]
+        should have correct haskell type [✔]
+      HasCustomSqlId
+        should have custom db name [✔]
+        should have usual haskell name [✔]
+        should have correct underlying sql type [✔]
+        should have correct haskell type [✔]
+      HasIdDef
+        should have usual db name [✔]
+        should have usual haskell name [✔]
+        should have correct underlying sql type [✔]
+        should have correct haskell type [✔]
+      SharedPrimaryKey
+        should have usual db name [✔]
+        should have usual haskell name [✔]
+        should have correct underlying sql type [✔]
+        should have correct underlying (as reported by sqltype) [✔]
+        should have correct haskell type [✔]
+        should have correct sql type from PersistFieldSql [✔]
+        should have same sqlType as underlying record [✔]
+        should be a coercible newtype [✔]
+      SharedPrimaryKeyWithCascade
+        should have usual db name [✔]
+        should have usual haskell name [✔]
+        should have correct underlying sql type [✔]
+        should have correct haskell type [✔]
+        should have cascade in field def [✔]
+      OnCascadeDelete
+        entityDef
+          works [✔]
+        has the cascade on the field def [✔]
+        doesn't have any extras [✔]
+      hasNaturalKey
+        is True for Primary keyword [✔]
+        is True for multiple Primary columns  [✔]
+        is False for Id keyword [✔]
+        is False for unspecified/default id [✔]
+      hasCompositePrimaryKey
+        is False for Primary with single column [✔]
+        is True for multiple Primary columns  [✔]
+        is False for Id keyword [✔]
+        is False for unspecified/default id [✔]
+      JSON serialization
+        to/from is idempotent [✔]
+          +++ OK, passed 100 tests.
+        decode [✔]
+      JSON serialization for Entity
+        to/from is idempotent [✔]
+          +++ OK, passed 100 tests.
+        decode [✔]
+      lens operations [✔]
+      Derived Show/Read instances
+        includes the name of the newtype when showing/reading a Key, i.e. uses the stock strategy when deriving Show/Read [✔]
+      tabulateEntityA
+        works [✔]
+      tabulateEntity
+        works [✔]
+      CustomIdName
+        has a good safe to insert class instance [✔]
+    Quasi
+      parseEntityFields
+        works [✔]
+        works2 [✔]
+        works3 [✔]
+        works4 [✔]
+        works5 [✔]
+      takeColsEx
+        fails on a single word [✔]
+        errors on invalid input [✔]
+        works if it has a name and a type [✔]
+        works if it has a name, type, and cascade [✔]
+        never tries to make a refernece [✔]
+      parseLine
+        returns nothing when line is just whitespace [✔]
+        handles normal words [✔]
+        handles numbers [✔]
+        handles quotes [✔]
+        should error if quotes are unterminated [✔]
+        handles quotes mid-token [✔]
+        handles escaped quote mid-token [✔]
+        handles unnested parantheses [✔]
+        handles unnested parantheses mid-token [✔]
+        handles nested parantheses [✔]
+        escaping [✔]
+        mid-token quote in later token [✔]
+        comments
+          recognizes one line [✔]
+          recognizes empty line [✔]
+          works if comment is indented [✔]
+      parse
+        should parse the `entityHaskell` field [✔]
+        should parse the `entityDB` field [✔]
+        should parse the `entityAttrs` field [✔]
+        should parse the `unboundEntityFields` field [✔]
+        should parse the `entityUniques` field [✔]
+        should parse the `entityForeigns` field [✔]
+        should parse the `entityDerives` field [✔]
+        should parse the `entityEntities` field [✔]
+        should parse the `entitySum` field [✔]
+        should parse the `entityComments` field [✔]
+        should error on malformed input, unterminated parens [✔]
+        errors on duplicate cascade update declarations [✔]
+        errors on duplicate cascade delete declarations [✔]
+        custom Id column
+          parses custom Id column [✔]
+          errors on duplicate custom Id column [✔]
+        primary declaration
+          parses Primary declaration [✔]
+          errors on duplicate custom Primary declaration [✔]
+          errors on conflicting Primary/Id declarations [✔]
+          triggers error on invalid declaration [✔]
+        entity unique constraints
+          triggers error if declared field does not exist [✔]
+          triggers error if no valid constraint name provided [✔]
+        foreign keys
+          should allow you to modify the FK name via provided function [✔]
+          should error when insufficient params provided [✔]
+          should error when foreign fields not provided [✔]
+          should error when number of parent and foreign fields differ [✔]
+          should throw error when there is more than one delete cascade on the declaration [✔]
+          should throw error when there is more than one update cascade on the declaration [✔]
+          should allow you to enable snake cased foriegn keys via a preset configuration function [✔]
+        ticked types
+          should be able to parse ticked types [✔]
+        type literals
+          should be able to parse type literals [✔]
+      parseFieldType
+        simple types [✔]
+        module types [✔]
+        application [✔]
+        application multiple [✔]
+        parens [✔]
+        lists [✔]
+        numeric type literals [✔]
+        string type literals [✔]
+        nested list / parens (list inside parens) [✔]
+        nested list / parens (parens inside list) [✔]
+        fails on lowercase starts [✔]
+      #1175 empty entity
+        preparse works [✔]
+        associateLines works [✔]
+        parse works [✔]
+      preparse
+        omits lines that are only whitespace [✔]
+          +++ OK, passed 100 tests.
+        recognizes entity [✔]
+        recognizes comments [✔]
+        preparse indented [✔]
+        preparse extra blocks [✔]
+        field comments [✔]
+      associateLines
+        works [✔]
+        works when used consecutively [✔]
+        works with textual input [✔]
+        works with extra blocks [✔]
+        works with extra blocks twice [✔]
+        works with field comments [✔]
+      parseLines
+        produces the right name [✔]
+        unboundEntityFields
+          has the right field names [✔]
+          has comments [✔]
+        has the comments [✔]
+        combines extrablocks [✔]
+        works with extra blocks
+          idTable
+            has no extra blocks [✔]
+            has the right name [✔]
+            has the right fields [✔]
+          lowerCaseTable
+            has the right name [✔]
+            has the right fields [✔]
+            has ExtraBlock [✔]
+            has ExtraBlock2 [✔]
+    Class
+      PersistField
+        UTCTime
+          fromPersistValue with format [✔]
+    PersistValueSpec
+      PersistValue
+        Aeson
+          PersistDbSpecific
+            encodes with a p prefix [✔]
+              +++ OK, passed 100 tests.
+            Round Trips [✔]
+              +++ OK, passed 100 tests.
+          PersistLiteral
+            encodes with a l prefix [✔]
+              +++ OK, passed 100 tests.
+            Round Trips [✔]
+              +++ OK, passed 100 tests.
+          PersistLiteralEscaped
+            encodes with a e prefix [✔]
+              +++ OK, passed 100 tests.
+            Round Trips [✔]
+              +++ OK, passed 100 tests.
+
+Finished in 0.0126 seconds
+256 examples, 0 failures, 2 pending
+Test suite test: PASS
+Test suite logged to:
+/tmp/workdir-persistent/persistent-2.14.6.3/dist-newstyle/build/x86_64-linux/ghc-9.6.6/persistent-2.14.6.3/t/test/test/persistent-2.14.6.3-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

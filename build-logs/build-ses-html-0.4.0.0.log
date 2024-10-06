@@ -1,0 +1,36 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - ses-html-0.4.0.0 (lib) (first run)
+Configuring library for ses-html-0.4.0.0...
+Preprocessing library for ses-html-0.4.0.0...
+Building library for ses-html-0.4.0.0...
+[1 of 1] Compiling Network.SES
+
+src/Network/SES.hs:28:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+28 | import           Data.Monoid                   ( (<>) )
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Network/SES.hs:216:35: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘concatHandler’
+    (imported from Network.Http.Client, but defined in Network.Http.Connection):
+    Deprecated: "Use simpleHandler instead"
+    |
+216 |                     else do bs <- concatHandler resp is
+    |                                   ^^^^^^^^^^^^^
+
+src/Network/SES.hs:225:33: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[Tag p]’ not matched:
+            []
+            [_]
+            (_:(TagOpen _ _):_)
+            (_:(TagClose _):_)
+            ...
+    |
+225 |     getFromTagSoup x tags = let [ _, TagText d] = filterFront . filterBack $ tags 
+    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

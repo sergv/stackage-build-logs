@@ -1,0 +1,174 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - polysemy-1.9.2.0 (ephemeral targets)
+Preprocessing library for polysemy-1.9.2.0..
+Building library for polysemy-1.9.2.0..
+Preprocessing test suite 'polysemy-test' for polysemy-1.9.2.0..
+Building test suite 'polysemy-test' for polysemy-1.9.2.0..
+[21 of 21] Linking /tmp/workdir-polysemy/polysemy-1.9.2.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/polysemy-1.9.2.0/build/polysemy-test/polysemy-test [Library changed]
+Running 1 test suites...
+Test suite polysemy-test: RUNNING...
+
+Alternative
+  Alternative instance
+    should choose the first branch [✔]
+    should failover [✔]
+  runNonDetMaybe
+    should skip second branch if the first branch succeeds [✔]
+    should respect local/global state semantics [✔]
+  runNonDet
+    should have terrible semantics when <|> is used within a higher-order action of a later effect (See Issue #246.) [✔]
+Bracket
+  persist state and call the finalizer
+    via runResource [✔]
+    via resourceToIOFinal [✔]
+  persist state and call the finalizer with bracketOnError
+    via runResource [✔]
+    via resourceToIOFinal [✔]
+  should not call the finalizer if there no error
+    via runResource [✔]
+    via resourceToIOFinal [✔]
+  should call the finalizer on Error
+    via runResource [✔]
+    via resourceToIOFinal [✔]
+  io dispatched bracket
+    via resourceToIOFinal [✔]
+14
+  should not lock when done recursively
+    via resourceToIOFinal [✔]
+Doctest
+  Error messages
+Examples: 10  Tried: 10  Errors: 0  Failures: 0
+    should pass the doctest [✔]
+Error
+  fromException
+    should catch exceptions [✔]
+    should not catch non-exceptions [✔]
+    should happen before Resource [✔]
+  errorToIOFinal
+    should catch errors only for the interpreted Error [✔]
+    should propagate errors thrown in 'async' [✔]
+Fail
+  MonadFail instance with failToNonDet
+    should call empty via fail [✔]
+    should work fine for non-failing patterns [✔]
+Final
+  Final on IO
+    should terminate successfully, with no exceptions, and have global state semantics on State. [✔]
+    should treat trace with local state semantics [✔]
+Fixpoint
+  fixpointToFinal on Identity
+    should work with runState [✔]
+    should work with runError [✔]
+    should not trigger the bomb [✔]
+    should trigger the bomb [✔]
+Fusion
+  fusion
+    internal uses of StateT should simplify [✔]
+    internal uses of ExceptT should simplify [✔]
+    `runState . reinterpret` should fuse [✔]
+    who needs Sem even? [✔]
+HigherOrder
+  Reader local
+    should nest with itself [✔]
+Intercept
+  intercept
+    should weave through embedded computations [✔]
+KnownRow
+  tryMembership
+    should return a valid proof when the targeted  effect is part of the row [✔]
+    should not return a valid proof when the targeted  effect is not part of the row [✔]
+Output
+  runOutputBatched
+    should return nothing at batch size 0 [✔]
+    Works at size 1
+      returns the correct amount of batches [✔]
+      all batches except the last one are of the specified size [✔]
+      returns all original elements in the correct order [✔]
+    Works at size 5
+      returns the correct amount of batches [✔]
+      all batches except the last one are of the specified size [✔]
+      returns all original elements in the correct order [✔]
+    Works at size 6
+      returns the correct amount of batches [✔]
+      all batches except the last one are of the specified size [✔]
+      returns all original elements in the correct order [✔]
+    Works at size 7
+      returns the correct amount of batches [✔]
+      all batches except the last one are of the specified size [✔]
+      returns all original elements in the correct order [✔]
+    Works at size 8
+      returns the correct amount of batches [✔]
+      all batches except the last one are of the specified size [✔]
+      returns all original elements in the correct order [✔]
+    Works at size 9
+      returns the correct amount of batches [✔]
+      all batches except the last one are of the specified size [✔]
+      returns all original elements in the correct order [✔]
+    Works at size 10
+      returns the correct amount of batches [✔]
+      all batches except the last one are of the specified size [✔]
+      returns all original elements in the correct order [✔]
+    Works at size 11
+      returns the correct amount of batches [✔]
+      all batches except the last one are of the specified size [✔]
+      returns all original elements in the correct order [✔]
+    Works at size 12
+      returns the correct amount of batches [✔]
+      all batches except the last one are of the specified size [✔]
+      returns all original elements in the correct order [✔]
+    Works at size 13
+      returns the correct amount of batches [✔]
+      all batches except the last one are of the specified size [✔]
+      returns all original elements in the correct order [✔]
+    Works at size 99
+      returns the correct amount of batches [✔]
+      all batches except the last one are of the specified size [✔]
+      returns all original elements in the correct order [✔]
+    Works at size 100
+      returns the correct amount of batches [✔]
+      all batches except the last one are of the specified size [✔]
+      returns all original elements in the correct order [✔]
+    Works at size 101
+      returns the correct amount of batches [✔]
+      all batches except the last one are of the specified size [✔]
+      returns all original elements in the correct order [✔]
+  runOutputList
+    should return elements in the order they were output [✔]
+  runOutputMonoid
+    should be strict in the output [✔]
+  runOutputMonoidIORef
+    should commit writes of asynced computations [✔]
+  runOutputMonoidTVar
+    should commit writes of asynced computations [✔]
+Scoped
+  Scoped
+    local effects [✔]
+    switch interpreter [✔]
+    scoped depth [✔]
+Tactics
+  runTH and bindTH
+    should act as expected [✔]
+ThEffect
+  should compile [✔]
+Writer
+  writer
+    should not censor [✔]
+    should censor [✔]
+    should have a proper listen [✔]
+    should be strict in the output [✔]
+  runWriterTVar
+    should listen and commit asyncs spawned and awaited upon in a listen block [✔]
+    should commit writes of asyncs spawned inside a listen block even if the block has finished. [✔]
+    should commit writes of asyncs spawned inside a listen block even if the block failed for any reason. [✔]
+  runLazyWriter
+    should build the final output lazily, if the interpreters after runLazyWriter and the final monad are lazy [✔]
+    should listen lazily if all interpreters and final monad are lazy [✔]
+    should censor lazily if all interpreters and final monad are lazy [✔]
+
+Finished in 0.6480 seconds
+96 examples, 0 failures
+Test suite polysemy-test: PASS
+Test suite logged to:
+/tmp/workdir-polysemy/polysemy-1.9.2.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/polysemy-1.9.2.0/test/polysemy-1.9.2.0-polysemy-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

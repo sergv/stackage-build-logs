@@ -1,0 +1,56 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - port-utils-0.2.1.0 (test:unit-test) (ephemeral targets)
+Preprocessing test suite 'unit-test' for port-utils-0.2.1.0...
+Building test suite 'unit-test' for port-utils-0.2.1.0...
+Running 1 test suites...
+Test suite unit-test: RUNNING...
+
+Tests.Network.Socket.Wait
+  wait
+    never returns when the port is
+      free [✔]
+      is bound and CLOSED [✔]
+      is in a state other than listening [✔]
+    does connect if port is available [✔]
+    at first does not return when the port is
+      free [✔]
+      is bound and CLOSED [✔]
+      is in a state other than listening [✔]
+    throw if the port is invalid [✔]
+    throws if the host does not exist [✔]
+  connectAction
+    return False when the port is
+      free [✔]
+      is bound and CLOSED [✔]
+      is in a state other than listening [✔]
+    returns True if it connects [✔]
+    returns True if connects after failing when the port is
+      free [✔]
+      is bound and CLOSED [✔]
+      is in a state other than listening [✔]
+    returns false if there is a connection timeout [✘]
+  waitM
+    returns immediantly if the action returns True [✔]
+    loops until the action returns True [✔]
+
+Failures:
+
+  test/Tests/Network/Socket/WaitSpec.hs:95:42: 
+  1) Tests.Network.Socket.Wait.connectAction returns false if there is a connection timeout
+       expected: False
+        but got: True
+
+  To rerun use: --match "/Tests.Network.Socket.Wait/connectAction/returns false if there is a connection timeout/" --seed 2112722586
+
+Randomized with seed 2112722586
+
+Finished in 1.3945 seconds
+19 examples, 1 failure
+Test suite unit-test: FAIL
+Test suite logged to:
+/tmp/workdir-port-utils/port-utils-0.2.1.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/port-utils-0.2.1.0/t/unit-test/test/port-utils-0.2.1.0-unit-test.log
+0 of 1 test suites (0 of 1 test cases) passed.
+Error: [Cabal-7125]
+Tests failed for test:unit-test from port-utils-0.2.1.0.
+

@@ -1,0 +1,120 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - lua-2.3.3 (test:test-lua) (ephemeral targets)
+Preprocessing test suite 'test-lua' for lua-2.3.3...
+Building test suite 'test-lua' for lua-2.3.3...
+Running 1 test suites...
+Test suite test-lua: RUNNING...
+lua
+  thread
+    create and close:                                      OK
+    newthread:                                             OK
+    type check:                                            OK
+    thread type is LUA_TTHREAD:                            OK
+    pushing:                                               OK
+  booleans
+    push and retrieve:                                     OK
+    check:                                                 OK
+    type:                                                  OK
+  numbers
+    push and retrieve integer:                             OK
+    push and retrieve float:                               OK
+    check for integer:                                     OK
+    check for number:                                      OK
+    type:                                                  OK
+    show Integer:                                          OK
+    read Integer:                                          OK
+    show Number:                                           OK
+    read Number:                                           OK
+  nil
+    push and type check:                                   OK
+    type is LUA_TNIL:                                      OK
+  none
+    invalid index is 'none':                               OK
+    valid index is not none:                               OK
+    invalid index has type LUA_TNONE:                      OK
+  strings
+    push and retrieve:                                     OK
+    type:                                                  OK
+  tables
+    check type:                                            OK
+    has type LUA_TTABLE:                                   OK
+    set and get integer field:                             OK
+  constants
+    loadedTableRegistryField:                              OK
+    preloadTableRegistryField:                             OK
+    LUA_VERSION:                                           OK
+  compare
+    equality:                                              OK
+    less then:                                             OK
+    not less then:                                         OK
+    less then or equal:                                    OK
+  function calling
+    call `type(true)`:                                     OK
+    call type:                                             OK
+  ersatz functions
+    globals
+      get global from base library:                        OK
+      set global:                                          OK
+    table
+      get metamethod field via ersatz function:            OK
+      set metamethod field:                                OK
+  Haskell functions
+    call Haskell function:                                 OK
+  Primary
+    C functions
+      can push and call luaopen_math:                      OK
+    garbage-collection
+      stop, restart GC:                                    OK
+      switch to generational GC:                           OK
+      switch to generational and back to incremental GC:   OK
+      memory consumption should be between 0 and 10 kB:    OK
+    constants
+      LUA_RIDX_GLOBALS:                                    OK
+    lua_stringtonumber
+      converts a string to a number:                       OK
+      returns length (incl NULL) of the string on success: OK
+      returns zero on failure:                             OK
+    warnings
+      collect warnings:                                    OK
+  Unsafe
+    tables
+      set and get integer field:                           OK
+      get metamethod field:                                OK
+      set metamethod field:                                OK
+    globals
+      get global from base library:                        OK
+      set global:                                          OK
+    next
+      get next key from table:                             OK
+      returns FALSE if table is empty:                     OK
+    arith
+      multiplies two numbers:                              OK
+      divides number:                                      OK
+      pops its arguments from the stack:                   OK
+      pops a single argument for unary negation:           OK
+  ersatz
+    arith
+      adds two numbers:                                    OK
+      negates number:                                      OK
+      pops its arguments from the stack:                   OK
+      pops a single argument for unary negation:           OK
+      sets status to LUA_OK on success:                    OK
+      sets error status on error:                          OK
+      runs metamethod:                                     OK
+      catches runtime error in metamethod:                 OK
+    global
+      set and get global field:                            OK
+      get value from table:                                OK
+    Auxiliary
+      hslua_requiref
+        can load a module:                                 OK
+        returns LUA_OK on success:                         OK
+        sets global if flag is set:                        OK
+        catches errors:                                    OK
+
+All 76 tests passed (0.00s)
+Test suite test-lua: PASS
+Test suite logged to:
+/tmp/workdir-lua/lua-2.3.3/dist-newstyle/build/x86_64-linux/ghc-9.6.6/lua-2.3.3/t/test-lua/test/lua-2.3.3-test-lua.log
+1 of 1 test suites (1 of 1 test cases) passed.

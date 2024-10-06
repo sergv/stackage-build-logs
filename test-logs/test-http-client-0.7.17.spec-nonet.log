@@ -1,0 +1,133 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - http-client-0.7.17 (test:spec-nonet) (ephemeral targets)
+Preprocessing test suite 'spec-nonet' for http-client-0.7.17...
+Building test suite 'spec-nonet' for http-client-0.7.17...
+Running 1 test suites...
+Test suite spec-nonet: RUNNING...
+
+Network.HTTP.Client
+  Client
+    fails on empty hostnames #40
+      http:// [✔]
+      https:// [✔]
+      http://:8000 [✔]
+      https://:8001 [✔]
+[[("Authorization","abguvatgbfrrurer")],[],[],[],[]]
+    headers can be stripped on redirect [✔]
+[[("Authorization","abguvatgbfrrurer")]]
+    does strips header on redirect, if hosts are different and set to strip them if host differ [✔]
+[[("Authorization","abguvatgbfrrurer")]]
+    does NOT strips header on redirect, if hosts are same and set to strip them if host differ [✔]
+    redirecting #41 [✔]
+    redirectCount=0 [✔]
+    connecting to missing server gives nice error message [✔]
+    extra headers after 100 #49
+      False [✔]
+      True [✔]
+    early close on a 413 [✔]
+    length zero and chunking zero #108 [✔]
+    length zero and chunking [✔]
+    length and chunking [✔]
+    withResponseHistory and redirect [✔]
+    should not write to closed connection [✔]
+    does not allow port overflow #383 [✔]
+Network.HTTP.Client.Body
+  BodySpec
+    chunked, single [✔]
+    chunked, single, with trailers [✔]
+    chunked, pieces [✔]
+    chunked, pieces, with trailers [✔]
+    chunked, raw [✔]
+    chunked, raw, with trailers [✔]
+    chunked, pieces, raw [✔]
+    chunked, pieces, raw, with trailers [✔]
+    length, single [✔]
+    length, pieces [✔]
+    gzip [✔]
+Network.HTTP.Client.Connection
+  strippedHostName
+    passes along a normal domain name [✔]
+    passes along an IPv4 address [✔]
+    strips brackets of an IPv4 address [✔]
+    pathological cases
+      doesn't touch future ip address formats [✔]
+      doesn't strip trailing stuff [✔]
+Network.HTTP.Client.Cookie
+  CookieSpec
+    cookie equality - case insensitive Eq [✔]
+    domainMatches - case insensitive [✔]
+    domainMatches - case insensitive, partial [✔]
+    equalCookie vs. equivCookie
+      cookie_name [✔]
+      cookie_value [✔]
+      cookie_expiry_time [✔]
+      cookie_domain [✔]
+      cookie_path [✔]
+      cookie_creation_time [✔]
+      cookie_last_access_time [✔]
+      cookie_persistent [✔]
+      cookie_host_only [✔]
+      cookie_secure_only [✔]
+      cookie_http_only [✔]
+    isPotentiallyTrustworthyOrigin [✔]
+Network.HTTP.Client.Headers
+  HeadersSpec
+    simple response [✔]
+    Expect: 100-continue (success) [✔]
+    Expect: 100-continue (failure) [✔]
+    100 Continue without expectation is OK [✔]
+    103 early hints [✔]
+    103 early hints (multiple sections) [✔]
+Network.HTTP.Client.Request
+  case insensitive scheme
+    http://example.com [✔]
+    URI http://example.com [✔]
+    httP://example.com [✔]
+    URI httP://example.com [✔]
+    HttP://example.com [✔]
+    URI HttP://example.com [✔]
+    HttPs://example.com [✔]
+    URI HttPs://example.com [✔]
+    ftp://example.com [✔]
+    URI ftp://example.com [✔]
+  authentication in url
+    passes validation [✔]
+    add username/password to headers section [✔]
+  getUri
+    when protocol is http and port is 80
+      omits port [✔]
+    when protocol is https and port is 443
+      omits port [✔]
+    when protocol is https and port is 80
+      does not omit port [✔]
+  Show Request
+    redacts authorization header content [✔]
+  applyBasicProxyAuth
+    Should add a proxy-authorization header [✔]
+    Should add a proxy-authorization header with the specified username and password. [✔]
+  extract credentials from a URI
+    fetches non-empty username before the first ':' [✔]
+    after ':' is considered password [✔]
+    decodes username special characters per RFC3986 [✔]
+    decodes password special characters per RFC3986 [✔]
+    no auth is empty [✔]
+  requestBuilder
+    sends the full request, combining headers and body in the non-streaming case [✔]
+    sends only headers and returns an action for the body on 'Expect: 100-continue' [✔]
+Network.HTTP.Client.RequestBody
+  streamFile
+    works [✔]
+Network.HTTP.Client.Response
+  ResponseSpec
+    basic [✔]
+    no length [✔]
+    chunked [✔]
+    gzip [✔]
+
+Finished in 1.2988 seconds
+86 examples, 0 failures
+Test suite spec-nonet: PASS
+Test suite logged to:
+/tmp/workdir-http-client/http-client-0.7.17/dist-newstyle/build/x86_64-linux/ghc-9.6.6/http-client-0.7.17/t/spec-nonet/test/http-client-0.7.17-spec-nonet.log
+1 of 1 test suites (1 of 1 test cases) passed.

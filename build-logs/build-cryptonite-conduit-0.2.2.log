@@ -1,0 +1,40 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - cryptonite-conduit-0.2.2 (lib) (first run)
+ - cryptonite-conduit-0.2.2 (test:cryptonite-conduit-test) (first run)
+Configuring library for cryptonite-conduit-0.2.2...
+Preprocessing library for cryptonite-conduit-0.2.2...
+Building library for cryptonite-conduit-0.2.2...
+[1 of 4] Compiling Crypto.Cipher.ChaChaPoly1305.Conduit
+[2 of 4] Compiling Crypto.Hash.Conduit
+
+Crypto/Hash/Conduit.hs:33:46: warning: [GHC-68441] [-Wdeprecations]
+    In the use of type constructor or class ‘Consumer’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use ConduitT directly"
+   |
+33 | sinkHash :: (Monad m, HashAlgorithm hash) => Consumer B.ByteString m (Digest hash)
+   |                                              ^^^^^^^^
+
+Crypto/Hash/Conduit.hs:49:52: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘$$’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use runConduit and .|"
+   |
+49 | hashFile fp = liftIO $ runResourceT (sourceFile fp $$ sinkHash)
+   |                                                    ^^
+[3 of 4] Compiling Crypto.MAC.HMAC.Conduit
+[4 of 4] Compiling Crypto.PubKey.ECIES.Conduit
+Configuring test suite 'cryptonite-conduit-test' for cryptonite-conduit-0.2.2...
+Preprocessing test suite 'cryptonite-conduit-test' for cryptonite-conduit-0.2.2...
+Building test suite 'cryptonite-conduit-test' for cryptonite-conduit-0.2.2...
+[1 of 1] Compiling Main
+
+test/Spec.hs:38:48: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘$$’
+    (imported from Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use runConduit and .|"
+   |
+38 |     testhmac <- runConduit $ sourceLazy source $$ sinkHMAC ("foobar" :: BS.ByteString)
+   |                                                ^^
+[2 of 2] Linking /tmp/workdir-cryptonite-conduit/cryptonite-conduit-0.2.2/dist-newstyle/build/x86_64-linux/ghc-9.6.6/cryptonite-conduit-0.2.2/t/cryptonite-conduit-test/build/cryptonite-conduit-test/cryptonite-conduit-test

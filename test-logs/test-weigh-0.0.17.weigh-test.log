@@ -1,0 +1,63 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - weigh-0.0.17 (test:weigh-test) (ephemeral targets)
+Preprocessing test suite 'weigh-test' for weigh-0.0.17...
+Building test suite 'weigh-test' for weigh-0.0.17...
+Running 1 test suites...
+Test suite weigh-test: RUNNING...
+
+Integers
+
+  Case                Allocated  GCs
+  integers count 0            0    0
+  integers count 1           16    0
+  integers count 2           32    0
+  integers count 3           48    0
+  integers count 10         160    0
+  integers count 100      1,600    0
+
+IO actions
+
+  Case                      Allocated  GCs
+  integers count IO CAF 0          16    0
+  integers count IO func 0         24    0
+  integers count IO CAF 1          48    0
+  integers count IO func 1         40    0
+
+Ints
+
+  Case                Allocated  GCs
+  ints count 1                0    0
+  ints count 10               0    0
+  ints count 1000000          0    0
+
+Structs
+
+  Case                             Allocated  GCs
+  \_ -> IntegerStruct 0 0                  0    0
+  \x -> IntegerStruct x 0                 24    0
+  \x -> IntegerStruct x x                 24    0
+  \x -> IntegerStruct (x+1) x             40    0
+  \x -> IntegerStruct (x+1) (x+1)         40    0
+  \x -> IntegerStruct (x+1) (x+2)         56    0
+
+Packing
+
+  Case                          Allocated  GCs
+  \x -> HasInt x                       16    0
+  \x -> HasUnpacked (HasInt x)         16    0
+  \x -> HasPacked (HasInt x)           56    0
+
+fst
+
+  Case  Allocated  GCs
+  id            0    0
+
+snd
+
+  Case  Allocated  GCs
+  id          480    0
+Test suite weigh-test: PASS
+Test suite logged to:
+/tmp/workdir-weigh/weigh-0.0.17/dist-newstyle/build/x86_64-linux/ghc-9.6.6/weigh-0.0.17/t/weigh-test/test/weigh-0.0.17-weigh-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

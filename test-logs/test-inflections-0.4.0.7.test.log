@@ -1,0 +1,140 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - inflections-0.4.0.7 (test:test) (ephemeral targets)
+Preprocessing test suite 'test' for inflections-0.4.0.7...
+Building test suite 'test' for inflections-0.4.0.7...
+Running 1 test suites...
+Test suite test: RUNNING...
+
+Text.Inflections
+  toUnderscore
+    converts camel case to snake case [✔]
+    converts camel case to snake case with numbers [✔]
+  toDashed
+    converts camel case to dashed [✔]
+  toCamelCased
+    when the first argument is False
+      converts snake case to camel case [✔]
+    when the first argument is True
+      converts snake case to camel case with the first word capitalized [✔]
+  toHumanized
+    when the first argument is False
+      converts snake case to human-readable form with lower-case initial letter [✔]
+    when the first argument is True
+      converts snake case to human-readable form with the first word capitalized [✔]
+  betterThrow
+    when given a parse error
+      throws the correct exception [✔]
+        +++ OK, passed 100 tests.
+    when given a value in Right
+      returns the value [✔]
+        +++ OK, passed 100 tests.
+Text.Inflections.Dasherize
+  dasherize
+    dasherizes a collection of words sentence [✔]
+Text.Inflections.Humanize
+  humanize
+    converts snake case to a human-readable string [✔]
+    turns underscores into spaces [✔]
+    capitalizes the first word of a sentence [✔]
+  humanizeCustom False
+    converts snake case to a human-readable string [✔]
+    turns underscores into spaces [✔]
+    lower-cases the first word of a sentence [✔]
+  humanizeCustom True
+    converts snake case to a human-readable string [✔]
+    turns underscores into spaces [✔]
+    capitalizes the first word of a sentence [✔]
+Text.Inflections.Ordinal
+  ordinal
+    returns the ordinal for 1 [✔]
+    returns the ordinal for 2 [✔]
+    returns the ordinal for 1002 [✔]
+    returns the ordinal for 1003 [✔]
+    returns the ordinal for -11 [✔]
+    returns the ordinal for -1021 [✔]
+    never returns empty output [✔]
+      +++ OK, passed 100 tests.
+  ordinalize
+    returns the full ordinal for 1 [✔]
+    returns the full ordinal for -1021 [✔]
+  always returns the number as prefix of the result [✔]
+    +++ OK, passed 100 tests.
+Text.Inflections.Parametrize
+  parameterize
+    returns only valid characters [✔]
+      +++ OK, passed 100 tests.
+    never returns a string beginning with a separator [✔]
+      +++ OK, passed 100 tests; 49 discarded.
+    never returns a string ending with a separator [✔]
+      +++ OK, passed 100 tests; 49 discarded.
+    returns every alphanumeric character from the input [✔]
+      +++ OK, passed 100 tests.
+    never returns a string with a sequence of dashes [✔]
+      +++ OK, passed 100 tests.
+Text.Inflections.Parse.CamelCase
+  parseCamelCase
+    when given no acronyms
+      when first word is capitalized
+        parses CamelCase correctly [✔]
+      when first word is not capitalized
+        parses camelCase correctly [✔]
+      when there are digits in the words
+        parses CamelCase correctly [✔]
+    when given some acronyms
+      when first word is capitalized
+        parses CamelCase correctly [✔]
+      when first word is not capitalized
+        parses camelCase correctly [✔]
+      when there are digits in the words
+        parses CamelCase correctly [✔]
+      when a word has a suffix coinciding with a acronym
+        is still parsed correctly as a normala word [✔]
+Text.Inflections.Parse.SnakeCase
+  parseSnakeCase
+    when given no acronyms
+      parses snake_case correctly [✔]
+      handles digits in the words correctly [✔]
+    when given some acronyms
+      parses snake_case correctly [✔]
+      when acronym happens to be a prefix of other word
+        parses the word correctly [✔]
+      when acronym happens to be a suffix of other word
+        parses the word correctly [✔]
+Text.Inflections.Titleize
+  titleize
+    converts two words to title case [✔]
+    converts one word to title case [✔]
+Text.Inflections.Transliterate
+  transliterate
+    transliterates with substitution [✔]
+    transliterates without subsitutions [✔]
+    transliterates with missing substitutions [✔]
+Text.Inflections.Types
+  mkWord
+    when provided a correct Text value
+      creates a normal word [✔]
+    when provided an incorrect Text value
+      throws the correct exception [✔]
+  mkAcronym
+    when provided a correct Text value
+      creates an acronym [✔]
+    when providde an incorrect Text value
+      throws the correct exception [✔]
+  unWord
+    extracts the inner Text value [✔]
+  unSomeWord
+    when inner value is a normal word
+      Text is extracted and the given function applied [✔]
+    when inner value is an acronym
+      Text is extracted, but the function is not applied [✔]
+Text.Inflections.Underscore
+  underscore
+    converts a word list to snake case [✔]
+
+Finished in 0.2685 seconds
+59 examples, 0 failures
+Test suite test: PASS
+Test suite logged to:
+/tmp/workdir-inflections/inflections-0.4.0.7/dist-newstyle/build/x86_64-linux/ghc-9.6.6/inflections-0.4.0.7/t/test/test/inflections-0.4.0.7-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

@@ -1,0 +1,89 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - type-map-0.1.7.0 (lib) (first run)
+ - type-map-0.1.7.0 (test:type-map-test) (first run)
+ - type-map-0.1.7.0 (test:type-map-static-test) (first run)
+ - type-map-0.1.7.0 (test:nocoerce-test) (first run)
+Configuring library for type-map-0.1.7.0...
+Preprocessing library for type-map-0.1.7.0...
+Building library for type-map-0.1.7.0...
+[ 1 of 12] Compiling Data.TypeMap.Internal.Dynamic
+
+src/Data/TypeMap/Internal/Dynamic.hs:17:1: warning: [-Wunused-imports]
+    The import of ‘Data.Proxy’ is redundant
+      except perhaps to import instances from ‘Data.Proxy’
+    To import instances alone, use: import Data.Proxy()
+   |
+17 | import Data.Proxy (Proxy(..))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Data/TypeMap/Internal/Dynamic.hs:174:24: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+    |
+174 | data ItemKleisli (f :: * -> *) x y
+    |                        ^
+
+src/Data/TypeMap/Internal/Dynamic.hs:174:29: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+    |
+174 | data ItemKleisli (f :: * -> *) x y
+    |                             ^
+[ 2 of 12] Compiling Data.TypeMap.Dynamic
+[ 3 of 12] Compiling Data.TypeMap.Internal.Dynamic.Alt
+[ 4 of 12] Compiling Data.TypeMap.Dynamic.Alt
+[ 5 of 12] Compiling Data.TypeMap.Internal.Unsafe
+
+src/Data/TypeMap/Internal/Unsafe.hs:30:39: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+30 | type family Index (a :: k) (d :: [(k, *)]) where
+   |                                       ^
+
+src/Data/TypeMap/Internal/Unsafe.hs:36:40: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+36 | type family Lookup (a :: k) (d :: [(k, *)]) where
+   |                                        ^
+[ 6 of 12] Compiling Data.TypeMap.Internal.Map
+[ 7 of 12] Compiling Data.TypeMap.Internal.List
+[ 8 of 12] Compiling Data.TypeMap.Internal.Vector
+[ 9 of 12] Compiling Data.TypeMap.List
+[10 of 12] Compiling Data.TypeMap.Map
+[11 of 12] Compiling Data.TypeMap.Static
+[12 of 12] Compiling Data.TypeMap.Vector
+Configuring test suite 'type-map-test' for type-map-0.1.7.0...
+Preprocessing test suite 'type-map-test' for type-map-0.1.7.0...
+Building test suite 'type-map-test' for type-map-0.1.7.0...
+[1 of 1] Compiling Main
+[2 of 2] Linking /tmp/workdir-type-map/type-map-0.1.7.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/type-map-0.1.7.0/t/type-map-test/build/type-map-test/type-map-test
+Configuring test suite 'type-map-static-test' for type-map-0.1.7.0...
+Preprocessing test suite 'type-map-static-test' for type-map-0.1.7.0...
+Building test suite 'type-map-static-test' for type-map-0.1.7.0...
+[1 of 1] Compiling Main
+[2 of 2] Linking /tmp/workdir-type-map/type-map-0.1.7.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/type-map-0.1.7.0/t/type-map-static-test/build/type-map-static-test/type-map-static-test
+Configuring test suite 'nocoerce-test' for type-map-0.1.7.0...
+Preprocessing test suite 'nocoerce-test' for type-map-0.1.7.0...
+Building test suite 'nocoerce-test' for type-map-0.1.7.0...
+[1 of 1] Compiling Main
+
+test/nocoerce.hs:21:6: warning: [GHC-18872] [-Wdeferred-type-errors]
+    • Couldn't match type ‘"a"’ with ‘"b"’
+        arising from a use of ‘coerce’
+    • In the expression: coerce e
+      In an equation for ‘e'’: e' = coerce e
+   |
+21 | e' = coerce e
+   |      ^^^^^^
+[2 of 2] Linking /tmp/workdir-type-map/type-map-0.1.7.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/type-map-0.1.7.0/t/nocoerce-test/build/nocoerce-test/nocoerce-test

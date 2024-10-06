@@ -1,0 +1,140 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - MissingH-1.6.0.1 (lib) (first run)
+ - MissingH-1.6.0.1 (test:runtests) (first run)
+Configuring library for MissingH-1.6.0.1...
+Preprocessing library for MissingH-1.6.0.1...
+Building library for MissingH-1.6.0.1...
+[ 1 of 45] Compiling Control.Concurrent.Thread.Utils
+[ 2 of 45] Compiling Data.BinPacking
+[ 3 of 45] Compiling Data.Bits.Utils
+[ 4 of 45] Compiling Data.CSV
+[ 5 of 45] Compiling Data.Compression.Inflate
+[ 6 of 45] Compiling Data.Either.Utils
+[ 7 of 45] Compiling Data.Hash.CRC32.GZip
+[ 8 of 45] Compiling Data.Hash.MD5
+[ 9 of 45] Compiling Data.Hash.MD5.Zord64_HARD
+[10 of 45] Compiling Data.List.Utils
+[11 of 45] Compiling Data.Map.Utils
+[12 of 45] Compiling Data.Maybe.Utils
+[13 of 45] Compiling Data.Quantity
+[14 of 45] Compiling Data.String.Utils
+[15 of 45] Compiling Data.Tuple.Utils
+[16 of 45] Compiling Network.Email.Mailbox
+[17 of 45] Compiling Network.Utils
+
+src/Network/Utils.hs:96:1: warning: [GHC-62161] [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In an equation for ‘showSockAddr’:
+        Patterns of type ‘SockAddr’ not matched: SockAddrInet6 _ _ _ _
+   |
+96 | showSockAddr (SockAddrUnix x) = return $ "UNIX socket at " ++ x
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+[18 of 45] Compiling Network.SocketServer
+[19 of 45] Compiling System.Cmd.Utils
+[20 of 45] Compiling Network.Email.Sendmail
+[21 of 45] Compiling System.Console.GetOpt.Utils
+[22 of 45] Compiling System.Daemon
+[23 of 45] Compiling System.Debian
+[24 of 45] Compiling System.Debian.ControlParser
+[25 of 45] Compiling System.FileArchive.GZip
+[26 of 45] Compiling System.IO.HVIO
+[27 of 45] Compiling System.IO.PlafCompat
+[28 of 45] Compiling System.IO.Utils
+[29 of 45] Compiling System.IO.WindowsCompat
+[30 of 45] Compiling System.Path.NameManip
+
+src/System/Path/NameManip.hs:116:19: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding: Patterns of type ‘[String]’ not matched: []
+    |
+116 |               let (base:suffixes) = slice_filename' (last comps)
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[31 of 45] Compiling System.Path.WildMatch
+[32 of 45] Compiling System.Posix.Consts
+[33 of 45] Compiling System.IO.StatCompat
+[34 of 45] Compiling System.Time.Utils
+[35 of 45] Compiling System.IO.HVFS
+
+src/System/IO/HVFS.hs:299:1: warning: [GHC-90177] [-Worphans]
+    Orphan instance: instance Show FileStatus
+    Suggested fix:
+      Move the instance declaration to the module of the class or of the type, or
+      wrap the type with a newtype and declare the instance on the new type.
+    |
+299 | instance Show FileStatus where
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+[36 of 45] Compiling System.Path.Glob
+[37 of 45] Compiling System.IO.HVFS.Utils
+[38 of 45] Compiling System.Path
+[39 of 45] Compiling Data.MIME.Types
+[40 of 45] Compiling System.IO.HVFS.InstanceHelpers
+[41 of 45] Compiling System.IO.HVFS.Combinators
+[42 of 45] Compiling System.IO.Binary
+[43 of 45] Compiling Data.Progress.Tracker
+[44 of 45] Compiling Data.Progress.Meter
+[45 of 45] Compiling Text.ParserCombinators.Parsec.Utils
+Configuring test suite 'runtests' for MissingH-1.6.0.1...
+Preprocessing test suite 'runtests' for MissingH-1.6.0.1...
+Building test suite 'runtests' for MissingH-1.6.0.1...
+[ 1 of 20] Compiling Bitstest
+[ 2 of 20] Compiling CRC32GZIPtest
+[ 3 of 20] Compiling GZiptest
+
+testsrc/GZiptest.hs:17:8: warning: [-Wcompat-unqualified-imports]
+    To ensure compatibility with future core libraries changes
+    imports to Data.List should be
+    either qualified or have an explicit import list.
+   |
+17 | import Data.List
+   |        ^^^^^^^^^
+[ 4 of 20] Compiling Listtest
+
+testsrc/Listtest.hs:10:18: warning: [-Wcompat-unqualified-imports]
+    To ensure compatibility with future core libraries changes
+    imports to Data.List should be
+    either qualified or have an explicit import list.
+   |
+10 | import           Data.List
+   |                  ^^^^^^^^^
+[ 5 of 20] Compiling MIMETypestest
+
+testsrc/MIMETypestest.hs:11:8: warning: [-Wcompat-unqualified-imports]
+    To ensure compatibility with future core libraries changes
+    imports to Data.List should be
+    either qualified or have an explicit import list.
+   |
+11 | import Data.List
+   |        ^^^^^^^^^
+[ 6 of 20] Compiling Maptest
+[ 7 of 20] Compiling Pathtest
+[ 8 of 20] Compiling ProgressTrackertest
+[ 9 of 20] Compiling Str.CSVtest
+[10 of 20] Compiling TestUtils
+
+testsrc/TestUtils.hs:33:1: warning: [GHC-53633] [-Woverlapping-patterns]
+    Pattern match is redundant
+    In an equation for ‘errorCallMsg’:
+        errorCallMsg (ErrorCallWithLocation msg _) = ...
+   |
+33 | errorCallMsg (ErrorCallWithLocation msg _) = msg
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[11 of 20] Compiling Strtest
+[12 of 20] Compiling IOtest
+[13 of 20] Compiling HVIOtest
+[14 of 20] Compiling HVFStest
+[15 of 20] Compiling Globtest
+
+testsrc/Globtest.hs:25:8: warning: [-Wcompat-unqualified-imports]
+    To ensure compatibility with future core libraries changes
+    imports to Data.List should be
+    either qualified or have an explicit import list.
+   |
+25 | import Data.List
+   |        ^^^^^^^^^
+[16 of 20] Compiling Eithertest
+[17 of 20] Compiling Timetest
+[18 of 20] Compiling WildMatchtest
+[19 of 20] Compiling Tests
+[20 of 20] Compiling Main
+[21 of 21] Linking /tmp/workdir-MissingH/MissingH-1.6.0.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/MissingH-1.6.0.1/t/runtests/build/runtests/runtests

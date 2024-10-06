@@ -1,0 +1,47 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - ghc-check-0.5.0.8 (lib) (first run)
+Configuring library for ghc-check-0.5.0.8...
+Preprocessing library for ghc-check-0.5.0.8...
+Building library for ghc-check-0.5.0.8...
+[1 of 4] Compiling GHC.Check.Executable
+[2 of 4] Compiling GHC.Check.Util
+
+src/GHC/Check/Util.hs:8:1: warning: [-Wunused-imports]
+    The import of ‘Control.Monad.IO.Class’ is redundant
+      except perhaps to import instances from ‘Control.Monad.IO.Class’
+    To import instances alone, use: import Control.Monad.IO.Class()
+  |
+8 | import           Control.Monad.IO.Class (MonadIO(liftIO))
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/GHC/Check/Util.hs:11:1: warning: [-Wunused-imports]
+    The qualified import of ‘GHC’ is redundant
+      except perhaps to import instances from ‘GHC’
+    To import instances alone, use: import GHC()
+   |
+11 | import qualified GHC
+   | ^^^^^^^^^^^^^^^^^^^^
+
+src/GHC/Check/Util.hs:13:1: warning: [-Wunused-imports]
+    The import of ‘Language.Haskell.TH’ is redundant
+      except perhaps to import instances from ‘Language.Haskell.TH’
+    To import instances alone, use: import Language.Haskell.TH()
+   |
+13 | import           Language.Haskell.TH ( TExpQ )
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[3 of 4] Compiling GHC.Check.PackageDb
+[4 of 4] Compiling GHC.Check
+
+src/GHC/Check.hs:250:7: warning: [GHC-62161] [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In a case alternative:
+        Patterns of type ‘(String, PackageCheck)’ not matched:
+            ([], (AbiMismatch _ _ _))
+            ((p:_), (AbiMismatch _ _ _)) where p is not one of {'b'}
+            (['b'], (AbiMismatch _ _ _))
+            (('b':p:_), (AbiMismatch _ _ _)) where p is not one of {'a'}
+            ...
+    |
+250 |       case problem of
+    |       ^^^^^^^^^^^^^^^...

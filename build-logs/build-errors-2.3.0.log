@@ -1,0 +1,49 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - errors-2.3.0 (lib) (first run)
+Configuring library for errors-2.3.0...
+Preprocessing library for errors-2.3.0...
+Building library for errors-2.3.0...
+[1 of 5] Compiling Control.Error.Util
+[2 of 5] Compiling Control.Error.Safe
+[3 of 5] Compiling Data.EitherR
+
+Data/EitherR.hs:86:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative (EitherR r)’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+86 |     pure  = return
+   |     ^^^^^^^^^^^^^^
+
+Data/EitherR.hs:90:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad (EitherR r)’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+90 |     return e = EitherR (Left e)
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Data/EitherR.hs:139:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative (ExceptRT r m)’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+139 |     pure  = return
+    |     ^^^^^^^^^^^^^^
+
+Data/EitherR.hs:143:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad (ExceptRT r m)’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+143 |     return e = ExceptRT (throwE e)
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[4 of 5] Compiling Control.Error.Script
+[5 of 5] Compiling Control.Error

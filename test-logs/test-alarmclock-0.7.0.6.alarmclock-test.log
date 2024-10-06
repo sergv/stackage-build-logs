@@ -1,0 +1,65 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - alarmclock-0.7.0.6 (test:alarmclock-test) (ephemeral targets)
+Preprocessing test suite 'alarmclock-test' for alarmclock-0.7.0.6...
+Building test suite 'alarmclock-test' for alarmclock-0.7.0.6...
+Running 1 test suites...
+Test suite alarmclock-test: RUNNING...
+
+Control.Concurrent.AlarmClock
+  Timescale
+    UTCTime
+      earlierOf
+getting first time
+getting second time
+got times
+        picks the first if earlier [✔]
+        picks the second if earlier [✔]
+      microsecondsDiff
+        finds a difference of at least 500ms [✔]
+        finds a difference of no more than 600ms [✔]
+        finds a negative difference if args reversed [✔]
+    Monotonic
+      earlierOf
+getting first time
+getting second time
+got times
+        picks the first if earlier [✔]
+        picks the second if earlier [✔]
+      microsecondsDiff
+        finds a difference of at least 500ms [✔]
+        finds a difference of no more than 600ms [✔]
+        finds a negative difference if args reversed [✔]
+  AlarmClock
+    UTCTime
+      wakes up immediately on setAlarmNow [✔]
+      wakes up a bit later using setAlarm [✔]
+      wakes up at the earliest set time and no others [✔]
+      reports whether it is set or not [✔]
+      works within the STM monad [✔]
+      can be set again once it goes off [✔]
+      goes off immediately if set to go off in the past [✔]
+      blocks destruction if the alarm is going off [✔]
+      successfully destroys even if wakeup action tries to set again [✔]
+      picks the shorter time if a longer time is set in the wakeup [✔]
+      doesn't block destruction even in a tight loop [✔]
+    MonotonicTime
+      wakes up immediately on setAlarmNow [✔]
+      wakes up a bit later using setAlarm [✔]
+      wakes up at the earliest set time and no others [✔]
+      reports whether it is set or not [✔]
+      works within the STM monad [✔]
+      can be set again once it goes off [✔]
+      goes off immediately if set to go off in the past [✔]
+      blocks destruction if the alarm is going off [✔]
+      successfully destroys even if wakeup action tries to set again [✔]
+      picks the shorter time if a longer time is set in the wakeup [✔]
+      doesn't block destruction even in a tight loop [✔]
+    re-checks the time before going off [✔]
+
+Finished in 7.6540 seconds
+33 examples, 0 failures
+Test suite alarmclock-test: PASS
+Test suite logged to:
+/tmp/workdir-alarmclock/alarmclock-0.7.0.6/dist-newstyle/build/x86_64-linux/ghc-9.6.6/alarmclock-0.7.0.6/t/alarmclock-test/test/alarmclock-0.7.0.6-alarmclock-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

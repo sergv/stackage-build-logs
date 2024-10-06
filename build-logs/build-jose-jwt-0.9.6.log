@@ -1,0 +1,546 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - jose-jwt-0.9.6 (lib) (first run)
+ - jose-jwt-0.9.6 (test:tests) (first run)
+Configuring library for jose-jwt-0.9.6...
+Preprocessing library for jose-jwt-0.9.6...
+Building library for jose-jwt-0.9.6...
+[1 of 9] Compiling Jose.Jwa
+
+Jose/Jwa.hs:36:17: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Text’ not matched: Nothing
+   |
+36 | algName a = let Just n = lookup a algNames in n
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Jose/Jwa.hs:45:17: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Text’ not matched: Nothing
+   |
+45 | encName e = let Just n = lookup e encNames in n
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2 of 9] Compiling Jose.Types
+[3 of 9] Compiling Jose.Internal.Parser
+[4 of 9] Compiling Jose.Internal.Crypto
+[5 of 9] Compiling Jose.Internal.Base64
+[6 of 9] Compiling Jose.Jwk
+[7 of 9] Compiling Jose.Jws
+[8 of 9] Compiling Jose.Jwe
+
+Jose/Jwe.hs:143:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe (AuthTag, ba)’ not matched: Nothing
+    |
+143 |     let Just (AuthTag sig, ct) = encryptPayload e cmk iv aad claims
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[9 of 9] Compiling Jose.Jwt
+Configuring test suite 'tests' for jose-jwt-0.9.6...
+Preprocessing test suite 'tests' for jose-jwt-0.9.6...
+Building test suite 'tests' for jose-jwt-0.9.6...
+[1 of 4] Compiling Tests.JweSpec
+
+tests/Tests/JweSpec.hs:61:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Jwk.Jwk’ not matched:
+            Nothing
+            Just (Jwk.RsaPublicJwk _ _ _ _)
+            Just (Jwk.EcPublicJwk _ _ _ _ _)
+            Just (Jwk.EcPrivateJwk _ _ _ _ _)
+            ...
+   |
+61 |         let Just (Jwk.RsaPrivateJwk (RSA.PrivateKey pubKey d 0 0 0 0 0) _ _ _) = decodeStrict' a1jwk
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JweSpec.hs:67:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Jwk.Jwk’ not matched: Nothing
+   |
+67 |         let Just k1 = decodeStrict' a1jwk
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JweSpec.hs:68:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Jwk.Jwk’ not matched: Nothing
+   |
+68 |             Just k2 = decodeStrict' a2jwk
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JweSpec.hs:72:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[BC.ByteString]’ not matched:
+            []
+            [_]
+            [_, _]
+            [_, _, _]
+            ...
+   |
+72 |         let [hdr, _, iv, payload, tag] = BC.split '.' a1
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JweSpec.hs:77:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[BC.ByteString]’ not matched:
+            []
+            [_]
+            [_, _]
+            [_, _, _]
+            ...
+   |
+77 |         let [hdr, ek, iv, payload, tag] = BC.split '.' a1
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JweSpec.hs:78:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Either JwtError BC.ByteString’ not matched:
+            Left _
+   |
+78 |             Right ct = B64.decode payload
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JweSpec.hs:82:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[BC.ByteString]’ not matched:
+            []
+            [_]
+            [_, _]
+            [_, _, _]
+            ...
+   |
+82 |         let [hdr, ek, iv, payload, tag] = BC.split '.' a1
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JweSpec.hs:83:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Either JwtError BC.ByteString’ not matched:
+            Left _
+   |
+83 |             Right tagBytes = B64.decode tag
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JweSpec.hs:115:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[BC.ByteString]’ not matched:
+            []
+            [_]
+            [_, _]
+            [_, _, _]
+            ...
+    |
+115 |         let [hdr, _, iv, payload, tag] = BC.split '.' a2
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JweSpec.hs:120:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[BC.ByteString]’ not matched:
+            []
+            [_]
+            [_, _]
+            [_, _, _]
+            ...
+    |
+120 |         let [hdr, ek, iv, payload, tag] = BC.split '.' a2
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JweSpec.hs:121:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Either JwtError BC.ByteString’ not matched:
+            Left _
+    |
+121 |             Right ct = B64.decode payload
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JweSpec.hs:130:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Jwk.Jwk’ not matched: Nothing
+    |
+130 |       let Just jwk = decodeStrict' a3jwk
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JweSpec.hs:163:70: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Jwk.Jwk’ not matched: Nothing
+    |
+163 |     jwks = [a1jwk, a2jwk, a3jwk, aes192jwk, aes256jwk] >>= \j -> let Just jwk = decodeStrict' j in [jwk]
+    |                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JweSpec.hs:166:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Either JwtError BC.ByteString’ not matched:
+            Left _
+    |
+166 |     Right encoded = unJwt <$> fst (withDRG g (encode jwks (JweEncoding a e) (Claims bs)))
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JweSpec.hs:170:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘(Either JwtError BC.ByteString,
+                           cryptonite-0.30-58ebd59d2c1bbd1cf152617ae06b49d1a6208680d36fe18c25f9b53fca42ed07:Crypto.Random.ChaChaDRG.ChaChaDRG)’ not matched:
+            ((Left _), _)
+    |
+170 |         (Right newEk, _) = withDRG blinderRNG $ rsaEncrypt kpub a (BA.drop 1 cek)
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JweSpec.hs:214:1: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Either JwtError BC.ByteString’ not matched:
+            Left _
+    |
+214 | Right a1jweKey = B64.decode $ BC.pack "OKOawDo13gRp2ojaHV7LFpZcgV7T6DVZKTyKOMTYUmKoTCVJRgckCL9kiMT03JGeipsEdY3mx_etLbbWSrFr05kLzcSr4qKAq7YN7e9jwQRb23nfa6c9d-StnImGyFDbSv04uVuxIp5Zms1gNxKKK2Da14B8S4rzVRltdYwam_lDp5XnZAYpQdb76FdIKLaVmqgfwX7XWRxv2322i-vDxRfqNzo_tETKzpVLzfiwQyeyPGLBIO56YJ7eObdv0je81860ppamavo35UgoRdbYaBcoh9QcfylQr66oc6vFWXRcZ_ZT2LawVCWTIy3brGPi6UklfCpIMfIjf7iGdXKHzg"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JweSpec.hs:248:1: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Either JwtError BC.ByteString’ not matched:
+            Left _
+    |
+248 | Right a2jweKey = B64.decode $ BC.pack "UGhIOguC7IuEvf_NPVaXsGMoLOmwvc1GyqlIKOK1nN94nHPoltGRhWhw7Zx0-kFm1NJn8LE9XShH59_i8J0PH5ZZyNfGy2xGdULU7sHNF6Gp2vPLgNZ__deLKxGHZ7PcHALUzoOegEI-8E66jX2E4zyJKx-YxzZIItRzC5hlRirb6Y5Cl_p-ko3YvkkysZIFNPccxRU7qve1WYPxqbb2Yw8kZqa2rMWI5ng8OtvzlV7elprCbuPhcCdZ6XDP0_F8rkXds2vE4X-ncOIM8hAYHHi29NX0mcKiRaD0-D-ljQTP-cFPgwCp6X-nZZd9OHBv-B3oWh2TbqmScqXMR4gp_A"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2 of 4] Compiling Tests.JwkSpec
+
+tests/Tests/JwkSpec.hs:28:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Value’ not matched:
+            Nothing
+            Just (Array _)
+            Just (String _)
+            Just (Number _)
+            ...
+   |
+28 |     let Just (Object keySet) = decodeStrict jwkFile
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JwkSpec.hs:29:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Result JwkSet’ not matched: Error _
+   |
+29 |         Success s = fromJSON (Object keySet) :: Result JwkSet
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JwkSpec.hs:30:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe JwkSet’ not matched: Nothing
+   |
+30 |         Just s'  = decode  (encode s)
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JwkSpec.hs:31:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe JwkSet’ not matched: Nothing
+   |
+31 |         Just s'' = decode' (encode s')
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JwkSpec.hs:39:17: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Jwk’ not matched:
+            RsaPrivateJwk _ _ _ _
+            EcPublicJwk _ _ _ _ _
+            EcPrivateJwk _ _ _ _ _
+            Ed25519PrivateJwk _ _ _
+            ...
+   |
+39 |             let RsaPublicJwk  _ key0Id key0Use    a0   = k0
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JwkSpec.hs:40:17: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Jwk’ not matched:
+            RsaPrivateJwk _ _ _ _
+            EcPublicJwk _ _ _ _ _
+            EcPrivateJwk _ _ _ _ _
+            Ed25519PrivateJwk _ _ _
+            ...
+   |
+40 |                 RsaPublicJwk  _ key1Id key1Use    _    = k1
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JwkSpec.hs:41:17: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Jwk’ not matched:
+            RsaPublicJwk _ _ _ _
+            RsaPrivateJwk _ _ _ _
+            EcPrivateJwk _ _ _ _ _
+            Ed25519PrivateJwk _ _ _
+            ...
+   |
+41 |                 EcPublicJwk   k key2Id key2Use    _ _  = kss !! 2
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JwkSpec.hs:42:17: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Jwk’ not matched:
+            RsaPublicJwk _ _ _ _
+            RsaPrivateJwk _ _ _ _
+            EcPrivateJwk _ _ _ _ _
+            Ed25519PrivateJwk _ _ _
+            ...
+   |
+42 |                 EcPublicJwk _ key3Id key3Use  _ _      = k3
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JwkSpec.hs:43:17: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Jwk’ not matched:
+            RsaPublicJwk _ _ _ _
+            RsaPrivateJwk _ _ _ _
+            EcPublicJwk _ _ _ _ _
+            EcPrivateJwk _ _ _ _ _
+            ...
+   |
+43 |                 SymmetricJwk _ key4Id Nothing _        = k4
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JwkSpec.hs:44:17: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Jwk’ not matched:
+            RsaPublicJwk _ _ _ _
+            RsaPrivateJwk _ _ _ _
+            EcPrivateJwk _ _ _ _ _
+            Ed25519PrivateJwk _ _ _
+            ...
+   |
+44 |                 EcPublicJwk   _ key5Id (Just Enc) _ _  = kss !! 5
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JwkSpec.hs:45:17: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Jwk’ not matched:
+            RsaPrivateJwk _ _ _ _
+            EcPublicJwk _ _ _ _ _
+            EcPrivateJwk _ _ _ _ _
+            Ed25519PrivateJwk _ _ _
+            ...
+   |
+45 |                 RsaPublicJwk  _ key6Id Nothing    a6   = kss !! 6
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JwkSpec.hs:46:17: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Jwk’ not matched:
+            RsaPublicJwk _ _ _ _
+            RsaPrivateJwk _ _ _ _
+            EcPublicJwk _ _ _ _ _
+            Ed25519PrivateJwk _ _ _
+            ...
+   |
+46 |                 EcPrivateJwk  _ key7Id (Just Enc) _ _  = kss !! 7
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JwkSpec.hs:47:17: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Jwk’ not matched:
+            RsaPublicJwk _ _ _ _
+            EcPublicJwk _ _ _ _ _
+            EcPrivateJwk _ _ _ _ _
+            Ed25519PrivateJwk _ _ _
+            ...
+   |
+47 |                 RsaPrivateJwk _ _      Nothing    a8   = kss !! 8
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JwkSpec.hs:48:17: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Jwk’ not matched:
+            RsaPublicJwk _ _ _ _
+            RsaPrivateJwk _ _ _ _
+            EcPublicJwk _ _ _ _ _
+            EcPrivateJwk _ _ _ _ _
+            ...
+   |
+48 |                 Ed25519PrivateJwk _ _ key9Id = kss !! 9
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JwkSpec.hs:49:17: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Jwk’ not matched:
+            RsaPublicJwk _ _ _ _
+            RsaPrivateJwk _ _ _ _
+            EcPublicJwk _ _ _ _ _
+            EcPrivateJwk _ _ _ _ _
+            ...
+   |
+49 |                 Ed25519PublicJwk _ key10Id = kss !! 10
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JwkSpec.hs:50:17: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Result
+                            time-1.12.2:Data.Time.Clock.Internal.UTCTime.UTCTime’ not matched:
+            Error _
+   |
+50 |                 Success utcKeyId = fromJSON (String "2015-05-16T18:00:14.259Z")
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JwkSpec.hs:81:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Value’ not matched:
+            Nothing
+            Just (Object _)
+            Just (String _)
+            Just (Number _)
+            ...
+   |
+81 |         let Just (Array ks) = KM.lookup "keys" keySet
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JwkSpec.hs:85:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Value’ not matched:
+            Array _
+            String _
+            Number _
+            Bool _
+            ...
+   |
+85 |             Object k0obj = V.head ks
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^
+[3 of 4] Compiling Tests.JwsSpec
+
+tests/Tests/JwsSpec.hs:46:15: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Jwk’ not matched: Nothing
+   |
+46 |           let Just k11 = decodeStrict' a11jwk
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JwsSpec.hs:60:15: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Jwk’ not matched: Nothing
+   |
+60 |           let Just k21 = decodeStrict' a21jwk
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JwsSpec.hs:64:16: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Either
+                            JwtError (JwtHeader, JwtClaims)’ not matched:
+            Left _
+   |
+64 |            let Right (_, claims) = decodeClaims a21 :: Either JwtError (JwtHeader, JwtClaims)
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JwsSpec.hs:83:15: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Jwk’ not matched: Nothing
+   |
+83 |           let Just k31 = decodeStrict' a31jwk
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JwsSpec.hs:97:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Jwk’ not matched: Nothing
+   |
+97 |             Just pubKey = decodeStrict' ed25519PubJwk
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JwsSpec.hs:98:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Jwk’ not matched:
+            Nothing
+            Just (RsaPublicJwk _ _ _ _)
+            Just (RsaPrivateJwk _ _ _ _)
+            Just (EcPublicJwk _ _ _ _ _)
+            ...
+   |
+98 |             Just (secKey@(Ed25519PrivateJwk kPr kPub _)) = decodeStrict' ed25519SecJwk
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JwsSpec.hs:110:15: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Either JwtError Jwt’ not matched: Left _
+    |
+110 |           let Right (Jwt encoded) = fstWithRNG (Jwt.encode [pubKey, secKey] (JwsEncoding EdDSA) (Claims "hello there"))
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JwsSpec.hs:122:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Jwk’ not matched: Nothing
+    |
+122 |       let Just pubKey = decodeStrict' ed448PubJwk
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JwsSpec.hs:123:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Jwk’ not matched:
+            Nothing
+            Just (RsaPublicJwk _ _ _ _)
+            Just (RsaPrivateJwk _ _ _ _)
+            Just (EcPublicJwk _ _ _ _ _)
+            ...
+    |
+123 |           Just (secKey@(Ed448PrivateJwk kPr kPub _)) = decodeStrict' ed448SecJwk
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JwsSpec.hs:131:15: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Either JwtError Jwt’ not matched: Left _
+    |
+131 |           let Right (Jwt encoded) = fstWithRNG (Jwt.encode [pubKey, secKey] (JwsEncoding EdDSA) (Claims "hello"))
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JwsSpec.hs:140:27: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Either JwtError Jwt’ not matched: Left _
+    |
+140 | hmacRoundTrip a msg = let Right (Jwt encoded) = Jws.hmacEncode a "asecretkey" msg
+    |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/JwsSpec.hs:143:26: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Either JwtError Jwt’ not matched: Left _
+    |
+143 | rsaRoundTrip a msg = let Right (Jwt encoded) = fstWithRNG (Jws.rsaEncode a rsaPrivateKey msg)
+    |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[4 of 4] Compiling Main
+[5 of 5] Linking /tmp/workdir-jose-jwt/jose-jwt-0.9.6/dist-newstyle/build/x86_64-linux/ghc-9.6.6/jose-jwt-0.9.6/t/tests/build/tests/tests

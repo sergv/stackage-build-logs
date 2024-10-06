@@ -1,0 +1,42 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - data-hash-0.2.0.1 (lib) (first run)
+ - data-hash-0.2.0.1 (test:Main) (first run)
+Configuring library for data-hash-0.2.0.1...
+Preprocessing library for data-hash-0.2.0.1...
+Building library for data-hash-0.2.0.1...
+[1 of 4] Compiling Data.Hash.Base
+
+src/Data/Hash/Base.hs:61:14: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘bitSize’
+    (imported from Data.Bits, but defined in GHC.Bits):
+    Deprecated: "Use 'bitSizeMaybe' or 'finiteBitSize' instead"
+   |
+61 | hashInt = if bitSize (undefined :: Int)  <= 32
+   |              ^^^^^^^
+[2 of 4] Compiling Data.Hash.Instances
+[3 of 4] Compiling Data.Hash.Rolling
+[4 of 4] Compiling Data.Hash
+Configuring test suite 'Main' for data-hash-0.2.0.1...
+Preprocessing test suite 'Main' for data-hash-0.2.0.1...
+Building test suite 'Main' for data-hash-0.2.0.1...
+[1 of 1] Compiling Main
+
+tests/Main.hs:3:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+  |
+3 | import Control.Applicative
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Main.hs:14:1: warning: [GHC-90177] [-Worphans]
+    Orphan instance: instance (Arbitrary a, Hashable a) =>
+                              Arbitrary (RollingHash a)
+    Suggested fix:
+      Move the instance declaration to the module of the class or of the type, or
+      wrap the type with a newtype and declare the instance on the new type.
+   |
+14 | instance (Arbitrary a, Hashable a) => Arbitrary (RollingHash a) where
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+[2 of 2] Linking /tmp/workdir-data-hash/data-hash-0.2.0.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/data-hash-0.2.0.1/t/Main/build/Main/Main

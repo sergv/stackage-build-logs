@@ -1,0 +1,712 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - citeproc-0.8.1.1 (test:spec) (ephemeral targets)
+Preprocessing test suite 'spec' for citeproc-0.8.1.1...
+Building test suite 'spec' for citeproc-0.8.1.1...
+Running 1 test suites...
+Test suite spec: RUNNING...
+[FAILED]   test/csl/affix_CommaAfterQuote.txt
+--- expected
++++ actual
+@@
+-“quote”, Hello Thing
++“quote,” Hello Thing
+
+[FAILED]   test/csl/affix_WithCommas.txt
+--- expected
++++ actual
+@@
+ John Smith, <i>Book C</i>, 2000, and David Jones, <i>Book D</i>, 2000.
+-Smith, <i>Book C</i> is one source, Jones, <i>Book D</i> is another.
+-Smith, <i>Book C</i>, 23 is one source, Jones, <i>Book D</i> is another.
++Smith, <i>Book C</i> is one source,; Jones, <i>Book D</i> is another.
++Smith, <i>Book C</i>, 23 is one source,; Jones, <i>Book D</i> is another.
+
+[FAILED]   test/csl/bugreports_AutomaticallyDeleteItemsFails.txt
+--- expected
++++ actual
+@@
+   </div>
++  <div class="csl-entry">
++    <div class="csl-left-margin">[3]</div><div class="csl-right-inline"> R. Snoakes, <i>Book C</i>, 2000.</div>
++  </div>
+ </div>
+
+[FAILED]   test/csl/bugreports_ChicagoAuthorDateLooping.txt
+--- expected
++++ actual
+@@
+-(Anon.; Anon.; Manstein 1982)
++(Manstein 1982; Anon.; Anon.)
+
+[FAILED]   test/csl/bugreports_DemoPageFullCiteCruftOnSubsequent.txt
+--- expected
++++ actual
+@@
+-Malone and U.S. Bureau of the Census, <i>Evaluating Components of International Migration: Consistency of 2000 Nativity Data</i>.
++Nolan J. Malone, U.S. Bureau of the Census, <i>Evaluating Components of International Migration: Consistency of 2000 Nativity Data</i> (New York: Routledge, 2001).
+
+[FAILED]   test/csl/bugreports_EnvAndUrb.txt
+--- expected
++++ actual
+@@
+ Baines, T S, O Benedettini and J M Kay, ‘Title One’; Baines, T S, F Gump and J M Kay, ‘Title Two’.
+-See reference 1, Baines et al.
+-See reference 1, Baines et al.
++See reference 1, Baines et al., ‘Title One’.
++See reference 1, Baines et al., ‘Title Two’.
+
+[FAILED]   test/csl/bugreports_LegislationCrash.txt
+--- expected
++++ actual
+@@
+ <div class="csl-bib-body">
+-  <div class="csl-entry"><i>Arrêté du 23 mars 1992 relatif au programme des études conduisant au diplôme d’État d’infirmier</i>, 1992. </div>
++  <div class="csl-entry"><i>Arrêté du 23 mars 1992 relatif au programme des études conduisant au diplôme d’État d’infirmier</i>, 1992. 23 mars 1992</div>
+ </div>
+
+[WARNING]  test/csl/bugreports_MissingItemInJoin.txt
+==> Bibliography entry with no printed form: ITEM-3
+[FAILED]   test/csl/bugreports_NoCaseEscape.txt
+--- expected
++++ actual
+@@
+   <div class="csl-entry">
+-
+-    <div class="csl-block">Aalto, Alan</div>
+-
+-    <div class="csl-left-margin"> N.d.</div><div class="csl-right-inline">“‘PIAAC-Longitudinal (PIAAC-L) 2015.’”</div>
++    <div class="csl-block">Aalto, Alan</div><div class="csl-left-margin"> N.d.a</div><div class="csl-right-inline">“‘PIAAC-Longitudinal (PIAAC-L) 2015.’”</div>
+   </div>
+-  <div class="csl-entry"> 
+-    <div class="csl-left-margin">N.d.</div><div class="csl-right-inline">“PIAAC-Longitudinal (PIAAC-Lx) 2015.”</div>
++  <div class="csl-entry">
++    <div class="csl-left-margin"> N.d.b</div><div class="csl-right-inline">“PIAAC-Longitudinal (PIAAC-Lx) 2015”.</div>
+   </div>
+
+[FAILED]   test/csl/bugreports_OverwriteCitationItems.txt
+--- expected
++++ actual
+@@
+-Title Four; Title Five
+ Title Two; Title Three
++Title Four; Title Five
+
+[FAILED]   test/csl/bugreports_SingleQuoteXml.txt
+--- expected
++++ actual
+@@
+-[Cite with a composer ; O A. "hello" <i>Book Title</i>]
++[Cite with a composer ; O A. “hello” <i>Book Title</i>]
+
+[FAILED]   test/csl/bugreports_SmallCapsEscape.txt
+--- expected
++++ actual
+@@
+   <div class="csl-entry">
+-
+-    <div class="csl-block">Aalto, Alan</div>
+-
+-    <div class="csl-left-margin"> N.d.</div><div class="csl-right-inline"><span style="font-variant:small-caps;">Here</span>.</div>
++    <div class="csl-block">Aalto, Alan</div><div class="csl-left-margin"> N.d.</div><div class="csl-right-inline"><span style="font-variant:small-caps;">Here</span>.</div>
+   </div>
+
+[WARNING]  test/csl/bugreports_UndefinedInName.txt
+==> Citation with no printed form: ITEM-1
+[FAILED]   test/csl/bugreports_ikeyOne.txt
+--- expected
++++ actual
+@@
+-(Smith)
++(John Smith)
++(James Smith)
+
+[FAILED]   test/csl/collapse_AuthorCollapseNoDateSorted.txt
+--- expected
++++ actual
+@@
+-(Smith 325AD, 2000)
++(Smith 325AD, 2000, )
+
+[WARNING]  test/csl/date_DateNoDateNoTest.txt
+==> Citation with no printed form: ITEM-1
+[FAILED]   test/csl/date_YearSuffixImplicitWithNoDate.txt
+--- expected
++++ actual
+@@
+-(John Doe n.d.-a [Accessed: June 1, 1965]; John Doe n.d.-b [Accessed: June 1, 2065])
++(John Doe n.d. [Accessed: June 1, 1965]; John Doe n.d. [Accessed: June 1, 2065])
+
+[FAILED]   test/csl/date_YearSuffixWithNoDate.txt
+--- expected
++++ actual
+@@
+-(John Doe n.d.-a [Accessed: June 1, 1965]; John Doe n.d.-b [Accessed: June 1, 2065])
++(John Doe n.d. [Accessed: June 1, 1965]; John Doe n.d. [Accessed: June 1, 2065])
+
+[FAILED]   test/csl/disambiguate_DifferentSpacingInInitials.txt
+--- expected
++++ actual
+@@
+-Doe, His Anonymous Life (part 1); Doe, His Anonymous Life (part 2)
++Doe, J. J., His Anonymous Life (part 1); Doe, J. J., His Anonymous Life (part 2)
+
+[FAILED]   test/csl/disambiguate_DisambiguationHang.txt
+--- expected
++++ actual
+@@
+ (Caminiti, Johnson, Burnod, Galli, &#38; Ferraina 1990b)
+-(Caminiti, Johnson, &#38; Urbano 1990)
++(Caminiti, Johnson, &#38; Urbano 1990a)
+
+[FAILED]   test/csl/disambiguate_IncrementalExtraText.txt
+--- expected
++++ actual
+@@
+ Yost Trisk
+-John Smith, Book One
+-John Smith, Book Two
++John Smith, Book One, ed. 3
++John Smith, Book Two, ed. 4
+ John Smith, Complete Works, ed. 5
+
+[FAILED]   test/csl/disambiguate_InitializeWithButNoDisambiguation.txt
+--- expected
++++ actual
+@@
+-(Doe, 1965a, 1965b)
++(Doe, 1965b; Doe, 1965a)
+
+[FAILED]   test/csl/disambiguate_PrimaryNameWithNonDroppingParticle.txt
+--- expected
++++ actual
+@@
+-(dos Santos et al. 2016; Santos et al. 2020)
++(R. G. dos Santos et al. 2016; B. W. L. Santos et al. 2020)
+
+[FAILED]   test/csl/disambiguate_PrimaryNameWithParticle.txt
+--- expected
++++ actual
+@@
+-dos Smith; Smith
++dos Smith, A.; Smith, B.
+
+[FAILED]   test/csl/disambiguate_YearCollapseWithInstitution.txt
+--- expected
++++ actual
+@@
+-(Smith Co 2000a; 2000b; 2000c)
++(Smith Co 2000a, 2000b, 2000c)
+ (Smith Co 2000b)
+
+[FAILED]   test/csl/disambiguate_YearSuffixAtTwoLevels.txt
+--- expected
++++ actual
+@@
+-Smith, Jones &#38; Brown (1986a); Smith, Jones &#38; Brown (1986b); Smith, Jones, Brown, et al. (1986a); Smith, Jones, Brown, et al. (1986b)
++Smith et al. (1986a); Smith et al. (1986b); Smith et al. (1986c); Smith et al. (1986d)
+
+[FAILED]   test/csl/disambiguate_YearSuffixWithEtAlSubequent.txt
+--- expected
++++ actual
+@@
+-(Smith 2000a; 2000b; 2000c)
++(Smith 2000a, 2000b, 2000c)
+ (Smith 2000b)
+
+[FAILED]   test/csl/flipflop_LeadingMarkupWithApostrophe.txt
+--- expected
++++ actual
+@@
+-<i>Insha’Allah</i> is an Arabic phrase meaning ‘God willing’. Another Arabic word is <i>bukra</i>. Aalto
++<i>Insha’Allah</i> is an Arabic phrase meaning “God willing.” Another Arabic word is <i>bukra</i>. Aalto
+
+[FAILED]   test/csl/flipflop_OrphanQuote.txt
+--- expected
++++ actual
+@@
+-Nation of "Positive Obligations " of State under the European Convention on Human Rights (1)
++Nation of “Positive Obligations ” of State Under the European Convention on Human Rights (1)
+
+[FAILED]   test/overrides/fullstyles_ABdNT.txt
+--- expected
++++ actual
+@@
+ <div class="csl-bib-body">
+-  <div class="csl-entry">COLE, S. J.; MOORE, R. Hydrological modelling using raingauge- and radar-based estimators of areal rainfall. <b>Journal of Hydrology</b>, v. 358, n. 3–4, p. 159–181, 2008.</div>
++  <div class="csl-entry">COLE, S. J.; MOORE, R. Hydrological modelling using raingauge- and radar-based estimators of areal rainfall. <b>Journal of Hydrology</b>, v. 358, n. 3-4, p. 159–181, 2008.</div>
+ </div>
+
+[FAILED]   test/csl/fullstyles_ChicagoAuthorDateSimple.txt
+--- expected
++++ actual
+@@
+   <div class="csl-entry">Doe, John, Jane Roe, Alvin Asthma, Bob Bronchitis, Chris Cold, Don Dropsy, Ernie Enteritis, et al. 1993. <i>Book D</i>.</div>
+-  <div class="csl-entry">---. 1994. <i>Book E</i>.</div>
++  <div class="csl-entry">Doe, John, Jane Roe, Alvin Asthma, Bob Bronchitis, Chris Cold, Don Dropsy, Ernie Enteritis, et al. 1994. <i>Book E</i>.</div>
+ </div>
+
+[FAILED]   test/csl/integration_FirstReferenceNoteNumberPositionChange.txt
+--- expected
++++ actual
+@@
+-Snoakes, “Life of Snoakes” (1902).
+ Doe, “Life of Doe” (1901).
+ Roe, “Life of Roe” (1900).
+-Doe, supra note 2.
+-Roe, supra note 3.
++Doe, supra note 1.
++Roe, supra note 2.
++Snoakes, “Life of Snoakes” (1902).
+
+[FAILED]   test/csl/integration_IbidOnInsert.txt
+--- expected
++++ actual
+@@
+ (Noakes p. 34)
+-(Ibid.)
+ (Snoakes p. 45)
++(ibid.)
+
+[WARNING]  test/extra/issue_126.txt
+==> Citation with no printed form: 
+[FAILED]   test/csl/label_EditorTranslator1.txt
+--- expected
++++ actual
+@@
+ <div class="csl-bib-body">
+-  <div class="csl-entry">1.	Иванов И.И. Пример оформления книги с редактором и переводчиком в одном лице : вид издания : in 5 vols. Vol. 2 / И.И. Иванов, П.П. Петров, С.С. Сидоров; ed &#38; trans. Р.Р. Романов Дополнительно. – Тюмень: Дом, 2013. – 10. – 100 p.</div>
++  <div class="csl-entry">1.	Иванов И.И. 
++. Пример оформления книги с редактором и переводчиком в одном лице : вид издания : in 5 vols. Vol. 2 / И.И. Иванов, П.П. Петров, С.С. Сидоров; ed &#38; trans. Р.Р. Романов Дополнительно. – Тюмень: Дом, 2013. – 10. – 100 p.</div>
+ </div>
+
+[FAILED]   test/csl/magic_CapitalizeFirstOccurringTerm.txt
+--- expected
++++ actual
+@@
+-And
++and
+
+[FAILED]   test/csl/magic_PunctuationInQuoteNested.txt
+--- expected
++++ actual
+@@
+-Doe. <i>“Book A.”</i> 1900.
++Doe. <i>“Book A”</i>. 1900.
+
+[WARNING]  test/csl/magic_StripPeriodsTrueShortForm.txt
+==> Bibliography entry with no printed form: ITEM-1
+==> Bibliography entry with no printed form: ITEM-2
+[WARNING]  test/csl/magic_SubsequentAuthorSubstituteOfTitleField.txt
+==> Citation with no printed form: item-3
+[FAILED]   test/csl/magic_TermCapitalizationWithPrefix.txt
+--- expected
++++ actual
+@@
+ This has been said. Ibid.
+-Ibid.
++ibid.
+
+[FAILED]   test/csl/name_CiteGroupDelimiterWithYearSuffixCollapse2.txt
+--- expected
++++ actual
+@@
+-(Aalto 2015a,b; Bartleby 2010; Aalto 2015c–e)
++(Aalto 2015a–e; Bartleby 2010)
+
+[FAILED]   test/csl/name_DelimiterAfterInverted.txt
+--- expected
++++ actual
+@@
+ <div class="csl-bib-body">
+-  <div class="csl-entry">Australian Government Productivity Commission &#38; New Zealand Productivity Commission</div>
++  <div class="csl-entry">Australian Government Productivity Commission, &#38; New Zealand Productivity Commission</div>
+   <div class="csl-entry">Weinstock, R., Leong, G. B., &#38; Silva, J. A.</div>
+
+[FAILED]   test/csl/name_EtAlWithCombined.txt
+--- expected
++++ actual
+@@
+   <div class="csl-entry">John Doe。</div>
+-  <div class="csl-entry">——著，Ziggy Zither等點校。</div>
++  <div class="csl-entry">——著，Ziggy Zither 等點校。</div>
+   <div class="csl-entry">田中太郎, Yossarian Yoda, 等翻譯員。</div>
+
+[FAILED]   test/csl/name_HebrewAnd.txt
+--- expected
++++ actual
+@@
+-תפוחו תפוז
++תפוח ו  תפוז
+
+[FAILED]   test/csl/name_InTextMarkupInitialize.txt
+--- expected
++++ actual
+@@
+ <div class="csl-bib-body">
+-  <div class="csl-entry"><b>Doe</b>, <b>J.</b> Q.</div>
+-  <div class="csl-entry"><b>Doe</b>, <b>J.</b>-Q.</div>
++  <div class="csl-entry"><b>Doe</b>, <b>John</b>. Q.</div>
++  <div class="csl-entry"><b>Doe</b>, <b>John</b>.-Q.</div>
+ </div>
+
+[FAILED]   test/csl/name_InTextMarkupNormalizeInitials.txt
+--- expected
++++ actual
+@@
+ <div class="csl-bib-body">
+-  <div class="csl-entry"><b>Doe</b>, <b>J.</b> Q.</div>
+-  <div class="csl-entry"><b>Doe</b>, <b>J.</b>-Q.</div>
++  <div class="csl-entry"><b>Doe</b>, <b>J</b>. Q.</div>
++  <div class="csl-entry"><b>Doe</b>, <b>J</b>.-Q.</div>
+ </div>
+
+[FAILED]   test/csl/number_OrdinalSpacing.txt
+--- expected
++++ actual
+@@
+-Blah blah. 7th, pp. 3–8DD<i>ed</i>
++Blah blah. 7th, p. 3rd–8thDD<i>ed</i>
+
+[FAILED]   test/csl/number_PlainHyphenOrEnDashAlwaysPlural.txt
+--- expected
++++ actual
+@@
+-His Anonymous Life (1) pages 1–2 (cs:text) vs His Anonymous Life (1) pages 1–2 (cs:number); His Anonymous Life (2) pages i–ix (cs:text) vs His Anonymous Life (2) pages i–ix (cs:number); His Anonymous Life (3) page 3-B (cs:text) vs His Anonymous Life (3) page 3-B (cs:number); His Anonymous Life (4) page Michaelson-Morely (cs:text) vs His Anonymous Life (4) page Michaelson-Morely (cs:number)
++His Anonymous Life (1) pages 1–2 (cs:text) vs His Anonymous Life (1) pages 1–2 (cs:number); His Anonymous Life (2) pages i–ix (cs:text) vs His Anonymous Life (2) pages i–ix (cs:number); His Anonymous Life (3) page 3-B (cs:text) vs His Anonymous Life (3) page 3-B (cs:number); His Anonymous Life (4) pages Michaelson–Morely (cs:text) vs His Anonymous Life (4) pages Michaelson–Morely (cs:number)
+
+[FAILED]   test/csl/position_FirstTrueOnlyOnce.txt
+--- expected
++++ actual
+@@
+ Appleton “Tom Swift and His Electric Runabout” (1910).
+-Ibid. p. 23.
++ibid. p. 23.
+
+[FAILED]   test/csl/position_IbidInText.txt
+--- expected
++++ actual
+@@
+ Bloggs “A Very Short Book Indeed” (2012).
+-Ibid.
++Appleton “Tom Swift and His Electric Runabout” (1910).
+
+[FAILED]   test/csl/position_IbidSeparateCiteSameNote.txt
+--- expected
++++ actual
+@@
+ [citation3-item1-note2] ibid. page 33.
+-[citation4-item2-note3] Bloggs “A Very Short Book Indeed” (2012); [citation4-item1-note3] Appleton supra note 1.
+-[citation5-item1-note4] Appleton supra note 1 page 99.
+-[citation6-item1-note4] Appleton supra note 1.
++[citation4-item2-note3] Bloggs “A Very Short Book Indeed” (2012); [citation4-item1-note3] Appleton supra.
++[citation5-item1-note4] Appleton supra page 99.
++[citation6-item1-note4] Appleton supra.
+ [citation7-item1-note4] ibid.
+
+[FAILED]   test/csl/position_IbidWithLocator.txt
+--- expected
++++ actual
+@@
+ Appleton “Tom Swift and His Electric Runabout” (1910).
+-Ibid. p. 23.
++ibid. p. 23.
+
+[FAILED]   test/csl/position_IbidWithMultipleSoloCitesInBackref.txt
+--- expected
++++ actual
+@@
+ Álvarez
+-Ibid.
++ibid.
+
+[FAILED]   test/csl/position_IfIbidWithLocatorIsTrueThenIbidIsTrue.txt
+--- expected
++++ actual
+@@
+ Appleton “Tom Swift and His Electric Runabout” (1910).
+-Ibid.
++ibid.
+
+[FAILED]   test/csl/position_NearNoteSameNote.txt
+--- expected
++++ actual
+@@
+ Plain+Vanilla:Book-B
+-Plain+Vanilla:Book-B; Plain+Vanilla:Book-A
++Near+Ibid:Book-B; Plain+Vanilla:Book-A
+
+[FAILED]   test/csl/position_ResetNoteNumbers.txt
+--- expected
++++ actual
+@@
+-Book A (note 1)
+-Book C (note 1)
+-Book A, n 1 (note 2)
++Book A, n 1 (note 1)
+ ibid (note 2)
+-Book C, n 1 (note 3)
+-Book A, n 1 (note 3)
+-Book C, n 1 (note 4)
++Book C, n 3 (note 3)
++ibid (note 1)
++Book A, n 1 (note 2)
++ibid (note 3)
++Book C, n 3 (note 4)
+ Book A, n 1 (note 5)
+
+[FAILED]   test/csl/punctuation_FullMontyQuotesIn.txt
+--- expected
++++ actual
+@@
+ “semicolon”; colon
+-“exclamation!” colon
+-“question?” colon
++“exclamation”! colon
++“question”? colon
+ “comma,”: colon
+@@
+ “semicolon”; period
+-“exclamation!” period
+-“question?” period
+-“comma,.” period
++“exclamation”! period
++“question”? period
++“comma,”. period
+ 
+@@
+ “semicolon”; semicolon
+-“exclamation!”; semicolon
+-“question?”; semicolon
++“exclamation”!; semicolon
++“question”?; semicolon
+ “comma,”; semicolon
+@@
+ ENDING IN EXCLAMATION
+-“colon!” exclamation
+-“period.!” exclamation
+-“semicolon!” exclamation
+-“exclamation!” exclamation
+-“question?!” exclamation
+-“comma,!” exclamation
++“colon”! exclamation
++“period.”! exclamation
++“semicolon”! exclamation
++“exclamation”! exclamation
++“question”?! exclamation
++“comma,”! exclamation
+ 
+ ENDING IN QUESTION
+-“colon?” question
+-“period.?” question
+-“semicolon?” question
+-“exclamation!?” question
+-“question?” question
+-“comma,?” question
++“colon”? question
++“period.”? question
++“semicolon”? question
++“exclamation”!? question
++“question”? question
++“comma,”? question
+ 
+@@
+ “colon”:, comma
+-“period.,” comma
++“period.”, comma
+ “semicolon”;, comma
+-“exclamation!,” comma
+-“question?,” comma
++“exclamation”!, comma
++“question”?, comma
+ “comma,” comma
+
+[FAILED]   test/csl/quotes_QuotesUnderQuotesFalse.txt
+--- expected
++++ actual
+@@
+ <div class="csl-bib-body">
+-  <div class="csl-entry"> 'Title with ‘quotes’ in it',.</div>
++  <div class="csl-entry"> ’Title with ‘quotes’ in it’,.</div>
+ </div>
+
+[FAILED]   test/csl/sort_BibliographyCitationNumberDescending.txt
+--- expected
++++ actual
+@@
+ <div class="csl-bib-body">
+-  <div class="csl-entry">[1] Book 008</div>
+-  <div class="csl-entry">[2] Book 007</div>
+-  <div class="csl-entry">[3] Book 005</div>
+-  <div class="csl-entry">[4] Book 002</div>
+-  <div class="csl-entry">[5] Book 006</div>
+-  <div class="csl-entry">[6] Book 004</div>
+-  <div class="csl-entry">[7] Book 003</div>
+-  <div class="csl-entry">[8] Book 001</div>
++  <div class="csl-entry">[8] Book 008</div>
++  <div class="csl-entry">[7] Book 007</div>
++  <div class="csl-entry">[6] Book 005</div>
++  <div class="csl-entry">[5] Book 002</div>
++  <div class="csl-entry">[4] Book 006</div>
++  <div class="csl-entry">[3] Book 004</div>
++  <div class="csl-entry">[2] Book 003</div>
++  <div class="csl-entry">[1] Book 001</div>
+ </div>
+
+[FAILED]   test/csl/sort_BibliographyCitationNumberDescendingViaCompositeMacro.txt
+--- expected
++++ actual
+@@
+ <div class="csl-bib-body">
+-  <div class="csl-entry">[4] Aaaa</div>
+-  <div class="csl-entry">[3] Bbbb</div>
+-  <div class="csl-entry">[2] Xxxx</div>
+-  <div class="csl-entry">[1] Zzzz</div>
++  <div class="csl-entry">[1] Aaaa</div>
++  <div class="csl-entry">[2] Bbbb</div>
++  <div class="csl-entry">[3] Xxxx</div>
++  <div class="csl-entry">[4] Zzzz</div>
+ </div>
+
+[FAILED]   test/csl/sort_BibliographyCitationNumberDescendingViaMacro.txt
+--- expected
++++ actual
+@@
+ <div class="csl-bib-body">
+-  <div class="csl-entry">[8] Book One</div>
+-  <div class="csl-entry">[7] Book Three</div>
+-  <div class="csl-entry">[6] Book Four</div>
+-  <div class="csl-entry">[5] Book Six</div>
+-  <div class="csl-entry">[4] Book Two</div>
+-  <div class="csl-entry">[3] Book Five</div>
+-  <div class="csl-entry">[2] Book Seven</div>
+-  <div class="csl-entry">[1] Book Eight</div>
++  <div class="csl-entry">[1] Book One</div>
++  <div class="csl-entry">[2] Book Three</div>
++  <div class="csl-entry">[3] Book Four</div>
++  <div class="csl-entry">[4] Book Six</div>
++  <div class="csl-entry">[5] Book Two</div>
++  <div class="csl-entry">[6] Book Five</div>
++  <div class="csl-entry">[7] Book Seven</div>
++  <div class="csl-entry">[8] Book Eight</div>
+ </div>
+
+[FAILED]   test/csl/sort_ChicagoYearSuffix1.txt
+--- expected
++++ actual
+@@
+   <div class="csl-entry">Beijing Zoo. 1974a. Observations on the breeding of the giant panda and the raising of its young [in Chinese]. <i>Acta Zoologica Sinica</i> 20: 154–61.</div>
+-  <div class="csl-entry">---. 1974b. On the diseases of the giant panda and their preventive and curative measures [in Chinese]. <i>Acta Zoologica Sinica</i> 20: 139–47.</div>
++  <div class="csl-entry">Beijing Zoo. 1974b. On the diseases of the giant panda and their preventive and curative measures [in Chinese]. <i>Acta Zoologica Sinica</i> 20: 139–47.</div>
+ </div>
+
+[FAILED]   test/csl/sort_ChicagoYearSuffix2.txt
+--- expected
++++ actual
+@@
+   <div class="csl-entry">Beijing Zoo. 1974a. Observations on the breeding of the giant panda and the raising of its young [in Chinese]. <i>Acta Zoologica Sinica</i> 20: 154–61.</div>
+-  <div class="csl-entry">---. 1974b. On the diseases of the giant panda and their preventive and curative measures [in Chinese]. <i>Acta Zoologica Sinica</i> 20: 139–47.</div>
++  <div class="csl-entry">Beijing Zoo. 1974b. On the diseases of the giant panda and their preventive and curative measures [in Chinese]. <i>Acta Zoologica Sinica</i> 20: 139–47.</div>
+ </div>
+
+[FAILED]   test/csl/sort_LeadingApostropheOnNameParticle.txt
+--- expected
++++ actual
+@@
+   <div class="csl-entry">d’Wander, W</div>
+-  <div class="csl-entry">de’ Frinkle, B</div>
++  <div class="csl-entry">de’Frinkle, B</div>
+   <div class="csl-entry">in ’t Horvath, P A B</div>
+
+[WARNING]  test/csl/sort_OmittedBibRefMixedNumericStyle.txt
+==> Bibliography entry with no printed form: ITEM-2
+[FAILED]   test/csl/sort_OmittedBibRefMixedNumericStyle.txt
+--- expected
++++ actual
+@@
+   <div class="csl-entry">1. Anderson, Book One</div>
+-  <div class="csl-entry">2. [CSL STYLE ERROR: reference with no printed form.]</div>
++  <div class="csl-entry">[CSL STYLE ERROR: reference with no printed form.]</div>
+   <div class="csl-entry">3. Crane, Book Two</div>
+
+[WARNING]  test/csl/sort_OmittedBibRefNonNumericStyle.txt
+==> Bibliography entry with no printed form: ITEM-2
+[FAILED]   test/csl/sort_OmittedBibRefNonNumericStyle.txt
+--- expected
++++ actual
+@@
+   <div class="csl-entry">Anderson, Book One</div>
++  <div class="csl-entry">[CSL STYLE ERROR: reference with no printed form.]</div>
+   <div class="csl-entry">Crane, Book Two</div>
+
+[FAILED]   test/csl/sort_RangeUnaffected.txt
+--- expected
++++ actual
+@@
+-<sup>1</sup>
+ <sup>1–3</sup>
++<sup>3</sup>
+
+[WARNING]  test/csl/substitute_SubstituteOnlyOnceTermEmpty.txt
+==> Citation with no printed form: ITEM-1
+[FAILED]   test/csl/substitute_SubstituteOnlyOnceTermEmpty.txt
+--- expected
++++ actual
+@@
+-Content:
++[CSL STYLE ERROR: reference with no printed form.]
+
+[WARNING]  test/overrides/variables_TitleShortOnShortTitleNoTitleCondition.txt
+==> Citation with no printed form: ITEM-3
+CPU time:   1.16s
+
+CATEGORY          PASS   FAIL  ERROR   SKIP
+abbreviations        2      0      0      0    |++++++++++++++++++++|
+affix                7      2      0      0    |+++++++++++++++     |
+bugreports          72     10      0      0    |+++++++++++++++++   |
+case                 1      0      0      0    |++++++++++++++++++++|
+collapse            20      1      0      0    |+++++++++++++++++++ |
+condition           17      0      0      0    |++++++++++++++++++++|
+date                99      2      0      0    |+++++++++++++++++++ |
+decorations          7      0      0      0    |++++++++++++++++++++|
+disambiguate        62      9      0      0    |+++++++++++++++++   |
+disambiguation-author-in-text      1      0      0      0    |++++++++++++++++++++|
+display              5      0      0      0    |++++++++++++++++++++|
+etal                 4      0      0      0    |++++++++++++++++++++|
+flipflop            17      2      0      0    |+++++++++++++++++   |
+form                 3      0      0      0    |++++++++++++++++++++|
+fullstyles           3      2      0      0    |++++++++++++        |
+group                7      0      0      0    |++++++++++++++++++++|
+integration         12      2      0      0    |+++++++++++++++++   |
+issue               20      0      0      0    |++++++++++++++++++++|
+label               18      1      0      0    |++++++++++++++++++  |
+link                 3      0      0      0    |++++++++++++++++++++|
+locale              23      0      0      0    |++++++++++++++++++++|
+locator              6      0      0      0    |++++++++++++++++++++|
+magic               37      3      0      0    |++++++++++++++++++  |
+name               106      6      0      0    |++++++++++++++++++  |
+nameattr            97      0      0      0    |++++++++++++++++++++|
+nameorder            6      0      0      0    |++++++++++++++++++++|
+namespaces           1      0      0      0    |++++++++++++++++++++|
+number              18      2      0      0    |++++++++++++++++++  |
+page                10      0      0      0    |++++++++++++++++++++|
+plural               7      0      0      0    |++++++++++++++++++++|
+position             8      8      0      0    |++++++++++          |
+punctuation         15      1      0      0    |++++++++++++++++++  |
+quotes               3      1      0      0    |+++++++++++++++     |
+simplespace          1      0      0      0    |++++++++++++++++++++|
+sort                57      9      0      0    |+++++++++++++++++   |
+sortseparator        1      0      0      0    |++++++++++++++++++++|
+substitute           6      1      0      0    |+++++++++++++++++   |
+testers              2      0      0      0    |++++++++++++++++++++|
+textcase            30      0      0      0    |++++++++++++++++++++|
+unicode              1      0      0      0    |++++++++++++++++++++|
+variables            5      0      0      0    |++++++++++++++++++++|
+virtual              1      0      0      0    |++++++++++++++++++++|
+-------------    -----  -----  -----  -----
+(all)              821     62      0      0
+We have passed all the CSL tests we expect to...
+Test suite spec: PASS
+Test suite logged to:
+/tmp/workdir-citeproc/citeproc-0.8.1.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/citeproc-0.8.1.1/t/spec/test/citeproc-0.8.1.1-spec.log
+1 of 1 test suites (1 of 1 test cases) passed.

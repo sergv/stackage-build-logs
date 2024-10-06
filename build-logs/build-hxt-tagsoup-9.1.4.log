@@ -1,0 +1,51 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - hxt-tagsoup-9.1.4 (lib:hxt-tagsoup) (first run)
+Warning: hxt-tagsoup.cabal:35:43: version operators used. To use version
+operators the package needs to specify at least 'cabal-version: >= 1.8'.
+Configuring hxt-tagsoup-9.1.4...
+Preprocessing library for hxt-tagsoup-9.1.4...
+Building library for hxt-tagsoup-9.1.4...
+[1 of 3] Compiling Text.XML.HXT.Parser.TagSoup
+
+src/Text/XML/HXT/Parser/TagSoup.hs:76:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative Parser’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+76 |     pure  = return
+   |     ^^^^^^^^^^^^^^
+
+src/Text/XML/HXT/Parser/TagSoup.hs:80:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad Parser’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+80 |     return x    = P $ \ ts -> (x, ts)
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Text/XML/HXT/Parser/TagSoup.hs:218:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘([Char], [Char])’ not matched: (_, [])
+    |
+218 |     (px, (_ : lp))                      = span(/= ':') s
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Text/XML/HXT/Parser/TagSoup.hs:285:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[STag]’ not matched:
+            []
+            ((TagOpen _ _):_)
+            ((TagClose _):_)
+            ((TagComment _):_)
+            ...
+    |
+285 |     (TagText s) : r = lookupEntity withWarnings asHtml (e, b)
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2 of 3] Compiling Text.XML.HXT.Arrow.TagSoupInterface
+[3 of 3] Compiling Text.XML.HXT.TagSoup

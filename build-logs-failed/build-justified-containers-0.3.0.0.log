@@ -1,0 +1,35 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - justified-containers-0.3.0.0 (lib) (first run)
+ - justified-containers-0.3.0.0 (test:justified-containers-spec) (first run)
+Configuring library for justified-containers-0.3.0.0...
+Preprocessing library for justified-containers-0.3.0.0...
+Building library for justified-containers-0.3.0.0...
+[1 of 2] Compiling Data.Map.Justified
+[2 of 2] Compiling Data.Map.Justified.Tutorial
+
+src/Data/Map/Justified/Tutorial.hs:39:1: warning: [-Wunused-imports]
+    The import of ‘Data.Type.Coercion’ is redundant
+      except perhaps to import instances from ‘Data.Type.Coercion’
+    To import instances alone, use: import Data.Type.Coercion()
+   |
+39 | import Data.Type.Coercion
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+Configuring test suite 'justified-containers-spec' for justified-containers-0.3.0.0...
+Preprocessing test suite 'justified-containers-spec' for justified-containers-0.3.0.0...
+Building test suite 'justified-containers-spec' for justified-containers-0.3.0.0...
+[1 of 2] Compiling Data.Map.JustifiedSpec
+
+test/Data/Map/JustifiedSpec.hs:78:15: error: [GHC-31891]
+    • Illegal term-level use of the type constructor or class ‘Key’
+    • imported from ‘Data.Map.Justified’ at test/Data/Map/JustifiedSpec.hs:13:1-25
+    • In the expression: Key 'a'
+      In an equation for ‘k’: k = Key 'a'
+      In the second argument of ‘($)’, namely
+        ‘let k = Key 'a' in withMap letters (lookup k)’
+   |
+78 |       let k = Key 'a' in withMap letters (lookup k)
+   |               ^^^
+Error: [Cabal-7125]
+Failed to build test:justified-containers-spec from justified-containers-0.3.0.0.
+

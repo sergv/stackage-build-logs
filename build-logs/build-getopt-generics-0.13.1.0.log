@@ -1,0 +1,335 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - getopt-generics-0.13.1.0 (lib) (first run)
+ - getopt-generics-0.13.1.0 (test:spec) (first run)
+Configuring library for getopt-generics-0.13.1.0...
+Preprocessing library for getopt-generics-0.13.1.0...
+Building library for getopt-generics-0.13.1.0...
+[ 1 of 12] Compiling Paths_getopt_generics
+[ 2 of 12] Compiling WithCli.Argument
+[ 3 of 12] Compiling WithCli.Flag
+[ 4 of 12] Compiling WithCli.Modifier.Types
+[ 5 of 12] Compiling WithCli.Normalize
+[ 6 of 12] Compiling WithCli.Result
+[ 7 of 12] Compiling WithCli.Parser
+[ 8 of 12] Compiling WithCli.Modifier
+[ 9 of 12] Compiling WithCli.HasArguments
+
+src/WithCli/HasArguments.hs:175:38: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[String]’ not matched: []
+    |
+175 |         [NonOptionsParser typ False (\ (s : r) -> fmap ((, r) . const . Just) $ parseArgumentResult Nothing s)],
+    |                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/WithCli/HasArguments.hs:262:39: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[String]’ not matched: []
+    |
+262 |       (NonOptionsParser "BOOL" False (\ (s : r) -> (, r) <$> maybe (parseError "BOOL" Nothing s) (return . const . Just) (parseBool s))),
+    |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[10 of 12] Compiling WithCli.Pure.Internal
+[11 of 12] Compiling WithCli.Pure
+[12 of 12] Compiling WithCli
+Configuring test suite 'spec' for getopt-generics-0.13.1.0...
+Preprocessing test suite 'spec' for getopt-generics-0.13.1.0...
+Building test suite 'spec' for getopt-generics-0.13.1.0...
+[ 1 of 36] Compiling Paths_getopt_generics
+[ 2 of 36] Compiling ShellProtocol
+[ 3 of 36] Compiling WithCli.Argument
+[ 4 of 36] Compiling WithCli.ArgumentSpec
+[ 5 of 36] Compiling WithCli.Flag
+[ 6 of 36] Compiling WithCli.Modifier.Types
+[ 7 of 36] Compiling WithCli.Normalize
+[ 8 of 36] Compiling WithCli.NormalizeSpec
+[ 9 of 36] Compiling WithCli.Result
+[10 of 36] Compiling WithCli.Parser
+[11 of 36] Compiling WithCli.Modifier
+[12 of 36] Compiling WithCli.HasArguments
+
+src/WithCli/HasArguments.hs:175:38: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[String]’ not matched: []
+    |
+175 |         [NonOptionsParser typ False (\ (s : r) -> fmap ((, r) . const . Just) $ parseArgumentResult Nothing s)],
+    |                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/WithCli/HasArguments.hs:262:39: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[String]’ not matched: []
+    |
+262 |       (NonOptionsParser "BOOL" False (\ (s : r) -> (, r) <$> maybe (parseError "BOOL" Nothing s) (return . const . Just) (parseBool s))),
+    |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[13 of 36] Compiling WithCli.Pure.Internal
+[14 of 36] Compiling WithCli.Pure
+[15 of 36] Compiling WithCli.PureSpec
+[16 of 36] Compiling Util
+[17 of 36] Compiling WithCli.Pure.RecordSpec
+
+test/WithCli/Pure/RecordSpec.hs:64:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Result Foo’ not matched:
+            Success _
+            OutputAndExit _
+   |
+64 |         let Errors messages = parse "--no-such-option" :: Result Foo
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/WithCli/Pure/RecordSpec.hs:70:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Result Foo’ not matched:
+            Success _
+            OutputAndExit _
+   |
+70 |         let Errors messages = parse [] :: Result Foo
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/WithCli/Pure/RecordSpec.hs:74:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Result Foo’ not matched:
+            Success _
+            OutputAndExit _
+   |
+74 |         let Errors messages = parse "--bar foo --baz huhu" :: Result Foo
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/WithCli/Pure/RecordSpec.hs:82:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Result Foo’ not matched:
+            Success _
+            OutputAndExit _
+   |
+82 |         let Errors messages = parse "--bar foo --baz huhu --bar 12" :: Result Foo
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/WithCli/Pure/RecordSpec.hs:87:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Result Foo’ not matched:
+            Success _
+            Errors _
+   |
+87 |         let OutputAndExit output = parse "--help" :: Result Foo
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/WithCli/Pure/RecordSpec.hs:96:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Result Foo’ not matched:
+            Success _
+            Errors _
+   |
+96 |         let OutputAndExit output = parse "--help" :: Result Foo
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/WithCli/Pure/RecordSpec.hs:102:19: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘ExitCode’ not matched: ExitFailure _
+    |
+102 |           handle (\ ExitSuccess -> return ()) $
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/WithCli/Pure/RecordSpec.hs:108:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Result NotAllowed’ not matched:
+            Success _
+            OutputAndExit _
+    |
+108 |         let Errors messages = parse "--help" :: Result NotAllowed
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/WithCli/Pure/RecordSpec.hs:112:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Result Foo’ not matched:
+            Success _
+            Errors _
+    |
+112 |         let OutputAndExit output = parse "--help" :: Result Foo
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/WithCli/Pure/RecordSpec.hs:131:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Result ListOptions’ not matched:
+            Success _
+            OutputAndExit _
+    |
+131 |       let Errors errs =
+    |           ^^^^^^^^^^^^^...
+
+test/WithCli/Pure/RecordSpec.hs:150:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Result CamelCaseOptions’ not matched:
+            Success _
+            Errors _
+    |
+150 |       let OutputAndExit output :: Result CamelCaseOptions
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+test/WithCli/Pure/RecordSpec.hs:156:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Result CamelCaseOptions’ not matched:
+            Success _
+            OutputAndExit _
+    |
+156 |       let Errors errs :: Result CamelCaseOptions
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+test/WithCli/Pure/RecordSpec.hs:191:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Result WithoutSelectors’ not matched:
+            Success _
+            Errors _
+    |
+191 |         let OutputAndExit output = parse "--help" :: Result WithoutSelectors
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[18 of 36] Compiling WithCli.ParserSpec
+
+test/WithCli/ParserSpec.hs:24:47: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[String]’ not matched: []
+   |
+24 |               (NonOptionsParser "type" False (\ (s : r) -> (, r) <$> Success (const $ Just $ read s))) :
+   |                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/WithCli/ParserSpec.hs:26:29: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘Maybe Int’ not matched: Nothing
+   |
+26 |             parserConvert = \ (Just x) -> return x
+   |                             ^^^^^^^^^^^^^^^^^^^^^^
+[19 of 36] Compiling ModifiersSpec.RenameOptionsSpec
+
+test/ModifiersSpec/RenameOptionsSpec.hs:45:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Result CommonPrefixes’ not matched:
+            Success _
+            OutputAndExit _
+   |
+45 |       let Errors errs = modsParse
+   |           ^^^^^^^^^^^^^^^^^^^^^^^...
+[20 of 36] Compiling ModifiersSpec
+
+test/ModifiersSpec.hs:27:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Result CamelCaseOptions’ not matched:
+            Success _
+            Errors _
+   |
+27 |       let OutputAndExit output = parse' "--help"
+   |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/ModifiersSpec.hs:42:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Result CamelCaseOptions’ not matched:
+            Success _
+            OutputAndExit _
+   |
+42 |         let Errors errs = parse' "--foo foo"
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/ModifiersSpec.hs:46:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Result CamelCaseOptions’ not matched:
+            Success _
+            OutputAndExit _
+   |
+46 |       let Errors errs = modsParse
+   |           ^^^^^^^^^^^^^^^^^^^^^^^...
+
+test/ModifiersSpec.hs:59:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Result Foo’ not matched:
+            Success _
+            Errors _
+   |
+59 |       let OutputAndExit output = modsParse [AddVersionFlag "1.0.0"] "--version" :: Result Foo
+   |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/ModifiersSpec.hs:63:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Result Foo’ not matched:
+            Success _
+            Errors _
+   |
+63 |       let OutputAndExit output = modsParse [AddVersionFlag "1.0.0"] "--version --help" :: Result Foo
+   |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/ModifiersSpec.hs:67:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Result Foo’ not matched:
+            Success _
+            Errors _
+   |
+67 |       let OutputAndExit output = modsParse [AddVersionFlag "1.0.0"] "--help" :: Result Foo
+   |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/ModifiersSpec.hs:73:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Result Foo’ not matched:
+            Success _
+            Errors _
+   |
+73 |           OutputAndExit output =
+   |           ^^^^^^^^^^^^^^^^^^^^^^...
+
+test/ModifiersSpec.hs:85:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Result Foo’ not matched:
+            Success _
+            Errors _
+   |
+85 |           OutputAndExit output =
+   |           ^^^^^^^^^^^^^^^^^^^^^^...
+[21 of 36] Compiling WithCli.HasArgumentsSpec
+[22 of 36] Compiling WithCli
+[23 of 36] Compiling WithCli.ModifierSpec
+[24 of 36] Compiling Test04
+[25 of 36] Compiling Test03
+[26 of 36] Compiling Test02
+[27 of 36] Compiling Test01
+[28 of 36] Compiling Simple
+[29 of 36] Compiling RecordType
+[30 of 36] Compiling ModifiersSpec.UseForPositionalArgumentsSpec
+
+test/ModifiersSpec/UseForPositionalArgumentsSpec.hs:58:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Result WithPositionalArguments’ not matched:
+            Success _
+            Errors _
+   |
+58 |     let OutputAndExit output = modsParse
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+[31 of 36] Compiling CustomOptionRecord
+[32 of 36] Compiling CustomOption
+[33 of 36] Compiling DocsSpec
+[34 of 36] Compiling WithCli.ResultSpec
+[35 of 36] Compiling WithCliSpec
+[36 of 36] Compiling Main
+[37 of 37] Linking /tmp/workdir-getopt-generics/getopt-generics-0.13.1.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/getopt-generics-0.13.1.0/t/spec/build/spec/spec

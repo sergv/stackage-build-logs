@@ -1,0 +1,658 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - dbus-1.3.3 (lib) (first run)
+ - dbus-1.3.3 (test:dbus_tests) (first run)
+Configuring library for dbus-1.3.3...
+Preprocessing library for dbus-1.3.3...
+Building library for dbus-1.3.3...
+[ 1 of 14] Compiling DBus.Internal.Address
+[ 2 of 14] Compiling DBus.Internal.Types
+
+lib/DBus/Internal/Types.hs:417:34: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘Value’ not matched:
+            ValueVariant _
+            ValueBytes _
+            ValueVector _ _
+            ValueMap _ _ _
+            ...
+    |
+417 |               . Data.Vector.map (\(ValueAtom (AtomWord8 x)) -> x)
+    |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 3 of 14] Compiling DBus.Internal.Message
+[ 4 of 14] Compiling DBus.Internal.Wire
+
+lib/DBus/Internal/Wire.hs:280:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Either String a’ not matched: Left _
+    |
+280 |     let Right ret = Get.runGet get bytes
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+lib/DBus/Internal/Wire.hs:640:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Signature’ not matched: Nothing
+    |
+640 |     let Just fixedSig = parseSignature "yyyyuuu"
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+lib/DBus/Internal/Wire.hs:669:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Signature’ not matched: Nothing
+    |
+669 |     let Just headerSig  = parseSignature "yyyyuua(yv)"
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 5 of 14] Compiling DBus
+[ 6 of 14] Compiling DBus.Introspection.Types
+[ 7 of 14] Compiling DBus.Introspection.Render
+[ 8 of 14] Compiling DBus.Introspection.Parse
+[ 9 of 14] Compiling DBus.Introspection
+[10 of 14] Compiling DBus.Transport
+
+lib/DBus/Transport.hs:483:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Address’ not matched: Nothing
+    |
+483 |     Just addr = address method (Map.fromList params)
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[11 of 14] Compiling DBus.Socket
+[12 of 14] Compiling DBus.Client
+[13 of 14] Compiling DBus.Generation
+
+lib/DBus/Generation.hs:226:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding: Patterns of type ‘[Char]’ not matched: []
+    |
+226 |         functionNameFirst:functionNameRest = coerce methodNameMN
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[14 of 14] Compiling DBus.TH
+Configuring test suite 'dbus_tests' for dbus-1.3.3...
+Preprocessing test suite 'dbus_tests' for dbus-1.3.3...
+Building test suite 'dbus_tests' for dbus-1.3.3...
+[ 1 of 20] Compiling DBusTests.Generation
+[ 2 of 20] Compiling DBusTests.Message
+[ 3 of 20] Compiling DBusTests.ObjectPath
+[ 4 of 20] Compiling DBusTests.TH
+[ 5 of 20] Compiling DBusTests.Util
+
+tests/DBusTests/Util.hs:116:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Address’ not matched: Nothing
+    |
+116 |     let Just addr = address "unix" (Map.fromList
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+tests/DBusTests/Util.hs:133:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Address’ not matched: Nothing
+    |
+133 |     let Just addr = address "unix" (Map.fromList
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+tests/DBusTests/Util.hs:155:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Address’ not matched: Nothing
+    |
+155 |     let Just addr = address "tcp" (Map.fromList
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+tests/DBusTests/Util.hs:176:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Address’ not matched: Nothing
+    |
+176 |     let Just addr = address "tcp" (Map.fromList
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+[ 6 of 20] Compiling DBusTests.Transport
+
+tests/DBusTests/Transport.hs:30:53: warning: [-Wunused-imports]
+    The import of ‘sendMsg’
+    from module ‘Network.Socket.ByteString’ is redundant
+   |
+30 | import Network.Socket.ByteString (recvMsg, sendAll, sendMsg)
+   |                                                     ^^^^^^^
+
+tests/DBusTests/Transport.hs:78:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Address’ not matched: Nothing
+   |
+78 |     let Just addr = address "noexist" Map.empty
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/DBusTests/Transport.hs:120:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Address’ not matched: Nothing
+    |
+120 |     let Just addr = address "unix" Map.empty
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/DBusTests/Transport.hs:134:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Address’ not matched: Nothing
+    |
+134 |     let Just addr = address "unix" (Map.fromList
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+tests/DBusTests/Transport.hs:201:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Address’ not matched: Nothing
+    |
+201 |     let Just addr = address "tcp" (Map.fromList
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+tests/DBusTests/Transport.hs:218:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Address’ not matched: Nothing
+    |
+218 |     let Just addr = address "tcp" (Map.fromList
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+tests/DBusTests/Transport.hs:234:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Address’ not matched: Nothing
+    |
+234 |     let Just addr = address "tcp" (Map.fromList
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+tests/DBusTests/Transport.hs:251:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Address’ not matched: Nothing
+    |
+251 |     let Just addr = address "tcp" (Map.fromList
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+tests/DBusTests/Transport.hs:333:32: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘fdRead’
+    (imported from System.Posix, but defined in System.Posix.IO):
+    Deprecated: "This function is scheduled to be dropped in favor of 'System.Posix.IO.ByteString.fdRead', because decoding e.g. UTF-8 streams partially is unsafe."
+    |
+333 |         (fd1Val, _) <- liftIO (fdRead fd1' 1)
+    |                                ^^^^^^
+
+tests/DBusTests/Transport.hs:334:32: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘fdRead’
+    (imported from System.Posix, but defined in System.Posix.IO):
+    Deprecated: "This function is scheduled to be dropped in favor of 'System.Posix.IO.ByteString.fdRead', because decoding e.g. UTF-8 streams partially is unsafe."
+    |
+334 |         (fd2Val, _) <- liftIO (fdRead fd2' 2)
+    |                                ^^^^^^
+
+tests/DBusTests/Transport.hs:362:32: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘fdRead’
+    (imported from System.Posix, but defined in System.Posix.IO):
+    Deprecated: "This function is scheduled to be dropped in favor of 'System.Posix.IO.ByteString.fdRead', because decoding e.g. UTF-8 streams partially is unsafe."
+    |
+362 |         (fd1Val, _) <- liftIO (fdRead fd1' 1)
+    |                                ^^^^^^
+
+tests/DBusTests/Transport.hs:363:32: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘fdRead’
+    (imported from System.Posix, but defined in System.Posix.IO):
+    Deprecated: "This function is scheduled to be dropped in favor of 'System.Posix.IO.ByteString.fdRead', because decoding e.g. UTF-8 streams partially is unsafe."
+    |
+363 |         (fd2Val, _) <- liftIO (fdRead fd2' 2)
+    |                                ^^^^^^
+
+tests/DBusTests/Transport.hs:385:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Address’ not matched: Nothing
+    |
+385 |     let Just addr = address "noexist" Map.empty
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/DBusTests/Transport.hs:405:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Address’ not matched: Nothing
+    |
+405 |     let Just addr = address "unix" (Map.fromList
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+tests/DBusTests/Transport.hs:420:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Address’ not matched: Nothing
+    |
+420 |     let Just addr = address "unix" (Map.fromList
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+tests/DBusTests/Transport.hs:435:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Address’ not matched: Nothing
+    |
+435 |     let Just addr = address "unix" (Map.fromList
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+tests/DBusTests/Transport.hs:449:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Address’ not matched: Nothing
+    |
+449 |     let Just addr = address "unix" Map.empty
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/DBusTests/Transport.hs:458:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Address’ not matched: Nothing
+    |
+458 |     let Just addr = address "unix" (Map.fromList
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+tests/DBusTests/Transport.hs:472:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Address’ not matched: Nothing
+    |
+472 |     let Just addr = address "unix" (Map.fromList
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+tests/DBusTests/Transport.hs:496:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Address’ not matched: Nothing
+    |
+496 |     let Just addr = address "tcp" (Map.fromList
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+tests/DBusTests/Transport.hs:509:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Address’ not matched: Nothing
+    |
+509 |     let Just addr = address "tcp" (Map.fromList
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+tests/DBusTests/Transport.hs:522:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Address’ not matched: Nothing
+    |
+522 |     let Just addr = address "tcp" (Map.fromList
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+tests/DBusTests/Transport.hs:534:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Address’ not matched: Nothing
+    |
+534 |     let Just addr = address "tcp" (Map.fromList
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+tests/DBusTests/Transport.hs:548:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Address’ not matched: Nothing
+    |
+548 |     let Just addr = address "tcp" (Map.fromList
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+tests/DBusTests/Transport.hs:565:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Address’ not matched: Nothing
+    |
+565 |     let Just addr = address "unix" (Map.fromList
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+tests/DBusTests/Transport.hs:587:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Address’ not matched: Nothing
+    |
+587 |     let Just addr = address "unix" (Map.fromList
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+[ 7 of 20] Compiling DBusTests.Socket
+
+tests/DBusTests/Socket.hs:47:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Address’ not matched: Nothing
+   |
+47 |     let Just addr = address "unix" (Map.singleton "abstract" (formatUUID uuid))
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/DBusTests/Socket.hs:61:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Address’ not matched: Nothing
+   |
+61 |     let Just addr = address "unix" (Map.singleton "abstract" (formatUUID uuid))
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/DBusTests/Socket.hs:79:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Address’ not matched: Nothing
+   |
+79 |     let Just addr = address "unix" (Map.singleton "abstract" (formatUUID uuid))
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/DBusTests/Socket.hs:124:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Address’ not matched: Nothing
+    |
+124 |     let Just addr = address "unix" (Map.singleton "abstract" (formatUUID uuid))
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/DBusTests/Socket.hs:150:43: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘fdRead’
+    (imported from System.Posix, but defined in System.Posix.IO):
+    Deprecated: "This function is scheduled to be dropped in favor of 'System.Posix.IO.ByteString.fdRead', because decoding e.g. UTF-8 streams partially is unsafe."
+    |
+150 |                             (fdMsg, _) <- fdRead fd 5
+    |                                           ^^^^^^
+[ 8 of 20] Compiling DBusTests.Signature
+
+tests/DBusTests/Signature.hs:83:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Signature’ not matched: Nothing
+   |
+83 |         Just sig = parseSignature s
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/DBusTests/Signature.hs:88:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Signature’ not matched: Nothing
+   |
+88 |     let Just sig = signature []
+   |         ^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/DBusTests/Signature.hs:163:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Signature’ not matched: Nothing
+    |
+163 |         let Just sig = signature ts
+    |             ^^^^^^^^^^^^^^^^^^^^^^^
+[ 9 of 20] Compiling DBusTests.MemberName
+[10 of 20] Compiling DBusTests.InterfaceName
+[11 of 20] Compiling DBusTests.Introspection
+
+tests/DBusTests/Introspection.hs:47:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe String’ not matched: Nothing
+   |
+47 |     Just xml = I.formatXML obj
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[12 of 20] Compiling DBusTests.Integration
+
+tests/DBusTests/Integration.hs:49:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘ReceivedMessage’ not matched:
+            ReceivedMethodCall _ _
+            ReceivedMethodError _ _
+            ReceivedSignal _ _
+            DBus.Internal.Message.ReceivedUnknown _ _
+   |
+49 |     let ReceivedMethodReturn _ ret = received
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/DBusTests/Integration.hs:129:17: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘(Maybe GHC.IO.Handle.Types.Handle,
+                           Maybe GHC.IO.Handle.Types.Handle, Maybe GHC.IO.Handle.Types.Handle,
+                           ProcessHandle)’ not matched:
+            (_, Nothing, _, _)
+    |
+129 |             let (_, Just daemonStdout, _, daemonProc) = daemon
+    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[13 of 20] Compiling DBusTests.ErrorName
+[14 of 20] Compiling DBusTests.Client
+
+tests/DBusTests/Client.hs:65:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘ReceivedMessage’ not matched:
+            ReceivedMethodReturn _ _
+            ReceivedMethodError _ _
+            ReceivedSignal _ _
+            DBus.Internal.Message.ReceivedUnknown _ _
+   |
+65 |     let (ReceivedMethodCall helloSerial _) = receivedHello
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/DBusTests/Client.hs:79:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘ReceivedMessage’ not matched:
+            ReceivedMethodReturn _ _
+            ReceivedMethodError _ _
+            ReceivedSignal _ _
+            DBus.Internal.Message.ReceivedUnknown _ _
+   |
+79 |     let (ReceivedMethodCall helloSerial _) = receivedHello
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/DBusTests/Client.hs:617:17: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Data.Text.Internal.Text’ not matched:
+            Nothing
+    |
+617 |             let Just xml = fromVariant (head body)
+    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/DBusTests/Client.hs:633:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Address’ not matched: Nothing
+    |
+633 |     let Just addr = address "unix" (Map.fromList [("abstract", formatUUID uuid)])
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/DBusTests/Client.hs:649:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘ReceivedMessage’ not matched:
+            ReceivedMethodReturn _ _
+            ReceivedMethodError _ _
+            ReceivedSignal _ _
+            DBus.Internal.Message.ReceivedUnknown _ _
+    |
+649 |         let (ReceivedMethodCall helloSerial _) = receivedHello
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/DBusTests/Client.hs:662:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘ReceivedMessage’ not matched:
+            ReceivedMethodReturn _ _
+            ReceivedMethodError _ _
+            ReceivedSignal _ _
+            DBus.Internal.Message.ReceivedUnknown _ _
+    |
+662 |     let ReceivedMethodCall callSerial call = receivedCall
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[15 of 20] Compiling DBusTests.BusName
+[16 of 20] Compiling DBusTests.Serialization
+
+tests/DBusTests/Serialization.hs:55:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Either
+                            MarshalError (ByteString, [Fd])’ not matched:
+            Left _
+   |
+55 |         Right (bytes, fds) = marshalWithFds endianness serial msg
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/DBusTests/Serialization.hs:56:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Either
+                            UnmarshalError ReceivedMessage’ not matched:
+            Left _
+   |
+56 |         Right received = unmarshalWithFds bytes fds
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/DBusTests/Serialization.hs:63:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Either
+                            MarshalError (ByteString, [Fd])’ not matched:
+            Left _
+   |
+63 |         Right (bytes, fds) = marshalWithFds endianness serial msg
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/DBusTests/Serialization.hs:64:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Either
+                            UnmarshalError ReceivedMessage’ not matched:
+            Left _
+   |
+64 |         Right received = unmarshalWithFds bytes fds
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/DBusTests/Serialization.hs:71:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Either
+                            MarshalError (ByteString, [Fd])’ not matched:
+            Left _
+   |
+71 |         Right (bytes, fds) = marshalWithFds endianness serial msg
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/DBusTests/Serialization.hs:72:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Either
+                            UnmarshalError ReceivedMessage’ not matched:
+            Left _
+   |
+72 |         Right received = unmarshalWithFds bytes fds
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/DBusTests/Serialization.hs:79:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Either
+                            MarshalError (ByteString, [Fd])’ not matched:
+            Left _
+   |
+79 |         Right (bytes, fds) = marshalWithFds endianness serial msg
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/DBusTests/Serialization.hs:80:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Either
+                            UnmarshalError ReceivedMessage’ not matched:
+            Left _
+   |
+80 |         Right received = unmarshalWithFds bytes fds
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[17 of 20] Compiling DBusTests.Address
+
+tests/DBusTests/Address.hs:107:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Address’ not matched: Nothing
+    |
+107 |         Just addr = address method params
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/DBusTests/Address.hs:122:17: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Address’ not matched: Nothing
+    |
+122 |             let Just addr = address method params
+    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[18 of 20] Compiling DBusTests.Variant
+[19 of 20] Compiling DBusTests.Wire
+
+tests/DBusTests/Wire.hs:28:1: warning: [-Wunused-imports]
+    The import of ‘DBus.Internal.Message’ is redundant
+      except perhaps to import instances from ‘DBus.Internal.Message’
+    To import instances alone, use: import DBus.Internal.Message()
+   |
+28 | import DBus.Internal.Message
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/DBusTests/Wire.hs:29:1: warning: [-Wunused-imports]
+    The import of ‘DBus.Internal.Types’ is redundant
+      except perhaps to import instances from ‘DBus.Internal.Types’
+    To import instances alone, use: import DBus.Internal.Types()
+   |
+29 | import DBus.Internal.Types
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/DBusTests/Wire.hs:30:1: warning: [-Wunused-imports]
+    The import of ‘DBus.Internal.Wire’ is redundant
+      except perhaps to import instances from ‘DBus.Internal.Wire’
+    To import instances alone, use: import DBus.Internal.Wire()
+   |
+30 | import DBus.Internal.Wire
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/DBusTests/Wire.hs:32:1: warning: [-Wunused-imports]
+    The import of ‘DBusTests.Util’ is redundant
+      except perhaps to import instances from ‘DBusTests.Util’
+    To import instances alone, use: import DBusTests.Util()
+   |
+32 | import DBusTests.Util
+   | ^^^^^^^^^^^^^^^^^^^^^
+
+tests/DBusTests/Wire.hs:50:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Either
+                            UnmarshalError ReceivedMessage’ not matched:
+            Right _
+   |
+50 |     let Left err = unmarshaled
+   |         ^^^^^^^^^^^^^^^^^^^^^^
+
+tests/DBusTests/Wire.hs:66:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Either
+                            MarshalError
+                            (bytestring-0.11.5.3:Data.ByteString.Internal.Type.ByteString,
+                             [Fd])’ not matched:
+            Left _
+   |
+66 |         Right (bytes, fds) = marshalWithFds LittleEndian firstSerial msg
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/DBusTests/Wire.hs:77:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Either
+                            MarshalError
+                            (bytestring-0.11.5.3:Data.ByteString.Internal.Type.ByteString,
+                             [Fd])’ not matched:
+            Left _
+   |
+77 |         Right (bytes, _fds) = marshalWithFds LittleEndian firstSerial msg
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[20 of 20] Compiling Main
+[21 of 21] Linking /tmp/workdir-dbus/dbus-1.3.3/dist-newstyle/build/x86_64-linux/ghc-9.6.6/dbus-1.3.3/t/dbus_tests/build/dbus_tests/dbus_tests

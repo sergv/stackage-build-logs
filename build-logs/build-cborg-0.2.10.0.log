@@ -1,0 +1,195 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - cborg-0.2.10.0 (lib) (first run)
+ - cborg-0.2.10.0 (test:tests) (first run)
+Configuring library for cborg-0.2.10.0...
+Preprocessing library for cborg-0.2.10.0...
+Building library for cborg-0.2.10.0...
+[ 1 of 14] Compiling Codec.CBOR.ByteArray.Internal
+[ 2 of 14] Compiling Codec.CBOR.ByteArray.Sliced
+
+src/Codec/CBOR/ByteArray/Sliced.hs:44:1: warning: [-Wunused-imports]
+    The qualified import of ‘Data.ByteString.Short.Internal’ is redundant
+      except perhaps to import instances from ‘Data.ByteString.Short.Internal’
+    To import instances alone, use: import Data.ByteString.Short.Internal()
+   |
+44 | import qualified Data.ByteString.Short.Internal as BSS
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 3 of 14] Compiling Codec.CBOR.ByteArray
+
+src/Codec/CBOR/ByteArray.hs:39:1: warning: [-Wunused-imports]
+    The qualified import of ‘Data.ByteString.Short.Internal’ is redundant
+      except perhaps to import instances from ‘Data.ByteString.Short.Internal’
+    To import instances alone, use: import Data.ByteString.Short.Internal()
+   |
+39 | import qualified Data.ByteString.Short.Internal as BSS
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 4 of 14] Compiling Codec.CBOR.Decoding
+[ 5 of 14] Compiling Codec.CBOR.Magic
+[ 6 of 14] Compiling Codec.CBOR.Read
+[ 7 of 14] Compiling Codec.CBOR.Encoding[boot]
+[ 8 of 14] Compiling Codec.CBOR.FlatTerm[boot]
+[ 9 of 14] Compiling Codec.CBOR.Encoding
+[10 of 14] Compiling Codec.CBOR.FlatTerm
+[11 of 14] Compiling Codec.CBOR.Term
+[12 of 14] Compiling Codec.CBOR
+[13 of 14] Compiling Codec.CBOR.Write
+[14 of 14] Compiling Codec.CBOR.Pretty
+Configuring test suite 'tests' for cborg-0.2.10.0...
+Preprocessing test suite 'tests' for cborg-0.2.10.0...
+Building test suite 'tests' for cborg-0.2.10.0...
+[ 1 of 18] Compiling Tests.Reference.Generators
+
+tests/Tests/Reference/Generators.hs:234:23: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+    |
+234 |   type FloatWord n :: *
+    |                       ^
+[ 2 of 18] Compiling Tests.Reference.Implementation
+
+tests/Tests/Reference/Implementation.hs:81:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+81 | import           Data.Monoid ((<>))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/Reference/Implementation.hs:114:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative Decoder’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+114 |   pure  = return
+    |   ^^^^^^^^^^^^^^
+
+tests/Tests/Reference/Implementation.hs:118:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad Decoder’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+118 |   return x = Decoder (\ws -> Just (x, ws))
+    |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/Reference/Implementation.hs:283:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe
+                            (AdditionalInformation, [Word8])’ not matched:
+            Nothing
+    |
+283 |         Just (ai', _) = runDecoder (decodeAdditionalInfo w) ws
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/Reference/Implementation.hs:308:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe (TokenHeader, [Word8])’ not matched:
+            Nothing
+    |
+308 |         Just (header', _) = runDecoder decodeTokenHeader ws
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/Reference/Implementation.hs:316:15: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe (TokenHeader, [Word8])’ not matched:
+            Nothing
+    |
+316 |               Just (header, unused) = runDecoder decodeTokenHeader (w8 : extra)
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/Reference/Implementation.hs:556:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe (Token, [Word8])’ not matched:
+            Nothing
+            Just (_, (_:_))
+    |
+556 |         Just (token', []) = runDecoder decodeToken ws
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/Reference/Implementation.hs:841:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe (Term, [Word8])’ not matched:
+            Nothing
+            Just (_, (_:_))
+    |
+841 |         Just (term', []) = runDecoder decodeTerm ws
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 3 of 18] Compiling Tests.Reference.TestVectors
+[ 4 of 18] Compiling Tests.Reference
+
+tests/Tests/Reference.hs:120:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe (Term, [Word8])’ not matched:
+            Nothing
+            Just (_, (_:_))
+    |
+120 |   let Just (term, [])  = runDecoder decodeTerm encodedBytes
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests/Reference.hs:135:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe (Term, [Word8])’ not matched:
+            Nothing
+            Just (_, (_:_))
+    |
+135 |   let Just (term, [])  = runDecoder decodeTerm encodedBytes
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 5 of 18] Compiling Tests.Regress.FlatTerm
+[ 6 of 18] Compiling Tests.Regress.Issue160
+[ 7 of 18] Compiling Tests.Regress.Issue162
+
+tests/Tests/Regress/Issue162.hs:4:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+  |
+4 | import           Control.Applicative ((<$), (<*))
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 8 of 18] Compiling Tests.Regress
+[ 9 of 18] Compiling Tests.Term
+[10 of 18] Compiling Tests.PreEncoded
+
+tests/Tests/PreEncoded.hs:5:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+  |
+5 | import           Data.Monoid (Monoid(mconcat))
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[11 of 18] Compiling Tests.UnitTests
+[12 of 18] Compiling Tests.Util
+[13 of 18] Compiling Tests.UTF8
+[14 of 18] Compiling Tests.Properties
+[15 of 18] Compiling Tests.Canonical
+[16 of 18] Compiling Tests.ByteOffset
+[17 of 18] Compiling Tests.Boundary
+
+tests/Tests/Boundary.hs:75:56: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+75 |   :: forall a rep. (Bounded a, Integral a, Show a, rep ~ BRep a,
+   |                                                        ^
+
+tests/Tests/Boundary.hs:92:56: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+92 |   :: forall a rep. (Bounded a, Integral a, Show a, rep ~ BRep a,
+   |                                                        ^
+[18 of 18] Compiling Main
+[19 of 19] Linking /tmp/workdir-cborg/cborg-0.2.10.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/cborg-0.2.10.0/t/tests/build/tests/tests

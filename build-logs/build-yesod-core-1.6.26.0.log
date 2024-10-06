@@ -1,0 +1,993 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - yesod-core-1.6.26.0 (lib) (first run)
+ - yesod-core-1.6.26.0 (test:test-routes) (first run)
+ - yesod-core-1.6.26.0 (test:tests) (first run)
+Configuring library for yesod-core-1.6.26.0...
+Preprocessing library for yesod-core-1.6.26.0...
+Building library for yesod-core-1.6.26.0...
+[ 1 of 31] Compiling Paths_yesod_core
+[ 2 of 31] Compiling Yesod.Core.Internal.Util
+[ 3 of 31] Compiling Yesod.Core.TypeCache
+[ 4 of 31] Compiling Yesod.Routes.Class
+[ 5 of 31] Compiling Yesod.Core.Types
+
+src/Yesod/Core/Types.hs:32:1: warning: [-Wunused-imports]
+    The import of ‘Data.Semigroup’ is redundant
+      except perhaps to import instances from ‘Data.Semigroup’
+    To import instances alone, use: import Data.Semigroup()
+   |
+32 | import           Data.Semigroup                     (Semigroup(..))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Yesod/Core/Types.hs:262:12: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+262 | instance a ~ () => Monoid (WidgetFor site a) where
+    |            ^
+
+src/Yesod/Core/Types.hs:267:12: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+267 | instance a ~ () => Semigroup (WidgetFor site a) where
+    |            ^
+
+src/Yesod/Core/Types.hs:275:12: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+275 | instance a ~ () => IsString (WidgetFor site a) where
+    |            ^
+
+src/Yesod/Core/Types.hs:402:3: warning: [-Wnoncanonical-monoid-instances]
+    Noncanonical ‘(<>) = mappend’ definition detected
+    in the instance declaration for ‘Semigroup (Head url)’.
+    Move definition from ‘mappend’ to ‘(<>)’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    |
+402 |   (<>) = mappend
+    |   ^^^^^^^^^^^^^^
+
+src/Yesod/Core/Types.hs:406:3: warning: [-Wnoncanonical-monoid-instances]
+    Noncanonical ‘(<>) = mappend’ definition detected
+    in the instance declaration for ‘Semigroup (Body url)’.
+    Move definition from ‘mappend’ to ‘(<>)’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    |
+406 |   (<>) = mappend
+    |   ^^^^^^^^^^^^^^
+[ 6 of 31] Compiling Yesod.Core.Internal.Session
+[ 7 of 31] Compiling Yesod.Core.Internal.Request
+
+src/Yesod/Core/Internal/Request.hs:53:11: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘requestBody’
+    (imported from Network.Wai, but defined in Network.Wai.Internal):
+    Deprecated: "requestBody's name is misleading because it only gets a partial chunk of the body. Use getRequestBodyChunk instead when getting the field, and setRequestBodyChunks when setting the field."
+   |
+53 |         { W.requestBody = do
+   |           ^^^^^^^^^^^^^
+
+src/Yesod/Core/Internal/Request.hs:54:19: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘requestBody’
+    (imported from Network.Wai, but defined in Network.Wai.Internal):
+    Deprecated: "requestBody's name is misleading because it only gets a partial chunk of the body. Use getRequestBodyChunk instead when getting the field, and setRequestBodyChunks when setting the field."
+   |
+54 |             bs <- W.requestBody req
+   |                   ^^^^^^^^^^^^^
+[ 8 of 31] Compiling Yesod.Core.Content
+[ 9 of 31] Compiling Yesod.Core.Internal.Response
+[10 of 31] Compiling Yesod.Core.Class.Handler
+[11 of 31] Compiling Yesod.Core.Handler
+
+src/Yesod/Core/Handler.hs:252:1: warning: [-Wunused-imports]
+    The import of ‘Yesod.Routes.Class’ is redundant
+      except perhaps to import instances from ‘Yesod.Routes.Class’
+    To import instances alone, use: import Yesod.Routes.Class()
+    |
+252 | import           Yesod.Routes.Class            (Route)
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Yesod/Core/Handler.hs:418:37: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘requestBody’
+    (imported from Network.Wai, but defined in Network.Wai.Internal):
+    Deprecated: "requestBody's name is misleading because it only gets a partial chunk of the body. Use getRequestBodyChunk instead when getting the field, and setRequestBodyChunks when setting the field."
+    |
+418 |             newWaiReq = oldWaiReq { W.requestBody = return mempty
+    |                                     ^^^^^^^^^^^^^
+
+src/Yesod/Core/Handler.hs:1014:49: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+     |
+1014 |     toTextUrl :: (MonadHandler m, HandlerSite m ~ master) => a -> m Text
+     |                                                 ^
+
+src/Yesod/Core/Handler.hs:1027:15: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+     |
+1027 | instance (key ~ Text, val ~ Text) => RedirectUrl master (Route master, [(key, val)]) where
+     |               ^
+
+src/Yesod/Core/Handler.hs:1027:27: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+     |
+1027 | instance (key ~ Text, val ~ Text) => RedirectUrl master (Route master, [(key, val)]) where
+     |                           ^
+
+src/Yesod/Core/Handler.hs:1032:15: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+     |
+1032 | instance (key ~ Text, val ~ Text) => RedirectUrl master (Route master, Map.Map key val) where
+     |               ^
+
+src/Yesod/Core/Handler.hs:1032:27: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+     |
+1032 | instance (key ~ Text, val ~ Text) => RedirectUrl master (Route master, Map.Map key val) where
+     |                           ^
+
+src/Yesod/Core/Handler.hs:1437:28: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘requestBody’
+    (imported from Network.Wai, but defined in Network.Wai.Internal):
+    Deprecated: "requestBody's name is misleading because it only gets a partial chunk of the body. Use getRequestBodyChunk instead when getting the field, and setRequestBodyChunks when setting the field."
+     |
+1437 |             bs <- liftIO $ W.requestBody req
+     |                            ^^^^^^^^^^^^^
+[12 of 31] Compiling Yesod.Core.Widget
+
+src/Yesod/Core/Widget.hs:90:47: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+90 |     toWidget :: (MonadWidget m, HandlerSite m ~ site) => a -> m ()
+   |                                               ^
+
+src/Yesod/Core/Widget.hs:92:17: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+92 | instance render ~ RY site => ToWidget site (render -> Html) where
+   |                 ^
+
+src/Yesod/Core/Widget.hs:94:17: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+94 | instance render ~ RY site => ToWidget site (render -> Css) where
+   |                 ^
+
+src/Yesod/Core/Widget.hs:98:17: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+98 | instance render ~ RY site => ToWidget site (render -> CssBuilder) where
+   |                 ^
+
+src/Yesod/Core/Widget.hs:102:17: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+102 | instance render ~ RY site => ToWidget site (render -> Javascript) where
+    |                 ^
+
+src/Yesod/Core/Widget.hs:106:17: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+106 | instance (site' ~ site, a ~ ()) => ToWidget site' (WidgetFor site a) where
+    |                 ^
+
+src/Yesod/Core/Widget.hs:106:27: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+106 | instance (site' ~ site, a ~ ()) => ToWidget site' (WidgetFor site a) where
+    |                           ^
+
+src/Yesod/Core/Widget.hs:127:52: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+127 |     toWidgetMedia :: (MonadWidget m, HandlerSite m ~ site)
+    |                                                    ^
+
+src/Yesod/Core/Widget.hs:131:17: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+131 | instance render ~ RY site => ToWidgetMedia site (render -> Css) where
+    |                 ^
+
+src/Yesod/Core/Widget.hs:135:17: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+135 | instance render ~ RY site => ToWidgetMedia site (render -> CssBuilder) where
+    |                 ^
+
+src/Yesod/Core/Widget.hs:141:51: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+141 |     toWidgetBody :: (MonadWidget m, HandlerSite m ~ site) => a -> m ()
+    |                                                   ^
+
+src/Yesod/Core/Widget.hs:143:17: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+143 | instance render ~ RY site => ToWidgetBody site (render -> Html) where
+    |                 ^
+
+src/Yesod/Core/Widget.hs:145:17: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+145 | instance render ~ RY site => ToWidgetBody site (render -> Javascript) where
+    |                 ^
+
+src/Yesod/Core/Widget.hs:153:51: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+153 |     toWidgetHead :: (MonadWidget m, HandlerSite m ~ site) => a -> m ()
+    |                                                   ^
+
+src/Yesod/Core/Widget.hs:155:17: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+155 | instance render ~ RY site => ToWidgetHead site (render -> Html) where
+    |                 ^
+
+src/Yesod/Core/Widget.hs:157:17: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+157 | instance render ~ RY site => ToWidgetHead site (render -> Css) where
+    |                 ^
+
+src/Yesod/Core/Widget.hs:161:17: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+161 | instance render ~ RY site => ToWidgetHead site (render -> CssBuilder) where
+    |                 ^
+
+src/Yesod/Core/Widget.hs:165:17: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+165 | instance render ~ RY site => ToWidgetHead site (render -> Javascript) where
+    |                 ^
+[13 of 31] Compiling Yesod.Core.Class.Yesod
+
+src/Yesod/Core/Class/Yesod.hs:57:1: warning: [-Wunused-imports]
+    The qualified import of ‘Network.Wai.Handler.Warp’ is redundant
+      except perhaps to import instances from ‘Network.Wai.Handler.Warp’
+    To import instances alone, use: import Network.Wai.Handler.Warp()
+   |
+57 | import qualified Network.Wai.Handler.Warp as Warp
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[14 of 31] Compiling Yesod.Core.Json
+[15 of 31] Compiling Yesod.Core.Internal.Run
+
+src/Yesod/Core/Internal/Run.hs:25:1: warning: [-Wunused-imports]
+    The qualified import of ‘Control.Exception’ is redundant
+      except perhaps to import instances from ‘Control.Exception’
+    To import instances alone, use: import Control.Exception()
+   |
+25 | import qualified Control.Exception as EUnsafe
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Yesod/Core/Internal/Run.hs:54:48: warning: [-Wunused-imports]
+    The import of ‘Route’ from module ‘Yesod.Routes.Class’ is redundant
+   |
+54 | import           Yesod.Routes.Class           (Route, renderRoute)
+   |                                                ^^^^^
+
+src/Yesod/Core/Internal/Run.hs:57:1: warning: [-Wunused-imports]
+    The import of ‘UnliftIO’ is redundant
+      except perhaps to import instances from ‘UnliftIO’
+    To import instances alone, use: import UnliftIO()
+   |
+57 | import           UnliftIO(MonadUnliftIO, withRunInIO)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Yesod/Core/Internal/Run.hs:58:1: warning: [-Wunused-imports]
+    The import of ‘Data.Proxy’ is redundant
+      except perhaps to import instances from ‘Data.Proxy’
+    To import instances alone, use: import Data.Proxy()
+   |
+58 | import           Data.Proxy(Proxy(..))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Yesod/Core/Internal/Run.hs:302:13: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘requestBody’ (imported from Network.Wai.Internal):
+    Deprecated: "requestBody's name is misleading because it only gets a partial chunk of the body. Use getRequestBodyChunk instead when getting the field, and setRequestBodyChunks when setting the field."
+    |
+302 |           , requestBody    = return mempty
+    |             ^^^^^^^^^^^
+
+src/Yesod/Core/Internal/Run.hs:328:3: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘mmaxLen’ shadows the existing binding
+      bound at src/Yesod/Core/Internal/Run.hs:368:5
+    |
+328 |   mmaxLen <- maximumContentLengthIO yreSite route
+    |   ^^^^^^^
+
+src/Yesod/Core/Internal/Run.hs:368:5: warning: [-Wunused-local-binds]
+    Defined but not used: ‘mmaxLen’
+    |
+368 |     mmaxLen = maximumContentLength yreSite route
+    |     ^^^^^^^
+[16 of 31] Compiling Yesod.Core.Unsafe
+[17 of 31] Compiling Yesod.Core.Class.Dispatch
+[18 of 31] Compiling Yesod.Core.Internal.LiteApp
+[19 of 31] Compiling Yesod.Core.Class.Breadcrumbs
+[20 of 31] Compiling Yesod.Routes.TH.Types
+[21 of 31] Compiling Yesod.Routes.TH.RouteAttrs
+[22 of 31] Compiling Yesod.Routes.TH.RenderRoute
+[23 of 31] Compiling Yesod.Routes.TH.Dispatch
+[24 of 31] Compiling Yesod.Routes.TH.ParseRoute
+[25 of 31] Compiling Yesod.Routes.TH
+[26 of 31] Compiling Yesod.Routes.Overlap
+[27 of 31] Compiling Yesod.Routes.Parse
+
+src/Yesod/Routes/Parse.hs:103:25: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘([Piece String], Maybe String,
+                           Bool)’ not matched:
+            (_, (Just _), _)
+    |
+103 |                         (pieces, Nothing, check) = piecesFromStringCheck pattern
+    |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[28 of 31] Compiling Yesod.Core.Internal.TH
+
+src/Yesod/Core/Internal/TH.hs:221:24: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[String]’ not matched: []
+    |
+221 |     let appCxt = fmap (\(c:rest) -> 
+    |                        ^^^^^^^^^^^^^...
+[29 of 31] Compiling Yesod.Core.Internal
+[30 of 31] Compiling Yesod.Core.Dispatch
+[31 of 31] Compiling Yesod.Core
+Configuring test suite 'test-routes' for yesod-core-1.6.26.0...
+Preprocessing test suite 'test-routes' for yesod-core-1.6.26.0...
+Building test suite 'test-routes' for yesod-core-1.6.26.0...
+[ 1 of 11] Compiling Yesod.Routes.Class
+[ 2 of 11] Compiling Yesod.Routes.TH.Types
+[ 3 of 11] Compiling Yesod.Routes.TH.RouteAttrs
+[ 4 of 11] Compiling Yesod.Routes.TH.RenderRoute
+[ 5 of 11] Compiling Yesod.Routes.TH.Dispatch
+[ 6 of 11] Compiling Yesod.Routes.TH.ParseRoute
+[ 7 of 11] Compiling Yesod.Routes.TH
+[ 8 of 11] Compiling Yesod.Routes.Overlap
+[ 9 of 11] Compiling Yesod.Routes.Parse
+[10 of 11] Compiling Hierarchy
+[11 of 11] Compiling Main
+test/RouteSpec.hs:(57,1)-(102,16): Splicing declarations
+    do texts_auXN <- [t| [Text] |]
+       let resLeaves_auXO
+             = map
+                 ResourceLeaf
+                 [Resource "RootR" [] (Methods Nothing ["GET"]) ["foo", "bar"] True,
+                  Resource
+                    "BlogPostR" [Static "blog", Dynamic $ ConT ''Text]
+                    (Methods Nothing ["GET", "POST"]) [] True,
+                  Resource
+                    "WikiR" [Static "wiki"] (Methods (Just texts_auXN) []) [] True,
+                  Resource
+                    "SubsiteR" [Static "subsite"] (Subsite (ConT ''MySub) "getMySub")
+                    [] True,
+                  Resource
+                    "SubparamR" [Static "subparam", Dynamic $ ConT ''Int]
+                    (Subsite (ConT ''MySubParam) "getMySubParam") [] True]
+           resParent_auXP
+             = ResourceParent
+                 "ParentR" True [Static "foo", Dynamic $ ConT ''Text]
+                 [ResourceLeaf
+                    $ Resource "ChildR" [] (Methods Nothing ["GET"]) ["child"] True]
+           ress_auXQ = resParent_auXP : resLeaves_auXO
+       rrinst_auXR <- mkRenderRouteInstance [] (ConT ''MyApp) ress_auXQ
+       rainst_auXS <- mkRouteAttrsInstance [] (ConT ''MyApp) ress_auXQ
+       prinst_auXT <- mkParseRouteInstance [] (ConT ''MyApp) ress_auXQ
+       dispatch_auXW <- mkDispatchClause
+                          MkDispatchSettings
+                            {mdsRunHandler = [| runHandler |],
+                             mdsSubDispatcher = [| subDispatch dispatcher |],
+                             mdsGetPathInfo = [| fst |], mdsMethod = [| snd |],
+                             mdsSetPathInfo = [| \ p_auXU (_, m_auXV) -> (p_auXU, m_auXV) |],
+                             mds404 = [| pack "404" |], mds405 = [| pack "405" |],
+                             mdsGetHandler = defaultGetHandler, mdsUnwrapper = return}
+                          ress_auXQ
+       return
+         $ InstanceD
+             Nothing []
+             (ConT ''Dispatcher `AppT` ConT ''MyApp `AppT` ConT ''MyApp)
+             [FunD (mkName "dispatcher") [dispatch_auXW]]
+             : prinst_auXT : rainst_auXS : rrinst_auXR
+  ======>
+    instance Dispatcher MyApp MyApp where
+      dispatcher env8932_av9d req8932_av9e
+        = helper8932_av9f (fst req8932_av9e)
+        where
+            helper8932_av9f
+              ((:) "foo"
+                   ((:) (Web.PathPieces.fromPathPiece -> Just dyn_av9g) rest_av9h))
+              = helperParentR_av9i rest_av9h
+              where
+                  helperParentR_av9i []
+                    = case snd req8932_av9e of
+                        "GET"
+                          -> runHandler
+                               (getChildR dyn_av9g) env8932_av9d (Just (ParentR dyn_av9g ChildR))
+                               req8932_av9e
+                        _ -> runHandler
+                               (pack "405") env8932_av9d (Just (ParentR dyn_av9g ChildR))
+                               req8932_av9e
+                  helperParentR_av9i _
+                    = runHandler (pack "404") env8932_av9d Nothing req8932_av9e
+            helper8932_av9f []
+              = case snd req8932_av9e of
+                  "GET" -> runHandler getRootR env8932_av9d (Just RootR) req8932_av9e
+                  _ -> runHandler (pack "405") env8932_av9d (Just RootR) req8932_av9e
+            helper8932_av9f
+              ((:) "blog"
+                   ((:) (Web.PathPieces.fromPathPiece -> Just dyn_av9j) []))
+              = case snd req8932_av9e of
+                  "GET"
+                    -> runHandler
+                         (getBlogPostR dyn_av9j) env8932_av9d (Just (BlogPostR dyn_av9j))
+                         req8932_av9e
+                  "POST"
+                    -> runHandler
+                         (postBlogPostR dyn_av9j) env8932_av9d (Just (BlogPostR dyn_av9j))
+                         req8932_av9e
+                  _ -> runHandler
+                         (pack "405") env8932_av9d (Just (BlogPostR dyn_av9j)) req8932_av9e
+            helper8932_av9f
+              ((:) "wiki" (Web.PathPieces.fromPathMultiPiece -> Just multi_av9k))
+              = runHandler
+                  (handleWikiR multi_av9k) env8932_av9d (Just (WikiR multi_av9k))
+                  req8932_av9e
+            helper8932_av9f ((:) "subsite" restPath_av9l)
+              = subDispatch
+                  dispatcher runHandler (\ sub_av9o -> getMySub sub_av9o)
+                  (\ sroute_av9p -> SubsiteR sroute_av9p) env8932_av9d
+                  ((\ p_av9m (_, m_av9n) -> (p_av9m, m_av9n))
+                     restPath_av9l req8932_av9e)
+            helper8932_av9f
+              ((:) "subparam"
+                   ((:) (Web.PathPieces.fromPathPiece -> Just dyn_av9q)
+                        restPath_av9r))
+              = subDispatch
+                  dispatcher runHandler
+                  (\ sub_av9u -> getMySubParam sub_av9u dyn_av9q)
+                  (\ sroute_av9v -> SubparamR dyn_av9q sroute_av9v) env8932_av9d
+                  ((\ p_av9s (_, m_av9t) -> (p_av9s, m_av9t))
+                     restPath_av9r req8932_av9e)
+            helper8932_av9f _
+              = runHandler (pack "404") env8932_av9d Nothing req8932_av9e
+    instance ParseRoute MyApp where
+      parseRoute
+        = ((\ f_av9b x_av9c -> f_av9b () x_av9c) ::
+             (() -> ([Text], [(Text, Text)]) -> Maybe (YRC.Route a_av9a))
+             -> ([Text], [(Text, Text)]) -> Maybe (YRC.Route a_av9a))
+            helper_av99
+        where
+            helper_av99 env3262_av8B req3262_av8C
+              = helper3262_av8D (fst req3262_av8C)
+              where
+                  helper3262_av8D
+                    ((:) "foo"
+                         ((:) (Web.PathPieces.fromPathPiece -> Just dyn_av8F) rest_av8H))
+                    = helperParentR_av8I rest_av8H
+                    where
+                        helperParentR_av8I []
+                          = (\ _ _ x_av8G _ -> x_av8G)
+                              (error "mdsGetHandler" dyn_av8F) env3262_av8B
+                              (Just (ParentR dyn_av8F ChildR)) req3262_av8C
+                        helperParentR_av8I _
+                          = (\ _ _ x_av8E _ -> x_av8E)
+                              (error "mds404") env3262_av8B Nothing req3262_av8C
+                  helper3262_av8D []
+                    = (\ _ _ x_av8J _ -> x_av8J)
+                        (error "mdsGetHandler") env3262_av8B (Just RootR) req3262_av8C
+                  helper3262_av8D
+                    ((:) "blog"
+                         ((:) (Web.PathPieces.fromPathPiece -> Just dyn_av8K) []))
+                    = (\ _ _ x_av8L _ -> x_av8L)
+                        (error "mdsGetHandler" dyn_av8K) env3262_av8B
+                        (Just (BlogPostR dyn_av8K)) req3262_av8C
+                  helper3262_av8D
+                    ((:) "wiki" (Web.PathPieces.fromPathMultiPiece -> Just multi_av8M))
+                    = (\ _ _ x_av8N _ -> x_av8N)
+                        (error "mdsGetHandler" multi_av8M) env3262_av8B
+                        (Just (WikiR multi_av8M)) req3262_av8C
+                  helper3262_av8D ((:) "subsite" restPath_av8O)
+                    = (\ _runHandler_av8R _getSub_av8S toMaster_av8T _env_av8U
+                         -> (fmap toMaster_av8T . parseRoute))
+                        (\ _ _ x_av8V _ -> x_av8V) (\ sub_av8W -> getMySub sub_av8W)
+                        (\ sroute_av8X -> SubsiteR sroute_av8X) env3262_av8B
+                        ((\ p_av8P (_, q_av8Q) -> (p_av8P, q_av8Q))
+                           restPath_av8O req3262_av8C)
+                  helper3262_av8D
+                    ((:) "subparam"
+                         ((:) (Web.PathPieces.fromPathPiece -> Just dyn_av8Y)
+                              restPath_av8Z))
+                    = (\ _runHandler_av92 _getSub_av93 toMaster_av94 _env_av95
+                         -> (fmap toMaster_av94 . parseRoute))
+                        (\ _ _ x_av96 _ -> x_av96)
+                        (\ sub_av97 -> getMySubParam sub_av97 dyn_av8Y)
+                        (\ sroute_av98 -> SubparamR dyn_av8Y sroute_av98) env3262_av8B
+                        ((\ p_av90 (_, q_av91) -> (p_av90, q_av91))
+                           restPath_av8Z req3262_av8C)
+                  helper3262_av8D _
+                    = (\ _ _ x_av8E _ -> x_av8E)
+                        (error "mds404") env3262_av8B Nothing req3262_av8C
+    instance RouteAttrs MyApp where
+      routeAttrs (ParentR _ ChildR {}) = Set.fromList [pack "child"]
+      routeAttrs RootR {} = Set.fromList [pack "foo", pack "bar"]
+      routeAttrs BlogPostR {} = Set.fromList []
+      routeAttrs WikiR {} = Set.fromList []
+      routeAttrs SubsiteR {} = Set.fromList []
+      routeAttrs SubparamR {} = Set.fromList []
+    instance RenderRoute MyApp where
+      data YRC.Route MyApp
+        = ParentR Text ParentR |
+          RootR |
+          BlogPostR Text |
+          WikiR [Text] |
+          SubsiteR (YRC.Route MySub) |
+          SubparamR Int (YRC.Route MySubParam)
+        deriving (Eq, Show, Read)
+      renderRoute (ParentR dyn_av8n child_av8o)
+        = (\ (a_av8q, b_av8r)
+             -> ((pack "foo" : (Web.PathPieces.toPathPiece dyn_av8n : a_av8q)), 
+                 b_av8r))
+            (childRender_av8p child_av8o)
+        where
+            childRender_av8p ChildR = ([], [])
+      renderRoute RootR = ([], [])
+      renderRoute (BlogPostR dyn_av8s)
+        = ((pack "blog" : (Web.PathPieces.toPathPiece dyn_av8s : [])), [])
+      renderRoute (WikiR dyn_av8t)
+        = ((pack "wiki" : Web.PathPieces.toPathMultiPiece dyn_av8t), [])
+      renderRoute (SubsiteR sub_av8u)
+        = (\ (a_av8v, b_av8w) -> ((pack "subsite" : a_av8v), b_av8w))
+            (renderRoute sub_av8u)
+      renderRoute (SubparamR dyn_av8x sub_av8y)
+        = (\ (a_av8z, b_av8A)
+             -> ((pack "subparam"
+                    : (Web.PathPieces.toPathPiece dyn_av8x : a_av8z)), 
+                 b_av8A))
+            (renderRoute sub_av8y)
+    data ParentR
+      = ChildR
+      deriving (Eq, Show, Read)
+test/RouteSpec.hs:230:27-102: Splicing expression
+    parseRoutesFile
+      "test/fixtures/routes_with_line_continuations.yesodroutes"
+  ======>
+    [ResourceLeaf
+       (Resource "Foo1" [Static "foo1"] (Methods Nothing []) [] True),
+     ResourceLeaf
+       (Resource "Foo2" [Static "foo2"] (Methods Nothing []) [] True),
+     ResourceLeaf
+       (Resource
+          "Foo3" [Static "foo3"] (Methods Nothing ["GET", "POST"]) ["foo"]
+          True)]
+test/RouteSpec.hs:(236,46)-(239,2): Splicing expression
+    Language.Haskell.TH.Quote.quoteExp
+      parseRoutesNoCheck
+      "\n\
+      \/foo Foo1\n\
+      \/foo Foo2\n"
+  ======>
+    [ResourceLeaf
+       (Resource "Foo1" [Static "foo"] (Methods Nothing []) [] True),
+     ResourceLeaf
+       (Resource "Foo2" [Static "foo"] (Methods Nothing []) [] True)]
+test/RouteSpec.hs:(243,46)-(246,2): Splicing expression
+    Language.Haskell.TH.Quote.quoteExp
+      parseRoutesNoCheck
+      "\n\
+      \/#Int Foo1\n\
+      \/#String Foo2\n"
+  ======>
+    [ResourceLeaf
+       (Resource "Foo1" [Dynamic "Int"] (Methods Nothing []) [] True),
+     ResourceLeaf
+       (Resource "Foo2" [Dynamic "String"] (Methods Nothing []) [] True)]
+test/RouteSpec.hs:(250,46)-(253,2): Splicing expression
+    Language.Haskell.TH.Quote.quoteExp
+      parseRoutesNoCheck
+      "\n\
+      \/foo Foo1\n\
+      \/#String Foo2\n"
+  ======>
+    [ResourceLeaf
+       (Resource "Foo1" [Static "foo"] (Methods Nothing []) [] True),
+     ResourceLeaf
+       (Resource "Foo2" [Dynamic "String"] (Methods Nothing []) [] True)]
+test/RouteSpec.hs:(257,46)-(260,2): Splicing expression
+    Language.Haskell.TH.Quote.quoteExp
+      parseRoutesNoCheck
+      "\n\
+      \/foo Foo1\n\
+      \/##*Strings Foo2\n"
+  ======>
+    [ResourceLeaf
+       (Resource "Foo1" [Static "foo"] (Methods Nothing []) [] True),
+     ResourceLeaf
+       (Resource
+          "Foo2" [Dynamic "#*Strings"] (Methods Nothing []) [] True)]
+test/RouteSpec.hs:(264,46)-(267,2): Splicing expression
+    Language.Haskell.TH.Quote.quoteExp
+      parseRoutesNoCheck
+      "\n\
+      \/foo Foo1\n\
+      \/foo Foo2 Subsite getSubsite\n"
+  ======>
+    [ResourceLeaf
+       (Resource "Foo1" [Static "foo"] (Methods Nothing []) [] True),
+     ResourceLeaf
+       (Resource
+          "Foo2" [Static "foo"] (Subsite "Subsite" "getSubsite") [] True)]
+test/RouteSpec.hs:(271,46)-(274,2): Splicing expression
+    Language.Haskell.TH.Quote.quoteExp
+      parseRoutesNoCheck
+      "\n\
+      \/foo Foo1\n\
+      \/bar/#String Foo2\n"
+  ======>
+    [ResourceLeaf
+       (Resource "Foo1" [Static "foo"] (Methods Nothing []) [] True),
+     ResourceLeaf
+       (Resource
+          "Foo2" [Static "bar", Dynamic "String"] (Methods Nothing []) []
+          True)]
+test/RouteSpec.hs:(278,46)-(282,2): Splicing expression
+    Language.Haskell.TH.Quote.quoteExp
+      parseRoutesNoCheck
+      "\n\
+      \/foo Foo1\n\
+      \/#!String Foo2\n\
+      \/!foo Foo3\n"
+  ======>
+    [ResourceLeaf
+       (Resource "Foo1" [Static "foo"] (Methods Nothing []) [] True),
+     ResourceLeaf
+       (Resource "Foo2" [Dynamic "String"] (Methods Nothing []) [] False),
+     ResourceLeaf
+       (Resource "Foo3" [Static "foo"] (Methods Nothing []) [] False)]
+test/RouteSpec.hs:(286,46)-(289,2): Splicing expression
+    Language.Haskell.TH.Quote.quoteExp
+      parseRoutesNoCheck
+      "\n\
+      \/foo Foo1\n\
+      \/+![String] Foo2\n"
+  ======>
+    [ResourceLeaf
+       (Resource "Foo1" [Static "foo"] (Methods Nothing []) [] True),
+     ResourceLeaf
+       (Resource "Foo2" [] (Methods (Just "[String]") []) [] False)]
+test/RouteSpec.hs:(293,46)-(298,2): Splicing expression
+    Language.Haskell.TH.Quote.quoteExp
+      parseRoutesNoCheck
+      "\n\
+      \/foo Foo1\n\
+      \!/+[String] Foo2\n\
+      \!/#String Foo3\n\
+      \!/foo Foo4\n"
+  ======>
+    [ResourceLeaf
+       (Resource "Foo1" [Static "foo"] (Methods Nothing []) [] True),
+     ResourceLeaf
+       (Resource "Foo2" [] (Methods (Just "[String]") []) [] False),
+     ResourceLeaf
+       (Resource "Foo3" [Dynamic "String"] (Methods Nothing []) [] False),
+     ResourceLeaf
+       (Resource "Foo4" [Static "foo"] (Methods Nothing []) [] False)]
+test/RouteSpec.hs:(302,46)-(308,2): Splicing expression
+    Language.Haskell.TH.Quote.quoteExp
+      parseRoutesNoCheck
+      "\n\
+      \/+[String] Foo1\n\
+      \!/foo Foo2:\n\
+      \    /foo Foo3\n\
+      \/foo Foo4:\n\
+      \    /!#foo Foo5\n"
+  ======>
+    [ResourceLeaf
+       (Resource "Foo1" [] (Methods (Just "[String]") []) [] True),
+     ResourceParent
+       "Foo2" False [Static "foo"]
+       [ResourceLeaf
+          (Resource "Foo3" [Static "foo"] (Methods Nothing []) [] True)],
+     ResourceParent
+       "Foo4" True [Static "foo"]
+       [ResourceLeaf
+          (Resource "Foo5" [Dynamic "foo"] (Methods Nothing []) [] False)]]
+test/RouteSpec.hs:(311,46)-(315,2): Splicing expression
+    Language.Haskell.TH.Quote.quoteExp
+      parseRoutesNoCheck
+      "\n\
+      \/foo/bar Foo1\n\
+      \/foo/baz Foo2\n\
+      \/bar/baz Foo3\n"
+  ======>
+    [ResourceLeaf
+       (Resource
+          "Foo1" [Static "foo", Static "bar"] (Methods Nothing []) [] True),
+     ResourceLeaf
+       (Resource
+          "Foo2" [Static "foo", Static "baz"] (Methods Nothing []) [] True),
+     ResourceLeaf
+       (Resource
+          "Foo3" [Static "bar", Static "baz"] (Methods Nothing []) [] True)]
+[12 of 12] Linking /tmp/workdir-yesod-core/yesod-core-1.6.26.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/yesod-core-1.6.26.0/t/test-routes/build/test-routes/test-routes
+Configuring test suite 'tests' for yesod-core-1.6.26.0...
+Preprocessing test suite 'tests' for yesod-core-1.6.26.0...
+Building test suite 'tests' for yesod-core-1.6.26.0...
+[ 1 of 42] Compiling YesodCoreTest.Auth
+[ 2 of 42] Compiling YesodCoreTest.Breadcrumb
+
+test/YesodCoreTest/Breadcrumb.hs:14:1: warning: [-Wunused-imports]
+    The qualified import of ‘Data.ByteString.Lazy.Char8’ is redundant
+      except perhaps to import instances from ‘Data.ByteString.Lazy.Char8’
+    To import instances alone, use: import Data.ByteString.Lazy.Char8()
+   |
+14 | import qualified Data.ByteString.Lazy.Char8 as L8
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/YesodCoreTest/Breadcrumb.hs:16:1: warning: [-Wunused-imports]
+    The import of ‘Data.Typeable’ is redundant
+      except perhaps to import instances from ‘Data.Typeable’
+    To import instances alone, use: import Data.Typeable()
+   |
+16 | import Data.Typeable (Typeable)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/YesodCoreTest/Breadcrumb.hs:20:1: warning: [-Wunused-imports]
+    The import of ‘UnliftIO.IORef’ is redundant
+      except perhaps to import instances from ‘UnliftIO.IORef’
+    To import instances alone, use: import UnliftIO.IORef()
+   |
+20 | import UnliftIO.IORef
+   | ^^^^^^^^^^^^^^^^^^^^^
+
+test/YesodCoreTest/Breadcrumb.hs:25:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘resourcesA’
+   |
+25 | mkYesod
+   | ^^^^^^^...
+
+test/YesodCoreTest/Breadcrumb.hs:25:1: warning: [-Wunused-top-binds]
+    Defined but not used: type constructor or class ‘Widget’
+   |
+25 | mkYesod
+   | ^^^^^^^...
+[ 3 of 42] Compiling YesodCoreTest.Cache
+[ 4 of 42] Compiling YesodCoreTest.CleanPath
+[ 5 of 42] Compiling YesodCoreTest.Csrf
+
+test/YesodCoreTest/Csrf.hs:13:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+13 | import Data.Monoid ((<>))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 6 of 42] Compiling YesodCoreTest.ErrorHandling.CustomApp
+
+test/YesodCoreTest/ErrorHandling/CustomApp.hs:18:1: warning: [-Wunused-imports]
+    The import of ‘Yesod.Core.Types’ is redundant
+      except perhaps to import instances from ‘Yesod.Core.Types’
+    To import instances alone, use: import Yesod.Core.Types()
+   |
+18 | import Yesod.Core.Types
+   | ^^^^^^^^^^^^^^^^^^^^^^^
+[ 7 of 42] Compiling YesodCoreTest.ErrorHandling
+
+test/YesodCoreTest/ErrorHandling.hs:13:1: warning: [-Wunused-imports]
+    The qualified import of ‘System.Mem’ is redundant
+      except perhaps to import instances from ‘System.Mem’
+    To import instances alone, use: import System.Mem()
+   |
+13 | import qualified System.Mem as Mem
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/YesodCoreTest/ErrorHandling.hs:23:1: warning: [-Wunused-imports]
+    The import of ‘UnliftIO.Exception’ is redundant
+      except perhaps to import instances from ‘UnliftIO.Exception’
+    To import instances alone, use: import UnliftIO.Exception()
+   |
+23 | import           UnliftIO.Exception(finally)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 8 of 42] Compiling YesodCoreTest.Exceptions
+[ 9 of 42] Compiling YesodCoreTest.Header
+[10 of 42] Compiling YesodCoreTest.InternalRequest
+
+test/YesodCoreTest/InternalRequest.hs:17:20: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘next’
+    (imported from System.Random, but defined in System.Random.Internal):
+    Deprecated: "No longer used"
+   |
+17 | gen = getStdRandom next
+   |                    ^^^^
+[11 of 42] Compiling YesodCoreTest.JsAttributes
+[12 of 42] Compiling YesodCoreTest.JsLoaderSites.Bottom
+[13 of 42] Compiling YesodCoreTest.JsLoader
+[14 of 42] Compiling YesodCoreTest.Json
+[15 of 42] Compiling YesodCoreTest.Links
+[16 of 42] Compiling YesodCoreTest.LiteApp
+
+test/YesodCoreTest/LiteApp.hs:16:50: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[T.Text]’ not matched:
+            []
+            [_]
+            (_:_:_:_)
+   |
+16 |     onStatic (T.pack "multi") (withDynamicMulti (\[_, y] -> dispatchTo $ return (y :: T.Text)))
+   |                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[17 of 42] Compiling YesodCoreTest.MediaData
+[18 of 42] Compiling YesodCoreTest.Media
+[19 of 42] Compiling YesodCoreTest.Meta
+
+test/YesodCoreTest/Meta.hs:21:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘resourcesApp’
+   |
+21 | mkYesod "App" [parseRoutes|
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+test/YesodCoreTest/Meta.hs:21:1: warning: [-Wunused-top-binds]
+    Defined but not used: type constructor or class ‘Widget’
+   |
+21 | mkYesod "App" [parseRoutes|
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+[20 of 42] Compiling YesodCoreTest.NoOverloadedStringsSub
+[21 of 42] Compiling YesodCoreTest.NoOverloadedStrings
+
+test/YesodCoreTest/NoOverloadedStrings.hs:30:69: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+30 | getBinR :: (MonadHandler m, Yesod (HandlerSite m), SubHandlerSite m ~ Subsite) => m Html
+   |                                                                     ^
+[22 of 42] Compiling YesodCoreTest.ParameterizedSite.Compat
+
+test/YesodCoreTest/ParameterizedSite/Compat.hs:15:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘resourcesCompat’
+   |
+15 | mkYesod "Compat" [parseRoutes|
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+test/YesodCoreTest/ParameterizedSite/Compat.hs:15:1: warning: [-Wunused-top-binds]
+    Defined but not used: type constructor or class ‘Widget’
+   |
+15 | mkYesod "Compat" [parseRoutes|
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+[23 of 42] Compiling YesodCoreTest.ParameterizedSite.PolyAny
+
+test/YesodCoreTest/ParameterizedSite/PolyAny.hs:14:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘resourcesPolyAny’
+   |
+14 | mkYesod "PolyAny a" [parseRoutes|
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+test/YesodCoreTest/ParameterizedSite/PolyAny.hs:14:1: warning: [-Wunused-top-binds]
+    Defined but not used: type constructor or class ‘Widget’
+   |
+14 | mkYesod "PolyAny a" [parseRoutes|
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+[24 of 42] Compiling YesodCoreTest.ParameterizedSite.PolyShow
+
+test/YesodCoreTest/ParameterizedSite/PolyShow.hs:14:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘resourcesPolyShow’
+   |
+14 | mkYesod "(Show a) => PolyShow a" [parseRoutes|
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+test/YesodCoreTest/ParameterizedSite/PolyShow.hs:14:1: warning: [-Wunused-top-binds]
+    Defined but not used: type constructor or class ‘Widget’
+   |
+14 | mkYesod "(Show a) => PolyShow a" [parseRoutes|
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+[25 of 42] Compiling YesodCoreTest.ParameterizedSite
+
+test/YesodCoreTest/ParameterizedSite.hs:20:39: warning: [GHC-18042] [-Wtype-defaults]
+    • Defaulting the type variable ‘a0’ to type ‘Integer’ in the following constraints
+        (Show a0)
+          arising from a use of ‘runStub'’
+          at test/YesodCoreTest/ParameterizedSite.hs:20:39-46
+        (Num a0)
+          arising from the literal ‘1337’
+          at test/YesodCoreTest/ParameterizedSite.hs:20:65-68
+    • In the second argument of ‘($)’, namely
+        ‘runStub' "1337" (PolyShow 1337)’
+      In a stmt of a 'do' block:
+        it "Polymorphic stub with Show" $ runStub' "1337" (PolyShow 1337)
+      In the second argument of ‘($)’, namely
+        ‘do it "Polymorphic unconstrained stub" $ runStub (PolyAny ())
+            it "Polymorphic stub with Show" $ runStub' "1337" (PolyShow 1337)
+            it "Polymorphic unconstrained stub, old-style"
+              $ runStub (Compat () ())’
+   |
+20 |     it "Polymorphic stub with Show" $ runStub' "1337" (PolyShow 1337)
+   |                                       ^^^^^^^^
+[26 of 42] Compiling YesodCoreTest.RawResponse
+[27 of 42] Compiling YesodCoreTest.Reps
+[28 of 42] Compiling YesodCoreTest.RequestBodySize
+[29 of 42] Compiling YesodCoreTest.Streaming
+[30 of 42] Compiling YesodCoreTest.StubLaxSameSite
+[31 of 42] Compiling YesodCoreTest.StubSslOnly
+[32 of 42] Compiling YesodCoreTest.StubStrictSameSite
+[33 of 42] Compiling YesodCoreTest.StubUnsecured
+[34 of 42] Compiling YesodCoreTest.Ssl
+[35 of 42] Compiling YesodCoreTest.SubSubData
+[36 of 42] Compiling YesodCoreTest.SubSub
+
+test/YesodCoreTest/SubSub.hs:30:1: warning: [GHC-90177] [-Worphans]
+    Orphan instance: instance YesodSubDispatch OuterSubSite master
+    Suggested fix:
+      Move the instance declaration to the module of the class or of the type, or
+      wrap the type with a newtype and declare the instance on the new type.
+   |
+30 | instance YesodSubDispatch OuterSubSite master where
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+test/YesodCoreTest/SubSub.hs:33:1: warning: [GHC-90177] [-Worphans]
+    Orphan instance: instance YesodSubDispatch InnerSubSite master
+    Suggested fix:
+      Move the instance declaration to the module of the class or of the type, or
+      wrap the type with a newtype and declare the instance on the new type.
+   |
+33 | instance YesodSubDispatch InnerSubSite master where
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+[37 of 42] Compiling YesodCoreTest.Widget
+[38 of 42] Compiling YesodCoreTest.YesodTest
+[39 of 42] Compiling YesodCoreTest.WaiSubsite
+[40 of 42] Compiling YesodCoreTest.Redirect
+[41 of 42] Compiling YesodCoreTest
+[42 of 42] Compiling Main
+[43 of 43] Linking /tmp/workdir-yesod-core/yesod-core-1.6.26.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/yesod-core-1.6.26.0/t/tests/build/tests/tests

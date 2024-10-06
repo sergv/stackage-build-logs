@@ -1,0 +1,238 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - aws-0.24.1 (lib) (first run)
+ - aws-0.24.1 (test:sqs-tests) (first run)
+ - aws-0.24.1 (test:s3-tests) (first run)
+ - aws-0.24.1 (test:dynamodb-tests) (first run)
+Configuring library for aws-0.24.1...
+Preprocessing library for aws-0.24.1...
+Building library for aws-0.24.1...
+[ 1 of 91] Compiling Aws.Ec2.InstanceMetadata
+[ 2 of 91] Compiling Aws.Network
+[ 3 of 91] Compiling Aws.Core
+
+Aws/Core.hs:188:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad (Response m)’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+188 |     return x = Response mempty (Right x)
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 4 of 91] Compiling Aws.Iam.Core
+[ 5 of 91] Compiling Aws.Iam.Internal
+[ 6 of 91] Compiling Aws.Iam.Commands.UpdateUser
+[ 7 of 91] Compiling Aws.Iam.Commands.UpdateGroup
+[ 8 of 91] Compiling Aws.Iam.Commands.UpdateAccessKey
+[ 9 of 91] Compiling Aws.Iam.Commands.RemoveUserFromGroup
+[10 of 91] Compiling Aws.Iam.Commands.PutUserPolicy
+[11 of 91] Compiling Aws.Iam.Commands.PutGroupPolicy
+[12 of 91] Compiling Aws.Iam.Commands.ListUsers
+[13 of 91] Compiling Aws.Iam.Commands.ListUserPolicies
+[14 of 91] Compiling Aws.Iam.Commands.ListMfaDevices
+[15 of 91] Compiling Aws.Iam.Commands.ListGroups
+[16 of 91] Compiling Aws.Iam.Commands.ListGroupPolicies
+[17 of 91] Compiling Aws.Iam.Commands.ListAccessKeys
+[18 of 91] Compiling Aws.Iam.Commands.GetUserPolicy
+[19 of 91] Compiling Aws.Iam.Commands.GetUser
+[20 of 91] Compiling Aws.Iam.Commands.GetGroupPolicy
+[21 of 91] Compiling Aws.Iam.Commands.DeleteUserPolicy
+[22 of 91] Compiling Aws.Iam.Commands.DeleteUser
+[23 of 91] Compiling Aws.Iam.Commands.DeleteGroupPolicy
+[24 of 91] Compiling Aws.Iam.Commands.DeleteGroup
+[25 of 91] Compiling Aws.Iam.Commands.DeleteAccessKey
+[26 of 91] Compiling Aws.Iam.Commands.CreateUser
+[27 of 91] Compiling Aws.Iam.Commands.CreateGroup
+[28 of 91] Compiling Aws.Iam.Commands.CreateAccessKey
+[29 of 91] Compiling Aws.Iam.Commands.AddUserToGroup
+[30 of 91] Compiling Aws.Iam.Commands
+[31 of 91] Compiling Aws.Iam
+[32 of 91] Compiling Aws.DynamoDb.Core
+
+Aws/DynamoDb/Core.hs:538:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Value’ not matched:
+            Array _
+            String _
+            Number _
+            Bool _
+            ...
+    |
+538 |       let Object p1 = toJSON h
+    |           ^^^^^^^^^^^^^^^^^^^^
+
+Aws/DynamoDb/Core.hs:539:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Value’ not matched:
+            Array _
+            String _
+            Number _
+            Bool _
+            ...
+    |
+539 |           Object p2 = toJSON r
+    |           ^^^^^^^^^^^^^^^^^^^^
+
+Aws/DynamoDb/Core.hs:1256:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad Parser’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+     |
+1256 |     return a = Parser $ \_kf ks -> ks a
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Aws/DynamoDb/Core.hs:1275:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative Parser’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+     |
+1275 |     pure  = return
+     |     ^^^^^^^^^^^^^^
+[33 of 91] Compiling Aws.DynamoDb.Commands.UpdateItem
+[34 of 91] Compiling Aws.DynamoDb.Commands.Table
+[35 of 91] Compiling Aws.DynamoDb.Commands.Scan
+[36 of 91] Compiling Aws.DynamoDb.Commands.Query
+[37 of 91] Compiling Aws.DynamoDb.Commands.PutItem
+[38 of 91] Compiling Aws.DynamoDb.Commands.GetItem
+[39 of 91] Compiling Aws.DynamoDb.Commands.DeleteItem
+[40 of 91] Compiling Aws.DynamoDb.Commands.BatchWriteItem
+
+Aws/DynamoDb/Commands/BatchWriteItem.hs:28:1: warning: [-Wunused-imports]
+    The import of ‘Data.Foldable’ is redundant
+      except perhaps to import instances from ‘Data.Foldable’
+    To import instances alone, use: import Data.Foldable()
+   |
+28 | import           Data.Foldable (asum)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[41 of 91] Compiling Aws.DynamoDb.Commands.BatchGetItem
+
+Aws/DynamoDb/Commands/BatchGetItem.hs:75:29: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘(T.Text, [GetItem])’ not matched: (_, [])
+   |
+75 |                     in map (\(table,items@(i:_)) ->(table,GetRequestItem 
+   |                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+[42 of 91] Compiling Aws.DynamoDb.Commands
+[43 of 91] Compiling Aws.DynamoDb
+[44 of 91] Compiling Aws.Aws
+[45 of 91] Compiling Aws
+[46 of 91] Compiling Aws.S3.Core
+[47 of 91] Compiling Aws.S3.Commands.PutObject
+[48 of 91] Compiling Aws.S3.Commands.PutBucketVersioning
+[49 of 91] Compiling Aws.S3.Commands.PutBucket
+[50 of 91] Compiling Aws.S3.Commands.Multipart
+[51 of 91] Compiling Aws.S3.Commands.HeadObject
+[52 of 91] Compiling Aws.S3.Commands.GetService
+[53 of 91] Compiling Aws.S3.Commands.GetObject
+[54 of 91] Compiling Aws.S3.Commands.GetBucketObjectVersions
+[55 of 91] Compiling Aws.S3.Commands.GetBucketLocation
+[56 of 91] Compiling Aws.S3.Commands.GetBucket
+[57 of 91] Compiling Aws.S3.Commands.DeleteObjects
+[58 of 91] Compiling Aws.S3.Commands.DeleteObjectVersion
+[59 of 91] Compiling Aws.S3.Commands.DeleteObject
+[60 of 91] Compiling Aws.S3.Commands.DeleteBucket
+[61 of 91] Compiling Aws.S3.Commands.CopyObject
+[62 of 91] Compiling Aws.S3.Commands
+[63 of 91] Compiling Aws.S3
+[64 of 91] Compiling Aws.Ses.Core
+[65 of 91] Compiling Aws.Ses.Commands.VerifyEmailIdentity
+[66 of 91] Compiling Aws.Ses.Commands.VerifyDomainIdentity
+[67 of 91] Compiling Aws.Ses.Commands.VerifyDomainDkim
+[68 of 91] Compiling Aws.Ses.Commands.SetIdentityNotificationTopic
+[69 of 91] Compiling Aws.Ses.Commands.SetIdentityFeedbackForwardingEnabled
+[70 of 91] Compiling Aws.Ses.Commands.SetIdentityDkimEnabled
+[71 of 91] Compiling Aws.Ses.Commands.SendRawEmail
+[72 of 91] Compiling Aws.Ses.Commands.ListIdentities
+[73 of 91] Compiling Aws.Ses.Commands.GetIdentityVerificationAttributes
+[74 of 91] Compiling Aws.Ses.Commands.GetIdentityNotificationAttributes
+[75 of 91] Compiling Aws.Ses.Commands.GetIdentityDkimAttributes
+[76 of 91] Compiling Aws.Ses.Commands.DeleteIdentity
+[77 of 91] Compiling Aws.Ses.Commands
+[78 of 91] Compiling Aws.Ses
+[79 of 91] Compiling Aws.SimpleDb.Core
+[80 of 91] Compiling Aws.SimpleDb.Commands.Select
+[81 of 91] Compiling Aws.SimpleDb.Commands.Domain
+[82 of 91] Compiling Aws.SimpleDb.Commands.Attributes
+[83 of 91] Compiling Aws.SimpleDb.Commands
+[84 of 91] Compiling Aws.SimpleDb
+[85 of 91] Compiling Aws.Sqs.Core
+[86 of 91] Compiling Aws.Sqs.Commands.QueueAttributes
+[87 of 91] Compiling Aws.Sqs.Commands.Queue
+[88 of 91] Compiling Aws.Sqs.Commands.Permission
+[89 of 91] Compiling Aws.Sqs.Commands.Message
+[90 of 91] Compiling Aws.Sqs.Commands
+[91 of 91] Compiling Aws.Sqs
+Configuring test suite 'sqs-tests' for aws-0.24.1...
+Preprocessing test suite 'sqs-tests' for aws-0.24.1...
+Building test suite 'sqs-tests' for aws-0.24.1...
+[1 of 2] Compiling Utils
+[2 of 2] Compiling Main
+
+tests/Sqs/Main.hs:141:49: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+141 |     :: (Transaction r a, ServiceConfiguration r ~ SQS.SqsConfiguration)
+    |                                                 ^
+
+tests/Sqs/Main.hs:151:69: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+151 |     :: (AsMemoryResponse a, Transaction r a, ServiceConfiguration r ~ SQS.SqsConfiguration, MonadIO m)
+    |                                                                     ^
+
+tests/Sqs/Main.hs:159:69: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+159 |     :: (AsMemoryResponse a, Transaction r a, ServiceConfiguration r ~ SQS.SqsConfiguration, MonadBaseControl IO m, MonadIO m)
+    |                                                                     ^
+[3 of 3] Linking /tmp/workdir-aws/aws-0.24.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/aws-0.24.1/t/sqs-tests/build/sqs-tests/sqs-tests
+Configuring test suite 's3-tests' for aws-0.24.1...
+Preprocessing test suite 's3-tests' for aws-0.24.1...
+Building test suite 's3-tests' for aws-0.24.1...
+[1 of 2] Compiling Main
+[2 of 2] Compiling Utils
+[3 of 3] Linking /tmp/workdir-aws/aws-0.24.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/aws-0.24.1/t/s3-tests/build/s3-tests/s3-tests
+Configuring test suite 'dynamodb-tests' for aws-0.24.1...
+Preprocessing test suite 'dynamodb-tests' for aws-0.24.1...
+Building test suite 'dynamodb-tests' for aws-0.24.1...
+[1 of 3] Compiling Utils
+[2 of 3] Compiling DynamoDb.Utils
+
+tests/DynamoDb/Utils.hs:89:69: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+89 |     :: (AsMemoryResponse a, Transaction r a, ServiceConfiguration r ~ DY.DdbConfiguration, MonadIO m)
+   |                                                                     ^
+
+tests/DynamoDb/Utils.hs:97:69: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+97 |     :: (AsMemoryResponse a, Transaction r a, ServiceConfiguration r ~ DY.DdbConfiguration, MonadBaseControl IO m, MonadIO m)
+   |                                                                     ^
+
+tests/DynamoDb/Utils.hs:103:49: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+103 |     :: (Transaction r a, ServiceConfiguration r ~ DY.DdbConfiguration)
+    |                                                 ^
+[3 of 3] Compiling Main
+[4 of 4] Linking /tmp/workdir-aws/aws-0.24.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/aws-0.24.1/t/dynamodb-tests/build/dynamodb-tests/dynamodb-tests

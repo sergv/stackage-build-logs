@@ -1,0 +1,202 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - unliftio-0.2.25.0 (test:unliftio-spec) (ephemeral targets)
+Preprocessing test suite 'unliftio-spec' for unliftio-0.2.25.0...
+Building test suite 'unliftio-spec' for unliftio-0.2.25.0...
+Running 1 test suites...
+Test suite unliftio-spec: RUNNING...
+
+UnliftIO.Async
+  replicateConcurrently_
+    works [✔]
+      +++ OK, passed 100 tests.
+    uses a different thread per replicated action [✔]
+      +++ OK, passed 100 tests.
+  flatten
+    flattens all alternative trees [✔]
+  conc
+    handles sync exceptions [✔]
+    handles async exceptions [✔]
+    has an Unmasked masking state for given subroutines [✔]
+    allows to kill parent via timeout [✔]
+    throws right exception on empty [✔]
+  Conc Applicative instance
+    doesn't fork a new thread on a pure call [✔]
+      +++ OK, passed 100 tests.
+    evaluates all needed sub-routines  [✔]
+    cleanup on brackets work [✔]
+    re-throws exception that happened first [✔]
+  Conc Alternative instance
+    is left associative [✔]
+    executes body of all alternative blocks [✔]
+    finishes all threads that didn't finish first [✔]
+    nesting works [✔]
+UnliftIO.Directory
+  createFileLink
+    mirror [✔]
+UnliftIO.Exception
+  catchSyncOrAsync
+    should catch sync exceptions [✔]
+    should catch async exceptions [✔]
+    should catch unliftio-wrapped async exceptions [✔]
+  handleSyncOrAsync
+    should catch sync exceptions [✔]
+    should catch async exceptions [✔]
+    should catch unliftio-wrapped async exceptions [✔]
+  trySyncOrAsync
+    should catch sync exceptions [✔]
+    should catch async exceptions [✔]
+    should catch unliftio-wrapped async exceptions [✔]
+  fromExceptionUnwrap
+    should be the inverse of toAsyncException [✔]
+    should be the inverse of toSyncException [✔]
+  pureTry
+    Right for defined values [✔]
+    Left for bottom [✔]
+    Right for wrapped bottom [✔]
+  pureTryDeep
+    Right for defined values [✔]
+    Left for bottom [✔]
+    Left for wrapped bottom [✔]
+  mapExceptionM
+    should convert an exception [✔]
+    should not convert unrelated exceptions [✔]
+UnliftIO.IO
+  getMonotonicTime
+    increases [✔]
+UnliftIO.IO.File
+  ensureFileDurable
+    ensures a file is durable with an fsync [✔]
+  withBinaryFile
+    read [✔]
+    write [✔]
+    read/write [✔]
+    append [✔]
+    sub-directory [✔]
+    relative-directory [✔]
+    modified-permissions [✔]
+    exception - Does not corrupt files [✔]
+      +++ OK, failed as expected. (after 1 test):
+      expected: "Hello World"
+       but got: "Goodbye yall"
+    exception - Does not leave files behind [✔]
+      +++ OK, failed as expected. (after 1 test):
+      expected: False
+       but got: True
+    delete - file [✔]
+      +++ OK, failed as expected. (after 1 test):
+      expected: True
+       but got: False
+  writeBinaryFile
+    write [✔]
+    default-permissions [✔]
+  withBinaryFileAtomic
+    read [✔]
+    write [✔]
+    read/write [✔]
+    append [✔]
+    sub-directory [✔]
+    relative-directory [✔]
+    modified-permissions [✔]
+    exception - Does not corrupt files [✔]
+      +++ OK, passed 1 test.
+    exception - Does not leave files behind [✔]
+      +++ OK, passed 1 test.
+    delete - file [✔]
+      +++ OK, passed 1 test.
+  writeBinaryFileAtomic
+    write [✔]
+    default-permissions [✔]
+  withBinaryFileDurable
+    read [✔]
+    write [✔]
+    read/write [✔]
+    append [✔]
+    sub-directory [✔]
+    relative-directory [✔]
+    modified-permissions [✔]
+    exception - Does not corrupt files [✔]
+      +++ OK, failed as expected. (after 1 test):
+      expected: "Hello World"
+       but got: "Goodbye yall"
+    exception - Does not leave files behind [✔]
+      +++ OK, failed as expected. (after 1 test):
+      expected: False
+       but got: True
+    delete - file [✔]
+      +++ OK, failed as expected. (after 1 test):
+      expected: True
+       but got: False
+  writeBinaryFileDurable
+    write [✔]
+    default-permissions [✔]
+  withBinaryFileDurableAtomic
+    read [✔]
+    write [✔]
+    read/write [✔]
+    append [✔]
+    sub-directory [✔]
+    relative-directory [✔]
+    modified-permissions [✔]
+    exception - Does not corrupt files [✔]
+      +++ OK, passed 1 test.
+    exception - Does not leave files behind [✔]
+      +++ OK, passed 1 test.
+    delete - file [✔]
+      +++ OK, passed 1 test.
+  writeBinaryFileDurableAtomic
+    write [✔]
+    default-permissions [✔]
+UnliftIO.Memoize
+  memoizeRef
+    sanity [✔]
+      +++ OK, passed 100 tests.
+    runs once [✔]
+      +++ OK, passed 100 tests.
+    runs once with exception [✔]
+  memoizeMVar
+    sanity [✔]
+      +++ OK, passed 100 tests.
+    runs once [✔]
+      +++ OK, passed 100 tests.
+    runs once with exception [✔]
+    runs once in multiple threads [✔]
+      +++ OK, passed 100 tests.
+UnliftIO.PooledAsync
+  pooled mapConcurrencyN
+    Throws exception properly [✔]
+    total thread should be >= 1 [✔]
+    should not spawn more than five threads for five concurrent tasks [✔]
+    should not spawn more than three threads for five concurrent tasks [✔]
+    should spawn only one thread [✔]
+    never uses more than the given number of pools and doesn't miss any return values [✔]
+      +++ OK, passed 100 tests.
+  pooled mapConcurrencyN_
+    Throws exception properly [✔]
+    total thread should be >= 1 [✔]
+    find proper maximum value [✔]
+    find proper maximum value with 2 threads [✔]
+    find proper maximum value with 1 threads [✔]
+    make sure activity is happening in different threads [✔]
+    Not more than 5 threads will be spawned even if pooling is set to 8  [✔]
+  replicate concurrencyN
+    Throws exception properly [✔]
+    total thread should be >= 1 [✔]
+    Read tvar value should be 100 [✔]
+    should not spawn more than five threads for five concurrent tasks [✔]
+    should not spawn more than three threads for five concurrent tasks [✔]
+    should spawn only one thread [✔]
+    should give empty list [✔]
+    should give empty list for -ve count [✔]
+  pooled replicateConcurrencyN_
+    Throws exception properly [✔]
+    total thread should be >= 1 [✔]
+    find proper maximum value [✔]
+    Should be initial value [✔]
+
+Finished in 4.6425 seconds
+118 examples, 0 failures
+Test suite unliftio-spec: PASS
+Test suite logged to:
+/tmp/workdir-unliftio/unliftio-0.2.25.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/unliftio-0.2.25.0/t/unliftio-spec/test/unliftio-0.2.25.0-unliftio-spec.log
+1 of 1 test suites (1 of 1 test cases) passed.

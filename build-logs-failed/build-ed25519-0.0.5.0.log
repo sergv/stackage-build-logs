@@ -1,0 +1,41 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - ed25519-0.0.5.0 (lib) (first run)
+ - ed25519-0.0.5.0 (test:doctests) (first run)
+ - ed25519-0.0.5.0 (test:hlint) (first run)
+ - ed25519-0.0.5.0 (test:properties) (first run)
+Configuring library for ed25519-0.0.5.0...
+Preprocessing library for ed25519-0.0.5.0...
+Building library for ed25519-0.0.5.0...
+[1 of 1] Compiling Crypto.Sign.Ed25519
+Configuring test suite 'doctests' for ed25519-0.0.5.0...
+Preprocessing test suite 'doctests' for ed25519-0.0.5.0...
+Building test suite 'doctests' for ed25519-0.0.5.0...
+[1 of 1] Compiling Main
+[2 of 2] Linking /tmp/workdir-ed25519/ed25519-0.0.5.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/ed25519-0.0.5.0/t/doctests/build/doctests/doctests
+Configuring test suite 'hlint' for ed25519-0.0.5.0...
+Preprocessing test suite 'hlint' for ed25519-0.0.5.0...
+Building test suite 'hlint' for ed25519-0.0.5.0...
+[1 of 1] Compiling Main
+[2 of 2] Linking /tmp/workdir-ed25519/ed25519-0.0.5.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/ed25519-0.0.5.0/t/hlint/build/hlint/hlint
+Configuring test suite 'properties' for ed25519-0.0.5.0...
+Preprocessing test suite 'properties' for ed25519-0.0.5.0...
+Building test suite 'properties' for ed25519-0.0.5.0...
+[1 of 1] Compiling Main
+
+tests/properties.hs:87:9: error:
+    • The constructor ‘Success’ should have 6 arguments, but has been given 3
+    • In the pattern: Success n _ _
+      In a case alternative: Success n _ _ -> return (True, n)
+      In a stmt of a 'do' block:
+        case r of
+          Success n _ _ -> return (True, n)
+          GaveUp n _ _ -> return (True, n)
+          Failure n _ _ _ _ _ _ _ _ _ -> return (False, n)
+          _ -> return (False, 0)
+   |
+87 |         Success n _ _           -> return (True, n)
+   |         ^^^^^^^^^^^^^
+Error: [Cabal-7125]
+Failed to build test:properties from ed25519-0.0.5.0.
+

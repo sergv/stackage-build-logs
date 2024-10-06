@@ -1,0 +1,220 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - jose-0.11 (test:tests) (ephemeral targets)
+Preprocessing test suite 'tests' for jose-0.11...
+Building test suite 'tests' for jose-0.11...
+Running 1 test suites...
+Test suite tests: RUNNING...
+Tests
+  Unit tests
+    Types
+      Base64Octets
+        can be read from JSON:                                                        OK
+      Base64Integer
+        parses from JSON correctly:                                                   OK
+        formats to JSON correctly:                                                    OK
+        rejects empty string:                                                         OK
+        rejects leading zero:                                                         OK
+        decodes AA as zero:                                                           OK
+        encodes zero as AA:                                                           OK
+      SizedBase64Integer
+        parses from JSON correctly:                                                   OK
+        formats to JSON correctly:                                                    OK
+      Base64X509
+        parses from JSON correctly and encodes to input string:                       OK
+    JWK
+      RFC 7517 §3. Example JWK
+        successfully decodes the examples:                                            OK
+      RFC 7517 A.1.  Example Public Keys
+        successfully decodes the examples:                                            OK
+      RFC 7517 A.2.  Example Private Keys
+        successfully decodes the examples:                                            OK
+      RFC 7517 A.3. Example Symmetric Keys
+        successfully decodes the examples:                                            OK
+      JWK B.  Example Use of "x5c" (X.509 Certificate Chain) Parameter
+        sets x5c in JWK with PUBLIC key when first cert matches key:                  OK
+        sets x5c in JWK with PRIVATE key when first cert matches key:                 OK
+        unsets x5c in JWK when given x5c = Nothing:                                   OK
+        rejects (parse error) keys with x5c that does not match public key:           OK
+      RFC 7517  C.1. Plaintext RSA Private Key
+        successfully decodes the example:                                             OK
+      RFC 7515 A.1.1.  JWK
+        decodes the example to the correct value:                                     OK
+        round-trips correctly:                                                        OK
+      RFC 8037 test vectors
+        A.1. Ed25519 Private Key
+          successfully decodes the example:                                           OK
+        A.2. Ed25519 Public Key
+          successfully decodes the example:                                           OK
+          corresponds to A.1. private key:                                            OK
+      JWK Thumbprint
+        RFC 7638 §3.1.  Example JWK Thumbprint Computation
+          correctly computes thumbprint of RSA key:                                   OK
+        RFC 8037 A.3.  JWK Thumbprint Canonicalization
+          correctly computes thumbprint of Ed25519 key:                               OK
+    JWS
+      JWS Header
+        parses signature correctly:                                                   OK
+        rejects duplicate headers:                                                    OK
+        rejects reserved crit parameters:                                             OK
+        rejects unknown crit parameters:                                              OK
+        accepts known crit parameter in protected header:                             OK
+        accepts known crit parameter in unprotected header:                           OK
+        rejects known crit parameter that does not appear in JOSE header:             OK
+        rejects unprotected crit parameters:                                          OK
+        rejects empty crit parameters:                                                OK
+        parses required protected header when present in protected header:            OK
+        rejects required protected header when present in unprotected header:         OK
+        accepts unprotected "alg" param with 'Protection' protection indicator:       OK
+        rejects unprotected "alg" param with '()' protection indicator:               OK
+      RFC 7515 A.1.  Example JWS using HMAC SHA-256
+        decodes the example to the correct value:                                     OK
+        serialises the decoded JWS back to the original data:                         OK
+        computes the HMAC correctly:                                                  OK
+        validates the JWS correctly:                                                  OK
+      RFC 7515 A.2. Example JWS using RSASSA-PKCS-v1_5 SHA-256
+        computes the signature correctly:                                             OK
+        validates the signature correctly:                                            OK
+        prohibits signing with 1024-bit key:                                          OK
+      RFC 7515 A.3.  Example JWS using ECDSA P-256 SHA-256
+        validates the signature correctly:                                            OK
+      RFC 7515 A.5.  Example Unsecured JWS
+        encodes the correct JWS:                                                      OK
+        decodes the correct JWS:                                                      OK
+      RFC 7515 A.6.  Example JWS Using General JSON Serialization
+        decodes JWS with multiple signatures correctly:                               OK
+        decodes single-sig Generalised JWS correctly:                                 OK
+        fails to decode single-sig Generalised JWS to 'JWS Identity':                 OK
+        decodes flattened JWS to 'JWS []' correctly:                                  OK
+        decodes flattened JWS to 'JWS Identity' correctly:                            OK
+        fails to decode flattened JWS when "signatures" key is present:               OK
+      RFC 8037 signature/validation test vectors
+        computes the correct signature:                                               OK
+        validates signatures correctly:                                               OK
+      base64url-decoding behaviour
+        rejects baseurl-encoded values with padding:                                  OK
+      reserialisation of JWS
+        preserves raw protected header value:                                         OK
+    JWT
+      JWT Claims Set
+        parses from JSON correctly:                                                   OK
+        JWT round-trip (sign, serialise, decode, verify):                             OK (0.07s)
+        JWT round-trip (sign, serialise, decode, verify) [extended payload type]:     OK (0.07s)
+        formats to a parsable and equal value:                                        OK
+        with an Expiration Time claim
+          when the current time is prior to the Expiration Time
+            can be validated:                                                         OK
+          when the current time is exactly the Expiration Time
+            cannot be validated:                                                      OK
+          when the current time is after the Expiration Time
+            cannot be validated:                                                      OK
+            cannot be validated if nonzero skew tolerance < delta:                    OK
+            can be validated if nonzero skew tolerance = delta:                       OK
+            can be validated if nonzero skew tolerance > delta:                       OK
+            can be validated if negative skew tolerance = -delta:                     OK
+        with an Issued At claim
+          when the current time is after to the Issued At
+            can be validated:                                                         OK
+          when the current time is exactly the Issued At
+            can be validated:                                                         OK
+          when the current time is prior to the Issued At
+            cannot be validated if nonzero skew tolerance < delta:                    OK
+            can be validated if nonzero skew tolerance < delta but validation is off: OK
+            can be validated if nonzero skew tolerance = delta:                       OK
+            can be validated if nonzero skew tolerance > delta:                       OK
+            can be validated if negative skew tolerance = -delta:                     OK
+        with a Not Before claim
+          when the current time is prior to the Not Before claim
+            cannot be validated:                                                      OK
+            cannot be validated if nonzero skew tolerance < delta:                    OK
+            can be validated if nonzero skew tolerance = delta:                       OK
+            can be validated if nonzero skew tolerance > delta:                       OK
+            can be validated if negative skew tolerance = -delta:                     OK
+          when the current time is exactly equal to the Not Before claim
+            can be validated:                                                         OK
+          when the current time is after the Not Before claim
+            can be validated:                                                         OK
+        with Expiration Time and Not Before claims
+          when the current time is prior to the Not Before claim
+            cannot be validated:                                                      OK
+          when the current time is exactly equal to the Not Before claim
+            can be validated:                                                         OK
+          when the current time is between the Not Before and Expiration Time claims
+            can be validated:                                                         OK
+          when the current time is exactly the Expiration Time
+            cannot be validated:                                                      OK
+          when the current time is after the Expiration Time claim
+            cannot be validated:                                                      OK
+        with an Audience claim
+          when claim is nonempty, and default predicate is used
+            cannot be validated:                                                      OK
+          when claim is nonempty but predicate does not match any value
+            cannot be validated:                                                      OK
+          when claim is nonempty and predicate matches a value
+            can be validated:                                                         OK
+          when claim is empty, and predicate is unconditionally true
+            cannot be validated:                                                      OK
+          when claim has one value
+            serialises to string:                                                     OK
+            round trips:                                                              OK
+        with an Issuer claim
+          when issuer is nonempty, and predicate is matched
+            can be validated:                                                         OK
+          when issuer is nonempty but predicate is not matched
+            cannot be validated:                                                      OK
+          when claim is empty, and default predicate is unconditionally true
+            can be validated:                                                         OK
+      StringOrURI
+        parses from JSON correctly:                                                   OK
+      NumericDate
+        parses from JSON correctly:                                                   OK
+      RFC 7519 §3.1.  Example JWT
+        verifies JWT:                                                                 OK
+      RFC 7519 §6.1.  Example Unsecured JWT
+        when the current time is prior to the Expiration Time
+          can be decoded and validated:                                               OK
+        when the current time is after the Expiration Time
+          can be decoded, but not validated:                                          OK
+        when signature is invalid and token is expired
+          fails on sig validation (claim validation not reached):                     OK
+    Examples
+      Decode PEM-encoded X509 EC certificate and verify
+        successfully parses the single X509 certificate:                              OK
+        successfully converts the X509 certificate to a JWK:                          OK
+        verifies a token signed using ES256 and matches expected claims:              OK
+    Security
+      security characteristics
+        not vulnerable to hash-flood:                                                 OK
+  Properties
+    SizedBase64Integer round-trip:                                                    OK
+        ✓ SizedBase64Integer round-trip passed 100 tests.
+    JWK round-trip:                                                                   OK (0.03s)
+        ✓ JWK round-trip passed 100 tests.
+    RSA gen, sign and verify:                                                         OK (31.35s)
+        ✓ RSA gen, sign and verify passed 100 tests.
+          PS256 19% ███▊················
+          PS384 12% ██▍·················
+          PS512 15% ███·················
+          RS256 18% ███▌················
+          RS384 16% ███▏················
+          RS512 20% ████················
+    gen, sign with best alg, verify:                                                  OK (11.21s)
+        ✓ gen, sign with best alg, verify passed 100 tests.
+          ES256   9% █▊··················
+          ES256K  3% ▌···················
+          ES384  12% ██▍·················
+          ES512   4% ▊···················
+          EdDSA  16% ███▏················
+          HS256   9% █▊··················
+          HS384   6% █▏··················
+          HS512  12% ██▍·················
+          PS512  29% █████▊··············
+  AESKW
+    AESKW round-trip:                                                                 OK (0.02s)
+        ✓ AESKW round-trip passed 100 tests.
+
+All 113 tests passed (42.77s)
+Test suite tests: PASS
+Test suite logged to:
+/tmp/workdir-jose/jose-0.11/dist-newstyle/build/x86_64-linux/ghc-9.6.6/jose-0.11/t/tests/test/jose-0.11-tests.log
+1 of 1 test suites (1 of 1 test cases) passed.

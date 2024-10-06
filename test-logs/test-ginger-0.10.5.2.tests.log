@@ -1,0 +1,425 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - ginger-0.10.5.2 (test:tests) (ephemeral targets)
+Preprocessing test suite 'tests' for ginger-0.10.5.2...
+Building test suite 'tests' for ginger-0.10.5.2...
+Running 1 test suites...
+Test suite tests: RUNNING...
+All Tests
+  Simulation
+    Smoke Test:                                                                   OK
+    Comments
+      Comment does not appear in output:                                          OK
+    Dashed delimiters eat whitespace
+      comments:                                                                   OK
+      interpolations:                                                             OK
+      flow:                                                                       OK
+    Default delimiters eat whitespace with LStripBlocks
+      comments:                                                                   OK
+      interpolations:                                                             OK
+      flow:                                                                       OK
+      interpolations, left-only:                                                  OK
+    Default delimiters eat whitespace with TrimBlocks
+      comments:                                                                   OK
+      interpolations:                                                             OK
+      flow:                                                                       OK
+      interpolations, right-only:                                                 OK
+    Plussed delimiters override LStrip/TrimBlocks
+      comments:                                                                   OK
+      interpolations:                                                             OK
+      flow:                                                                       OK
+    Trailing newlines
+      eaten after blocks:                                                         OK
+      not eaten after interpolations:                                             OK
+      not eaten after blocks when keepTrailingNewline is on:                      OK
+    Literals
+      Strings
+        String: "foobar":                                                         OK
+        String: "\r\n\t\b":                                                       OK
+      Numbers
+        123:                                                                      OK
+        3.1415:                                                                   OK
+      Booleans
+        true:                                                                     OK
+        True:                                                                     OK
+        false:                                                                    OK
+        False:                                                                    OK
+      Null:                                                                       OK
+    Simple list/object constructs
+      Lists:                                                                      OK
+      Nested lists:                                                               OK
+      Objects:                                                                    OK
+      Nested object/list constructs:                                              OK
+    Accessing object/list members
+      by integer index:                                                           OK
+      by string key:                                                              OK
+      by property name:                                                           OK
+      multi-level mixed:                                                          OK
+    Function calls
+      print("Hello"):                                                             OK
+      "Hello"|print:                                                              OK
+    Addition
+      1 + 1 = 2:                                                                  OK
+      1 + 1 = 2:                                                                  OK
+    Subtraction
+      1 - 1 = 0:                                                                  OK
+    Concatenation
+      1 ~ "foo" = 1foo:                                                           OK
+    Multiplication
+      5 * 5 = 25:                                                                 OK
+    Division
+      24 / 6 = 4:                                                                 OK
+      3 / 2 = 1.5:                                                                OK
+    Integer Division
+      24 // 6 = 4:                                                                OK
+      3 // 2 = 1:                                                                 OK
+    Modulo
+      7 % 3 = 2:                                                                  OK
+    Iteration
+      for x in [ "foo", "bar", "baz" ]: <x>:                                      OK
+      for x in []: <x> else <no>:                                                 OK
+      for x in [a]: <x> else <no>:                                                OK
+    The `loop` auto-variable
+      loop.cycle:                                                                 OK
+      recursive loops:                                                            RuntimeErrorAt "<<unknown>>" (line 1, column 83) (TypeError ["list","dictionary"] (Just "null"))
+RuntimeErrorAt "<<unknown>>" (line 1, column 83) (TypeError ["list","dictionary"] (Just "null"))
+OK
+    Conditionals
+      if true then "yes" else "no":                                               OK
+      if false then "yes" else if false then "maybe" else "no":                   OK
+      if false then "yes" else if true then "maybe" else "no":                    OK
+      if null should be false:                                                    OK
+    Exceptions
+      try/catch, no exception:                                                    OK
+      try/finally, no exception:                                                  OK
+      try/catch, trigger arguments exception:                                     OK
+      try/finally, trigger arguments exception:                                   OK
+      try/catch, catch selectively (string syntax):                               OK
+      try/catch, catch selectively (identifier syntax):                           OK
+      try/catch, skip non-matching catches:                                       OK
+    Switch
+      switch 1 of 1, 2, default:                                                  OK
+      switch 1 of 1, 2:                                                           OK
+    Comparisons
+      if 1 == 1 then "yes" else "no":                                             OK
+      if 1 > 0 then "yes" else "no":                                              OK
+      if 1 > null then "yes" else "no":                                           OK
+      if 1 < 2 then "yes" else "no":                                              OK
+      if null < 1 then "yes" else "no":                                           OK
+    Boolean AND
+      AND (both) (and):                                                           OK
+      AND (only one) (and):                                                       OK
+      AND (neither) (and):                                                        OK
+      AND (both) (&&):                                                            OK
+      AND (only one) (&&):                                                        OK
+      AND (neither) (&&):                                                         OK
+    Boolean OR
+      OR (both) (or):                                                             OK
+      OR (only one) (or):                                                         OK
+      OR (either) (or):                                                           OK
+      OR (both) (||):                                                             OK
+      OR (only one) (||):                                                         OK
+      OR (either) (||):                                                           OK
+    Slicing brackets
+      from/to, both positive:                                                     OK
+      from/to, from negative:                                                     OK
+      from/to, to implicit:                                                       OK
+      from/to, from implicit:                                                     OK
+    Built-in tests
+      "divisibleby"
+        divisibleby(14,7):                                                        OK
+        divisibleby(14,6):                                                        OK
+      "even"
+        even(3):                                                                  OK
+        even("2"):                                                                OK
+        even("3"):                                                                OK
+        even("two"):                                                              OK
+      "eq":                                                                       OK
+      "equalto":                                                                  OK
+      "ge":                                                                       OK
+      "greaterthan":                                                              OK
+      "gt":                                                                       OK
+      "le":                                                                       OK
+      "lessthan":                                                                 OK
+      "lt":                                                                       OK
+      "ne":                                                                       OK
+      "odd"
+        odd(2):                                                                   OK
+        odd(3):                                                                   OK
+        odd("2"):                                                                 OK
+        odd("3"):                                                                 OK
+    Built-in filters/functions
+      "abs":                                                                      OK
+      "any"
+        "any" (both):                                                             OK
+        "any" (just one):                                                         OK
+        "any" (neither):                                                          OK
+      "all"
+        "all" (both):                                                             OK
+        "all" (just one):                                                         OK
+        "all" (neither):                                                          OK
+      "ceil"
+        14.1:                                                                     OK
+        -14.1:                                                                    OK
+        -14.8:                                                                    OK
+      "capitalize":                                                               OK
+      "upper":                                                                    OK
+      "lower":                                                                    OK
+      "center"
+        extra space:                                                              OK
+        no extra space:                                                           OK
+      "compose":                                                                  OK
+      "concat":                                                                   OK
+      "contains"
+        single match:                                                             OK
+        multi match:                                                              OK
+        non-match:                                                                OK
+      "date"
+        format a date:                                                            OK
+        format a list as a date:                                                  OK
+        format a 5-element list as a date:                                        OK
+        format a 3-element list as a date:                                        OK
+        use correct default time (noon) with 3-element list:                      OK
+        format a string as a date:                                                OK
+        format a string as a date (JSON-style formatting):                        OK
+        format a string with fractional seconds as a date (all variants):         OK
+        format a string as a time-of-day:                                         OK
+        format a string as a date, with timezone:                                 OK
+        format a local-time string as a date + time, with explicit timezone:      OK
+        format a zoned-time string as a date, with explicit timezone:             OK
+        use a custom locale:                                                      OK
+      "default"
+        trigger default:                                                          OK
+        use truthy value:                                                         OK
+      "difference":                                                               OK
+      "dictsort"
+        by key:                                                                   OK
+        by value:                                                                 OK
+      "escape"
+        single item:                                                              OK
+        multiple items:                                                           OK
+      "equals"
+        two equal:                                                                OK
+        all equal:                                                                OK
+        some equal:                                                               OK
+      "eval"
+        simple:                                                                   OK
+        with extra state:                                                         OK
+        outside state does not bleed into eval():                                 OK
+        standard functions available inside eval:                                 OK
+      "filesizeformat"
+        bytes:                                                                    OK
+        kilobytes:                                                                OK
+        megabytes:                                                                OK
+        bytes (2-based):                                                          OK
+        kibibytes:                                                                OK
+        mebibytes:                                                                OK
+      "filter"
+        simple case:                                                              OK
+        with extra argument:                                                      OK
+      "format"
+        jinja.pocoo.org example:                                                  OK
+      "map"
+        map function over list:                                                   OK
+        map function over dictionary:                                             OK
+        map to extract attribute:                                                 OK
+      "not-equals"
+        all equal:                                                                OK
+        not all equal:                                                            OK
+      "floor"
+        14.1:                                                                     OK
+        14.8:                                                                     OK
+        -14.1:                                                                    OK
+        -14.8:                                                                    OK
+      "int"
+        14.1:                                                                     OK
+        14.8:                                                                     OK
+        -14.1:                                                                    OK
+        -14.8:                                                                    OK
+      "length"
+        list:                                                                     OK
+        dict:                                                                     OK
+        string:                                                                   OK
+      "partial"
+        partial:                                                                  OK
+      "printf"
+        %i, passed as int:                                                        OK
+        %i, passed as string:                                                     OK
+        %i, passed as float:                                                      OK
+        %f, passed as int:                                                        OK
+        %.3f, passed as int:                                                      OK
+        %s, string:                                                               OK
+      "product":                                                                  OK
+      "ratio":                                                                    OK
+      "round"
+        14.1:                                                                     OK
+        14.8:                                                                     OK
+        -14.1:                                                                    OK
+        -14.8:                                                                    OK
+      "str":                                                                      OK
+      "sum":                                                                      OK
+      "truncate"
+        14.1:                                                                     OK
+        14.8:                                                                     OK
+        -14.1:                                                                    OK
+        -14.8:                                                                    OK
+      "urlencode":                                                                OK
+      "sort"
+        simple:                                                                   OK
+        reverse:                                                                  OK
+        sort by key:                                                              OK
+        sort by key, reverse:                                                     OK
+        sort dictionary by keys:                                                  OK
+        sort by a projection function:                                            OK
+        sort by a path:                                                           OK
+      "slice"
+        full positional args:                                                     OK
+        implicit 'to end':                                                        OK
+        full named args:                                                          OK
+        negative offset:                                                          OK
+        call on string subject:                                                   OK
+      "split"
+        word-splitting:                                                           OK
+        word-splitting, more spaces:                                              OK
+        word-splitting, more spaces, explicit delim:                              OK
+      "replace"
+        simple case:                                                              OK
+        multiple replacements:                                                    OK
+        longer replacements:                                                      OK
+        deletion:                                                                 OK
+      "zip"
+        lists:                                                                    OK
+      "zipwith"
+        sum:                                                                      OK
+      "json"
+        null:                                                                     OK
+        [1,2,3]:                                                                  OK
+      "in"
+        elem in list:                                                             OK
+        elem not in list:                                                         OK
+        elem in dict:                                                             OK
+        elem not in dict:                                                         OK
+      "apply"
+        sum:                                                                      OK
+    Setting variables
+      plain:                                                                      OK
+      self-referential:                                                           OK
+    HTML encoding
+      no encoding outside of constructs:                                          OK
+      auto-encode inside interpolations:                                          OK
+      raw filter bypasses encoding:                                               OK
+    Includes
+      include plain:                                                              OK
+      include with a variable:                                                    OK
+      not eaten after blocks in included template when keepTrailingNewline is on: OK
+      include referencing an included variable:                                   OK
+    Explicit Local Scopes
+      baseline:                                                                   OK
+      inside local scope:                                                         OK
+      after exiting local scope:                                                  OK
+    Indentation
+      stripping leading spaces:                                                   OK
+      explicit indent string:                                                     OK
+      implicit indent string:                                                     OK
+      explicit non-whitespace indent string:                                      OK
+      explicit indent string from more complex expression:                        OK
+      discarding level-0 indents:                                                 OK
+      indentation levels inherited at runtime (dynamic):                          OK
+    Macros
+      simple:                                                                     OK
+      with args:                                                                  OK
+    Lambdas
+      single arg:                                                                 OK
+      two args:                                                                   OK
+    Ternary operator
+      C syntax:                                                                   OK
+      python syntax:                                                              OK
+      C syntax, nested, true/false:                                               OK
+      Python syntax, nested, true/false:                                          OK
+      C syntax, nested, true/true:                                                OK
+      Python syntax, nested, true/true:                                           OK
+    Call syntax
+      "caller":                                                                   OK
+    Inheritance
+      inheritance:                                                                OK
+      multi-tier inheritance:                                                     OK
+    Non-HTML Output
+      text:                                                                       OK
+      json:                                                                       OK
+    Script mode
+      empty script block:                                                         OK
+      comments
+        simple:                                                                   OK
+        multiple:                                                                 OK
+        inside expressions:                                                       OK
+      echo:                                                                       OK
+      expression statement:                                                       OK
+      grouped statements:                                                         OK
+      if:                                                                         OK
+      if/else:                                                                    OK
+      switch:                                                                     OK
+      for:                                                                        OK
+      for/else (loop):                                                            OK
+      for/else (recover):                                                         OK
+      set:                                                                        OK
+      include:                                                                    OK
+      macro:                                                                      OK
+      Script statment blocks
+        baseline:                                                                 OK
+        inside local scope:                                                       OK
+        after exiting block:                                                      OK
+      Explicit Local Scopes
+        baseline:                                                                 OK
+        inside local scope:                                                       OK
+        after exiting local scope:                                                OK
+    do expressions
+      single statement:                                                           OK
+      statement block:                                                            OK
+    overriding delimiters
+      angle brackets:                                                             OK
+      evil mode:                                                                  OK
+    is-tests
+      basic is-test, true:                                                        OK
+      basic is-test, false:                                                       OK
+      parens-less argument syntax:                                                OK
+      precedence vs booleans:                                                     OK
+      precedence vs addition:                                                     OK
+    regex module
+      regex.test
+        simple match:                                                             OK
+        simple match:                                                             OK
+      regex.match
+        simple match:                                                             OK
+        string representation of multiple matches returns only whole match:       OK
+        html representation of multiple matches returns only whole match:         OK
+      regex.matches
+        simple match:                                                             OK
+  Properties
+    Optimizer
+      optimizer doesn't change behavior:                                          OK (0.03s)
+        +++ OK, passed 100 tests.
+    ToGVal / FromGVal round tripping
+      Int:                                                                        OK
+        +++ OK, passed 100 tests.
+      Bool:                                                                       OK
+        +++ OK, passed 100 tests.
+      [Text]:                                                                     OK
+        +++ OK, passed 100 tests.
+      Maybe Text:                                                                 OK
+        +++ OK, passed 100 tests.
+      ByteString:                                                                 OK
+        +++ OK, passed 100 tests.
+      Text:                                                                       OK
+        +++ OK, passed 100 tests.
+      LocalTime:                                                                  OK
+        +++ OK, passed 100 tests.
+      TimeZone:                                                                   OK
+        +++ OK, passed 100 tests.
+      ZonedTime:                                                                  OK
+        +++ OK, passed 100 tests.
+
+All 307 tests passed (0.08s)
+Test suite tests: PASS
+Test suite logged to:
+/tmp/workdir-ginger/ginger-0.10.5.2/dist-newstyle/build/x86_64-linux/ghc-9.6.6/ginger-0.10.5.2/t/tests/test/ginger-0.10.5.2-tests.log
+1 of 1 test suites (1 of 1 test cases) passed.

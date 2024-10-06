@@ -1,0 +1,125 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - math-functions-0.3.4.4 (test:math-function-tests) (ephemeral targets)
+Preprocessing test suite 'math-function-tests' for math-functions-0.3.4.4...
+Building test suite 'math-function-tests' for math-functions-0.3.4.4...
+Running 1 test suites...
+Test suite math-function-tests: RUNNING...
+math-functions
+  Special functions
+    erf
+      erfc table:                                            OK
+      erfc table [large]:                                    OK
+      erf table:                                             OK
+      id = erfc . invErfc:                                   OK
+        +++ OK, passed 100 tests.
+      id = invErfc . erfc:                                   OK
+        +++ OK, passed 100 tests; 80 discarded.
+      invErf  = erf^-1:                                      OK
+        +++ OK, passed 100 tests; 67 discarded.
+    log1p & Co
+      expm1 table:                                           OK
+      log1p table:                                           OK
+    gamma function
+      logGamma table [fractional points:                     OK
+      Gamma(x+1) = x*Gamma(x):                               OK
+        +++ OK, passed 100 tests; 68 discarded.
+      logGamma is expected to be precise at 1e-15 level:     OK
+    incomplete gamma
+      incompleteGamma table:                                 OK
+      incomplete gamma - increases:                          OK
+        +++ OK, passed 100 tests; 4 discarded.
+      0 <= gamma <= 1:                                       OK
+        +++ OK, passed 100 tests; 1 discarded.
+      gamma(1,x) = 1 - exp(-x):                              OK
+        +++ OK, passed 100 tests.
+      invIncompleteGamma = gamma^-1:                         OK
+        +++ OK, passed 100 tests; 58 discarded.
+    beta function
+      logBeta table:                                         OK
+      logBeta factorial:                                     OK
+      beta(1,p) = 1/p:                                       OK
+        +++ OK, passed 100 tests; 170 discarded.
+    incomplete beta
+      incompleteBeta table:                                  OK
+      incompleteBeta table with p > 3000 and q > 3000:       OK
+      0 <= I[B] <= 1:                                        OK
+        +++ OK, passed 100 tests; 13 discarded.
+      ibeta symmetry:                                        OK
+        +++ OK, passed 100 tests; 10 discarded.
+      Regression #68:                                        OK
+    digamma
+      digamma is expected to be precise at 1e-14 [integers]: OK (0.03s)
+      digamma is expected to be precise at 1e-12:            OK
+    factorial
+      Factorial table:                                       OK
+      Log factorial from integer:                            OK
+      Factorial table is OK:                                 OK
+      Log factorial table:                                   OK (0.09s)
+    combinatorics
+      choose table:                                          OK (0.65s)
+      logChoose == log . choose:                             OK (0.16s)
+    self-test
+      Self-test: 0 <= range01 <= 1:                          OK
+        +++ OK, passed 100 tests.
+  Summation
+    Kahan
+      t_sum_shifted:                                         OK
+        +++ OK, passed 100 tests.
+    KBN
+      t_sum:                                                 OK
+        +++ OK, passed 100 tests.
+      t_sum_error:                                           OK
+        +++ OK, passed 100 tests.
+      t_sum_shifted:                                         OK
+        +++ OK, passed 100 tests.
+    KB2
+      t_sum:                                                 OK
+        +++ OK, passed 100 tests.
+      t_sum_error:                                           OK
+        +++ OK, passed 100 tests.
+      t_sum_shifted:                                         OK
+        +++ OK, passed 100 tests.
+  Comparison
+    addUlps 0:                                               OK
+      +++ OK, passed 100 tests.
+    addUlps sym:                                             OK
+      +++ OK, passed 100 tests.
+    ulpDistance==0:                                          OK
+      +++ OK, passed 100 tests.
+    ulpDistance sym:                                         OK
+      +++ OK, passed 100 tests.
+    ulpDistance/addUlps:                                     OK
+      +++ OK, passed 100 tests.
+    eps distance:                                            OK
+    eps add:                                                 OK
+    relativeError sym:                                       OK
+      +++ OK, passed 100 tests.
+    relativeError inf   1:                                   OK
+    relativeError 1   inf:                                   OK
+    relativeError -inf  1:                                   OK
+    relativeError 1  -inf:                                   OK
+    relativeError inf inf:                                   OK
+    relativeError inf-inf:                                   OK
+    relativeError   1 Nan:                                   OK
+    relativeError NaN   1:                                   OK
+    relativeError NaN Nan:                                   OK
+  Root finding
+    Ridders
+      sin x - 0.525 [exact]:                                 OK
+      sin x - 0.525 [abs 1e-12]:                             OK
+      sin x - 0.525 [abs 1e-6]:                              OK
+      sin x - 0.525 [rel 1e-12]:                             OK
+      sin x - 0.525 [rel 1e-6]:                              OK
+    Newton-Raphson
+      sin x - 0.525 [rel 1e-12]:                             OK
+      sin x - 0.525 [rel 1e-6]:                              OK
+      sin x - 0.525 [abs 1e-12]:                             OK
+      sin x - 0.525 [abs 1e-6]:                              OK
+      1/x - 0.5     [0]:                                     OK
+
+All 67 tests passed (0.96s)
+Test suite math-function-tests: PASS
+Test suite logged to:
+/tmp/workdir-math-functions/math-functions-0.3.4.4/dist-newstyle/build/x86_64-linux/ghc-9.6.6/math-functions-0.3.4.4/t/math-function-tests/test/math-functions-0.3.4.4-math-function-tests.log
+1 of 1 test suites (1 of 1 test cases) passed.

@@ -1,0 +1,670 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - genvalidity-hspec-1.0.0.3 (test:genvalidity-hspec-test) (ephemeral targets)
+Preprocessing test suite 'genvalidity-hspec-test' for genvalidity-hspec-1.0.0.3...
+Building test suite 'genvalidity-hspec-test' for genvalidity-hspec-1.0.0.3...
+Running 1 test suites...
+Test suite genvalidity-hspec-test: RUNNING...
+
+Test.Validity.Applicative
+  Applicative (Either Int)
+    pure :: a -> (Either Int) a and (<*>) :: (Either Int) (a -> b) -> (Either Int) a -> (Either Int) b
+      satisfy the identity law: 'pure id <*> v = v' for "(Either Int) of ints :: (Either Int Int)" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the composition law: 'pure (.) <*> u <*> v <*> w = u <*> (v <*> w)' for "(Either Int) of scalings :: (Either Int (Int -> Int))" composed with "(Either Int) of increments :: (Either Int (Int -> Int))" and applied to "(Either Int) of ints :: (Either Int Int)" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the homomorphism law: 'pure f <*> pure x = pure (f x)' for "increments :: (Int -> Int)" sequenced with "int :: Int" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the interchange law: 'u <*> pure y = pure ($ y) <*> u' for "(Either Int) of increments :: (Either Int (Int -> Int))" sequenced with "int :: Int" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the law about the functor instance: fmap f x = pure f <*> x for "increments :: (Int -> Int)" mapped over "(Either Int) of ints :: (Either Int Int)" [✔]
+        +++ OK, passed 100 tests.
+    (*>) :: (Either Int) a -> (Either Int) b -> (Either Int) b
+      is equivalent to its default implementation 'u Type> v = pure (const id) <*> u <*> v' for "(Either Int) of ints :: (Either Int Int)" in front of "(Either Int) of ints :: Int" [✔]
+        +++ OK, passed 100 tests.
+    (<*) :: (Either Int) a -> (Either Int) b -> (Either Int) a
+      is equivalent to its default implementation 'u <* v = pure const <*> u <*> v' for "(Either Int) of ints :: Int" behind "(Either Int) of ints :: (Either Int Int)" [✔]
+        +++ OK, passed 100 tests.
+  Applicative []
+    pure :: a -> [] a and (<*>) :: [] (a -> b) -> [] a -> [] b
+      satisfy the identity law: 'pure id <*> v = v' for "[] of ints :: [Int]" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the composition law: 'pure (.) <*> u <*> v <*> w = u <*> (v <*> w)' for "[] of scalings :: ([Int -> Int])" composed with "[] of increments :: ([Int -> Int])" and applied to "[] of ints :: [Int]" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the homomorphism law: 'pure f <*> pure x = pure (f x)' for "increments :: (Int -> Int)" sequenced with "int :: Int" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the interchange law: 'u <*> pure y = pure ($ y) <*> u' for "[] of increments :: ([Int -> Int])" sequenced with "int :: Int" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the law about the functor instance: fmap f x = pure f <*> x for "increments :: (Int -> Int)" mapped over "[] of ints :: [Int]" [✔]
+        +++ OK, passed 100 tests.
+    (*>) :: [] a -> [] b -> [] b
+      is equivalent to its default implementation 'u Type> v = pure (const id) <*> u <*> v' for "[] of ints :: [Int]" in front of "[] of ints :: Int" [✔]
+        +++ OK, passed 100 tests.
+    (<*) :: [] a -> [] b -> [] a
+      is equivalent to its default implementation 'u <* v = pure const <*> u <*> v' for "[] of ints :: Int" behind "[] of ints :: [Int]" [✔]
+        +++ OK, passed 100 tests.
+  Applicative Maybe
+    pure :: a -> Maybe a and (<*>) :: Maybe (a -> b) -> Maybe a -> Maybe b
+      satisfy the identity law: 'pure id <*> v = v' for "Maybe of ints :: (Maybe Int)" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the composition law: 'pure (.) <*> u <*> v <*> w = u <*> (v <*> w)' for "Maybe of scalings :: (Maybe (Int -> Int))" composed with "Maybe of increments :: (Maybe (Int -> Int))" and applied to "Maybe of ints :: (Maybe Int)" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the homomorphism law: 'pure f <*> pure x = pure (f x)' for "increments :: (Int -> Int)" sequenced with "int :: Int" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the interchange law: 'u <*> pure y = pure ($ y) <*> u' for "Maybe of increments :: (Maybe (Int -> Int))" sequenced with "int :: Int" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the law about the functor instance: fmap f x = pure f <*> x for "increments :: (Int -> Int)" mapped over "Maybe of ints :: (Maybe Int)" [✔]
+        +++ OK, passed 100 tests.
+    (*>) :: Maybe a -> Maybe b -> Maybe b
+      is equivalent to its default implementation 'u Type> v = pure (const id) <*> u <*> v' for "Maybe of ints :: (Maybe Int)" in front of "Maybe of ints :: Int" [✔]
+        +++ OK, passed 100 tests.
+    (<*) :: Maybe a -> Maybe b -> Maybe a
+      is equivalent to its default implementation 'u <* v = pure const <*> u <*> v' for "Maybe of ints :: Int" behind "Maybe of ints :: (Maybe Int)" [✔]
+        +++ OK, passed 100 tests.
+  Applicative []
+    pure :: a -> [] a and (<*>) :: [] (a -> b) -> [] a -> [] b
+      satisfy the identity law: 'pure id <*> v = v' for "[] of ints :: [Int]" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the composition law: 'pure (.) <*> u <*> v <*> w = u <*> (v <*> w)' for "[] of scalings :: ([Int -> Int])" composed with "[] of increments :: ([Int -> Int])" and applied to "[] of ints :: [Int]" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the homomorphism law: 'pure f <*> pure x = pure (f x)' for "increments :: (Int -> Int)" sequenced with "int :: Int" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the interchange law: 'u <*> pure y = pure ($ y) <*> u' for "[] of increments :: ([Int -> Int])" sequenced with "int :: Int" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the law about the functor instance: fmap f x = pure f <*> x for "increments :: (Int -> Int)" mapped over "[] of ints :: [Int]" [✔]
+        +++ OK, passed 100 tests.
+    (*>) :: [] a -> [] b -> [] b
+      is equivalent to its default implementation 'u Type> v = pure (const id) <*> u <*> v' for "[] of ints :: [Int]" in front of "[] of ints :: Int" [✔]
+        +++ OK, passed 100 tests.
+    (<*) :: [] a -> [] b -> [] a
+      is equivalent to its default implementation 'u <* v = pure const <*> u <*> v' for "[] of ints :: Int" behind "[] of ints :: [Int]" [✔]
+        +++ OK, passed 100 tests.
+  Applicative Maybe
+    pure :: a -> Maybe a and (<*>) :: Maybe (a -> b) -> Maybe a -> Maybe b
+      satisfy the identity law: 'pure id <*> v = v' for "Maybe of ints :: (Maybe Int)" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the composition law: 'pure (.) <*> u <*> v <*> w = u <*> (v <*> w)' for "Maybe of scalings :: (Maybe (Int -> Int))" composed with "Maybe of increments :: (Maybe (Int -> Int))" and applied to "Maybe of ints :: (Maybe Int)" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the homomorphism law: 'pure f <*> pure x = pure (f x)' for "increments :: (Int -> Int)" sequenced with "int :: Int" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the interchange law: 'u <*> pure y = pure ($ y) <*> u' for "Maybe of increments :: (Maybe (Int -> Int))" sequenced with "int :: Int" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the law about the functor instance: fmap f x = pure f <*> x for "increments :: (Int -> Int)" mapped over "Maybe of ints :: (Maybe Int)" [✔]
+        +++ OK, passed 100 tests.
+    (*>) :: Maybe a -> Maybe b -> Maybe b
+      is equivalent to its default implementation 'u Type> v = pure (const id) <*> u <*> v' for "Maybe of ints :: (Maybe Int)" in front of "Maybe of ints :: Int" [✔]
+        +++ OK, passed 100 tests.
+    (<*) :: Maybe a -> Maybe b -> Maybe a
+      is equivalent to its default implementation 'u <* v = pure const <*> u <*> v' for "Maybe of ints :: Int" behind "Maybe of ints :: (Maybe Int)" [✔]
+        +++ OK, passed 100 tests.
+  Applicative []
+    pure :: a -> [] a and (<*>) :: [] (a -> b) -> [] a -> [] b
+      satisfy the identity law: 'pure id <*> v = v' for "list of fives :: [Int]" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the composition law: 'pure (.) <*> u <*> v <*> w = u <*> (v <*> w)' for "scalings in a list :: ([Int -> Int])" composed with "increments in a list :: ([Int -> Int])" and applied to "list of fives :: [Int]" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the homomorphism law: 'pure f <*> pure x = pure (f x)' for "increments :: (Int -> Int)" sequenced with "four :: Int" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the interchange law: 'u <*> pure y = pure ($ y) <*> u' for "increments in a list :: ([Int -> Int])" sequenced with "four :: Int" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the law about the functor instance: fmap f x = pure f <*> x for "increments :: (Int -> Int)" mapped over "list of fives :: [Int]" [✔]
+        +++ OK, passed 100 tests.
+    (*>) :: [] a -> [] b -> [] b
+      is equivalent to its default implementation 'u Type> v = pure (const id) <*> u <*> v' for "list of fives :: [Int]" in front of "purely empty list :: Int" [✔]
+        +++ OK, passed 100 tests.
+    (<*) :: [] a -> [] b -> [] a
+      is equivalent to its default implementation 'u <* v = pure const <*> u <*> v' for "purely empty list :: Int" behind "list of fives :: [Int]" [✔]
+        +++ OK, passed 100 tests.
+  Applicative Maybe
+    pure :: a -> Maybe a and (<*>) :: Maybe (a -> b) -> Maybe a -> Maybe b
+      satisfy the identity law: 'pure id <*> v = v' for "Just an ABC :: (Maybe [Char])" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the composition law: 'pure (.) <*> u <*> v <*> w = u <*> (v <*> w)' for "appends in a Just :: (Maybe ([Char] -> [Char]))" composed with "prepends in a Just :: (Maybe ([Char] -> [Char]))" and applied to "Just an ABC :: (Maybe [Char])" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the homomorphism law: 'pure f <*> pure x = pure (f x)' for "prepends :: ([Char] -> [Char])" sequenced with "ABC :: [Char]" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the interchange law: 'u <*> pure y = pure ($ y) <*> u' for "prepends in a Just :: (Maybe ([Char] -> [Char]))" sequenced with "ABC :: [Char]" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the law about the functor instance: fmap f x = pure f <*> x for "prepends :: ([Char] -> [Char])" mapped over "Just an ABC :: (Maybe [Char])" [✔]
+        +++ OK, passed 100 tests.
+    (*>) :: Maybe a -> Maybe b -> Maybe b
+      is equivalent to its default implementation 'u Type> v = pure (const id) <*> u <*> v' for "Just an ABC :: (Maybe [Char])" in front of "purely Nothing :: [Char]" [✔]
+        +++ OK, passed 100 tests.
+    (<*) :: Maybe a -> Maybe b -> Maybe a
+      is equivalent to its default implementation 'u <* v = pure const <*> u <*> v' for "purely Nothing :: [Char]" behind "Just an ABC :: (Maybe [Char])" [✔]
+        +++ OK, passed 100 tests.
+Test.Validity.Arbitrary
+  Arbitrary Int
+    arbitrary :: Gen Int
+      only generates valid values [✔]
+        +++ OK, passed 100 tests.
+Test.Validity.Eq
+  Eq (Ratio Integer)
+    (==) :: (Ratio Integer) -> (Ratio Integer) -> Bool
+      is reflexive for "valid (Ratio Integer)"s [✔]
+        +++ OK, passed 100 tests.
+      is symmetric for "valid (Ratio Integer)"s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "valid (Ratio Integer)"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a /= b) for "valid (Ratio Integer)"s [✔]
+        +++ OK, passed 100 tests.
+    (/=) :: (Ratio Integer) -> (Ratio Integer) -> Bool
+      is antireflexive for "valid (Ratio Integer)"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a == b) for "valid (Ratio Integer)"s [✔]
+        +++ OK, passed 100 tests.
+  Eq Int
+    (==) :: Int -> Int -> Bool
+      is reflexive for "valid Int"s [✔]
+        +++ OK, passed 100 tests.
+      is symmetric for "valid Int"s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "valid Int"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a /= b) for "valid Int"s [✔]
+        +++ OK, passed 100 tests.
+    (/=) :: Int -> Int -> Bool
+      is antireflexive for "valid Int"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a == b) for "valid Int"s [✔]
+        +++ OK, passed 100 tests.
+  Eq Int
+    (==) :: Int -> Int -> Bool
+      is reflexive for "arbitrary Int"s [✔]
+        +++ OK, passed 100 tests.
+      is symmetric for "arbitrary Int"s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "arbitrary Int"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a /= b) for "arbitrary Int"s [✔]
+        +++ OK, passed 100 tests.
+    (/=) :: Int -> Int -> Bool
+      is antireflexive for "arbitrary Int"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a == b) for "arbitrary Int"s [✔]
+        +++ OK, passed 100 tests.
+  Eq Int
+    (==) :: Int -> Int -> Bool
+      is reflexive for "even Int"s [✔]
+        +++ OK, passed 100 tests.
+      is symmetric for "even Int"s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "even Int"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a /= b) for "even Int"s [✔]
+        +++ OK, passed 100 tests.
+    (/=) :: Int -> Int -> Bool
+      is antireflexive for "even Int"s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> not $ a == b) for "even Int"s [✔]
+        +++ OK, passed 100 tests.
+  (/=) and (==) don't have opposite semantics [✔]
+Test.Validity.Functor
+  Functor []
+    fmap :: (a -> b) -> [] a -> [] b
+      satisfies the first Fuctor law: 'fmap id == id' for "[] of ints :: [Int]" [✔]
+        +++ OK, passed 100 tests.
+      satisfieds the second Functor law: 'fmap (f . g) == fmap f . fmap g' for "[] of ints :: [Int]" 's given to "increments :: (Int -> Int)" and "scalings :: (Int -> Int)" [✔]
+        +++ OK, passed 100 tests.
+    (<$) :: a -> [] b -> [] a
+      is equivalent to its default implementation for "int :: Int" and "[] of ints :: [Int]" [✔]
+        +++ OK, passed 100 tests.
+  Functor Maybe
+    fmap :: (a -> b) -> Maybe a -> Maybe b
+      satisfies the first Fuctor law: 'fmap id == id' for "Maybe of ints :: (Maybe Int)" [✔]
+        +++ OK, passed 100 tests.
+      satisfieds the second Functor law: 'fmap (f . g) == fmap f . fmap g' for "Maybe of ints :: (Maybe Int)" 's given to "increments :: (Int -> Int)" and "scalings :: (Int -> Int)" [✔]
+        +++ OK, passed 100 tests.
+    (<$) :: a -> Maybe b -> Maybe a
+      is equivalent to its default implementation for "int :: Int" and "Maybe of ints :: (Maybe Int)" [✔]
+        +++ OK, passed 100 tests.
+  Fcks does not satisfy any Functor laws [✔]
+  Functor (Either Int)
+    fmap :: (a -> b) -> (Either Int) a -> (Either Int) b
+      satisfies the first Fuctor law: 'fmap id == id' for "(Either Int) of ints :: (Either Int Int)" [✔]
+        +++ OK, passed 100 tests.
+      satisfieds the second Functor law: 'fmap (f . g) == fmap f . fmap g' for "(Either Int) of ints :: (Either Int Int)" 's given to "increments :: (Int -> Int)" and "scalings :: (Int -> Int)" [✔]
+        +++ OK, passed 100 tests.
+    (<$) :: a -> (Either Int) b -> (Either Int) a
+      is equivalent to its default implementation for "int :: Int" and "(Either Int) of ints :: (Either Int Int)" [✔]
+        +++ OK, passed 100 tests.
+  Functor ((,) Int)
+    fmap :: (a -> b) -> ((,) Int) a -> ((,) Int) b
+      satisfies the first Fuctor law: 'fmap id == id' for "((,) Int) of ints :: (Int,Int)" [✔]
+        +++ OK, passed 100 tests.
+      satisfieds the second Functor law: 'fmap (f . g) == fmap f . fmap g' for "((,) Int) of ints :: (Int,Int)" 's given to "increments :: (Int -> Int)" and "scalings :: (Int -> Int)" [✔]
+        +++ OK, passed 100 tests.
+    (<$) :: a -> ((,) Int) b -> ((,) Int) a
+      is equivalent to its default implementation for "int :: Int" and "((,) Int) of ints :: (Int,Int)" [✔]
+        +++ OK, passed 100 tests.
+  Functor []
+    fmap :: (a -> b) -> [] a -> [] b
+      satisfies the first Fuctor law: 'fmap id == id' for "[] of ints :: [Int]" [✔]
+        +++ OK, passed 100 tests.
+      satisfieds the second Functor law: 'fmap (f . g) == fmap f . fmap g' for "[] of ints :: [Int]" 's given to "increments :: (Int -> Int)" and "scalings :: (Int -> Int)" [✔]
+        +++ OK, passed 100 tests.
+    (<$) :: a -> [] b -> [] a
+      is equivalent to its default implementation for "int :: Int" and "[] of ints :: [Int]" [✔]
+        +++ OK, passed 100 tests.
+  Functor Maybe
+    fmap :: (a -> b) -> Maybe a -> Maybe b
+      satisfies the first Fuctor law: 'fmap id == id' for "Maybe of ints :: (Maybe Int)" [✔]
+        +++ OK, passed 100 tests.
+      satisfieds the second Functor law: 'fmap (f . g) == fmap f . fmap g' for "Maybe of ints :: (Maybe Int)" 's given to "increments :: (Int -> Int)" and "scalings :: (Int -> Int)" [✔]
+        +++ OK, passed 100 tests.
+    (<$) :: a -> Maybe b -> Maybe a
+      is equivalent to its default implementation for "int :: Int" and "Maybe of ints :: (Maybe Int)" [✔]
+        +++ OK, passed 100 tests.
+  Functor []
+    fmap :: (a -> b) -> [] a -> [] b
+      satisfies the first Fuctor law: 'fmap id == id' for "list of fives :: [Int]" [✔]
+        +++ OK, passed 100 tests.
+      satisfieds the second Functor law: 'fmap (f . g) == fmap f . fmap g' for "list of fives :: [Int]" 's given to "increments :: (Int -> Int)" and "scalings :: (Int -> Int)" [✔]
+        +++ OK, passed 100 tests.
+    (<$) :: a -> [] b -> [] a
+      is equivalent to its default implementation for "four :: Int" and "list of fives :: [Int]" [✔]
+        +++ OK, passed 100 tests.
+  Functor Maybe
+    fmap :: (a -> b) -> Maybe a -> Maybe b
+      satisfies the first Fuctor law: 'fmap id == id' for "Just an ABC :: (Maybe [Char])" [✔]
+        +++ OK, passed 100 tests.
+      satisfieds the second Functor law: 'fmap (f . g) == fmap f . fmap g' for "Just an ABC :: (Maybe [Char])" 's given to "prepends :: ([Char] -> [Char])" and "appends :: ([Char] -> [Char])" [✔]
+        +++ OK, passed 100 tests.
+    (<$) :: a -> Maybe b -> Maybe a
+      is equivalent to its default implementation for "ABC :: [Char]" and "Just an ABC :: (Maybe [Char])" [✔]
+        +++ OK, passed 100 tests.
+Test.Validity.GenValidity
+  GenValid (Ratio Integer)
+    genValid   :: Gen (Ratio Integer)
+      only generates valid '(Ratio Integer)'s [✔]
+        +++ OK, passed 100 tests.
+  GenValid (Ratio Integer)
+    genValid   :: Gen (Ratio Integer)
+      only generates valid '(Ratio Integer)'s [✔]
+        +++ OK, passed 100 tests.
+Test.Validity.Monad
+  Monad []
+    return :: a -> [] a and (>>=) :: [] a -> (b -> [] a) -> [] b
+      satisfy the first Monad law: 'return a >>= k = k a' for "int :: Int" and "perturbations using the int :: (Int -> [Int])" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the second Monad law: 'm >>= return = m' for "[] of ints :: [Int]" [✔]
+        +++ OK, passed 100 tests.
+    (>>=) :: [] a -> (b -> [] a) -> [] b
+      satisfies the third Monad law: 'm >>= (x -> k x >>= h) = (m >>= k) >>= h' for "[] of ints :: [Int]" "perturbations using the int :: (Int -> [Int])" and "perturbations using the double the int :: (Int -> [Int])" [✔]
+        +++ OK, passed 100 tests.
+    relation with Applicative []
+      satisfies 'pure = return' for "[] of ints :: [Int]" [✔]
+        +++ OK, passed 100 tests.
+      satisfies '(<*>) = ap' for "[] of additions :: ([Int -> Int])" and "[] of ints :: [Int]" [✔]
+        +++ OK, passed 100 tests.
+      satisfies '(>>) = (*>)' for "[] of ints :: [Int]" and "[] of ints :: [Int]" [✔]
+        +++ OK, passed 100 tests.
+    relation with Functor []
+      satisfies 'fmap f xs = xs >>= return . f' for "increments :: (Int -> Int)" and "[] of ints :: [Int]" [✔]
+        +++ OK, passed 100 tests.
+  Monad Maybe
+    return :: a -> Maybe a and (>>=) :: Maybe a -> (b -> Maybe a) -> Maybe b
+      satisfy the first Monad law: 'return a >>= k = k a' for "int :: Int" and "perturbations using the int :: (Int -> Maybe Int)" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the second Monad law: 'm >>= return = m' for "Maybe of ints :: (Maybe Int)" [✔]
+        +++ OK, passed 100 tests.
+    (>>=) :: Maybe a -> (b -> Maybe a) -> Maybe b
+      satisfies the third Monad law: 'm >>= (x -> k x >>= h) = (m >>= k) >>= h' for "Maybe of ints :: (Maybe Int)" "perturbations using the int :: (Int -> Maybe Int)" and "perturbations using the double the int :: (Int -> Maybe Int)" [✔]
+        +++ OK, passed 100 tests.
+    relation with Applicative Maybe
+      satisfies 'pure = return' for "Maybe of ints :: (Maybe Int)" [✔]
+        +++ OK, passed 100 tests.
+      satisfies '(<*>) = ap' for "Maybe of additions :: (Maybe (Int -> Int))" and "Maybe of ints :: (Maybe Int)" [✔]
+        +++ OK, passed 100 tests.
+      satisfies '(>>) = (*>)' for "Maybe of ints :: (Maybe Int)" and "Maybe of ints :: (Maybe Int)" [✔]
+        +++ OK, passed 100 tests.
+    relation with Functor Maybe
+      satisfies 'fmap f xs = xs >>= return . f' for "increments :: (Int -> Int)" and "Maybe of ints :: (Maybe Int)" [✔]
+        +++ OK, passed 100 tests.
+  Monad (Either Int)
+    return :: a -> (Either Int) a and (>>=) :: (Either Int) a -> (b -> (Either Int) a) -> (Either Int) b
+      satisfy the first Monad law: 'return a >>= k = k a' for "int :: Int" and "perturbations using the int :: (Int -> Either Int Int)" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the second Monad law: 'm >>= return = m' for "(Either Int) of ints :: (Either Int Int)" [✔]
+        +++ OK, passed 100 tests.
+    (>>=) :: (Either Int) a -> (b -> (Either Int) a) -> (Either Int) b
+      satisfies the third Monad law: 'm >>= (x -> k x >>= h) = (m >>= k) >>= h' for "(Either Int) of ints :: (Either Int Int)" "perturbations using the int :: (Int -> Either Int Int)" and "perturbations using the double the int :: (Int -> Either Int Int)" [✔]
+        +++ OK, passed 100 tests.
+    relation with Applicative (Either Int)
+      satisfies 'pure = return' for "(Either Int) of ints :: (Either Int Int)" [✔]
+        +++ OK, passed 100 tests.
+      satisfies '(<*>) = ap' for "(Either Int) of additions :: (Either Int (Int -> Int))" and "(Either Int) of ints :: (Either Int Int)" [✔]
+        +++ OK, passed 100 tests.
+      satisfies '(>>) = (*>)' for "(Either Int) of ints :: (Either Int Int)" and "(Either Int) of ints :: (Either Int Int)" [✔]
+        +++ OK, passed 100 tests.
+    relation with Functor (Either Int)
+      satisfies 'fmap f xs = xs >>= return . f' for "increments :: (Int -> Int)" and "(Either Int) of ints :: (Either Int Int)" [✔]
+        +++ OK, passed 100 tests.
+  Monad []
+    return :: a -> [] a and (>>=) :: [] a -> (b -> [] a) -> [] b
+      satisfy the first Monad law: 'return a >>= k = k a' for "int :: Int" and "perturbations using the int :: (Int -> [Int])" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the second Monad law: 'm >>= return = m' for "[] of ints :: [Int]" [✔]
+        +++ OK, passed 100 tests.
+    (>>=) :: [] a -> (b -> [] a) -> [] b
+      satisfies the third Monad law: 'm >>= (x -> k x >>= h) = (m >>= k) >>= h' for "[] of ints :: [Int]" "perturbations using the int :: (Int -> [Int])" and "perturbations using the double the int :: (Int -> [Int])" [✔]
+        +++ OK, passed 100 tests.
+    relation with Applicative []
+      satisfies 'pure = return' for "[] of ints :: [Int]" [✔]
+        +++ OK, passed 100 tests.
+      satisfies '(<*>) = ap' for "[] of additions :: ([Int -> Int])" and "[] of ints :: [Int]" [✔]
+        +++ OK, passed 100 tests.
+      satisfies '(>>) = (*>)' for "[] of ints :: [Int]" and "[] of ints :: [Int]" [✔]
+        +++ OK, passed 100 tests.
+    relation with Functor []
+      satisfies 'fmap f xs = xs >>= return . f' for "increments :: (Int -> Int)" and "[] of ints :: [Int]" [✔]
+        +++ OK, passed 100 tests.
+  Monad Maybe
+    return :: a -> Maybe a and (>>=) :: Maybe a -> (b -> Maybe a) -> Maybe b
+      satisfy the first Monad law: 'return a >>= k = k a' for "int :: Int" and "perturbations using the int :: (Int -> Maybe Int)" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the second Monad law: 'm >>= return = m' for "Maybe of ints :: (Maybe Int)" [✔]
+        +++ OK, passed 100 tests.
+    (>>=) :: Maybe a -> (b -> Maybe a) -> Maybe b
+      satisfies the third Monad law: 'm >>= (x -> k x >>= h) = (m >>= k) >>= h' for "Maybe of ints :: (Maybe Int)" "perturbations using the int :: (Int -> Maybe Int)" and "perturbations using the double the int :: (Int -> Maybe Int)" [✔]
+        +++ OK, passed 100 tests.
+    relation with Applicative Maybe
+      satisfies 'pure = return' for "Maybe of ints :: (Maybe Int)" [✔]
+        +++ OK, passed 100 tests.
+      satisfies '(<*>) = ap' for "Maybe of additions :: (Maybe (Int -> Int))" and "Maybe of ints :: (Maybe Int)" [✔]
+        +++ OK, passed 100 tests.
+      satisfies '(>>) = (*>)' for "Maybe of ints :: (Maybe Int)" and "Maybe of ints :: (Maybe Int)" [✔]
+        +++ OK, passed 100 tests.
+    relation with Functor Maybe
+      satisfies 'fmap f xs = xs >>= return . f' for "increments :: (Int -> Int)" and "Maybe of ints :: (Maybe Int)" [✔]
+        +++ OK, passed 100 tests.
+  Monad []
+    return :: a -> [] a and (>>=) :: [] a -> (b -> [] a) -> [] b
+      satisfy the first Monad law: 'return a >>= k = k a' for "four :: Int" and "singletonisation :: (Int -> [Int])" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the second Monad law: 'm >>= return = m' for "list of fives :: [Int]" [✔]
+        +++ OK, passed 100 tests.
+    (>>=) :: [] a -> (b -> [] a) -> [] b
+      satisfies the third Monad law: 'm >>= (x -> k x >>= h) = (m >>= k) >>= h' for "list of fives :: [Int]" "singletonisation :: (Int -> [Int])" and "singletonisation :: (Int -> [Int])" [✔]
+        +++ OK, passed 100 tests.
+    relation with Applicative []
+      satisfies 'pure = return' for "list of fives :: [Int]" [✔]
+        +++ OK, passed 100 tests.
+      satisfies '(<*>) = ap' for "increment in list :: ([Int -> Int])" and "list of fives :: [Int]" [✔]
+        +++ OK, passed 100 tests.
+      satisfies '(>>) = (*>)' for "list of fives :: [Int]" and "list of sixes :: [Int]" [✔]
+        +++ OK, passed 100 tests.
+    relation with Functor []
+      satisfies 'fmap f xs = xs >>= return . f' for "factorisations :: (Int -> Int)" and "list of fives :: [Int]" [✔]
+        +++ OK, passed 100 tests.
+  Monad Maybe
+    return :: a -> Maybe a and (>>=) :: Maybe a -> (b -> Maybe a) -> Maybe b
+      satisfy the first Monad law: 'return a >>= k = k a' for "ABC :: [Char]" and "justisation :: ([Char] -> Maybe [Char])" [✔]
+        +++ OK, passed 100 tests.
+      satisfy the second Monad law: 'm >>= return = m' for "Just an ABC :: (Maybe [Char])" [✔]
+        +++ OK, passed 100 tests.
+    (>>=) :: Maybe a -> (b -> Maybe a) -> Maybe b
+      satisfies the third Monad law: 'm >>= (x -> k x >>= h) = (m >>= k) >>= h' for "Just an ABC :: (Maybe [Char])" "justisation :: ([Char] -> Maybe [Char])" and "justisation :: ([Char] -> Maybe [Char])" [✔]
+        +++ OK, passed 100 tests.
+    relation with Applicative Maybe
+      satisfies 'pure = return' for "Just an ABC :: (Maybe [Char])" [✔]
+        +++ OK, passed 100 tests.
+      satisfies '(<*>) = ap' for "append 'a' in Just :: (Maybe ([Char] -> [Char]))" and "Just an ABC :: (Maybe [Char])" [✔]
+        +++ OK, passed 100 tests.
+      satisfies '(>>) = (*>)' for "Just an ABC :: (Maybe [Char])" and "Just an ABC :: (Maybe [Char])" [✔]
+        +++ OK, passed 100 tests.
+    relation with Functor Maybe
+      satisfies 'fmap f xs = xs >>= return . f' for "appends :: ([Char] -> [Char])" and "Just an ABC :: (Maybe [Char])" [✔]
+        +++ OK, passed 100 tests.
+Test.Validity.Monoid
+  Monoid ([Ratio Integer])
+    mempty :: ([Ratio Integer])
+      is the identity for mappend :: ([Ratio Integer]) -> ([Ratio Integer]) -> ([Ratio Integer]) for "valid :: ([Ratio Integer])" [✔]
+        +++ OK, passed 100 tests.
+    mappend :: ([Ratio Integer]) -> ([Ratio Integer]) -> ([Ratio Integer])
+      is an associative operation for "valid :: (([Ratio Integer],[Ratio Integer],[Ratio Integer]))" [✔]
+        +++ OK, passed 100 tests.
+    mconcat :: [([Ratio Integer])] -> ([Ratio Integer])
+      is equivalent to its default implementation for "valid :: ([[Ratio Integer]])" [✔]
+        +++ OK, passed 100 tests.
+  Monoid [Int]
+    mempty :: [Int]
+      is the identity for mappend :: [Int] -> [Int] -> [Int] for "valid :: [Int]" [✔]
+        +++ OK, passed 100 tests.
+    mappend :: [Int] -> [Int] -> [Int]
+      is an associative operation for "valid :: ([Int],[Int],[Int])" [✔]
+        +++ OK, passed 100 tests.
+    mconcat :: [[Int]] -> [Int]
+      is equivalent to its default implementation for "valid :: [[Int]]" [✔]
+        +++ OK, passed 100 tests.
+  Monoid [Int]
+    mempty :: [Int]
+      is the identity for mappend :: [Int] -> [Int] -> [Int] for "arbitrary :: [Int]" [✔]
+        +++ OK, passed 100 tests.
+    mappend :: [Int] -> [Int] -> [Int]
+      is an associative operation for "arbitrary :: ([Int],[Int],[Int])" [✔]
+        +++ OK, passed 100 tests.
+    mconcat :: [[Int]] -> [Int]
+      is equivalent to its default implementation for "arbitrary :: [[Int]]" [✔]
+        +++ OK, passed 100 tests.
+  Monoid [Char]
+    mempty :: [Char]
+      is the identity for mappend :: [Char] -> [Char] -> [Char] for "singleton list of 'a' :: [Char]" [✔]
+        +++ OK, passed 100 tests.
+    mappend :: [Char] -> [Char] -> [Char]
+      is an associative operation for "singleton list of 'a' :: ([Char],[Char],[Char])" [✔]
+        +++ OK, passed 100 tests.
+    mconcat :: [[Char]] -> [Char]
+      is equivalent to its default implementation for "singleton list of 'a' :: [[Char]]" [✔]
+        +++ OK, passed 100 tests.
+Test.Validity.Ord
+  Ord (Ratio Integer)
+    (<=) :: (Ratio Integer) -> (Ratio Integer) -> Bool
+      is reflexive for "valid (Ratio Integer)"'s [✔]
+        +++ OK, passed 100 tests.
+      is antisymmetric for "valid (Ratio Integer)"'s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "valid (Ratio Integer)"'s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> compare a b /= GT) for "valid (Ratio Integer)"'s [✔]
+        +++ OK, passed 100 tests.
+    (>=) :: (Ratio Integer) -> (Ratio Integer) -> Bool
+      is reflexive for "valid (Ratio Integer)"'s [✔]
+        +++ OK, passed 100 tests.
+      is antisymmetric for "valid (Ratio Integer)"'s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "valid (Ratio Integer)"'s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> compare a b /= LT) for "valid (Ratio Integer)"'s [✔]
+        +++ OK, passed 100 tests.
+    (<) :: (Ratio Integer) -> (Ratio Integer) -> Bool
+      is antireflexive for "valid (Ratio Integer)"'s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "valid (Ratio Integer)"'s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> compare a b == LT) for "valid (Ratio Integer)"'s [✔]
+        +++ OK, passed 100 tests.
+    (>) :: (Ratio Integer) -> (Ratio Integer) -> Bool
+      is antireflexive for "valid (Ratio Integer)"'s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "valid (Ratio Integer)"'s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> compare a b == GT) for "valid (Ratio Integer)"'s [✔]
+        +++ OK, passed 100 tests.
+    "min :: (Ratio Integer -> Ratio Integer -> Ratio Integer)"
+      is equivalent to (\a b -> if a <= b then a else b) for "valid (Ratio Integer)"'s [✔]
+        +++ OK, passed 100 tests.
+    "max :: (Ratio Integer -> Ratio Integer -> Ratio Integer)"
+      is equivalent to (\a b -> if a >= b then a else b) for "valid (Ratio Integer)"'s [✔]
+        +++ OK, passed 100 tests.
+  NaN >= NaN is False [✔]
+  Ord Int
+    (<=) :: Int -> Int -> Bool
+      is reflexive for "valid Int"'s [✔]
+        +++ OK, passed 100 tests.
+      is antisymmetric for "valid Int"'s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "valid Int"'s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> compare a b /= GT) for "valid Int"'s [✔]
+        +++ OK, passed 100 tests.
+    (>=) :: Int -> Int -> Bool
+      is reflexive for "valid Int"'s [✔]
+        +++ OK, passed 100 tests.
+      is antisymmetric for "valid Int"'s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "valid Int"'s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> compare a b /= LT) for "valid Int"'s [✔]
+        +++ OK, passed 100 tests.
+    (<) :: Int -> Int -> Bool
+      is antireflexive for "valid Int"'s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "valid Int"'s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> compare a b == LT) for "valid Int"'s [✔]
+        +++ OK, passed 100 tests.
+    (>) :: Int -> Int -> Bool
+      is antireflexive for "valid Int"'s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "valid Int"'s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> compare a b == GT) for "valid Int"'s [✔]
+        +++ OK, passed 100 tests.
+    "min :: (Int -> Int -> Int)"
+      is equivalent to (\a b -> if a <= b then a else b) for "valid Int"'s [✔]
+        +++ OK, passed 100 tests.
+    "max :: (Int -> Int -> Int)"
+      is equivalent to (\a b -> if a >= b then a else b) for "valid Int"'s [✔]
+        +++ OK, passed 100 tests.
+  Ord Int
+    (<=) :: Int -> Int -> Bool
+      is reflexive for "arbitrary Int"'s [✔]
+        +++ OK, passed 100 tests.
+      is antisymmetric for "arbitrary Int"'s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "arbitrary Int"'s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> compare a b /= GT) for "arbitrary Int"'s [✔]
+        +++ OK, passed 100 tests.
+    (>=) :: Int -> Int -> Bool
+      is reflexive for "arbitrary Int"'s [✔]
+        +++ OK, passed 100 tests.
+      is antisymmetric for "arbitrary Int"'s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "arbitrary Int"'s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> compare a b /= LT) for "arbitrary Int"'s [✔]
+        +++ OK, passed 100 tests.
+    (<) :: Int -> Int -> Bool
+      is antireflexive for "arbitrary Int"'s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "arbitrary Int"'s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> compare a b == LT) for "arbitrary Int"'s [✔]
+        +++ OK, passed 100 tests.
+    (>) :: Int -> Int -> Bool
+      is antireflexive for "arbitrary Int"'s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "arbitrary Int"'s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> compare a b == GT) for "arbitrary Int"'s [✔]
+        +++ OK, passed 100 tests.
+    "min :: (Int -> Int -> Int)"
+      is equivalent to (\a b -> if a <= b then a else b) for "arbitrary Int"'s [✔]
+        +++ OK, passed 100 tests.
+    "max :: (Int -> Int -> Int)"
+      is equivalent to (\a b -> if a >= b then a else b) for "arbitrary Int"'s [✔]
+        +++ OK, passed 100 tests.
+  Ord Int
+    (<=) :: Int -> Int -> Bool
+      is reflexive for "even Int"'s [✔]
+        +++ OK, passed 100 tests.
+      is antisymmetric for "even Int"'s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "even Int"'s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> compare a b /= GT) for "even Int"'s [✔]
+        +++ OK, passed 100 tests.
+    (>=) :: Int -> Int -> Bool
+      is reflexive for "even Int"'s [✔]
+        +++ OK, passed 100 tests.
+      is antisymmetric for "even Int"'s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "even Int"'s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> compare a b /= LT) for "even Int"'s [✔]
+        +++ OK, passed 100 tests.
+    (<) :: Int -> Int -> Bool
+      is antireflexive for "even Int"'s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "even Int"'s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> compare a b == LT) for "even Int"'s [✔]
+        +++ OK, passed 100 tests.
+    (>) :: Int -> Int -> Bool
+      is antireflexive for "even Int"'s [✔]
+        +++ OK, passed 100 tests.
+      is transitive for "even Int"'s [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to (\a b -> compare a b == GT) for "even Int"'s [✔]
+        +++ OK, passed 100 tests.
+    "min :: (Int -> Int -> Int)"
+      is equivalent to (\a b -> if a <= b then a else b) for "even Int"'s [✔]
+        +++ OK, passed 100 tests.
+    "max :: (Int -> Int -> Int)"
+      is equivalent to (\a b -> if a >= b then a else b) for "even Int"'s [✔]
+        +++ OK, passed 100 tests.
+Test.Validity.Show
+  Show (Ratio Integer) and Read (Ratio Integer)
+    are implemented such that read . show == id for valid values [✔]
+      +++ OK, passed 100 tests.
+  Show Int and Read Int
+    are implemented such that read . show == id for valid values [✔]
+      +++ OK, passed 100 tests.
+  Show (Ratio Integer) and Read (Ratio Integer)
+    are implemented such that read . show == id for arbitrary values [✔]
+      +++ OK, passed 100 tests.
+  Show Int and Read Int
+    are implemented such that read . show == id for even values [✔]
+      +++ OK, passed 100 tests.
+  show and read don't have the correct semantics [✔]
+Test.Validity.Shrinking
+  shrinkValid :: (Ratio Int8 -> [Ratio Int8])
+    preserves validity [✔]
+      +++ OK, passed 100 tests.
+    never shrinks to itself for valid values [✔]
+      +++ OK, passed 100 tests.
+  shrinkValid :: (Int -> [Int])
+    preserves validity [✔]
+      +++ OK, passed 100 tests.
+    never shrinks to itself for valid values [✔]
+      +++ OK, passed 100 tests.
+  shrinkValidPreservesValidOnGenValid
+    Ordering [✔]
+      +++ OK, passed 100 tests.
+    [Ordering] [✔]
+      +++ OK, passed 100 tests.
+  shrinkValidPreservesValidOnGenValid
+    Ordering [✔]
+      +++ OK, passed 100 tests.
+    [Ordering] [✔]
+      +++ OK, passed 100 tests.
+  shrinkValidDoesNotShrinkToItself
+    Int [✔]
+      +++ OK, passed 100 tests.
+    [Int] [✔]
+      +++ OK, passed 100 tests.
+  shrinkValidDoesNotShrinkToItself
+    Ordering [✔]
+      +++ OK, passed 100 tests.
+    [Ordering] [✔]
+      +++ OK, passed 100 tests.
+
+Finished in 0.1802 seconds
+245 examples, 0 failures
+Test suite genvalidity-hspec-test: PASS
+Test suite logged to:
+/tmp/workdir-genvalidity-hspec/genvalidity-hspec-1.0.0.3/dist-newstyle/build/x86_64-linux/ghc-9.6.6/genvalidity-hspec-1.0.0.3/t/genvalidity-hspec-test/test/genvalidity-hspec-1.0.0.3-genvalidity-hspec-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

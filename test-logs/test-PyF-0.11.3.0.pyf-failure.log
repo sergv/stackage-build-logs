@@ -1,0 +1,98 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - PyF-0.11.3.0 (test:pyf-failure) (ephemeral targets)
+Preprocessing test suite 'pyf-failure' for PyF-0.11.3.0...
+Building test suite 'pyf-failure' for PyF-0.11.3.0...
+Running 1 test suites...
+Test suite pyf-failure: RUNNING...
+
+error reporting
+  string
+    integral / fractional qualifiers
+      "{hello:f}" [✔]
+      "{hello:d}" [✔]
+      "{hello:e}" [✔]
+      "{hello:b}" [✔]
+      "{hello:E}" [✔]
+      "{hello:G}" [✔]
+      "{hello:g}" [✔]
+      "{hello:%}" [✔]
+      "{hello:x}" [✔]
+      "{hello:X}" [✔]
+      "{hello:o}" [✔]
+    padding center
+      "{hello:=100s}" [✔]
+      "{hello:=100}" [✔]
+    grouping
+      "{hello:_s}" [✔]
+      "{hello:,s}" [✔]
+    sign
+      "{hello:+s}" [✔]
+      "{hello: s}" [✔]
+      "{hello:-s}" [✔]
+  number with precision
+    "{truncate number:.3d}" [✔]
+    "{truncate number:.3o}" [✔]
+    "{truncate number:.3b}" [✔]
+    "{truncate number:.3x}" [✔]
+  floats
+    "{number:o}" [✔]
+    "{number:b}" [✔]
+    "{number:x}" [✔]
+    "{number:X}" [✔]
+    "{number:d}" [✔]
+  not specified
+    "{truncate number:.3}" [‐]
+      # PENDING: No reason given
+    "{hello:#}" [‐]
+      # PENDING: No reason given
+    "{hello:+}" [‐]
+      # PENDING: No reason given
+    "{hello: }" [‐]
+      # PENDING: No reason given
+    "{hello:-}" [‐]
+      # PENDING: No reason given
+    "{hello:_}" [‐]
+      # PENDING: No reason given
+    "{hello:,}" [‐]
+      # PENDING: No reason given
+  multiples lines
+    "hello\n\n\n{pi:l}" [✔]
+  on haskell expression parsing
+    single line
+      "{1 + - / lalalal}" [✔]
+    empty expression
+      "{}" [✔]
+    sub expression
+      simple failure
+        "{pi:.{/}}" [✔]
+      empty failure
+        "{pi:.{}}" [✔]
+    multiples lines
+      "hello\n    {\nlet a = 5\n    b = 10\nin 1 + - / lalalal}" [✔]
+  non-doubled delimiters
+    "hello } world" [✔]
+    "hello { world" [✔]
+  lexical errors
+    single line
+      "foo\\Pbar" [✔]
+    multiple line
+      "foo\nbli\\Pbar" [✔]
+  Wrong type
+    "{True}" [✔]
+    "{True:f}" [✔]
+    "{True:d}" [✔]
+  Missing variables
+    "Hello {name}" [✔]
+    "Hello {length name}" [✔]
+    "Hello {pi:.{precision}}" [✔]
+    "Hello {pi:.{truncate number + precision}}" [✔]
+    "Hello {pi:.{precision}}" [✔]
+    "Hello {pi:{width}}" [✔]
+
+Finished in 38.9936 seconds
+53 examples, 0 failures, 7 pending
+Test suite pyf-failure: PASS
+Test suite logged to:
+/tmp/workdir-PyF/PyF-0.11.3.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/PyF-0.11.3.0/t/pyf-failure/test/PyF-0.11.3.0-pyf-failure.log
+1 of 1 test suites (1 of 1 test cases) passed.

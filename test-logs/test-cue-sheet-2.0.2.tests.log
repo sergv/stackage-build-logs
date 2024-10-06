@@ -1,0 +1,89 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - cue-sheet-2.0.2 (test:tests) (ephemeral targets)
+Preprocessing test suite 'tests' for cue-sheet-2.0.2...
+Building test suite 'tests' for cue-sheet-2.0.2...
+Running 1 test suites...
+Test suite tests: RUNNING...
+
+Text.CueSheet.Parser
+  parseCueSheet
+    correctly deals with whitespace [✔]
+    parses commands case-insensitively [✔]
+    handles comments properly [✔]
+    at least one file should be declared [✔]
+    at least one track should be declared [✔]
+    at least one non-zero index should be declared [✔]
+    parses a normal CUE file without issues [✔]
+    rejects invalid catalog number [✔]
+    rejects invalid CUE text [✔]
+    detects and reports tracks that appear out of order [✔]
+    rejects invalid ISRC values [✔]
+    rejects invalid number of seconds [✔]
+    rejects invalid number of frames [✔]
+    detects and reports indices that appear out of order [✔]
+    rejects duplicate CATALOG command [✔]
+    rejects duplicate CDTEXTFILE command [✔]
+    rejects duplicate PERFORMER command [✔]
+    rejects duplicate TITLE command [✔]
+    rejects duplicate SONGWRITER command [✔]
+    rejects duplicate FLAGS command (in track) [✔]
+    rejects duplicate ISRC command (in track) [✔]
+    rejects duplicate PERFORMER command (in track) [✔]
+    rejects duplicate TITLE command (in track) [✔]
+    rejects duplicate SONGWRITER command (in track) [✔]
+    rejects duplicate PREGAP command (in track) [✔]
+    rejects duplicate POSTGAP command (in track) [✔]
+Text.CueSheet.Render
+  renderCueSheet
+    doesn't ever produce trailing whitespace [✔]
+      +++ OK, passed 100 tests.
+    always ends with the specified new line sequence [✔]
+      +++ OK, passed 100 tests.
+    doesn't look too bad [✔]
+    produces content that can be correctly parsed back [✔]
+      +++ OK, passed 100 tests.
+Text.CueSheet.Types
+  fromMmSsFf
+    if number of seconds is greater than 59
+      throws the correct exception [✔]
+        +++ OK, passed 100 tests.
+    if number of frames is greater than 74
+      throws the correct exception [✔]
+        +++ OK, passed 100 tests.
+    if all input values are valid
+      produces the correct result [✔]
+    showMmSsFf
+      works correctly [✔]
+    mkMcn
+      when input value is a valid MCN
+        returns the MCN all right [✔]
+          +++ OK, passed 100 tests.
+      when input value is invalid
+        throws the correct exception [✔]
+    mkCueText
+      when input value is a valid CUE text
+        returns the CueText all right [✔]
+          +++ OK, passed 100 tests.
+      when input value is invalid
+        when it's too short
+          throws the correct exception [✔]
+        when it's too long
+          throws the correct exception [✔]
+        when it contains the " character
+          throws the correct exception [✔]
+        when it contains the newline character
+          throws the correct exception [✔]
+    mkIsrc
+      when input value is a valid ISRC
+        returns the ISRC all right [✔]
+          +++ OK, passed 100 tests.
+      when input value is invalid
+        throws the correct exception [✔]
+
+Finished in 0.3375 seconds
+43 examples, 0 failures
+Test suite tests: PASS
+Test suite logged to:
+/tmp/workdir-cue-sheet/cue-sheet-2.0.2/dist-newstyle/build/x86_64-linux/ghc-9.6.6/cue-sheet-2.0.2/t/tests/test/cue-sheet-2.0.2-tests.log
+1 of 1 test suites (1 of 1 test cases) passed.

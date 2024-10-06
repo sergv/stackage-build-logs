@@ -1,0 +1,113 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - system-filepath-0.4.14 (lib:system-filepath, test:filesystem_path_tests) (first run)
+[1 of 2] Compiling Main             ( /tmp/workdir-system-filepath/system-filepath-0.4.14/dist-newstyle/build/x86_64-linux/ghc-9.6.6/system-filepath-0.4.14/setup/setup.hs, /tmp/workdir-system-filepath/system-filepath-0.4.14/dist-newstyle/build/x86_64-linux/ghc-9.6.6/system-filepath-0.4.14/setup/Main.o )
+
+/tmp/workdir-system-filepath/system-filepath-0.4.14/dist-newstyle/build/x86_64-linux/ghc-9.6.6/system-filepath-0.4.14/setup/setup.hs:7:1: warning: [GHC-94817] [-Wtabs]
+    Tab character found here, and in 9 further locations.
+    Suggested fix: Please use spaces instead.
+  |
+7 |         hooks = Simple.simpleUserHooks
+  | ^^^^^^^^
+[2 of 2] Linking /tmp/workdir-system-filepath/system-filepath-0.4.14/dist-newstyle/build/x86_64-linux/ghc-9.6.6/system-filepath-0.4.14/setup/setup
+Configuring system-filepath-0.4.14...
+Preprocessing library for system-filepath-0.4.14..
+Building library for system-filepath-0.4.14..
+[1 of 4] Compiling Filesystem.Path.Internal
+
+lib/Filesystem/Path/Internal.hs:17:1: warning: [-Wunused-imports]
+    The qualified import of ‘Control.Exception’ is redundant
+      except perhaps to import instances from ‘Control.Exception’
+    To import instances alone, use: import Control.Exception()
+   |
+17 | import qualified Control.Exception as Exc
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+lib/Filesystem/Path/Internal.hs:26:1: warning: [-Wunused-imports]
+    The import of ‘Data.Text.Encoding.Error’ is redundant
+      except perhaps to import instances from ‘Data.Text.Encoding.Error’
+    To import instances alone, use: import Data.Text.Encoding.Error()
+   |
+26 | import           Data.Text.Encoding.Error (UnicodeException)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+lib/Filesystem/Path/Internal.hs:39:1: warning: [GHC-94817] [-Wtabs]
+    Tab character found here, and in 170 further locations.
+    Suggested fix: Please use spaces instead.
+   |
+39 |         = RootPosix
+   | ^^^^^^^^
+[2 of 4] Compiling Filesystem.Path
+
+lib/Filesystem/Path.hs:17:1: warning: [GHC-94817] [-Wtabs]
+    Tab character found here, and in 264 further locations.
+    Suggested fix: Please use spaces instead.
+   |
+17 |         ( FilePath
+   | ^^^^^^^^
+
+lib/Filesystem/Path.hs:74:9: warning: [-Wnoncanonical-monoid-instances]
+    Noncanonical ‘mappend’ definition detected
+    in the instance declaration for ‘Monoid FilePath’.
+    ‘mappend’ will eventually be removed in favour of ‘(<>)’
+    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+   |
+74 |         mappend = append
+   |         ^^^^^^^^^^^^^^^^
+[3 of 4] Compiling Filesystem.Path.Rules
+
+lib/Filesystem/Path/Rules.hs:10:1: warning: [GHC-94817] [-Wtabs]
+    Tab character found here, and in 291 further locations.
+    Suggested fix: Please use spaces instead.
+   |
+10 |         ( Rules
+   | ^^^^^^^^
+[4 of 4] Compiling Filesystem.Path.CurrentOS
+
+lib/Filesystem/Path/CurrentOS.hs:18:1: warning: [GHC-94817] [-Wtabs]
+    Tab character found here, and in 23 further locations.
+    Suggested fix: Please use spaces instead.
+   |
+18 |         ( module Filesystem.Path
+   | ^^^^^^^^
+Preprocessing test suite 'filesystem_path_tests' for system-filepath-0.4.14..
+Building test suite 'filesystem_path_tests' for system-filepath-0.4.14..
+[1 of 1] Compiling Main
+
+tests/FilesystemPathTests.hs:26:1: warning: [GHC-94817] [-Wtabs]
+    Tab character found here, and in 561 further locations.
+    Suggested fix: Please use spaces instead.
+   |
+26 |         -- Basic properties
+   | ^^^^^^^^
+
+tests/FilesystemPathTests.hs:295:13: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘stripPrefix’ shadows the existing binding
+      imported from ‘Filesystem.Path’ at tests/FilesystemPathTests.hs:17:62-72
+    |
+295 |         let stripPrefix x y = fmap (toChar8) (P.stripPrefix (fromChar8 x) (fromChar8 y))
+    |             ^^^^^^^^^^^
+
+tests/FilesystemPathTests.hs:388:13: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘chars’ shadows the existing binding
+      bound at tests/FilesystemPathTests.hs:383:13
+    |
+388 |         let chars = "/a/\xEE\xBC\x80/b"
+    |             ^^^^^
+
+tests/FilesystemPathTests.hs:389:13: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘path’ shadows the existing binding
+      bound at tests/FilesystemPathTests.hs:384:13
+    |
+389 |         let path = fromChar8 chars
+    |             ^^^^
+
+tests/FilesystemPathTests.hs:663:17: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘label’ shadows the existing binding
+      imported from ‘Test.QuickCheck’ at tests/FilesystemPathTests.hs:14:1-50
+      (and originally defined in ‘Test.QuickCheck.Property’)
+    |
+663 |                 label <- frequency [(1, return Nothing), (9, fmap Just upperChar)]
+    |                 ^^^^^
+[2 of 2] Linking /tmp/workdir-system-filepath/system-filepath-0.4.14/dist-newstyle/build/x86_64-linux/ghc-9.6.6/system-filepath-0.4.14/build/filesystem_path_tests/filesystem_path_tests

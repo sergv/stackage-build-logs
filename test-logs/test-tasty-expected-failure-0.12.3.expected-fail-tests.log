@@ -1,0 +1,41 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - tasty-expected-failure-0.12.3 (test:expected-fail-tests) (ephemeral targets)
+Preprocessing test suite 'expected-fail-tests' for tasty-expected-failure-0.12.3...
+Building test suite 'expected-fail-tests' for tasty-expected-failure-0.12.3...
+Running 1 test suites...
+Test suite expected-fail-tests: RUNNING...
+Expected Failures
+  clearly good:                  OK
+  clearly bad:                   FAIL (expected)
+    tests/TestExpectedFails.hs:17:
+    expected: 2
+     but got: 3 (expected failure)
+  two wrongs make a right:       OK (unexpected) (expected)
+     (unexpected success) (expected failure)
+  throws failure:                FAIL (expected)
+    Exception: user error (bad) (expected failure)
+  throws error:                  FAIL (expected)
+    Exception: also bad
+    CallStack (from HasCallStack):
+      error, called at tests/TestExpectedFails.hs:25:44 in tasty-expected-failure-0.12.3-inplace-expected-fail-tests:Main (expected failure)
+  takes too long:                TIMEOUT (expected) (1.00s)
+    Timed out after 1s (expected failure)
+  hello:                         FAIL (expected)
+    Exception: not golden
+    CallStack (from HasCallStack):
+      error, called at tests/TestExpectedFails.hs:29:64 in tasty-expected-failure-0.12.3-inplace-expected-fail-tests:Main (expected failure)
+  this is expected to fail:      FAIL (expected)
+    tests/TestExpectedFails.hs:33:
+    expected: ""
+     but got: "Hello, world!" (expected failure)
+  this is also expected to fail: FAIL (expected)
+    Exception: Prelude.undefined
+    CallStack (from HasCallStack):
+      undefined, called at tests/TestExpectedFails.hs:49:26 in tasty-expected-failure-0.12.3-inplace-expected-fail-tests:Main (expected failure)
+
+All 9 tests passed (1.00s)
+Test suite expected-fail-tests: PASS
+Test suite logged to:
+/tmp/workdir-tasty-expected-failure/tasty-expected-failure-0.12.3/dist-newstyle/build/x86_64-linux/ghc-9.6.6/tasty-expected-failure-0.12.3/t/expected-fail-tests/test/tasty-expected-failure-0.12.3-expected-fail-tests.log
+1 of 1 test suites (1 of 1 test cases) passed.

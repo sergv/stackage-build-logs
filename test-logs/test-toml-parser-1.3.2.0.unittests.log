@@ -1,0 +1,173 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - toml-parser-1.3.2.0 (test:unittests) (ephemeral targets)
+Preprocessing test suite 'unittests' for toml-parser-1.3.2.0...
+Building test suite 'unittests' for toml-parser-1.3.2.0...
+Running 1 test suites...
+Test suite unittests: RUNNING...
+
+Decode
+  handles fruit example [✔]
+  encodes correctly [✔]
+  generates warnings for unused keys [✔]
+  handles missing key errors [✔]
+  handles parse errors while decoding [✔]
+DerivingVia
+  supports toValue [✔]
+  supports toTable [✔]
+  supports fromValue [✔]
+  converts from arrays positionally [✔]
+  converts to arrays positionally [✔]
+FromValue
+  handles one reqKey [✔]
+  handles one optKey [✔]
+  handles one missing optKey [✔]
+  handles one missing reqKey [✔]
+  handles one mismatched reqKey [✔]
+  handles one mismatched optKey [✔]
+  handles concurrent errors [✔]
+  handles concurrent value mismatch [✔]
+  doesn't emit an error for empty [✔]
+  matches single characters [✔]
+  rejections non-single characters [✔]
+  collects warnings in table matching [✔]
+  offers helpful messages when no keys match [✔]
+  generates an error message on an empty pickKey [✔]
+HieDemo
+  parses this project's hie.toml [✔]
+  has focused error messages [✔]
+  detects unusd keys [✔]
+  parses things using components [✔]
+  handles the none case [✔]
+Lexer
+  handles special cased control character [✔]
+  recommends escapes for control characters (1) [✔]
+  recommends escapes for control characters (2) [✔]
+  handles unexpected '}' [✔]
+  handles unexpected '{' [✔]
+  accepts tabs [✔]
+  computes columns correctly with tabs [✔]
+  detects non-scalars in strings [✔]
+  catches unclosed [ [✔]
+  catches unclosed { [✔]
+  catches unclosed " [✔]
+  catches unclosed """ [✔]
+  catches unclosed ' [✔]
+  catches unclosed ' [✔]
+  catches unclosed ''' [✔]
+  handles escapes at the end of input [✔]
+  handles invalid escapes [✔]
+Pretty
+  renders example 1 [✔]
+  renders example 2 [✔]
+  renders example lists [✔]
+  renders empty tables [✔]
+  renders empty tables in array of tables [✔]
+  renders multiple tables [✔]
+  renders escapes in strings [✔]
+  renders multiline strings [✔]
+  renders floats [✔]
+  renders special floats [✔]
+  renders empty documents [✔]
+  renders dates and time [✔]
+  renders quoted keys [✔]
+  renders inline tables [✔]
+  factors out unique table prefixes in leaf tables [✔]
+Toml
+  comment
+    ignores comments [✔]
+  key/value pair
+    supports the most basic assignments [✔]
+    requires a value after equals [✔]
+    requires newlines between assignments [✔]
+  keys
+    allows bare keys [✔]
+    allows quoted keys [✔]
+    allows dotted keys [✔]
+    prevents duplicate keys [✔]
+    prevents duplicate keys even between bare and quoted [✔]
+    allows out of order definitions [✔]
+    allows numeric bare keys [✔]
+    allows keys that look like other values [✔]
+  string
+    parses escapes [✔]
+    strips the initial newline from multiline strings [✔]
+    strips whitespace with a trailing escape [✔]
+    allows quotes inside multiline quoted strings [✔]
+    disallows triple quotes inside a multiline string [✔]
+    ignores escapes in literal strings [✔]
+    handles multiline literal strings [✔]
+    parses all the other escapes [✔]
+    rejects out of range unicode escapes [✔]
+    handles unexpected end of line [✔]
+  integer
+    parses literals correctly [✔]
+  handles leading zeros gracefully [✔]
+  float
+    parses floats [✔]
+    parses nan correctly [✔]
+    parses huge floats without great delays [✔]
+  boolean
+    parses boolean literals [✔]
+  offset date-time
+    parses offset date times [✔]
+  local date-time
+    parses local date-times [✔]
+    catches invalid date-times [✔]
+  local date
+    parses dates [✔]
+  local time
+    parses times [✔]
+  array
+    parses array examples [✔]
+    handles newlines and comments [✔]
+    disambiguates double brackets from array tables [✔]
+  table
+    allows empty tables [✔]
+    parses simple tables [✔]
+    allows quoted keys [✔]
+    allows whitespace around keys [✔]
+    allows supertables to be defined after subtables [✔]
+    prevents using a [table] to open a table defined with dotted keys [✔]
+    can add subtables [✔]
+  inline table
+    parses inline tables [✔]
+    prevents altering inline tables with dotted keys [✔]
+    prevents using inline tables to add keys to existing tables [✔]
+    checks that inline keys aren't reassigned [✔]
+    checks that inline keys don't overlap with implicit inline tables [✔]
+    checks for overwrites from other inline tables [✔]
+    checks for overlaps of other inline tables [✔]
+  array of tables
+    supports array of tables syntax [✔]
+    handles subtables under array of tables [✔]
+    prevents redefining a supertable with an array of tables [✔]
+    prevents redefining an inline array [✔]
+  corner cases
+    stays open [✔]
+    stays closed [✔]
+    super tables of array tables preserve array tables [✔]
+    super tables of array tables preserve array tables [✔]
+    detects conflicting inline keys [✔]
+    handles merging dotted inline table keys [✔]
+    disallows overwriting assignments with tables [✔]
+    handles super super tables [✔]
+    You can dot into open supertables [✔]
+    dotted tables close previously open tables [✔]
+    dotted tables can't assign through closed tables! [✔]
+    super tables can't add new subtables to array tables via dotted keys [✔]
+    the previous example preserves closeness [✔]
+    defining a supertable closes the supertable [✔]
+    prevents redefining an array of tables [✔]
+    quotes table names in semantic errors [✔]
+ToValue
+  converts characters as singleton strings [✔]
+  converts strings normally [✔]
+  converts lists [✔]
+
+Finished in 0.0051 seconds
+134 examples, 0 failures
+Test suite unittests: PASS
+Test suite logged to:
+/tmp/workdir-toml-parser/toml-parser-1.3.2.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/toml-parser-1.3.2.0/t/unittests/test/toml-parser-1.3.2.0-unittests.log
+1 of 1 test suites (1 of 1 test cases) passed.

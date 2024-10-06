@@ -1,0 +1,141 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - numeric-quest-0.2.0.2 (lib:numeric-quest) (first run)
+Warning: numeric-quest.cabal:40:21: version operators used. To use version
+operators the package needs to specify at least 'cabal-version: >= 1.8'.
+Warning: numeric-quest.cabal:36:21: version operators used. To use version
+operators the package needs to specify at least 'cabal-version: >= 1.8'.
+Warning: numeric-quest.cabal:37:19: version operators used. To use version
+operators the package needs to specify at least 'cabal-version: >= 1.8'.
+Warning: numeric-quest.cabal:33:32: version operators used. To use version
+operators the package needs to specify at least 'cabal-version: >= 1.8'.
+Configuring numeric-quest-0.2.0.2...
+Preprocessing library for numeric-quest-0.2.0.2...
+Building library for numeric-quest-0.2.0.2...
+[1 of 8] Compiling Fraction
+[2 of 8] Compiling Orthogonals
+
+Orthogonals.lhs:325:12: warning: [GHC-06201] [-Wmissing-methods]
+    • No explicit implementation for
+        ‘norm’
+    • In the instance declaration for ‘Scalar (Ratio a)’
+    |
+325 | > instance (Integral a) => Scalar (Ratio a) where
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Orthogonals.lhs:1615:13: warning: [GHC-62161] [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In an equation for ‘solve_row’:
+        Patterns of type ‘[p]’, ‘p’, ‘[p]’ not matched: [] _ _
+     |
+1615 | >           solve_row (v:vs) n x
+     |             ^^^^^^^^^^^^^^^^^^^^...
+[3 of 8] Compiling LinearAlgorithms
+[4 of 8] Compiling EigensystemNum
+
+EigensystemNum.hs:36:1: warning: [GHC-94817] [-Wtabs]
+    Tab character found here, and in one further location.
+    Suggested fix: Please use spaces instead.
+   |
+36 |                        else limit tol (x1:xs)
+   | ^^^^^^^^
+[5 of 8] Compiling QuantumVector
+
+QuantumVector.lhs:376:3: warning: [GHC-62161] [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In an equation for ‘toBra’:
+        Patterns of type ‘Ket a’ not matched: KetZero
+    |
+376 | > toBra (Ket k)           = Bra k
+    |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+QuantumVector.lhs:491:3: warning: [GHC-62161] [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In an equation for ‘toKet’:
+        Patterns of type ‘Bra a’ not matched:
+            BraZero
+            _ :<| BraZero
+            _ :<| _ :<| _
+            _ :<| _ :<+ _
+    |
+491 | > toKet (Bra k)            = Ket k
+    |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+QuantumVector.lhs:762:3: warning: [GHC-62161] [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In an equation for ‘label’:
+        Patterns of type ‘t’, ‘Ket t1’ not matched:
+            _ KetZero
+            _ (_ :|> _)
+            _ (_ :+> _)
+    |
+762 | > label i (Ket x) = Ket (i, x)
+    |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+QuantumVector.lhs:775:3: warning: [GHC-62161] [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In an equation for ‘rot’:
+        Patterns of type ‘Ket Int’ not matched:
+            KetZero
+            _ :|> _
+            _ :+> _
+    |
+775 | > rot (Ket 1) = normalize $ Ket (1,1) +> Ket (1,2)
+    |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+QuantumVector.lhs:871:3: warning: [GHC-62161] [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In an equation for ‘label'’:
+        Patterns of type ‘Ket (a, b)’ not matched:
+            KetZero
+            _ :|> _
+            _ :+> _
+    |
+871 | > label' (Ket (_, x)) = Ket x
+    |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+QuantumVector.lhs:912:3: warning: [GHC-62161] [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In an equation for ‘rot'’:
+        Patterns of type ‘Ket (Int, Int)’ not matched:
+            KetZero
+            _ :|> _
+            _ :+> _
+    |
+912 | > rot' (Ket (1,1)) = normalize $ Ket 1 +> Ket 2
+    |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+[6 of 8] Compiling Eigensystem
+
+Eigensystem.hs:84:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘eigenpairs’
+   |
+84 | eigenpairs n es a
+   | ^^^^^^^^^^
+
+Eigensystem.hs:145:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘matrixA’
+    |
+145 | matrixA
+    | ^^^^^^^
+
+Eigensystem.hs:156:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘opA’
+    |
+156 | opA     = operator basisA matrixA
+    | ^^^
+
+Eigensystem.hs:159:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘basisA’
+    |
+159 | basisA  = map Ket [1..5::Int] -- or: map Ket "abcde", etc.
+    | ^^^^^^
+[7 of 8] Compiling Roots
+[8 of 8] Compiling Tensor
+
+Tensor.lhs:559:3: warning: [GHC-62161] [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In an equation for ‘contract’:
+        Patterns of type ‘Int’, ‘Int’, ‘Tensor’ not matched: _ _ _
+    |
+559 | > contract m n a
+    |   ^^^^^^^^^^^^^^...

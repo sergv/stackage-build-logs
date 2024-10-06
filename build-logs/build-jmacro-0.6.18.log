@@ -1,0 +1,522 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - jmacro-0.6.18 (lib) (first run)
+ - jmacro-0.6.18 (exe:jmacro) (first run)
+Configuring library for jmacro-0.6.18...
+Preprocessing library for jmacro-0.6.18...
+Building library for jmacro-0.6.18...
+
+Language/Javascript/JMacro/Base.hs:1:60: warning: [-Wdeprecated-flags]
+    -XOverlappingInstances is deprecated: instead use per-instance pragmas OVERLAPPING/OVERLAPPABLE/OVERLAPS
+  |
+1 | {-# LANGUAGE CPP, FlexibleInstances, UndecidableInstances, OverlappingInstances, OverloadedStrings, TypeFamilies, RankNTypes, DeriveDataTypeable, StandaloneDeriving, FlexibleContexts, TypeSynonymInstances, ScopedTypeVariables, GADTs
+  |                                                            ^^^^^^^^^^^^^^^^^^^^
+
+Language/Javascript/JMacro/QQ.hs:1:55: warning: [-Wdeprecated-flags]
+    -XOverlappingInstances is deprecated: instead use per-instance pragmas OVERLAPPING/OVERLAPPABLE/OVERLAPS
+  |
+1 | {-# LANGUAGE FlexibleInstances, UndecidableInstances, OverlappingInstances, TypeFamilies, TemplateHaskell, QuasiQuotes, RankNTypes, GADTs #-}
+  |                                                       ^^^^^^^^^^^^^^^^^^^^
+[1 of 8] Compiling Language.Javascript.JMacro.ParseTH
+[2 of 8] Compiling Language.Javascript.JMacro.Types
+
+Language/Javascript/JMacro/Types.hs:6:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+  |
+6 | import Control.Applicative hiding ((<|>))
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Language/Javascript/JMacro/Types.hs:82:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘parseConstrainedType’
+   |
+82 | parseConstrainedType s = runParser constrainedType (0,M.empty) "" s
+   | ^^^^^^^^^^^^^^^^^^^^
+[3 of 8] Compiling Language.Javascript.JMacro.Base
+
+Language/Javascript/JMacro/Base.hs:39:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+39 | import Control.Applicative hiding (empty)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Language/Javascript/JMacro/Base.hs:41:27: warning: [-Wunused-imports]
+    The import of ‘return’ from module ‘Control.Monad’ is redundant
+   |
+41 | import Control.Monad (ap, return, liftM2)
+   |                           ^^^^^^
+
+Language/Javascript/JMacro/Base.hs:51:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+51 | import Data.Monoid(Monoid, mappend, mempty)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Language/Javascript/JMacro/Base.hs:52:1: warning: [-Wunused-imports]
+    The import of ‘Data.Semigroup’ is redundant
+      except perhaps to import instances from ‘Data.Semigroup’
+    To import instances alone, use: import Data.Semigroup()
+   |
+52 | import Data.Semigroup(Semigroup(..))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Language/Javascript/JMacro/Base.hs:156:5: warning: [-Wnoncanonical-monoid-instances]
+    Noncanonical ‘mappend’ definition detected
+    in the instance declaration for ‘Monoid JStat’.
+    ‘mappend’ will eventually be removed in favour of ‘(<>)’
+    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    |
+156 |     mappend x y = x <> y
+    |     ^^^^^^^^^^^^^^^^^^^^
+
+Language/Javascript/JMacro/Base.hs:232:5: warning: [GHC-53633] [-Woverlapping-patterns]
+    Pattern match is redundant
+    In an equation for ‘jfromGADT’: jfromGADT _ = ...
+    |
+232 |     jfromGADT _ = error "impossible"
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Language/Javascript/JMacro/Base.hs:237:5: warning: [GHC-53633] [-Woverlapping-patterns]
+    Pattern match is redundant
+    In an equation for ‘jfromGADT’: jfromGADT _ = ...
+    |
+237 |     jfromGADT _ = error "impossible"
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Language/Javascript/JMacro/Base.hs:242:5: warning: [GHC-53633] [-Woverlapping-patterns]
+    Pattern match is redundant
+    In an equation for ‘jfromGADT’: jfromGADT _ = ...
+    |
+242 |     jfromGADT _ = error "impossible"
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Language/Javascript/JMacro/Base.hs:247:5: warning: [GHC-53633] [-Woverlapping-patterns]
+    Pattern match is redundant
+    In an equation for ‘jfromGADT’: jfromGADT _ = ...
+    |
+247 |     jfromGADT _ = error "impossible"
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Language/Javascript/JMacro/Base.hs:347:22: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+347 | instance (ToSat a, b ~ JExpr) => ToSat (b -> a) where
+    |                      ^
+
+Language/Javascript/JMacro/Base.hs:424:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘(a, [Ident])’ not matched: (_, [])
+    |
+424 |         (x', (StrI l : _)) = runState (runIdentSupply $ jsSaturate_ x) is
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Language/Javascript/JMacro/Base.hs:603:26: warning: [-Wunused-matches]
+    Defined but not used: ‘cs’
+    |
+603 |     jsToDoc (JTRigid ref cs) = text "[" <> ppRef ref <> text "]"
+    |                          ^^
+[4 of 8] Compiling Language.Javascript.JMacro.TypeCheck
+
+Language/Javascript/JMacro/TypeCheck.hs:8:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+  |
+8 | import Control.Applicative
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Language/Javascript/JMacro/TypeCheck.hs:98:43: warning: [-Wunused-matches]
+    Defined but not used: ‘cxt’
+   |
+98 |     show (TCS env vars stack frozen varCt cxt) =
+   |                                           ^^^
+
+Language/Javascript/JMacro/TypeCheck.hs:111:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative TMonad’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+111 |     pure = return
+    |     ^^^^^^^^^^^^^
+
+Language/Javascript/JMacro/TypeCheck.hs:173:19: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘x’ shadows the existing binding
+      bound at Language/Javascript/JMacro/TypeCheck.hs:136:19
+    |
+173 |       intsToNames x = fmap (either id go) x
+    |                   ^
+
+Language/Javascript/JMacro/TypeCheck.hs:174:17: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘go’ shadows the existing binding
+      bound at Language/Javascript/JMacro/TypeCheck.hs:141:7
+    |
+174 |           where go i = mkUnique (S.fromList $ lefts $ M.elems x) (int2Name i) 0
+    |                 ^^
+
+Language/Javascript/JMacro/TypeCheck.hs:286:23: warning: [-Wunused-matches]
+    Defined but not used: ‘vr’
+    |
+286 | lookupConstraintsList vr@(_,ref) = do
+    |                       ^^
+
+Language/Javascript/JMacro/TypeCheck.hs:329:28: warning: [-Wunused-matches]
+    Defined but not used: ‘vars’
+    |
+329 |                   JTForall vars t -> normalizeConstraints . (c : ) =<< lookupConstraintsList vr
+    |                            ^^^^
+
+Language/Javascript/JMacro/TypeCheck.hs:329:33: warning: [-Wunused-matches]
+    Defined but not used: ‘t’
+    |
+329 |                   JTForall vars t -> normalizeConstraints . (c : ) =<< lookupConstraintsList vr
+    |                                 ^
+
+Language/Javascript/JMacro/TypeCheck.hs:329:33: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘t’ shadows the existing binding
+      bound at Language/Javascript/JMacro/TypeCheck.hs:326:12
+    |
+329 |                   JTForall vars t -> normalizeConstraints . (c : ) =<< lookupConstraintsList vr
+    |                                 ^
+
+Language/Javascript/JMacro/TypeCheck.hs:335:28: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘t’ shadows the existing binding
+      bound at Language/Javascript/JMacro/TypeCheck.hs:326:12
+    |
+335 |                   JTRecord t m -> occursCheck ref t >>
+    |                            ^
+
+Language/Javascript/JMacro/TypeCheck.hs:364:28: warning: [-Wunused-matches]
+    Defined but not used: ‘vars’
+    |
+364 |                   JTForall vars t -> normalizeConstraints . (c : ) =<< lookupConstraintsList vr
+    |                            ^^^^
+
+Language/Javascript/JMacro/TypeCheck.hs:364:33: warning: [-Wunused-matches]
+    Defined but not used: ‘t’
+    |
+364 |                   JTForall vars t -> normalizeConstraints . (c : ) =<< lookupConstraintsList vr
+    |                                 ^
+
+Language/Javascript/JMacro/TypeCheck.hs:364:33: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘t’ shadows the existing binding
+      bound at Language/Javascript/JMacro/TypeCheck.hs:361:14
+    |
+364 |                   JTForall vars t -> normalizeConstraints . (c : ) =<< lookupConstraintsList vr
+    |                                 ^
+
+Language/Javascript/JMacro/TypeCheck.hs:370:28: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘t’ shadows the existing binding
+      bound at Language/Javascript/JMacro/TypeCheck.hs:361:14
+    |
+370 |                   JTRecord t m -> occursCheck ref t >>
+    |                            ^
+
+Language/Javascript/JMacro/TypeCheck.hs:585:13: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘go’ shadows the existing binding
+      bound at Language/Javascript/JMacro/TypeCheck.hs:547:7
+    |
+585 |             go accum (r:rs)
+    |             ^^
+
+Language/Javascript/JMacro/TypeCheck.hs:594:16: warning: [-Wunused-matches]
+    Defined but not used: ‘i’
+    |
+594 |       findLoop i [] = Nothing
+    |                ^
+
+Language/Javascript/JMacro/TypeCheck.hs:660:24: warning: [-Wunused-matches]
+    Defined but not used: ‘t’
+    |
+660 |           Just (SVType t) -> return Nothing
+    |                        ^
+
+Language/Javascript/JMacro/TypeCheck.hs:663:1: warning: [GHC-38417] [-Wmissing-signatures]
+    Top-level binding with no type signature:
+      resolveType :: JType -> TMonad JType
+    |
+663 | resolveType = resolveTypeGen composOpM1
+    | ^^^^^^^^^^^
+
+Language/Javascript/JMacro/TypeCheck.hs:664:1: warning: [GHC-38417] [-Wmissing-signatures]
+    Top-level binding with no type signature:
+      resolveTypeShallow :: JType -> TMonad JType
+    |
+664 | resolveTypeShallow = resolveTypeGen (const return)
+    | ^^^^^^^^^^^^^^^^^^
+
+Language/Javascript/JMacro/TypeCheck.hs:729:22: warning: [-Wunused-matches]
+    Defined but not used: ‘mbName’
+    |
+729 |       go (JTFree vr@(mbName, ref))
+    |                      ^^^^^^
+
+Language/Javascript/JMacro/TypeCheck.hs:745:10: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘t’ shadows the existing binding
+      bound at Language/Javascript/JMacro/TypeCheck.hs:742:22
+    |
+745 |       go t@(JTRigid (_,ref) _)
+    |          ^
+
+Language/Javascript/JMacro/TypeCheck.hs:759:39: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘xt’ shadows the existing binding
+      bound at Language/Javascript/JMacro/TypeCheck.hs:753:6
+    |
+759 |                                       xt <- prettyType x
+    |                                       ^^
+
+Language/Javascript/JMacro/TypeCheck.hs:760:39: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘yt’ shadows the existing binding
+      bound at Language/Javascript/JMacro/TypeCheck.hs:754:6
+    |
+760 |                                       yt <- prettyType y
+    |                                       ^^
+
+Language/Javascript/JMacro/TypeCheck.hs:776:11: warning: [-Wunused-matches]
+    Defined but not used: ‘yt’
+    |
+776 |     go xt yt@(JTForall vars t) = do
+    |           ^^
+
+Language/Javascript/JMacro/TypeCheck.hs:805:57: warning: [-Wunused-matches]
+    Defined but not used: ‘e’
+    |
+805 |   b <- (mapM_ (<: res) xs >> return True) `catchError` \e -> return False
+    |                                                         ^
+
+Language/Javascript/JMacro/TypeCheck.hs:830:24: warning: [-Wunused-matches]
+    Defined but not used: ‘t’
+    |
+830 |              (JTRecord t m) -> case M.lookup i m of
+    |                        ^
+
+Language/Javascript/JMacro/TypeCheck.hs:838:24: warning: [-Wunused-matches]
+    Defined but not used: ‘e’
+    |
+838 |     typecheck (IdxExpr e e1) = undefined --this is tricky
+    |                        ^
+
+Language/Javascript/JMacro/TypeCheck.hs:838:26: warning: [-Wunused-matches]
+    Defined but not used: ‘e1’
+    |
+838 |     typecheck (IdxExpr e e1) = undefined --this is tricky
+    |                          ^^
+
+Language/Javascript/JMacro/TypeCheck.hs:866:24: warning: [-Wunused-matches]
+    Defined but not used: ‘e’
+    |
+866 |     typecheck (NewExpr e) = undefined --yipe
+    |                        ^
+
+Language/Javascript/JMacro/TypeCheck.hs:932:5: warning: [GHC-62161] [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In an equation for ‘typecheck’:
+        Patterns of type ‘JStat’ not matched:
+            LabelStat _ _
+            ContinueStat _
+    |
+932 |     typecheck (DeclStat ident Nothing) = newVarDecl ident >> return JTStat
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+Language/Javascript/JMacro/TypeCheck.hs:942:27: warning: [-Wunused-matches]
+    Defined but not used: ‘e’
+    |
+942 |     typecheck (SwitchStat e xs d) = undefined -- check e, unify e with firsts, check seconds, take glb of seconds
+    |                           ^
+
+Language/Javascript/JMacro/TypeCheck.hs:942:29: warning: [-Wunused-matches]
+    Defined but not used: ‘xs’
+    |
+942 |     typecheck (SwitchStat e xs d) = undefined -- check e, unify e with firsts, check seconds, take glb of seconds
+    |                             ^^
+
+Language/Javascript/JMacro/TypeCheck.hs:942:32: warning: [-Wunused-matches]
+    Defined but not used: ‘d’
+    |
+942 |     typecheck (SwitchStat e xs d) = undefined -- check e, unify e with firsts, check seconds, take glb of seconds
+    |                                ^
+[5 of 8] Compiling Language.Javascript.JMacro.QQ
+
+Language/Javascript/JMacro/QQ.hs:17:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+17 | import Control.Applicative hiding ((<|>),many,optional)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Language/Javascript/JMacro/QQ.hs:19:1: warning: [-Wunused-imports]
+    The import of ‘ap, return’ from module ‘Control.Monad’ is redundant
+   |
+19 | import Control.Monad (ap, return, liftM2, liftM3, when, mzero, guard)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Language/Javascript/JMacro/QQ.hs:20:1: warning: [-Wunused-imports]
+    The import of ‘Control.Monad.State.Strict’ is redundant
+      except perhaps to import instances from ‘Control.Monad.State.Strict’
+    To import instances alone, use: import Control.Monad.State.Strict()
+   |
+20 | import Control.Monad.State.Strict
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Language/Javascript/JMacro/QQ.hs:25:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+25 | import Data.Monoid
+   | ^^^^^^^^^^^^^^^^^^
+
+Language/Javascript/JMacro/QQ.hs:57:10: warning: [GHC-20125] [-Wmissing-fields]
+    • Fields of ‘QuasiQuoter’ not initialised:
+        quoteType :: String -> TH.Q TH.Type
+        quoteDec :: String -> TH.Q [TH.Dec]
+    • In the expression:
+        QuasiQuoter {quoteExp = quoteJMExp, quotePat = quoteJMPat}
+      In an equation for ‘jmacro’:
+          jmacro = QuasiQuoter {quoteExp = quoteJMExp, quotePat = quoteJMPat}
+   |
+57 | jmacro = QuasiQuoter {quoteExp = quoteJMExp, quotePat = quoteJMPat}
+   |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Language/Javascript/JMacro/QQ.hs:61:11: warning: [GHC-20125] [-Wmissing-fields]
+    • Fields of ‘QuasiQuoter’ not initialised:
+        quoteType :: String -> TH.Q TH.Type
+        quoteDec :: String -> TH.Q [TH.Dec]
+    • In the expression:
+        QuasiQuoter {quoteExp = quoteJMExpE, quotePat = quoteJMPatE}
+      In an equation for ‘jmacroE’:
+          jmacroE
+            = QuasiQuoter {quoteExp = quoteJMExpE, quotePat = quoteJMPatE}
+   |
+61 | jmacroE = QuasiQuoter {quoteExp = quoteJMExpE, quotePat = quoteJMPatE}
+   |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[6 of 8] Compiling Language.Javascript.JMacro.Prelude
+[7 of 8] Compiling Language.Javascript.JMacro
+[8 of 8] Compiling Language.Javascript.JMacro.Util
+Configuring executable 'jmacro' for jmacro-0.6.18...
+Preprocessing executable 'jmacro' for jmacro-0.6.18...
+Building executable 'jmacro' for jmacro-0.6.18...
+
+Language/Javascript/JMacro/Base.hs:1:60: warning: [-Wdeprecated-flags]
+    -XOverlappingInstances is deprecated: instead use per-instance pragmas OVERLAPPING/OVERLAPPABLE/OVERLAPS
+  |
+1 | {-# LANGUAGE CPP, FlexibleInstances, UndecidableInstances, OverlappingInstances, OverloadedStrings, TypeFamilies, RankNTypes, DeriveDataTypeable, StandaloneDeriving, FlexibleContexts, TypeSynonymInstances, ScopedTypeVariables, GADTs
+  |                                                            ^^^^^^^^^^^^^^^^^^^^
+
+Language/Javascript/JMacro/QQ.hs:1:55: warning: [-Wdeprecated-flags]
+    -XOverlappingInstances is deprecated: instead use per-instance pragmas OVERLAPPING/OVERLAPPABLE/OVERLAPS
+  |
+1 | {-# LANGUAGE FlexibleInstances, UndecidableInstances, OverlappingInstances, TypeFamilies, TemplateHaskell, QuasiQuotes, RankNTypes, GADTs #-}
+  |                                                       ^^^^^^^^^^^^^^^^^^^^
+[1 of 9] Compiling Language.Javascript.JMacro.ParseTH
+[2 of 9] Compiling Language.Javascript.JMacro.Types
+[3 of 9] Compiling Language.Javascript.JMacro.Base
+
+Language/Javascript/JMacro/Base.hs:156:5: warning: [-Wnoncanonical-monoid-instances]
+    Noncanonical ‘mappend’ definition detected
+    in the instance declaration for ‘Monoid JStat’.
+    ‘mappend’ will eventually be removed in favour of ‘(<>)’
+    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    |
+156 |     mappend x y = x <> y
+    |     ^^^^^^^^^^^^^^^^^^^^
+
+Language/Javascript/JMacro/Base.hs:232:5: warning: [GHC-53633] [-Woverlapping-patterns]
+    Pattern match is redundant
+    In an equation for ‘jfromGADT’: jfromGADT _ = ...
+    |
+232 |     jfromGADT _ = error "impossible"
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Language/Javascript/JMacro/Base.hs:237:5: warning: [GHC-53633] [-Woverlapping-patterns]
+    Pattern match is redundant
+    In an equation for ‘jfromGADT’: jfromGADT _ = ...
+    |
+237 |     jfromGADT _ = error "impossible"
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Language/Javascript/JMacro/Base.hs:242:5: warning: [GHC-53633] [-Woverlapping-patterns]
+    Pattern match is redundant
+    In an equation for ‘jfromGADT’: jfromGADT _ = ...
+    |
+242 |     jfromGADT _ = error "impossible"
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Language/Javascript/JMacro/Base.hs:247:5: warning: [GHC-53633] [-Woverlapping-patterns]
+    Pattern match is redundant
+    In an equation for ‘jfromGADT’: jfromGADT _ = ...
+    |
+247 |     jfromGADT _ = error "impossible"
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Language/Javascript/JMacro/Base.hs:347:22: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+347 | instance (ToSat a, b ~ JExpr) => ToSat (b -> a) where
+    |                      ^
+[4 of 9] Compiling Language.Javascript.JMacro.TypeCheck
+
+Language/Javascript/JMacro/TypeCheck.hs:111:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative TMonad’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+111 |     pure = return
+    |     ^^^^^^^^^^^^^
+[5 of 9] Compiling Language.Javascript.JMacro.QQ
+
+Language/Javascript/JMacro/QQ.hs:57:10: warning: [GHC-20125] [-Wmissing-fields]
+    • Fields of ‘QuasiQuoter’ not initialised:
+        quoteType :: String -> TH.Q TH.Type
+        quoteDec :: String -> TH.Q [TH.Dec]
+    • In the expression:
+        QuasiQuoter {quoteExp = quoteJMExp, quotePat = quoteJMPat}
+      In an equation for ‘jmacro’:
+          jmacro = QuasiQuoter {quoteExp = quoteJMExp, quotePat = quoteJMPat}
+   |
+57 | jmacro = QuasiQuoter {quoteExp = quoteJMExp, quotePat = quoteJMPat}
+   |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Language/Javascript/JMacro/QQ.hs:61:11: warning: [GHC-20125] [-Wmissing-fields]
+    • Fields of ‘QuasiQuoter’ not initialised:
+        quoteType :: String -> TH.Q TH.Type
+        quoteDec :: String -> TH.Q [TH.Dec]
+    • In the expression:
+        QuasiQuoter {quoteExp = quoteJMExpE, quotePat = quoteJMPatE}
+      In an equation for ‘jmacroE’:
+          jmacroE
+            = QuasiQuoter {quoteExp = quoteJMExpE, quotePat = quoteJMPatE}
+   |
+61 | jmacroE = QuasiQuoter {quoteExp = quoteJMExpE, quotePat = quoteJMPatE}
+   |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[6 of 9] Compiling Language.Javascript.JMacro.Prelude
+[7 of 9] Compiling Language.Javascript.JMacro
+[8 of 9] Compiling Language.Javascript.JMacro.Util
+[9 of 9] Compiling Main
+
+Language/Javascript/JMacro/Base.hs:1:60: warning: [-Wdeprecated-flags]
+    -XOverlappingInstances is deprecated: instead use per-instance pragmas OVERLAPPING/OVERLAPPABLE/OVERLAPS
+  |
+1 | {-# LANGUAGE CPP, FlexibleInstances, UndecidableInstances, OverlappingInstances, OverloadedStrings, TypeFamilies, RankNTypes, DeriveDataTypeable, StandaloneDeriving, FlexibleContexts, TypeSynonymInstances, ScopedTypeVariables, GADTs
+  |                                                            ^^^^^^^^^^^^^^^^^^^^
+
+Language/Javascript/JMacro/QQ.hs:1:55: warning: [-Wdeprecated-flags]
+    -XOverlappingInstances is deprecated: instead use per-instance pragmas OVERLAPPING/OVERLAPPABLE/OVERLAPS
+  |
+1 | {-# LANGUAGE FlexibleInstances, UndecidableInstances, OverlappingInstances, TypeFamilies, TemplateHaskell, QuasiQuotes, RankNTypes, GADTs #-}
+  |                                                       ^^^^^^^^^^^^^^^^^^^^
+[10 of 10] Linking /tmp/workdir-jmacro/jmacro-0.6.18/dist-newstyle/build/x86_64-linux/ghc-9.6.6/jmacro-0.6.18/x/jmacro/build/jmacro/jmacro

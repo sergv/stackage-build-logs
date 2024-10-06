@@ -1,0 +1,62 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - hs-GeoIP-0.3 (lib:hs-GeoIP) (first run)
+Warning: hs-GeoIP.cabal:41:19: version operators used. To use version
+operators the package needs to specify at least 'cabal-version: >= 1.8'.
+Configuring hs-GeoIP-0.3...
+Preprocessing library for hs-GeoIP-0.3...
+Building library for hs-GeoIP-0.3...
+[1 of 1] Compiling Data.Geolocation.GeoIP
+
+src/Data/Geolocation/GeoIP.hsc:31:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+31 | import Control.Applicative
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Data/Geolocation/GeoIP.hsc:37:1: warning: [-Wunused-imports]
+    The import of ‘Foreign.Ptr’ is redundant
+      except perhaps to import instances from ‘Foreign.Ptr’
+    To import instances alone, use: import Foreign.Ptr()
+   |
+37 | import Foreign.Ptr 
+   | ^^^^^^^^^^^^^^^^^^
+
+src/Data/Geolocation/GeoIP.hsc:49:25: warning: [-Wunused-top-binds]
+    Defined but not used: ‘unGeoDB’
+   |
+49 | newtype GeoDB = GeoDB { unGeoDB :: ForeignPtr GeoIP }
+   |                         ^^^^^^^
+
+src/Data/Geolocation/GeoIP.hsc:131:42: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘x’ shadows the existing binding
+      bound at src/Data/Geolocation/GeoIP.hsc:127:9
+    |
+131 |     valid = length parts == 4 && foldr (\x acc -> acc && x <= 255) True [a,b,c,d]
+    |                                          ^
+
+src/Data/Geolocation/GeoIP.hsc:132:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[Integer]’ not matched:
+            []
+            [_]
+            [_, _]
+            [_, _, _]
+    |
+132 |     a : b : c : d : _ = map (read . unpack) parts
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Data/Geolocation/GeoIP.hsc:202:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘c_GeoIP_new’
+    |
+202 | foreign import ccall safe "GeoIP.h GeoIP_new"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+src/Data/Geolocation/GeoIP.hsc:232:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘c_GeoIPRecord_delete_funPtr’
+    |
+232 | foreign import ccall safe "GeoIPCity.h &GeoIPRecord_delete"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...

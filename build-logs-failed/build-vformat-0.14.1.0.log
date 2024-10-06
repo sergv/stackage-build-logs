@@ -1,0 +1,43 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - vformat-0.14.1.0 (lib) (first run)
+ - vformat-0.14.1.0 (test:vformat-test) (first run)
+Configuring library for vformat-0.14.1.0...
+Preprocessing library for vformat-0.14.1.0...
+Building library for vformat-0.14.1.0...
+[1 of 8] Compiling Paths_vformat
+[2 of 8] Compiling Text.Format.Error
+[3 of 8] Compiling Text.Format.ArgKey
+[4 of 8] Compiling Text.Format.ArgFmt
+[5 of 8] Compiling Text.Format.Format
+[6 of 8] Compiling Text.Format.Class
+[7 of 8] Compiling Text.Format
+[8 of 8] Compiling Text.Format.TH
+Configuring test suite 'vformat-test' for vformat-0.14.1.0...
+Preprocessing test suite 'vformat-test' for vformat-0.14.1.0...
+Building test suite 'vformat-test' for vformat-0.14.1.0...
+[1 of 2] Compiling Main
+
+test/Main.hs:260:70: error:
+    Ambiguous occurrence ‘showBin’
+    It could refer to
+       either ‘Numeric.showBin’,
+              imported from ‘Numeric’ at test/Main.hs:12:1-64
+           or ‘Main.showBin’, defined at test/Main.hs:186:1
+    |
+260 | formatAlter Bin n = (format "{:#b}" n, (mkSign n "-" "") ++ "0b" ++ (showBin n))
+    |                                                                      ^^^^^^^
+
+test/Main.hs:284:25: error:
+    Ambiguous occurrence ‘showBin’
+    It could refer to
+       either ‘Numeric.showBin’,
+              imported from ‘Numeric’ at test/Main.hs:12:1-64
+           or ‘Main.showBin’, defined at test/Main.hs:186:1
+    |
+284 |     showIt (Just Bin) = showBin . abs
+    |                         ^^^^^^^
+[2 of 2] Compiling Paths_vformat
+Error: [Cabal-7125]
+Failed to build test:vformat-test from vformat-0.14.1.0.
+

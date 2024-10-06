@@ -1,0 +1,58 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - hal-1.0.1 (test:hal-test) (ephemeral targets)
+Preprocessing test suite 'hal-test' for hal-1.0.1...
+Building test suite 'hal-test' for hal-1.0.1...
+Running 1 test suites...
+Test suite hal-test: RUNNING...
+
+Events
+  ApiGateway
+    ProxyRequest
+      properties
+        tripping [✔]
+            ✓ property passed 100 tests.
+    ProxyResponse
+      properties
+        tripping [✔]
+            ✓ property passed 100 tests.
+  EventBridge
+    EventBridge
+      read sample payload [✔]
+      properties
+        EventBridgeEvent tripping [✔]
+            ✓ property passed 100 tests.
+      SSM
+        ParameterStoreChange tripping [✔]
+            ✓ property passed 100 tests.
+  Kafka
+    read MSK payload [✔]
+    read Self-Managed Kafka payload [✔]
+    properties
+      tripping [✔]
+          ✓ property passed 100 tests.
+Event Response Data
+  Works given valid inputs [✔]
+  has clientContext if it was provided [✔]
+  fails to construct the Context if the client context can't be parsed [✔]
+  fails to construct the Context if there are two client context headers [✔]
+  has identity if it was provided [✔]
+  fails to construct the Context if the cognito identity can't be parsed [✔]
+  fails to construct the Context if there are two cognito identity headers [✔]
+  fails to create the context if trace Id is not provided [✔]
+  fails to create the context if trace id has multiple values [✔]
+  fails to create the context if function ARN is not provided [✔]
+  fails to create the context if function ARN has multiple values [✔]
+  fails to create the context if a deadline is not provided [✔]
+  fails to create the context if the deadline has multiple values [✔]
+  fails to create the context if the deadline is not a valid timestamp [✔]
+properties
+  Header.unfoldCase preserves equality [✔]
+      ✓ property passed 100 tests.
+
+Finished in 1.8438 seconds
+23 examples, 0 failures
+Test suite hal-test: PASS
+Test suite logged to:
+/tmp/workdir-hal/hal-1.0.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/hal-1.0.1/t/hal-test/test/hal-1.0.1-hal-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

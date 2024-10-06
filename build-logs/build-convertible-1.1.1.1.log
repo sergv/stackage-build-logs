@@ -1,0 +1,57 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - convertible-1.1.1.1 (lib) (first run)
+ - convertible-1.1.1.1 (test:runtests) (first run)
+Configuring library for convertible-1.1.1.1...
+Preprocessing library for convertible-1.1.1.1...
+Building library for convertible-1.1.1.1...
+
+<no location info>: warning: [GHC-42258] [-Wunused-packages]
+    The following packages were specified via -package or -package-id flags,
+    but were not needed for compilation:
+      - mtl-2.3.1 (exposed by flag -package-id mtl-2.3.1)
+[1 of 9] Compiling Data.Convertible.Base
+[2 of 9] Compiling Data.Convertible.Instances.Map
+[3 of 9] Compiling Data.Convertible.Instances.Text
+
+Data/Convertible/Instances/Text.hs:41:1: warning: [-Wunused-imports]
+    The import of ‘Data.Foldable’ is redundant
+      except perhaps to import instances from ‘Data.Foldable’
+    To import instances alone, use: import Data.Foldable()
+   |
+41 | import Data.Foldable
+   | ^^^^^^^^^^^^^^^^^^^^
+[4 of 9] Compiling Data.Convertible.Utils
+[5 of 9] Compiling Data.Convertible.Instances.Num
+[6 of 9] Compiling Data.Convertible.Instances.Time
+[7 of 9] Compiling Data.Convertible.Instances.C
+[8 of 9] Compiling Data.Convertible.Instances
+[9 of 9] Compiling Data.Convertible
+Configuring test suite 'runtests' for convertible-1.1.1.1...
+Preprocessing test suite 'runtests' for convertible-1.1.1.1...
+Building test suite 'runtests' for convertible-1.1.1.1...
+[1 of 4] Compiling TestMap
+[2 of 4] Compiling TestNum
+[3 of 4] Compiling TestTime
+
+testsrc/TestTime.hs:20:35: warning: [-Wunused-matches]
+    Defined but not used: ‘n’
+   |
+20 |                    r2 <- sized $ \n -> choose (0, 1000000000000 - 1)
+   |                                   ^
+
+testsrc/TestTime.hs:74:33: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘x’ shadows the existing binding
+      bound at testsrc/TestTime.hs:71:14
+   |
+74 |                         of Left x -> Left x
+   |                                 ^
+
+testsrc/TestTime.hs:76:25: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘x’ shadows the existing binding
+      bound at testsrc/TestTime.hs:71:14
+   |
+76 |     where toTOD (ST.TOD x y) = (x, y)
+   |                         ^
+[4 of 4] Compiling Main
+[5 of 5] Linking /tmp/workdir-convertible/convertible-1.1.1.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/convertible-1.1.1.1/t/runtests/build/runtests/runtests

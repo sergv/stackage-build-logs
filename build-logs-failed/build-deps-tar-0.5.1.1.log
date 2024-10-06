@@ -1,0 +1,70 @@
+Resolving dependencies...
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - bytestring-handle-0.1.0.6 (lib) (requires build)
+Starting     bytestring-handle-0.1.0.6 (lib)
+Building     bytestring-handle-0.1.0.6 (lib)
+
+Failed to build bytestring-handle-0.1.0.6.
+Build log (
+/tmp/stackage-work/build-logs/ghc-9.6.6/bytestring-handle-0.1.0.6-62e93f75c5aaaec6dffbd879804552c452edde21ea9b8d9ab94e82d5fcf691c9.log
+):
+Configuring library for bytestring-handle-0.1.0.6...
+Preprocessing library for bytestring-handle-0.1.0.6...
+Building library for bytestring-handle-0.1.0.6...
+[1 of 3] Compiling Data.ByteString.Handle.Read
+
+src/Data/ByteString/Handle/Read.hs:158:35: error: [GHC-83865]
+    • Couldn't match type ‘()’ with ‘Integer’
+      Expected: SeekState -> IO Integer
+        Actual: SeekState -> IO ()
+    • In the second argument of ‘maybe’, namely
+        ‘(writeIORef (read_seek_state rs))’
+      In a stmt of a 'do' block:
+        maybe
+          ioe_seekOutOfRange (writeIORef (read_seek_state rs)) newSeekState
+      In the expression:
+        do size <- getSize rs
+           curSeekState <- readIORef (read_seek_state rs)
+           let newSeekState = ...
+           maybe
+             ioe_seekOutOfRange (writeIORef (read_seek_state rs)) newSeekState
+    |
+158 |         maybe ioe_seekOutOfRange (writeIORef (read_seek_state rs)) newSeekState
+    |                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2 of 3] Compiling Data.ByteString.Handle.Write
+
+src/Data/ByteString/Handle/Write.hs:140:9: error: [GHC-83865]
+    • Couldn't match type ‘()’ with ‘Integer’
+      Expected: IO Integer
+        Actual: IO ()
+    • In a stmt of a 'do' block:
+        modifyIORef (write_size ws) (`max` newSeekPos)
+      In the expression:
+        do curSeekState <- readIORef (write_seek_state ws)
+           newSeekPos <- case seekMode of
+                           AbsoluteSeek -> return seekPos
+                           RelativeSeek -> return $ seek_pos curSeekState + seekPos
+                           SeekFromEnd -> ioException unsupportedOperation
+           when (newSeekPos < 0) $ ioe_seekOutOfRange
+           writeIORef
+             (write_seek_state ws)
+             (SeekState
+                {seek_pos = newSeekPos,
+                 seek_base = error "seek_base needs to be updated"})
+           ....
+      In an equation for ‘seek’:
+          seek ws seekMode seekPos
+            = do curSeekState <- readIORef (write_seek_state ws)
+                 newSeekPos <- case seekMode of
+                                 AbsoluteSeek -> return seekPos
+                                 RelativeSeek -> return $ seek_pos curSeekState + seekPos
+                                 SeekFromEnd -> ioException unsupportedOperation
+                 when (newSeekPos < 0) $ ioe_seekOutOfRange
+                 ....
+    |
+140 |         modifyIORef (write_size ws) (`max` newSeekPos)
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Error: [Cabal-7125]
+Failed to build bytestring-handle-0.1.0.6. See the build log above for details.
+

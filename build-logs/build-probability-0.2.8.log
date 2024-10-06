@@ -1,0 +1,130 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - probability-0.2.8 (lib) (first run)
+Configuring library for probability-0.2.8...
+Preprocessing library for probability-0.2.8...
+Building library for probability-0.2.8...
+[ 1 of 28] Compiling Numeric.Probability.Monad
+[ 2 of 28] Compiling Numeric.Probability.PrintList
+[ 3 of 28] Compiling Numeric.Probability.Shape
+[ 4 of 28] Compiling Numeric.Probability.Show
+[ 5 of 28] Compiling Numeric.Probability.Distribution
+
+src/Numeric/Probability/Distribution.hs:9:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+  |
+9 | import Control.Applicative (Applicative(..))
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Numeric/Probability/Distribution.hs:66:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad (T prob)’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+66 |   return   = certainly
+   |   ^^^^^^^^^^^^^^^^^^^^
+[ 6 of 28] Compiling Numeric.Probability.Example.Profession
+[ 7 of 28] Compiling Numeric.Probability.Example.Dice
+[ 8 of 28] Compiling Numeric.Probability.Example.Diagnosis
+[ 9 of 28] Compiling Numeric.Probability.Example.Boys
+[10 of 28] Compiling Numeric.Probability.Example.NBoys
+[11 of 28] Compiling Numeric.Probability.Example.Alarm
+
+src/Numeric/Probability/Example/Alarm.hs:45:21: warning: [GHC-94817] [-Wtabs]
+    Tab character found here, and in 25 further locations.
+    Suggested fix: Please use spaces instead.
+   |
+45 | data Burglary = B {     burglary :: Bool,
+   |                     ^^^^
+[12 of 28] Compiling Numeric.Probability.Transition
+
+src/Numeric/Probability/Transition.hs:47:33: warning: [GHC-47082] [-Woperator-whitespace-ext-conflict]
+    The prefix use of a ‘$’ would denote an untyped splice
+      were the TemplateHaskell extension enabled.
+    Suggested fix: Add whitespace after the ‘$’.
+   |
+47 | unfold d x = Dist.unfold (fmap ($x) d)
+   |                                 ^
+[13 of 28] Compiling Numeric.Probability.Random
+
+src/Numeric/Probability/Random.hs:10:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+10 | import Control.Applicative (Applicative(..))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Numeric/Probability/Random.hs:23:4: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad T’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+23 |    return x = Cons (return x)
+   |    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[14 of 28] Compiling Numeric.Probability.Trace
+[15 of 28] Compiling Numeric.Probability.Simulation
+[16 of 28] Compiling Numeric.Probability.Percentage
+[17 of 28] Compiling Numeric.Probability.Expectation
+[18 of 28] Compiling Numeric.Probability.Object
+[19 of 28] Compiling Numeric.Probability.Example.Queuing
+
+src/Numeric/Probability/Example/Queuing.hs:65:32: warning: [GHC-94817] [-Wtabs]
+    Tab character found here, and in 20 further locations.
+    Suggested fix: Please use spaces instead.
+   |
+65 | mEvent n 0 ((c,(s,a)):es) q  =        mEvent n a     es (q++[(c,s)])
+   |                                ^
+[20 of 28] Compiling Numeric.Probability.Example.Barber
+
+src/Numeric/Probability/Example/Barber.hs:48:1: warning: [GHC-94817] [-Wtabs]
+    Tab character found here.
+    Suggested fix: Please use spaces instead.
+   |
+48 |         deriving (Eq,Ord,Show)
+   | ^^^^^^^^
+[21 of 28] Compiling Numeric.Probability.Example.Collection
+[22 of 28] Compiling Numeric.Probability.Example.MontyHall
+
+src/Numeric/Probability/Example/MontyHall.hs:103:8: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[Door]’ not matched:
+            []
+            (_:_:_)
+    |
+103 |    let [finalDoor] = doors \\ [chosenDoor, openedDoor]
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[23 of 28] Compiling Numeric.Probability.Example.Kruskal
+
+src/Numeric/Probability/Example/Kruskal.hs:281:15: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction: Patterns of type ‘[Score]’ not matched: []
+    |
+281 |    concatMap (\(p:ps) -> latexMarkedDie p : map latexDie ps) .
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[24 of 28] Compiling Numeric.Probability.Example.DiceAccum
+[25 of 28] Compiling Numeric.Probability.Example.Bayesian
+[26 of 28] Compiling Numeric.Probability.Visualize
+
+src/Numeric/Probability/Visualize.hs:159:1: warning: [GHC-94817] [-Wtabs]
+    Tab character found here, and in five further locations.
+    Suggested fix: Please use spaces instead.
+    |
+159 |         where   t = zip (xs p) (ys p)
+    | ^^^^^^^^
+[27 of 28] Compiling Numeric.Probability.Example.TreeGrowth
+
+src/Numeric/Probability/Example/TreeGrowth.hs:23:1: warning: [GHC-94817] [-Wtabs]
+    Tab character found here, and in two further locations.
+    Suggested fix: Please use spaces instead.
+   |
+23 |             deriving (Ord,Eq,Show)
+   | ^^^^^^^^
+[28 of 28] Compiling Numeric.Probability.Example.Predator

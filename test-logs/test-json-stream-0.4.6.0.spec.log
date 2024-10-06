@@ -1,0 +1,121 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - json-stream-0.4.6.0 (test:spec) (ephemeral targets)
+Preprocessing test suite 'spec' for json-stream-0.4.6.0...
+Building test suite 'spec' for json-stream-0.4.6.0...
+Running 1 test suites...
+Test suite spec: RUNNING...
+
+Parser
+  Basic parsing
+    Parses null values [✔]
+    Parses bool values [✔]
+    Parses string values with special chracters [✔]
+    Parses fractional values with exponent [✔]
+    Parses objects 1 [✔]
+  Object accesors
+    objectWithKey works [✔]
+    objectKeyValues works [✔]
+    yield test 1 [✔]
+    <*> test 1 reverse keys [✔]
+    <> test 1 [✔]
+    <|> returns first items even if second is in previous chunk [✔]
+    <|> returns second item if first does not match [✔]
+    objectOf <|> returns first items even if second is in previous chunk [✔]
+    objectOf <|> returns second item if first does not match [✔]
+    arrayFound generates events [✔]
+    objectFound generates events [✔]
+    objectOf objectFound generates events [✔]
+    Has working byteString parser [✔]
+  Edge cases
+    Correct incremental parsing 1 [✔]
+    Correct incremental parsing 2 [✔]
+    Correct incremental parsing 3 [✔]
+    Correctly skips data [✔]
+    Correctly returns unparsed data 1 [✔]
+    Correctly returns unparsed data 2 [✔]
+    Correctly returns unparsed data 3 [✔]
+    Correctly returns unparsed data 4 [✔]
+    Correctly returns unparsed data 4 [✔]
+    Correctly returns unparsed data 4 [✔]
+    Correctly returns unparsed data 5 [✔]
+    Correctly returns unparsed data 6 [✔]
+    Handles values in interleaving order [✔]
+  Control parser
+    takeI limits number of values [✔]
+    ignores non-match for array [✔]
+    ignores non-match for object [✔]
+    ignores non-match for string [✔]
+    ignores non-match for number [✔]
+    ignores non-match for bool [✔]
+    nullable sets values correctly [✔]
+    matches null values [✔]
+    correctly ignores out-of-bounds values for bounded integer [✔]
+  Tests of previous errors
+    arrayOf (pure True) should return only n*True, not (n+1) [✔]
+    objectWithKey should return only first key with given name [✔]
+    binds correctly convenience operators [✔]
+    objectOf $ binds correctly convenience operators [✔]
+    binds correctly convenience operators 2 [✔]
+    binds correctly .| at the last moment [✔]
+    binds correct .| 2 [✔]
+    objectOf $ binds correctly .| at the last moment [✔]
+    objectOf $ binds correct .| 2 [✔]
+    Parses correctly empty arrays: [✔]
+    Parses correctly runs ignore parser on array: [✔]
+    objectOf $ Parses correctly runs ignore parser on array: [✔]
+    Parses correctly runs ignore parser on array: [✔]
+    Parses correctly handles empty strings when sliced: [✔]
+    Correctly parses safeString when sliced [✔]
+  Compare parsing of strings aeason vs json-stream
+    Parses "{}" the same as aeson [✔]
+    Parses "{ \"v\":\"1\"} " the same as aeson [✔]
+    Parses "{ \"v\":\"1\"\r\n} " the same as aeson [✔]
+    Parses "{ \"v\":1}" the same as aeson [✔]
+    Parses "{ \"v\":\"ab'c\"}" the same as aeson [✔]
+    Parses "{ \"PI\":3.141E-10}" the same as aeson [✔]
+    Parses "{ \"PI\":3.141e-10}" the same as aeson [✔]
+    Parses "{ \"v\":12345123456789} " the same as aeson [✔]
+    Parses "{ \"v\":123456789123456789123456789}" the same as aeson [✔]
+    Parses "[ 1,2,3,4] " the same as aeson [✔]
+    Parses "[ \"1\",\"2\",\"3\",\"4\"] " the same as aeson [✔]
+    Parses "[ { }, { },[]] " the same as aeson [✔]
+    Parses "{ \"v\":\"\\u2000\\u20ff\"} " the same as aeson [✔]
+    Parses "{ \"v\":\"\\u2000\\u20FF\"} " the same as aeson [✔]
+    Parses "{ \"a\":\"hp://foo\"} " the same as aeson [✔]
+    Parses "{ \"a\":null} " the same as aeson [✔]
+    Parses "{ \"a\":true} " the same as aeson [✔]
+    Parses "  { \"a\" : true }   " the same as aeson [✔]
+    Parses "{ \"v\":1.7976931348623157E308} " the same as aeson [✔]
+  Compare benchmark jsons
+    JSONs from benchamark directory are the same [✔]
+Unescape
+  Correctly converts correct data
+    Converts empty string [✔]
+    Converts ascii text [✔]
+    Converts UTF-8 data [✔]
+    Converts backslash chars [✔]
+    Converts surrogate chars [✔]
+  Fails on incorrect JSON backslashing
+    Fails on backslash at end of string [✔]
+    Fails on incorrect backslash char [✔]
+    Fails on incomplete unicode [✔]
+    Fails on incomplete unicode 2 [✔]
+    Fails on unexpected lower surrogate [✔]
+    Fails on uncompleted surrogate [✔]
+    Fails on uncompleted surrogate 2 [✔]
+    Fails on uncompleted surrogate 3 [✔]
+  Fails on incorrect data UTF8
+    Fails on bad utf-8 [✔]
+  It correctly decodes aeson encoded string
++++ OK, passed 10000 tests.
+    QuickCheck with aeson encode - standard UTF8 [✔]
++++ OK, passed 10000 tests.
+    QuickCheck with aeson encode - \u encoded data [✔]
+
+Finished in 0.1825 seconds
+91 examples, 0 failures
+Test suite spec: PASS
+Test suite logged to:
+/tmp/workdir-json-stream/json-stream-0.4.6.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/json-stream-0.4.6.0/t/spec/test/json-stream-0.4.6.0-spec.log
+1 of 1 test suites (1 of 1 test cases) passed.

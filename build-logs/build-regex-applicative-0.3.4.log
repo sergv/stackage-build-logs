@@ -1,0 +1,56 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - regex-applicative-0.3.4 (lib) (first run)
+ - regex-applicative-0.3.4 (test:test-regex-applicative) (first run)
+Configuring library for regex-applicative-0.3.4...
+Preprocessing library for regex-applicative-0.3.4...
+Building library for regex-applicative-0.3.4...
+[1 of 8] Compiling Text.Regex.Applicative.StateQueue
+[2 of 8] Compiling Text.Regex.Applicative.Types
+
+Text/Regex/Applicative/Types.hs:133:16: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+133 | instance (char ~ Char, string ~ String) => IsString (RE char string) where
+    |                ^
+
+Text/Regex/Applicative/Types.hs:133:31: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+133 | instance (char ~ Char, string ~ String) => IsString (RE char string) where
+    |                               ^
+[3 of 8] Compiling Text.Regex.Applicative.Reference
+
+Text/Regex/Applicative/Reference.hs:27:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad (P s)’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+27 |     return x = P $ \s -> [(x, s)]
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Text/Regex/Applicative/Reference.hs:36:5: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative (P s)’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+36 |     pure = return
+   |     ^^^^^^^^^^^^^
+[4 of 8] Compiling Text.Regex.Applicative.Compile
+[5 of 8] Compiling Text.Regex.Applicative.Object
+[6 of 8] Compiling Text.Regex.Applicative.Interface
+[7 of 8] Compiling Text.Regex.Applicative
+[8 of 8] Compiling Text.Regex.Applicative.Common
+Configuring test suite 'test-regex-applicative' for regex-applicative-0.3.4...
+Preprocessing test suite 'test-regex-applicative' for regex-applicative-0.3.4...
+Building test suite 'test-regex-applicative' for regex-applicative-0.3.4...
+[1 of 2] Compiling StateQueue
+[2 of 2] Compiling Main
+[3 of 3] Linking /tmp/workdir-regex-applicative/regex-applicative-0.3.4/dist-newstyle/build/x86_64-linux/ghc-9.6.6/regex-applicative-0.3.4/t/test-regex-applicative/build/test-regex-applicative/test-regex-applicative

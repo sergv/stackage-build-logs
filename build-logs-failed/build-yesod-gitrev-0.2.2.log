@@ -1,0 +1,26 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - yesod-gitrev-0.2.2 (lib) (first run)
+ - yesod-gitrev-0.2.2 (test:examples) (first run)
+Configuring library for yesod-gitrev-0.2.2...
+Preprocessing library for yesod-gitrev-0.2.2...
+Building library for yesod-gitrev-0.2.2...
+[1 of 2] Compiling Yesod.GitRev.Data
+[2 of 2] Compiling Yesod.GitRev
+Configuring test suite 'examples' for yesod-gitrev-0.2.2...
+Preprocessing test suite 'examples' for yesod-gitrev-0.2.2...
+Building test suite 'examples' for yesod-gitrev-0.2.2...
+[1 of 3] Compiling ExampleTH
+[2 of 3] Compiling ExampleMain
+
+examples/ExampleMain.hs:34:28: error: [GHC-87897]
+    • Exception when trying to run compile-time code:
+        GHEGitRunFailed "/tmp/workdir-yesod-gitrev/yesod-gitrev-0.2.2" ["rev-parse","HEAD"] (ExitFailure 128) "HEAD\n" "fatal: ambiguous argument 'HEAD': unknown revision or path not in the working tree.\nUse '--' to separate paths from revisions, like this:\n'git <command> [<revision>...] -- [<file>...]'\n"
+      Code: (gitRev)
+    • In the untyped splice: $(gitRev)
+   |
+34 | main2 = warp 3000 $ Master $(gitRev)
+   |                            ^^^^^^^^^
+Error: [Cabal-7125]
+Failed to build test:examples from yesod-gitrev-0.2.2.
+

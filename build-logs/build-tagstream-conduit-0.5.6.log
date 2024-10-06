@@ -1,0 +1,346 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - tagstream-conduit-0.5.6 (lib) (first run)
+ - tagstream-conduit-0.5.6 (test:test) (first run)
+Configuring library for tagstream-conduit-0.5.6...
+Preprocessing library for tagstream-conduit-0.5.6...
+Building library for tagstream-conduit-0.5.6...
+[1 of 6] Compiling Text.HTML.TagStream.Types
+
+Text/HTML/TagStream/Types.hs:3:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+  |
+3 | import Control.Applicative (pure, (<$>), (<*>))
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Text/HTML/TagStream/Types.hs:5:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+  |
+5 | import Data.Monoid (mappend, mconcat)
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Text/HTML/TagStream/Types.hs:6:1: warning: [-Wunused-imports]
+    The import of ‘Data.Foldable’ is redundant
+      except perhaps to import instances from ‘Data.Foldable’
+    To import instances alone, use: import Data.Foldable()
+  |
+6 | import Data.Foldable (Foldable(foldMap))
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Text/HTML/TagStream/Types.hs:7:1: warning: [-Wunused-imports]
+    The import of ‘Data.Traversable’ is redundant
+      except perhaps to import instances from ‘Data.Traversable’
+    To import instances alone, use: import Data.Traversable()
+  |
+7 | import Data.Traversable (Traversable(traverse), sequenceA)
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2 of 6] Compiling Text.HTML.TagStream.Entities
+
+Text/HTML/TagStream/Entities.hs:15:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+15 | import Data.Monoid
+   | ^^^^^^^^^^^^^^^^^^
+
+Text/HTML/TagStream/Entities.hs:31:19: warning: [GHC-68441] [-Wdeprecations]
+    In the use of type constructor or class ‘Conduit’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use ConduitT directly"
+   |
+31 |                -> Conduit (Token' string) m (Token' string)
+   |                   ^^^^^^^
+
+Text/HTML/TagStream/Entities.hs:36:51: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘=$=’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use .|"
+   |
+36 |     start' (Text t) = (yield t >> yieldWhileText) =$= decodeEntities' dec =$= CL.mapMaybe go
+   |                                                   ^^^
+
+Text/HTML/TagStream/Entities.hs:36:75: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘=$=’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use .|"
+   |
+36 |     start' (Text t) = (yield t >> yieldWhileText) =$= decodeEntities' dec =$= CL.mapMaybe go
+   |                                                                           ^^^
+
+Text/HTML/TagStream/Entities.hs:60:20: warning: [GHC-68441] [-Wdeprecations]
+    In the use of type constructor or class ‘Conduit’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use ConduitT directly"
+   |
+60 |                 -> Conduit string m string
+   |                    ^^^^^^^
+
+Text/HTML/TagStream/Entities.hs:74:30: warning: [GHC-68441] [-Wdeprecations]
+    In the use of type constructor or class ‘Conduit’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use ConduitT directly"
+   |
+74 | yieldWhileText :: Monad m => Conduit (Token' string) m string
+   |                              ^^^^^^^
+[3 of 6] Compiling Text.HTML.TagStream
+[4 of 6] Compiling Text.HTML.TagStream.Utils
+
+Text/HTML/TagStream/Utils.hs:4:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+  |
+4 | import Data.Monoid (Monoid(..))
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[5 of 6] Compiling Text.HTML.TagStream.ByteString
+
+Text/HTML/TagStream/ByteString.hs:17:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+17 | import           Data.Monoid
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Text/HTML/TagStream/ByteString.hs:134:32: warning: [GHC-68441] [-Wdeprecations]
+    In the use of type constructor or class ‘Conduit’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use ConduitT directly"
+    |
+134 | decodeEntitiesBS :: Monad m => Conduit Token m Token
+    |                                ^^^^^^^
+
+Text/HTML/TagStream/ByteString.hs:146:11: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘$=’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use .|"
+    |
+146 |           $= XML.parseBytes def { XML.psDecodeEntities = XML.decodeHtmlEntities }
+    |           ^^
+
+Text/HTML/TagStream/ByteString.hs:147:11: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘$$’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use runConduit and .|"
+    |
+147 |           $$ XML.content
+    |           ^^
+
+Text/HTML/TagStream/ByteString.hs:180:65: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘$$’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use runConduit and .|"
+    |
+180 |     decodeEntitiesBS' tokens = runIdentity $ mapM_ yield tokens $$ decodeEntitiesBS =$ CL.consume
+    |                                                                 ^^
+
+Text/HTML/TagStream/ByteString.hs:180:85: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘=$’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use .|"
+    |
+180 |     decodeEntitiesBS' tokens = runIdentity $ mapM_ yield tokens $$ decodeEntitiesBS =$ CL.consume
+    |                                                                                     ^^
+
+Text/HTML/TagStream/ByteString.hs:235:16: warning: [GHC-68441] [-Wdeprecations]
+    In the use of type constructor or class ‘Conduit’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use ConduitT directly"
+    |
+235 |             => Conduit ByteString m Token
+    |                ^^^^^^^
+
+Text/HTML/TagStream/ByteString.hs:240:18: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘=$=’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use .|"
+    |
+240 |     loop S.empty =$= decodeEntitiesBS
+    |                  ^^^
+[6 of 6] Compiling Text.HTML.TagStream.Text
+
+Text/HTML/TagStream/Text.hs:23:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+23 | import           Data.Monoid (mconcat)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Text/HTML/TagStream/Text.hs:152:34: warning: [GHC-68441] [-Wdeprecations]
+    In the use of type constructor or class ‘Conduit’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use ConduitT directly"
+    |
+152 | decodeEntitiesText :: Monad m => Conduit Token m Token
+    |                                  ^^^^^^^
+
+Text/HTML/TagStream/Text.hs:163:11: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘$=’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use .|"
+    |
+163 |           $= XML.parseTextPos def { XML.psDecodeEntities = XML.decodeHtmlEntities }
+    |           ^^
+
+Text/HTML/TagStream/Text.hs:164:11: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘$=’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use .|"
+    |
+164 |           $= CL.map snd
+    |           ^^
+
+Text/HTML/TagStream/Text.hs:165:11: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘$$’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use runConduit and .|"
+    |
+165 |           $$ XML.content
+    |           ^^
+
+Text/HTML/TagStream/Text.hs:198:67: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘$$’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use runConduit and .|"
+    |
+198 |     decodeEntitiesText' tokens = runIdentity $ mapM_ yield tokens $$ decodeEntitiesText =$ CL.consume
+    |                                                                   ^^
+
+Text/HTML/TagStream/Text.hs:198:89: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘=$’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use .|"
+    |
+198 |     decodeEntitiesText' tokens = runIdentity $ mapM_ yield tokens $$ decodeEntitiesText =$ CL.consume
+    |                                                                                         ^^
+
+Text/HTML/TagStream/Text.hs:252:16: warning: [GHC-68441] [-Wdeprecations]
+    In the use of type constructor or class ‘Conduit’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use ConduitT directly"
+    |
+252 |             => Conduit Text m Token
+    |                ^^^^^^^
+
+Text/HTML/TagStream/Text.hs:257:18: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘=$=’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use .|"
+    |
+257 |     loop T.empty =$= decodeEntitiesText
+    |                  ^^^
+
+Text/HTML/TagStream/Text.hs:279:18: warning: [GHC-68441] [-Wdeprecations]
+    In the use of type constructor or class ‘Conduit’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use ConduitT directly"
+    |
+279 |               => Conduit ByteString m Token
+    |                  ^^^^^^^
+
+Text/HTML/TagStream/Text.hs:295:67: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘=$=’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use .|"
+    |
+295 |     when yieldToken $ (lift (mapM (decodeBS codec) tk) >>= yield) =$= decodeEntitiesText
+    |                                                                   ^^^
+
+Text/HTML/TagStream/Text.hs:298:20: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘=$=’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use .|"
+    |
+298 |     C.decode codec =$= tokenStream
+    |                    ^^^
+
+Text/HTML/TagStream/Text.hs:319:51: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘$=’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use .|"
+    |
+319 |     decodeBS codec bs = liftM T.concat $ yield bs $= C.decode codec $$ C.consume
+    |                                                   ^^
+
+Text/HTML/TagStream/Text.hs:319:69: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘$$’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use runConduit and .|"
+    |
+319 |     decodeBS codec bs = liftM T.concat $ yield bs $= C.decode codec $$ C.consume
+    |                                                                     ^^
+Configuring test suite 'test' for tagstream-conduit-0.5.6...
+Preprocessing test suite 'test' for tagstream-conduit-0.5.6...
+Building test suite 'test' for tagstream-conduit-0.5.6...
+[1 of 1] Compiling Main
+
+tests/Tests.hs:5:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+  |
+5 | import           Control.Applicative
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests.hs:7:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+  |
+7 | import           Data.Monoid (Monoid(..),(<>))
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests.hs:90:23: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘$=’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use .|"
+   |
+90 |                       C.$= S.tokenStream
+   |                       ^^^^
+
+tests/Tests.hs:91:23: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘$$’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use runConduit and .|"
+   |
+91 |                       C.$$ CL.consume )
+   |                       ^^^^
+
+tests/Tests.hs:105:23: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘$=’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use .|"
+    |
+105 |                       C.$= T.tokenStreamBS
+    |                       ^^^^
+
+tests/Tests.hs:106:23: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘$$’
+    (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
+    Deprecated: "Use runConduit and .|"
+    |
+106 |                       C.$$ CL.consume )
+    |                       ^^^^
+
+tests/Tests.hs:275:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Either String [S.Token]’ not matched: Left _
+    |
+275 |     let (Right tokens) = result
+    |         ^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Tests.hs:282:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Either String [T.Token]’ not matched: Left _
+    |
+282 |     let (Right tokens) = result
+    |         ^^^^^^^^^^^^^^^^^^^^^^^
+[2 of 2] Linking /tmp/workdir-tagstream-conduit/tagstream-conduit-0.5.6/dist-newstyle/build/x86_64-linux/ghc-9.6.6/tagstream-conduit-0.5.6/t/test/build/test/test

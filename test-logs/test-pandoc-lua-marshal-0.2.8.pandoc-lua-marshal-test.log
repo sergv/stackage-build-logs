@@ -1,0 +1,305 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - pandoc-lua-marshal-0.2.8 (test:pandoc-lua-marshal-test) (ephemeral targets)
+Preprocessing test suite 'pandoc-lua-marshal-test' for pandoc-lua-marshal-0.2.8...
+Building test suite 'pandoc-lua-marshal-test' for pandoc-lua-marshal-0.2.8...
+Running 1 test suites...
+Test suite pandoc-lua-marshal-test: RUNNING...
+pandoc-lua-marshal
+  Roundtrip through Lua stack
+    Alignment:                                                       OK
+      +++ OK, passed 100 tests.
+    Block:                                                           OK (0.03s)
+      +++ OK, passed 100 tests.
+    [Block]:                                                         OK (0.16s)
+      +++ OK, passed 100 tests.
+    Caption:                                                         OK (0.19s)
+      +++ OK, passed 100 tests.
+    Cell:                                                            OK (0.02s)
+      +++ OK, passed 100 tests.
+    Citation:                                                        OK (0.02s)
+      +++ OK, passed 100 tests.
+    CitationMode:                                                    OK
+      +++ OK, passed 100 tests.
+    Inline:                                                          OK (0.02s)
+      +++ OK, passed 100 tests.
+    [Inline]:                                                        OK (0.03s)
+      +++ OK, passed 100 tests.
+    ListNumberStyle:                                                 OK
+      +++ OK, passed 100 tests.
+    ListNumberDelim:                                                 OK
+      +++ OK, passed 100 tests.
+    MathType:                                                        OK
+      +++ OK, passed 100 tests.
+    Meta:                                                            OK (0.53s)
+      +++ OK, passed 100 tests.
+    Pandoc:                                                          OK (0.06s)
+      +++ OK, passed 100 tests.
+    Row:                                                             OK (0.03s)
+      +++ OK, passed 100 tests.
+    QuoteType:                                                       OK
+      +++ OK, passed 100 tests.
+    TableBody:                                                       OK (0.11s)
+      +++ OK, passed 100 tests.
+    TableHead:                                                       OK (0.07s)
+      +++ OK, passed 100 tests.
+  test/test-listattributes.lua
+    ListAttributes
+      has field `start`:                                             OK
+      has field `style`:                                             OK
+      has field `delimiter`:                                         OK
+      can be compared on equality:                                   OK
+      can be modified through `start`:                               OK
+      can be modified through `style`:                               OK
+      can be modified through `delimiter`:                           OK
+      can be cloned:                                                 OK
+      Constructor
+        omitting a start numer sets it to 1:                         OK
+        omitting a style sets it to DefaultStyle:                    OK
+        omitting a delimiter sets it to DefaultDelim:                OK
+  test/test-attr.lua
+    Attr
+      Constructor
+        Attr is a function:                                          OK
+        returns null-Attr if no arguments are given:                 OK
+        accepts string-indexed table or list of pairs as attributes: OK
+      Properties
+        has t and tag property:                                      OK
+        has field `identifier`:                                      OK
+        can be modified through field `identifier`:                  OK
+        field classes
+          can be read:                                               OK
+          can be set:                                                OK
+          contains a pandoc List:                                    OK
+      AttributeList
+        allows access via fields:                                    OK
+        allows access to pairs via numerical indexing:               OK
+        allows replacing a pair:                                     OK
+        allows to remove a pair:                                     OK
+        adds entries by field name:                                  OK
+        deletes entries by field name:                               OK
+        remains unchanged if deleted key did not exist:              OK
+        gives key-value pairs when iterated-over:                    OK
+      HTML-like attribute tables
+        in element constructor:                                      OK
+  test/test-citation.lua
+    Citation
+      can be cloned:                                                 OK
+      field `id`
+        can be read:                                                 OK
+        can be set:                                                  OK
+      field `mode`
+        can be read:                                                 OK
+        can be set:                                                  OK
+      field `prefix`
+        can be read:                                                 OK
+        can be set:                                                  OK
+      field `suffix`
+        can be read:                                                 OK
+        can be set:                                                  OK
+      field `note_num`
+        can be read:                                                 OK
+        can be set:                                                  OK
+      field `hash`
+        can be read:                                                 OK
+        can be set:                                                  OK
+  test/test-inline.lua
+    Inline
+      Cite
+        has property `content`:                                      OK
+        has list of citations in property `cite`:                    OK
+      Code
+        has property `attr`:                                         OK
+        has property `text`:                                         OK
+      Emph
+        has property `content`:                                      OK
+      Image
+        has property `caption` of type Inlines:                      OK
+        has property `src`:                                          OK
+        has property `title`:                                        OK
+        has property `attr`:                                         OK
+      Link
+        has property `content`:                                      OK
+        has property `target`:                                       OK
+        has property `title`:                                        OK
+        has property `attr`:                                         OK
+      Math
+        has property `text`:                                         OK
+        has property `mathtype`:                                     OK
+      Note
+        has property `content`:                                      OK
+      Quoted
+        has property `content`:                                      OK
+        has property `quotetype`:                                    OK
+      SmallCaps
+        has property `content`:                                      OK
+      SoftBreak
+        can be constructed:                                          OK
+      Span
+        has property `attr`:                                         OK
+        has property `content`:                                      OK
+      Str
+        has property `text`:                                         OK
+      Strikeout
+        has property `content`:                                      OK
+      Strong
+        has property `content`:                                      OK
+      Subscript
+        has property `content`:                                      OK
+      Superscript
+        has property `content`:                                      OK
+      Underline
+        has property `content`:                                      OK
+    Inlines
+      Constructor
+        splits a string into words:                                  OK
+        converts single Inline into List:                            OK
+        converts elements in a list into Inlines:                    OK
+        tabs are treated as space:                                   OK
+        newlines are treated as softbreaks:                          OK
+        can be mapped over:                                          OK
+        gives sensible error message:                                OK
+      clone
+        function exists:                                             OK
+        clones the list:                                             OK
+        deep-clones the list:                                        OK
+      tostring
+        works on an empty list:                                      OK
+        simple inlines:                                              OK
+      walk
+        modifies Inline subelements:                                 OK
+    walk
+      modifies Inline subelements:                                   OK
+      applies filter only on subtree:                                OK
+      modifies blocks in notes:                                      OK
+      uses `Inlines` for lists of inlines:                           OK
+      handles inline elements before inline lists:                   OK
+      uses order Inline -> Inlines -> Block -> Blocks:               OK
+  test/test-block.lua
+    Block
+      BlockQuote
+        access content via property `content`:                       OK
+      BulletList
+        access items via property `content`:                         OK
+        property `content` is a list of Block lists:                 OK
+        property `content` uses fuzzy marshalling:                   OK
+        property `content` prioritizes lists:                        OK
+        behavior is consistent with constructor:                     OK
+        mixing types works:                                          OK
+      CodeBlock
+        access code via property `text`:                             OK
+        access Attr via property `attr`:                             OK
+      DefinitionList
+        access items via property `content`:                         OK
+        modify items via property `content`:                         OK
+      Div
+        access content via property `content`:                       OK
+        access Attr via property `attr`:                             OK
+        accessing the content does not change the value:             OK
+      Figure
+        access content via property `content`:                       OK
+        access caption via property `caption`:                       OK
+        access Attr via property `attr`:                             OK
+      Header
+        access inlines via property `content`:                       OK
+        access Attr via property `attr`:                             OK
+        access level via property `level`:                           OK
+      LineBlock
+        access lines via property `content`:                         OK
+        modifying `content` alter the element:                       OK
+      OrderedList
+        access items via property `content`:                         OK
+        forgiving constructor:                                       OK
+        has list attribute aliases:                                  OK
+      Para
+        access inline via property `content`:                        OK
+        modifying `content` changes the element:                     OK
+      RawBlock
+        access raw content via property `text`:                      OK
+        access Format via property `format`:                         OK
+      Table
+        access Attr via property `attr`:                             OK
+        access caption via property `caption`:                       OK
+        access column specifiers via property `colspecs`:            OK
+        access table head via property `head`:                       OK
+        access table foot via property `foot`:                       OK
+        caption field accepts list of blocks:                        OK
+    Blocks
+      Constructor
+        splits a string into words:                                  OK
+        converts single Block into List:                             OK
+        converts elements in a list into Blocks:                     OK
+        can be mapped over:                                          OK
+        gives sensible error message:                                OK
+      clone
+        function exists:                                             OK
+        clones the list:                                             OK
+        deep-clones the list:                                        OK
+      tostring
+        works on an empty list:                                      OK
+        para singleton:                                              OK
+      walk
+        modifies Inline subelements:                                 OK
+    walk
+      modifies Inline subelements:                                   OK
+      modifies blocks in notes:                                      OK
+      uses `Inlines` for lists of inlines:                           OK
+      handles inline elements before inline lists:                   OK
+      uses `Blocks` for lists of Blocks:                             OK
+      uses order Inline -> Inlines -> Block -> Blocks:               OK
+      topdown traversal works:                                       OK
+      truncating topdown traversal works:                            OK
+      truncating topdown traversal works in inlines:                 OK
+  test/test-cell.lua
+    Cell
+      Constructor
+        align defaults to `AlignDefault`:                            OK
+        row span defaults to 1:                                      OK
+        col span defaults to 1:                                      OK
+        attr defaults to null Attr:                                  OK
+      properties
+        can modify contents:                                         OK
+        modify alignment:                                            OK
+        modify row_span:                                             OK
+        modify col_span:                                             OK
+        modify attr:                                                 OK
+      aliases
+        identifier:                                                  OK
+        classes:                                                     OK
+        attributes:                                                  OK
+      walk
+        modifies Inline subelements:                                 OK
+        uses `Inlines` for lists of inlines:                         OK
+        uses order Inline -> Inlines -> Block -> Blocks:             OK
+  test/test-simpletable.lua
+    SimpleTable
+      can access properties:                                         OK
+      can modify properties:                                         OK
+  test/test-metavalue.lua
+    MetaValue elements
+      MetaList elements behave like lists:                           OK
+      Numbers are treated as strings:                                OK
+  test/test-pandoc.lua
+    Meta
+      inline list is treated as MetaInlines:                         OK
+      inline element is treated as MetaInlines singleton:            OK
+      block list is treated as MetaBlocks:                           OK
+      block element is treated as MetaBlocks singleton:              OK
+      string is treated as MetaString:                               OK
+      booleans are treated as MetaBool:                              OK
+      list of strings becomes MetaList of MetaStrings:               OK
+    operations
+      concatenation:                                                 OK
+    clone
+      cloned value is equal to original:                             OK
+      changing the clone does not affect original:                   OK
+    walk
+      uses `Meta` function:                                          OK
+      default traversal is typewise, bottom-up:                      OK
+      truncating topdown traversal works:                            OK
+
+All 194 tests passed (0.54s)
+Test suite pandoc-lua-marshal-test: PASS
+Test suite logged to:
+/tmp/workdir-pandoc-lua-marshal/pandoc-lua-marshal-0.2.8/dist-newstyle/build/x86_64-linux/ghc-9.6.6/pandoc-lua-marshal-0.2.8/t/pandoc-lua-marshal-test/test/pandoc-lua-marshal-0.2.8-pandoc-lua-marshal-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

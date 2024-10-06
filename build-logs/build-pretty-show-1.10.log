@@ -1,0 +1,49 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - pretty-show-1.10 (lib) (first run)
+ - pretty-show-1.10 (exe:ppsh) (first run)
+Configuring library for pretty-show-1.10...
+Preprocessing library for pretty-show-1.10...
+Building library for pretty-show-1.10...
+[1 of 6] Compiling Paths_pretty_show
+[2 of 6] Compiling Text.Show.Value
+
+Text/Show/Value.hs:84:27: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding: Patterns of type ‘[Value]’ not matched: []
+   |
+84 |         | otherwise -> do ~(v1:vs1) <- delMany (v:vs)
+   |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Text/Show/Value.hs:93:25: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[Value]’ not matched:
+            []
+            [_]
+            (_:_:_:_)
+   |
+93 |       Ratio v1 v2 -> do ~[a,b] <- delMany [v1,v2]
+   |                         ^^^^^^^^^^^^^^^^^^^^^^^^^
+[3 of 6] Compiling Text.Show.PrettyVal
+[4 of 6] Compiling Text.Show.Parser
+[5 of 6] Compiling Text.Show.Html
+
+Text/Show/Html.hs:112:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘tallTuple’
+    |
+112 | tallTuple els = table "tallTuple" $ map (tr . return . td) els
+    | ^^^^^^^^^
+[6 of 6] Compiling Text.Show.Pretty
+
+Text/Show/Pretty.hs:52:22: warning: [-Wunused-imports]
+    The import of ‘Foldable’ from module ‘Data.Foldable’ is redundant
+   |
+52 | import Data.Foldable(Foldable,toList)
+   |                      ^^^^^^^^
+Configuring executable 'ppsh' for pretty-show-1.10...
+Preprocessing executable 'ppsh' for pretty-show-1.10...
+Building executable 'ppsh' for pretty-show-1.10...
+[1 of 2] Compiling Main
+[2 of 2] Compiling Paths_pretty_show
+[3 of 3] Linking /tmp/workdir-pretty-show/pretty-show-1.10/dist-newstyle/build/x86_64-linux/ghc-9.6.6/pretty-show-1.10/x/ppsh/build/ppsh/ppsh

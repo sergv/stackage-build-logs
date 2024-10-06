@@ -1,0 +1,168 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - optics-0.4.2.1 (test:optics-tests) (ephemeral targets)
+Preprocessing test suite 'optics-tests' for optics-0.4.2.1...
+Building test suite 'optics-tests' for optics-0.4.2.1...
+Running 1 test suites...
+Test suite optics-tests: RUNNING...
+Tests
+  Inspection
+    Core
+      traverseOf traversed = traverse:                                               OK
+      optimized lhs01a:                                                              OK
+      traverseOf (traversed % traversed) = traverse . traverse:                      OK
+      optimized lhs02a:                                                              OK
+      traverseOf (traversed % traversed) = traverseOf (itraversed % itraversed):     OK
+      optimized lhs03:                                                               OK
+      optimized rhs03:                                                               OK
+      traverseOf_ (folded % folded) = traverseOf_ (ifolded % ifolded):               OK
+      optimized lhs04:                                                               OK
+      optimized rhs04:                                                               OK
+      over (noIx (imapped % imapped)) = over (mapped % mapped):                      OK
+      over (imapped % imapped) = over (mapped % mapped):                             OK
+      optimized lhs05:                                                               OK
+      optimized rhs05:                                                               OK
+      traverseOf_ (_Left % itraversed % _1 % ifolded) = traverseOf_ ...:             OK
+      optimized lhs06:                                                               OK
+      optimized rhs06:                                                               OK
+      itraverseOf (itraversed %> itraversed) = itraverseOf (traversed % itraversed): OK
+      optimized lhs07a:                                                              OK
+      optimized rhs07a:                                                              OK
+      itraverseOf_ (ifolded %> ifolded) ==- itraverseOf (folded % ifolded):          OK
+      optimized lhs08a:                                                              OK
+      optimized rhs08a:                                                              OK
+      iover (imapped <% imapped) = iover (imapped % mapped):                         OK
+      optimized lhs09:                                                               OK
+      optimized rhs09:                                                               OK
+      itraverseOf_ itraversed = itraverseOf_ ifolded:                                OK
+      optimized lhs10a:                                                              OK
+      optimized rhs10a:                                                              OK
+      iover (itraversed..itraversed) = iover (imapped..imapped):                     OK
+      optimized lhs11:                                                               OK
+      optimized rhs11:                                                               OK
+      traverseOf_ traversed = traverseOf_ folded:                                    OK
+      optimized lhs12a:                                                              OK
+      optimized rhs12a:                                                              OK
+      over (traversed..) = over (mapped..):                                          OK
+      optimized lhs13:                                                               OK
+      optimized rhs13:                                                               OK
+      traverseOf_ itraversed = traverseOf_ folded:                                   OK
+      optimized lhs14a:                                                              OK
+      optimized rhs14a:                                                              OK
+      over (itraversed..) = over (mapped..):                                         OK
+      optimized lhs15:                                                               OK
+      optimized rhs15:                                                               OK
+      iset (itraversed..) = iset (imapped..):                                        OK
+      optimized lhs16:                                                               OK
+      optimized rhs16:                                                               OK
+      iset (_1 % itraversed) = iset (_1 % imapped):                                  OK
+      optimized lhs17:                                                               OK
+      optimized rhs17:                                                               OK
+      iset (each %> itraversed) = iset (each %> imapped):                            OK
+      optimized lhs18:                                                               OK
+      optimized rhs18:                                                               OK
+      optimized failover:                                                            OK
+      optimized failover':                                                           OK
+      optimized ifailover:                                                           OK
+      optimized ifailover':                                                          OK
+    Eta expansion
+      toListOf folded = \s -> toListOf folded s:                                     OK
+      optimized eta1lhs:                                                             OK
+      itoListOf ifolded = \s -> itoListOf ifolded s:                                 OK
+      optimized eta2lhs:                                                             OK
+      traverseOf traversed = \f -> traverseOf traversed f:                           OK
+      optimized eta3lhs:                                                             OK
+      itraverseOf itraversed = \f -> itraverseOf itraversed f:                       OK
+      optimized eta4lhs:                                                             OK
+      traverseOf_ folded = \f -> traverseOf_ folded f:                               OK
+      optimized eta5lhs:                                                             OK
+      itraverseOf_ ifolded = \f -> itraverseOf_ ifolded f:                           OK
+      optimized eta6lhs:                                                             OK
+      over mapped = \f -> over mapped f:                                             OK
+      optimized eta7lhs:                                                             OK
+      over' mapped = \f -> over' mapped f:                                           OK
+      optimized eta8lhs:                                                             OK
+      iover imapped = \f -> iover imapped f:                                         OK
+      optimized eta9lhs:                                                             OK
+      iover' imapped = \f -> iover' imapped f:                                       OK
+      optimized eta10lhs:                                                            OK
+      iset imapped = \f -> iset imapped f:                                           OK
+      optimized eta11lhs:                                                            OK
+      iset' imapped = \f -> iset' imapped f:                                         OK
+      optimized eta12lhs:                                                            OK
+    Labels via Generic
+      view #name s = name s:                                                         OK
+      set #pets s b = s { pets = b }:                                                OK
+      view (#fish % #name) s = name (fish s):                                        OK
+      set (#fish % #name) b s = s { fish = ... }:                                    OK
+      set (#pets % traversed % #name) b s = s { pets = ... }:                        OK
+      multiple set with labels = multiple set with record syntax:                    OK
+      optimized petNames (generics):                                                 OK
+      optimized otherHuman (generics):                                               OK
+      optimized humanWithFish (generics):                                            OK
+      optimized howManyGoldFish (generics):                                          OK
+      optimized hasLazyPets (generics):                                              OK
+      optimized yearLater (generics):                                                OK
+      optimized oldestPet (generics):                                                OK
+      optimized luckyDog (generics):                                                 OK
+    Labels via Template Haskell
+      view #name s = humanName s:                                                    OK
+      set #pets s b = s { humanPets = b }:                                           OK
+      view (#fish % #name) s = fishName (humanFish s):                               OK
+      set (#fish % #name) b s = s { humanFish = ... }:                               OK
+      multiple set with labels = multiple set with record syntax:                    OK
+    Miscellaneous
+      optimized sipleMapIx:                                                          OK
+      optimized mapIx:                                                               OK
+      optimized seqIx:                                                               OK
+      optimized itoList:                                                             OK
+      optimized partsOf:                                                             OK
+      optimized singular:                                                            OK
+      optimized filteredBy:                                                          OK
+      optimized unsafeFilteredBy:                                                    OK
+      optimized adjoin:                                                              OK
+      optimized iadjoin:                                                             OK
+      optimized gplate (profunctors):                                                OK
+      optimized gplate (generics):                                                   OK
+      optimized icomposeN/appendIndices:                                             OK
+  computation
+    Lens
+      view (lens f g) = f:                                                           OK
+      set (lens f g) = g:                                                            OK
+    AffineTraversal
+      withAffineTraversal (atraversal f g) (\ _ g' -> g') /= g:                      OK
+      withAffineTraversal (atraversal f g) (\ _ g' -> g') = ...:                     OK
+      withAffineTraversal (atraversal f g) (\ f' _ -> f') = f:                       OK
+    AffineFold
+      preview (afolding f) = f:                                                      OK
+    Setter
+      over (sets f) = f:                                                             OK
+  properties
+    Lens
+      view (lens f g) = f:                                                           OK
+        +++ OK, passed 100 tests.
+      set (lens f g) = g:                                                            OK
+        +++ OK, passed 100 tests.
+    Prism
+      review (prism f g) = f:                                                        OK
+        +++ OK, passed 100 tests.
+      matching (prism f g) = g:                                                      OK
+        +++ OK, passed 100 tests.
+    AffineTraversal
+      matching (atraversal f g) = g:                                                 OK
+        +++ OK, passed 100 tests.
+      set (atraversal f g) ~= flip g:                                                OK
+        +++ OK, failed as expected. Falsified (after 3 tests and 17 shrinks):
+        {2->Left 1, _->Right 1}
+        {_->2}
+        2
+        1
+        1 /= 2
+      isRight (f s) ==> set (atraversal f g) = flip g:                               OK
+        +++ OK, passed 100 tests; 96 discarded.
+
+All 127 tests passed (0.00s)
+Test suite optics-tests: PASS
+Test suite logged to:
+/tmp/workdir-optics/optics-0.4.2.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/optics-0.4.2.1/t/optics-tests/test/optics-0.4.2.1-optics-tests.log
+1 of 1 test suites (1 of 1 test cases) passed.

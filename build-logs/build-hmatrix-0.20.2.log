@@ -1,0 +1,254 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - hmatrix-0.20.2 (lib) (first run)
+Warning: hmatrix.cabal:22:28: Packages with 'cabal-version: 1.12' or later
+should specify a specific version of the Cabal spec of the form
+'cabal-version: x.y'. Use 'cabal-version: 1.18'.
+Configuring library for hmatrix-0.20.2...
+Preprocessing library for hmatrix-0.20.2...
+Building library for hmatrix-0.20.2...
+[ 1 of 27] Compiling Internal.Vector
+[ 2 of 27] Compiling Internal.Devel
+[ 3 of 27] Compiling Internal.Vectorized
+[ 4 of 27] Compiling Internal.Matrix
+[ 5 of 27] Compiling Internal.ST
+[ 6 of 27] Compiling Internal.IO
+[ 7 of 27] Compiling Internal.Element
+[ 8 of 27] Compiling Internal.Conversion
+
+src/Internal/Conversion.hs:83:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[Vector a]’ not matched:
+            []
+            [_]
+            (_:_:_:_)
+   |
+83 |     [r,i] = toColumns $ reshape 2 $ asReal z
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 9 of 27] Compiling Internal.LAPACK
+[10 of 27] Compiling Internal.Numeric
+
+src/Internal/Numeric.hs:34:27: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+34 | type family IndexOf (c :: * -> *)
+   |                           ^
+
+src/Internal/Numeric.hs:34:32: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+34 | type family IndexOf (c :: * -> *)
+   |                                ^
+
+src/Internal/Numeric.hs:39:25: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+39 | type family ArgOf (c :: * -> *) a
+   |                         ^
+
+src/Internal/Numeric.hs:39:30: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+39 | type family ArgOf (c :: * -> *) a
+   |                              ^
+
+src/Internal/Numeric.hs:864:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding: Patterns of type ‘[Matrix e]’ not matched: []
+    |
+864 |     args@(a'':_) = conformMs [a,b]
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Internal/Numeric.hs:865:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[Vector e]’ not matched:
+            []
+            [_]
+            (_:_:_:_)
+    |
+865 |     [a', b'] = map flatten args
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Internal/Numeric.hs:869:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[Vector t]’ not matched:
+            []
+            [_]
+            (_:_:_:_)
+    |
+869 |     [a', b'] = conformVs [a,b]
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Internal/Numeric.hs:873:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding: Patterns of type ‘[Matrix t]’ not matched: []
+    |
+873 |     args@(a'':_) = conformMs [fromInt c,l,e,t]
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Internal/Numeric.hs:874:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[Vector t]’ not matched:
+            []
+            [_]
+            [_, _]
+            [_, _, _]
+            ...
+    |
+874 |     [c', l', e', t'] = map flatten args
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Internal/Numeric.hs:878:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[Vector e]’ not matched:
+            []
+            [_]
+            [_, _]
+            [_, _, _]
+            ...
+    |
+878 |     [c', l', e', t'] = conformVs [fromInt c,l,e,t]
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[11 of 27] Compiling Internal.Sparse
+[12 of 27] Compiling Internal.Chain
+[13 of 27] Compiling Internal.Algorithms
+
+src/Internal/Algorithms.hs:60:17: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+60 |        RealOf t ~ Double) => Field t where
+   |                 ^
+
+src/Internal/Algorithms.hs:736:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding: Patterns of type ‘[Double]’ not matched: []
+    |
+736 |     sl@(g:_) = toList s
+    |     ^^^^^^^^^^^^^^^^^^^
+[14 of 27] Compiling Internal.Random
+[15 of 27] Compiling Internal.Container
+
+src/Internal/Container.hs:302:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[Matrix I]’ not matched:
+            []
+            [_]
+            (_:_:_:_)
+    |
+302 |     [i',j'] = conformMs [i,j]
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+[16 of 27] Compiling Internal.Convolution
+[17 of 27] Compiling Numeric.LinearAlgebra.Devel
+[18 of 27] Compiling Numeric.Matrix
+
+src/Numeric/Matrix.hs:103:5: warning: [-Wnoncanonical-monoid-instances]
+    Noncanonical ‘(<>) = mappend’ definition detected
+    in the instance declaration for ‘Semigroup (Matrix t)’.
+    Move definition from ‘mappend’ to ‘(<>)’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    |
+103 |     (<>) = mappend
+    |     ^^^^^^^^^^^^^^
+
+src/Numeric/Matrix.hs:109:5: warning: [-Wnoncanonical-monoid-instances]
+    Noncanonical ‘mappend’ definition detected
+    in the instance declaration for ‘Monoid (Matrix t)’.
+    ‘mappend’ will eventually be removed in favour of ‘(<>)’
+    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    |
+109 |     mappend = adaptScalarM scale mXm (flip scale)
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[19 of 27] Compiling Numeric.Vector
+[20 of 27] Compiling Internal.Util
+
+src/Internal/Util.hs:253:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[t]’ not matched:
+            []
+            [_]
+            [_, _]
+            (_:_:_:_:_)
+    |
+253 |     [x1,x2,x3] = toList x
+    |     ^^^^^^^^^^^^^^^^^^^^^
+
+src/Internal/Util.hs:254:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[t]’ not matched:
+            []
+            [_]
+            [_, _]
+            (_:_:_:_:_)
+    |
+254 |     [y1,y2,y3] = toList y
+    |     ^^^^^^^^^^^^^^^^^^^^^
+
+src/Internal/Util.hs:520:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[[Matrix t]]’ not matched:
+            []
+            ([]:_)
+            ([_]:_)
+            ([_, _]:_)
+            ...
+    |
+520 |     [ [a,_,b]
+    |     ^^^^^^^^^...
+
+src/Internal/Util.hs:568:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[[Matrix t]]’ not matched:
+            []
+            ([]:_)
+            ([_]:_)
+            ((_:_:_:_):_)
+            ...
+    |
+568 |     [[m11,m12],[m21,m22]] = block2x2 1 1 m
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Internal/Util.hs:632:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding: Patterns of type ‘[Vector t]’ not matched: []
+    |
+632 |     y:ys = redu (pivot n xs)
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Internal/Util.hs:655:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding: Patterns of type ‘[Vector t]’ not matched: []
+    |
+655 |     y:ys = redu' (n,xs)
+    |     ^^^^^^^^^^^^^^^^^^^
+[21 of 27] Compiling Internal.Modular
+[22 of 27] Compiling Numeric.LinearAlgebra.Data
+[23 of 27] Compiling Internal.CG
+[24 of 27] Compiling Numeric.LinearAlgebra
+[25 of 27] Compiling Numeric.LinearAlgebra.HMatrix
+[26 of 27] Compiling Internal.Static
+[27 of 27] Compiling Numeric.LinearAlgebra.Static

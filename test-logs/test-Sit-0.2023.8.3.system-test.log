@@ -1,0 +1,101 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - Sit-0.2023.8.3 (test:system-test) (ephemeral targets)
+Preprocessing test suite 'system-test' for Sit-0.2023.8.3...
+Building test suite 'system-test' for Sit-0.2023.8.3...
+Running 1 test suites...
+Test suite system-test: RUNNING...
+Checking Eq : forall (A : Set) (a b : A) -> Set1
+Checking Eq = \ A a b -> (P : A -> Set) -> P a -> P b
+Checking refl : forall (A : Set) (a : A) -> Eq A a a
+Checking refl = \ A a P pa -> pa
+Checking sym : forall (A : Set) (a b : A) -> Eq A a b -> Eq A b a
+Checking sym = \ A a b eq P pb -> eq (\ x -> P x -> P a) (\ pa -> pa) pb
+Checking trans : forall (A : Set) (a b c : A) -> Eq A a b -> Eq A b c -> Eq A a c
+Checking trans = \ A a b c p q P pa -> q P (p P pa)
+Checking cong : forall (A B : Set) (f : A -> B) (a a' : A) -> Eq A a a' -> Eq B (f a) (f a')
+Checking cong = \ A B f a a' eq P pfa -> eq (\ x -> P (f x)) pfa
+Checking plus : forall . i -> Nat i -> Nat oo -> Nat oo
+Checking plus = \ i x y -> fix (\ i x -> Nat oo) (\ _ f -> \ {
+  (zero _) -> y;
+  (suc _ x) -> suc oo (f x)
+}
+) x
+Checking inc : Nat oo -> Nat oo
+Checking inc = \ x -> suc oo x
+Checking one : Nat oo
+Checking one = inc (zero oo)
+Checking two : Nat oo
+Checking two = inc one
+Checking three : Nat oo
+Checking three = inc two
+Checking four : Nat oo
+Checking four = inc three
+Checking five : Nat oo
+Checking five = inc four
+Checking six : Nat oo
+Checking six = inc five
+Checking plus_one_zero : Eq (Nat oo) (plus oo one (zero oo)) one
+Checking plus_one_zero = refl (Nat oo) one
+Checking plus_one_one : Eq (Nat oo) (plus oo one one) two
+Checking plus_one_one = refl (Nat oo) two
+Checking plus_red_zero : forall . i (y : Nat oo) -> Eq (Nat oo) (plus (i + 1) (zero i) y) y
+Checking plus_red_zero = \ i y -> refl (Nat oo) y
+Checking plus_red_suc : forall . i (x : Nat i) (y : Nat oo) -> Eq (Nat oo) (plus (i + 1) (suc i x) y) (suc oo (plus i x y))
+Checking plus_red_suc = \ i x y -> refl (Nat oo) (suc oo (plus i x y))
+Checking plus_zero : forall . i (x : Nat i) -> Eq (Nat oo) (plus i x (zero oo)) x
+Checking plus_zero = \ i x -> fix (\ i x -> Eq (Nat oo) (plus i x (zero oo)) x) (\ j f -> \ {
+  (zero _) -> refl (Nat oo) (zero oo);
+  (suc _ y) -> cong (Nat oo) (Nat oo) inc (plus j y (zero oo)) y (f y)
+}
+) x
+Checking plus_suc : forall . i (x : Nat i) (y : Nat oo) -> Eq (Nat oo) (plus i x (inc y)) (inc (plus i x y))
+Checking plus_suc = \ i x y -> fix (\ i x -> Eq (Nat oo) (plus i x (inc y)) (inc (plus i x y))) (\ j f -> \ {
+  (zero _) -> refl (Nat oo) (inc y);
+  (suc _ x') -> cong (Nat oo) (Nat oo) inc (plus j x' (inc y)) (inc (plus j x' y)) (f x')
+}
+) x
+Checking plus' : forall . i -> Nat i -> Nat oo -> Nat oo
+Checking plus' = \ i x -> fix (\ i x -> Nat oo -> Nat oo) (\ _ f -> \ {
+  (zero _) -> \ y -> y;
+  (suc _ x) -> \ y -> suc oo (f x y)
+}
+) x
+Checking pred : forall . i -> Nat i -> Nat i
+Checking pred = \ i n -> fix (\ i _ -> Nat i) (\ i _ -> \ {
+  (zero _) -> zero i;
+  (suc _ y) -> y
+}
+) n
+Checking sub : forall . j -> Nat j -> forall . i -> Nat i -> Nat i
+Checking sub = \ j y -> fix (\ _ _ -> forall . i -> Nat i -> Nat i) (\ _ f -> \ {
+  (zero _) -> \ i x -> x;
+  (suc _ y) -> \ i x -> f y i (pred i x)
+}
+) y
+Checking sub_diag : forall . i (x : Nat i) -> Eq (Nat oo) (sub i x i x) (zero oo)
+Checking sub_diag = \ i x -> fix (\ i x -> Eq (Nat oo) (sub i x i x) (zero oo)) (\ _ f -> \ {
+  (zero _) -> refl (Nat oo) (zero oo);
+  (suc _ y) -> f y
+}
+) x
+Checking Fun : forall . i (n : Nat i) (A : Set) (B : Set) -> Set
+Checking Fun = \ i n A B -> fix (\ _ _ -> Set) (\ _ f -> \ {
+  (zero _) -> B;
+  (suc _ x) -> A -> f x
+}
+) n
+Checking Sum : forall . i (n : Nat i) -> Set
+Checking Sum = \ i n -> Nat oo -> Fun i n (Nat oo) (Nat oo)
+Checking sum : forall . i (n : Nat i) -> Sum i n
+Checking sum = \ _ n -> fix (\ i n -> Sum i n) (\ _ f -> \ {
+  (zero _) -> \ acc -> acc;
+  (suc _ x) -> \ acc -> \ k -> f x (plus oo k acc)
+}
+) n
+Checking sum123 : Eq (Nat oo) (sum oo three (zero oo) one two three) six
+Checking sum123 = refl (Nat oo) six
+Test suite system-test: PASS
+Test suite logged to:
+/tmp/workdir-Sit/Sit-0.2023.8.3/dist-newstyle/build/x86_64-linux/ghc-9.6.6/Sit-0.2023.8.3/t/system-test/test/Sit-0.2023.8.3-system-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

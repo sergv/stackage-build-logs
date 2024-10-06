@@ -1,0 +1,155 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - fn-0.3.0.2 (lib) (first run)
+ - fn-0.3.0.2 (test:fn-test) (first run)
+Configuring library for fn-0.3.0.2...
+Preprocessing library for fn-0.3.0.2...
+Building library for fn-0.3.0.2...
+[1 of 1] Compiling Web.Fn
+
+src/Web/Fn.hs:68:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+68 | import           Control.Applicative                ((<$>))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Web/Fn.hs:76:1: warning: [-Wunused-imports]
+    The qualified import of ‘Data.ByteString.Lazy’ is redundant
+      except perhaps to import instances from ‘Data.ByteString.Lazy’
+    To import instances alone, use: import Data.ByteString.Lazy()
+   |
+76 | import qualified Data.ByteString.Lazy               as LB
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Web/Fn.hs:87:54: warning: [-Wunused-imports]
+    The import of ‘lbsBackEnd’
+    from module ‘Network.Wai.Parse’ is redundant
+   |
+87 |                                                      lbsBackEnd,
+   |                                                      ^^^^^^^^^^
+
+src/Web/Fn.hs:92:54: warning: [-Wunused-imports]
+    The import of ‘removeFile’
+    from module ‘System.Directory’ is redundant
+   |
+92 |                                                      removeFile)
+   |                                                      ^^^^^^^^^^
+
+src/Web/Fn.hs:329:1: warning: [GHC-38417] [-Wmissing-signatures]
+    Top-level binding with no type signature:
+      readBody :: MVar
+                    (Maybe (([Param], [Parse.File FilePath]), InternalState))
+                  -> Request -> IO ()
+    |
+329 | readBody mv request =
+    | ^^^^^^^^
+
+src/Web/Fn.hs:348:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘(Request, PostMVar)’ not matched: (_, Nothing)
+    |
+348 |    do let (request, Just mv) = getRequest ctxt
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Web/Fn.hs:458:1: warning: [GHC-38417] [-Wmissing-signatures]
+    Top-level binding with no type signature:
+      getMVarParams :: Maybe (MVar (Maybe (([a], b1), b2))) -> IO [a]
+    |
+458 | getMVarParams mv = case mv of
+    | ^^^^^^^^^^^^^
+
+src/Web/Fn.hs:521:1: warning: [GHC-38417] [-Wmissing-signatures]
+    Top-level binding with no type signature:
+      getMVarFiles :: Maybe
+                        (MVar (Maybe (([Param], [Parse.File FilePath]), InternalState)))
+                      -> Request -> IO [(Text, File)]
+    |
+521 | getMVarFiles mv req =
+    | ^^^^^^^^^^^^
+Configuring test suite 'fn-test' for fn-0.3.0.2...
+Preprocessing test suite 'fn-test' for fn-0.3.0.2...
+Building test suite 'fn-test' for fn-0.3.0.2...
+[1 of 1] Compiling Main
+
+test/Spec.hs:5:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+  |
+5 | import           Control.Applicative     ((<$>))
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/Spec.hs:16:1: warning: [GHC-38417] [-Wmissing-signatures]
+    Top-level binding with no type signature: emv :: MVar (Maybe a)
+   |
+16 | emv = unsafePerformIO (newMVar Nothing)
+   | ^^^
+
+test/Spec.hs:18:1: warning: [GHC-90177] [-Worphans]
+    Orphan instance: instance Show (MVar a)
+    Suggested fix:
+      Move the instance declaration to the module of the class or of the type, or
+      wrap the type with a newtype and declare the instance on the new type.
+   |
+18 | instance Show (MVar a) where
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+test/Spec.hs:52:14: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘v’ shadows the existing binding
+      defined at test/Spec.hs:49:1
+   |
+52 | vn mv f = do v <- mv
+   |              ^
+
+test/Spec.hs:57:1: warning: [GHC-38417] [-Wmissing-signatures]
+    Top-level binding with no type signature:
+      shouldSatisfyIO :: Show a => IO a -> (a -> Bool) -> IO ()
+   |
+57 | shouldSatisfyIO a b = do x <- a
+   | ^^^^^^^^^^^^^^^
+
+test/Spec.hs:109:23: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘/?’ (imported from Web.Fn):
+    Deprecated: "Use the identical '//' instead."
+    |
+109 |       do v ((path "a" /? param "id") (_p ["a"] $ q [("id", Just "x")])) (t1 "x")
+    |                       ^^
+
+test/Spec.hs:110:24: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘/?’ (imported from Web.Fn):
+    Deprecated: "Use the identical '//' instead."
+    |
+110 |          vn ((path "a" /? param "id") (_p ["b"] $ q [("id", Just "x")])) t1u
+    |                        ^^
+
+test/Spec.hs:111:24: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘/?’ (imported from Web.Fn):
+    Deprecated: "Use the identical '//' instead."
+    |
+111 |          vn ((path "a" /? param "id") (_p [] $ q [("id", Just "x")])) t1u
+    |                        ^^
+
+test/Spec.hs:112:24: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘/?’ (imported from Web.Fn):
+    Deprecated: "Use the identical '//' instead."
+    |
+112 |          vn ((path "a" /? param "id") (_p ["a"] $ q [("di", Just "x")])) t1u
+    |                        ^^
+
+test/Spec.hs:114:34: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘/?’ (imported from Web.Fn):
+    Deprecated: "Use the identical '//' instead."
+    |
+114 |       do v ((path "a" // segment /? param "id")
+    |                                  ^^
+
+test/Spec.hs:116:46: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘/?’ (imported from Web.Fn):
+    Deprecated: "Use the identical '//' instead."
+    |
+116 |          vn ((path "a" // segment // segment /? param "id")
+    |                                              ^^
+[2 of 2] Linking /tmp/workdir-fn/fn-0.3.0.2/dist-newstyle/build/x86_64-linux/ghc-9.6.6/fn-0.3.0.2/t/fn-test/build/fn-test/fn-test

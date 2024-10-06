@@ -1,0 +1,140 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - hslua-classes-2.3.1 (test:test-hslua-classes) (ephemeral targets)
+Preprocessing test suite 'test-hslua-classes' for hslua-classes-2.3.1...
+Building test suite 'test-hslua-classes' for hslua-classes-2.3.1...
+Running 1 test suites...
+Test suite test-hslua-classes: RUNNING...
+hslua-classes
+  Exposable
+    push Haskell function to Lua:                                   OK
+    push multi-argument Haskell function to Lua:                    OK
+    argument type errors are propagated:                            OK
+    Error in Haskell function is converted into Lua error:          OK
+  Invokable
+    test equality within lua:                                       OK
+    failing lua function call:                                      OK
+    pack table via lua procedure:                                   OK
+    failing lua procedure call:                                     OK
+    Error when Lua-to-Haskell result conversion fails:              OK
+  Peekable
+    Bool
+      literal true is truthy:                                       OK
+      0 as a non-nil value is truthy:                               OK
+      nil is falsy:                                                 OK
+    Lua.Integer
+      integer can be peeked:                                        OK
+    Prelude.Integer
+      small integer can be peeked:                                  OK
+      very large integer can be peeked:                             OK
+    error handling
+      error is thrown if boolean is given instead of stringy value: OK
+      floating point numbers cannot be peeked as integer:           OK
+      booleans cannot be retrieved as numbers:                      OK
+      list cannot be read if a peeking at list element fails:       OK
+      stack is unchanged if getting a list fails:                   OK
+      stack is unchanged if getting key-value pairs fails:          OK
+  Pushable
+    pushing simple values to the stack
+      Boolean can be pushed correctly:                              OK
+      Lua.Numbers can be pushed correctly:                          OK
+      Lua.Integers can be pushed correctly:                         OK
+      ByteStrings can be pushed correctly:                          OK
+      Unit is pushed as nil:                                        OK
+      Pointer is pushed as light userdata:                          OK
+    pushing a value increases stack size by one
+      Lua.Integer:                                                  OK
+        +++ OK, passed 100 tests.
+      Lua.Number:                                                   OK
+        +++ OK, passed 100 tests.
+      ByteString:                                                   OK
+        +++ OK, passed 100 tests.
+      String:                                                       OK
+        +++ OK, passed 100 tests.
+      list of booleans:                                             OK
+        +++ OK, passed 100 tests.
+  Utilities
+    Optional return the value if it exists:                         OK
+    Optional can deal with nil values:                              OK
+    Optional can deal with nonexistent (none) values:               OK
+    raiseError causes a Lua error:                                  OK
+    runEither
+      Lua errors are caught:                                        OK
+      error-less code gives 'Right':                                OK
+    peekEither
+      return right result on success:                               OK
+      return error message on failure:                              OK
+    popValue
+      value is retrieved and popped:                                OK
+      value is popped even on error:                                OK
+      error messages equals that of peek:                           OK
+  peek and push are well behaved
+    Peek can act as left inverse of push
+      round-tripping unit:                                          OK
+        +++ OK, passed 100 tests.
+      booleans remain equal under push/peek:                        OK
+        +++ OK, passed 100 tests.
+      lua numbers (i.e., doubles) remain equal under push/peek:     OK
+        +++ OK, passed 100 tests.
+      Lua integers remain equal under push/peek:                    OK
+        +++ OK, passed 100 tests.
+      bytestring remain equal under push/peek:                      OK
+        +++ OK, passed 100 tests.
+      Prelude.Integer:                                              OK
+        +++ OK, passed 100 tests.
+      Float:                                                        OK
+        +++ OK, passed 100 tests.
+      Double:                                                       OK
+        +++ OK, passed 100 tests.
+      round-tripping strings:                                       OK
+        +++ OK, passed 100 tests.
+      lists of boolean remain equal under push/peeks:               OK
+        +++ OK, passed 100 tests.
+      lists of lua integers remain equal under push/peek:           OK
+        +++ OK, passed 100 tests.
+      lists of bytestrings remain equal under push/peek:            OK
+        +++ OK, passed 100 tests.
+      text:                                                         OK
+        +++ OK, passed 100 tests.
+      map of strings to Lua.Number:                                 OK
+        +++ OK, passed 100 tests.
+      set of strings:                                               OK
+        +++ OK, passed 100 tests.
+      tuples
+        pair of Lua.Numbers:                                        OK
+          +++ OK, passed 100 tests.
+        triple of Lua.Numbers:                                      OK
+          +++ OK, passed 100 tests.
+        quadruple of Lua.Numbers:                                   OK
+          +++ OK, passed 100 tests.
+        quintuple of Lua.Numbers:                                   OK
+          +++ OK, passed 100 tests.
+        hextuple of Text, Lua.Numbers and Booleans:                 OK
+          +++ OK, passed 100 tests.
+        septuple of Text, Lua.Number and Booleans:                  OK
+          +++ OK, passed 100 tests.
+        octuple of Strings and Booleans:                            OK
+          +++ OK, passed 100 tests.
+    Random stack values
+      can push/pop booleans:                                        OK
+        +++ OK, passed 100 tests.
+      can push/pop lua integers:                                    OK
+        +++ OK, passed 100 tests.
+      can push/pop lua numbers:                                     OK
+        +++ OK, passed 100 tests.
+      can push/pop bytestrings:                                     OK
+        +++ OK, passed 100 tests.
+      can push/pop lists of booleans:                               OK
+        +++ OK, passed 100 tests.
+      can push/pop lists of Lua.Integers:                           OK
+        +++ OK, passed 100 tests.
+      can push/pop lists of bytestrings:                            OK (0.01s)
+        +++ OK, passed 100 tests.
+      can push/pop set of bytestrings:                              OK (0.02s)
+        +++ OK, passed 100 tests.
+
+All 73 tests passed (0.10s)
+Test suite test-hslua-classes: PASS
+Test suite logged to:
+/tmp/workdir-hslua-classes/hslua-classes-2.3.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/hslua-classes-2.3.1/t/test-hslua-classes/test/hslua-classes-2.3.1-test-hslua-classes.log
+1 of 1 test suites (1 of 1 test cases) passed.

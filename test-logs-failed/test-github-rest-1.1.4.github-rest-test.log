@@ -1,0 +1,59 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - github-rest-1.1.4 (test:github-rest-test) (ephemeral targets)
+Preprocessing test suite 'github-rest-test' for github-rest-1.1.4...
+Building test suite 'github-rest-test' for github-rest-1.1.4...
+Running 1 test suites...
+Test suite github-rest-test: RUNNING...
+github-rest
+  GitHub.REST (Helpers)
+    o .: key:                            OK
+      +++ OK, passed 100 tests.
+  GitHub.REST.Endpoint
+    endpointPath with no substitutions:  OK
+      +++ OK, passed 100 tests.
+    endpointPath with substitutions:     OK (0.02s)
+      +++ OK, passed 100 tests.
+  GitHub.REST.Monad.Class
+    queryGitHubPage
+      success single:                    OK
+      success multiple:                  OK
+      error single:                      OK
+      success with error in second page: OK
+    queryGitHub
+      success single:                    OK
+      success multiple:                  OK
+      error single:                      OK
+      success with error in second page: OK
+    queryGitHubAll
+      success single:                    OK
+      success multiple:                  OK
+      error single:                      OK
+      error in second page:              OK
+    queryGitHub_
+      success single:                    OK
+      success multiple:                  OK
+      error single:                      OK
+      success with error in second page: OK
+  GitHub.REST.PageLinks
+    parsePageLinks:                      OK
+      +++ OK, passed 100 tests.
+  GitHub.REST (End-to-End)
+    Query Gist #1:                       OK (1.18s)
+    Query non-existent Gist commit:      FAIL (0.16s)
+      Test output was different from 'test/goldens/gists-gist_id-sha-422.golden'. It was:
+      Object (fromList [("documentation_url",String "https://docs.github.com/rest/gists/gists#get-a-gist-revision"),("message",String "No commit found for SHA: d00770679ba293a327156b9e7031c47c6d269157"),("status",String "422")])
+      Use -p '/Query non-existent Gist commit/' to rerun this test only.
+    Query non-existent Gist:             FAIL (0.15s)
+      Test output was different from 'test/goldens/gists-gist_id-sha-404.golden'. It was:
+      Object (fromList [("documentation_url",String "https://docs.github.com/rest/gists/gists#get-a-gist-revision"),("message",String "Not Found"),("status",String "404")])
+      Use -p '$0=="github-rest.GitHub.REST (End-to-End).Query non-existent Gist"' to rerun this test only.
+
+2 out of 23 tests failed (1.52s)
+Test suite github-rest-test: FAIL
+Test suite logged to:
+/tmp/workdir-github-rest/github-rest-1.1.4/dist-newstyle/build/x86_64-linux/ghc-9.6.6/github-rest-1.1.4/t/github-rest-test/test/github-rest-1.1.4-github-rest-test.log
+0 of 1 test suites (0 of 1 test cases) passed.
+Error: [Cabal-7125]
+Tests failed for test:github-rest-test from github-rest-1.1.4.
+

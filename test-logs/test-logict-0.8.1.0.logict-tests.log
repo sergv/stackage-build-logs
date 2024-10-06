@@ -1,0 +1,95 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - logict-0.8.1.0 (test:logict-tests) (ephemeral targets)
+Preprocessing test suite 'logict-tests' for logict-0.8.1.0...
+Building test suite 'logict-tests' for logict-0.8.1.0...
+Running 1 test suites...
+Test suite logict-tests: RUNNING...
+All
+  Monad Reader + env
+    Monad Reader 1:                         OK
+    Monad Reader 2:                         OK
+    Monad Reader 3:                         OK
+  Various monads
+    runIdentity all:                        OK
+    runIdentity many:                       OK
+    observeAll:                             OK
+    observeMany:                            OK
+    runReader is productive:                OK
+    observeManyT can be used with Either:   OK
+  Control.Monad.Logic tests
+    runLogicT multi:                        OK
+    runLogicT none:                         OK
+    runLogicT first:                        OK
+    runLogic multi:                         OK
+    runLogic none:                          OK
+    observe multi:                          OK
+    observe none:                           OK
+    observeAll multi:                       OK
+    observeAll none:                        OK
+    observeMany multi:                      OK
+    observeMany none:                       OK
+  Control.Monad.Logic.Class tests
+    msplit laws
+      msplit mzero == return Nothing
+        msplit mzero :: []:                 OK
+        msplit mzero :: ReaderT:            OK
+        msplit mzero :: CPS WriterT:        OK
+        msplit mzero :: LogicT:             OK
+        msplit mzero :: strict StateT:      OK
+        msplit mzero :: lazy StateT:        OK
+      msplit (return a `mplus` m) == return (Just a, m)
+        msplit []:                          OK
+        msplit ReaderT:                     OK
+        msplit CPS WriterT:                 OK
+        msplit LogicT:                      OK
+        msplit strict StateT:               OK
+        msplit lazy StateT:                 OK
+    fair disjunction
+      some odds:                            OK
+      unfair disjunction:                   OK
+      fair disjunction :: LogicT:           OK
+      fair production:                      OK
+      NONTERMINATION even when fair:        OK (0.11s)
+      fair disjunction :: []:               OK
+      fair disjunction :: ReaderT:          OK
+      fair disjunction :: CPS WriterT:      OK
+      fair disjunction :: strict StateT:    OK
+      fair disjunction :: lazy StateT:      OK
+    fair conjunction
+      fair conjunction :: LogicT:           OK
+      fair conjunction OK:                  OK
+      fair conjunction also OK:             OK
+      fair conjunction NON-PRODUCTIVE:      OK (0.12s)
+      fair conjunction also NON-PRODUCTIVE: OK (0.12s)
+      unfair conjunction is NON-PRODUCTIVE: OK (0.12s)
+      fair conjunction :: []:               OK
+      fair conjunction :: ReaderT:          OK
+      fair conjunction :: CPS WriterT:      OK
+      fair conjunction :: strict StateT:    OK
+      fair conjunction :: lazy StateT:      OK
+    ifte logical conditional (soft-cut)
+      divisible odds:                       OK
+      indivisible odds, wrong:              OK
+      indivisible odds :: LogicT:           OK
+      indivisible odds :: []:               OK
+      indivisible odds :: ReaderT:          OK
+      indivisible odds :: CPS WriterT:      OK
+      indivisible odds :: strict StateT:    OK
+      indivisible odds :: strict StateT:    OK
+    once (pruning)
+      no pruning:                           OK
+      with pruning:                         OK
+  lnot (inversion)
+    inversion :: LogicT:                    OK
+    inversion :: []:                        OK
+    inversion :: ReaderT:                   OK
+    inversion :: CPS WriterT:               OK
+    inversion :: strict StateT:             OK
+    inversion :: lazy StateT:               OK
+
+All 69 tests passed (0.47s)
+Test suite logict-tests: PASS
+Test suite logged to:
+/tmp/workdir-logict/logict-0.8.1.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/logict-0.8.1.0/t/logict-tests/test/logict-0.8.1.0-logict-tests.log
+1 of 1 test suites (1 of 1 test cases) passed.

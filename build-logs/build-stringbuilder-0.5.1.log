@@ -1,0 +1,56 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - stringbuilder-0.5.1 (lib) (first run)
+ - stringbuilder-0.5.1 (test:spec) (first run)
+Configuring library for stringbuilder-0.5.1...
+Preprocessing library for stringbuilder-0.5.1...
+Building library for stringbuilder-0.5.1...
+[1 of 1] Compiling Data.String.Builder
+
+src/Data/String/Builder.hs:24:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+24 | import           Control.Applicative
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Data/String/Builder.hs:26:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+26 | import           Data.Monoid
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Data/String/Builder.hs:34:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative BuilderM’.
+    Move definition from ‘return’ to ‘pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+34 |   pure = return
+   |   ^^^^^^^^^^^^^
+
+src/Data/String/Builder.hs:38:3: warning: [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad BuilderM’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+38 |   return a            = BuilderM a id
+   |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Data/String/Builder.hs:57:13: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+57 | instance (a ~ ()) => IsString (BuilderM a) where
+   |             ^
+Configuring test suite 'spec' for stringbuilder-0.5.1...
+Preprocessing test suite 'spec' for stringbuilder-0.5.1...
+Building test suite 'spec' for stringbuilder-0.5.1...
+[1 of 1] Compiling Main
+[2 of 2] Linking /tmp/workdir-stringbuilder/stringbuilder-0.5.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/stringbuilder-0.5.1/t/spec/build/spec/spec

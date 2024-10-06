@@ -1,0 +1,66 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - amazonka-2.0 (lib) (first run)
+Configuring library for amazonka-2.0...
+Preprocessing library for amazonka-2.0...
+Building library for amazonka-2.0...
+[ 1 of 20] Compiling Amazonka.Auth.Exception
+[ 2 of 20] Compiling Amazonka.Auth.Background
+[ 3 of 20] Compiling Amazonka.EC2.Metadata
+[ 4 of 20] Compiling Amazonka.Logger
+[ 5 of 20] Compiling Amazonka.Env.Hooks[boot]
+[ 6 of 20] Compiling Amazonka.Env[boot]
+[ 7 of 20] Compiling Amazonka.Env.Hooks
+
+src/Amazonka/Env/Hooks.hs:341:10: warning: [GHC-02256] [-Wambiguous-fields]
+    The record update hooks
+                        {signedRequest = f signedRequest} with type Hooks is ambiguous.
+    This will not be supported by -XDuplicateRecordFields in future releases of GHC.
+    |
+341 |   hooks {signedRequest = f signedRequest}
+    |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 8 of 20] Compiling Amazonka.Env
+[ 9 of 20] Compiling Amazonka.HTTP
+[10 of 20] Compiling Amazonka.Auth.Keys
+[11 of 20] Compiling Amazonka.Auth.InstanceProfile
+[12 of 20] Compiling Amazonka.Auth.Container
+[13 of 20] Compiling Amazonka.Presign
+
+src/Amazonka/Presign.hs:103:17: warning: [GHC-02256] [-Wambiguous-fields]
+    The record update rq
+                        {headers = f headers} with type Request is ambiguous.
+    This will not be supported by -XDuplicateRecordFields in future releases of GHC.
+    |
+103 |       rq' = rq {headers = f headers}
+    |                 ^^^^^^^^^^^^^^^^^^^
+[14 of 20] Compiling Amazonka.Send
+[15 of 20] Compiling Amazonka.Auth.STS
+[16 of 20] Compiling Amazonka.Auth.SSO
+
+src/Amazonka/Auth/SSO.hs:45:110: warning: [GHC-02256] [-Wambiguous-fields]
+    The record update (c :: CachedAccessToken)
+                        {region = region'} with type CachedAccessToken is ambiguous.
+    This will not be supported by -XDuplicateRecordFields in future releases of GHC.
+   |
+45 | cachedAccessToken_region f c@CachedAccessToken {region} = f region <&> \region' -> (c :: CachedAccessToken) {region = region'}
+   |                                                                                                              ^^^^^^^^^^^^^^^^
+
+src/Amazonka/Auth/SSO.hs:49:130: warning: [GHC-02256] [-Wambiguous-fields]
+    The record update (c :: CachedAccessToken)
+                        {accessToken = accessToken'} with type CachedAccessToken is ambiguous.
+    This will not be supported by -XDuplicateRecordFields in future releases of GHC.
+   |
+49 | cachedAccessToken_accessToken f c@CachedAccessToken {accessToken} = f accessToken <&> \accessToken' -> (c :: CachedAccessToken) {accessToken = accessToken'}
+   |                                                                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Amazonka/Auth/SSO.hs:88:25: warning: [GHC-02256] [-Wambiguous-fields]
+    The record update env
+                        {region = ssoRegion} with type Env' is ambiguous.
+    This will not be supported by -XDuplicateRecordFields in future releases of GHC.
+   |
+88 |           ssoEnv = env {region = ssoRegion}
+   |                         ^^^^^^^^^^^^^^^^^^
+[17 of 20] Compiling Amazonka.Lens
+[18 of 20] Compiling Amazonka.Auth.ConfigFile
+[19 of 20] Compiling Amazonka.Auth
+[20 of 20] Compiling Amazonka

@@ -1,0 +1,345 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - scientific-0.3.7.0 (test:test-scientific) (ephemeral targets)
+Preprocessing test suite 'test-scientific' for scientific-0.3.7.0...
+Building test suite 'test-scientific' for scientific-0.3.7.0...
+Running 1 test suites...
+Test suite test-scientific: RUNNING...
+scientific
+  DoS protection
+    Eq
+      1e1000000:                        OK
+    Ord
+      compare 1234e1000000 123e1000001: OK
+    RealFrac
+      floor
+        1e1000000:                      OK
+        -1e-1000000:                    OK
+        1e-1000000:                     OK
+      ceiling
+        1e1000000:                      OK
+        -1e-1000000:                    OK
+        1e-1000000:                     OK
+      round
+        1e1000000:                      OK
+        -1e-1000000:                    OK
+        1e-1000000:                     OK
+      truncate
+        1e1000000:                      OK
+        -1e-1000000:                    OK
+        1e-1000000:                     OK
+      properFracton
+        1e1000000:                      OK
+        -1e-1000000:                    OK
+        1e-1000000:                     OK
+    toRealFloat
+      1e1000000:                        OK
+      1e-1000000:                       OK
+    toBoundedInteger
+      1e1000000:                        OK
+  normalization
+    smallcheck:                         OK
+      81 tests completed (but 9 did not meet the condition)
+    quickcheck:                         OK
+      +++ OK, passed 100 tests; 28 discarded.
+  Binary
+    decode . encode == id
+      smallcheck:                       OK
+        81 tests completed
+      quickcheck:                       OK
+        +++ OK, passed 100 tests.
+  Parsing
+    reads "":                           OK
+    reads "1.":                         OK
+    reads "1.2e":                       OK
+    reads "(1.3 )":                     OK
+    reads "((1.3))":                    OK
+    reads " 1.3":                       OK
+    read " ( ((  -1.0e+3 ) ))":         OK
+    scientificP "3":                    OK
+    scientificP "3.0e2":                OK
+    scientificP "+3.0e+2":              OK
+    scientificP "-3.0e-2":              OK
+  Formatting
+    read . show == id
+      smallcheck:                       OK
+        81 tests completed
+      quickcheck:                       OK
+        +++ OK, passed 100 tests.
+    show (Just 1):                      OK
+    show (Just 0):                      OK
+    show (Just (-1)):                   OK
+    toDecimalDigits
+      laws
+        smallcheck:                     OK
+          45 tests completed
+        quickcheck:                     OK
+          +++ OK, passed 100 tests.
+      == Numeric.floatToDigits
+        smallcheck:                     OK
+          19 tests completed
+        quickcheck:                     OK
+          +++ OK, passed 100 tests.
+    Builder
+      Text
+        smallcheck:                     OK
+          81 tests completed
+        quickcheck:                     OK
+          +++ OK, passed 100 tests.
+      ByteString
+        smallcheck:                     OK
+          81 tests completed
+        quickcheck:                     OK
+          +++ OK, passed 100 tests.
+    formatScientific_fromFloatDigits
+      smallcheck:                       OK
+        37 tests completed
+      quickcheck:                       OK
+        +++ OK, passed 100 tests.
+  Eq
+    ==
+      smallcheck:                       OK (0.01s)
+        6561 tests completed
+      quickcheck:                       OK
+        +++ OK, passed 100 tests.
+    s == s
+      smallcheck:                       OK
+        81 tests completed
+      quickcheck:                       OK
+        +++ OK, passed 100 tests.
+  Ord
+    compare
+      smallcheck:                       OK (0.02s)
+        6561 tests completed
+      quickcheck:                       OK
+        +++ OK, passed 100 tests.
+  Num
+    Equal to Rational
+      fromInteger
+        smallcheck:                     OK
+          11 tests completed
+        quickcheck:                     OK
+          +++ OK, passed 100 tests.
+      +
+        smallcheck:                     OK (0.02s)
+          6561 tests completed
+        quickcheck:                     OK (0.03s)
+          +++ OK, passed 100 tests.
+      -
+        smallcheck:                     OK (0.02s)
+          6561 tests completed
+        quickcheck:                     OK (0.02s)
+          +++ OK, passed 100 tests.
+      *
+        smallcheck:                     OK (0.02s)
+          6561 tests completed
+        quickcheck:                     OK (0.01s)
+          +++ OK, passed 100 tests.
+      abs
+        smallcheck:                     OK
+          81 tests completed
+        quickcheck:                     OK
+          +++ OK, passed 100 tests.
+      negate
+        smallcheck:                     OK
+          81 tests completed
+        quickcheck:                     OK
+          +++ OK, passed 100 tests.
+      signum
+        smallcheck:                     OK
+          81 tests completed
+        quickcheck:                     OK
+          +++ OK, passed 100 tests.
+    0 identity of +
+      smallcheck:                       OK
+        81 tests completed
+      quickcheck:                       OK (1.12s)
+        +++ OK, passed 100 tests.
+    1 identity of *
+      smallcheck:                       OK
+        81 tests completed
+      quickcheck:                       OK
+        +++ OK, passed 100 tests.
+    0 identity of *
+      smallcheck:                       OK
+        81 tests completed
+      quickcheck:                       OK
+        +++ OK, passed 100 tests.
+    associativity of +
+      smallcheck:                       OK (1.30s)
+        531441 tests completed
+      quickcheck:                       OK (2.10s)
+        +++ OK, passed 100 tests.
+    commutativity of +
+      smallcheck:                       OK (0.01s)
+        6561 tests completed
+      quickcheck:                       OK (1.66s)
+        +++ OK, passed 100 tests.
+    distributivity of * over +
+      smallcheck:                       OK (1.23s)
+        531441 tests completed
+      quickcheck:                       OK (0.39s)
+        +++ OK, passed 100 tests.
+    subtracting the addition
+      smallcheck:                       OK (0.01s)
+        6561 tests completed
+      quickcheck:                       OK (1.31s)
+        +++ OK, passed 100 tests.
+    + and negate
+      smallcheck:                       OK
+        81 tests completed
+      quickcheck:                       OK
+        +++ OK, passed 100 tests.
+    - and negate
+      smallcheck:                       OK
+        81 tests completed
+      quickcheck:                       OK
+        +++ OK, passed 100 tests.
+    abs . negate == id
+      smallcheck:                       OK
+        45 tests completed
+      quickcheck:                       OK
+        +++ OK, passed 100 tests.
+  Real
+    fromRational . toRational == id
+      smallcheck:                       OK
+        81 tests completed
+      quickcheck:                       OK (1.66s)
+        +++ OK, passed 100 tests.
+  RealFrac
+    Equal to Rational
+      properFraction
+        smallcheck:                     OK
+          81 tests completed
+        quickcheck:                     OK (1.23s)
+          +++ OK, passed 100 tests.
+      round
+        smallcheck:                     OK
+          81 tests completed
+        quickcheck:                     OK
+          +++ OK, passed 100 tests.
+      truncate
+        smallcheck:                     OK
+          81 tests completed
+        quickcheck:                     OK
+          +++ OK, passed 100 tests.
+      ceiling
+        smallcheck:                     OK
+          81 tests completed
+        quickcheck:                     OK
+          +++ OK, passed 100 tests.
+      floor
+        smallcheck:                     OK
+          81 tests completed
+        quickcheck:                     OK
+          +++ OK, passed 100 tests.
+    properFraction_laws
+      smallcheck:                       OK
+        81 tests completed
+      quickcheck:                       OK (0.60s)
+        +++ OK, passed 100 tests.
+    round
+      smallcheck:                       OK
+        81 tests completed
+      quickcheck:                       OK
+        +++ OK, passed 100 tests.
+    truncate
+      smallcheck:                       OK
+        81 tests completed
+      quickcheck:                       OK
+        +++ OK, passed 100 tests.
+    ceiling
+      smallcheck:                       OK
+        81 tests completed
+      quickcheck:                       OK
+        +++ OK, passed 100 tests.
+    floor
+      smallcheck:                       OK
+        81 tests completed
+      quickcheck:                       OK
+        +++ OK, passed 100 tests.
+  Conversions
+    fromRationalRepetend
+      smallcheck:                       OK
+        189 tests completed
+      quickcheck:                       OK
+        +++ OK, passed 100 tests.
+    Float
+      toRealFloat
+        smallcheck:                     OK
+          37 tests completed
+        quickcheck:                     OK
+          +++ OK, passed 100 tests.
+      toRealFloat . fromFloatDigits == id
+        smallcheck:                     OK
+          37 tests completed
+        quickcheck:                     OK
+          +++ OK, passed 100 tests.
+    Double
+      toRealFloat
+        smallcheck:                     OK
+          37 tests completed
+        quickcheck:                     OK
+          +++ OK, passed 100 tests.
+      toRealFloat . fromFloatDigits == id
+        smallcheck:                     OK
+          37 tests completed
+        quickcheck:                     OK
+          +++ OK, passed 100 tests.
+    floatingOrInteger
+      correct conversion
+        smallcheck:                     OK
+          81 tests completed
+        quickcheck:                     OK
+          +++ OK, passed 100 tests.
+      Integer == Right
+        smallcheck:                     OK
+          11 tests completed
+        quickcheck:                     OK
+          +++ OK, passed 100 tests.
+      Double == Left
+        smallcheck:                     OK
+          37 tests completed (but 21 did not meet the condition)
+        quickcheck:                     OK
+          +++ OK, passed 100 tests; 61 discarded.
+    toBoundedInteger
+      correct conversion
+        Int64
+          smallcheck:                   OK
+            81 tests completed
+          quickcheck:                   OK
+            +++ OK, passed 100 tests.
+        Word64
+          smallcheck:                   OK
+            81 tests completed
+          quickcheck:                   OK
+            +++ OK, passed 100 tests.
+        NegativeNum
+          smallcheck:                   OK
+            81 tests completed
+          quickcheck:                   OK
+            +++ OK, passed 100 tests.
+  toBoundedRealFloat
+    0 * 10^1000 == 0:                   OK
+  toBoundedInteger
+    to Int64
+      succ of maxBound:                 OK
+      pred of minBound:                 OK
+      0 * 10^1000 == 0:                 OK
+  Predicates
+    isFloating
+      smallcheck:                       OK
+        81 tests completed
+      quickcheck:                       OK (0.81s)
+        +++ OK, passed 100 tests.
+    isInteger
+      smallcheck:                       OK
+        81 tests completed
+      quickcheck:                       OK (0.36s)
+        +++ OK, passed 100 tests.
+
+All 142 tests passed (14.04s)
+Test suite test-scientific: PASS
+Test suite logged to:
+/tmp/workdir-scientific/scientific-0.3.7.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/scientific-0.3.7.0/t/test-scientific/test/scientific-0.3.7.0-test-scientific.log
+1 of 1 test suites (1 of 1 test cases) passed.

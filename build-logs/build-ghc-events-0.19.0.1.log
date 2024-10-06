@@ -1,0 +1,54 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - ghc-events-0.19.0.1 (lib) (first run)
+ - ghc-events-0.19.0.1 (test:test-versions) (first run)
+ - ghc-events-0.19.0.1 (exe:ghc-events) (first run)
+Configuring library for ghc-events-0.19.0.1...
+Preprocessing library for ghc-events-0.19.0.1...
+Building library for ghc-events-0.19.0.1...
+[ 1 of 10] Compiling GHC.RTS.EventTypes
+[ 2 of 10] Compiling GHC.RTS.EventParserUtils
+[ 3 of 10] Compiling GHC.RTS.Events.Binary
+[ 4 of 10] Compiling GHC.RTS.Events.Incremental
+[ 5 of 10] Compiling GHC.RTS.Events
+[ 6 of 10] Compiling GHC.RTS.Events.Analysis
+[ 7 of 10] Compiling GHC.RTS.Events.Analysis.Thread
+[ 8 of 10] Compiling GHC.RTS.Events.Analysis.SparkThread
+
+src/GHC/RTS/Events/Analysis/SparkThread.hs:94:5: warning: [-Wunused-local-binds]
+    Defined but not used: ‘stopThread’
+   |
+94 |     stopThread threadId = Just (M.filter (/= threadId) m, S.delete threadId s)
+   |     ^^^^^^^^^^
+[ 9 of 10] Compiling GHC.RTS.Events.Analysis.Capability
+[10 of 10] Compiling GHC.RTS.Events.Merge
+
+src/GHC/RTS/Events/Merge.hs:54:5: warning: [-Wnoncanonical-monoid-instances]
+    Noncanonical ‘(<>) = mappend’ definition detected
+    in the instance declaration for ‘Semigroup MaxVars’.
+    Move definition from ‘mappend’ to ‘(<>)’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+   |
+54 |     (<>) = mappend
+   |     ^^^^^^^^^^^^^^
+
+src/GHC/RTS/Events/Merge.hs:59:5: warning: [-Wnoncanonical-monoid-instances]
+    Noncanonical ‘mappend’ definition detected
+    in the instance declaration for ‘Monoid MaxVars’.
+    ‘mappend’ will eventually be removed in favour of ‘(<>)’
+    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+   |
+59 |     mappend (MaxVars a b c) (MaxVars x y z) =
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+Configuring test suite 'test-versions' for ghc-events-0.19.0.1...
+Preprocessing test suite 'test-versions' for ghc-events-0.19.0.1...
+Building test suite 'test-versions' for ghc-events-0.19.0.1...
+[1 of 2] Compiling Utils
+[2 of 2] Compiling Main
+[3 of 3] Linking /tmp/workdir-ghc-events/ghc-events-0.19.0.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/ghc-events-0.19.0.1/t/test-versions/build/test-versions/test-versions
+Configuring executable 'ghc-events' for ghc-events-0.19.0.1...
+Preprocessing executable 'ghc-events' for ghc-events-0.19.0.1...
+Building executable 'ghc-events' for ghc-events-0.19.0.1...
+[1 of 1] Compiling Main
+[2 of 2] Linking /tmp/workdir-ghc-events/ghc-events-0.19.0.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/ghc-events-0.19.0.1/x/ghc-events/build/ghc-events/ghc-events

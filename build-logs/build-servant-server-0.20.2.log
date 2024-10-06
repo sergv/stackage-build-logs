@@ -1,0 +1,97 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - servant-server-0.20.2 (lib) (first run)
+ - servant-server-0.20.2 (test:spec) (first run)
+ - servant-server-0.20.2 (exe:greet) (first run)
+Configuring library for servant-server-0.20.2...
+Preprocessing library for servant-server-0.20.2...
+Building library for servant-server-0.20.2...
+[ 1 of 18] Compiling Servant.Server.Internal.Context
+[ 2 of 18] Compiling Servant.Server.Internal.ServerError
+[ 3 of 18] Compiling Servant.Server.Internal.RouteResult
+[ 4 of 18] Compiling Servant.Server.Internal.RoutingApplication
+[ 5 of 18] Compiling Servant.Server.Internal.Handler
+[ 6 of 18] Compiling Servant.Server.Internal.ErrorFormatter
+[ 7 of 18] Compiling Servant.Server.Internal.Router
+[ 8 of 18] Compiling Servant.Server.Internal.DelayedIO
+[ 9 of 18] Compiling Servant.Server.Internal.Delayed
+[10 of 18] Compiling Servant.Server.Internal.BasicAuth
+[11 of 18] Compiling Servant.Server.Internal
+
+src/Servant/Server/Internal.hs:1025:1: warning: [GHC-08585] [-Wmissing-methods]
+    • No explicit associated type or default declaration for ‘ServerT’
+    • In the instance declaration for ‘HasServer (ty :> sub) context’
+     |
+1025 | instance {-# OVERLAPPABLE #-} TypeError (NoInstanceForSub
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+src/Servant/Server/Internal.hs:1025:31: warning: [GHC-06201] [-Wmissing-methods]
+    • No explicit implementation for
+        ‘route’ and ‘hoistServerWithContext’
+    • In the instance declaration for ‘HasServer (ty :> sub) context’
+     |
+1025 | instance {-# OVERLAPPABLE #-} TypeError (NoInstanceForSub
+     |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+src/Servant/Server/Internal.hs:1031:1: warning: [GHC-08585] [-Wmissing-methods]
+    • No explicit associated type or default declaration for ‘ServerT’
+    • In the instance declaration for ‘HasServer api context’
+     |
+1031 | instance {-# OVERLAPPABLE #-} TypeError (NoInstanceFor (HasServer api context)) => HasServer api context
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Servant/Server/Internal.hs:1031:31: warning: [GHC-06201] [-Wmissing-methods]
+    • No explicit implementation for
+        ‘route’ and ‘hoistServerWithContext’
+    • In the instance declaration for ‘HasServer api context’
+     |
+1031 | instance {-# OVERLAPPABLE #-} TypeError (NoInstanceFor (HasServer api context)) => HasServer api context
+     |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[12 of 18] Compiling Servant.Server.UVerb
+[13 of 18] Compiling Servant.Server
+[14 of 18] Compiling Servant.Server.StaticFiles
+[15 of 18] Compiling Servant.Server.Generic
+[16 of 18] Compiling Servant
+[17 of 18] Compiling Servant.Server.Experimental.Auth
+[18 of 18] Compiling Servant.Utils.StaticFiles
+Configuring test suite 'spec' for servant-server-0.20.2...
+Preprocessing test suite 'spec' for servant-server-0.20.2...
+Building test suite 'spec' for servant-server-0.20.2...
+[ 1 of 12] Compiling Servant.ArbitraryMonadServerSpec
+[ 2 of 12] Compiling Servant.HoistSpec
+[ 3 of 12] Compiling Servant.Server.ErrorSpec
+[ 4 of 12] Compiling Servant.Server.Internal.ContextSpec
+[ 5 of 12] Compiling Servant.Server.Internal.RoutingApplicationSpec
+[ 6 of 12] Compiling Servant.Server.RouterSpec
+[ 7 of 12] Compiling Servant.Server.StreamingSpec
+
+test/Servant/Server/StreamingSpec.hs:62:11: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘requestBody’ (imported from Network.Wai.Internal):
+    Deprecated: "requestBody's name is misleading because it only gets a partial chunk of the body. Use getRequestBodyChunk instead when getting the field, and setRequestBodyChunks when setting the field."
+   |
+62 |           requestBody = streamTestData,
+   |           ^^^^^^^^^^^
+[ 8 of 12] Compiling Servant.Server.UsingContextSpec.TestCombinators
+[ 9 of 12] Compiling Servant.Server.UsingContextSpec
+[10 of 12] Compiling Servant.ServerSpec
+
+test/Servant/ServerSpec.hs:277:8: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[Char]’ not matched:
+            []
+            (p:_) where p is not one of {'c'}
+            ['c']
+            ('c':p:_) where p is not one of {'a'}
+            ...
+    |
+277 |       (\ "captured" -> Tagged $ \request_ sendResponse ->
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+[11 of 12] Compiling Servant.Server.StaticFilesSpec
+[12 of 12] Compiling Main
+[13 of 13] Linking /tmp/workdir-servant-server/servant-server-0.20.2/dist-newstyle/build/x86_64-linux/ghc-9.6.6/servant-server-0.20.2/t/spec/build/spec/spec
+Configuring executable 'greet' for servant-server-0.20.2...
+Preprocessing executable 'greet' for servant-server-0.20.2...
+Building executable 'greet' for servant-server-0.20.2...
+[1 of 1] Compiling Main
+[2 of 2] Linking /tmp/workdir-servant-server/servant-server-0.20.2/dist-newstyle/build/x86_64-linux/ghc-9.6.6/servant-server-0.20.2/x/greet/build/greet/greet

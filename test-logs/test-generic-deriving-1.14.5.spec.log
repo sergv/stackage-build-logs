@@ -1,0 +1,74 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - generic-deriving-1.14.5 (test:spec) (ephemeral targets)
+Preprocessing test suite 'spec' for generic-deriving-1.14.5...
+Building test suite 'spec' for generic-deriving-1.14.5...
+Running 1 test suites...
+Test suite spec: RUNNING...
+
+Default
+  DerivingVia Default
+    GEq is commutative for derivingVia (Default MyType) [✔]
+    GShow for MyType is like Show for Bool with derivingVia (Default MyType) but prefixed with 'MyType ' [✔]
+    GEq is commutative for parameterized derivingVia (Default (MyType1 Bool)) [✔]
+    GShow for MyType1 Bool is like Show for Bool with derivingVia (Default (MyType1 Bool)) but prefixed with 'MyType1 ' [✔]
+    GEq is commutative for derivingVia (Default Bool) [✔]
+    GENum is correct for derivingVia (Default Bool) [✔]
+    GShow for TestShow is the same as Show for Bool with derivingVia (Default Bool) [✔]
+    GSemigroup is like First when instantiated with derivingVia (First Bool) [✔]
+    GFoldable with derivingVia (Default1 Option) acts like mconcat with Maybe (First Bool) [✔]
+      +++ OK, passed 100 tests.
+    GFunctor for TestFunctor Bool is as Functor for Maybe Bool [✔]
+Example
+  [] and Maybe tests
+    gshow hList [✔]
+    gshow (children maybe2) [✔]
+    gshow (transform (const "abc") []) [✔]
+    gshow (transform double hList) [✔]
+    gshow (geq hList hList) [✔]
+    gshow (geq maybe1 maybe2) [✔]
+    gshow (take 5 genum) [✔]
+    gshow (take 15 genum) [✔]
+    gshow (range ([0], [1])) [✔]
+    gshow (inRange ([0], [3,5]) hList) [✔]
+  Tests for Tree
+    gshow tree [✔]
+    gshow (children tree) [✔]
+    gshow (descend (descend (\_ -> Branch 0 Empty Empty)) tree) [✔]
+    gshow (context tree [Branch 1 Empty Empty,Empty]) [✔]
+    gshow (transform upgradeTree tree) [✔]
+    gshow (take 10 genum) [✔]
+  Tests for List
+    gshow (gmap fromEnum list) [✔]
+    gshow (gmap gshow listlist) [✔]
+    gshow list [✔]
+    gshow listlist [✔]
+    gshow (children list) [✔]
+    gshow (children listlist) [✔]
+  Tests for Rose
+    gshow rose1 [✔]
+    gshow (gmap gshow rose1) [✔]
+  Tests for GRose
+    gshow grose1 [✔]
+    gshow (gmap gshow grose1) [✔]
+  Tests for Either
+    gshow either1 [✔]
+    gshow (gmap gshow either1) [✔]
+  Tests for Nested
+    gshow nested [✔]
+    gshow (gmap gshow nested) [✔]
+  Tests for Bush
+    gshow bush1 [✔]
+    gshow (gmap gshow bush1) [✔]
+TypeInType
+  TyCon Bool 'False 'True
+    has an appropriately kinded Generic1 instance [✔]
+  TyFam Bool 'False 'True
+    has an appropriately kinded Generic1 instance [✔]
+
+Finished in 0.0030 seconds
+44 examples, 0 failures
+Test suite spec: PASS
+Test suite logged to:
+/tmp/workdir-generic-deriving/generic-deriving-1.14.5/dist-newstyle/build/x86_64-linux/ghc-9.6.6/generic-deriving-1.14.5/t/spec/test/generic-deriving-1.14.5-spec.log
+1 of 1 test suites (1 of 1 test cases) passed.

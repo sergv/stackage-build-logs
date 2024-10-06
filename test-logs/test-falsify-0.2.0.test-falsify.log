@@ -1,0 +1,692 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - falsify-0.2.0 (test:test-falsify) (ephemeral targets)
+Preprocessing test suite 'test-falsify' for falsify-0.2.0...
+Building test suite 'test-falsify' for falsify-0.2.0...
+Running 1 test suites...
+Test suite test-falsify: RUNNING...
+falsify
+  Sanity
+    TestSuite.Sanity.Range
+      between
+        2:                   OK
+        3:                   OK
+        4:                   OK
+        10:                  OK
+        100:                 OK
+        1000:                OK
+        10000:               OK (0.01s)
+    TestSuite.Sanity.Selective
+      tree
+        ifBoth:              OK (10.00s)
+          Timed out as expected
+        ifS
+          10:                OK
+          20:                OK
+          30:                OK
+          40:                OK
+          50:                OK
+          60:                OK
+          70:                OK
+          80:                OK
+          90:                OK
+          100:               OK
+    TestSuite.Sanity.Predicate
+      on:                    OK
+  Prop
+    TestSuite.Prop.Generator.Prim
+      prim
+        shrinking:           OK
+          100 successful tests
+        minimum
+          0:                 OK
+            100 successful tests
+          1:                 OK
+            100 successful tests
+          2:                 OK
+            100 successful tests
+          3:                 OK
+            100 successful tests
+          4:                 OK
+            100 successful tests
+        prim_minimum_wrong:  OK
+          expected failure after 0 shrinks
+          expected /= minimum
+          expected: 1
+          minimum : 0
+      applicative
+        pair
+          shrinking:         OK
+            100 successful tests
+          minimum1:          OK (0.02s)
+            100 successful tests (discarded 119)
+          minimum2:          OK (0.01s)
+            100 successful tests (discarded 77)
+        replicateM
+          shrinking:         OK (0.03s)
+            100 successful tests
+          minimum:           OK (0.02s)
+            100 successful tests
+      monad
+        maybe
+          towardsNothing
+            shrinking:       OK
+              100 successful tests
+            minimum:         OK
+              100 successful tests (discarded 80)
+            shrinking_wrong: OK (0.04s)
+              expected failure after 780 successful tests and 1 shrink
+              not (validShrink original shrunk)
+              original: (Just 100,99)
+              shrunk  : (Nothing,100)
+          towardsJust
+            shrinking:       OK
+              100 successful tests
+            minimum:         OK
+              100 successful tests (discarded 108)
+            minimum_wrong:   OK
+              expected failure after 1 successful test and 0 shrinks (discarded 3)
+              expected /= minimum
+              expected: (Just 0,1)
+              minimum : (Nothing,1)
+        either
+          shrinking:         OK
+            100 successful tests
+      selective
+        either
+          shrinking:         OK
+            expected failure after 131 successful tests and 7 shrinks
+            not (validShrink original shrunk)
+            original: Right 17382499244786263093
+            shrunk  : Left 4252925328496932329
+      captureLocalTree
+        shrinking1:          OK
+          100 successful tests
+        shrinking2:          OK
+          100 successful tests
+      stream
+        shrinking1:          OK (6.16s)
+          100 successful tests
+        shrinking2:          OK (5.72s)
+          100 successful tests
+        minimum:             OK
+          100 successful tests
+    TestSuite.Prop.Generator.Selective
+      pair
+        ifM:                 OK
+          100 successful tests
+        ifS:                 OK (0.01s)
+          expected failure after 381 successful tests and 2 shrinks
+          not (propEither original shrunk)
+          original: (12752243316966524170,Right 17)
+          shrunk  : (12752243316966524170,Left 100)
+        ifThenElse:          OK
+          100 successful tests
+    TestSuite.Prop.Generator.Marking
+      list
+        shrinking:           OK (0.07s)
+          100 successful tests
+        minimum:             OK (5.86s)
+          100 successful tests (discarded 105)
+    TestSuite.Prop.Generator.Precision
+      wordN
+        Precision 0
+          shrinking:         OK
+            100 successful tests
+          minimum:           OK
+            100 successful tests
+        Precision 1
+          shrinking:         OK
+            100 successful tests
+          minimum:           OK
+            100 successful tests
+        Precision 2
+          shrinking:         OK
+            100 successful tests
+          minimum:           OK
+            100 successful tests
+        Precision 3
+          shrinking:         OK
+            100 successful tests
+          minimum:           OK
+            100 successful tests
+        Precision 63
+          shrinking:         OK
+            100 successful tests
+          minimum:           OK
+            100 successful tests
+        Precision 64
+          shrinking:         OK
+            100 successful tests
+          minimum:           OK
+            100 successful tests
+      fraction
+        2
+          shrinking:         OK
+            100 successful tests
+          minimum:           OK
+            100 successful tests (discarded 296)
+        3
+          shrinking:         OK
+            100 successful tests
+          minimum:           OK
+            100 successful tests (discarded 197)
+        4
+          shrinking:         OK
+            100 successful tests
+          minimum:           OK
+            100 successful tests (discarded 130)
+        5
+          shrinking:         OK
+            100 successful tests
+          minimum:           OK
+            100 successful tests (discarded 91)
+        63
+          shrinking:         OK
+            100 successful tests
+          minimum:           OK (0.02s)
+            100 successful tests (discarded 97)
+        64
+          shrinking:         OK
+            100 successful tests
+          minimum:           OK (0.02s)
+            100 successful tests (discarded 116)
+    TestSuite.Prop.Generator.Simple
+      prim
+        shrinking:           OK
+          100 successful tests
+        minimum
+          0:                 OK
+            100 successful tests
+          1:                 OK
+            100 successful tests
+          2:                 OK
+            100 successful tests
+          3:                 OK
+            100 successful tests
+          4:                 OK
+            100 successful tests
+      bool
+        towardsFalse
+          shrinking:         OK
+            100 successful tests
+          minimum:           OK
+            100 successful tests
+        towardsTrue
+          shrinking:         OK
+            100 successful tests
+          minimum:           OK
+            100 successful tests
+      int
+        between
+          0_0
+            shrinking:       OK
+              100 successful tests
+            minimum
+              0:             OK
+                100 successful tests
+              1:             OK
+                100 successful tests
+              99:            OK
+                100 successful tests
+              100:           OK
+                100 successful tests
+          0_10
+            shrinking:       OK
+              100 successful tests
+            minimum
+              0:             OK
+                100 successful tests (discarded 7)
+              1:             OK
+                100 successful tests (discarded 12)
+              99:            OK
+                100 successful tests
+              100:           OK
+                100 successful tests
+          0_100
+            shrinking:       OK
+              100 successful tests
+            minimum
+              0:             OK
+                100 successful tests (discarded 2)
+              1:             OK
+                100 successful tests (discarded 1)
+              99:            OK
+                100 successful tests (discarded 1)
+              100:           OK
+                100 successful tests
+          10_0
+            shrinking:       OK
+              100 successful tests
+            minimum
+              0:             OK
+                100 successful tests (discarded 9)
+              1:             OK
+                100 successful tests (discarded 12)
+              99:            OK
+                100 successful tests
+              100:           OK
+                100 successful tests
+          10_10
+            shrinking:       OK
+              100 successful tests
+            minimum
+              0:             OK
+                100 successful tests
+              1:             OK
+                100 successful tests
+              99:            OK
+                100 successful tests
+              100:           OK
+                100 successful tests
+          10_100
+            shrinking:       OK
+              100 successful tests
+            minimum
+              0:             OK
+                100 successful tests
+              1:             OK
+                100 successful tests
+              99:            OK
+                100 successful tests
+              100:           OK
+                100 successful tests
+          100_0
+            shrinking:       OK
+              100 successful tests
+            minimum
+              0:             OK
+                100 successful tests (discarded 2)
+              1:             OK
+                100 successful tests
+              99:            OK
+                100 successful tests (discarded 1)
+              100:           OK
+                100 successful tests (discarded 2)
+          100_10
+            shrinking:       OK
+              100 successful tests
+            minimum
+              0:             OK
+                100 successful tests
+              1:             OK
+                100 successful tests
+              99:            OK
+                100 successful tests (discarded 1)
+              100:           OK
+                100 successful tests (discarded 1)
+          100_100
+            shrinking:       OK
+              100 successful tests
+            minimum
+              0:             OK
+                100 successful tests
+              1:             OK
+                100 successful tests
+              99:            OK
+                100 successful tests
+              100:           OK
+                100 successful tests
+        withOrigin
+          Int
+            0_10_0
+              shrinking:     OK
+                100 successful tests
+              minimum
+                0:           OK
+                  100 successful tests (discarded 8)
+                1:           OK
+                  100 successful tests (discarded 8)
+                49:          OK
+                  100 successful tests
+                50:          OK
+                  100 successful tests
+                51:          OK
+                  100 successful tests
+                99:          OK
+                  100 successful tests
+                100:         OK
+                  100 successful tests
+            0_10_10
+              shrinking:     OK
+                100 successful tests
+              minimum
+                0:           OK
+                  100 successful tests (discarded 12)
+                1:           OK
+                  100 successful tests (discarded 10)
+                49:          OK
+                  100 successful tests
+                50:          OK
+                  100 successful tests
+                51:          OK
+                  100 successful tests
+                99:          OK
+                  100 successful tests
+                100:         OK
+                  100 successful tests
+            0_10_5
+              shrinking:     OK
+                100 successful tests
+              minimum
+                0:           OK
+                  100 successful tests
+                1:           OK
+                  100 successful tests (discarded 2)
+                49:          OK
+                  100 successful tests
+                50:          OK
+                  100 successful tests
+                51:          OK
+                  100 successful tests
+                99:          OK
+                  100 successful tests
+                100:         OK
+                  100 successful tests
+            0_100_0
+              shrinking:     OK
+                100 successful tests
+              minimum
+                0:           OK
+                  100 successful tests
+                1:           OK
+                  100 successful tests
+                49:          OK
+                  100 successful tests (discarded 2)
+                50:          OK
+                  100 successful tests
+                51:          OK
+                  100 successful tests
+                99:          OK
+                  100 successful tests (discarded 1)
+                100:         OK
+                  100 successful tests
+            0_100_100
+              shrinking:     OK
+                100 successful tests
+              minimum
+                0:           OK
+                  100 successful tests
+                1:           OK
+                  100 successful tests (discarded 1)
+                49:          OK
+                  100 successful tests (discarded 1)
+                50:          OK
+                  100 successful tests (discarded 2)
+                51:          OK
+                  100 successful tests (discarded 1)
+                99:          OK
+                  100 successful tests
+                100:         OK
+                  100 successful tests (discarded 2)
+            0_100_50
+              shrinking:     OK
+                100 successful tests
+              minimum
+                0:           OK
+                  100 successful tests
+                1:           OK
+                  100 successful tests
+                49:          OK
+                  100 successful tests (discarded 2)
+                50:          OK
+                  100 successful tests (discarded 5)
+                51:          OK
+                  100 successful tests (discarded 4)
+                99:          OK
+                  100 successful tests
+                100:         OK
+                  100 successful tests
+          Word
+            0_10_0
+              shrinking:     OK
+                100 successful tests
+              minimum
+                0:           OK
+                  100 successful tests (discarded 9)
+                1:           OK
+                  100 successful tests (discarded 6)
+                49:          OK
+                  100 successful tests
+                50:          OK
+                  100 successful tests
+                51:          OK
+                  100 successful tests
+                99:          OK
+                  100 successful tests
+                100:         OK
+                  100 successful tests
+            0_10_10
+              shrinking:     OK
+                100 successful tests
+              minimum
+                0:           OK
+                  100 successful tests (discarded 10)
+                1:           OK
+                  100 successful tests (discarded 11)
+                49:          OK
+                  100 successful tests
+                50:          OK
+                  100 successful tests
+                51:          OK
+                  100 successful tests
+                99:          OK
+                  100 successful tests
+                100:         OK
+                  100 successful tests
+            0_10_5
+              shrinking:     OK
+                100 successful tests
+              minimum
+                0:           OK
+                  100 successful tests
+                1:           OK
+                  100 successful tests (discarded 4)
+                49:          OK
+                  100 successful tests
+                50:          OK
+                  100 successful tests
+                51:          OK
+                  100 successful tests
+                99:          OK
+                  100 successful tests
+                100:         OK
+                  100 successful tests
+            0_100_0
+              shrinking:     OK
+                100 successful tests
+              minimum
+                0:           OK
+                  100 successful tests (discarded 1)
+                1:           OK
+                  100 successful tests (discarded 2)
+                49:          OK
+                  100 successful tests
+                50:          OK
+                  100 successful tests (discarded 1)
+                51:          OK
+                  100 successful tests (discarded 1)
+                99:          OK
+                  100 successful tests
+                100:         OK
+                  100 successful tests
+            0_100_100
+              shrinking:     OK
+                100 successful tests
+              minimum
+                0:           OK
+                  100 successful tests
+                1:           OK
+                  100 successful tests
+                49:          OK
+                  100 successful tests
+                50:          OK
+                  100 successful tests (discarded 1)
+                51:          OK
+                  100 successful tests (discarded 2)
+                99:          OK
+                  100 successful tests
+                100:         OK
+                  100 successful tests (discarded 3)
+            0_100_50
+              shrinking:     OK
+                100 successful tests
+              minimum
+                0:           OK
+                  100 successful tests
+                1:           OK
+                  100 successful tests
+                49:          OK
+                  100 successful tests (discarded 3)
+                50:          OK
+                  100 successful tests (discarded 5)
+                51:          OK
+                  100 successful tests (discarded 4)
+                99:          OK
+                  100 successful tests (discarded 1)
+                100:         OK
+                  100 successful tests
+      char
+        enum
+          shrinking:         OK
+            100 successful tests
+    TestSuite.Prop.Generator.Shrinking
+      prim
+        prim:                OK
+          expected failure after 0 shrinks (discarded 1)
+          expected /= minimum
+          expected: 1
+          minimum : 3
+      shrinkTo
+        shrinking:           OK
+          100 successful tests
+        minimum:             OK
+          100 successful tests
+      firstThen
+        shrinking:           OK
+          100 successful tests
+        minimum:             OK
+          100 successful tests
+      shrinkWith
+        minimum
+          minimum:           OK
+            100 successful tests (discarded 104)
+          list
+            20:              OK (0.05s)
+              100 successful tests
+            40:              OK (0.09s)
+              100 successful tests
+            60:              OK (0.13s)
+              100 successful tests
+            80:              OK (0.17s)
+              100 successful tests
+            100:             OK (0.21s)
+              100 successful tests
+            120:             OK (0.23s)
+              100 successful tests
+            140:             OK (0.27s)
+              100 successful tests
+            160:             OK (0.31s)
+              100 successful tests
+            180:             OK (0.35s)
+              100 successful tests
+    TestSuite.Prop.Generator.Compound
+      list
+        towardsShorter
+          shrinking:         OK (0.01s)
+            100 successful tests
+          minimum:           OK (0.09s)
+            100 successful tests
+        towardsShorterEven
+          shrinking:         OK
+            expected failure after 8 successful tests and 2 shrinks
+            (length original) < (length shrunk)
+            original       : [6,8,2,6,6,4]
+            shrunk         : [6,8,4,2,6,6,4]
+            length original: 6
+            length shrunk  : 7
+          minimum:           OK (0.65s)
+            100 successful tests (discarded 6)
+        towardsLonger
+          shrinking:         OK
+            100 successful tests
+          minimum:           OK (0.10s)
+            100 successful tests (discarded 50)
+        towardsOrigin
+          minimum:           OK (0.04s)
+            100 successful tests (discarded 38)
+      perm
+        shrinking:           OK
+          100 successful tests
+        minimum
+          0:                 OK (0.09s)
+            100 successful tests (discarded 32)
+          1:                 OK (0.10s)
+            100 successful tests (discarded 26)
+          2:                 OK (0.11s)
+            100 successful tests (discarded 44)
+          3:                 OK (0.10s)
+            100 successful tests (discarded 56)
+          4:                 OK (0.09s)
+            100 successful tests (discarded 80)
+          5:                 OK (0.07s)
+            100 successful tests (discarded 121)
+          6:                 OK (0.07s)
+            100 successful tests (discarded 154)
+          7:                 OK (0.06s)
+            100 successful tests (discarded 237)
+          8:                 OK (0.06s)
+            100 successful tests (discarded 505)
+          9:                 OK (0.05s)
+            100 successful tests (discarded 799)
+      tree
+        towardsSmaller1:     OK (0.10s)
+          100 successful tests (discarded 16)
+        towardsSmaller2:     OK (0.17s)
+          100 successful tests (discarded 26)
+        towardsOrigin1:      OK (0.44s)
+          100 successful tests (discarded 198)
+        towardsOrigin2:      OK (0.31s)
+          100 successful tests (discarded 460)
+      shrinkTree
+        pathAny:             OK
+          100 successful tests (discarded 302)
+        toShrinkTree:        OK (0.03s)
+          100 successful tests (discarded 230)
+      frequency
+        shrinking:           OK
+          100 successful tests
+        shrinking_wrong:     OK
+          expected failure after 5 shrinks
+          not (propShrinkingList2 original shrunk)
+          original: [0,10]
+          shrunk  : [7]
+        replicateM:          OK
+          100 successful tests
+    TestSuite.Prop.Generator.Function
+      BoolToBool
+        notConstant:         OK
+          100 successful tests (discarded 97)
+        constant:            OK
+          100 successful tests (discarded 85)
+      Word8ToBool:           OK (0.19s)
+        100 successful tests
+      IntegerToBool:         OK (0.65s)
+        10 successful tests (discarded 9)
+      IntToInt:              OK (1.84s)
+        100 successful tests
+      StringToBool:          OK (1.69s)
+        10 successful tests (discarded 31)
+  TestSuite.GenDefault
+    Int:                     OK
+    Char:                    OK
+    Choice:                  OK
+    AList:                   OK
+    AString:                 OK
+    Record:                  OK
+
+All 279 tests passed (37.05s)
+Test suite test-falsify: PASS
+Test suite logged to:
+/tmp/workdir-falsify/falsify-0.2.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/falsify-0.2.0/t/test-falsify/test/falsify-0.2.0-test-falsify.log
+1 of 1 test suites (1 of 1 test cases) passed.

@@ -1,0 +1,55 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - semver-0.4.0.1 (test:semver-test) (ephemeral targets)
+Preprocessing test suite 'semver-test' for semver-0.4.0.1...
+Building test suite 'semver-test' for semver-0.4.0.1...
+Running 1 test suites...
+Test suite semver-test: RUNNING...
+tests
+  serialisation
+    isomorphisms
+      0.0.0:                                                                                   OK
+      1.0.0:                                                                                   OK
+      1.0.0-alpha:                                                                             OK
+      1.0.0-alpha.1:                                                                           OK
+      1.0.1:                                                                                   OK
+      1.1.0:                                                                                   OK
+      2.0.0:                                                                                   OK
+      2.1.0:                                                                                   OK
+      2.1.1:                                                                                   OK
+      1.2.3+sha.2ac:                                                                           OK
+      1.2.3-beta.1+sha.exp.dc2:                                                                OK
+  precedence
+    0.0.0 < 1.0.0 < 1.0.1 < 1.1.0:                                                             OK
+    1.0.0 < 2.0.0:                                                                             OK
+    1.0.0-alpha < 1.0.0:                                                                       OK
+    1.0.0-alpha < 1.0.0-alpha.1:                                                               OK
+    1.2.3-beta.1+sha.exp.dc2 < 1.2.3+sha.2ac:                                                  OK
+  equality
+    0.0.0 == 0.0.0:                                                                            OK
+    compare 0.0.0 0.0.0 == EQ:                                                                 OK
+    1.2.3 /= 1.2.3+sha.2ac:                                                                    OK
+    compare 1.2.3 1.2.3+sha.2ac == EQ:                                                         OK
+  constraint satisfaction
+    basic satisfaction
+      1.2.3 `satisfies` >=1.2.3:                                                               OK
+      not $ 1.2.3 `satisfies` >1.2.3:                                                          OK
+      1.2.3 `satisfies` <1.2.4:                                                                OK
+      not $ 1.2.3 `satisfies` =1.2.4:                                                          OK
+    composite satisfaction
+      1.2.3 `satisfies` >1.0.0 <2.0.0:                                                         OK
+      1.2.3 `satisfies` <2.0.0 || >3.0.0:                                                      OK
+      1.2.3 `satisfies` >1.0.0 <2.0.0 || 3.0.0:                                                OK
+      1.2.3 `satisfies` 3.0.0 || <2.0.0 >1.0.0:                                                OK
+    prerelease handling
+      prerelease versions satisfy if triple is same:                                           OK
+      prerelease versions don't satisfy if spec doesn't contain prerelease tag on same triple: OK
+      prerelease versions don't satisfy if spec doesn't contain prerelease tag on same triple: OK
+      prerelease versions do not require tag to be the same to satisfy:                        OK
+      regular versions can satisfy prerelease constraints:                                     OK
+
+All 33 tests passed (0.00s)
+Test suite semver-test: PASS
+Test suite logged to:
+/tmp/workdir-semver/semver-0.4.0.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/semver-0.4.0.1/t/semver-test/test/semver-0.4.0.1-semver-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

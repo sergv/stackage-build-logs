@@ -1,0 +1,92 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - hnix-store-core-0.7.0.0 (test:format-tests) (ephemeral targets)
+Preprocessing test suite 'format-tests' for hnix-store-core-0.7.0.0...
+Building test suite 'format-tests' for hnix-store-core-0.7.0.0...
+
+<no location info>: warning: [GHC-42258] [-Wunused-packages]
+    The following packages were specified via -package or -package-id flags,
+    but were not needed for compilation:
+      - base-4.18.2.1 (exposed by flag -package-id base-4.18.2.1)
+      - relude-1.2.1.0 (exposed by flag -package-id relude-1.2.1.0-d5150f66a8d37d9bee33560dbf52239a69527fac6035a420a5d936beecf4af7b)
+
+<no location info>: warning: [GHC-42258] [-Wunused-packages]
+    The following packages were specified via -package or -package-id flags,
+    but were not needed for compilation:
+      - base-4.18.2.1 (exposed by flag -package-id base-4.18.2.1)
+      - relude-1.2.1.0 (exposed by flag -package-id relude-1.2.1.0-d5150f66a8d37d9bee33560dbf52239a69527fac6035a420a5d936beecf4af7b)
+Running 1 test suites...
+Test suite format-tests: RUNNING...
+tests/Driver.hs
+  golden
+    derivation roundtrip of tests/samples/example0.drv:                                                        OK
+    derivation roundtrip of tests/samples/example1.drv:                                                        OK
+  hash
+    hashing parity with nix-store
+      produces (base32 . sha256) of "nix-output:foo" the same as Nix does at the moment for placeholder "foo": OK
+      produces (base16 . md5) of "Hello World" the same as the thesis:                                         OK
+      produces (base32 . sha1) of "Hello World" the same as the thesis:                                        OK
+      produces same base32 as nix pill flat file example:                                                      OK
+  nixBase32Roundtrip:                                                                                          OK
+    +++ OK, passed 100 tests.
+  nixBase16Roundtrip:                                                                                          OK
+    +++ OK, passed 100 tests.
+  nixhash
+    hashing parity with nix-nash
+      b16 encoded . b32 decoded should equal original b16:                                                     OK
+      b64 encoded . b32 decoded should equal original b64:                                                     OK
+      b32 encoded . b64 decoded should equal original b32:                                                     OK
+      b16 encoded . b64 decoded should equal original b16:                                                     OK
+      b32 encoded . b16 decoded should equal original b32:                                                     OK
+      b64 encoded . b16 decoded should equal original b64:                                                     OK
+  narEncoding
+    parser-roundtrip
+      roundtrips regular:                                                                                      OK
+      roundtrips regular 2:                                                                                    OK
+      roundtrips executable:                                                                                   OK
+      roundtrips directory:                                                                                    OK
+      roundtrips case conflicts:                                                                               OK
+    matches-nix-store fixture
+      matches regular:                                                                                         OK
+      matches regular':                                                                                        OK
+      matches executable:                                                                                      OK
+      matches symlink:                                                                                         OK
+      matches directory:                                                                                       OK
+      matches symlink to directory:                                                                            OK
+"No nix-store on system"
+  nixStoreRegular:                                                                                             "No nix-store on system"
+OK
+  nixStoreDirectory:                                                                                           OK
+"No nix-store on system"
+  nixStoreDirectory':                                                                                          OK
+  bigfile:                                                                                                     "No nix-store on system"
+OK (0.02s)
+  bigdir:                                                                                                      "No nix-store on system"
+OK (0.05s)
+  narEncodingArbitrary:                                                                                        OK"No nix-store on system"
+ (0.02s)
+    +++ OK, passed 100 tests.
+  packSelfSrcDir:                                                                                              OK
+  streamLargeFileToNar:                                                                                        OK (0.02s)
+    create test file      (0.02s)
+    create nar file       (0.01s)
+    assert bounded memory
+  streamManyFilesToNar:                                                                                        OK (0.93s)
+    create test files         (0.12s)
+    pack nar                  (0.69s)
+    unpack nar                (0.10s)
+    check constant file usage (0.02s)
+  storePathRoundtrip:                                                                                          OK
+    +++ OK, passed 100 tests.
+  storePathRoundtrip':                                                                                         OK
+    +++ OK, passed 100 tests.
+  storePathRoundtripParser:                                                                                    OK
+    +++ OK, passed 100 tests.
+  storePathRoundtripParser':                                                                                   OK
+    +++ OK, passed 100 tests.
+
+All 38 tests passed (1.09s)
+Test suite format-tests: PASS
+Test suite logged to:
+/tmp/workdir-hnix-store-core/hnix-store-core-0.7.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/hnix-store-core-0.7.0.0/t/format-tests/test/hnix-store-core-0.7.0.0-format-tests.log
+1 of 1 test suites (1 of 1 test cases) passed.

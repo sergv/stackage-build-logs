@@ -1,0 +1,71 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - moffy-0.1.1.0 (lib) (first run)
+ - moffy-0.1.1.0 (test:moffy-test) (first run)
+Configuring library for moffy-0.1.1.0...
+Preprocessing library for moffy-0.1.1.0...
+Building library for moffy-0.1.1.0...
+[ 1 of 16] Compiling Control.Moffy.Internal.React.Type
+
+src/Control/Moffy/Internal/React/Type.hs:109:33: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘ThreadId’ not matched: NoThreadId
+    |
+109 | forkThreadId = GetThreadId >>>= \(ThreadId n i) ->
+    |                                 ^^^^^^^^^^^^^^^^^^...
+[ 2 of 16] Compiling Control.Moffy.Internal.React
+[ 3 of 16] Compiling Control.Moffy.Handle
+[ 4 of 16] Compiling Control.Moffy.Event.ThreadId
+[ 5 of 16] Compiling Control.Moffy.Handle.ThreadId
+[ 6 of 16] Compiling Control.Moffy.Internal.Sig.Type
+[ 7 of 16] Compiling Control.Moffy.Internal.Sig
+[ 8 of 16] Compiling Control.Moffy
+[ 9 of 16] Compiling Control.Moffy.Event.Time
+[10 of 16] Compiling Control.Moffy.Handle.Time
+[11 of 16] Compiling Control.Moffy.Event.Lock.Internal
+
+src/Control/Moffy/Event/Lock/Internal.hs:94:13: warning: [GHC-30606] [-Wredundant-constraints]
+    Redundant constraints: ((es :+: es') ~ es',
+                            (GetThreadIdGetLock :+: es') ~ es',
+                            (SingletonUnlock :+: es') ~ es')
+    In the type signature for:
+         withLock :: forall (es :: type-set-0.1.0.0:Data.Type.Set.Internal.Set
+                                     (*))
+                            (es' :: type-set-0.1.0.0:Data.Type.Set.Internal.Set (*)) s a.
+                     ((es :+: es') ~ es', (GetThreadIdGetLock :+: es') ~ es',
+                      (SingletonUnlock :+: es') ~ es', Adjustable es es',
+                      Adjustable GetThreadIdGetLock es',
+                      Adjustable SingletonUnlock es') =>
+                     LockId -> React s es a -> React s es' a
+   |
+94 | withLock :: (
+   |             ^...
+
+src/Control/Moffy/Event/Lock/Internal.hs:102:16: warning: [GHC-30606] [-Wredundant-constraints]
+    Redundant constraints: ((es :+: es') ~ es',
+                            (GetThreadIdGetLock :+: es') ~ es',
+                            (SingletonUnlock :+: es') ~ es')
+    In the type signature for:
+         withLockSig :: forall (es :: type-set-0.1.0.0:Data.Type.Set.Internal.Set
+                                        (*))
+                               (es' :: type-set-0.1.0.0:Data.Type.Set.Internal.Set (*)) s a r.
+                        ((es :+: es') ~ es', (GetThreadIdGetLock :+: es') ~ es',
+                         (SingletonUnlock :+: es') ~ es', Adjustable es es',
+                         Adjustable GetThreadIdGetLock es',
+                         Adjustable SingletonUnlock es') =>
+                        LockId -> Sig s es a r -> Sig s es' a r
+    |
+102 | withLockSig :: (
+    |                ^...
+[12 of 16] Compiling Control.Moffy.Handle.Lock
+[13 of 16] Compiling Control.Moffy.Event.Lock
+[14 of 16] Compiling Control.Moffy.NoThreadId
+[15 of 16] Compiling Control.Moffy.Run
+[16 of 16] Compiling Paths_moffy
+Configuring test suite 'moffy-test' for moffy-0.1.1.0...
+Preprocessing test suite 'moffy-test' for moffy-0.1.1.0...
+Building test suite 'moffy-test' for moffy-0.1.1.0...
+[1 of 2] Compiling Main
+[2 of 2] Compiling Paths_moffy
+[3 of 3] Linking /tmp/workdir-moffy/moffy-0.1.1.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/moffy-0.1.1.0/t/moffy-test/build/moffy-test/moffy-test

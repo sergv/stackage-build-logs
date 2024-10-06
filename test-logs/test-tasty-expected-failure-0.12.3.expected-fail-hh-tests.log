@@ -1,0 +1,114 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - tasty-expected-failure-0.12.3 (test:expected-fail-hh-tests) (ephemeral targets)
+Preprocessing test suite 'expected-fail-hh-tests' for tasty-expected-failure-0.12.3...
+Building test suite 'expected-fail-hh-tests' for tasty-expected-failure-0.12.3...
+Running 1 test suites...
+Test suite expected-fail-hh-tests: RUNNING...
+Expected Hedgehog Failures
+  good:                                OK
+      ✓ <interactive> passed 100 tests.
+  rarely good:                         FAIL (expected)
+      ✗ <interactive> failed at tests/TestExpectedFailsHH.hs:22:18
+        after 20 tests and 3 shrinks.
+        shrink path: 20:dEd
+      
+           ┏━━ tests/TestExpectedFailsHH.hs ━━━
+        16 ┃ main = defaultMain $
+        17 ┃   localOption (mkTimeout 1000000) $  -- 1s
+        18 ┃   testGroup "Expected Hedgehog Failures" $
+        19 ┃   [ testProperty "good" $ property $ success
+        20 ┃   , expectFail $ testProperty "rarely good" $ property $ do
+        21 ┃       xs <- forAll $ Gen.list (Range.linear 0 10) Gen.alpha
+           ┃       │ "ab"
+        22 ┃       reverse xs === xs
+           ┃       ^^^^^^^^^^^^^^^^^
+           ┃       │ ━━━ Failed (- lhs) (+ rhs) ━━━
+           ┃       │ - "ba"
+           ┃       │ + "ab"
+        23 ┃ 
+        24 ┃   -- n.b. uncomment this to observe the results of a test that was
+        25 ┃   -- expected to fail but actually passes.
+        26 ┃   -- , expectFail $ testProperty "surprisingly good" $ property $ success
+        27 ┃ 
+        28 ┃   , expectFail $ testProperty "giving up" $ property $ discard
+        29 ┃ 
+        30 ┃   , expectFail $ expectFail $ testProperty "the failure of a failure is my good" $
+        31 ┃     property $ success
+        32 ┃ 
+        33 ┃   , expectFail $ testProperty "throws failure" $
+        34 ┃     property $ fail "bad"
+        35 ┃ 
+        36 ┃   , expectFail $ testProperty "too slow" $
+        37 ┃     property $ do
+        38 ┃       liftIO $ threadDelay 2000000
+        39 ┃       success
+        40 ┃   ]
+      
+        This failure can be reproduced by running:
+        > recheckAt (Seed 2363821099353547833 700027030103185129) "20:dEd" <property>
+      
+    Use "--pattern '$NF ~ /rarely good/' --hedgehog-replay '20:dEd Seed 2363821099353547833 700027030103185129'" to reproduce from the command-line.
+     (expected failure)
+  giving up:                           FAIL (expected)
+      ⚐ <interactive> gave up after 100 discards, passed 0 tests. (expected failure)
+  the failure of a failure is my good: OK (unexpected) (expected)
+      ✓ <interactive> passed 100 tests. (unexpected success) (expected failure)
+  throws failure:                      FAIL (expected)
+      ✗ <interactive> failed 
+        after 1 test.
+        shrink path: 1:
+      
+        bad
+      
+        This failure can be reproduced by running:
+        > recheckAt (Seed 17108267155020645121 12923579697303173035) "1:" <property>
+      
+    Use "--pattern '$NF ~ /throws failure/' --hedgehog-replay '1: Seed 17108267155020645121 12923579697303173035'" to reproduce from the command-line.
+     (expected failure)
+  too slow:                            FAIL (expected) (1.00s)
+      ✗ <interactive> failed at tests/TestExpectedFailsHH.hs:37:5
+        after 1 test.
+        shrink path: 1:
+      
+           ┏━━ tests/TestExpectedFailsHH.hs ━━━
+        16 ┃ main = defaultMain $
+        17 ┃   localOption (mkTimeout 1000000) $  -- 1s
+        18 ┃   testGroup "Expected Hedgehog Failures" $
+        19 ┃   [ testProperty "good" $ property $ success
+        20 ┃   , expectFail $ testProperty "rarely good" $ property $ do
+        21 ┃       xs <- forAll $ Gen.list (Range.linear 0 10) Gen.alpha
+        22 ┃       reverse xs === xs
+        23 ┃ 
+        24 ┃   -- n.b. uncomment this to observe the results of a test that was
+        25 ┃   -- expected to fail but actually passes.
+        26 ┃   -- , expectFail $ testProperty "surprisingly good" $ property $ success
+        27 ┃ 
+        28 ┃   , expectFail $ testProperty "giving up" $ property $ discard
+        29 ┃ 
+        30 ┃   , expectFail $ expectFail $ testProperty "the failure of a failure is my good" $
+        31 ┃     property $ success
+        32 ┃ 
+        33 ┃   , expectFail $ testProperty "throws failure" $
+        34 ┃     property $ fail "bad"
+        35 ┃ 
+        36 ┃   , expectFail $ testProperty "too slow" $
+        37 ┃     property $ do
+           ┃     ^^^^^^^^^^^^^
+           ┃     │ ━━━ Exception (Timeout) ━━━
+           ┃     │ <<timeout>>
+        38 ┃       liftIO $ threadDelay 2000000
+        39 ┃       success
+        40 ┃   ]
+      
+        This failure can be reproduced by running:
+        > recheckAt (Seed 18271461739567242061 11780242975184215125) "1:" <property>
+      
+    Use "--pattern '$NF ~ /too slow/' --hedgehog-replay '1: Seed 18271461739567242061 11780242975184215125'" to reproduce from the command-line.
+     (expected failure)
+
+All 6 tests passed (1.00s)
+Test suite expected-fail-hh-tests: PASS
+Test suite logged to:
+/tmp/workdir-tasty-expected-failure/tasty-expected-failure-0.12.3/dist-newstyle/build/x86_64-linux/ghc-9.6.6/tasty-expected-failure-0.12.3/t/expected-fail-hh-tests/test/tasty-expected-failure-0.12.3-expected-fail-hh-tests.log
+1 of 1 test suites (1 of 1 test cases) passed.

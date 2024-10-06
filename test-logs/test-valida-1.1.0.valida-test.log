@@ -1,0 +1,184 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - valida-1.1.0 (test:valida-test) (ephemeral targets)
+Preprocessing test suite 'valida-test' for valida-1.1.0...
+Building test suite 'valida-test' for valida-1.1.0...
+Running 1 test suites...
+Test suite valida-test: RUNNING...
+Test suite
+  Test Validator combinators
+    Test primitive NonEmpty combinators
+      failureIf fails with expected error when predicate yields true:                                              OK
+      failureIf succeeds when predicate yields false:                                                              OK
+      failureUnless succeeds when predicate yields true:                                                           OK
+      failureUnless fails with expected error when predicate yields false:                                         OK
+    Test primitive Unit combinators
+      failureIf fails with expected error when predicate yields true:                                              OK
+      failueIf succeeds when predicate yields false:                                                               OK
+      failureUnless succeeds when predicate yields true:                                                           OK
+      failureUnless fails with expected error when predicate yields false:                                         OK
+    Test primitive Unit combinators with labeled error
+      failureIf fails with expected error when predicate yields true:                                              OK
+      failureUnless fails with expected error when predicate yields false:                                         OK
+    Test relationship between primitive NonEmpty and Unit combinators
+      (QC) failureIf p err = label (const (neSingleton err)) (failureIf' p):                                       OK
+        +++ OK, passed 100 tests:
+        54% Significant
+        46% Trivial
+      (SC) failureIf p err = label (const (neSingleton err)) (failureIf' p):                                       OK
+        88 tests completed
+      (QC) failureUnless p err = label (const (neSingleton err)) (failureUnless' p):                               OK
+        +++ OK, passed 100 tests:
+        50% Significant
+        50% Trivial
+      (SC) failureUnless p err = label (const (neSingleton err)) (failureUnless' p):                               OK
+        88 tests completed
+    Test relationship between primitive 'if' and 'unless' combinators
+      (QC) failureIf' p = failureUnless' (not . p):                                                                OK (0.01s)
+        +++ OK, passed 100 tests.
+      (SC) failureIf' p = failureUnless' (not . p):                                                                OK
+        8 tests completed
+      (QC) failureIf p err = negateV (neSingleton err) (failureUnless' p):                                         OK (0.02s)
+        +++ OK, passed 100 tests.
+      (SC) failureIf p err = negateV (neSingleton err) (failureUnless' p):                                         OK
+        40 tests completed
+      (QC) failureIf' p = negateV' (failureUnless' p):                                                             OK (0.01s)
+        +++ OK, passed 100 tests.
+      (SC) failureIf' p = negateV' (failureUnless' p):                                                             OK
+        8 tests completed
+  Test negateV function
+    (QC) negateV . negateV = id (assuming errors are unchanged):                                                   OK (0.01s)
+      +++ OK, passed 100 tests.
+    (SC) negateV . negateV = id (assuming errors are unchanged):                                                   OK
+      120 tests completed
+  Test Validator combining functions
+    Test `orElse` function
+      (QC) failV always fails:                                                                                     OK
+        +++ OK, passed 100 tests.
+      (SC) failV always fails:                                                                                     OK
+        6 tests completed
+      (QC) Associativity: validator1 </> (validator2 </> validator3) = (validator1 </> validator2) </> validator3: OK
+        +++ OK, passed 100 tests.
+      (SC) Associativity: validator1 </> (validator2 </> validator3) = (validator1 </> validator2) </> validator3: OK (0.04s)
+        8192 tests completed
+      (QC) Identity: validator </> failV = failV </> validator = validator:                                        OK
+        +++ OK, passed 100 tests.
+      (SC) Identity: validator </> failV = failV </> validator = validator:                                        OK
+        120 tests completed
+      (QC) Annihilator: validator </> mempty = mempty </> validator = mempty:                                      OK
+        +++ OK, passed 100 tests.
+      (SC) Annihilator: validator </> mempty = mempty </> validator = mempty:                                      OK
+        360 tests completed
+      (QC) Complement: validator </> (negateV e validator) = (negateV e validator) </> validator = Success:        OK
+        +++ OK, passed 100 tests.
+      (SC) Complement: validator </> (negateV e validator) = (negateV e validator) </> validator = Success:        OK (0.04s)
+        1800 tests completed
+    Test `andAlso` function
+      (QC) mempty always succeeds:                                                                                 OK
+        +++ OK, passed 100 tests.
+      (SC) mempty always succeeds:                                                                                 OK
+        6 tests completed
+      (QC) Associativity: validator1 <> (validator2 <> validator3) = (validator1 <> validator2) <> validator3:     OK
+        +++ OK, passed 100 tests.
+      (SC) Associativity: validator1 <> (validator2 <> validator3) = (validator1 <> validator2) <> validator3:     OK (0.04s)
+        8192 tests completed
+      (QC) Identity: validator <> mempty = mempty <> validator = validator:                                        OK (0.01s)
+        +++ OK, passed 100 tests.
+      (SC) Identity: validator <> mempty = mempty <> validator = validator:                                        OK
+        360 tests completed
+      (QC) Annihilator: validator <> failV = failV <> validator = failV:                                           OK
+        +++ OK, passed 100 tests.
+      (SC) Annihilator: validator <> failV = failV <> validator = failV:                                           OK
+        120 tests completed
+      (QC) Complement: validator <> (negateV e validator) = (negateV e validator) <> validator = Failure:          OK
+        +++ OK, passed 100 tests.
+      (SC) Complement: validator <> (negateV e validator) = (negateV e validator) <> validator = Failure:          OK (0.04s)
+        1800 tests completed
+      (QC) Idempotence: validator <> validator = validator:                                                        OK
+        +++ OK, passed 100 tests.
+      (SC) Idempotence: validator <> validator = validator:                                                        OK
+        120 tests completed
+    Test `satisfyAny` function
+      satisfyAny = foldl1 orElse:                                                                                  OK (0.01s)
+        +++ OK, passed 100 tests.
+      satisfyAny = foldl1 orElse:                                                                                  OK
+        80 tests completed
+      satisfyAny = foldr1 orElse:                                                                                  OK
+        +++ OK, passed 100 tests.
+      satisfyAny = foldr1 orElse:                                                                                  OK (0.01s)
+        80 tests completed
+      satisfyAny = foldl orElse failV:                                                                             OK
+        +++ OK, passed 100 tests.
+      satisfyAny = foldl orElse failV:                                                                             OK
+        80 tests completed
+      satisfyAny = foldr orElse failV:                                                                             OK
+        +++ OK, passed 100 tests.
+      satisfyAny = foldr orElse failV:                                                                             OK
+        80 tests completed
+    Test `satisfyAll` function
+      satisfyAll = fold:                                                                                           OK
+        +++ OK, passed 100 tests.
+      satisfyAll = fold:                                                                                           OK
+        80 tests completed
+      satisfyAll = foldl1 andAlso:                                                                                 OK
+        +++ OK, passed 100 tests.
+      satisfyAll = foldl1 andAlso:                                                                                 OK
+        80 tests completed
+      satisfyAll = foldr1 andAlso:                                                                                 OK
+        +++ OK, passed 100 tests.
+      satisfyAll = foldr1 andAlso:                                                                                 OK
+        80 tests completed
+      satisfyAll = foldl andAlso mempty:                                                                           OK
+        +++ OK, passed 100 tests.
+      satisfyAll = foldl andAlso mempty:                                                                           OK
+        80 tests completed
+      satisfyAll = foldr andAlso mempty:                                                                           OK
+        +++ OK, passed 100 tests.
+      satisfyAll = foldr andAlso mempty:                                                                           OK
+        80 tests completed
+  Test validation of a collection of Validators
+    Applicative validation fails if at least one validator fails:                                                  OK
+    Applicative validation succeeds if all validators suceed:                                                      OK
+  Test Validation utilities
+    (QC) fromEither . toEither = id:                                                                               OK
+      +++ OK, passed 100 tests.
+    (SC) fromEither . toEither = id:                                                                               OK
+      10 tests completed
+    (QC) toEither . fromEither = id:                                                                               OK
+      +++ OK, passed 100 tests.
+    (SC) toEither . fromEither = id:                                                                               OK
+      18 tests completed
+    (QC) either f g (toEither v) = validation f g v:                                                               OK
+      +++ OK, passed 100 tests.
+    (QC) validation f g (fromEither v) = either f g v:                                                             OK
+      +++ OK, passed 100 tests.
+    (QC) either (const f) (const g) (toEither v) == validationConst f g v:                                         OK
+      +++ OK, passed 100 tests.
+    (SC) either (const f) (const g) (toEither v) == validationConst f g v:                                         OK (3.01s)
+      297052 tests completed
+    (QC) validationConst f g (fromEither e) == either (const f) (const g) e:                                       OK
+      +++ OK, passed 100 tests.
+    (SC) validationConst f g (fromEither e) == either (const f) (const g) e:                                       OK (2.99s)
+      297052 tests completed
+    (QC) validationConst f g v == validation (const f) (const g) v:                                                OK
+      +++ OK, passed 100 tests.
+    (SC) validationConst f g v == validation (const f) (const g) v:                                                OK (2.97s)
+      297052 tests completed
+    (QC) partitionValidations xs = (failures xs, successes xs):                                                    OK
+      +++ OK, passed 100 tests.
+    (SC) partitionValidations xs = (failures xs, successes xs):                                                    OK
+      157 tests completed
+  Test Validator relabeling
+    (QC) Validator should yield relabeled Bool error upon failure:                                                 OK
+      +++ OK, passed 100 tests.
+    (SC) Validator should yield relabeled Bool error upon failure:                                                 OK (0.08s)
+      15996 tests completed
+  Test Validator error grouping
+    (SC) All errors from all validators should be combined upon failure:                                           OK (0.04s)
+      1500 tests completed
+
+All 81 tests passed (3.01s)
+Test suite valida-test: PASS
+Test suite logged to:
+/tmp/workdir-valida/valida-1.1.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/valida-1.1.0/t/valida-test/test/valida-1.1.0-valida-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

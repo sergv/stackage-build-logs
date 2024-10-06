@@ -1,0 +1,296 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - postgresql-binary-0.13.1.3 (test:tasty) (ephemeral targets)
+Preprocessing test suite 'tasty' for postgresql-binary-0.13.1.3...
+Building test suite 'tasty' for postgresql-binary-0.13.1.3...
+Running 1 test suites...
+Test suite tasty: RUNNING...
+
+  Binary format
+    Composite roundtrip:                                                                           OK (3.41s)
+      +++ OK, passed 100 tests.
+    "select (234 :: int8)":                                                                        FAIL
+      tasty/Main.hs:251:
+      expected: Right 234
+       but got: Left "Fatal PQ error: no connection to the server\n"
+      Use -p '/"select (234 :: int8)"/' to rerun this test only.
+    "select (-234 :: int8)":                                                                       FAIL
+      tasty/Main.hs:251:
+      expected: Right (-234)
+       but got: Left "Fatal PQ error: no connection to the server\n"
+      Use -p '/"select (-234 :: int8)"/' to rerun this test only.
+    "select (0 :: int8)":                                                                          FAIL
+      tasty/Main.hs:251:
+      expected: Right 0
+       but got: Left "Fatal PQ error: no connection to the server\n"
+      Use -p '/"select (0 :: int8)"/' to rerun this test only.
+    "select (1, 'a')":                                                                             FAIL
+      tasty/Main.hs:251:
+      expected: Right (1,'a')
+       but got: Left "Fatal PQ error: no connection to the server\n"
+      Use -p '/"select (1, '\''a'\'')"/' to rerun this test only.
+    "select (1, null)":                                                                            FAIL
+      tasty/Main.hs:251:
+      expected: Right (1,Nothing)
+       but got: Left "Fatal PQ error: no connection to the server\n"
+      Use -p '/"select (1, null)"/' to rerun this test only.
+    "SELECT '1 year 2 months 3 days 4 hours 5 minutes 6 seconds 332211 microseconds' :: interval": FAIL
+      tasty/Main.hs:251:
+      expected: Right 37771506.332211s
+       but got: Left "Fatal PQ error: no connection to the server\n"
+      Use -p '/"SELECT '\''1 year 2 months 3 days 4 hours 5 minutes 6 seconds 332211 microseconds'\'' :: interval"/' to rerun this test only.
+    "SELECT '10 seconds' :: interval":                                                             FAIL
+      tasty/Main.hs:251:
+      expected: Right 10s
+       but got: Left "Fatal PQ error: no connection to the server\n"
+      Use -p '/"SELECT '\''10 seconds'\'' :: interval"/' to rerun this test only.
+    Interval encoder: 10 seconds:                                                                  FAIL
+      tasty/Main.hs:72:
+      expected: Right 10s
+       but got: Left "Fatal PQ error: no connection to the server\n"
+      Use -p '/Interval encoder: 10 seconds/' to rerun this test only.
+    interval roundtrip:                                                                            FAIL
+      *** Failed! Falsified (after 1 test):
+      44622204332837.693656s
+      Right 44622204332837.693656s /= Left "Fatal PQ error: no connection to the server\n"
+      Use --quickcheck-replay=448132 to reproduce.
+      Use -p '/interval roundtrip/' to rerun this test only.
+    timestamp roundtrip:                                                                           FAIL
+      *** Failed! Falsified (after 1 test):
+      Apx {unApx = 1864-05-09 06:37:48.328533554456}
+      Right (Apx {unApx = 1864-05-09 06:37:48.328533554456}) /= Left "Fatal PQ error: no connection to the server\n"
+      Use --quickcheck-replay=404269 to reproduce.
+      Use -p '/timestamp roundtrip/' to rerun this test only.
+    timestamptz offset:                                                                            FAIL
+      Exception: user error (Pattern match failure in 'do' block at tasty/Main.hs:87:15-38)
+      Use -p '/timestamptz offset/' to rerun this test only.
+    timestamptz roundtrip:                                                                         FAIL
+      *** Failed! Falsified (after 1 test):
+      Apx {unApx = 1864-05-09 04:52:15.63545366445 UTC}
+      Right (Apx {unApx = 1864-05-09 04:52:15.63545366445 UTC}) /= Left "Fatal PQ error: no connection to the server\n"
+      Use --quickcheck-replay=872279 to reproduce.
+      Use -p '/timestamptz roundtrip/' to rerun this test only.
+    timetz roundtrip:                                                                              FAIL
+      *** Failed! Falsified (after 1 test):
+      Apx {unApx = (05:24:55.977055,+0917)}
+      Right (Apx {unApx = (05:24:55.977055,+0917)}) /= Left "Fatal PQ error: no connection to the server\n"
+      Use --quickcheck-replay=399932 to reproduce.
+      Use -p '/timetz roundtrip/' to rerun this test only.
+    time roundtrip:                                                                                FAIL
+      *** Failed! Falsified (after 1 test):
+      Apx {unApx = 22:29:34.034808915228}
+      Right (Apx {unApx = 22:29:34.034808915228}) /= Left "Fatal PQ error: no connection to the server\n"
+      Use --quickcheck-replay=290836 to reproduce.
+      Use -p '/time roundtrip/' to rerun this test only.
+    numeric roundtrip:                                                                             FAIL
+      *** Failed! Falsified (after 1 test):
+      0.0
+      Right 0.0 /= Left "Fatal PQ error: no connection to the server\n"
+      Use --quickcheck-replay=937553 to reproduce.
+      Use -p '/Binary format.numeric roundtrip/' to rerun this test only.
+    "SELECT -1234560.789 :: numeric":                                                              FAIL
+      tasty/Main.hs:251:
+      expected: Right (-1234560.789)
+       but got: Left "Fatal PQ error: no connection to the server\n"
+      Use -p '/"SELECT -1234560.789 :: numeric"/' to rerun this test only.
+    "SELECT -0.0789 :: numeric":                                                                   FAIL
+      tasty/Main.hs:251:
+      expected: Right (-7.89e-2)
+       but got: Left "Fatal PQ error: no connection to the server\n"
+      Use -p '/"SELECT -0.0789 :: numeric"/' to rerun this test only.
+    "SELECT 10000 :: numeric":                                                                     FAIL
+      tasty/Main.hs:251:
+      expected: Right 10000.0
+       but got: Left "Fatal PQ error: no connection to the server\n"
+      Use -p '/"SELECT 10000 :: numeric"/' to rerun this test only.
+    float4 roundtrip:                                                                              FAIL
+      *** Failed! Falsified (after 1 test):
+      0.0
+      Right 0.0 /= Left "Fatal PQ error: no connection to the server\n"
+      Use --quickcheck-replay=483004 to reproduce.
+      Use -p '/Binary format.float4 roundtrip/' to rerun this test only.
+    float8 roundtrip:                                                                              FAIL
+      *** Failed! Falsified (after 1 test):
+      0.0
+      Right 0.0 /= Left "Fatal PQ error: no connection to the server\n"
+      Use --quickcheck-replay=753167 to reproduce.
+      Use -p '/Binary format.float8 roundtrip/' to rerun this test only.
+    char roundtrip:                                                                                FAIL
+      *** Failed! Falsified (after 1 test):
+      '\1042388'
+      Right '\1042388' /= Left "Fatal PQ error: no connection to the server\n"
+      Use --quickcheck-replay=774020 to reproduce.
+      Use -p '/char roundtrip/' to rerun this test only.
+    text_strict roundtrip:                                                                         FAIL
+      *** Failed! Falsified (after 1 test):
+      ""
+      Right "" /= Left "Fatal PQ error: no connection to the server\n"
+      Use --quickcheck-replay=478329 to reproduce.
+      Use -p '/text_strict roundtrip/' to rerun this test only.
+    text_lazy roundtrip:                                                                           FAIL
+      *** Failed! Falsified (after 1 test):
+      ""
+      Right "" /= Left "Fatal PQ error: no connection to the server\n"
+      Use --quickcheck-replay=535430 to reproduce.
+      Use -p '/text_lazy roundtrip/' to rerun this test only.
+    bytea_strict roundtrip:                                                                        FAIL
+      *** Failed! Falsified (after 1 test):
+      ""
+      Right "" /= Left "Fatal PQ error: no connection to the server\n"
+      Use --quickcheck-replay=12048 to reproduce.
+      Use -p '/bytea_strict roundtrip/' to rerun this test only.
+    bytea_lazy roundtrip:                                                                          FAIL
+      *** Failed! Falsified (after 1 test):
+      ""
+      Right "" /= Left "Fatal PQ error: no connection to the server\n"
+      Use --quickcheck-replay=367164 to reproduce.
+      Use -p '/bytea_lazy roundtrip/' to rerun this test only.
+    uuid roundtrip:                                                                                FAIL
+      *** Failed! Falsified (after 1 test):
+      00000001-0000-0000-0000-000000000000
+      Right 00000001-0000-0000-0000-000000000000 /= Left "Fatal PQ error: no connection to the server\n"
+      Use --quickcheck-replay=293872 to reproduce.
+      Use -p '/Binary format.uuid roundtrip/' to rerun this test only.
+    inet roundtrip:                                                                                FAIL
+      *** Failed! Falsified (after 1 test):
+      netAddr (IPv4 (ip4FromOctets 1 1 1 1)) 30
+      Right (netAddr (IPv4 (ip4FromOctets 1 1 1 1)) 30) /= Left "Fatal PQ error: no connection to the server\n"
+      Use --quickcheck-replay=853542 to reproduce.
+      Use -p '/inet roundtrip/' to rerun this test only.
+    int2_int16 roundtrip:                                                                          FAIL
+      *** Failed! Falsified (after 1 test):
+      0
+      Right 0 /= Left "Fatal PQ error: no connection to the server\n"
+      Use --quickcheck-replay=452866 to reproduce.
+      Use -p '/Binary format.int2_int16 roundtrip/' to rerun this test only.
+    int2_word16 roundtrip:                                                                         FAIL
+      *** Failed! Falsified (after 1 test):
+      0
+      Right 0 /= Left "Fatal PQ error: no connection to the server\n"
+      Use --quickcheck-replay=290580 to reproduce.
+      Use -p '/Binary format.int2_word16 roundtrip/' to rerun this test only.
+    int4_int32 roundtrip:                                                                          FAIL
+      *** Failed! Falsified (after 1 test):
+      -1
+      Right (-1) /= Left "Fatal PQ error: no connection to the server\n"
+      Use --quickcheck-replay=477232 to reproduce.
+      Use -p '/Binary format.int4_int32 roundtrip/' to rerun this test only.
+    int4_word32 roundtrip:                                                                         FAIL
+      *** Failed! Falsified (after 1 test):
+      0
+      Right 0 /= Left "Fatal PQ error: no connection to the server\n"
+      Use --quickcheck-replay=254355 to reproduce.
+      Use -p '/Binary format.int4_word32 roundtrip/' to rerun this test only.
+    int8_int64 roundtrip:                                                                          FAIL
+      *** Failed! Falsified (after 1 test):
+      1
+      Right 1 /= Left "Fatal PQ error: no connection to the server\n"
+      Use --quickcheck-replay=566861 to reproduce.
+      Use -p '/Binary format.int8_int64 roundtrip/' to rerun this test only.
+    int8_word64 roundtrip:                                                                         FAIL
+      *** Failed! Falsified (after 1 test):
+      1
+      Right 1 /= Left "Fatal PQ error: no connection to the server\n"
+      Use --quickcheck-replay=427573 to reproduce.
+      Use -p '/Binary format.int8_word64 roundtrip/' to rerun this test only.
+    bool roundtrip:                                                                                FAIL
+      *** Failed! Falsified (after 1 test):
+      False
+      Right False /= Left "Fatal PQ error: no connection to the server\n"
+      Use --quickcheck-replay=680118 to reproduce.
+      Use -p '/Binary format.bool roundtrip/' to rerun this test only.
+    date roundtrip:                                                                                FAIL
+      *** Failed! Falsified (after 1 test):
+      1864-05-09
+      Right 1864-05-09 /= Left "Fatal PQ error: no connection to the server\n"
+      Use --quickcheck-replay=13500 to reproduce.
+      Use -p '/date roundtrip/' to rerun this test only.
+    "SELECT ARRAY[ARRAY[1,2],ARRAY[3,4]]":                                                         FAIL
+      tasty/Main.hs:251:
+      expected: Right [[1,2],[3,4]]
+       but got: Left "Fatal PQ error: no connection to the server\n"
+      Use -p '/"SELECT ARRAY[ARRAY[1,2],ARRAY[3,4]]"/' to rerun this test only.
+    Array codec:                                                                                   OK (0.01s)
+      +++ OK, passed 100 tests.
+    Array roundtrip:                                                                               FAIL
+      *** Failed! Falsified (after 1 test):
+      [[[""],[""],[""],[""],[""],[""],[""]],[[""],[""],[""],[""],[""],[""],[""]],[[""],[""],[""],[""],[""],[""],[""]],[[""],[""],[""],[""],[""],[""],[""]],[[""],[""],[""],[""],[""],[""],[""]],[[""],[""],[""],[""],[""],[""],[""]],[[""],[""],[""],[""],[""],[""],[""]]]
+      Right [[[""],[""],[""],[""],[""],[""],[""]],[[""],[""],[""],[""],[""],[""],[""]],[[""],[""],[""],[""],[""],[""],[""]],[[""],[""],[""],[""],[""],[""],[""]],[[""],[""],[""],[""],[""],[""],[""]],[[""],[""],[""],[""],[""],[""],[""]],[[""],[""],[""],[""],[""],[""],[""]]] /= Left "Fatal PQ error: no connection to the server\n"
+      Use --quickcheck-replay=584070 to reproduce.
+      Use -p '/Array roundtrip/' to rerun this test only.
+  Textual format
+    numeric roundtrip:                                                                             FAIL
+      *** Failed! Falsified (after 1 test):
+      0.0
+      Right 0.0 /= Left "Fatal PQ error: no connection to the server\n"
+      Use --quickcheck-replay=644122 to reproduce.
+      Use -p '/Textual format.numeric roundtrip/' to rerun this test only.
+    float4 roundtrip:                                                                              FAIL
+      *** Failed! Falsified (after 1 test):
+      0.0
+      Right 0.0 /= Left "Fatal PQ error: no connection to the server\n"
+      Use --quickcheck-replay=50655 to reproduce.
+      Use -p '/Textual format.float4 roundtrip/' to rerun this test only.
+    float8 roundtrip:                                                                              FAIL
+      *** Failed! Falsified (after 1 test):
+      0.0
+      Right 0.0 /= Left "Fatal PQ error: no connection to the server\n"
+      Use --quickcheck-replay=309622 to reproduce.
+      Use -p '/Textual format.float8 roundtrip/' to rerun this test only.
+    uuid roundtrip:                                                                                FAIL
+      *** Failed! Falsified (after 1 test):
+      00000001-0000-0001-0000-000000000000
+      Right 00000001-0000-0001-0000-000000000000 /= Left "Fatal PQ error: no connection to the server\n"
+      Use --quickcheck-replay=312593 to reproduce.
+      Use -p '/Textual format.uuid roundtrip/' to rerun this test only.
+    int2_int16 roundtrip:                                                                          FAIL
+      *** Failed! Falsified (after 1 test):
+      -1
+      Right (-1) /= Left "Fatal PQ error: no connection to the server\n"
+      Use --quickcheck-replay=616041 to reproduce.
+      Use -p '/Textual format.int2_int16 roundtrip/' to rerun this test only.
+    int2_word16 roundtrip:                                                                         FAIL
+      *** Failed! Falsified (after 1 test):
+      0
+      Right 0 /= Left "Fatal PQ error: no connection to the server\n"
+      Use --quickcheck-replay=931253 to reproduce.
+      Use -p '/Textual format.int2_word16 roundtrip/' to rerun this test only.
+    int4_int32 roundtrip:                                                                          FAIL
+      *** Failed! Falsified (after 1 test):
+      0
+      Right 0 /= Left "Fatal PQ error: no connection to the server\n"
+      Use --quickcheck-replay=523592 to reproduce.
+      Use -p '/Textual format.int4_int32 roundtrip/' to rerun this test only.
+    int4_word32 roundtrip:                                                                         FAIL
+      *** Failed! Falsified (after 1 test):
+      0
+      Right 0 /= Left "Fatal PQ error: no connection to the server\n"
+      Use --quickcheck-replay=335866 to reproduce.
+      Use -p '/Textual format.int4_word32 roundtrip/' to rerun this test only.
+    int8_int64 roundtrip:                                                                          FAIL
+      *** Failed! Falsified (after 1 test):
+      1
+      Right 1 /= Left "Fatal PQ error: no connection to the server\n"
+      Use --quickcheck-replay=366886 to reproduce.
+      Use -p '/Textual format.int8_int64 roundtrip/' to rerun this test only.
+    int8_word64 roundtrip:                                                                         FAIL
+      *** Failed! Falsified (after 1 test):
+      1
+      Right 1 /= Left "Fatal PQ error: no connection to the server\n"
+      Use --quickcheck-replay=233334 to reproduce.
+      Use -p '/Textual format.int8_word64 roundtrip/' to rerun this test only.
+    bool roundtrip:                                                                                FAIL
+      *** Failed! Falsified (after 1 test):
+      True
+      Right True /= Left "Fatal PQ error: no connection to the server\n"
+      Use --quickcheck-replay=541236 to reproduce.
+      Use -p '/Textual format.bool roundtrip/' to rerun this test only.
+
+48 out of 50 tests failed (3.43s)
+Test suite tasty: FAIL
+Test suite logged to:
+/tmp/workdir-postgresql-binary/postgresql-binary-0.13.1.3/dist-newstyle/build/x86_64-linux/ghc-9.6.6/postgresql-binary-0.13.1.3/t/tasty/test/postgresql-binary-0.13.1.3-tasty.log
+0 of 1 test suites (0 of 1 test cases) passed.
+Error: [Cabal-7125]
+Tests failed for test:tasty from postgresql-binary-0.13.1.3.
+

@@ -1,0 +1,208 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - wai-extra-3.1.15 (test:spec) (ephemeral targets)
+Preprocessing test suite 'spec' for wai-extra-3.1.15...
+Building test suite 'spec' for wai-extra-3.1.15...
+Running 1 test suites...
+Test suite spec: RUNNING...
+
+Network.Wai.Middleware.Approot
+  respects host header [✔]
+  respects isSecure [✔]
+  respects SSL headers [✔]
+Network.Wai.Middleware.CombineHeaders
+  should reorder alphabetically (request) [✔]
+  should reorder alphabetically (response) [✔]
+  combines Accept (in order) [✔]
+  combines Cache-Control (in order) and keeps Set-Cookie (in order) [✔]
+  KeepOnly works as expected (present | request) [✔]
+  KeepOnly works as expected ( absent | request) [✔]
+  KeepOnly works as expected (present | response) [✔]
+  KeepOnly works as expected ( absent | response) [✔]
+  Technically acceptable headers get combined correctly (request) [✔]
+  Technically acceptable headers get combined correctly (response) [✔]
+Network.Wai.Middleware.ForceSSL
+  forceSSL
+    forceSSL on host "example.com"
+      redirects non-https requests to https [✔]
+      redirects with 307 in the case of a non-GET request [✔]
+      does not redirect already-secure requests [✔]
+      preserves the original host, path, and query string [✔]
+    forceSSL on host "example.com:80"
+      redirects non-https requests to https [✔]
+      redirects with 307 in the case of a non-GET request [✔]
+      does not redirect already-secure requests [✔]
+      preserves the original host, path, and query string [✔]
+    forceSSL on host "example.com:8080"
+      redirects non-https requests to https [✔]
+      redirects with 307 in the case of a non-GET request [✔]
+      does not redirect already-secure requests [✔]
+      preserves the original host, path, and query string [✔]
+Network.Wai.Middleware.RealIp
+  realIp
+    does nothing when header is missing [✔]
+    uses X-Forwarded-For when present [✔]
+    ignores X-Forwarded-For from non-trusted ip [✔]
+    ignores trusted ip addresses in X-Forwarded-For [✔]
+    ignores invalid ip addresses [✔]
+    takes the last non-trusted address [✔]
+    takes the first address when all are trusted [✔]
+    handles repeated headers [✔]
+    handles ipv6 addresses [✔]
+  realIpHeader
+    uses specified header [✔]
+  realIpTrusted
+    uses provided trusted predicate [✔]
+Network.Wai.Middleware.RequestSizeLimit
+  RequestSizeLimitMiddleware
+    Plain text response
+      returns 413 for request bodies > 10 bytes, when streaming the whole body
+        chunked [✔]
+        non-chunked [✔]
+      returns 200 for request bodies <= 10 bytes, when streaming the whole body
+        chunked [✔]
+        non-chunked [✔]
+    JSON response
+      returns 413 for request bodies > 10 bytes, when streaming the whole body
+        chunked [✔]
+        non-chunked [✔]
+      returns 200 for request bodies <= 10 bytes, when streaming the whole body
+        chunked [✔]
+        non-chunked [✔]
+    Per-request sizes
+      allows going over the limit, when the path has been whitelisted [✔]
+    streaming chunked bodies
+      413s if the combined chunk size is > the size limit [✔]
+      200s if the combined chunk size is <= the size limit [✔]
+Network.Wai.Middleware.Routed
+  forceSSL
+    routed middleware [✔]
+Network.Wai.Middleware.Select
+  Select
+    With empty select should passthrough [✔]
+    With other path select should passthrough [✔]
+    With path select should hit override [✔]
+    With twice path select should hit first override [✔]
+    With two paths select should hit first matching (first) [✔]
+    With two paths select should hit first matching (last) [✔]
+    With other two paths select should passthrough [✔]
+    With mempty then the path select should hit the pass [✔]
+Network.Wai.Middleware.StripHeaders
+  stripHeader
+    strips a specific header [✔]
+    strips specific set of headers [✔]
+Network.Wai.Middleware.Timeout
+  timeout
+    times out slow requests with 503 [✔]
+    does not time out fast requests [✔]
+  timeoutStatus
+    allows customizing the timeout response status [✔]
+  timeoutAs
+    allows customizing the timeout response [✔]
+Network.Wai.Middleware.ValidateHeaders
+  validateHeadersMiddleware
+    allows token characters in header names [✔]
+    does not allow colons in header names [✔]
+    does not allow whitespace in header names [✔]
+    allows visible ASCII, space and horizontal tab in header values [✔]
+    allows octets beyond 0x80 in headers values [✔]
+    does not allow other whitespace in header values [✔]
+    does not allow control characters in header values [✔]
+    does not allow trailing whitespace in header values [✔]
+Network.Wai.Parse
+  parseContentType
+    text/plain [✔]
+    text/plain; charset=UTF-8  [✔]
+    text/plain; charset=UTF-8 ; boundary = foo [✔]
+    text/plain; charset=UTF-8 ; boundary = "quoted" [✔]
+  parseHttpAccept [✔]
+  parseRequestBody
+    parsing post x-www-form-urlencoded [✔]
+    parsing post multipart/form-data [✔]
+    parsing post multipart/form-data 2 [✔]
+    parsing actual post multipart/form-data [✔]
+    parsing actual post multipart/form-data 2 [✔]
+    parsing with memory limit [✔]
+    exceeding number of files [✔]
+    exceeding parameter length [✔]
+    exceeding file size [✔]
+    exceeding total file size [✔]
+    exceeding max parm value size [✔]
+    exceeding max header lines [✔]
+    exceeding header line size [✔]
+    Testing parseRequestBodyEx with application/x-www-form-urlencoded [✔]
+    exceeding max parm value size with x-www-form-urlencoded mimetype [✔]
+  multipart with plus [✔]
+  multipart with multiple attributes [✔]
+  urlencoded with plus [✔]
+  dalvik multipart
+    non-chunked [✔]
+    chunked [✔]
+Network.Wai.Request
+  requestSizeCheck
+    too large content length should throw RequestSizeException [✔]
+    too many chunks should throw RequestSizeException [✔]
+  appearsSecure
+    returns False for an insecure request [✔]
+    checks if the Request is actually secure [✔]
+    checks for HTTP: on [✔]
+    checks for HTTP_X_FORWARDED_SSL: on [✔]
+    checks for HTTP_X_FORWARDED_SCHEME: https [✔]
+    checks for HTTP_X_FORWARDED_PROTO: https,... [✔]
+Network.Wai.Test
+  setPath
+    sets pathInfo [✔]
+    utf8 path [✔]
+    sets rawPathInfo [✔]
+    sets queryString [✔]
+    sets rawQueryString [✔]
+    when path has no query string
+      sets rawQueryString to empty string [✔]
+  srequest
+    returns the response body    of an echo app [✔]
+  request
+    returns the status code      of an echo app on default request [✔]
+    returns the response body    of an echo app [✔]
+    returns the response headers of an echo app [✔]
+    sends a Cookie header with correct value after receiving a Set-Cookie header [✔]
+    sends a Cookie header with updated value after receiving a Set-Cookie header update [✔]
+    handles multiple cookies [✔]
+    removes a deleted cookie [✔]
+    sends a cookie set with setClientCookie to server [✔]
+    sends a cookie updated with setClientCookie to server [✔]
+    does not send a cookie deleted with deleteClientCookie to server [✔]
+WaiExtra
+  Network.Wai.UrlMap
+    should mount root [✔]
+    should mount apps [✔]
+    should preserve extra path info [✔]
+    should 404 if none match [✔]
+  Network.Wai
+    jsonp [✔]
+    gzip
+      gzip [✔]
+      more gzip [✔]
+      gzip not on partial content [✔]
+      gzip removes length header [✔]
+      gzip not for MSIE [✔]
+      gzip bypass when precompressed [✔]
+      defaultCheckMime [✔]
+      gzip checking of files [✔]
+    vhost [✔]
+    autohead [✔]
+    method override [✔]
+    method override post [✔]
+    accept override [✔]
+    debug request body [✔]
+    stream file [✔]
+    stream LBS [✔]
+    can modify POST params before logging [✔]
+    can filter requests in logs [✔]
+    can parse Q values [✔]
+
+Finished in 3.0060 seconds
+144 examples, 0 failures
+Test suite spec: PASS
+Test suite logged to:
+/tmp/workdir-wai-extra/wai-extra-3.1.15/dist-newstyle/build/x86_64-linux/ghc-9.6.6/wai-extra-3.1.15/t/spec/test/wai-extra-3.1.15-spec.log
+1 of 1 test suites (1 of 1 test cases) passed.

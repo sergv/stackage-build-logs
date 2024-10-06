@@ -1,0 +1,2380 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - megaparsec-tests-9.5.0 (test:tests) (ephemeral targets)
+Preprocessing test suite 'tests' for megaparsec-tests-9.5.0...
+Building test suite 'tests' for megaparsec-tests-9.5.0...
+Running 1 test suites...
+Test suite tests: RUNNING...
+
+Text.Megaparsec
+  ParsecT Semigroup instance
+    the associative operation works [✔]
+      +++ OK, passed 100 tests.
+  ParsecT Monoid instance
+    mempty works [✔]
+    mappend works [✔]
+      +++ OK, passed 100 tests.
+  ParsecT IsString instance
+    equivalence to 'string'
+      for String [✔]
+        +++ OK, passed 100 tests.
+      for Text [✔]
+        +++ OK, passed 100 tests.
+      for ByteString [✔]
+        +++ OK, passed 100 tests.
+    can handle Unicode [✔]
+  ParsecT Functor instance
+    obeys identity law [✔]
+      +++ OK, passed 100 tests.
+    obeys composition law [✔]
+      +++ OK, passed 100 tests.
+  ParsecT Applicative instance
+    obeys identity law [✔]
+      +++ OK, passed 100 tests.
+    obeys composition law [✔]
+      +++ OK, passed 100 tests.
+    obeys homomorphism law [✔]
+      +++ OK, passed 100 tests.
+    obeys interchange law [✔]
+      +++ OK, passed 100 tests.
+    (<*>)
+      when first parser succeeds without consuming
+        when second parser fails consuming input
+          fails consuming input [✔]
+    (*>)
+      works correctly [✔]
+        +++ OK, passed 100 tests.
+    (<*)
+      works correctly [✔]
+        +++ OK, passed 100 tests.
+  ParsecT Alternative instance
+    empty
+      always fails [✔]
+        +++ OK, passed 100 tests.
+    (<|>)
+      with two strings
+        stream begins with the first string
+          parses the string [✔]
+            +++ OK, passed 100 tests; 19 discarded.
+        stream begins with the second string
+          parses the string [✔]
+            +++ OK, passed 100 tests; 17 discarded.
+        when stream does not begin with either string
+          signals correct error message [✔]
+            +++ OK, passed 100 tests; 22 discarded.
+      with two complex parsers
+        when stream begins with matching character
+          parses it [✔]
+            +++ OK, passed 100 tests.
+        when stream begins with only one matching character
+          signals correct parse error [✔]
+            +++ OK, passed 100 tests; 1 discarded.
+        when stream begins with not matching character
+          signals correct parse error [✔]
+            +++ OK, passed 100 tests; 2 discarded.
+        when stream is emtpy
+          signals correct parse error [✔]
+            +++ OK, passed 100 tests.
+      associativity of fold over alternatives should not matter [✔]
+    many
+      when stream begins with things argument of many parses
+        they are parsed [✔]
+          +++ OK, passed 100 tests.
+      when stream does not begin with thing argument of many parses
+        does nothing [✔]
+          +++ OK, passed 100 tests.
+      when stream is empty
+        succeeds parsing nothing [✔]
+      when there are two many combinators in a row that parse nothing
+        accumulated hints are reflected in parse error [✔]
+      when the argument parser succeeds without consuming
+        is run nevertheless [✔]
+          +++ OK, passed 100 tests.
+    some
+      when stream begins with things argument of some parses
+        they are parsed [✔]
+          +++ OK, passed 100 tests.
+      when stream does not begin with thing argument of some parses
+        signals correct parse error [✔]
+          +++ OK, passed 100 tests.
+      when stream is empty
+        signals correct parse error [✔]
+          +++ OK, passed 100 tests.
+    optional
+      when stream begins with that optional thing
+        parses it [✔]
+          +++ OK, passed 100 tests.
+      when stream does not begin with that optional thing
+        succeeds parsing nothing [✔]
+          +++ OK, passed 100 tests.
+      when stream is empty
+        succeeds parsing nothing [✔]
+          +++ OK, passed 100 tests.
+  ParsecT Monad instance
+    satisfies left identity law [✔]
+      +++ OK, passed 100 tests.
+    satisfies right identity law [✔]
+      +++ OK, passed 100 tests.
+    satisfies associativity law [✔]
+      +++ OK, passed 100 tests.
+    fails signals correct parse error [✔]
+      +++ OK, passed 100 tests.
+    pure is the same as return [✔]
+      +++ OK, passed 100 tests.
+    (<*>) is the same as ap [✔]
+      +++ OK, passed 100 tests.
+  ParsecT MonadFail instance
+    fail
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests.
+  ParsecT MonadIO instance
+    liftIO works [✔]
+      +++ OK, passed 100 tests.
+  ParsecT MonadFix instance
+    withRange works [✔]
+  ParsecT MonadReader instance
+    ask
+      returns correct value of context [✔]
+        +++ OK, passed 100 tests.
+      preserves hints [✔]
+        +++ OK, passed 100 tests; 1 discarded.
+    local
+      modifies reader context correctly [✔]
+        +++ OK, passed 100 tests.
+      preserves hints [✔]
+        +++ OK, passed 100 tests; 1 discarded.
+  ParsecT MonadState instance
+    get
+      returns correct state value [✔]
+        +++ OK, passed 100 tests.
+      preserves hints [✔]
+        +++ OK, passed 100 tests; 1 discarded.
+    put
+      replaces state value [✔]
+        +++ OK, passed 100 tests.
+      preserves hints [✔]
+        +++ OK, passed 100 tests; 1 discarded.
+  ParsecT MonadCont instance
+    callCC
+      works properly [✔]
+        +++ OK, passed 100 tests.
+  ParsecT MonadError instance
+    throwError
+      throws the error [✔]
+        +++ OK, passed 100 tests.
+    catchError
+      catches the error [✔]
+        +++ OK, passed 100 tests.
+  primitive combinators
+    parseError
+      immediately fails with given parse error [✔]
+        +++ OK, passed 100 tests.
+    label
+      when inner parser succeeds consuming input
+        inner parser does not produce any hints
+          collection of hints remains empty [✔]
+            +++ OK, passed 100 tests; 18 discarded.
+        inner parser produces hints
+          does not alter the hints [✔]
+            +++ OK, passed 100 tests; 18 discarded.
+      when inner parser consumes and fails
+        reports parse error without modification [✔]
+          +++ OK, passed 100 tests; 18 discarded.
+      when inner parser succeeds without consuming
+        inner parser does not produce any hints
+          collection of hints remains empty [✔]
+            +++ OK, passed 100 tests; 18 discarded.
+        inner parser produces hints
+          replaces the last hint with given label [✔]
+            +++ OK, passed 100 tests; 18 discarded.
+      when inner parser fails without consuming
+        is mentioned in parse error via its label [✔]
+          +++ OK, passed 100 tests; 15 discarded.
+        when inner parser is composite with 2-hint sources
+          both hint groups are replaced by the label [✔]
+            +++ OK, passed 100 tests; 18 discarded.
+    hidden
+      when inner parser succeeds consuming input
+        inner parser does not produce any hints
+          collection of hints remains empty [✔]
+            +++ OK, passed 100 tests.
+        inner parser produces hints
+          hides the parser in the error message [✔]
+            +++ OK, passed 100 tests.
+      when inner parser consumes and fails
+        reports parse error without modification [✔]
+          +++ OK, passed 100 tests; 1 discarded.
+      when inner parser succeeds without consuming
+        inner parser does not produce any hints
+          collection of hints remains empty [✔]
+            +++ OK, passed 100 tests.
+        inner parser produces hints
+          hides the parser in the error message [✔]
+            +++ OK, passed 100 tests.
+      when inner parser fails without consuming
+        hides the parser in the error message [✔]
+    try
+      when inner parser succeeds consuming
+        try has no effect [✔]
+          +++ OK, passed 100 tests.
+      when inner parser fails consuming
+        backtracks, it appears as if the parser has not consumed anything [✔]
+          +++ OK, passed 100 tests; 1 discarded.
+        hints from the inner parse error do not leak [✔]
+          +++ OK, passed 100 tests; 1 discarded.
+      when inner parser succeeds without consuming
+        try has no effect [✔]
+          +++ OK, passed 100 tests.
+      when inner parser fails without consuming
+        try backtracks parser state anyway [✔]
+          +++ OK, passed 100 tests.
+    lookAhead
+      when inner parser succeeds consuming
+        result is returned but parser state is not changed [✔]
+          +++ OK, passed 100 tests.
+        hints are not preserved [✔]
+          +++ OK, passed 100 tests.
+      when inner parser fails consuming
+        error message is reported as usual [✔]
+          +++ OK, passed 100 tests; 1 discarded.
+      when inner parser succeeds without consuming
+        result is returned but parser state in not changed [✔]
+          +++ OK, passed 100 tests.
+        hints are not preserved [✔]
+          +++ OK, passed 100 tests.
+      when inner parser fails without consuming
+        error message is reported as usual [✔]
+    notFollowedBy
+      when inner parser succeeds consuming
+        signals correct parse error [✔]
+          +++ OK, passed 100 tests.
+      when inner parser fails consuming
+        succeeds without consuming [✔]
+          +++ OK, passed 100 tests.
+        hints are not preserved [✔]
+          +++ OK, passed 100 tests.
+      when inner parser succeeds without consuming
+        signals correct parse error [✔]
+          +++ OK, passed 100 tests.
+      when inner parser fails without consuming
+        succeeds without consuming [✔]
+          +++ OK, passed 100 tests.
+        hints are not preserved [✔]
+          +++ OK, passed 100 tests.
+    withRecovery
+      when inner parser succeeds consuming
+        the result is returned as usual [✔]
+          +++ OK, passed 100 tests.
+      when inner parser fails consuming
+        when recovering parser succeeds consuming input
+          its result is returned and position is advanced [✔]
+            +++ OK, passed 100 tests.
+          hints are not preserved [✔]
+            +++ OK, passed 100 tests.
+        when recovering parser fails consuming input
+          the original parse error (and state) is reported [✔]
+            +++ OK, passed 100 tests.
+        when recovering parser succeeds without consuming
+          its result is returned (and state) [✔]
+            +++ OK, passed 100 tests.
+          original hints are preserved [✔]
+            +++ OK, passed 100 tests.
+        when recovering parser fails without consuming
+          the original parse error (and state) is reported [✔]
+            +++ OK, passed 100 tests.
+      when inner parser succeeds without consuming
+        the result is returned as usual [✔]
+          +++ OK, passed 100 tests.
+      when inner parser fails without consuming
+        when recovering parser succeeds consuming input
+          its result is returned and position is advanced [✔]
+            +++ OK, passed 100 tests.
+        when recovering parser fails consuming input
+          the original parse error (and state) is reported [✔]
+            +++ OK, passed 100 tests; 1 discarded.
+        when recovering parser succeeds without consuming
+          its result is returned (and state) [✔]
+            +++ OK, passed 100 tests.
+          original hints are preserved [✔]
+            +++ OK, passed 100 tests; 1 discarded.
+        when recovering parser fails without consuming
+          the original parse error (and state) is reported [✔]
+            +++ OK, passed 100 tests.
+      works in complex situations too [✔]
+        +++ OK, passed 100 tests.
+    observing
+      when inner parser succeeds consuming
+        returns its result in Right [✔]
+          +++ OK, passed 100 tests.
+      when inner parser fails consuming
+        returns its parse error in Left preserving state [✔]
+          +++ OK, passed 100 tests.
+        does not create any hints [✔]
+          +++ OK, passed 100 tests.
+      when inner parser succeeds without consuming
+        returns its result in Right [✔]
+          +++ OK, passed 100 tests.
+      when inner parser fails without consuming
+        returns its parse error in Left preserving state [✔]
+          +++ OK, passed 100 tests.
+        creates correct hints [✔]
+          +++ OK, passed 100 tests; 1 discarded.
+    eof
+      when input stream is empty
+        succeeds [✔]
+      when input stream is not empty
+        signals correct error message [✔]
+          +++ OK, passed 100 tests.
+    token
+      when supplied predicate is satisfied
+        succeeds [✔]
+          +++ OK, passed 100 tests.
+      when supplied predicate is not satisfied
+        signals correct parse error [✔]
+          +++ OK, passed 100 tests; 1 discarded.
+      when stream is empty
+        signals correct parse error [✔]
+          +++ OK, passed 100 tests.
+    tokens
+      when stream is prefixed with given string
+        parses the string [✔]
+          +++ OK, passed 100 tests.
+      when stream is not prefixed with given string
+        signals correct parse error [✔]
+          +++ OK, passed 100 tests; 18 discarded.
+      when matching the empty string
+        eok continuation is used [✔]
+          +++ OK, passed 100 tests.
+    takeWhileP
+      when stream is not empty
+        consumes all matching tokens, zero or more [✔]
+          +++ OK, passed 100 tests; 15 discarded.
+      when stream is empty
+        succeeds returning empty chunk [✔]
+      with two takeWhileP in a row (testing hints)
+        when the second one does not consume
+          hints are combined properly [✔]
+        when the second one consumes
+          only hints of the second one affect parse error [✔]
+      without label (testing hints)
+        there are no hints [✔]
+    takeWhile1P
+      when stream is prefixed with matching tokens
+        consumes the tokens [✔]
+          +++ OK, passed 100 tests.
+      when stream is not prefixed with at least one matching token
+        signals correct parse error [✔]
+          +++ OK, passed 100 tests.
+      when stream is empty
+        with label
+          signals correct parse error [✔]
+        without label
+          signals correct parse error [✔]
+      with two takeWhile1P in a row (testing hints)
+        when the second one does not consume
+          hints are combined properly [✔]
+        when the second one consumes
+          only hints of the second one affect parse error [✔]
+      without label (testing hints)
+        there are no hints [✔]
+    takeP
+      when taking 0 tokens
+        when stream is empty
+          succeeds returning zero-length chunk [✔]
+        when stream is not empty
+          succeeds returning zero-length chunk [✔]
+            +++ OK, passed 100 tests; 15 discarded.
+      when taking <0 tokens
+        when stream is empty
+          succeeds returning zero-length chunk [✔]
+            +++ OK, passed 100 tests.
+        when stream is not empty
+          succeeds returning zero-length chunk [✔]
+            +++ OK, passed 100 tests; 15 discarded.
+      when taking >0 tokens
+        when stream is empty
+          with label
+            signals correct parse error [✔]
+              +++ OK, passed 100 tests.
+          without label
+            signals correct parse error [✔]
+              +++ OK, passed 100 tests.
+        when stream has not enough tokens
+          signals correct parse error [✔]
+            +++ OK, passed 100 tests; 129 discarded.
+        when stream has enough tokens
+          succeeds returning the extracted tokens [✔]
+            +++ OK, passed 100 tests; 104 discarded.
+      when failing right after takeP (testing hints)
+        there are no hints to influence the parse error [✔]
+          +++ OK, passed 100 tests; 104 discarded.
+  signaling parse errors
+    failure
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests.
+    fancyFailure
+      singals correct parse error [✔]
+        +++ OK, passed 100 tests.
+    unexpected
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests.
+    customFailure
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests.
+    region
+      when inner parser succeeds
+        delayed parse errors get updated correctly [✔]
+          +++ OK, passed 100 tests.
+      when inner parser fails
+        delayed and normal parse errors get updated correctly [✔]
+          +++ OK, passed 100 tests.
+    registerParseError
+      immediately fails with given parse error [✔]
+        +++ OK, passed 100 tests.
+    registerFailure
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests.
+    reisterFancyFailure
+      singals correct parse error [✔]
+        +++ OK, passed 100 tests.
+  derivatives from primitive combinators
+    anySingle
+      when stream is not empty
+        succeeds consuming next character in the stream [✔]
+          +++ OK, passed 100 tests.
+      when stream is empty
+        signals correct parse error [✔]
+    anySingleBut
+      when stream begins with the character specified as argument
+        signals correct parse error [✔]
+          +++ OK, passed 100 tests.
+      when stream does not begin with the character specified as argument
+        parses first character in the stream [✔]
+          +++ OK, passed 100 tests; 15 discarded.
+      when stream is empty
+        signals correct parse error [✔]
+    oneOf
+      when stream begins with one of specified characters
+        parses the character [✔]
+          +++ OK, passed 100 tests.
+      when stream does not begin with any of specified characters
+        signals correct parse error [✔]
+          +++ OK, passed 100 tests; 11 discarded.
+      when stream is empty
+        signals correct parse error [✔]
+          +++ OK, passed 100 tests.
+    noneOf
+      when stream does not begin with any of specified characters
+        parses the character [✔]
+          +++ OK, passed 100 tests; 11 discarded.
+      when stream begins with one of specified characters
+        signals correct parse error [✔]
+          +++ OK, passed 100 tests.
+      when stream is empty
+        signals correct parse error [✔]
+          +++ OK, passed 100 tests.
+    match
+      return consumed tokens along with the result [✔]
+        +++ OK, passed 100 tests.
+    takeRest
+      returns rest of the input [✔]
+        +++ OK, passed 100 tests.
+    atEnd
+      when stream is empty
+        returns True [✔]
+        does not produce hints [✔]
+      when stream is not empty
+        returns False [✔]
+          +++ OK, passed 100 tests; 15 discarded.
+        does not produce hints [✔]
+          +++ OK, passed 100 tests; 15 discarded.
+  combinators for manipulating parser state
+    setInput and getInput
+      sets input and gets it back [✔]
+        +++ OK, passed 100 tests.
+    getSourcePos
+      sets position and gets it back [✔]
+        +++ OK, passed 100 tests.
+    setOffset and getOffset
+      sets number of processed tokens and gets it back [✔]
+        +++ OK, passed 100 tests.
+    setParserState and getParserState
+      sets parser state and gets it back [✔]
+        +++ OK, passed 100 tests.
+  running a parser
+    parseMaybe
+      returns result on success and Nothing on failure [✔]
+        +++ OK, passed 100 tests.
+    runParser'
+      works [✔]
+        +++ OK, passed 100 tests.
+    runParserT'
+      works [✔]
+        +++ OK, passed 100 tests.
+  MonadParsec instance of ReaderT
+    try
+      generally works [✔]
+        +++ OK, passed 100 tests.
+    notFollowedBy
+      generally works [✔]
+        +++ OK, passed 100 tests.
+  MonadParsec instance of lazy StateT
+    (<|>)
+      generally works [✔]
+        +++ OK, passed 100 tests.
+    lookAhead
+      generally works [✔]
+        +++ OK, passed 100 tests.
+    notFollowedBy
+      generally works [✔]
+        +++ OK, passed 100 tests.
+    observing
+      when inner parser succeeds
+        can affect state [✔]
+          +++ OK, passed 100 tests.
+      when inner parser fails
+        cannot affect state [✔]
+          +++ OK, passed 100 tests.
+  MonadParsec instance of strict StateT
+    (<|>)
+      generally works [✔]
+        +++ OK, passed 100 tests.
+    lookAhead
+      generally works [✔]
+        +++ OK, passed 100 tests.
+    notFollowedBy
+      generally works [✔]
+        +++ OK, passed 100 tests.
+    observing
+      when inner parser succeeds
+        can affect state [✔]
+          +++ OK, passed 100 tests.
+      when inner parser fails
+        cannot affect state [✔]
+          +++ OK, passed 100 tests.
+  MonadParsec instance of lazy WriterT
+    generally works [✔]
+      +++ OK, passed 100 tests.
+    lookAhead
+      discards what writer tells inside it [✔]
+        +++ OK, passed 100 tests.
+    notFollowedBy
+      discards what writer tells inside it [✔]
+        +++ OK, passed 100 tests.
+    observing
+      when inner parser succeeds
+        can affect log [✔]
+          +++ OK, passed 100 tests.
+      when inner parser fails
+        cannot affect log [✔]
+          +++ OK, passed 100 tests.
+  MonadParsec instance of strict WriterT
+    generally works [✔]
+      +++ OK, passed 100 tests.
+    lookAhead
+      discards what writer tells inside it [✔]
+        +++ OK, passed 100 tests.
+    notFollowedBy
+      discards what writer tells inside it [✔]
+        +++ OK, passed 100 tests.
+    observing
+      when inner parser succeeds
+        can affect log [✔]
+          +++ OK, passed 100 tests.
+      when inner parser fails
+        cannot affect log [✔]
+          +++ OK, passed 100 tests.
+  MonadParsec instance of lazy RWST
+    label
+      allows to access reader context and state inside it [✔]
+        +++ OK, passed 100 tests.
+    try
+      allows to access reader context and state inside it [✔]
+        +++ OK, passed 100 tests.
+    lookAhead
+      allows to access reader context and state inside it [✔]
+        +++ OK, passed 100 tests.
+      discards what writer tells inside it [✔]
+        +++ OK, passed 100 tests.
+      does not allow to influence state outside it [✔]
+        +++ OK, passed 100 tests; 11 discarded.
+    notFollowedBy
+      discards what writer tells inside it [✔]
+        +++ OK, passed 100 tests.
+      does not allow to influence state outside it [✔]
+        +++ OK, passed 100 tests; 11 discarded.
+    withRecovery
+      allows main parser to access reader context and state inside it [✔]
+        +++ OK, passed 100 tests.
+      allows recovering parser to access reader context and state inside it [✔]
+        +++ OK, passed 100 tests.
+    observing
+      allows to access reader context and state inside it [✔]
+        +++ OK, passed 100 tests.
+      when the inner parser fails
+        backtracks state [✔]
+          +++ OK, passed 100 tests; 16 discarded.
+  MonadParsec instance of strict RWST
+    label
+      allows to access reader context and state inside it [✔]
+        +++ OK, passed 100 tests.
+    try
+      allows to access reader context and state inside it [✔]
+        +++ OK, passed 100 tests.
+    lookAhead
+      allows to access reader context and state inside it [✔]
+        +++ OK, passed 100 tests.
+      discards what writer tells inside it [✔]
+        +++ OK, passed 100 tests.
+      does not allow to influence state outside it [✔]
+        +++ OK, passed 100 tests; 11 discarded.
+    notFollowedBy
+      discards what writer tells inside it [✔]
+        +++ OK, passed 100 tests.
+      does not allow to influence state outside it [✔]
+        +++ OK, passed 100 tests; 11 discarded.
+    withRecovery
+      allows main parser to access reader context and state inside it [✔]
+        +++ OK, passed 100 tests.
+      allows recovering parser to access reader context and state inside it [✔]
+        +++ OK, passed 100 tests.
+    observing
+      allows to access reader context and state inside it [✔]
+        +++ OK, passed 100 tests.
+      when the inner parser fails
+        backtracks state [✔]
+          +++ OK, passed 100 tests; 16 discarded.
+    mkParsec
+      enables defining new primitives [✔]
+Text.Megaparsec.Byte
+  newline
+    when stream begins with newline
+      parses the newline [✔]
+        +++ OK, passed 100 tests.
+    when stream does not begin with newline
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests.
+    when stream is empty
+      signals correct parse error [✔]
+  csrf
+    when stream begins with crlf newline
+      parses the crlf newline [✔]
+        +++ OK, passed 100 tests.
+    when stream does not begin with crlf newline
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests.
+    when stream is empty
+      signals correct parse error [✔]
+  eol
+    when stream begins with a newline
+      succeeds returning the newline [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with CRLF sequence
+      parses the CRLF sequence [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '\r', but it's not followed by '\n'
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests.
+    when input stream is '\r'
+      signals correct parse error [✔]
+    when stream does not begin with newline or CRLF sequence
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests.
+    when stream is empty
+      signals correct parse error [✔]
+  tab
+    when stream begins with tab
+      parses the tab [✔]
+        +++ OK, passed 100 tests.
+    when stream does not begin with tab
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests; 1 discarded.
+    when stream is empty
+      signals correct parse error [✔]
+  space
+    consumes space up to first non-space character [✔]
+      +++ OK, passed 100 tests.
+  hspace
+    consumes space up to first non-space character [✔]
+      +++ OK, passed 100 tests.
+  space1
+    when stream does not start with a space character
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests; 2 discarded.
+    when stream starts with a space character
+      consumes space up to first non-space character [✔]
+        +++ OK, passed 100 tests.
+    when stream is empty
+      signals correct parse error [✔]
+  hspace1
+    when stream does not start with a space character
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests; 2 discarded.
+    when stream starts with a space character
+      consumes space up to first non-space character [✔]
+        +++ OK, passed 100 tests.
+    when stream is empty
+      signals correct parse error [✔]
+  controlChar
+    when stream begins with control character
+      parses the control character [✔]
+        +++ OK, passed 100 tests; 276 discarded.
+    when stream does not begin with control character
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests; 753 discarded.
+    when stream is empty
+      signals correct parse error [✔]
+  spaceChar
+    when stream begins with tab
+      parses the tab [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with newline
+      parses the newline [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with vertical tab
+      parses the vertical tab [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with form feed
+      parses the form feed [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with carriage return
+      parses the carriage return [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with space
+      parses the space [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with non-breaking space
+      parses the non-breaking space [✔]
+        +++ OK, passed 100 tests.
+    when stream is empty
+      signals correct parse error [✔]
+  printChar
+    when stream begins with printable character
+      parses the printable character [✔]
+        +++ OK, passed 100 tests; 753 discarded.
+    when stream does not begin with printable character
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests; 275 discarded.
+    when stream is empty
+      signals correct parse error [✔]
+  digitChar
+    when stream begins with '0'
+      parses the '0' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '1'
+      parses the '1' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '2'
+      parses the '2' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '3'
+      parses the '3' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '4'
+      parses the '4' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '5'
+      parses the '5' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '6'
+      parses the '6' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '7'
+      parses the '7' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '8'
+      parses the '8' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '9'
+      parses the '9' [✔]
+        +++ OK, passed 100 tests.
+    when stream is empty
+      signals correct parse error [✔]
+  binDigitChar
+    when stream begins with '0'
+      parses the '0' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '1'
+      parses the '1' [✔]
+        +++ OK, passed 100 tests.
+    when stream is empty
+      signals correct parse error [✔]
+  octDigitChar
+    when stream begins with '0'
+      parses the '0' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '1'
+      parses the '1' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '2'
+      parses the '2' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '3'
+      parses the '3' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '4'
+      parses the '4' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '5'
+      parses the '5' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '6'
+      parses the '6' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '7'
+      parses the '7' [✔]
+        +++ OK, passed 100 tests.
+    when stream is empty
+      signals correct parse error [✔]
+  hexDigitChar
+    when stream begins with '0'
+      parses the '0' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '1'
+      parses the '1' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '2'
+      parses the '2' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '3'
+      parses the '3' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '4'
+      parses the '4' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '5'
+      parses the '5' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '6'
+      parses the '6' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '7'
+      parses the '7' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '8'
+      parses the '8' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '9'
+      parses the '9' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with 'a'
+      parses the 'a' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with 'b'
+      parses the 'b' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with 'c'
+      parses the 'c' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with 'd'
+      parses the 'd' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with 'e'
+      parses the 'e' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with 'f'
+      parses the 'f' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with 'A'
+      parses the 'A' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with 'B'
+      parses the 'B' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with 'C'
+      parses the 'C' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with 'D'
+      parses the 'D' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with 'E'
+      parses the 'E' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with 'F'
+      parses the 'F' [✔]
+        +++ OK, passed 100 tests.
+    when stream is empty
+      signals correct parse error [✔]
+  char'
+    when stream begins with the character specified as argument
+      parses the character [✔]
+        +++ OK, passed 100 tests.
+    when stream does not begin with the character specified as argument
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests; 5 discarded.
+    when stream is empty
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests.
+Text.Megaparsec.Byte.Binary
+  word8
+    works with strict ByteString [✔]
+      +++ OK, passed 100 tests.
+    works with lazy ByteString [✔]
+      +++ OK, passed 100 tests.
+  word16le
+    works with strict ByteString [✔]
+      +++ OK, passed 100 tests.
+    works with lazy ByteString [✔]
+      +++ OK, passed 100 tests.
+  word16be
+    works with strict ByteString [✔]
+      +++ OK, passed 100 tests.
+    works with lazy ByteString [✔]
+      +++ OK, passed 100 tests.
+  word32le
+    works with strict ByteString [✔]
+      +++ OK, passed 100 tests.
+    works with lazy ByteString [✔]
+      +++ OK, passed 100 tests.
+  word32be
+    works with strict ByteString [✔]
+      +++ OK, passed 100 tests.
+    works with lazy ByteString [✔]
+      +++ OK, passed 100 tests.
+  word64le
+    works with strict ByteString [✔]
+      +++ OK, passed 100 tests.
+    works with lazy ByteString [✔]
+      +++ OK, passed 100 tests.
+  word64be
+    works with strict ByteString [✔]
+      +++ OK, passed 100 tests.
+    works with lazy ByteString [✔]
+      +++ OK, passed 100 tests.
+  int8
+    works with strict ByteString [✔]
+      +++ OK, passed 100 tests.
+    works with lazy ByteString [✔]
+      +++ OK, passed 100 tests.
+  int16le
+    works with strict ByteString [✔]
+      +++ OK, passed 100 tests.
+    works with lazy ByteString [✔]
+      +++ OK, passed 100 tests.
+  int16be
+    works with strict ByteString [✔]
+      +++ OK, passed 100 tests.
+    works with lazy ByteString [✔]
+      +++ OK, passed 100 tests.
+  int32le
+    works with strict ByteString [✔]
+      +++ OK, passed 100 tests.
+    works with lazy ByteString [✔]
+      +++ OK, passed 100 tests.
+  int32be
+    works with strict ByteString [✔]
+      +++ OK, passed 100 tests.
+    works with lazy ByteString [✔]
+      +++ OK, passed 100 tests.
+  int64le
+    works with strict ByteString [✔]
+      +++ OK, passed 100 tests.
+    works with lazy ByteString [✔]
+      +++ OK, passed 100 tests.
+  int64be
+    works with strict ByteString [✔]
+      +++ OK, passed 100 tests.
+    works with lazy ByteString [✔]
+      +++ OK, passed 100 tests.
+Text.Megaparsec.Byte.Lexer
+  skipLineComment
+    when there is no newline at the end of line
+      is picked up successfully [✔]
+    inner characters are labelled properly [✔]
+  skipBlockComment
+    skips a simple block comment [✔]
+  skipBlockCommentNested
+    when it runs into nested block comments
+      parses them all right [✔]
+  decimal
+    when stream begins with decimal digits
+      they are parsed as an integer [✔]
+        +++ OK, passed 100 tests.
+    when stream does not begin with decimal digits
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests; 2 discarded.
+    when stream is empty
+      signals correct parse error [✔]
+  binary
+    when stream begins with binary digits
+      they are parsed as an integer [✔]
+        +++ OK, passed 100 tests.
+    when stream does not begin with binary digits
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests; 1 discarded.
+    when stream is empty
+      signals correct parse error [✔]
+  octal
+    when stream begins with octal digits
+      they are parsed as an integer [✔]
+        +++ OK, passed 100 tests.
+    when stream does not begin with octal digits
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests; 1 discarded.
+    when stream is empty
+      signals correct parse error [✔]
+  hexadecimal
+    when stream begins with hexadecimal digits
+      they are parsed as an integer [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with hexadecimal digits (uppercase)
+      they are parsed as an integer [✔]
+        +++ OK, passed 100 tests.
+    when stream does not begin with hexadecimal digits
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests; 7 discarded.
+    when stream is empty
+      signals correct parse error [✔]
+  scientific
+    when stream begins with a number
+      parses it [✔]
+        +++ OK, passed 100 tests.
+    when fractional part is interrupted
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests.
+    when whole part is followed by a dot without valid fractional part
+      parsing of fractional part is backtracked correctly [✔]
+        +++ OK, passed 100 tests.
+    when number is followed by something starting with 'e'
+      parsing of exponent part is backtracked correctly [✔]
+        +++ OK, passed 100 tests.
+    when stream is empty
+      signals correct parse error [✔]
+  float
+    when stream begins with a float
+      parses it [✔]
+        +++ OK, passed 100 tests.
+    when stream does not begin with a float
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests; 2 discarded.
+    when stream begins with an integer (decimal)
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests.
+    when number is followed by something starting with 'e'
+      parsing of exponent part is backtracked correctly [✔]
+        +++ OK, passed 100 tests.
+    when stream is empty
+      signals correct parse error [✔]
+    when there is float with just exponent
+      parses it all right [✔]
+  signed
+    with integer
+      parses signed integers [✔]
+        +++ OK, passed 100 tests.
+    with float
+      parses signed floats [✔]
+        +++ OK, passed 100 tests.
+    with scientific
+      parses singed scientific numbers [✔]
+        +++ OK, passed 100 tests.
+    when number is prefixed with plus sign
+      parses the number [✔]
+        +++ OK, passed 100 tests.
+    when number is prefixed with white space
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests.
+    when there is white space between sign and digits
+      parses it all right [✔]
+Text.Megaparsec.Char
+  newline
+    when stream begins with newline
+      parses the newline [✔]
+        +++ OK, passed 100 tests.
+    when stream does not begin with newline
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests.
+    when stream is empty
+      signals correct parse error [✔]
+  csrf
+    when stream begins with crlf newline
+      parses the crlf newline [✔]
+        +++ OK, passed 100 tests.
+    when stream does not begin with crlf newline
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests.
+    when stream is empty
+      signals correct parse error [✔]
+  eol
+    when stream begins with a newline
+      succeeds returning the newline [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with CRLF sequence
+      parses the CRLF sequence [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '\r', but it's not followed by '\n'
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests.
+    when input stream is '\r'
+      signals correct parse error [✔]
+    when stream does not begin with newline or CRLF sequence
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests.
+    when stream is empty
+      signals correct parse error [✔]
+  tab
+    when stream begins with tab
+      parses the tab [✔]
+        +++ OK, passed 100 tests.
+    when stream does not begin with tab
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests.
+    when stream is empty
+      signals correct parse error [✔]
+  space
+    consumes space up to first non-space character [✔]
+      +++ OK, passed 100 tests.
+  hspace
+    consumes space up to first non-space character [✔]
+      +++ OK, passed 100 tests.
+  space1
+    when stream does not start with a space character
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests; 4 discarded.
+    when stream starts with a space character
+      consumes space up to first non-space character [✔]
+        +++ OK, passed 100 tests.
+    when stream is empty
+      signals correct parse error [✔]
+  hspace1
+    when stream does not start with a space character
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests; 3 discarded.
+    when stream starts with a space character
+      consumes space up to first non-space character [✔]
+        +++ OK, passed 100 tests.
+    when stream is empty
+      signals correct parse error [✔]
+  controlChar
+    when stream begins with control character
+      parses the control character [✔]
+        +++ OK, passed 100 tests; 399 discarded.
+    when stream does not begin with control character
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests; 23 discarded.
+    when stream is empty
+      signals correct parse error [✔]
+  spaceChar
+    when stream begins with space
+      parses the space [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with non-breaking space
+      parses the non-breaking space [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with tab
+      parses the tab [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with newline
+      parses the newline [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with carriage return
+      parses the carriage return [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with form feed
+      parses the form feed [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with vertical tab
+      parses the vertical tab [✔]
+        +++ OK, passed 100 tests.
+    when stream is empty
+      signals correct parse error [✔]
+  upperChar
+    when stream begins with uppercase letter
+      parses the uppercase letter [✔]
+        +++ OK, passed 100 tests; 495 discarded.
+    when stream does not begin with uppercase letter
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests; 21 discarded.
+    when stream is empty
+      signals correct parse error [✔]
+  lowerChar
+    when stream begins with lowercase letter
+      parses the lowercase letter [✔]
+        +++ OK, passed 100 tests; 553 discarded.
+    when stream does not begin with lowercase letter
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests; 21 discarded.
+    when stream is empty
+      signals correct parse error [✔]
+  letterChar
+    when stream begins with letter
+      parses the letter [✔]
+        +++ OK, passed 100 tests; 138 discarded.
+    when stream does not begin with letter
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests; 67 discarded.
+    when stream is empty
+      signals correct parse error [✔]
+  printChar
+    when stream begins with printable character
+      parses the printable character [✔]
+        +++ OK, passed 100 tests; 40 discarded.
+    when stream does not begin with printable character
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests; 199 discarded.
+    when stream is empty
+      signals correct parse error [✔]
+  digitChar
+    when stream begins with '0'
+      parses the '0' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '1'
+      parses the '1' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '2'
+      parses the '2' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '3'
+      parses the '3' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '4'
+      parses the '4' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '5'
+      parses the '5' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '6'
+      parses the '6' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '7'
+      parses the '7' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '8'
+      parses the '8' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '9'
+      parses the '9' [✔]
+        +++ OK, passed 100 tests.
+    when stream is empty
+      signals correct parse error [✔]
+  binDigitChar
+    when stream begins with '0'
+      parses the '0' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '1'
+      parses the '1' [✔]
+        +++ OK, passed 100 tests.
+    when stream is empty
+      signals correct parse error [✔]
+  octDigitChar
+    when stream begins with '0'
+      parses the '0' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '1'
+      parses the '1' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '2'
+      parses the '2' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '3'
+      parses the '3' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '4'
+      parses the '4' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '5'
+      parses the '5' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '6'
+      parses the '6' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '7'
+      parses the '7' [✔]
+        +++ OK, passed 100 tests.
+    when stream is empty
+      signals correct parse error [✔]
+  hexDigitChar
+    when stream begins with '0'
+      parses the '0' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '1'
+      parses the '1' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '2'
+      parses the '2' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '3'
+      parses the '3' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '4'
+      parses the '4' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '5'
+      parses the '5' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '6'
+      parses the '6' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '7'
+      parses the '7' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '8'
+      parses the '8' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '9'
+      parses the '9' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with 'a'
+      parses the 'a' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with 'b'
+      parses the 'b' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with 'c'
+      parses the 'c' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with 'd'
+      parses the 'd' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with 'e'
+      parses the 'e' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with 'f'
+      parses the 'f' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with 'A'
+      parses the 'A' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with 'B'
+      parses the 'B' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with 'C'
+      parses the 'C' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with 'D'
+      parses the 'D' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with 'E'
+      parses the 'E' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with 'F'
+      parses the 'F' [✔]
+        +++ OK, passed 100 tests.
+    when stream is empty
+      signals correct parse error [✔]
+  markChar
+    when stream begins with '𑘽'
+      parses the '𑘽' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '᳦'
+      parses the '᳦' [✔]
+        +++ OK, passed 100 tests.
+    when stream is empty
+      signals correct parse error [✔]
+  numberChar
+    when stream begins with '¹'
+      parses the '¹' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '²'
+      parses the '²' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '³'
+      parses the '³' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '¼'
+      parses the '¼' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '½'
+      parses the '½' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '¾'
+      parses the '¾' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '0'
+      parses the '0' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '1'
+      parses the '1' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '2'
+      parses the '2' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '3'
+      parses the '3' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '4'
+      parses the '4' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '5'
+      parses the '5' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '6'
+      parses the '6' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '7'
+      parses the '7' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '8'
+      parses the '8' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '9'
+      parses the '9' [✔]
+        +++ OK, passed 100 tests.
+    when stream is empty
+      signals correct parse error [✔]
+  punctuationChar
+    when stream begins with punctuation
+      parses the punctuation [✔]
+        +++ OK, passed 100 tests; 462 discarded.
+    when stream does not begin with punctuation
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests; 18 discarded.
+    when stream is empty
+      signals correct parse error [✔]
+  symbolChar
+    when stream begins with '<'
+      parses the '<' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '>'
+      parses the '>' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '$'
+      parses the '$' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '£'
+      parses the '£' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '`'
+      parses the '`' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '~'
+      parses the '~' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '|'
+      parses the '|' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '×'
+      parses the '×' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '÷'
+      parses the '÷' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '^'
+      parses the '^' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '®'
+      parses the '®' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '°'
+      parses the '°' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '¸'
+      parses the '¸' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '¯'
+      parses the '¯' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '='
+      parses the '=' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '¬'
+      parses the '¬' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '+'
+      parses the '+' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '¤'
+      parses the '¤' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '±'
+      parses the '±' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '¢'
+      parses the '¢' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '¨'
+      parses the '¨' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '´'
+      parses the '´' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '©'
+      parses the '©' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '¥'
+      parses the '¥' [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with '¦'
+      parses the '¦' [✔]
+        +++ OK, passed 100 tests.
+    when stream is empty
+      signals correct parse error [✔]
+  separatorChar
+    when stream begins with space
+      parses the space [✔]
+        +++ OK, passed 100 tests.
+    when stream begins with non-breaking space
+      parses the non-breaking space [✔]
+        +++ OK, passed 100 tests.
+    when stream is empty
+      signals correct parse error [✔]
+  asciiChar
+    when stream begins with ASCII character
+      parses the ASCII character [✔]
+        +++ OK, passed 100 tests; 24 discarded.
+    when stream does not begin with ASCII character
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests; 334 discarded.
+    when stream is empty
+      signals correct parse error [✔]
+  latin1Char
+    when stream begins with Latin-1 character
+      parses the Latin-1 character [✔]
+        +++ OK, passed 100 tests; 24 discarded.
+    when stream does not begin with Latin-1 character
+      signals correct parse error [✔]
+    when stream is empty
+      signals correct parse error [✔]
+  charCategory
+    when parser corresponding to general category of next char is used
+      succeeds [✔]
+        +++ OK, passed 100 tests.
+    when parser's category does not match next character's category
+      fails [✔]
+        +++ OK, passed 100 tests; 6 discarded.
+    when stream is empty
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests.
+  char
+    when stream begins with the character specified as argument
+      parses the character [✔]
+        +++ OK, passed 100 tests.
+    when stream does not begin with the character specified as argument
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests; 1 discarded.
+    when stream is empty
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests.
+  char'
+    when stream begins with the character specified as argument
+      parses the character [✔]
+        +++ OK, passed 100 tests.
+      when the character is not upper or lower
+        matches it against a form obtained via one of the conversion functions [✔]
+          +++ OK, passed 100 tests.
+    when stream does not begin with the character specified as argument
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests; 1 discarded.
+      when the character is not upper or lower
+        lists correct options in the error message [✔]
+          +++ OK, passed 100 tests.
+    when stream is empty
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests.
+  string
+    when stream is prefixed with given string
+      parses the string [✔]
+        +++ OK, passed 100 tests.
+    when stream is not prefixed with given string
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests; 18 discarded.
+  string'
+    when stream is prefixed with given string
+      parses the string [✔]
+        +++ OK, passed 100 tests.
+    when stream is not prefixed with given string
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests; 18 discarded.
+Text.Megaparsec.Char.Lexer
+  space
+    consumes any sort of white space [✔]
+      +++ OK, passed 100 tests.
+  symbol
+    when stream begins with the symbol
+      parses the symbol and trailing whitespace [✔]
+        +++ OK, passed 100 tests.
+  symbol'
+    when stream begins with the symbol
+      parses the symbol and trailing whitespace [✔]
+        +++ OK, passed 100 tests.
+  skipLineComment
+    when there is no newline at the end of line
+      is picked up successfully [✔]
+    inner characters are labelled properly [✔]
+  skipBlockComment
+    skips a simple block comment [✔]
+  skipBlockCommentNested
+    when it runs into nested block comments
+      parses them all right [✔]
+  indentLevel
+    returns current indentation level (column) [✔]
+      +++ OK, passed 100 tests.
+  incorrectIndent
+    signals correct parse error [✔]
+      +++ OK, passed 100 tests.
+  indentGuard
+    works as intended [✔]
+      +++ OK, passed 100 tests.
+  nonIdented
+    works as intended [✔]
+      +++ OK, passed 100 tests.
+  indentBlock
+    works as indented [✔]
+      +++ OK, passed 100 tests.
+    IndentMany works as intended (newline at the end) [✔]
+      +++ OK, passed 100 tests.
+    IndentMany works as intended (eof) [✔]
+      +++ OK, passed 100 tests.
+    IndentMany works as intended (whitespace aligned precisely to the ref level) [✔]
+    works with many and both IndentMany and IndentNone [✔]
+      +++ OK, passed 100 tests.
+    IndentSome expects the specified indentation level for first item [✔]
+  lineFold
+    works as intended [✔]
+      +++ OK, passed 100 tests.
+  charLiteral
+    when stream begins with a literal character
+      parses it [✔]
+        +++ OK, passed 100 tests.
+    when stream does not begin with a literal character
+      signals correct parse error [✔]
+    when stream is empty
+      signals correct parse error [✔]
+    when given a long escape sequence
+      parses it correctly [✔]
+        +++ OK, passed 100 tests.
+  decimal
+    when stream begins with decimal digits
+      they are parsed as an integer [✔]
+        +++ OK, passed 100 tests.
+    when stream does not begin with decimal digits
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests; 7 discarded.
+    when stream is empty
+      signals correct parse error [✔]
+  binary
+    when stream begins with binary digits
+      they are parsed as an integer [✔]
+        +++ OK, passed 100 tests.
+    when stream does not begin with binary digits
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests.
+    when stream is empty
+      signals correct parse error [✔]
+  octal
+    when stream begins with octal digits
+      they are parsed as an integer [✔]
+        +++ OK, passed 100 tests.
+    when stream does not begin with octal digits
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests; 5 discarded.
+    when stream is empty
+      signals correct parse error [✔]
+  hexadecimal
+    when stream begins with hexadecimal digits
+      they are parsed as an integer [✔]
+        +++ OK, passed 100 tests.
+    when stream does not begin with hexadecimal digits
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests; 17 discarded.
+    when stream is empty
+      signals correct parse error [✔]
+  scientific
+    when stream begins with a number
+      parses it [✔]
+        +++ OK, passed 100 tests.
+    when fractional part is interrupted
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests.
+    when whole part is followed by a dot without valid fractional part
+      parsing of fractional part is backtracked correctly [✔]
+        +++ OK, passed 100 tests.
+    when number is followed by something starting with 'e'
+      parsing of exponent part is backtracked correctly [✔]
+        +++ OK, passed 100 tests.
+    when stream is empty
+      signals correct parse error [✔]
+  float
+    when stream begins with a float
+      parses it [✔]
+        +++ OK, passed 100 tests.
+    when stream does not begin with a float
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests; 7 discarded.
+    when stream begins with an integer (decimal)
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests.
+    when number is followed by something starting with 'e'
+      parsing of exponent part is backtracked correctly [✔]
+        +++ OK, passed 100 tests.
+    when stream is empty
+      signals correct parse error [✔]
+    when there is float with just exponent
+      parses it all right [✔]
+  signed
+    with integer
+      parses signed integers [✔]
+        +++ OK, passed 100 tests.
+    with float
+      parses signed floats [✔]
+        +++ OK, passed 100 tests.
+    with scientific
+      parses singed scientific numbers [✔]
+        +++ OK, passed 100 tests.
+    when number is prefixed with plus sign
+      parses the number [✔]
+        +++ OK, passed 100 tests.
+    when number is prefixed with white space
+      signals correct parse error [✔]
+        +++ OK, passed 100 tests.
+    when there is white space between sign and digits
+      parses it all right [✔]
+Text.Megaparsec.Debug
+  dbg
+    when inner parser succeeds consuming input
+      has no effect on how parser works [✔]
+      its hints are preserved [✔]
+      prints several hints correctly [✔]
+    when inner parser fails consuming input
+      has no effect on how parser works [✔]
+    when inner parser succeeds without consuming
+      has no effect on how parser works [✔]
+      its hints are preserved [✔]
+    when inner parser fails without consuming
+      has no effect on how parser works [✔]
+    Lazy WriterT instance of MonadParsecDbg
+      example 1 [✔]
+      example 2 [✔]
+    Strict WriterT instance of MonadParsecDbg
+      example 1 [✔]
+      example 2 [✔]
+    Lazy StateT instance of MonadParsecDbg
+      example 3 [✔]
+      example 4 [✔]
+    Strict StateT instance of MonadParsecDbg
+      example 3 [✔]
+      example 4 [✔]
+    Lazy RWST instance of MonadParsecDbg
+      example 5 [✔]
+      example 6 [✔]
+      example 7 [✔]
+    Strict RWST instance of MonadParsecDbg
+      example 5 [✔]
+      example 6 [✔]
+      example 7 [✔]
+Text.Megaparsec.Error
+  Semigroup instance of ParseError
+    associativity [✔]
+      +++ OK, passed 100 tests.
+  Monoid instance of ParseError
+    left identity [✔]
+      +++ OK, passed 100 tests.
+    right identity [✔]
+      +++ OK, passed 100 tests.
+    associativity [✔]
+      +++ OK, passed 100 tests.
+  error merging with (<>)
+    selects greater offset [✔]
+      +++ OK, passed 100 tests.
+    when combining two trivial parse errors at the same position
+      merges their unexpected and expected items [✔]
+        +++ OK, passed 100 tests.
+    when combining two fancy parse errors at the same position
+      merges their custom items [✔]
+        +++ OK, passed 100 tests.
+    when combining trivial error with fancy error
+      fancy has precedence (left) [✔]
+        +++ OK, passed 100 tests.
+      fancy has precedence (right) [✔]
+        +++ OK, passed 100 tests.
+  attachSourcePos
+    attaches the positions correctly [✔]
+      +++ OK, passed 100 tests.
+  errorBundlePretty
+    shows empty line correctly [✔]
+    shows position on first line correctly [✔]
+    skips to second line correctly [✔]
+    shows position on 1000 line correctly [✔]
+    shows offending line in the presence of tabs correctly [✔]
+    uses continuous highlighting properly (trivial) [✔]
+    uses continuous highlighting properly (fancy) [✔]
+    adjusts continuous highlighting so it doesn't get too long [✔]
+    stream of insufficient size is provided in the bundle
+      handles the situation reasonably [✔]
+    starting column in bundle is greater than 1
+      and less than parse error column
+        is rendered correctly [✔]
+      and greater than parse error column
+        is rendered correctly [✔]
+    takes tab width into account correctly [✔]
+      +++ OK, passed 100 tests.
+    displays multi-error bundle correctly [✔]
+  parseErrorPretty
+    shows unknown ParseError correctly [✔]
+    result always ends with a newline [✔]
+      +++ OK, passed 100 tests.
+    result contains representation of offset [✔]
+      +++ OK, passed 100 tests.
+    result contains unexpected/expected items [✔]
+    result contains representation of custom items [✔]
+    several fancy errors look not so bad [✔]
+  parseErrorTextPretty
+    shows trivial unknown ParseError correctly [✔]
+    shows fancy unknown ParseError correctly [✔]
+    result always ends with a newline [✔]
+      +++ OK, passed 100 tests.
+  displayException
+    produces the same result as parseErrorPretty [✔]
+      +++ OK, passed 100 tests.
+Text.Megaparsec.Pos
+  mkPos
+    when the argument is a non-positive number
+      throws InvalidPosException [✔]
+        +++ OK, passed 100 tests; 95 discarded.
+    when the argument is not 0
+      returns Pos with the given value [✔]
+        +++ OK, passed 100 tests; 112 discarded.
+  Read and Show instances of Pos
+    printed representation of Pos is isomorphic to its value [✔]
+      +++ OK, passed 100 tests.
+  Ord instance of Pos
+    works just like Ord instance of underlying Word [✔]
+      +++ OK, passed 100 tests.
+  Semigroup instance of Pos
+    works like addition [✔]
+      +++ OK, passed 100 tests.
+  initialPos
+    constructs initial position correctly [✔]
+      +++ OK, passed 100 tests.
+  Read and Show instances of SourcePos
+    printed representation of SourcePos in isomorphic to its value [✔]
+      +++ OK, passed 100 tests.
+  sourcePosPretty
+    displays file name [✔]
+      +++ OK, passed 100 tests.
+    displays line number [✔]
+      +++ OK, passed 100 tests.
+    displays column number [✔]
+      +++ OK, passed 100 tests.
+Text.Megaparsec.Stream
+  String instance of Stream
+    tokenToChunk
+      produces the same result as singleton with tokensToChunk [✔]
+        +++ OK, passed 100 tests.
+    tokensToChunk
+      list of tokens is isomorphic to chunk [✔]
+        +++ OK, passed 100 tests.
+    chunkToTokens
+      chunk is isomorphic to list of tokens [✔]
+        +++ OK, passed 100 tests.
+    chunkLength
+      returns correct length of given chunk [✔]
+        +++ OK, passed 100 tests.
+    chunkEmpty
+      only true when chunkLength returns 0 [✔]
+        +++ OK, passed 100 tests.
+    take1_
+      when input in empty
+        returns Nothing [✔]
+          +++ OK, passed 1 test.
+      when input is not empty
+        unconses a token [✔]
+          +++ OK, passed 100 tests; 15 discarded.
+    takeN_
+      requested length is 0
+        returns Just empty chunk and original stream [✔]
+          +++ OK, passed 100 tests.
+      requested length is greater than 0
+        stream is empty
+          returns Nothing [✔]
+            +++ OK, passed 100 tests.
+        stream is not empty
+          returns a chunk of correct length and rest of the stream [✔]
+            +++ OK, passed 100 tests; 15 discarded.
+    takeWhile_
+      extracts a chunk that is a prefix consisting of matching tokens [✔]
+        +++ OK, passed 100 tests.
+    showTokens
+      shows CRLF newline correctly [✔]
+      shows null byte correctly [✔]
+      shows start of heading correctly [✔]
+      shows start of text correctly [✔]
+      shows end of text correctly [✔]
+      shows end of transmission correctly [✔]
+      shows enquiry correctly [✔]
+      shows acknowledge correctly [✔]
+      shows bell correctly [✔]
+      shows backspace correctly [✔]
+      shows tab correctly [✔]
+      shows newline correctly [✔]
+      shows vertical tab correctly [✔]
+      shows form feed correctly [✔]
+      shows carriage return correctly [✔]
+      shows shift out correctly [✔]
+      shows shift in correctly [✔]
+      shows data link escape correctly [✔]
+      shows device control one correctly [✔]
+      shows device control two correctly [✔]
+      shows device control three correctly [✔]
+      shows device control four correctly [✔]
+      shows negative acknowledge correctly [✔]
+      shows synchronous idle correctly [✔]
+      shows end of transmission block correctly [✔]
+      shows cancel correctly [✔]
+      shows end of medium correctly [✔]
+      shows substitute correctly [✔]
+      shows escape correctly [✔]
+      shows file separator correctly [✔]
+      shows group separator correctly [✔]
+      shows record separator correctly [✔]
+      shows unit separator correctly [✔]
+      shows delete correctly [✔]
+      shows space correctly [✔]
+      shows non-breaking space correctly [✔]
+      shows other single characters in single quotes [✔]
+        +++ OK, passed 100 tests.
+      shows strings in double quotes [✔]
+        +++ OK, passed 100 tests.
+      shows control characters in long strings property [✔]
+    reachOffset
+      returns correct SourcePos (newline) [✔]
+        +++ OK, passed 100 tests.
+      returns correct SourcePos (tab) [✔]
+        +++ OK, passed 100 tests.
+      returns correct SourcePos (other) [✔]
+        +++ OK, passed 100 tests.
+      replaces empty line with <empty line> [✔]
+        +++ OK, passed 100 tests.
+      replaces tabs with spaces in returned line [✔]
+        +++ OK, passed 100 tests.
+      returns correct line (with line prefix) [✔]
+        +++ OK, passed 100 tests.
+      returns correct line (without line prefix) [✔]
+        +++ OK, passed 100 tests.
+      works incrementally [✔]
+        +++ OK, passed 100 tests.
+    reachOffsetNoLine
+      returns correct SourcePos (newline) [✔]
+        +++ OK, passed 100 tests.
+      returns correct SourcePos (tab) [✔]
+        +++ OK, passed 100 tests.
+      returns correct SourcePos (other) [✔]
+        +++ OK, passed 100 tests.
+      works incrementally [✔]
+        +++ OK, passed 100 tests.
+  ByteString instance of Stream
+    tokenToChunk
+      produces the same result as singleton with tokensToChunk [✔]
+        +++ OK, passed 100 tests.
+    tokensToChunk
+      list of tokens is isomorphic to chunk [✔]
+        +++ OK, passed 100 tests.
+    chunkToTokens
+      chunk is isomorphic to list of tokens [✔]
+        +++ OK, passed 100 tests.
+    chunkLength
+      returns correct length of given chunk [✔]
+        +++ OK, passed 100 tests.
+    chunkEmpty
+      only true when chunkLength returns 0 [✔]
+        +++ OK, passed 100 tests.
+    take1_
+      when input in empty
+        returns Nothing [✔]
+          +++ OK, passed 1 test.
+      when input is not empty
+        unconses a token [✔]
+          +++ OK, passed 100 tests; 15 discarded.
+    takeN_
+      requested length is 0
+        returns Just empty chunk and original stream [✔]
+          +++ OK, passed 100 tests.
+      requested length is greater than 0
+        stream is empty
+          returns Nothing [✔]
+            +++ OK, passed 100 tests.
+        stream is not empty
+          returns a chunk of correct length and rest of the stream [✔]
+            +++ OK, passed 100 tests; 15 discarded.
+    takeWhile_
+      extracts a chunk that is a prefix consisting of matching tokens [✔]
+        +++ OK, passed 100 tests.
+    showTokens
+      shows CRLF newline correctly [✔]
+      shows null byte correctly [✔]
+      shows start of heading correctly [✔]
+      shows start of text correctly [✔]
+      shows end of text correctly [✔]
+      shows end of transmission correctly [✔]
+      shows enquiry correctly [✔]
+      shows acknowledge correctly [✔]
+      shows bell correctly [✔]
+      shows backspace correctly [✔]
+      shows tab correctly [✔]
+      shows newline correctly [✔]
+      shows vertical tab correctly [✔]
+      shows form feed correctly [✔]
+      shows carriage return correctly [✔]
+      shows shift out correctly [✔]
+      shows shift in correctly [✔]
+      shows data link escape correctly [✔]
+      shows device control one correctly [✔]
+      shows device control two correctly [✔]
+      shows device control three correctly [✔]
+      shows device control four correctly [✔]
+      shows negative acknowledge correctly [✔]
+      shows synchronous idle correctly [✔]
+      shows end of transmission block correctly [✔]
+      shows cancel correctly [✔]
+      shows end of medium correctly [✔]
+      shows substitute correctly [✔]
+      shows escape correctly [✔]
+      shows file separator correctly [✔]
+      shows group separator correctly [✔]
+      shows record separator correctly [✔]
+      shows unit separator correctly [✔]
+      shows delete correctly [✔]
+      shows space correctly [✔]
+      shows non-breaking space correctly [✔]
+      shows other single characters in single quotes [✔]
+        +++ OK, passed 100 tests.
+      shows strings in double quotes [✔]
+        +++ OK, passed 100 tests.
+      shows control characters in long strings property [✔]
+    reachOffset
+      returns correct SourcePos (newline) [✔]
+        +++ OK, passed 100 tests.
+      returns correct SourcePos (tab) [✔]
+        +++ OK, passed 100 tests.
+      returns correct SourcePos (other) [✔]
+        +++ OK, passed 100 tests.
+      replaces empty line with <empty line> [✔]
+        +++ OK, passed 100 tests.
+      replaces tabs with spaces in returned line [✔]
+        +++ OK, passed 100 tests.
+      returns correct line (with line prefix) [✔]
+        +++ OK, passed 100 tests.
+      returns correct line (without line prefix) [✔]
+        +++ OK, passed 100 tests.
+      works incrementally [✔]
+        +++ OK, passed 100 tests.
+    reachOffsetNoLine
+      returns correct SourcePos (newline) [✔]
+        +++ OK, passed 100 tests.
+      returns correct SourcePos (tab) [✔]
+        +++ OK, passed 100 tests.
+      returns correct SourcePos (other) [✔]
+        +++ OK, passed 100 tests.
+      works incrementally [✔]
+        +++ OK, passed 100 tests.
+  Lazy ByteString instance of Stream
+    tokenToChunk
+      produces the same result as singleton with tokensToChunk [✔]
+        +++ OK, passed 100 tests.
+    tokensToChunk
+      list of tokens is isomorphic to chunk [✔]
+        +++ OK, passed 100 tests.
+    chunkToTokens
+      chunk is isomorphic to list of tokens [✔]
+        +++ OK, passed 100 tests.
+    chunkLength
+      returns correct length of given chunk [✔]
+        +++ OK, passed 100 tests.
+    chunkEmpty
+      only true when chunkLength returns 0 [✔]
+        +++ OK, passed 100 tests.
+    take1_
+      when input in empty
+        returns Nothing [✔]
+          +++ OK, passed 1 test.
+      when input is not empty
+        unconses a token [✔]
+          +++ OK, passed 100 tests; 15 discarded.
+    takeN_
+      requested length is 0
+        returns Just empty chunk and original stream [✔]
+          +++ OK, passed 100 tests.
+      requested length is greater than 0
+        stream is empty
+          returns Nothing [✔]
+            +++ OK, passed 100 tests.
+        stream is not empty
+          returns a chunk of correct length and rest of the stream [✔]
+            +++ OK, passed 100 tests; 15 discarded.
+    takeWhile_
+      extracts a chunk that is a prefix consisting of matching tokens [✔]
+        +++ OK, passed 100 tests.
+    showTokens
+      shows CRLF newline correctly [✔]
+      shows null byte correctly [✔]
+      shows start of heading correctly [✔]
+      shows start of text correctly [✔]
+      shows end of text correctly [✔]
+      shows end of transmission correctly [✔]
+      shows enquiry correctly [✔]
+      shows acknowledge correctly [✔]
+      shows bell correctly [✔]
+      shows backspace correctly [✔]
+      shows tab correctly [✔]
+      shows newline correctly [✔]
+      shows vertical tab correctly [✔]
+      shows form feed correctly [✔]
+      shows carriage return correctly [✔]
+      shows shift out correctly [✔]
+      shows shift in correctly [✔]
+      shows data link escape correctly [✔]
+      shows device control one correctly [✔]
+      shows device control two correctly [✔]
+      shows device control three correctly [✔]
+      shows device control four correctly [✔]
+      shows negative acknowledge correctly [✔]
+      shows synchronous idle correctly [✔]
+      shows end of transmission block correctly [✔]
+      shows cancel correctly [✔]
+      shows end of medium correctly [✔]
+      shows substitute correctly [✔]
+      shows escape correctly [✔]
+      shows file separator correctly [✔]
+      shows group separator correctly [✔]
+      shows record separator correctly [✔]
+      shows unit separator correctly [✔]
+      shows delete correctly [✔]
+      shows space correctly [✔]
+      shows non-breaking space correctly [✔]
+      shows other single characters in single quotes [✔]
+        +++ OK, passed 100 tests.
+      shows strings in double quotes [✔]
+        +++ OK, passed 100 tests.
+      shows control characters in long strings property [✔]
+    reachOffset
+      returns correct SourcePos (newline) [✔]
+        +++ OK, passed 100 tests.
+      returns correct SourcePos (tab) [✔]
+        +++ OK, passed 100 tests.
+      returns correct SourcePos (other) [✔]
+        +++ OK, passed 100 tests.
+      replaces empty line with <empty line> [✔]
+        +++ OK, passed 100 tests.
+      replaces tabs with spaces in returned line [✔]
+        +++ OK, passed 100 tests.
+      returns correct line (with line prefix) [✔]
+        +++ OK, passed 100 tests.
+      returns correct line (without line prefix) [✔]
+        +++ OK, passed 100 tests.
+      works incrementally [✔]
+        +++ OK, passed 100 tests.
+    reachOffsetNoLine
+      returns correct SourcePos (newline) [✔]
+        +++ OK, passed 100 tests.
+      returns correct SourcePos (tab) [✔]
+        +++ OK, passed 100 tests.
+      returns correct SourcePos (other) [✔]
+        +++ OK, passed 100 tests.
+      works incrementally [✔]
+        +++ OK, passed 100 tests.
+  Text instance of Stream
+    tokenToChunk
+      produces the same result as singleton with tokensToChunk [✔]
+        +++ OK, passed 100 tests.
+    tokensToChunk
+      list of tokens is isomorphic to chunk [✔]
+        +++ OK, passed 100 tests.
+    chunkToTokens
+      chunk is isomorphic to list of tokens [✔]
+        +++ OK, passed 100 tests.
+    chunkLength
+      returns correct length of given chunk [✔]
+        +++ OK, passed 100 tests.
+    chunkEmpty
+      only true when chunkLength returns 0 [✔]
+        +++ OK, passed 100 tests.
+    take1_
+      when input in empty
+        returns Nothing [✔]
+          +++ OK, passed 1 test.
+      when input is not empty
+        unconses a token [✔]
+          +++ OK, passed 100 tests; 15 discarded.
+    takeN_
+      requested length is 0
+        returns Just empty chunk and original stream [✔]
+          +++ OK, passed 100 tests.
+      requested length is greater than 0
+        stream is empty
+          returns Nothing [✔]
+            +++ OK, passed 100 tests.
+        stream is not empty
+          returns a chunk of correct length and rest of the stream [✔]
+            +++ OK, passed 100 tests; 15 discarded.
+    takeWhile_
+      extracts a chunk that is a prefix consisting of matching tokens [✔]
+        +++ OK, passed 100 tests.
+    showTokens
+      shows CRLF newline correctly [✔]
+      shows null byte correctly [✔]
+      shows start of heading correctly [✔]
+      shows start of text correctly [✔]
+      shows end of text correctly [✔]
+      shows end of transmission correctly [✔]
+      shows enquiry correctly [✔]
+      shows acknowledge correctly [✔]
+      shows bell correctly [✔]
+      shows backspace correctly [✔]
+      shows tab correctly [✔]
+      shows newline correctly [✔]
+      shows vertical tab correctly [✔]
+      shows form feed correctly [✔]
+      shows carriage return correctly [✔]
+      shows shift out correctly [✔]
+      shows shift in correctly [✔]
+      shows data link escape correctly [✔]
+      shows device control one correctly [✔]
+      shows device control two correctly [✔]
+      shows device control three correctly [✔]
+      shows device control four correctly [✔]
+      shows negative acknowledge correctly [✔]
+      shows synchronous idle correctly [✔]
+      shows end of transmission block correctly [✔]
+      shows cancel correctly [✔]
+      shows end of medium correctly [✔]
+      shows substitute correctly [✔]
+      shows escape correctly [✔]
+      shows file separator correctly [✔]
+      shows group separator correctly [✔]
+      shows record separator correctly [✔]
+      shows unit separator correctly [✔]
+      shows delete correctly [✔]
+      shows space correctly [✔]
+      shows non-breaking space correctly [✔]
+      shows other single characters in single quotes [✔]
+        +++ OK, passed 100 tests.
+      shows strings in double quotes [✔]
+        +++ OK, passed 100 tests.
+      shows control characters in long strings property [✔]
+    reachOffset
+      returns correct SourcePos (newline) [✔]
+        +++ OK, passed 100 tests.
+      returns correct SourcePos (tab) [✔]
+        +++ OK, passed 100 tests.
+      returns correct SourcePos (other) [✔]
+        +++ OK, passed 100 tests.
+      replaces empty line with <empty line> [✔]
+        +++ OK, passed 100 tests.
+      replaces tabs with spaces in returned line [✔]
+        +++ OK, passed 100 tests.
+      returns correct line (with line prefix) [✔]
+        +++ OK, passed 100 tests.
+      returns correct line (without line prefix) [✔]
+        +++ OK, passed 100 tests.
+      works incrementally [✔]
+        +++ OK, passed 100 tests.
+    reachOffsetNoLine
+      returns correct SourcePos (newline) [✔]
+        +++ OK, passed 100 tests.
+      returns correct SourcePos (tab) [✔]
+        +++ OK, passed 100 tests.
+      returns correct SourcePos (other) [✔]
+        +++ OK, passed 100 tests.
+      works incrementally [✔]
+        +++ OK, passed 100 tests.
+  Lazy Text instance of Stream
+    tokenToChunk
+      produces the same result as singleton with tokensToChunk [✔]
+        +++ OK, passed 100 tests.
+    tokensToChunk
+      list of tokens is isomorphic to chunk [✔]
+        +++ OK, passed 100 tests.
+    chunkToTokens
+      chunk is isomorphic to list of tokens [✔]
+        +++ OK, passed 100 tests.
+    chunkLength
+      returns correct length of given chunk [✔]
+        +++ OK, passed 100 tests.
+    chunkEmpty
+      only true when chunkLength returns 0 [✔]
+        +++ OK, passed 100 tests.
+    take1_
+      when input in empty
+        returns Nothing [✔]
+          +++ OK, passed 1 test.
+      when input is not empty
+        unconses a token [✔]
+          +++ OK, passed 100 tests; 15 discarded.
+    takeN_
+      requested length is 0
+        returns Just empty chunk and original stream [✔]
+          +++ OK, passed 100 tests.
+      requested length is greater than 0
+        stream is empty
+          returns Nothing [✔]
+            +++ OK, passed 100 tests.
+        stream is not empty
+          returns a chunk of correct length and rest of the stream [✔]
+            +++ OK, passed 100 tests; 15 discarded.
+    takeWhile_
+      extracts a chunk that is a prefix consisting of matching tokens [✔]
+        +++ OK, passed 100 tests.
+    showTokens
+      shows CRLF newline correctly [✔]
+      shows null byte correctly [✔]
+      shows start of heading correctly [✔]
+      shows start of text correctly [✔]
+      shows end of text correctly [✔]
+      shows end of transmission correctly [✔]
+      shows enquiry correctly [✔]
+      shows acknowledge correctly [✔]
+      shows bell correctly [✔]
+      shows backspace correctly [✔]
+      shows tab correctly [✔]
+      shows newline correctly [✔]
+      shows vertical tab correctly [✔]
+      shows form feed correctly [✔]
+      shows carriage return correctly [✔]
+      shows shift out correctly [✔]
+      shows shift in correctly [✔]
+      shows data link escape correctly [✔]
+      shows device control one correctly [✔]
+      shows device control two correctly [✔]
+      shows device control three correctly [✔]
+      shows device control four correctly [✔]
+      shows negative acknowledge correctly [✔]
+      shows synchronous idle correctly [✔]
+      shows end of transmission block correctly [✔]
+      shows cancel correctly [✔]
+      shows end of medium correctly [✔]
+      shows substitute correctly [✔]
+      shows escape correctly [✔]
+      shows file separator correctly [✔]
+      shows group separator correctly [✔]
+      shows record separator correctly [✔]
+      shows unit separator correctly [✔]
+      shows delete correctly [✔]
+      shows space correctly [✔]
+      shows non-breaking space correctly [✔]
+      shows other single characters in single quotes [✔]
+        +++ OK, passed 100 tests.
+      shows strings in double quotes [✔]
+        +++ OK, passed 100 tests.
+      shows control characters in long strings property [✔]
+    reachOffset
+      returns correct SourcePos (newline) [✔]
+        +++ OK, passed 100 tests.
+      returns correct SourcePos (tab) [✔]
+        +++ OK, passed 100 tests.
+      returns correct SourcePos (other) [✔]
+        +++ OK, passed 100 tests.
+      replaces empty line with <empty line> [✔]
+        +++ OK, passed 100 tests.
+      replaces tabs with spaces in returned line [✔]
+        +++ OK, passed 100 tests.
+      returns correct line (with line prefix) [✔]
+        +++ OK, passed 100 tests.
+      returns correct line (without line prefix) [✔]
+        +++ OK, passed 100 tests.
+      works incrementally [✔]
+        +++ OK, passed 100 tests.
+    reachOffsetNoLine
+      returns correct SourcePos (newline) [✔]
+        +++ OK, passed 100 tests.
+      returns correct SourcePos (tab) [✔]
+        +++ OK, passed 100 tests.
+      returns correct SourcePos (other) [✔]
+        +++ OK, passed 100 tests.
+      works incrementally [✔]
+        +++ OK, passed 100 tests.
+
+Finished in 0.4329 seconds
+952 examples, 0 failures
+Test suite tests: PASS
+Test suite logged to:
+/tmp/workdir-megaparsec-tests/megaparsec-tests-9.5.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/megaparsec-tests-9.5.0/t/tests/test/megaparsec-tests-9.5.0-tests.log
+1 of 1 test suites (1 of 1 test cases) passed.

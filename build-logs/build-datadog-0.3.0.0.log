@@ -1,0 +1,230 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - datadog-0.3.0.0 (lib) (first run)
+ - datadog-0.3.0.0 (test:datadog-api-test) (first run)
+Configuring library for datadog-0.3.0.0...
+Preprocessing library for datadog-0.3.0.0...
+Building library for datadog-0.3.0.0...
+[ 1 of 12] Compiling Network.Datadog.Types
+
+src/Network/Datadog/Types.hs:11:1: warning: [-Wunused-imports]
+    The import of ‘Data.Semigroup’ is redundant
+      except perhaps to import instances from ‘Data.Semigroup’
+    To import instances alone, use: import Data.Semigroup()
+   |
+11 | import           Data.Semigroup
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 2 of 12] Compiling Network.Datadog.Lens
+[ 3 of 12] Compiling Network.Datadog.Internal
+
+src/Network/Datadog/Internal.hs:149:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Value’ not matched:
+            Array _
+            String _
+            Number _
+            Bool _
+            ...
+    |
+149 |     where (Object basemap) = toJSON (downtime ^. spec)
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Network/Datadog/Internal.hs:237:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Value’ not matched:
+            Array _
+            String _
+            Number _
+            Bool _
+            ...
+    |
+237 |     where (Object basemap) = toJSON (event ^. details)
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Network/Datadog/Internal.hs:316:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Value’ not matched:
+            Array _
+            String _
+            Number _
+            Bool _
+            ...
+    |
+316 |     where (Object hmap) = object $
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^...
+
+src/Network/Datadog/Internal.hs:361:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Value’ not matched:
+            Array _
+            String _
+            Number _
+            Bool _
+            ...
+    |
+361 |     where (Object basemap) = toJSON (monitor ^. spec)
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[ 4 of 12] Compiling Network.Datadog.Monitor
+[ 5 of 12] Compiling Network.Datadog.Metrics
+[ 6 of 12] Compiling Network.Datadog.Host
+[ 7 of 12] Compiling Network.Datadog.Event
+[ 8 of 12] Compiling Network.Datadog.Downtime
+[ 9 of 12] Compiling Network.Datadog.Check
+[10 of 12] Compiling Network.Datadog
+[11 of 12] Compiling Network.StatsD.Datadog
+
+src/Network/StatsD/Datadog.hs:58:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+58 | import Control.Applicative ((<$>))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Network/StatsD/Datadog.hs:59:1: warning: [-Wunused-imports]
+    The import of ‘Control.Exception’ is redundant
+      except perhaps to import instances from ‘Control.Exception’
+    To import instances alone, use: import Control.Exception()
+   |
+59 | import Control.Exception (SomeException)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Network/StatsD/Datadog.hs:76:1: warning: [-Wdodgy-imports]
+    Module ‘Network.Socket’ does not export ‘recvFrom’
+   |
+76 | import Network.Socket hiding (send, sendTo, recv, recvFrom)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Network/StatsD/Datadog.hs:76:1: warning: [-Wdodgy-imports]
+    Module ‘Network.Socket’ does not export ‘recv’
+   |
+76 | import Network.Socket hiding (send, sendTo, recv, recvFrom)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Network/StatsD/Datadog.hs:76:1: warning: [-Wdodgy-imports]
+    Module ‘Network.Socket’ does not export ‘sendTo’
+   |
+76 | import Network.Socket hiding (send, sendTo, recv, recvFrom)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Network/StatsD/Datadog.hs:76:1: warning: [-Wdodgy-imports]
+    Module ‘Network.Socket’ does not export ‘send’
+   |
+76 | import Network.Socket hiding (send, sendTo, recv, recvFrom)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Network/StatsD/Datadog.hs:77:1: warning: [-Wunused-imports]
+    The import of ‘System.IO’ is redundant
+      except perhaps to import instances from ‘System.IO’
+    To import instances alone, use: import System.IO()
+   |
+77 | import System.IO
+   | ^^^^^^^^^^^^^^^^...
+
+src/Network/StatsD/Datadog.hs:152:5: warning: [-Wunused-top-binds]
+    Defined but not used: ‘metricName’
+    |
+152 |   { metricName       :: !MetricName
+    |     ^^^^^^^^^^
+
+src/Network/StatsD/Datadog.hs:153:5: warning: [-Wunused-top-binds]
+    Defined but not used: ‘metricSampleRate’
+    |
+153 |   , metricSampleRate :: {-# UNPACK #-} !Double
+    |     ^^^^^^^^^^^^^^^^
+
+src/Network/StatsD/Datadog.hs:154:5: warning: [-Wunused-top-binds]
+    Defined but not used: ‘metricType'’
+    |
+154 |   , metricType'      :: !MetricType
+    |     ^^^^^^^^^^^
+
+src/Network/StatsD/Datadog.hs:156:5: warning: [-Wunused-top-binds]
+    Defined but not used: ‘metricTags’
+    |
+156 |   , metricTags       :: ![Tag]
+    |     ^^^^^^^^^^
+
+src/Network/StatsD/Datadog.hs:307:5: warning: [-Wunused-top-binds]
+    Defined but not used: ‘serviceCheckName’
+    |
+307 |   { serviceCheckName         :: {-# UNPACK #-} !Text
+    |     ^^^^^^^^^^^^^^^^
+
+src/Network/StatsD/Datadog.hs:308:5: warning: [-Wunused-top-binds]
+    Defined but not used: ‘serviceCheckStatus’
+    |
+308 |   , serviceCheckStatus       :: !ServiceCheckStatus
+    |     ^^^^^^^^^^^^^^^^^^
+
+src/Network/StatsD/Datadog.hs:309:5: warning: [-Wunused-top-binds]
+    Defined but not used: ‘serviceCheckMessage’
+    |
+309 |   , serviceCheckMessage      :: !(Maybe Text)
+    |     ^^^^^^^^^^^^^^^^^^^
+
+src/Network/StatsD/Datadog.hs:310:5: warning: [-Wunused-top-binds]
+    Defined but not used: ‘serviceCheckDateHappened’
+    |
+310 |   , serviceCheckDateHappened :: !(Maybe UTCTime)
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Network/StatsD/Datadog.hs:311:5: warning: [-Wunused-top-binds]
+    Defined but not used: ‘serviceCheckHostname’
+    |
+311 |   , serviceCheckHostname     :: !(Maybe Text)
+    |     ^^^^^^^^^^^^^^^^^^^^
+
+src/Network/StatsD/Datadog.hs:312:5: warning: [-Wunused-top-binds]
+    Defined but not used: ‘serviceCheckTags’
+    |
+312 |   , serviceCheckTags         :: ![Tag]
+    |     ^^^^^^^^^^^^^^^^
+
+src/Network/StatsD/Datadog.hs:433:22: warning: [-Wunused-top-binds]
+    Defined but not used: ‘statsClientHandle’
+    |
+433 |                    { statsClientHandle :: !Handle
+    |                      ^^^^^^^^^^^^^^^^^
+
+src/Network/StatsD/Datadog.hs:435:22: warning: [-Wunused-top-binds]
+    Defined but not used: ‘statsClientSettings’
+    |
+435 |                    , statsClientSettings :: DogStatsSettings
+    |                      ^^^^^^^^^^^^^^^^^^^
+[12 of 12] Compiling Paths_datadog
+Configuring test suite 'datadog-api-test' for datadog-0.3.0.0...
+Preprocessing test suite 'datadog-api-test' for datadog-0.3.0.0...
+Building test suite 'datadog-api-test' for datadog-0.3.0.0...
+[1 of 9] Compiling Paths_datadog
+[2 of 9] Compiling Test.Network.Datadog.Check
+[3 of 9] Compiling Test.Network.Datadog.Downtime
+[4 of 9] Compiling Test.Network.Datadog.Event
+[5 of 9] Compiling Test.Network.Datadog.Host
+
+test/Test/Network/Datadog/Host.hs:4:1: warning: [-Wunused-imports]
+    The import of ‘Data.Semigroup’ is redundant
+      except perhaps to import instances from ‘Data.Semigroup’
+    To import instances alone, use: import Data.Semigroup()
+  |
+4 | import Data.Semigroup ((<>))
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[6 of 9] Compiling Test.Network.Datadog.Monitor
+[7 of 9] Compiling Test.Network.Datadog.StatsD
+
+test/Test/Network/Datadog/StatsD.hs:49:7: warning: [GHC-81995] [-Wunused-do-bind]
+    A do-notation statement discarded a result of type ‘[()]’
+    Suggested fix:
+      Suppress this warning by saying
+        ‘_ <- withDogStatsD defaultSettings
+                $ \ stats -> do replicateM 500000 $ send stats $ event "foo" "bar"’
+   |
+49 |       withDogStatsD defaultSettings $ \stats -> do
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+[8 of 9] Compiling Test.Network.Datadog
+[9 of 9] Compiling Main
+[10 of 10] Linking /tmp/workdir-datadog/datadog-0.3.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/datadog-0.3.0.0/t/datadog-api-test/build/datadog-api-test/datadog-api-test
