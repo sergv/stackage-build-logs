@@ -1148,12 +1148,12 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
         = (fmap PersonKey
              . (fromPersistValue . Database.Persist.TH.headNote))
       keyFromRecordM = Nothing
-      tabulateEntityA fromField_ahpa
-        = ((Entity <$> fromField_ahpa PersonId)
+      tabulateEntityA fromField_ahnV
+        = ((Entity <$> fromField_ahnV PersonId)
              <*>
-               (((pure Person <*> fromField_ahpa PersonName)
-                   <*> fromField_ahpa PersonAge)
-                  <*> fromField_ahpa PersonColor))
+               (((pure Person <*> fromField_ahnV PersonName)
+                   <*> fromField_ahnV PersonAge)
+                  <*> fromField_ahnV PersonColor))
       entityDef _
         = persistent-2.14.6.3-957b10fe38a2b21c70e67e79cd638e0e93e82e7708339a93b0c67b99d7d382c5:Database.Persist.Types.Base.EntityDef
             (EntityNameHS (Data.Text.unpackCStringLen# "Person"# 6))
@@ -1286,10 +1286,10 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
                                                                                                                                               Nothing
                                                                                                                                               True),
              persistent-2.14.6.3-957b10fe38a2b21c70e67e79cd638e0e93e82e7708339a93b0c67b99d7d382c5:Database.Persist.Types.Base.entityForeigns = []}
-      toPersistFields (Person x_ahoK x_ahoL x_ahoM)
-        = [toPersistValue x_ahoK, toPersistValue x_ahoL,
-           toPersistValue x_ahoM]
-      fromPersistValues [x1_ahoO, x2_ahoP, x3_ahoQ]
+      toPersistFields (Person x_ahnv x_ahnw x_ahnx)
+        = [toPersistValue x_ahnv, toPersistValue x_ahnw,
+           toPersistValue x_ahnx]
+      fromPersistValues [x1_ahnz, x2_ahnA, x3_ahnB]
         = Person
             <$>
               (Database.Persist.TH.mapLeft
@@ -1297,35 +1297,35 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
                     (Data.Text.unpackCStringLen# "Person"# 6)
                     (Data.Text.unpackCStringLen# "name"# 4))
                  . fromPersistValue)
-                x1_ahoO
+                x1_ahnz
             <*>
               (Database.Persist.TH.mapLeft
                  (fieldError
                     (Data.Text.unpackCStringLen# "Person"# 6)
                     (Data.Text.unpackCStringLen# "age"# 3))
                  . fromPersistValue)
-                x2_ahoP
+                x2_ahnA
             <*>
               (Database.Persist.TH.mapLeft
                  (fieldError
                     (Data.Text.unpackCStringLen# "Person"# 6)
                     (Data.Text.unpackCStringLen# "color"# 5))
                  . fromPersistValue)
-                x3_ahoQ
-      fromPersistValues x_ahoN
+                x3_ahnB
+      fromPersistValues x_ahny
         = (Left
              $ mappend
                  (Data.Text.unpackCStringLen#
                     "Person: fromPersistValues failed on: "# 37)
-                 (Data.Text.Internal.pack $ show x_ahoN))
+                 (Data.Text.Internal.pack $ show x_ahny))
       persistUniqueToFieldNames PersonNameKey {}
         = ((FieldNameHS (Data.Text.unpackCStringLen# "name"# 4), 
             FieldNameDB (Data.Text.unpackCStringLen# "name"# 4))
              NEL.:| [])
-      persistUniqueToValues (PersonNameKey x_ahoR)
-        = [toPersistValue x_ahoR]
-      persistUniqueKeys (Person _name_ahoS _age_ahoT _color_ahoU)
-        = [PersonNameKey _name_ahoS]
+      persistUniqueToValues (PersonNameKey x_ahnC)
+        = [toPersistValue x_ahnC]
+      persistUniqueKeys (Person _name_ahnD _age_ahnE _color_ahnF)
+        = [PersonNameKey _name_ahnD]
       persistFieldDef PersonId
         = Database.Persist.TH.stripIdFieldImpl
             (EntityIdField
@@ -1351,41 +1351,41 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
       fieldLens PersonId
         = lensPTH
             entityKey
-            (\ (Entity _ value_ahoW) key_ahoX -> Entity key_ahoX value_ahoW)
+            (\ (Entity _ value_ahnH) key_ahnI -> Entity key_ahnI value_ahnH)
       fieldLens PersonName
         = lensPTH
             ((\ Person {personName = x} -> x) . entityVal)
-            (\ (Entity key_ahoY value_ahoZ) x_ahp0
+            (\ (Entity key_ahnJ value_ahnK) x_ahnL
                -> Entity
-                    key_ahoY
-                    (case value_ahoZ of
-                       Person {personAge = personAge_ahp2, personColor = personColor_ahp3}
+                    key_ahnJ
+                    (case value_ahnK of
+                       Person {personAge = personAge_ahnN, personColor = personColor_ahnO}
                          -> Person
-                              {personName = x_ahp0, personAge = personAge,
+                              {personName = x_ahnL, personAge = personAge,
                                personColor = personColor}))
       fieldLens PersonAge
         = lensPTH
             ((\ Person {personAge = x} -> x) . entityVal)
-            (\ (Entity key_ahoY value_ahoZ) x_ahp0
+            (\ (Entity key_ahnJ value_ahnK) x_ahnL
                -> Entity
-                    key_ahoY
-                    (case value_ahoZ of
-                       Person {personName = personName_ahp4,
-                               personColor = personColor_ahp6}
+                    key_ahnJ
+                    (case value_ahnK of
+                       Person {personName = personName_ahnP,
+                               personColor = personColor_ahnR}
                          -> Person
-                              {personName = personName, personAge = x_ahp0,
+                              {personName = personName, personAge = x_ahnL,
                                personColor = personColor}))
       fieldLens PersonColor
         = lensPTH
             ((\ Person {personColor = x} -> x) . entityVal)
-            (\ (Entity key_ahoY value_ahoZ) x_ahp0
+            (\ (Entity key_ahnJ value_ahnK) x_ahnL
                -> Entity
-                    key_ahoY
-                    (case value_ahoZ of
-                       Person {personName = personName_ahp7, personAge = personAge_ahp8}
+                    key_ahnJ
+                    (case value_ahnK of
+                       Person {personName = personName_ahnS, personAge = personAge_ahnT}
                          -> Person
                               {personName = personName, personAge = personAge,
-                               personColor = x_ahp0}))
+                               personColor = x_ahnL}))
     deriving stock instance Show (BackendKey backend) =>
                             Show (Key (PersonGeneric backend))
     deriving stock instance Read (BackendKey backend) =>
@@ -1434,11 +1434,11 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
         = (fmap Person1Key
              . (fromPersistValue . Database.Persist.TH.headNote))
       keyFromRecordM = Nothing
-      tabulateEntityA fromField_ahps
-        = ((Entity <$> fromField_ahps Person1Id)
+      tabulateEntityA fromField_ahod
+        = ((Entity <$> fromField_ahod Person1Id)
              <*>
-               ((pure Person1 <*> fromField_ahps Person1Name)
-                  <*> fromField_ahps Person1Age))
+               ((pure Person1 <*> fromField_ahod Person1Name)
+                  <*> fromField_ahod Person1Age))
       entityDef _
         = persistent-2.14.6.3-957b10fe38a2b21c70e67e79cd638e0e93e82e7708339a93b0c67b99d7d382c5:Database.Persist.Types.Base.EntityDef
             (EntityNameHS (Data.Text.unpackCStringLen# "Person1"# 7))
@@ -1532,9 +1532,9 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
                                                                                                                                               Nothing
                                                                                                                                               True),
              persistent-2.14.6.3-957b10fe38a2b21c70e67e79cd638e0e93e82e7708339a93b0c67b99d7d382c5:Database.Persist.Types.Base.entityForeigns = []}
-      toPersistFields (Person1 x_ahpb x_ahpc)
-        = [toPersistValue x_ahpb, toPersistValue x_ahpc]
-      fromPersistValues [x1_ahpe, x2_ahpf]
+      toPersistFields (Person1 x_ahnW x_ahnX)
+        = [toPersistValue x_ahnW, toPersistValue x_ahnX]
+      fromPersistValues [x1_ahnZ, x2_aho0]
         = Person1
             <$>
               (Database.Persist.TH.mapLeft
@@ -1542,25 +1542,25 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
                     (Data.Text.unpackCStringLen# "Person1"# 7)
                     (Data.Text.unpackCStringLen# "name"# 4))
                  . fromPersistValue)
-                x1_ahpe
+                x1_ahnZ
             <*>
               (Database.Persist.TH.mapLeft
                  (fieldError
                     (Data.Text.unpackCStringLen# "Person1"# 7)
                     (Data.Text.unpackCStringLen# "age"# 3))
                  . fromPersistValue)
-                x2_ahpf
-      fromPersistValues x_ahpd
+                x2_aho0
+      fromPersistValues x_ahnY
         = (Left
              $ mappend
                  (Data.Text.unpackCStringLen#
                     "Person1: fromPersistValues failed on: "# 38)
-                 (Data.Text.Internal.pack $ show x_ahpd))
+                 (Data.Text.Internal.pack $ show x_ahnY))
       persistUniqueToFieldNames _
         = error "Degenerate case, should never happen"
       persistUniqueToValues _
         = error "Degenerate case, should never happen"
-      persistUniqueKeys (Person1 _name_ahpg _age_ahph) = []
+      persistUniqueKeys (Person1 _name_aho1 _age_aho2) = []
       persistFieldDef Person1Id
         = Database.Persist.TH.stripIdFieldImpl
             (EntityIdField
@@ -1582,25 +1582,25 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
       fieldLens Person1Id
         = lensPTH
             entityKey
-            (\ (Entity _ value_ahpj) key_ahpk -> Entity key_ahpk value_ahpj)
+            (\ (Entity _ value_aho4) key_aho5 -> Entity key_aho5 value_aho4)
       fieldLens Person1Name
         = lensPTH
             ((\ Person1 {person1Name = x} -> x) . entityVal)
-            (\ (Entity key_ahpl value_ahpm) x_ahpn
+            (\ (Entity key_aho6 value_aho7) x_aho8
                -> Entity
-                    key_ahpl
-                    (case value_ahpm of
-                       Person1 {person1Age = person1Age_ahpp}
-                         -> Person1 {person1Name = x_ahpn, person1Age = person1Age}))
+                    key_aho6
+                    (case value_aho7 of
+                       Person1 {person1Age = person1Age_ahoa}
+                         -> Person1 {person1Name = x_aho8, person1Age = person1Age}))
       fieldLens Person1Age
         = lensPTH
             ((\ Person1 {person1Age = x} -> x) . entityVal)
-            (\ (Entity key_ahpl value_ahpm) x_ahpn
+            (\ (Entity key_aho6 value_aho7) x_aho8
                -> Entity
-                    key_ahpl
-                    (case value_ahpm of
-                       Person1 {person1Name = person1Name_ahpq}
-                         -> Person1 {person1Name = person1Name, person1Age = x_ahpn}))
+                    key_aho6
+                    (case value_aho7 of
+                       Person1 {person1Name = person1Name_ahob}
+                         -> Person1 {person1Name = person1Name, person1Age = x_aho8}))
     deriving stock instance Show (BackendKey backend) =>
                             Show (Key (Person1Generic backend))
     deriving stock instance Read (BackendKey backend) =>
@@ -1650,11 +1650,11 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
         = (fmap PersonMaybeAgeKey
              . (fromPersistValue . Database.Persist.TH.headNote))
       keyFromRecordM = Nothing
-      tabulateEntityA fromField_ahpK
-        = ((Entity <$> fromField_ahpK PersonMaybeAgeId)
+      tabulateEntityA fromField_ahov
+        = ((Entity <$> fromField_ahov PersonMaybeAgeId)
              <*>
-               ((pure PersonMaybeAge <*> fromField_ahpK PersonMaybeAgeName)
-                  <*> fromField_ahpK PersonMaybeAgeAge))
+               ((pure PersonMaybeAge <*> fromField_ahov PersonMaybeAgeName)
+                  <*> fromField_ahov PersonMaybeAgeAge))
       entityDef _
         = persistent-2.14.6.3-957b10fe38a2b21c70e67e79cd638e0e93e82e7708339a93b0c67b99d7d382c5:Database.Persist.Types.Base.EntityDef
             (EntityNameHS (Data.Text.unpackCStringLen# "PersonMaybeAge"# 14))
@@ -1746,9 +1746,9 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
                                                                                                                                               Nothing
                                                                                                                                               True),
              persistent-2.14.6.3-957b10fe38a2b21c70e67e79cd638e0e93e82e7708339a93b0c67b99d7d382c5:Database.Persist.Types.Base.entityForeigns = []}
-      toPersistFields (PersonMaybeAge x_ahpt x_ahpu)
-        = [toPersistValue x_ahpt, toPersistValue x_ahpu]
-      fromPersistValues [x1_ahpw, x2_ahpx]
+      toPersistFields (PersonMaybeAge x_ahoe x_ahof)
+        = [toPersistValue x_ahoe, toPersistValue x_ahof]
+      fromPersistValues [x1_ahoh, x2_ahoi]
         = PersonMaybeAge
             <$>
               (Database.Persist.TH.mapLeft
@@ -1756,25 +1756,25 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
                     (Data.Text.unpackCStringLen# "PersonMaybeAge"# 14)
                     (Data.Text.unpackCStringLen# "name"# 4))
                  . fromPersistValue)
-                x1_ahpw
+                x1_ahoh
             <*>
               (Database.Persist.TH.mapLeft
                  (fieldError
                     (Data.Text.unpackCStringLen# "PersonMaybeAge"# 14)
                     (Data.Text.unpackCStringLen# "age"# 3))
                  . fromPersistValue)
-                x2_ahpx
-      fromPersistValues x_ahpv
+                x2_ahoi
+      fromPersistValues x_ahog
         = (Left
              $ mappend
                  (Data.Text.unpackCStringLen#
                     "PersonMaybeAge: fromPersistValues failed on: "# 45)
-                 (Data.Text.Internal.pack $ show x_ahpv))
+                 (Data.Text.Internal.pack $ show x_ahog))
       persistUniqueToFieldNames _
         = error "Degenerate case, should never happen"
       persistUniqueToValues _
         = error "Degenerate case, should never happen"
-      persistUniqueKeys (PersonMaybeAge _name_ahpy _age_ahpz) = []
+      persistUniqueKeys (PersonMaybeAge _name_ahoj _age_ahok) = []
       persistFieldDef PersonMaybeAgeId
         = Database.Persist.TH.stripIdFieldImpl
             (EntityIdField
@@ -1797,29 +1797,29 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
       fieldLens PersonMaybeAgeId
         = lensPTH
             entityKey
-            (\ (Entity _ value_ahpB) key_ahpC -> Entity key_ahpC value_ahpB)
+            (\ (Entity _ value_ahom) key_ahon -> Entity key_ahon value_ahom)
       fieldLens PersonMaybeAgeName
         = lensPTH
             ((\ PersonMaybeAge {personMaybeAgeName = x} -> x) . entityVal)
-            (\ (Entity key_ahpD value_ahpE) x_ahpF
+            (\ (Entity key_ahoo value_ahop) x_ahoq
                -> Entity
-                    key_ahpD
-                    (case value_ahpE of
-                       PersonMaybeAge {personMaybeAgeAge = personMaybeAgeAge_ahpH}
+                    key_ahoo
+                    (case value_ahop of
+                       PersonMaybeAge {personMaybeAgeAge = personMaybeAgeAge_ahos}
                          -> PersonMaybeAge
-                              {personMaybeAgeName = x_ahpF,
+                              {personMaybeAgeName = x_ahoq,
                                personMaybeAgeAge = personMaybeAgeAge}))
       fieldLens PersonMaybeAgeAge
         = lensPTH
             ((\ PersonMaybeAge {personMaybeAgeAge = x} -> x) . entityVal)
-            (\ (Entity key_ahpD value_ahpE) x_ahpF
+            (\ (Entity key_ahoo value_ahop) x_ahoq
                -> Entity
-                    key_ahpD
-                    (case value_ahpE of
-                       PersonMaybeAge {personMaybeAgeName = personMaybeAgeName_ahpI}
+                    key_ahoo
+                    (case value_ahop of
+                       PersonMaybeAge {personMaybeAgeName = personMaybeAgeName_ahot}
                          -> PersonMaybeAge
                               {personMaybeAgeName = personMaybeAgeName,
-                               personMaybeAgeAge = x_ahpF}))
+                               personMaybeAgeAge = x_ahoq}))
     deriving stock instance Show (BackendKey backend) =>
                             Show (Key (PersonMaybeAgeGeneric backend))
     deriving stock instance Read (BackendKey backend) =>
@@ -1869,11 +1869,11 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
         = (fmap PersonMayKey
              . (fromPersistValue . Database.Persist.TH.headNote))
       keyFromRecordM = Nothing
-      tabulateEntityA fromField_ahq2
-        = ((Entity <$> fromField_ahq2 PersonMayId)
+      tabulateEntityA fromField_ahoN
+        = ((Entity <$> fromField_ahoN PersonMayId)
              <*>
-               ((pure PersonMay <*> fromField_ahq2 PersonMayName)
-                  <*> fromField_ahq2 PersonMayColor))
+               ((pure PersonMay <*> fromField_ahoN PersonMayName)
+                  <*> fromField_ahoN PersonMayColor))
       entityDef _
         = persistent-2.14.6.3-957b10fe38a2b21c70e67e79cd638e0e93e82e7708339a93b0c67b99d7d382c5:Database.Persist.Types.Base.EntityDef
             (EntityNameHS (Data.Text.unpackCStringLen# "PersonMay"# 9))
@@ -1967,9 +1967,9 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
                                                                                                                                               Nothing
                                                                                                                                               True),
              persistent-2.14.6.3-957b10fe38a2b21c70e67e79cd638e0e93e82e7708339a93b0c67b99d7d382c5:Database.Persist.Types.Base.entityForeigns = []}
-      toPersistFields (PersonMay x_ahpL x_ahpM)
-        = [toPersistValue x_ahpL, toPersistValue x_ahpM]
-      fromPersistValues [x1_ahpO, x2_ahpP]
+      toPersistFields (PersonMay x_ahow x_ahox)
+        = [toPersistValue x_ahow, toPersistValue x_ahox]
+      fromPersistValues [x1_ahoz, x2_ahoA]
         = PersonMay
             <$>
               (Database.Persist.TH.mapLeft
@@ -1977,25 +1977,25 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
                     (Data.Text.unpackCStringLen# "PersonMay"# 9)
                     (Data.Text.unpackCStringLen# "name"# 4))
                  . fromPersistValue)
-                x1_ahpO
+                x1_ahoz
             <*>
               (Database.Persist.TH.mapLeft
                  (fieldError
                     (Data.Text.unpackCStringLen# "PersonMay"# 9)
                     (Data.Text.unpackCStringLen# "color"# 5))
                  . fromPersistValue)
-                x2_ahpP
-      fromPersistValues x_ahpN
+                x2_ahoA
+      fromPersistValues x_ahoy
         = (Left
              $ mappend
                  (Data.Text.unpackCStringLen#
                     "PersonMay: fromPersistValues failed on: "# 40)
-                 (Data.Text.Internal.pack $ show x_ahpN))
+                 (Data.Text.Internal.pack $ show x_ahoy))
       persistUniqueToFieldNames _
         = error "Degenerate case, should never happen"
       persistUniqueToValues _
         = error "Degenerate case, should never happen"
-      persistUniqueKeys (PersonMay _name_ahpQ _color_ahpR) = []
+      persistUniqueKeys (PersonMay _name_ahoB _color_ahoC) = []
       persistFieldDef PersonMayId
         = Database.Persist.TH.stripIdFieldImpl
             (EntityIdField
@@ -2017,27 +2017,27 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
       fieldLens PersonMayId
         = lensPTH
             entityKey
-            (\ (Entity _ value_ahpT) key_ahpU -> Entity key_ahpU value_ahpT)
+            (\ (Entity _ value_ahoE) key_ahoF -> Entity key_ahoF value_ahoE)
       fieldLens PersonMayName
         = lensPTH
             ((\ PersonMay {personMayName = x} -> x) . entityVal)
-            (\ (Entity key_ahpV value_ahpW) x_ahpX
+            (\ (Entity key_ahoG value_ahoH) x_ahoI
                -> Entity
-                    key_ahpV
-                    (case value_ahpW of
-                       PersonMay {personMayColor = personMayColor_ahpZ}
+                    key_ahoG
+                    (case value_ahoH of
+                       PersonMay {personMayColor = personMayColor_ahoK}
                          -> PersonMay
-                              {personMayName = x_ahpX, personMayColor = personMayColor}))
+                              {personMayName = x_ahoI, personMayColor = personMayColor}))
       fieldLens PersonMayColor
         = lensPTH
             ((\ PersonMay {personMayColor = x} -> x) . entityVal)
-            (\ (Entity key_ahpV value_ahpW) x_ahpX
+            (\ (Entity key_ahoG value_ahoH) x_ahoI
                -> Entity
-                    key_ahpV
-                    (case value_ahpW of
-                       PersonMay {personMayName = personMayName_ahq0}
+                    key_ahoG
+                    (case value_ahoH of
+                       PersonMay {personMayName = personMayName_ahoL}
                          -> PersonMay
-                              {personMayName = personMayName, personMayColor = x_ahpX}))
+                              {personMayName = personMayName, personMayColor = x_ahoI}))
     deriving stock instance Show (BackendKey backend) =>
                             Show (Key (PersonMayGeneric backend))
     deriving stock instance Read (BackendKey backend) =>
@@ -2086,12 +2086,12 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
       keyFromValues
         = (fmap PetKey . (fromPersistValue . Database.Persist.TH.headNote))
       keyFromRecordM = Nothing
-      tabulateEntityA fromField_ahqs
-        = ((Entity <$> fromField_ahqs PetId)
+      tabulateEntityA fromField_ahpd
+        = ((Entity <$> fromField_ahpd PetId)
              <*>
-               (((pure Pet <*> fromField_ahqs PetOwnerId)
-                   <*> fromField_ahqs PetName)
-                  <*> fromField_ahqs PetType))
+               (((pure Pet <*> fromField_ahpd PetOwnerId)
+                   <*> fromField_ahpd PetName)
+                  <*> fromField_ahpd PetType))
       entityDef _
         = persistent-2.14.6.3-957b10fe38a2b21c70e67e79cd638e0e93e82e7708339a93b0c67b99d7d382c5:Database.Persist.Types.Base.EntityDef
             (EntityNameHS (Data.Text.unpackCStringLen# "Pet"# 3))
@@ -2212,10 +2212,10 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
                                                                                                                                               Nothing
                                                                                                                                               True),
              persistent-2.14.6.3-957b10fe38a2b21c70e67e79cd638e0e93e82e7708339a93b0c67b99d7d382c5:Database.Persist.Types.Base.entityForeigns = []}
-      toPersistFields (Pet x_ahq3 x_ahq4 x_ahq5)
-        = [toPersistValue x_ahq3, toPersistValue x_ahq4,
-           toPersistValue x_ahq5]
-      fromPersistValues [x1_ahq7, x2_ahq8, x3_ahq9]
+      toPersistFields (Pet x_ahoO x_ahoP x_ahoQ)
+        = [toPersistValue x_ahoO, toPersistValue x_ahoP,
+           toPersistValue x_ahoQ]
+      fromPersistValues [x1_ahoS, x2_ahoT, x3_ahoU]
         = Pet
             <$>
               (Database.Persist.TH.mapLeft
@@ -2223,32 +2223,32 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
                     (Data.Text.unpackCStringLen# "Pet"# 3)
                     (Data.Text.unpackCStringLen# "ownerId"# 7))
                  . fromPersistValue)
-                x1_ahq7
+                x1_ahoS
             <*>
               (Database.Persist.TH.mapLeft
                  (fieldError
                     (Data.Text.unpackCStringLen# "Pet"# 3)
                     (Data.Text.unpackCStringLen# "name"# 4))
                  . fromPersistValue)
-                x2_ahq8
+                x2_ahoT
             <*>
               (Database.Persist.TH.mapLeft
                  (fieldError
                     (Data.Text.unpackCStringLen# "Pet"# 3)
                     (Data.Text.unpackCStringLen# "type"# 4))
                  . fromPersistValue)
-                x3_ahq9
-      fromPersistValues x_ahq6
+                x3_ahoU
+      fromPersistValues x_ahoR
         = (Left
              $ mappend
                  (Data.Text.unpackCStringLen#
                     "Pet: fromPersistValues failed on: "# 34)
-                 (Data.Text.Internal.pack $ show x_ahq6))
+                 (Data.Text.Internal.pack $ show x_ahoR))
       persistUniqueToFieldNames _
         = error "Degenerate case, should never happen"
       persistUniqueToValues _
         = error "Degenerate case, should never happen"
-      persistUniqueKeys (Pet _ownerId_ahqa _name_ahqb _type_ahqc) = []
+      persistUniqueKeys (Pet _ownerId_ahoV _name_ahoW _type_ahoX) = []
       persistFieldDef PetId
         = Database.Persist.TH.stripIdFieldImpl
             (EntityIdField
@@ -2274,37 +2274,37 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
       fieldLens PetId
         = lensPTH
             entityKey
-            (\ (Entity _ value_ahqe) key_ahqf -> Entity key_ahqf value_ahqe)
+            (\ (Entity _ value_ahoZ) key_ahp0 -> Entity key_ahp0 value_ahoZ)
       fieldLens PetOwnerId
         = lensPTH
             ((\ Pet {petOwnerId = x} -> x) . entityVal)
-            (\ (Entity key_ahqg value_ahqh) x_ahqi
+            (\ (Entity key_ahp1 value_ahp2) x_ahp3
                -> Entity
-                    key_ahqg
-                    (case value_ahqh of
-                       Pet {petName = petName_ahqk, petType = petType_ahql}
+                    key_ahp1
+                    (case value_ahp2 of
+                       Pet {petName = petName_ahp5, petType = petType_ahp6}
                          -> Pet
-                              {petOwnerId = x_ahqi, petName = petName, petType = petType}))
+                              {petOwnerId = x_ahp3, petName = petName, petType = petType}))
       fieldLens PetName
         = lensPTH
             ((\ Pet {petName = x} -> x) . entityVal)
-            (\ (Entity key_ahqg value_ahqh) x_ahqi
+            (\ (Entity key_ahp1 value_ahp2) x_ahp3
                -> Entity
-                    key_ahqg
-                    (case value_ahqh of
-                       Pet {petOwnerId = petOwnerId_ahqm, petType = petType_ahqo}
+                    key_ahp1
+                    (case value_ahp2 of
+                       Pet {petOwnerId = petOwnerId_ahp7, petType = petType_ahp9}
                          -> Pet
-                              {petOwnerId = petOwnerId, petName = x_ahqi, petType = petType}))
+                              {petOwnerId = petOwnerId, petName = x_ahp3, petType = petType}))
       fieldLens PetType
         = lensPTH
             ((\ Pet {petType = x} -> x) . entityVal)
-            (\ (Entity key_ahqg value_ahqh) x_ahqi
+            (\ (Entity key_ahp1 value_ahp2) x_ahp3
                -> Entity
-                    key_ahqg
-                    (case value_ahqh of
-                       Pet {petOwnerId = petOwnerId_ahqp, petName = petName_ahqq}
+                    key_ahp1
+                    (case value_ahp2 of
+                       Pet {petOwnerId = petOwnerId_ahpa, petName = petName_ahpb}
                          -> Pet
-                              {petOwnerId = petOwnerId, petName = petName, petType = x_ahqi}))
+                              {petOwnerId = petOwnerId, petName = petName, petType = x_ahp3}))
     deriving stock instance Show (BackendKey backend) =>
                             Show (Key (PetGeneric backend))
     deriving stock instance Read (BackendKey backend) =>
@@ -2357,12 +2357,12 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
         = (fmap MaybeOwnedPetKey
              . (fromPersistValue . Database.Persist.TH.headNote))
       keyFromRecordM = Nothing
-      tabulateEntityA fromField_ahqS
-        = ((Entity <$> fromField_ahqS MaybeOwnedPetId)
+      tabulateEntityA fromField_ahpD
+        = ((Entity <$> fromField_ahpD MaybeOwnedPetId)
              <*>
-               (((pure MaybeOwnedPet <*> fromField_ahqS MaybeOwnedPetOwnerId)
-                   <*> fromField_ahqS MaybeOwnedPetName)
-                  <*> fromField_ahqS MaybeOwnedPetType))
+               (((pure MaybeOwnedPet <*> fromField_ahpD MaybeOwnedPetOwnerId)
+                   <*> fromField_ahpD MaybeOwnedPetName)
+                  <*> fromField_ahpD MaybeOwnedPetType))
       entityDef _
         = persistent-2.14.6.3-957b10fe38a2b21c70e67e79cd638e0e93e82e7708339a93b0c67b99d7d382c5:Database.Persist.Types.Base.EntityDef
             (EntityNameHS (Data.Text.unpackCStringLen# "MaybeOwnedPet"# 13))
@@ -2484,10 +2484,10 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
                                                                                                                                               Nothing
                                                                                                                                               True),
              persistent-2.14.6.3-957b10fe38a2b21c70e67e79cd638e0e93e82e7708339a93b0c67b99d7d382c5:Database.Persist.Types.Base.entityForeigns = []}
-      toPersistFields (MaybeOwnedPet x_ahqt x_ahqu x_ahqv)
-        = [toPersistValue x_ahqt, toPersistValue x_ahqu,
-           toPersistValue x_ahqv]
-      fromPersistValues [x1_ahqx, x2_ahqy, x3_ahqz]
+      toPersistFields (MaybeOwnedPet x_ahpe x_ahpf x_ahpg)
+        = [toPersistValue x_ahpe, toPersistValue x_ahpf,
+           toPersistValue x_ahpg]
+      fromPersistValues [x1_ahpi, x2_ahpj, x3_ahpk]
         = MaybeOwnedPet
             <$>
               (Database.Persist.TH.mapLeft
@@ -2495,33 +2495,33 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
                     (Data.Text.unpackCStringLen# "MaybeOwnedPet"# 13)
                     (Data.Text.unpackCStringLen# "ownerId"# 7))
                  . fromPersistValue)
-                x1_ahqx
+                x1_ahpi
             <*>
               (Database.Persist.TH.mapLeft
                  (fieldError
                     (Data.Text.unpackCStringLen# "MaybeOwnedPet"# 13)
                     (Data.Text.unpackCStringLen# "name"# 4))
                  . fromPersistValue)
-                x2_ahqy
+                x2_ahpj
             <*>
               (Database.Persist.TH.mapLeft
                  (fieldError
                     (Data.Text.unpackCStringLen# "MaybeOwnedPet"# 13)
                     (Data.Text.unpackCStringLen# "type"# 4))
                  . fromPersistValue)
-                x3_ahqz
-      fromPersistValues x_ahqw
+                x3_ahpk
+      fromPersistValues x_ahph
         = (Left
              $ mappend
                  (Data.Text.unpackCStringLen#
                     "MaybeOwnedPet: fromPersistValues failed on: "# 44)
-                 (Data.Text.Internal.pack $ show x_ahqw))
+                 (Data.Text.Internal.pack $ show x_ahph))
       persistUniqueToFieldNames _
         = error "Degenerate case, should never happen"
       persistUniqueToValues _
         = error "Degenerate case, should never happen"
       persistUniqueKeys
-        (MaybeOwnedPet _ownerId_ahqA _name_ahqB _type_ahqC)
+        (MaybeOwnedPet _ownerId_ahpl _name_ahpm _type_ahpn)
         = []
       persistFieldDef MaybeOwnedPetId
         = Database.Persist.TH.stripIdFieldImpl
@@ -2549,46 +2549,46 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
       fieldLens MaybeOwnedPetId
         = lensPTH
             entityKey
-            (\ (Entity _ value_ahqE) key_ahqF -> Entity key_ahqF value_ahqE)
+            (\ (Entity _ value_ahpp) key_ahpq -> Entity key_ahpq value_ahpp)
       fieldLens MaybeOwnedPetOwnerId
         = lensPTH
             ((\ MaybeOwnedPet {maybeOwnedPetOwnerId = x} -> x) . entityVal)
-            (\ (Entity key_ahqG value_ahqH) x_ahqI
+            (\ (Entity key_ahpr value_ahps) x_ahpt
                -> Entity
-                    key_ahqG
-                    (case value_ahqH of
-                       MaybeOwnedPet {maybeOwnedPetName = maybeOwnedPetName_ahqK,
-                                      maybeOwnedPetType = maybeOwnedPetType_ahqL}
+                    key_ahpr
+                    (case value_ahps of
+                       MaybeOwnedPet {maybeOwnedPetName = maybeOwnedPetName_ahpv,
+                                      maybeOwnedPetType = maybeOwnedPetType_ahpw}
                          -> MaybeOwnedPet
-                              {maybeOwnedPetOwnerId = x_ahqI,
+                              {maybeOwnedPetOwnerId = x_ahpt,
                                maybeOwnedPetName = maybeOwnedPetName,
                                maybeOwnedPetType = maybeOwnedPetType}))
       fieldLens MaybeOwnedPetName
         = lensPTH
             ((\ MaybeOwnedPet {maybeOwnedPetName = x} -> x) . entityVal)
-            (\ (Entity key_ahqG value_ahqH) x_ahqI
+            (\ (Entity key_ahpr value_ahps) x_ahpt
                -> Entity
-                    key_ahqG
-                    (case value_ahqH of
-                       MaybeOwnedPet {maybeOwnedPetOwnerId = maybeOwnedPetOwnerId_ahqM,
-                                      maybeOwnedPetType = maybeOwnedPetType_ahqO}
+                    key_ahpr
+                    (case value_ahps of
+                       MaybeOwnedPet {maybeOwnedPetOwnerId = maybeOwnedPetOwnerId_ahpx,
+                                      maybeOwnedPetType = maybeOwnedPetType_ahpz}
                          -> MaybeOwnedPet
                               {maybeOwnedPetOwnerId = maybeOwnedPetOwnerId,
-                               maybeOwnedPetName = x_ahqI,
+                               maybeOwnedPetName = x_ahpt,
                                maybeOwnedPetType = maybeOwnedPetType}))
       fieldLens MaybeOwnedPetType
         = lensPTH
             ((\ MaybeOwnedPet {maybeOwnedPetType = x} -> x) . entityVal)
-            (\ (Entity key_ahqG value_ahqH) x_ahqI
+            (\ (Entity key_ahpr value_ahps) x_ahpt
                -> Entity
-                    key_ahqG
-                    (case value_ahqH of
-                       MaybeOwnedPet {maybeOwnedPetOwnerId = maybeOwnedPetOwnerId_ahqP,
-                                      maybeOwnedPetName = maybeOwnedPetName_ahqQ}
+                    key_ahpr
+                    (case value_ahps of
+                       MaybeOwnedPet {maybeOwnedPetOwnerId = maybeOwnedPetOwnerId_ahpA,
+                                      maybeOwnedPetName = maybeOwnedPetName_ahpB}
                          -> MaybeOwnedPet
                               {maybeOwnedPetOwnerId = maybeOwnedPetOwnerId,
                                maybeOwnedPetName = maybeOwnedPetName,
-                               maybeOwnedPetType = x_ahqI}))
+                               maybeOwnedPetType = x_ahpt}))
     deriving stock instance Show (BackendKey backend) =>
                             Show (Key (MaybeOwnedPetGeneric backend))
     deriving stock instance Read (BackendKey backend) =>
@@ -2635,9 +2635,9 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
         = (fmap NeedsPetKey
              . (fromPersistValue . Database.Persist.TH.headNote))
       keyFromRecordM = Nothing
-      tabulateEntityA fromField_ahr4
-        = ((Entity <$> fromField_ahr4 NeedsPetId)
-             <*> (pure NeedsPet <*> fromField_ahr4 NeedsPetPetKey))
+      tabulateEntityA fromField_ahpP
+        = ((Entity <$> fromField_ahpP NeedsPetId)
+             <*> (pure NeedsPet <*> fromField_ahpP NeedsPetPetKey))
       entityDef _
         = persistent-2.14.6.3-957b10fe38a2b21c70e67e79cd638e0e93e82e7708339a93b0c67b99d7d382c5:Database.Persist.Types.Base.EntityDef
             (EntityNameHS (Data.Text.unpackCStringLen# "NeedsPet"# 8))
@@ -2706,8 +2706,8 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
                                                                                                                                               Nothing
                                                                                                                                               True),
              persistent-2.14.6.3-957b10fe38a2b21c70e67e79cd638e0e93e82e7708339a93b0c67b99d7d382c5:Database.Persist.Types.Base.entityForeigns = []}
-      toPersistFields (NeedsPet x_ahqT) = [toPersistValue x_ahqT]
-      fromPersistValues [x1_ahqV]
+      toPersistFields (NeedsPet x_ahpE) = [toPersistValue x_ahpE]
+      fromPersistValues [x1_ahpG]
         = NeedsPet
             <$>
               (Database.Persist.TH.mapLeft
@@ -2715,18 +2715,18 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
                     (Data.Text.unpackCStringLen# "NeedsPet"# 8)
                     (Data.Text.unpackCStringLen# "petKey"# 6))
                  . fromPersistValue)
-                x1_ahqV
-      fromPersistValues x_ahqU
+                x1_ahpG
+      fromPersistValues x_ahpF
         = (Left
              $ mappend
                  (Data.Text.unpackCStringLen#
                     "NeedsPet: fromPersistValues failed on: "# 39)
-                 (Data.Text.Internal.pack $ show x_ahqU))
+                 (Data.Text.Internal.pack $ show x_ahpF))
       persistUniqueToFieldNames _
         = error "Degenerate case, should never happen"
       persistUniqueToValues _
         = error "Degenerate case, should never happen"
-      persistUniqueKeys (NeedsPet _petKey_ahqW) = []
+      persistUniqueKeys (NeedsPet _petKey_ahpH) = []
       persistFieldDef NeedsPetId
         = Database.Persist.TH.stripIdFieldImpl
             (EntityIdField
@@ -2744,15 +2744,15 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
       fieldLens NeedsPetId
         = lensPTH
             entityKey
-            (\ (Entity _ value_ahqY) key_ahqZ -> Entity key_ahqZ value_ahqY)
+            (\ (Entity _ value_ahpJ) key_ahpK -> Entity key_ahpK value_ahpJ)
       fieldLens NeedsPetPetKey
         = lensPTH
             ((\ NeedsPet {needsPetPetKey = x} -> x) . entityVal)
-            (\ (Entity key_ahr0 value_ahr1) x_ahr2
+            (\ (Entity key_ahpL value_ahpM) x_ahpN
                -> Entity
-                    key_ahr0
-                    (case value_ahr1 of
-                       NeedsPet {} -> NeedsPet {needsPetPetKey = x_ahr2}))
+                    key_ahpL
+                    (case value_ahpM of
+                       NeedsPet {} -> NeedsPet {needsPetPetKey = x_ahpN}))
     deriving stock instance Show (BackendKey backend) =>
                             Show (Key (NeedsPetGeneric backend))
     deriving stock instance Read (BackendKey backend) =>
@@ -2803,12 +2803,12 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
         = (fmap OutdoorPetKey
              . (fromPersistValue . Database.Persist.TH.headNote))
       keyFromRecordM = Nothing
-      tabulateEntityA fromField_ahru
-        = ((Entity <$> fromField_ahru OutdoorPetId)
+      tabulateEntityA fromField_ahqf
+        = ((Entity <$> fromField_ahqf OutdoorPetId)
              <*>
-               (((pure OutdoorPet <*> fromField_ahru OutdoorPetOwnerId)
-                   <*> fromField_ahru OutdoorPetCollar)
-                  <*> fromField_ahru OutdoorPetType))
+               (((pure OutdoorPet <*> fromField_ahqf OutdoorPetOwnerId)
+                   <*> fromField_ahqf OutdoorPetCollar)
+                  <*> fromField_ahqf OutdoorPetType))
       entityDef _
         = persistent-2.14.6.3-957b10fe38a2b21c70e67e79cd638e0e93e82e7708339a93b0c67b99d7d382c5:Database.Persist.Types.Base.EntityDef
             (EntityNameHS (Data.Text.unpackCStringLen# "OutdoorPet"# 10))
@@ -2930,10 +2930,10 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
                                                                                                                                               Nothing
                                                                                                                                               True),
              persistent-2.14.6.3-957b10fe38a2b21c70e67e79cd638e0e93e82e7708339a93b0c67b99d7d382c5:Database.Persist.Types.Base.entityForeigns = []}
-      toPersistFields (OutdoorPet x_ahr5 x_ahr6 x_ahr7)
-        = [toPersistValue x_ahr5, toPersistValue x_ahr6,
-           toPersistValue x_ahr7]
-      fromPersistValues [x1_ahr9, x2_ahra, x3_ahrb]
+      toPersistFields (OutdoorPet x_ahpQ x_ahpR x_ahpS)
+        = [toPersistValue x_ahpQ, toPersistValue x_ahpR,
+           toPersistValue x_ahpS]
+      fromPersistValues [x1_ahpU, x2_ahpV, x3_ahpW]
         = OutdoorPet
             <$>
               (Database.Persist.TH.mapLeft
@@ -2941,33 +2941,33 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
                     (Data.Text.unpackCStringLen# "OutdoorPet"# 10)
                     (Data.Text.unpackCStringLen# "ownerId"# 7))
                  . fromPersistValue)
-                x1_ahr9
+                x1_ahpU
             <*>
               (Database.Persist.TH.mapLeft
                  (fieldError
                     (Data.Text.unpackCStringLen# "OutdoorPet"# 10)
                     (Data.Text.unpackCStringLen# "collar"# 6))
                  . fromPersistValue)
-                x2_ahra
+                x2_ahpV
             <*>
               (Database.Persist.TH.mapLeft
                  (fieldError
                     (Data.Text.unpackCStringLen# "OutdoorPet"# 10)
                     (Data.Text.unpackCStringLen# "type"# 4))
                  . fromPersistValue)
-                x3_ahrb
-      fromPersistValues x_ahr8
+                x3_ahpW
+      fromPersistValues x_ahpT
         = (Left
              $ mappend
                  (Data.Text.unpackCStringLen#
                     "OutdoorPet: fromPersistValues failed on: "# 41)
-                 (Data.Text.Internal.pack $ show x_ahr8))
+                 (Data.Text.Internal.pack $ show x_ahpT))
       persistUniqueToFieldNames _
         = error "Degenerate case, should never happen"
       persistUniqueToValues _
         = error "Degenerate case, should never happen"
       persistUniqueKeys
-        (OutdoorPet _ownerId_ahrc _collar_ahrd _type_ahre)
+        (OutdoorPet _ownerId_ahpX _collar_ahpY _type_ahpZ)
         = []
       persistFieldDef OutdoorPetId
         = Database.Persist.TH.stripIdFieldImpl
@@ -2995,43 +2995,43 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
       fieldLens OutdoorPetId
         = lensPTH
             entityKey
-            (\ (Entity _ value_ahrg) key_ahrh -> Entity key_ahrh value_ahrg)
+            (\ (Entity _ value_ahq1) key_ahq2 -> Entity key_ahq2 value_ahq1)
       fieldLens OutdoorPetOwnerId
         = lensPTH
             ((\ OutdoorPet {outdoorPetOwnerId = x} -> x) . entityVal)
-            (\ (Entity key_ahri value_ahrj) x_ahrk
+            (\ (Entity key_ahq3 value_ahq4) x_ahq5
                -> Entity
-                    key_ahri
-                    (case value_ahrj of
-                       OutdoorPet {outdoorPetCollar = outdoorPetCollar_ahrm,
-                                   outdoorPetType = outdoorPetType_ahrn}
+                    key_ahq3
+                    (case value_ahq4 of
+                       OutdoorPet {outdoorPetCollar = outdoorPetCollar_ahq7,
+                                   outdoorPetType = outdoorPetType_ahq8}
                          -> OutdoorPet
-                              {outdoorPetOwnerId = x_ahrk, outdoorPetCollar = outdoorPetCollar,
+                              {outdoorPetOwnerId = x_ahq5, outdoorPetCollar = outdoorPetCollar,
                                outdoorPetType = outdoorPetType}))
       fieldLens OutdoorPetCollar
         = lensPTH
             ((\ OutdoorPet {outdoorPetCollar = x} -> x) . entityVal)
-            (\ (Entity key_ahri value_ahrj) x_ahrk
+            (\ (Entity key_ahq3 value_ahq4) x_ahq5
                -> Entity
-                    key_ahri
-                    (case value_ahrj of
-                       OutdoorPet {outdoorPetOwnerId = outdoorPetOwnerId_ahro,
-                                   outdoorPetType = outdoorPetType_ahrq}
+                    key_ahq3
+                    (case value_ahq4 of
+                       OutdoorPet {outdoorPetOwnerId = outdoorPetOwnerId_ahq9,
+                                   outdoorPetType = outdoorPetType_ahqb}
                          -> OutdoorPet
-                              {outdoorPetOwnerId = outdoorPetOwnerId, outdoorPetCollar = x_ahrk,
+                              {outdoorPetOwnerId = outdoorPetOwnerId, outdoorPetCollar = x_ahq5,
                                outdoorPetType = outdoorPetType}))
       fieldLens OutdoorPetType
         = lensPTH
             ((\ OutdoorPet {outdoorPetType = x} -> x) . entityVal)
-            (\ (Entity key_ahri value_ahrj) x_ahrk
+            (\ (Entity key_ahq3 value_ahq4) x_ahq5
                -> Entity
-                    key_ahri
-                    (case value_ahrj of
-                       OutdoorPet {outdoorPetOwnerId = outdoorPetOwnerId_ahrr,
-                                   outdoorPetCollar = outdoorPetCollar_ahrs}
+                    key_ahq3
+                    (case value_ahq4 of
+                       OutdoorPet {outdoorPetOwnerId = outdoorPetOwnerId_ahqc,
+                                   outdoorPetCollar = outdoorPetCollar_ahqd}
                          -> OutdoorPet
                               {outdoorPetOwnerId = outdoorPetOwnerId,
-                               outdoorPetCollar = outdoorPetCollar, outdoorPetType = x_ahrk}))
+                               outdoorPetCollar = outdoorPetCollar, outdoorPetType = x_ahq5}))
     deriving stock instance Show (BackendKey backend) =>
                             Show (Key (OutdoorPetGeneric backend))
     deriving stock instance Read (BackendKey backend) =>
@@ -3079,11 +3079,11 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
         = (fmap UserPTKey
              . (fromPersistValue . Database.Persist.TH.headNote))
       keyFromRecordM = Nothing
-      tabulateEntityA fromField_ahrN
-        = ((Entity <$> fromField_ahrN UserPTId)
+      tabulateEntityA fromField_ahqy
+        = ((Entity <$> fromField_ahqy UserPTId)
              <*>
-               ((pure UserPT <*> fromField_ahrN UserPTIdent)
-                  <*> fromField_ahrN UserPTPassword))
+               ((pure UserPT <*> fromField_ahqy UserPTIdent)
+                  <*> fromField_ahqy UserPTPassword))
       entityDef _
         = persistent-2.14.6.3-957b10fe38a2b21c70e67e79cd638e0e93e82e7708339a93b0c67b99d7d382c5:Database.Persist.Types.Base.EntityDef
             (EntityNameHS (Data.Text.unpackCStringLen# "UserPT"# 6))
@@ -3182,9 +3182,9 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
                                                                                                                                               Nothing
                                                                                                                                               True),
              persistent-2.14.6.3-957b10fe38a2b21c70e67e79cd638e0e93e82e7708339a93b0c67b99d7d382c5:Database.Persist.Types.Base.entityForeigns = []}
-      toPersistFields (UserPT x_ahrv x_ahrw)
-        = [toPersistValue x_ahrv, toPersistValue x_ahrw]
-      fromPersistValues [x1_ahry, x2_ahrz]
+      toPersistFields (UserPT x_ahqg x_ahqh)
+        = [toPersistValue x_ahqg, toPersistValue x_ahqh]
+      fromPersistValues [x1_ahqj, x2_ahqk]
         = UserPT
             <$>
               (Database.Persist.TH.mapLeft
@@ -3192,28 +3192,28 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
                     (Data.Text.unpackCStringLen# "UserPT"# 6)
                     (Data.Text.unpackCStringLen# "ident"# 5))
                  . fromPersistValue)
-                x1_ahry
+                x1_ahqj
             <*>
               (Database.Persist.TH.mapLeft
                  (fieldError
                     (Data.Text.unpackCStringLen# "UserPT"# 6)
                     (Data.Text.unpackCStringLen# "password"# 8))
                  . fromPersistValue)
-                x2_ahrz
-      fromPersistValues x_ahrx
+                x2_ahqk
+      fromPersistValues x_ahqi
         = (Left
              $ mappend
                  (Data.Text.unpackCStringLen#
                     "UserPT: fromPersistValues failed on: "# 37)
-                 (Data.Text.Internal.pack $ show x_ahrx))
+                 (Data.Text.Internal.pack $ show x_ahqi))
       persistUniqueToFieldNames UniqueUserPT {}
         = ((FieldNameHS (Data.Text.unpackCStringLen# "ident"# 5), 
             FieldNameDB (Data.Text.unpackCStringLen# "ident"# 5))
              NEL.:| [])
-      persistUniqueToValues (UniqueUserPT x_ahrA)
-        = [toPersistValue x_ahrA]
-      persistUniqueKeys (UserPT _ident_ahrB _password_ahrC)
-        = [UniqueUserPT _ident_ahrB]
+      persistUniqueToValues (UniqueUserPT x_ahql)
+        = [toPersistValue x_ahql]
+      persistUniqueKeys (UserPT _ident_ahqm _password_ahqn)
+        = [UniqueUserPT _ident_ahqm]
       persistFieldDef UserPTId
         = Database.Persist.TH.stripIdFieldImpl
             (EntityIdField
@@ -3235,25 +3235,25 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
       fieldLens UserPTId
         = lensPTH
             entityKey
-            (\ (Entity _ value_ahrE) key_ahrF -> Entity key_ahrF value_ahrE)
+            (\ (Entity _ value_ahqp) key_ahqq -> Entity key_ahqq value_ahqp)
       fieldLens UserPTIdent
         = lensPTH
             ((\ UserPT {userPTIdent = x} -> x) . entityVal)
-            (\ (Entity key_ahrG value_ahrH) x_ahrI
+            (\ (Entity key_ahqr value_ahqs) x_ahqt
                -> Entity
-                    key_ahrG
-                    (case value_ahrH of
-                       UserPT {userPTPassword = userPTPassword_ahrK}
-                         -> UserPT {userPTIdent = x_ahrI, userPTPassword = userPTPassword}))
+                    key_ahqr
+                    (case value_ahqs of
+                       UserPT {userPTPassword = userPTPassword_ahqv}
+                         -> UserPT {userPTIdent = x_ahqt, userPTPassword = userPTPassword}))
       fieldLens UserPTPassword
         = lensPTH
             ((\ UserPT {userPTPassword = x} -> x) . entityVal)
-            (\ (Entity key_ahrG value_ahrH) x_ahrI
+            (\ (Entity key_ahqr value_ahqs) x_ahqt
                -> Entity
-                    key_ahrG
-                    (case value_ahrH of
-                       UserPT {userPTIdent = userPTIdent_ahrL}
-                         -> UserPT {userPTIdent = userPTIdent, userPTPassword = x_ahrI}))
+                    key_ahqr
+                    (case value_ahqs of
+                       UserPT {userPTIdent = userPTIdent_ahqw}
+                         -> UserPT {userPTIdent = userPTIdent, userPTPassword = x_ahqt}))
     deriving stock instance Show (BackendKey backend) =>
                             Show (Key (UserPTGeneric backend))
     deriving stock instance Read (BackendKey backend) =>
@@ -3304,12 +3304,12 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
         = (fmap EmailPTKey
              . (fromPersistValue . Database.Persist.TH.headNote))
       keyFromRecordM = Nothing
-      tabulateEntityA fromField_ahse
-        = ((Entity <$> fromField_ahse EmailPTId)
+      tabulateEntityA fromField_ahqZ
+        = ((Entity <$> fromField_ahqZ EmailPTId)
              <*>
-               (((pure EmailPT <*> fromField_ahse EmailPTEmail)
-                   <*> fromField_ahse EmailPTUser)
-                  <*> fromField_ahse EmailPTVerkey))
+               (((pure EmailPT <*> fromField_ahqZ EmailPTEmail)
+                   <*> fromField_ahqZ EmailPTUser)
+                  <*> fromField_ahqZ EmailPTVerkey))
       entityDef _
         = persistent-2.14.6.3-957b10fe38a2b21c70e67e79cd638e0e93e82e7708339a93b0c67b99d7d382c5:Database.Persist.Types.Base.EntityDef
             (EntityNameHS (Data.Text.unpackCStringLen# "EmailPT"# 7))
@@ -3440,10 +3440,10 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
                                                                                                                                               Nothing
                                                                                                                                               True),
              persistent-2.14.6.3-957b10fe38a2b21c70e67e79cd638e0e93e82e7708339a93b0c67b99d7d382c5:Database.Persist.Types.Base.entityForeigns = []}
-      toPersistFields (EmailPT x_ahrO x_ahrP x_ahrQ)
-        = [toPersistValue x_ahrO, toPersistValue x_ahrP,
-           toPersistValue x_ahrQ]
-      fromPersistValues [x1_ahrS, x2_ahrT, x3_ahrU]
+      toPersistFields (EmailPT x_ahqz x_ahqA x_ahqB)
+        = [toPersistValue x_ahqz, toPersistValue x_ahqA,
+           toPersistValue x_ahqB]
+      fromPersistValues [x1_ahqD, x2_ahqE, x3_ahqF]
         = EmailPT
             <$>
               (Database.Persist.TH.mapLeft
@@ -3451,35 +3451,35 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
                     (Data.Text.unpackCStringLen# "EmailPT"# 7)
                     (Data.Text.unpackCStringLen# "email"# 5))
                  . fromPersistValue)
-                x1_ahrS
+                x1_ahqD
             <*>
               (Database.Persist.TH.mapLeft
                  (fieldError
                     (Data.Text.unpackCStringLen# "EmailPT"# 7)
                     (Data.Text.unpackCStringLen# "user"# 4))
                  . fromPersistValue)
-                x2_ahrT
+                x2_ahqE
             <*>
               (Database.Persist.TH.mapLeft
                  (fieldError
                     (Data.Text.unpackCStringLen# "EmailPT"# 7)
                     (Data.Text.unpackCStringLen# "verkey"# 6))
                  . fromPersistValue)
-                x3_ahrU
-      fromPersistValues x_ahrR
+                x3_ahqF
+      fromPersistValues x_ahqC
         = (Left
              $ mappend
                  (Data.Text.unpackCStringLen#
                     "EmailPT: fromPersistValues failed on: "# 38)
-                 (Data.Text.Internal.pack $ show x_ahrR))
+                 (Data.Text.Internal.pack $ show x_ahqC))
       persistUniqueToFieldNames UniqueEmailPT {}
         = ((FieldNameHS (Data.Text.unpackCStringLen# "email"# 5), 
             FieldNameDB (Data.Text.unpackCStringLen# "email"# 5))
              NEL.:| [])
-      persistUniqueToValues (UniqueEmailPT x_ahrV)
-        = [toPersistValue x_ahrV]
-      persistUniqueKeys (EmailPT _email_ahrW _user_ahrX _verkey_ahrY)
-        = [UniqueEmailPT _email_ahrW]
+      persistUniqueToValues (UniqueEmailPT x_ahqG)
+        = [toPersistValue x_ahqG]
+      persistUniqueKeys (EmailPT _email_ahqH _user_ahqI _verkey_ahqJ)
+        = [UniqueEmailPT _email_ahqH]
       persistFieldDef EmailPTId
         = Database.Persist.TH.stripIdFieldImpl
             (EntityIdField
@@ -3505,43 +3505,43 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
       fieldLens EmailPTId
         = lensPTH
             entityKey
-            (\ (Entity _ value_ahs0) key_ahs1 -> Entity key_ahs1 value_ahs0)
+            (\ (Entity _ value_ahqL) key_ahqM -> Entity key_ahqM value_ahqL)
       fieldLens EmailPTEmail
         = lensPTH
             ((\ EmailPT {emailPTEmail = x} -> x) . entityVal)
-            (\ (Entity key_ahs2 value_ahs3) x_ahs4
+            (\ (Entity key_ahqN value_ahqO) x_ahqP
                -> Entity
-                    key_ahs2
-                    (case value_ahs3 of
-                       EmailPT {emailPTUser = emailPTUser_ahs6,
-                                emailPTVerkey = emailPTVerkey_ahs7}
+                    key_ahqN
+                    (case value_ahqO of
+                       EmailPT {emailPTUser = emailPTUser_ahqR,
+                                emailPTVerkey = emailPTVerkey_ahqS}
                          -> EmailPT
-                              {emailPTEmail = x_ahs4, emailPTUser = emailPTUser,
+                              {emailPTEmail = x_ahqP, emailPTUser = emailPTUser,
                                emailPTVerkey = emailPTVerkey}))
       fieldLens EmailPTUser
         = lensPTH
             ((\ EmailPT {emailPTUser = x} -> x) . entityVal)
-            (\ (Entity key_ahs2 value_ahs3) x_ahs4
+            (\ (Entity key_ahqN value_ahqO) x_ahqP
                -> Entity
-                    key_ahs2
-                    (case value_ahs3 of
-                       EmailPT {emailPTEmail = emailPTEmail_ahs8,
-                                emailPTVerkey = emailPTVerkey_ahsa}
+                    key_ahqN
+                    (case value_ahqO of
+                       EmailPT {emailPTEmail = emailPTEmail_ahqT,
+                                emailPTVerkey = emailPTVerkey_ahqV}
                          -> EmailPT
-                              {emailPTEmail = emailPTEmail, emailPTUser = x_ahs4,
+                              {emailPTEmail = emailPTEmail, emailPTUser = x_ahqP,
                                emailPTVerkey = emailPTVerkey}))
       fieldLens EmailPTVerkey
         = lensPTH
             ((\ EmailPT {emailPTVerkey = x} -> x) . entityVal)
-            (\ (Entity key_ahs2 value_ahs3) x_ahs4
+            (\ (Entity key_ahqN value_ahqO) x_ahqP
                -> Entity
-                    key_ahs2
-                    (case value_ahs3 of
-                       EmailPT {emailPTEmail = emailPTEmail_ahsb,
-                                emailPTUser = emailPTUser_ahsc}
+                    key_ahqN
+                    (case value_ahqO of
+                       EmailPT {emailPTEmail = emailPTEmail_ahqW,
+                                emailPTUser = emailPTUser_ahqX}
                          -> EmailPT
                               {emailPTEmail = emailPTEmail, emailPTUser = emailPTUser,
-                               emailPTVerkey = x_ahs4}))
+                               emailPTVerkey = x_ahqP}))
     deriving stock instance Show (BackendKey backend) =>
                             Show (Key (EmailPTGeneric backend))
     deriving stock instance Read (BackendKey backend) =>
@@ -3595,13 +3595,13 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
         = (fmap UpsertKey
              . (fromPersistValue . Database.Persist.TH.headNote))
       keyFromRecordM = Nothing
-      tabulateEntityA fromField_ahsP
-        = ((Entity <$> fromField_ahsP UpsertId)
+      tabulateEntityA fromField_ahrA
+        = ((Entity <$> fromField_ahrA UpsertId)
              <*>
-               ((((pure Upsert <*> fromField_ahsP UpsertEmail)
-                    <*> fromField_ahsP UpsertAttr)
-                   <*> fromField_ahsP UpsertExtra)
-                  <*> fromField_ahsP UpsertAge))
+               ((((pure Upsert <*> fromField_ahrA UpsertEmail)
+                    <*> fromField_ahrA UpsertAttr)
+                   <*> fromField_ahrA UpsertExtra)
+                  <*> fromField_ahrA UpsertAge))
       entityDef _
         = persistent-2.14.6.3-957b10fe38a2b21c70e67e79cd638e0e93e82e7708339a93b0c67b99d7d382c5:Database.Persist.Types.Base.EntityDef
             (EntityNameHS (Data.Text.unpackCStringLen# "Upsert"# 6))
@@ -3755,10 +3755,10 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
                                                                                                                                               Nothing
                                                                                                                                               True),
              persistent-2.14.6.3-957b10fe38a2b21c70e67e79cd638e0e93e82e7708339a93b0c67b99d7d382c5:Database.Persist.Types.Base.entityForeigns = []}
-      toPersistFields (Upsert x_ahsf x_ahsg x_ahsh x_ahsi)
-        = [toPersistValue x_ahsf, toPersistValue x_ahsg,
-           toPersistValue x_ahsh, toPersistValue x_ahsi]
-      fromPersistValues [x1_ahsk, x2_ahsl, x3_ahsm, x4_ahsn]
+      toPersistFields (Upsert x_ahr0 x_ahr1 x_ahr2 x_ahr3)
+        = [toPersistValue x_ahr0, toPersistValue x_ahr1,
+           toPersistValue x_ahr2, toPersistValue x_ahr3]
+      fromPersistValues [x1_ahr5, x2_ahr6, x3_ahr7, x4_ahr8]
         = Upsert
             <$>
               (Database.Persist.TH.mapLeft
@@ -3766,43 +3766,43 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
                     (Data.Text.unpackCStringLen# "Upsert"# 6)
                     (Data.Text.unpackCStringLen# "email"# 5))
                  . fromPersistValue)
-                x1_ahsk
+                x1_ahr5
             <*>
               (Database.Persist.TH.mapLeft
                  (fieldError
                     (Data.Text.unpackCStringLen# "Upsert"# 6)
                     (Data.Text.unpackCStringLen# "attr"# 4))
                  . fromPersistValue)
-                x2_ahsl
+                x2_ahr6
             <*>
               (Database.Persist.TH.mapLeft
                  (fieldError
                     (Data.Text.unpackCStringLen# "Upsert"# 6)
                     (Data.Text.unpackCStringLen# "extra"# 5))
                  . fromPersistValue)
-                x3_ahsm
+                x3_ahr7
             <*>
               (Database.Persist.TH.mapLeft
                  (fieldError
                     (Data.Text.unpackCStringLen# "Upsert"# 6)
                     (Data.Text.unpackCStringLen# "age"# 3))
                  . fromPersistValue)
-                x4_ahsn
-      fromPersistValues x_ahsj
+                x4_ahr8
+      fromPersistValues x_ahr4
         = (Left
              $ mappend
                  (Data.Text.unpackCStringLen#
                     "Upsert: fromPersistValues failed on: "# 37)
-                 (Data.Text.Internal.pack $ show x_ahsj))
+                 (Data.Text.Internal.pack $ show x_ahr4))
       persistUniqueToFieldNames UniqueUpsert {}
         = ((FieldNameHS (Data.Text.unpackCStringLen# "email"# 5), 
             FieldNameDB (Data.Text.unpackCStringLen# "email"# 5))
              NEL.:| [])
-      persistUniqueToValues (UniqueUpsert x_ahso)
-        = [toPersistValue x_ahso]
+      persistUniqueToValues (UniqueUpsert x_ahr9)
+        = [toPersistValue x_ahr9]
       persistUniqueKeys
-        (Upsert _email_ahsp _attr_ahsq _extra_ahsr _age_ahss)
-        = [UniqueUpsert _email_ahsp]
+        (Upsert _email_ahra _attr_ahrb _extra_ahrc _age_ahrd)
+        = [UniqueUpsert _email_ahra]
       persistFieldDef UpsertId
         = Database.Persist.TH.stripIdFieldImpl
             (EntityIdField
@@ -3832,55 +3832,55 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
       fieldLens UpsertId
         = lensPTH
             entityKey
-            (\ (Entity _ value_ahsu) key_ahsv -> Entity key_ahsv value_ahsu)
+            (\ (Entity _ value_ahrf) key_ahrg -> Entity key_ahrg value_ahrf)
       fieldLens UpsertEmail
         = lensPTH
             ((\ Upsert {upsertEmail = x} -> x) . entityVal)
-            (\ (Entity key_ahsw value_ahsx) x_ahsy
+            (\ (Entity key_ahrh value_ahri) x_ahrj
                -> Entity
-                    key_ahsw
-                    (case value_ahsx of
-                       Upsert {upsertAttr = upsertAttr_ahsA,
-                               upsertExtra = upsertExtra_ahsB, upsertAge = upsertAge_ahsC}
+                    key_ahrh
+                    (case value_ahri of
+                       Upsert {upsertAttr = upsertAttr_ahrl,
+                               upsertExtra = upsertExtra_ahrm, upsertAge = upsertAge_ahrn}
                          -> Upsert
-                              {upsertEmail = x_ahsy, upsertAttr = upsertAttr,
+                              {upsertEmail = x_ahrj, upsertAttr = upsertAttr,
                                upsertExtra = upsertExtra, upsertAge = upsertAge}))
       fieldLens UpsertAttr
         = lensPTH
             ((\ Upsert {upsertAttr = x} -> x) . entityVal)
-            (\ (Entity key_ahsw value_ahsx) x_ahsy
+            (\ (Entity key_ahrh value_ahri) x_ahrj
                -> Entity
-                    key_ahsw
-                    (case value_ahsx of
-                       Upsert {upsertEmail = upsertEmail_ahsD,
-                               upsertExtra = upsertExtra_ahsF, upsertAge = upsertAge_ahsG}
+                    key_ahrh
+                    (case value_ahri of
+                       Upsert {upsertEmail = upsertEmail_ahro,
+                               upsertExtra = upsertExtra_ahrq, upsertAge = upsertAge_ahrr}
                          -> Upsert
-                              {upsertEmail = upsertEmail, upsertAttr = x_ahsy,
+                              {upsertEmail = upsertEmail, upsertAttr = x_ahrj,
                                upsertExtra = upsertExtra, upsertAge = upsertAge}))
       fieldLens UpsertExtra
         = lensPTH
             ((\ Upsert {upsertExtra = x} -> x) . entityVal)
-            (\ (Entity key_ahsw value_ahsx) x_ahsy
+            (\ (Entity key_ahrh value_ahri) x_ahrj
                -> Entity
-                    key_ahsw
-                    (case value_ahsx of
-                       Upsert {upsertEmail = upsertEmail_ahsH,
-                               upsertAttr = upsertAttr_ahsI, upsertAge = upsertAge_ahsK}
+                    key_ahrh
+                    (case value_ahri of
+                       Upsert {upsertEmail = upsertEmail_ahrs,
+                               upsertAttr = upsertAttr_ahrt, upsertAge = upsertAge_ahrv}
                          -> Upsert
                               {upsertEmail = upsertEmail, upsertAttr = upsertAttr,
-                               upsertExtra = x_ahsy, upsertAge = upsertAge}))
+                               upsertExtra = x_ahrj, upsertAge = upsertAge}))
       fieldLens UpsertAge
         = lensPTH
             ((\ Upsert {upsertAge = x} -> x) . entityVal)
-            (\ (Entity key_ahsw value_ahsx) x_ahsy
+            (\ (Entity key_ahrh value_ahri) x_ahrj
                -> Entity
-                    key_ahsw
-                    (case value_ahsx of
-                       Upsert {upsertEmail = upsertEmail_ahsL,
-                               upsertAttr = upsertAttr_ahsM, upsertExtra = upsertExtra_ahsN}
+                    key_ahrh
+                    (case value_ahri of
+                       Upsert {upsertEmail = upsertEmail_ahrw,
+                               upsertAttr = upsertAttr_ahrx, upsertExtra = upsertExtra_ahry}
                          -> Upsert
                               {upsertEmail = upsertEmail, upsertAttr = upsertAttr,
-                               upsertExtra = upsertExtra, upsertAge = x_ahsy}))
+                               upsertExtra = upsertExtra, upsertAge = x_ahrj}))
     deriving stock instance Show (BackendKey backend) =>
                             Show (Key (UpsertGeneric backend))
     deriving stock instance Read (BackendKey backend) =>
@@ -3933,12 +3933,12 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
         = (fmap UpsertByKey
              . (fromPersistValue . Database.Persist.TH.headNote))
       keyFromRecordM = Nothing
-      tabulateEntityA fromField_ahth
-        = ((Entity <$> fromField_ahth UpsertById)
+      tabulateEntityA fromField_ahs2
+        = ((Entity <$> fromField_ahs2 UpsertById)
              <*>
-               (((pure UpsertBy <*> fromField_ahth UpsertByEmail)
-                   <*> fromField_ahth UpsertByCity)
-                  <*> fromField_ahth UpsertByAttr))
+               (((pure UpsertBy <*> fromField_ahs2 UpsertByEmail)
+                   <*> fromField_ahs2 UpsertByCity)
+                  <*> fromField_ahs2 UpsertByAttr))
       entityDef _
         = persistent-2.14.6.3-957b10fe38a2b21c70e67e79cd638e0e93e82e7708339a93b0c67b99d7d382c5:Database.Persist.Types.Base.EntityDef
             (EntityNameHS (Data.Text.unpackCStringLen# "UpsertBy"# 8))
@@ -4077,10 +4077,10 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
                                                                                                                                               Nothing
                                                                                                                                               True),
              persistent-2.14.6.3-957b10fe38a2b21c70e67e79cd638e0e93e82e7708339a93b0c67b99d7d382c5:Database.Persist.Types.Base.entityForeigns = []}
-      toPersistFields (UpsertBy x_ahsQ x_ahsR x_ahsS)
-        = [toPersistValue x_ahsQ, toPersistValue x_ahsR,
-           toPersistValue x_ahsS]
-      fromPersistValues [x1_ahsU, x2_ahsV, x3_ahsW]
+      toPersistFields (UpsertBy x_ahrB x_ahrC x_ahrD)
+        = [toPersistValue x_ahrB, toPersistValue x_ahrC,
+           toPersistValue x_ahrD]
+      fromPersistValues [x1_ahrF, x2_ahrG, x3_ahrH]
         = UpsertBy
             <$>
               (Database.Persist.TH.mapLeft
@@ -4088,27 +4088,27 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
                     (Data.Text.unpackCStringLen# "UpsertBy"# 8)
                     (Data.Text.unpackCStringLen# "email"# 5))
                  . fromPersistValue)
-                x1_ahsU
+                x1_ahrF
             <*>
               (Database.Persist.TH.mapLeft
                  (fieldError
                     (Data.Text.unpackCStringLen# "UpsertBy"# 8)
                     (Data.Text.unpackCStringLen# "city"# 4))
                  . fromPersistValue)
-                x2_ahsV
+                x2_ahrG
             <*>
               (Database.Persist.TH.mapLeft
                  (fieldError
                     (Data.Text.unpackCStringLen# "UpsertBy"# 8)
                     (Data.Text.unpackCStringLen# "attr"# 4))
                  . fromPersistValue)
-                x3_ahsW
-      fromPersistValues x_ahsT
+                x3_ahrH
+      fromPersistValues x_ahrE
         = (Left
              $ mappend
                  (Data.Text.unpackCStringLen#
                     "UpsertBy: fromPersistValues failed on: "# 39)
-                 (Data.Text.Internal.pack $ show x_ahsT))
+                 (Data.Text.Internal.pack $ show x_ahrE))
       persistUniqueToFieldNames UniqueUpsertBy {}
         = ((FieldNameHS (Data.Text.unpackCStringLen# "email"# 5), 
             FieldNameDB (Data.Text.unpackCStringLen# "email"# 5))
@@ -4117,12 +4117,12 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
         = ((FieldNameHS (Data.Text.unpackCStringLen# "city"# 4), 
             FieldNameDB (Data.Text.unpackCStringLen# "city"# 4))
              NEL.:| [])
-      persistUniqueToValues (UniqueUpsertBy x_ahsX)
-        = [toPersistValue x_ahsX]
-      persistUniqueToValues (UniqueUpsertByCity x_ahsY)
-        = [toPersistValue x_ahsY]
-      persistUniqueKeys (UpsertBy _email_ahsZ _city_aht0 _attr_aht1)
-        = [UniqueUpsertBy _email_ahsZ, UniqueUpsertByCity _city_aht0]
+      persistUniqueToValues (UniqueUpsertBy x_ahrI)
+        = [toPersistValue x_ahrI]
+      persistUniqueToValues (UniqueUpsertByCity x_ahrJ)
+        = [toPersistValue x_ahrJ]
+      persistUniqueKeys (UpsertBy _email_ahrK _city_ahrL _attr_ahrM)
+        = [UniqueUpsertBy _email_ahrK, UniqueUpsertByCity _city_ahrL]
       persistFieldDef UpsertById
         = Database.Persist.TH.stripIdFieldImpl
             (EntityIdField
@@ -4148,43 +4148,43 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
       fieldLens UpsertById
         = lensPTH
             entityKey
-            (\ (Entity _ value_aht3) key_aht4 -> Entity key_aht4 value_aht3)
+            (\ (Entity _ value_ahrO) key_ahrP -> Entity key_ahrP value_ahrO)
       fieldLens UpsertByEmail
         = lensPTH
             ((\ UpsertBy {upsertByEmail = x} -> x) . entityVal)
-            (\ (Entity key_aht5 value_aht6) x_aht7
+            (\ (Entity key_ahrQ value_ahrR) x_ahrS
                -> Entity
-                    key_aht5
-                    (case value_aht6 of
-                       UpsertBy {upsertByCity = upsertByCity_aht9,
-                                 upsertByAttr = upsertByAttr_ahta}
+                    key_ahrQ
+                    (case value_ahrR of
+                       UpsertBy {upsertByCity = upsertByCity_ahrU,
+                                 upsertByAttr = upsertByAttr_ahrV}
                          -> UpsertBy
-                              {upsertByEmail = x_aht7, upsertByCity = upsertByCity,
+                              {upsertByEmail = x_ahrS, upsertByCity = upsertByCity,
                                upsertByAttr = upsertByAttr}))
       fieldLens UpsertByCity
         = lensPTH
             ((\ UpsertBy {upsertByCity = x} -> x) . entityVal)
-            (\ (Entity key_aht5 value_aht6) x_aht7
+            (\ (Entity key_ahrQ value_ahrR) x_ahrS
                -> Entity
-                    key_aht5
-                    (case value_aht6 of
-                       UpsertBy {upsertByEmail = upsertByEmail_ahtb,
-                                 upsertByAttr = upsertByAttr_ahtd}
+                    key_ahrQ
+                    (case value_ahrR of
+                       UpsertBy {upsertByEmail = upsertByEmail_ahrW,
+                                 upsertByAttr = upsertByAttr_ahrY}
                          -> UpsertBy
-                              {upsertByEmail = upsertByEmail, upsertByCity = x_aht7,
+                              {upsertByEmail = upsertByEmail, upsertByCity = x_ahrS,
                                upsertByAttr = upsertByAttr}))
       fieldLens UpsertByAttr
         = lensPTH
             ((\ UpsertBy {upsertByAttr = x} -> x) . entityVal)
-            (\ (Entity key_aht5 value_aht6) x_aht7
+            (\ (Entity key_ahrQ value_ahrR) x_ahrS
                -> Entity
-                    key_aht5
-                    (case value_aht6 of
-                       UpsertBy {upsertByEmail = upsertByEmail_ahte,
-                                 upsertByCity = upsertByCity_ahtf}
+                    key_ahrQ
+                    (case value_ahrR of
+                       UpsertBy {upsertByEmail = upsertByEmail_ahrZ,
+                                 upsertByCity = upsertByCity_ahs0}
                          -> UpsertBy
                               {upsertByEmail = upsertByEmail, upsertByCity = upsertByCity,
-                               upsertByAttr = x_aht7}))
+                               upsertByAttr = x_ahrS}))
     deriving stock instance Show (BackendKey backend) =>
                             Show (Key (UpsertByGeneric backend))
     deriving stock instance Read (BackendKey backend) =>
@@ -4233,12 +4233,12 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
         = (fmap StrictKey
              . (fromPersistValue . Database.Persist.TH.headNote))
       keyFromRecordM = Nothing
-      tabulateEntityA fromField_ahtH
-        = ((Entity <$> fromField_ahtH StrictId)
+      tabulateEntityA fromField_ahss
+        = ((Entity <$> fromField_ahss StrictId)
              <*>
-               (((pure Strict <*> fromField_ahtH StrictYes)
-                   <*> fromField_ahtH StrictNo)
-                  <*> fromField_ahtH StrictDef))
+               (((pure Strict <*> fromField_ahss StrictYes)
+                   <*> fromField_ahss StrictNo)
+                  <*> fromField_ahss StrictDef))
       entityDef _
         = persistent-2.14.6.3-957b10fe38a2b21c70e67e79cd638e0e93e82e7708339a93b0c67b99d7d382c5:Database.Persist.Types.Base.EntityDef
             (EntityNameHS (Data.Text.unpackCStringLen# "Strict"# 6))
@@ -4355,10 +4355,10 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
                                                                                                                                               Nothing
                                                                                                                                               True),
              persistent-2.14.6.3-957b10fe38a2b21c70e67e79cd638e0e93e82e7708339a93b0c67b99d7d382c5:Database.Persist.Types.Base.entityForeigns = []}
-      toPersistFields (Strict x_ahti x_ahtj x_ahtk)
-        = [toPersistValue x_ahti, toPersistValue x_ahtj,
-           toPersistValue x_ahtk]
-      fromPersistValues [x1_ahtm, x2_ahtn, x3_ahto]
+      toPersistFields (Strict x_ahs3 x_ahs4 x_ahs5)
+        = [toPersistValue x_ahs3, toPersistValue x_ahs4,
+           toPersistValue x_ahs5]
+      fromPersistValues [x1_ahs7, x2_ahs8, x3_ahs9]
         = Strict
             <$>
               (Database.Persist.TH.mapLeft
@@ -4366,32 +4366,32 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
                     (Data.Text.unpackCStringLen# "Strict"# 6)
                     (Data.Text.unpackCStringLen# "yes"# 3))
                  . fromPersistValue)
-                x1_ahtm
+                x1_ahs7
             <*>
               (Database.Persist.TH.mapLeft
                  (fieldError
                     (Data.Text.unpackCStringLen# "Strict"# 6)
                     (Data.Text.unpackCStringLen# "no"# 2))
                  . fromPersistValue)
-                x2_ahtn
+                x2_ahs8
             <*>
               (Database.Persist.TH.mapLeft
                  (fieldError
                     (Data.Text.unpackCStringLen# "Strict"# 6)
                     (Data.Text.unpackCStringLen# "def"# 3))
                  . fromPersistValue)
-                x3_ahto
-      fromPersistValues x_ahtl
+                x3_ahs9
+      fromPersistValues x_ahs6
         = (Left
              $ mappend
                  (Data.Text.unpackCStringLen#
                     "Strict: fromPersistValues failed on: "# 37)
-                 (Data.Text.Internal.pack $ show x_ahtl))
+                 (Data.Text.Internal.pack $ show x_ahs6))
       persistUniqueToFieldNames _
         = error "Degenerate case, should never happen"
       persistUniqueToValues _
         = error "Degenerate case, should never happen"
-      persistUniqueKeys (Strict _yes_ahtp _no_ahtq _def_ahtr) = []
+      persistUniqueKeys (Strict _yes_ahsa _no_ahsb _def_ahsc) = []
       persistFieldDef StrictId
         = Database.Persist.TH.stripIdFieldImpl
             (EntityIdField
@@ -4417,37 +4417,37 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
       fieldLens StrictId
         = lensPTH
             entityKey
-            (\ (Entity _ value_ahtt) key_ahtu -> Entity key_ahtu value_ahtt)
+            (\ (Entity _ value_ahse) key_ahsf -> Entity key_ahsf value_ahse)
       fieldLens StrictYes
         = lensPTH
             ((\ Strict {strictYes = x} -> x) . entityVal)
-            (\ (Entity key_ahtv value_ahtw) x_ahtx
+            (\ (Entity key_ahsg value_ahsh) x_ahsi
                -> Entity
-                    key_ahtv
-                    (case value_ahtw of
-                       Strict {strictNo = strictNo_ahtz, strictDef = strictDef_ahtA}
+                    key_ahsg
+                    (case value_ahsh of
+                       Strict {strictNo = strictNo_ahsk, strictDef = strictDef_ahsl}
                          -> Strict
-                              {strictYes = x_ahtx, strictNo = strictNo, strictDef = strictDef}))
+                              {strictYes = x_ahsi, strictNo = strictNo, strictDef = strictDef}))
       fieldLens StrictNo
         = lensPTH
             ((\ Strict {strictNo = x} -> x) . entityVal)
-            (\ (Entity key_ahtv value_ahtw) x_ahtx
+            (\ (Entity key_ahsg value_ahsh) x_ahsi
                -> Entity
-                    key_ahtv
-                    (case value_ahtw of
-                       Strict {strictYes = strictYes_ahtB, strictDef = strictDef_ahtD}
+                    key_ahsg
+                    (case value_ahsh of
+                       Strict {strictYes = strictYes_ahsm, strictDef = strictDef_ahso}
                          -> Strict
-                              {strictYes = strictYes, strictNo = x_ahtx, strictDef = strictDef}))
+                              {strictYes = strictYes, strictNo = x_ahsi, strictDef = strictDef}))
       fieldLens StrictDef
         = lensPTH
             ((\ Strict {strictDef = x} -> x) . entityVal)
-            (\ (Entity key_ahtv value_ahtw) x_ahtx
+            (\ (Entity key_ahsg value_ahsh) x_ahsi
                -> Entity
-                    key_ahtv
-                    (case value_ahtw of
-                       Strict {strictYes = strictYes_ahtE, strictNo = strictNo_ahtF}
+                    key_ahsg
+                    (case value_ahsh of
+                       Strict {strictYes = strictYes_ahsp, strictNo = strictNo_ahsq}
                          -> Strict
-                              {strictYes = strictYes, strictNo = strictNo, strictDef = x_ahtx}))
+                              {strictYes = strictYes, strictNo = strictNo, strictDef = x_ahsi}))
     deriving stock instance Show (BackendKey backend) =>
                             Show (Key (StrictGeneric backend))
     deriving stock instance Read (BackendKey backend) =>
@@ -4476,21 +4476,21 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
       fromBackendKey = StrictKey
     instance PersistStore backend =>
              ToJSON (PersonGeneric backend) where
-      toJSON (Person name_ahtJ age_ahtK color_ahtL)
+      toJSON (Person name_ahsu age_ahsv color_ahsw)
         = object
-            [(Data.Aeson.Key.fromString "name" .= name_ahtJ),
-             (Data.Aeson.Key.fromString "age" .= age_ahtK),
-             (Data.Aeson.Key.fromString "color" .= color_ahtL)]
+            [(Data.Aeson.Key.fromString "name" .= name_ahsu),
+             (Data.Aeson.Key.fromString "age" .= age_ahsv),
+             (Data.Aeson.Key.fromString "color" .= color_ahsw)]
     instance PersistStore backend =>
              FromJSON (PersonGeneric backend) where
       parseJSON
         = withObject
             "Person"
-            (\ obj_ahtI
+            (\ obj_ahst
                -> (((pure Person
-                       <*> (obj_ahtI .: Data.Aeson.Key.fromString "name"))
-                      <*> (obj_ahtI .: Data.Aeson.Key.fromString "age"))
-                     <*> (obj_ahtI .:? Data.Aeson.Key.fromString "color")))
+                       <*> (obj_ahst .: Data.Aeson.Key.fromString "name"))
+                      <*> (obj_ahst .: Data.Aeson.Key.fromString "age"))
+                     <*> (obj_ahst .:? Data.Aeson.Key.fromString "color")))
     instance PersistStore backend =>
              ToJSON (Entity (PersonGeneric backend)) where
       toJSON = entityIdToJSON
@@ -4499,19 +4499,19 @@ test/PersistentTestModels.hs:(31,1)-(113,2): Splicing declarations
       parseJSON = entityIdFromJSON
     instance PersistStore backend =>
              ToJSON (PersonMayGeneric backend) where
-      toJSON (PersonMay name_ahtN color_ahtO)
+      toJSON (PersonMay name_ahsy color_ahsz)
         = object
-            [(Data.Aeson.Key.fromString "name" .= name_ahtN),
-             (Data.Aeson.Key.fromString "color" .= color_ahtO)]
+            [(Data.Aeson.Key.fromString "name" .= name_ahsy),
+             (Data.Aeson.Key.fromString "color" .= color_ahsz)]
     instance PersistStore backend =>
              FromJSON (PersonMayGeneric backend) where
       parseJSON
         = withObject
             "PersonMay"
-            (\ obj_ahtM
+            (\ obj_ahsx
                -> ((pure PersonMay
-                      <*> (obj_ahtM .:? Data.Aeson.Key.fromString "name"))
-                     <*> (obj_ahtM .:? Data.Aeson.Key.fromString "color")))
+                      <*> (obj_ahsx .:? Data.Aeson.Key.fromString "name"))
+                     <*> (obj_ahsx .:? Data.Aeson.Key.fromString "color")))
     instance PersistStore backend =>
              ToJSON (Entity (PersonMayGeneric backend)) where
       toJSON = entityIdToJSON
@@ -4976,9 +4976,9 @@ test/PersistentTestModels.hs:(118,1)-(130,2): Splicing declarations
         = (fmap NoPrefix1Key
              . (fromPersistValue . Database.Persist.TH.headNote))
       keyFromRecordM = Nothing
-      tabulateEntityA fromField_aqFr
-        = ((Entity <$> fromField_aqFr NoPrefix1Id)
-             <*> (pure NoPrefix1 <*> fromField_aqFr SomeFieldName))
+      tabulateEntityA fromField_aqEa
+        = ((Entity <$> fromField_aqEa NoPrefix1Id)
+             <*> (pure NoPrefix1 <*> fromField_aqEa SomeFieldName))
       entityDef _
         = persistent-2.14.6.3-957b10fe38a2b21c70e67e79cd638e0e93e82e7708339a93b0c67b99d7d382c5:Database.Persist.Types.Base.EntityDef
             (EntityNameHS (Data.Text.unpackCStringLen# "NoPrefix1"# 9))
@@ -5043,8 +5043,8 @@ test/PersistentTestModels.hs:(118,1)-(130,2): Splicing declarations
                                                                                                                                               Nothing
                                                                                                                                               True),
              persistent-2.14.6.3-957b10fe38a2b21c70e67e79cd638e0e93e82e7708339a93b0c67b99d7d382c5:Database.Persist.Types.Base.entityForeigns = []}
-      toPersistFields (NoPrefix1 x_aqFg) = [toPersistValue x_aqFg]
-      fromPersistValues [x1_aqFi]
+      toPersistFields (NoPrefix1 x_aqDZ) = [toPersistValue x_aqDZ]
+      fromPersistValues [x1_aqE1]
         = NoPrefix1
             <$>
               (Database.Persist.TH.mapLeft
@@ -5052,18 +5052,18 @@ test/PersistentTestModels.hs:(118,1)-(130,2): Splicing declarations
                     (Data.Text.unpackCStringLen# "no_prefix1"# 10)
                     (Data.Text.unpackCStringLen# "someFieldName"# 13))
                  . fromPersistValue)
-                x1_aqFi
-      fromPersistValues x_aqFh
+                x1_aqE1
+      fromPersistValues x_aqE0
         = (Left
              $ mappend
                  (Data.Text.unpackCStringLen#
                     "NoPrefix1: fromPersistValues failed on: "# 40)
-                 (Data.Text.Internal.pack $ show x_aqFh))
+                 (Data.Text.Internal.pack $ show x_aqE0))
       persistUniqueToFieldNames _
         = error "Degenerate case, should never happen"
       persistUniqueToValues _
         = error "Degenerate case, should never happen"
-      persistUniqueKeys (NoPrefix1 _someFieldName_aqFj) = []
+      persistUniqueKeys (NoPrefix1 _someFieldName_aqE2) = []
       persistFieldDef NoPrefix1Id
         = Database.Persist.TH.stripIdFieldImpl
             (EntityIdField
@@ -5081,15 +5081,15 @@ test/PersistentTestModels.hs:(118,1)-(130,2): Splicing declarations
       fieldLens NoPrefix1Id
         = lensPTH
             entityKey
-            (\ (Entity _ value_aqFl) key_aqFm -> Entity key_aqFm value_aqFl)
+            (\ (Entity _ value_aqE4) key_aqE5 -> Entity key_aqE5 value_aqE4)
       fieldLens SomeFieldName
         = lensPTH
             ((\ NoPrefix1 {someFieldName = x} -> x) . entityVal)
-            (\ (Entity key_aqFn value_aqFo) x_aqFp
+            (\ (Entity key_aqE6 value_aqE7) x_aqE8
                -> Entity
-                    key_aqFn
-                    (case value_aqFo of
-                       NoPrefix1 {} -> NoPrefix1 {someFieldName = x_aqFp}))
+                    key_aqE6
+                    (case value_aqE7 of
+                       NoPrefix1 {} -> NoPrefix1 {someFieldName = x_aqE8}))
     deriving stock instance Show (BackendKey backend) =>
                             Show (Key (NoPrefix1Generic backend))
     deriving stock instance Read (BackendKey backend) =>
@@ -5138,11 +5138,11 @@ test/PersistentTestModels.hs:(118,1)-(130,2): Splicing declarations
         = (fmap NoPrefix2Key
              . (fromPersistValue . Database.Persist.TH.headNote))
       keyFromRecordM = Nothing
-      tabulateEntityA fromField_aqFJ
-        = ((Entity <$> fromField_aqFJ NoPrefix2Id)
+      tabulateEntityA fromField_aqEs
+        = ((Entity <$> fromField_aqEs NoPrefix2Id)
              <*>
-               ((pure NoPrefix2 <*> fromField_aqFJ SomeOtherFieldName)
-                  <*> fromField_aqFJ UnprefixedRef))
+               ((pure NoPrefix2 <*> fromField_aqEs SomeOtherFieldName)
+                  <*> fromField_aqEs UnprefixedRef))
       entityDef _
         = persistent-2.14.6.3-957b10fe38a2b21c70e67e79cd638e0e93e82e7708339a93b0c67b99d7d382c5:Database.Persist.Types.Base.EntityDef
             (EntityNameHS (Data.Text.unpackCStringLen# "NoPrefix2"# 9))
@@ -5237,9 +5237,9 @@ test/PersistentTestModels.hs:(118,1)-(130,2): Splicing declarations
                                                                                                                                               Nothing
                                                                                                                                               True),
              persistent-2.14.6.3-957b10fe38a2b21c70e67e79cd638e0e93e82e7708339a93b0c67b99d7d382c5:Database.Persist.Types.Base.entityForeigns = []}
-      toPersistFields (NoPrefix2 x_aqFs x_aqFt)
-        = [toPersistValue x_aqFs, toPersistValue x_aqFt]
-      fromPersistValues [x1_aqFv, x2_aqFw]
+      toPersistFields (NoPrefix2 x_aqEb x_aqEc)
+        = [toPersistValue x_aqEb, toPersistValue x_aqEc]
+      fromPersistValues [x1_aqEe, x2_aqEf]
         = NoPrefix2
             <$>
               (Database.Persist.TH.mapLeft
@@ -5247,26 +5247,26 @@ test/PersistentTestModels.hs:(118,1)-(130,2): Splicing declarations
                     (Data.Text.unpackCStringLen# "no_prefix2"# 10)
                     (Data.Text.unpackCStringLen# "someOtherFieldName"# 18))
                  . fromPersistValue)
-                x1_aqFv
+                x1_aqEe
             <*>
               (Database.Persist.TH.mapLeft
                  (fieldError
                     (Data.Text.unpackCStringLen# "no_prefix2"# 10)
                     (Data.Text.unpackCStringLen# "unprefixedRef"# 13))
                  . fromPersistValue)
-                x2_aqFw
-      fromPersistValues x_aqFu
+                x2_aqEf
+      fromPersistValues x_aqEd
         = (Left
              $ mappend
                  (Data.Text.unpackCStringLen#
                     "NoPrefix2: fromPersistValues failed on: "# 40)
-                 (Data.Text.Internal.pack $ show x_aqFu))
+                 (Data.Text.Internal.pack $ show x_aqEd))
       persistUniqueToFieldNames _
         = error "Degenerate case, should never happen"
       persistUniqueToValues _
         = error "Degenerate case, should never happen"
       persistUniqueKeys
-        (NoPrefix2 _someOtherFieldName_aqFx _unprefixedRef_aqFy)
+        (NoPrefix2 _someOtherFieldName_aqEg _unprefixedRef_aqEh)
         = []
       persistFieldDef NoPrefix2Id
         = Database.Persist.TH.stripIdFieldImpl
@@ -5290,27 +5290,27 @@ test/PersistentTestModels.hs:(118,1)-(130,2): Splicing declarations
       fieldLens NoPrefix2Id
         = lensPTH
             entityKey
-            (\ (Entity _ value_aqFA) key_aqFB -> Entity key_aqFB value_aqFA)
+            (\ (Entity _ value_aqEj) key_aqEk -> Entity key_aqEk value_aqEj)
       fieldLens SomeOtherFieldName
         = lensPTH
             ((\ NoPrefix2 {someOtherFieldName = x} -> x) . entityVal)
-            (\ (Entity key_aqFC value_aqFD) x_aqFE
+            (\ (Entity key_aqEl value_aqEm) x_aqEn
                -> Entity
-                    key_aqFC
-                    (case value_aqFD of
-                       NoPrefix2 {unprefixedRef = unprefixedRef_aqFG}
+                    key_aqEl
+                    (case value_aqEm of
+                       NoPrefix2 {unprefixedRef = unprefixedRef_aqEp}
                          -> NoPrefix2
-                              {someOtherFieldName = x_aqFE, unprefixedRef = unprefixedRef}))
+                              {someOtherFieldName = x_aqEn, unprefixedRef = unprefixedRef}))
       fieldLens UnprefixedRef
         = lensPTH
             ((\ NoPrefix2 {unprefixedRef = x} -> x) . entityVal)
-            (\ (Entity key_aqFC value_aqFD) x_aqFE
+            (\ (Entity key_aqEl value_aqEm) x_aqEn
                -> Entity
-                    key_aqFC
-                    (case value_aqFD of
-                       NoPrefix2 {someOtherFieldName = someOtherFieldName_aqFH}
+                    key_aqEl
+                    (case value_aqEm of
+                       NoPrefix2 {someOtherFieldName = someOtherFieldName_aqEq}
                          -> NoPrefix2
-                              {someOtherFieldName = someOtherFieldName, unprefixedRef = x_aqFE}))
+                              {someOtherFieldName = someOtherFieldName, unprefixedRef = x_aqEn}))
     deriving stock instance Show (BackendKey backend) =>
                             Show (Key (NoPrefix2Generic backend))
     deriving stock instance Read (BackendKey backend) =>
@@ -5360,7 +5360,7 @@ test/PersistentTestModels.hs:(118,1)-(130,2): Splicing declarations
         = (fmap NoPrefixSumKey
              . (fromPersistValue . Database.Persist.TH.headNote))
       keyFromRecordM = Nothing
-      tabulateEntityA fromField_aqFU
+      tabulateEntityA fromField_aqED
         = error "tabulateEntityA does not make sense for sum type"
       entityDef _
         = persistent-2.14.6.3-957b10fe38a2b21c70e67e79cd638e0e93e82e7708339a93b0c67b99d7d382c5:Database.Persist.Types.Base.EntityDef
@@ -5456,16 +5456,16 @@ test/PersistentTestModels.hs:(118,1)-(130,2): Splicing declarations
                                                                                                                                               Nothing
                                                                                                                                               True),
              persistent-2.14.6.3-957b10fe38a2b21c70e67e79cd638e0e93e82e7708339a93b0c67b99d7d382c5:Database.Persist.Types.Base.entityForeigns = []}
-      toPersistFields (UnprefixedLeftSum x_aqFK)
-        = [toPersistValue x_aqFK, PersistNull]
-      toPersistFields (UnprefixedRightSum x_aqFL)
-        = [PersistNull, toPersistValue x_aqFL]
-      fromPersistValues [x_aqFM, PersistNull]
-        | Database.Persist.TH.isNotNull x_aqFM
-        = (UnprefixedLeftSum `fmap` fromPersistValue x_aqFM)
-      fromPersistValues [PersistNull, x_aqFN]
-        | Database.Persist.TH.isNotNull x_aqFN
-        = (UnprefixedRightSum `fmap` fromPersistValue x_aqFN)
+      toPersistFields (UnprefixedLeftSum x_aqEt)
+        = [toPersistValue x_aqEt, PersistNull]
+      toPersistFields (UnprefixedRightSum x_aqEu)
+        = [PersistNull, toPersistValue x_aqEu]
+      fromPersistValues [x_aqEv, PersistNull]
+        | Database.Persist.TH.isNotNull x_aqEv
+        = (UnprefixedLeftSum `fmap` fromPersistValue x_aqEv)
+      fromPersistValues [PersistNull, x_aqEw]
+        | Database.Persist.TH.isNotNull x_aqEw
+        = (UnprefixedRightSum `fmap` fromPersistValue x_aqEw)
       fromPersistValues _
         = Left
             ("Invalid fromPersistValues input: sum type with all nulls. Entity: "
@@ -5497,23 +5497,23 @@ test/PersistentTestModels.hs:(118,1)-(130,2): Splicing declarations
       fieldLens NoPrefixSumId
         = lensPTH
             entityKey
-            (\ (Entity _ value_aqFP) key_aqFQ -> Entity key_aqFQ value_aqFP)
+            (\ (Entity _ value_aqEy) key_aqEz -> Entity key_aqEz value_aqEy)
       fieldLens UnprefixedLeft
         = lensPTH
-            (\ (Entity _ value_aqFS)
-               -> case value_aqFS of
-                    UnprefixedLeftSum x_aqFT -> x_aqFT
+            (\ (Entity _ value_aqEB)
+               -> case value_aqEB of
+                    UnprefixedLeftSum x_aqEC -> x_aqEC
                     _ -> error "Tried to use fieldLens on a Sum type")
-            (\ (Entity key_aqFR _) x_aqFT
-               -> Entity key_aqFR (UnprefixedLeftSum x_aqFT))
+            (\ (Entity key_aqEA _) x_aqEC
+               -> Entity key_aqEA (UnprefixedLeftSum x_aqEC))
       fieldLens UnprefixedRight
         = lensPTH
-            (\ (Entity _ value_aqFS)
-               -> case value_aqFS of
-                    UnprefixedRightSum x_aqFT -> x_aqFT
+            (\ (Entity _ value_aqEB)
+               -> case value_aqEB of
+                    UnprefixedRightSum x_aqEC -> x_aqEC
                     _ -> error "Tried to use fieldLens on a Sum type")
-            (\ (Entity key_aqFR _) x_aqFT
-               -> Entity key_aqFR (UnprefixedRightSum x_aqFT))
+            (\ (Entity key_aqEA _) x_aqEC
+               -> Entity key_aqEA (UnprefixedRightSum x_aqEC))
     deriving stock instance Show (BackendKey backend) =>
                             Show (Key (NoPrefixSumGeneric backend))
     deriving stock instance Read (BackendKey backend) =>

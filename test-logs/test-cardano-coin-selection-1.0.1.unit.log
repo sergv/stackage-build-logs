@@ -10,24 +10,24 @@ Cardano.CoinSelection
   CoinMap properties
     CoinMap coverage is adequate [✔]
       +++ OK, passed 100 tests:
-      35% coin map has one entry
-      35% coin map has one unique value
-      34% coin map has multiple entries
-      34% coin map has several unique values
-      31% coin map is empty
+      40% coin map is empty
+      32% coin map has multiple entries
+      32% coin map has several unique values
+      28% coin map has one entry
+      28% coin map has one unique value
     CoinMapEntry coverage is adequate [✔]
       +++ OK, passed 3200 tests:
-      87.06% coin map entry list has multiple entries
-      86.50% coin map entry list has multiple unique keys
-      41.16% coin map entry list has multiple duplicate keys
-      27.06% coin map entry list has no duplicate keys
-      16.06% coin map entry list has one duplicate key
-      10.22% coin map entry list has two duplicate keys
-       5.50% coin map entry list is empty
-       4.22% coin map entry list has one unique key
-       4.00% coin map entry list has one entry
-       3.78% coin map entry list has two unique keys
-       3.44% coin map entry list has two entries
+      86.47% coin map entry list has multiple entries
+      86.16% coin map entry list has multiple unique keys
+      40.53% coin map entry list has multiple duplicate keys
+      28.31% coin map entry list has no duplicate keys
+      15.31% coin map entry list has one duplicate key
+      10.81% coin map entry list has two duplicate keys
+       5.03% coin map entry list is empty
+       4.75% coin map entry list has one unique key
+       4.34% coin map entry list has one entry
+       4.16% coin map entry list has two entries
+       4.06% coin map entry list has two unique keys
     coinMapFromList preserves total value for each unique key [✔]
       +++ OK, passed 100 tests.
     coinMapFromList preserves total value [✔]
@@ -39,7 +39,7 @@ Cardano.CoinSelection
     coinMapToList . coinMapFromList = id (when no keys duplicated) [✔]
       +++ OK, passed 100 tests.
     coinMapToList order deterministic [✔]
-      +++ OK, passed 100 tests (34% shuffled).
+      +++ OK, passed 100 tests (32% shuffled).
   CoinSelection properties
     monoidal append preserves keys [✔]
       +++ OK, passed 100 tests.
@@ -47,7 +47,7 @@ Cardano.CoinSelection
       +++ OK, passed 100 tests.
   CoinSelectionData properties
     CoinSelectionData coverage is adequate [✔]
-      +++ OK, passed 200 tests (99.5% amountAvailable ≥ amountRequested).
+      +++ OK, passed 200 tests (99.0% amountAvailable ≥ amountRequested).
 Cardano.CoinSelection.Algorithm.LargestFirst
   Coin selection: largest-first algorithm: unit tests
     Expect success: case #1:
@@ -84,41 +84,41 @@ Cardano.CoinSelection.Algorithm.LargestFirst
 	max=9, UTxO=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], Output=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1] --> Left (InputLimitExceeded (InputLimitExceededError {calculatedInputLimit = 9})) [✔]
   Coin selection: largest-first algorithm: properties
     forall (UTxO, NonEmpty TxOut), for all selected input, there's no bigger input in the UTxO that is not already in the selected inputs [✔]
-      +++ OK, passed 100 tests; 1 discarded.
+      +++ OK, passed 100 tests.
     The algorithm selects just enough inputs and no more. [✔]
-      +++ OK, passed 10000 tests; 74 discarded.
+      +++ OK, passed 10000 tests; 82 discarded.
     The algorithm produces the correct set of change. [✔]
-      +++ OK, passed 25600 tests; 206 discarded:
-      98.574% amountSelected > amountRequired
-       1.426% amountSelected = amountRequired
+      +++ OK, passed 51200 tests; 420 discarded:
+      98.801% amountSelected > amountRequired
+       1.199% amountSelected = amountRequired
 Cardano.CoinSelection.Algorithm.Migration
   idealBatchSize
     Eventually converge for decreasing functions [✔]
       +++ OK, passed 100 tests:
       35% BatchSize 32768
-      33% BatchSize 42
-      32% BatchSize 21845
+      33% BatchSize 21845
+      32% BatchSize 42
   accuracy of selectCoins
     dust=1% [✔]
       +++ OK, passed 1000 tests:
-      88.5% MEDIOCRE (<=  99%)
-      11.3% PERFECT  (== 100%)
-       0.2% OKAY     (>   99%)
+      87.2% MEDIOCRE (<=  99%)
+      12.1% PERFECT  (== 100%)
+       0.7% OKAY     (>   99%)
     dust=5% [✔]
       +++ OK, passed 1000 tests:
-      74.0% PERFECT  (== 100%)
-      22.3% MEDIOCRE (<=  99%)
-       3.7% OKAY     (>   99%)
+      73.2% PERFECT  (== 100%)
+      23.3% MEDIOCRE (<=  99%)
+       3.5% OKAY     (>   99%)
     dust=10% [✔]
       +++ OK, passed 1000 tests:
-      90.7% PERFECT  (== 100%)
-       5.9% MEDIOCRE (<=  99%)
+      90.5% PERFECT  (== 100%)
+       6.1% MEDIOCRE (<=  99%)
        3.4% OKAY     (>   99%)
     dust=25% [✔]
       +++ OK, passed 1000 tests:
-      96.3% PERFECT  (== 100%)
-       2.4% OKAY     (>   99%)
-       1.3% MEDIOCRE (<=  99%)
+      96.6% PERFECT  (== 100%)
+       2.5% OKAY     (>   99%)
+       0.9% MEDIOCRE (<=  99%)
     dust=50% [✔]
       +++ OK, passed 1000 tests:
       97.7% PERFECT  (== 100%)
@@ -164,7 +164,7 @@ Cardano.CoinSelection.Algorithm.RandomImprove
     Cardano.CoinSelectionSpec[355:5] [✔]
   Coin selection properties : random algorithm
     forall (UTxO, NonEmpty TxOut), running algorithm gives not less UTxO fragmentation than LargestFirst algorithm [✔]
-      +++ OK, passed 100 tests; 1 discarded.
+      +++ OK, passed 100 tests.
     forall (UTxO, NonEmpty TxOut), running algorithm gives the same errors as LargestFirst algorithm [✔]
       +++ OK, passed 100 tests.
 Cardano.CoinSelection.Fee
@@ -193,7 +193,7 @@ Cardano.CoinSelection.Fee
     Fee adjustment is deterministic when there's no extra inputs [✔]
       +++ OK, passed 100 tests.
     Adjusting for fee (/= 0) reduces the change outputs or increase inputs [✔]
-      +++ OK, passed 100 tests; 12 discarded.
+      +++ OK, passed 100 tests; 11 discarded.
   distributeFee
     fee portions are all within unity of ideal unrounded portions [✔]
       +++ OK, passed 100 tests.
@@ -204,66 +204,66 @@ Cardano.CoinSelection.Fee
       
       properties (6400 in total):
       50.00% fee > 0
-      40.67% nOuts=2+
-       4.78% nOuts=2
-       4.55% nOuts=1
+      40.88% nOuts=2+
+       4.58% nOuts=1
+       4.55% nOuts=2
     snd (distributeFee fee outs) == outs [✔]
       +++ OK, passed 3200 tests.
       
       properties (6400 in total):
       50.00% fee > 0
-      40.67% nOuts=2+
-       4.78% nOuts=2
-       4.55% nOuts=1
+      40.88% nOuts=2+
+       4.58% nOuts=1
+       4.55% nOuts=2
     expectFailure: not (any null (fst <$> distributeFee fee outs)) [✔]
-      +++ OK, failed as expected. Falsified (after 309 tests and 43 shrinks):
+      +++ OK, failed as expected. Falsified (after 2099 tests and 37 shrinks):
       (Fee (Coin 1),Coin 1 :| [Coin 1])
   coalesceDust
     sum coins = sum (coalesceDust threshold coins) [✔]
-      +++ OK, passed 6400 tests:
-      90.78% sum coins ≠ 0
-       9.22% sum coins = 0
+      +++ OK, passed 12800 tests:
+      91.250% sum coins ≠ 0
+       8.750% sum coins = 0
     all (/= Coin 0) (coalesceDust threshold coins) [✔]
       +++ OK, passed 6400 tests:
-      90.17% ∃ coin ∈ coins . coin = 0
-       9.83% ∀ coin ∈ coins . coin > 0
-       9.22% ∀ coin ∈ coins . coin = 0
+      90.81% ∃ coin ∈ coins . coin = 0
+       9.19% ∀ coin ∈ coins . coin > 0
+       8.80% ∀ coin ∈ coins . coin = 0
     leaves at most one dust coin [✔]
-      +++ OK, passed 6400 tests:
-      52.11% length result ≥ 2
-      38.67% length result = 1
-      27.20% ∀ coin ∈ coins . coin ≠ threshold
-      13.84% have mixture of coin values in relation to threshold
-       9.33% ∀ coin ∈ coins . coin = threshold
-       9.22% length result = 0
-       8.77% ∀ coin ∈ coins . coin < threshold
-       3.45% ∀ coin ∈ coins . coin > threshold
+      +++ OK, passed 12800 tests:
+      52.508% length result ≥ 2
+      38.742% length result = 1
+      26.820% ∀ coin ∈ coins . coin ≠ threshold
+      13.609% have mixture of coin values in relation to threshold
+       8.891% ∀ coin ∈ coins . coin = threshold
+       8.750% length result = 0
+       8.727% ∀ coin ∈ coins . coin < threshold
+       3.141% ∀ coin ∈ coins . coin > threshold
     length coins >= (coalesceDust threshold coins) [✔]
       +++ OK, passed 100 tests.
   reduceChangeOutputs
     data coverage is adequate [✔]
       +++ OK, passed 400 tests:
       100.0% fee >= 0
-      58.2% several non-empty coins
-      28.7% fee = 0
-      24.2% fee > sum coins
+      56.8% several non-empty coins
+      28.0% fee = 0
+      24.0% fee > sum coins
       22.5% 0 < fee < sum coins
-      22.0% fee = sum coins
-      17.2% two non-empty coins
-      17.0% one non-empty coin
+      22.2% fee = sum coins
+      17.5% one non-empty coin
+      15.2% two non-empty coins
     the fee balancing algorithm converges for any coin selection [✔]
       +++ OK, passed 100000 tests.
   splitCoin
     data coverage is adequate [✔]
       +++ OK, passed 100 tests:
-      69% coin to split is non-zero
-      54% list of coins has at least one non-zero coin
-      40% list of coins has at least one zero coin
-      39% list of coins is singleton
-      32% coin to split is smaller than number of coins to increase
-      32% list of coins is empty
-      31% coin to split is zero
-      29% list of coins has multiple entries
+      60% coin to split is non-zero
+      59% list of coins has at least one non-zero coin
+      40% coin to split is zero
+      38% coin to split is smaller than number of coins to increase
+      37% list of coins is singleton
+      33% list of coins is empty
+      32% list of coins has at least one zero coin
+      30% list of coins has multiple entries
     preserves the total sum [✔]
       +++ OK, passed 100 tests.
     results are all within unity of ideal unrounded results [✔]
@@ -271,94 +271,94 @@ Cardano.CoinSelection.Fee
 Cardano.CoinSelection.Types
   Lemma 2.1 - Properties of UTxO operations
     2.1.1) ins⊲ u ⊆ u [✔]
-      +++ OK, passed 100 tests (79% dom u ⋂ ins ≠ ∅).
+      +++ OK, passed 100 tests (80% dom u ⋂ ins ≠ ∅).
     2.1.2) ins⋪ u ⊆ u [✔]
-      +++ OK, passed 100 tests (79% dom u ⋂ ins ≠ ∅).
+      +++ OK, passed 100 tests (80% dom u ⋂ ins ≠ ∅).
     2.1.3) u ⊳ outs ⊆ u [✔]
-      +++ OK, passed 100 tests (78% u ⋂ outs ≠ ∅).
+      +++ OK, passed 100 tests (80% u ⋂ outs ≠ ∅).
     2.1.4) ins⊲ (u ⋃ v) = (ins⊲ u) ⋃ (ins⊲ v) [✔]
-      +++ OK, passed 100 tests (91% (dom u ⋃ dom v) ⋂ ins ≠ ∅).
+      +++ OK, passed 100 tests (89% (dom u ⋃ dom v) ⋂ ins ≠ ∅).
     2.1.5) ins⋪ (u ⋃ v) = (ins⋪ u) ⋃ (ins⋪ v) [✔]
-      +++ OK, passed 100 tests (91% (dom u ⋃ dom v) ⋂ ins ≠ ∅).
+      +++ OK, passed 100 tests (89% (dom u ⋃ dom v) ⋂ ins ≠ ∅).
     2.1.6) (dom u ⋂ ins) ⊲ u = ins⊲ u [✔]
-      +++ OK, passed 100 tests (79% dom u ⋂ ins ≠ ∅).
+      +++ OK, passed 100 tests (80% dom u ⋂ ins ≠ ∅).
     2.1.7) (dom u ⋂ ins) ⋪ u = ins⋪ u [✔]
-      +++ OK, passed 100 tests (79% dom u ⋂ ins ≠ ∅).
+      +++ OK, passed 100 tests (80% dom u ⋂ ins ≠ ∅).
     2.1.8) (dom u ⋃ ins) ⋪ (u ⋃ v) = (ins ⋃ dom u) ⋪ v [✔]
-      +++ OK, passed 100 tests (79% dom u ⋂ ins ≠ ∅).
+      +++ OK, passed 100 tests (80% dom u ⋂ ins ≠ ∅).
     2.1.9) ins⋪ u = (dom u \ ins)⊲ u [✔]
-      +++ OK, passed 100 tests (79% dom u ⋂ ins ≠ ∅).
+      +++ OK, passed 100 tests (80% dom u ⋂ ins ≠ ∅).
   Lemma 2.6 - Properties of balance
     2.6.1) dom u ⋂ dom v ==> balance (u ⋃ v) = balance u + balance v [✔]
-      +++ OK, passed 400 tests (66.0% u ≠ ∅ , v ≠ ∅).
+      +++ OK, passed 200 tests (71.0% u ≠ ∅ , v ≠ ∅).
     2.6.2) balance (ins⋪ u) = balance u - balance (ins⊲ u) [✔]
-      +++ OK, passed 100 tests (79% dom u ⋂ ins ≠ ∅).
+      +++ OK, passed 100 tests (80% dom u ⋂ ins ≠ ∅).
 Internal.Coin
   Coin properties
     Only construction of non-negative values is possible. [✔]
       +++ OK, passed 3200 tests:
-      48.41% input is positive
-      48.12% input is negative
-       3.47% input is zero
+      49.81% input is positive
+      46.94% input is negative
+       3.25% input is zero
     Coverage of generated values is acceptable. [✔]
       +++ OK, passed 100 tests:
-      36% value is zero
-      32% value is more than one
-      32% value is one
+      35% value is zero
+      34% value is one
+      31% value is more than one
     Addition [✔]
       +++ OK, passed 100 tests.
     Multiplication [✔]
       +++ OK, passed 6400 tests:
-      48.64% scaling factor is negative
-      48.12% scaling factor is positive
-       3.23% scaling factor is zero
+      48.56% scaling factor is negative
+      48.36% scaling factor is positive
+       3.08% scaling factor is zero
     Subtraction [✔]
       +++ OK, passed 100 tests:
-      40% x > y
-      31% values are equal
-      29% x < y
+      39% x < y
+      34% x > y
+      27% values are equal
     Division [✔]
       +++ OK, passed 6400 tests:
-      48.64% denominator is negative
-      48.12% denominator is positive
-       3.23% denominator is zero
+      48.56% denominator is negative
+      48.36% denominator is positive
+       3.08% denominator is zero
     Modulus [✔]
       +++ OK, passed 6400 tests:
-      48.64% denominator is negative
-      48.12% denominator is positive
-       3.23% denominator is zero
+      48.56% denominator is negative
+      48.36% denominator is positive
+       3.08% denominator is zero
     Distance [✔]
       +++ OK, passed 100 tests:
-      40% x > y
-      31% values are equal
-      29% x < y
+      39% x < y
+      34% x > y
+      27% values are equal
 Test.Vector.Shuffle
   shuffle
     every list can be shuffled, ultimately [✔]
-      +++ OK, passed 100 tests (93% shuffled).
+      +++ OK, passed 200 tests (92.0% shuffled).
     shuffle is non-deterministic [✔]
-      +++ OK, passed 100 tests (91% not deterministic).
+      +++ OK, passed 100 tests (92% not deterministic).
     sort (shuffle xs) == sort xs [✔]
-      +++ OK, passed 100 tests (95% non-empty).
+      +++ OK, passed 100 tests (94% non-empty).
   shuffleNonEmpty
     every non-empty list can be shuffled, ultimately [✔]
-      +++ OK, passed 100 tests (93% shuffled).
+      +++ OK, passed 100 tests (92% shuffled).
     shuffleNonEmpty is non-deterministic [✔]
-      +++ OK, passed 100 tests (92% not deterministic).
+      +++ OK, passed 100 tests (91% not deterministic).
     sort (shuffleNonEmpty xs) == sort xs [✔]
       +++ OK, passed 100 tests (100% non-empty).
   shuffleWith / mkSeed
     shuffling with the same seed is deterministic [✔]
-      +++ OK, passed 100 tests (93% non singleton).
+      +++ OK, passed 100 tests (91% non singleton).
     different seed means different shuffles [✔]
       +++ OK, passed 200 tests; 21 discarded:
-      91.5% different
+      92.5% different
       
-      69.5% big list
-      25.0% small list
-       5.5% singleton
+      65.5% big list
+      32.0% small list
+       2.5% singleton
 
-Finished in 14.1708 seconds
+Finished in 14.3467 seconds
 121 examples, 0 failures
 Test suite unit: PASS
 Test suite logged to:

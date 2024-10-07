@@ -9,8 +9,8 @@ Test suite test-quickcheck-generators: RUNNING...
 +++ OK, passed 100 tests.
 
 === prop_int32 from tests/Generators.hs:54 ===
-+++ OK, failed as expected. Falsified (after 44 tests and 1 shrink):
-Path [1348839]
++++ OK, failed as expected. Falsified (after 43 tests and 1 shrink):
+Path [1190701]
 
 === prop_word from tests/Generators.hs:57 ===
 +++ OK, failed as expected. Falsified (after 1 test):
@@ -27,15 +27,15 @@ Path [0]
 +++ OK, passed 100 tests.
 
 === prop_large from tests/Generators.hs:69 ===
-+++ OK, failed as expected. Falsified (after 29 tests and 1 shrink):
-Path [Large {getLarge = 1129315}]
++++ OK, failed as expected. Falsified (after 27 tests and 1 shrink):
+Path [Large {getLarge = -1037730}]
 
 === prop_smallWord from tests/Generators.hs:72 ===
 +++ OK, passed 100 tests.
 
 === prop_largeWord from tests/Generators.hs:75 ===
-+++ OK, failed as expected. Falsified (after 1 test):
-Path [Large {getLarge = 0}]
++++ OK, failed as expected. Falsified (after 1 test and 1 shrink):
+Path [Large {getLarge = 1}]
 
 === prop_fixed_length from tests/Generators.hs:87 ===
 +++ OK, passed 100 tests.
@@ -65,13 +65,13 @@ Path [Positive {getPositive = Extremal {getExtremal = 1}}]
 
 === prop_nonzero_bound_1 from tests/Generators.hs:128 ===
 +++ OK, failed as expected. Falsified (after 1 test):
-Integer
-Path [NonZero {getNonZero = -1},NonZero {getNonZero = 1}]
+Int
+Path [NonZero {getNonZero = Extremal {getExtremal = 2}},NonZero {getNonZero = Extremal {getExtremal = 1}}]
 
 === prop_nonzero_bound_2 from tests/Generators.hs:129 ===
-+++ OK, failed as expected. Falsified (after 1 test and 1 shrink):
-Int32
-Path [NonZero {getNonZero = Extremal {getExtremal = -2}},NonZero {getNonZero = Extremal {getExtremal = -1}}]
++++ OK, failed as expected. Falsified (after 2 tests and 1 shrink):
+Int
+Path [NonZero {getNonZero = Extremal {getExtremal = -1}}]
 
 === prop_nonnegative from tests/Generators.hs:131 ===
 +++ OK, passed 100 tests.
@@ -79,7 +79,7 @@ Path [NonZero {getNonZero = Extremal {getExtremal = -2}},NonZero {getNonZero = E
 === prop_nonnegative_bound from tests/Generators.hs:132 ===
 +++ OK, failed as expected. Falsified (after 1 test):
 Int
-Path [NonNegative {getNonNegative = Extremal {getExtremal = 9223372036854775807}},NonNegative {getNonNegative = Extremal {getExtremal = 9223372036854759424}},NonNegative {getNonNegative = Extremal {getExtremal = 9223372036854759361}},NonNegative {getNonNegative = Extremal {getExtremal = 0}}]
+Path [NonNegative {getNonNegative = Extremal {getExtremal = 0}}]
 
 === prop_negative from tests/Generators.hs:134 ===
 +++ OK, passed 100 tests.
@@ -95,38 +95,38 @@ Path [Negative {getNegative = Extremal {getExtremal = -2}},Negative {getNegative
 === prop_nonpositive_bound from tests/Generators.hs:138 ===
 +++ OK, failed as expected. Falsified (after 1 test):
 Int
-Path [NonPositive {getNonPositive = Extremal {getExtremal = -1}},NonPositive {getNonPositive = Extremal {getExtremal = 0}}]
+Path [NonPositive {getNonPositive = Extremal {getExtremal = 0}}]
 
 === prop_reachesBound_Int8 from tests/Generators.hs:144 ===
-+++ OK, failed as expected. Falsified (after 23 tests and 1 shrink):
++++ OK, failed as expected. Falsified (after 17 tests and 3 shrinks):
 93
 
 === prop_reachesBound_Int16 from tests/Generators.hs:145 ===
-+++ OK, failed as expected. Falsified (after 31 tests and 6 shrinks):
++++ OK, failed as expected. Falsified (after 42 tests and 6 shrinks):
 24573
 
 === prop_reachesBound_Int32 from tests/Generators.hs:146 ===
-+++ OK, failed as expected. Falsified (after 64 tests and 11 shrinks):
++++ OK, failed as expected. Falsified (after 70 tests and 13 shrinks):
 1610612733
 
 === prop_reachesBound_Int64 from tests/Generators.hs:147 ===
-+++ OK, failed as expected. Falsified (after 97 tests and 35 shrinks):
++++ OK, failed as expected. Falsified (after 91 tests and 40 shrinks):
 6917529027641081853
 
 === prop_reachesBound_Word8 from tests/Generators.hs:148 ===
-+++ OK, failed as expected. Falsified (after 21 tests and 2 shrinks):
++++ OK, failed as expected. Falsified (after 18 tests and 3 shrinks):
 189
 
 === prop_reachesBound_Word16 from tests/Generators.hs:149 ===
-+++ OK, failed as expected. Falsified (after 33 tests and 4 shrinks):
++++ OK, failed as expected. Falsified (after 35 tests and 8 shrinks):
 49149
 
 === prop_reachesBound_Word32 from tests/Generators.hs:150 ===
-+++ OK, failed as expected. Falsified (after 65 tests and 11 shrinks):
++++ OK, failed as expected. Falsified (after 70 tests and 16 shrinks):
 3221225469
 
 === prop_reachesBound_Word64 from tests/Generators.hs:151 ===
-+++ OK, failed as expected. Falsified (after 85 tests and 30 shrinks):
++++ OK, failed as expected. Falsified (after 81 tests and 29 shrinks):
 13835058055282163709
 
 === prop_no_shrinking_loop_Unit from tests/Generators.hs:157 ===
@@ -211,7 +211,7 @@ Path [NonPositive {getNonPositive = Extremal {getExtremal = -1}},NonPositive {ge
 +++ OK, passed 100 tests.
 
 === prop_shrink_candidate_double from tests/Generators.hs:186 ===
-+++ OK, passed 100 tests; 93 discarded.
++++ OK, passed 100 tests; 88 discarded.
 
 === prop_B1 from tests/Generators.hs:204 ===
 +++ OK, failed as expected. Falsified (after 1 test and 10000 shrinks):
@@ -219,16 +219,16 @@ B1 0
 0 /= 1
 
 === prop_double_duplicate_list from tests/Generators.hs:210 ===
-+++ OK, failed as expected. Falsified (after 20 tests and 7 shrinks):
-[-1.0,-1.0]
-[-1.0] /= [-1.0,-1.0]
++++ OK, failed as expected. Falsified (after 22 tests and 6 shrinks):
+[-1.3333333333333333,-1.3333333333333333]
+[-1.3333333333333333] /= [-1.3333333333333333,-1.3333333333333333]
 
 === prop_double_assoc from tests/Generators.hs:215 ===
-+++ OK, failed as expected. Falsified (after 11 tests and 10 shrinks):
-0.3
-5.0e-2
-8.0
-8.350000000000001 /= 8.35
++++ OK, failed as expected. Falsified (after 9 tests and 3 shrinks):
+0.1
+1.0
+-1.0
+0.1 /= 0.10000000000000009
 
 Test suite test-quickcheck-generators: PASS
 Test suite logged to:

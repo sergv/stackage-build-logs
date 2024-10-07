@@ -73,7 +73,7 @@ Tests
         computes the HMAC correctly:                                                  OK
         validates the JWS correctly:                                                  OK
       RFC 7515 A.2. Example JWS using RSASSA-PKCS-v1_5 SHA-256
-        computes the signature correctly:                                             OK
+        computes the signature correctly:                                             OK (0.04s)
         validates the signature correctly:                                            OK
         prohibits signing with 1024-bit key:                                          OK
       RFC 7515 A.3.  Example JWS using ECDSA P-256 SHA-256
@@ -98,8 +98,8 @@ Tests
     JWT
       JWT Claims Set
         parses from JSON correctly:                                                   OK
-        JWT round-trip (sign, serialise, decode, verify):                             OK (0.07s)
-        JWT round-trip (sign, serialise, decode, verify) [extended payload type]:     OK (0.07s)
+        JWT round-trip (sign, serialise, decode, verify):                             OK (1.29s)
+        JWT round-trip (sign, serialise, decode, verify) [extended payload type]:     OK (1.22s)
         formats to a parsable and equal value:                                        OK
         with an Expiration Time claim
           when the current time is prior to the Expiration Time
@@ -188,32 +188,32 @@ Tests
   Properties
     SizedBase64Integer round-trip:                                                    OK
         ✓ SizedBase64Integer round-trip passed 100 tests.
-    JWK round-trip:                                                                   OK (0.03s)
+    JWK round-trip:                                                                   OK (0.43s)
         ✓ JWK round-trip passed 100 tests.
-    RSA gen, sign and verify:                                                         OK (31.35s)
+    RSA gen, sign and verify:                                                         OK (652.55s)
         ✓ RSA gen, sign and verify passed 100 tests.
-          PS256 19% ███▊················
-          PS384 12% ██▍·················
-          PS512 15% ███·················
-          RS256 18% ███▌················
-          RS384 16% ███▏················
-          RS512 20% ████················
-    gen, sign with best alg, verify:                                                  OK (11.21s)
+          PS256 14% ██▊·················
+          PS384 18% ███▌················
+          PS512 10% ██··················
+          RS256 30% ██████··············
+          RS384 13% ██▌·················
+          RS512 15% ███·················
+    gen, sign with best alg, verify:                                                  OK (285.81s)
         ✓ gen, sign with best alg, verify passed 100 tests.
-          ES256   9% █▊··················
-          ES256K  3% ▌···················
-          ES384  12% ██▍·················
-          ES512   4% ▊···················
-          EdDSA  16% ███▏················
-          HS256   9% █▊··················
-          HS384   6% █▏··················
-          HS512  12% ██▍·················
-          PS512  29% █████▊··············
+          ES256   4% ▊···················
+          ES256K  9% █▊··················
+          ES384   4% ▊···················
+          ES512   6% █▏··················
+          EdDSA  12% ██▍·················
+          HS256  13% ██▌·················
+          HS384   9% █▊··················
+          HS512  10% ██··················
+          PS512  33% ██████▌·············
   AESKW
-    AESKW round-trip:                                                                 OK (0.02s)
+    AESKW round-trip:                                                                 OK (0.01s)
         ✓ AESKW round-trip passed 100 tests.
 
-All 113 tests passed (42.77s)
+All 113 tests passed (941.38s)
 Test suite tests: PASS
 Test suite logged to:
 /tmp/workdir-jose/jose-0.11/dist-newstyle/build/x86_64-linux/ghc-9.6.6/jose-0.11/t/tests/test/jose-0.11-tests.log
