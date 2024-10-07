@@ -9,22 +9,22 @@ test/Main.hs
   DecayingSpec
     decayingMapWorks:                   OK
       +++ OK, passed 100 tests.
-    decayingMapDecays:                  OK (0.51s)
+    decayingMapDecays:                  OK (0.52s)
       +++ OK, passed 100 tests.
     decayingMapUpdates:                 OK
       +++ OK, passed 100 tests.
     decayingMapDeletes:                 OK
-      +++ OK, passed 100 tests; 11 discarded.
+      +++ OK, passed 100 tests; 14 discarded.
   ExpiringSpec
     doesMapStuff:                       OK
       +++ OK, passed 100 tests.
       
-      mutation types (2135 in total):
-      22.06% UpdateNothing
-      21.41% Update
-      19.53% Delete
-      18.69% Insert
-      18.31% NewGeneration
+      mutation types (2008 in total):
+      20.82% Delete
+      20.17% Update
+      20.02% NewGeneration
+      19.97% UpdateNothing
+      19.02% Insert
     updateReturn:                       OK
       +++ OK, passed 100 tests.
     cannotAcceptExpired:                OK
@@ -40,76 +40,76 @@ test/Main.hs
       +++ OK, passed 200 tests.
       
       Sizes (200 in total):
-      27.0% 3B
-      26.0% 4B
-      24.0% 1B
-      23.0% 2B
-    PacketRT50:                         OK (0.03s)
-      +++ OK, passed 200 tests.
+      27.5% 3B
+      26.5% 2B
+      24.5% 1B
+      21.5% 4B
+    PacketRT50:                         OK (0.07s)
+      +++ OK, passed 800 tests.
       
-      pkt types (200 in total):
-       9.5% PubRELPkt
-       9.0% PubACKPkt
-       7.5% PingPkt
-       7.5% PubCOMPPkt
-       7.5% PublishPkt
-       7.0% PubRECPkt
-       6.5% PongPkt
-       6.5% SubACKPkt
-       6.0% AuthPkt
-       6.0% ConnPkt
-       6.0% DisconnectPkt
-       5.5% UnsubACKPkt
-       5.5% UnsubscribePkt
-       5.0% ConnACKPkt
-       5.0% SubscribePkt
+      pkt types (800 in total):
+       9.0% PubCOMPPkt
+       8.5% UnsubACKPkt
+       7.9% SubACKPkt
+       7.5% ConnACKPkt
+       7.5% UnsubscribePkt
+       6.9% PingPkt
+       6.9% PongPkt
+       6.8% DisconnectPkt
+       6.1% AuthPkt
+       6.0% PubACKPkt
+       5.9% ConnPkt
+       5.6% PublishPkt
+       5.4% PubRELPkt
+       5.1% SubscribePkt
+       5.0% PubRECPkt
     PacketRT311:                        OK
       +++ OK, passed 100 tests; 6 discarded:
-      14% SubscribePkt
-      11% PubRELPkt
-       9% PingPkt
-       9% PongPkt
+      12% PubACKPkt
+      10% PubCOMPPkt
        8% DisconnectPkt
-       8% PublishPkt
-       6% ConnPkt
-       6% PubACKPkt
-       6% PubCOMPPkt
-       6% SubACKPkt
-       6% UnsubACKPkt
-       5% UnsubscribePkt
+       8% PingPkt
+       8% PongPkt
+       8% SubscribePkt
+       8% UnsubACKPkt
+       8% UnsubscribePkt
+       7% PublishPkt
+       7% SubACKPkt
+       5% ConnPkt
        4% ConnACKPkt
-       2% PubRECPkt
+       4% PubRECPkt
+       3% PubRELPkt
     PropertyRT:                         OK
       +++ OK, passed 100 tests:
-      10% PropMaximumQoS
-       6% PropContentType
+       7% PropMessageExpiryInterval
+       7% PropRequestProblemInformation
+       7% PropRetainAvailable
+       7% PropWillDelayInterval
+       6% PropAuthenticationData
        6% PropCorrelationData
-       6% PropMessageExpiryInterval
-       6% PropRequestProblemInformation
-       5% PropAuthenticationData
-       5% PropServerKeepAlive
-       5% PropSubscriptionIdentifierAvailable
-       4% PropAuthenticationMethod
+       6% PropMaximumPacketSize
        4% PropPayloadFormatIndicator
-       4% PropRequestResponseInformation
-       4% PropSubscriptionIdentifier
+       4% PropResponseInformation
+       4% PropResponseTopic
+       4% PropServerReference
+       4% PropSharedSubscriptionAvailable
+       4% PropTopicAlias
        4% PropUserProperty
-       3% PropResponseTopic
-       3% PropServerReference
-       3% PropSessionExpiryInterval
-       3% PropSharedSubscriptionAvailable
-       3% PropTopicAlias
-       3% PropWillDelayInterval
-       2% PropAssignedClientIdentifier
+       3% PropMaximumQoS
+       3% PropReceiveMaximum
+       3% PropRequestResponseInformation
+       3% PropSubscriptionIdentifier
+       3% PropSubscriptionIdentifierAvailable
+       2% PropAuthenticationMethod
        2% PropReasonString
-       2% PropReceiveMaximum
-       2% PropResponseInformation
-       2% PropRetainAvailable
+       2% PropServerKeepAlive
        2% PropWildcardSubscriptionAvailable
-       1% PropMaximumPacketSize
+       1% PropContentType
+       1% PropSessionExpiryInterval
+       1% PropTopicAliasMaximum
     SubOptionsRT:                       OK
       +++ OK, passed 100 tests.
-    PropertiesRT:                       OK (0.02s)
+    PropertiesRT:                       OK (0.01s)
       +++ OK, passed 100 tests.
     TopicMatching:                      OK
       +++ OK, passed 100 tests.
@@ -130,7 +130,7 @@ test/Main.hs
       filter semigroup
         semigroup: associativity:       OK
           +++ OK, passed 100 tests.
-        semigroup: sconcat:             OK (0.01s)
+        semigroup: sconcat:             OK
           +++ OK, passed 100 tests.
         semigroup: stimes:              OK
           +++ OK, passed 100 tests.
@@ -147,7 +147,7 @@ test/Main.hs
       arbitrary topic matching:         OK
         +++ OK, passed 100 tests.
 
-All 37 tests passed (0.51s)
+All 37 tests passed (0.52s)
 Test suite mqtt-test: PASS
 Test suite logged to:
 /tmp/workdir-net-mqtt/net-mqtt-0.8.6.1/dist-newstyle/build/x86_64-linux/ghc-9.6.6/net-mqtt-0.8.6.1/t/mqtt-test/test/net-mqtt-0.8.6.1-mqtt-test.log

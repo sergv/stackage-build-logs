@@ -10,7 +10,7 @@ matrix tests
     +++ OK, passed 100 tests.
   identity * m = m * identity = m:                                                     OK
     +++ OK, passed 100 tests.
-  a * (b * c) = (a * b) * c:                                                           OK (0.01s)
+  a * (b * c) = (a * b) * c:                                                           OK (0.02s)
     +++ OK, passed 100 tests.
   multStd a b = multStd2 a b:                                                          OK
     +++ OK, passed 100 tests.
@@ -40,28 +40,28 @@ matrix tests
     +++ OK, passed 100 tests.
   detLaplace (fromList 3 3 $ repeat 1) = 0:                                            OK
     +++ OK, passed 1 test.
-  if (u,l,p,d) = luDecomp m then (p*m = l*u) && (detLaplace p = d):                    OK (3.67s)
-    +++ OK, passed 100 tests; 11 discarded.
-  detLaplace m = detLU m:                                                              OK (2.36s)
-    +++ OK, passed 100 tests.
-  if (u,l,p,q,d,e) = luDecomp' m then (p*m*q = l*u) && (detLU p = d) && (detLU q = e): OK (0.02s)
+  if (u,l,p,d) = luDecomp m then (p*m = l*u) && (detLaplace p = d):                    OK (5.04s)
     +++ OK, passed 100 tests; 10 discarded.
-  detLU (scaleRow k i m) = k * detLU m:                                                OK (0.01s)
+  detLaplace m = detLU m:                                                              OK (1.86s)
     +++ OK, passed 100 tests.
-  let n = nrows m in detLU (switchRows i j m) = detLU (permMatrix n i j) * detLU m:    OK (0.01s)
+  if (u,l,p,q,d,e) = luDecomp' m then (p*m*q = l*u) && (detLU p = d) && (detLU q = e): OK (0.07s)
+    +++ OK, passed 100 tests; 11 discarded.
+  detLU (scaleRow k i m) = k * detLU m:                                                OK (0.05s)
+    +++ OK, passed 100 tests.
+  let n = nrows m in detLU (switchRows i j m) = detLU (permMatrix n i j) * detLU m:    OK (0.05s)
     +++ OK, passed 100 tests.
   fromList n m . toList = id:                                                          OK
     +++ OK, passed 100 tests.
   fromLists . toLists = id:                                                            OK
     +++ OK, passed 100 tests.
-  inv m * m = Right identity:                                                          OK (0.04s)
-    +++ OK, passed 100 tests; 11 discarded.
-  inv . inv == id:                                                                     OK (0.06s)
+  inv m * m = Right identity:                                                          OK (0.50s)
     +++ OK, passed 100 tests; 10 discarded.
-  rref . fromSquare = const (identity):                                                OK (0.02s)
-    +++ OK, passed 100 tests; 11 discarded.
+  inv . inv == id:                                                                     OK (0.28s)
+    +++ OK, passed 100 tests; 10 discarded.
+  rref . fromSquare = const (identity):                                                OK (0.05s)
+    +++ OK, passed 100 tests; 10 discarded.
 
-All 27 tests passed (6.24s)
+All 27 tests passed (7.93s)
 Test suite matrix-test: PASS
 Test suite logged to:
 /tmp/workdir-matrix/matrix-0.3.6.3/dist-newstyle/build/x86_64-linux/ghc-9.6.6/matrix-0.3.6.3/t/matrix-test/test/matrix-0.3.6.3-matrix-test.log

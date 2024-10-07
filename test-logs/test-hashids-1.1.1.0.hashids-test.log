@@ -7,8 +7,8 @@ Running 1 test suites...
 Test suite hashids-test: RUNNING...
 ━━━ Test.Web.Hashids.Property ━━━
   ✗ prop_tripping failed at test/Test/Web/Hashids/Property.hs:27:21
-    after 1 test.
-    shrink path: 1:
+    after 3 tests.
+    shrink path: 3:
   
        ┏━━ test/Test/Web/Hashids/Property.hs ━━━
     25 ┃ prop_tripping :: Property
@@ -24,11 +24,11 @@ Test suite hashids-test: RUNNING...
     30 ┃         tripping x (encode context) (decode context)
   
     This failure can be reproduced by running:
-    > recheckAt (Seed 2338024457247037650 13525814105623846541) "1:" prop_tripping
+    > recheckAt (Seed 17499842457602709680 6954306853589742415) "3:" prop_tripping
   
   ✗ prop_trippingUsingSalt failed at test/Test/Web/Hashids/Property.hs:34:21
-    after 1 test.
-    shrink path: 1:
+    after 3 tests.
+    shrink path: 3:
   
        ┏━━ test/Test/Web/Hashids/Property.hs ━━━
     32 ┃ prop_trippingUsingSalt :: Property
@@ -44,11 +44,11 @@ Test suite hashids-test: RUNNING...
     37 ┃         tripping x (encodeUsingSalt salt) (decodeUsingSalt salt)
   
     This failure can be reproduced by running:
-    > recheckAt (Seed 2338024457247037650 13525814105623846541) "1:" prop_trippingUsingSalt
+    > recheckAt (Seed 17499842457602709680 6954306853589742415) "3:" prop_trippingUsingSalt
   
   ✗ prop_encNotEqualToPlain failed at test/Test/Web/Hashids/Property.hs:46:9
-    after 1 test and 103 shrinks.
-    shrink path: 1:aBbgDb2Db3Cb4Cb3Dc3Ed2E2d2G2iJ2mK2mKlGfMf2OrA55
+    after 3 tests and 111 shrinks.
+    shrink path: 3:b6BHb4Dc2D2c2GfEf2Eg3HfGiG3jMkMe2J2kL2j2LjLa61
   
        ┏━━ test/Test/Web/Hashids/Property.hs ━━━
     39 ┃ prop_encNotEqualToPlain :: Property
@@ -56,11 +56,11 @@ Test suite hashids-test: RUNNING...
     41 ┃     withTests 500 $ property $ do
     42 ┃         context <- forAll genHashidsContext
        ┃         │ Context
-       ┃         │   { guards = "b"
-       ┃         │   , seps = "fuich"
+       ┃         │   { guards = "a"
+       ┃         │   , seps = "icfh"
        ┃         │   , salt = "a"
        ┃         │   , minHashLength = 1
-       ┃         │   , alphabet = "mqklpadreg"
+       ┃         │   , alphabet = "AbdngzpeqBm"
        ┃         │   }
     43 ┃         x       <- forAll (Gen.integral Range.constantBounded)
        ┃         │ -1
@@ -74,11 +74,11 @@ Test suite hashids-test: RUNNING...
        ┃         │   error, called at src/Web/Hashids.hs:426:24 in hashids-1.1.1.0-inplace:Web.Hashids
   
     This failure can be reproduced by running:
-    > recheckAt (Seed 2338024457247037650 13525814105623846541) "1:aBbgDb2Db3Cb4Cb3Dc3Ed2E2d2G2iJ2mK2mKlGfMf2OrA55" prop_encNotEqualToPlain
+    > recheckAt (Seed 17499842457602709680 6954306853589742415) "3:b6BHb4Dc2D2c2GfEf2Eg3HfGiG3jMkMe2J2kL2j2LjLa61" prop_encNotEqualToPlain
   
   ✗ prop_encDifferentSaltsNotEqual failed at test/Test/Web/Hashids/Property.hs:58:9
-    after 2 tests and 165 shrinks.
-    shrink path: 2:b10BFbA3b2A3eCdCeCdFd2EdEdEdEfEgFeFhGiHgIgMjLkJ2bgBa2B2a3B2a2C2bFhGiG2jHiJh2Ji3KmLiLkMlOc4JmA62
+    after 2 tests and 178 shrinks.
+    shrink path: 2:aB3cB5bfB2aDc5Dc3FeDeD3gE3gE4gE3gFgFgIk2Ma2I2kI2lI2bfCa3Ca4Ba4Ba3Cb2CdCbCbDcBgFeHbEcFdEhF3hF2iG3hA62
   
        ┏━━ test/Test/Web/Hashids/Property.hs ━━━
     48 ┃ prop_encDifferentSaltsNotEqual :: Property
@@ -90,19 +90,19 @@ Test suite hashids-test: RUNNING...
        ┃         │ "a"
     53 ┃         context1 <- forAll (genHashidsContextWithSalt salt1)
        ┃         │ Context
-       ┃         │   { guards = "a"
-       ┃         │   , seps = "cihIf"
+       ┃         │   { guards = "e"
+       ┃         │   , seps = "fica"
        ┃         │   , salt = "a"
        ┃         │   , minHashLength = 1
-       ┃         │   , alphabet = "lpgkmJbqde"
+       ┃         │   , alphabet = "bgkwqzxlydr"
        ┃         │   }
     54 ┃         context2 <- forAll (genHashidsContextWithSalt salt2)
        ┃         │ Context
-       ┃         │   { guards = "b"
-       ┃         │   , seps = "futcs"
+       ┃         │   { guards = "a"
+       ┃         │   , seps = "HhfFc"
        ┃         │   , salt = "a"
        ┃         │   , minHashLength = 1
-       ┃         │   , alphabet = "vyqrxadzep"
+       ┃         │   , alphabet = "moglnGbzde"
        ┃         │   }
     55 ┃         x        <- forAll (Gen.integral Range.constantBounded)
        ┃         │ -1
@@ -116,25 +116,25 @@ Test suite hashids-test: RUNNING...
        ┃         │   error, called at src/Web/Hashids.hs:426:24 in hashids-1.1.1.0-inplace:Web.Hashids
   
     This failure can be reproduced by running:
-    > recheckAt (Seed 2338024457247037650 13525814105623846541) "2:b10BFbA3b2A3eCdCeCdFd2EdEdEdEfEgFeFhGiHgIgMjLkJ2bgBa2B2a3B2a2C2bFhGiG2jHiJh2Ji3KmLiLkMlOc4JmA62" prop_encDifferentSaltsNotEqual
+    > recheckAt (Seed 17499842457602709680 6954306853589742415) "2:aB3cB5bfB2aDc5Dc3FeDeD3gE3gE4gE3gFgFgIk2Ma2I2kI2lI2bfCa3Ca4Ba4Ba3Cb2CdCbCbDcBgFeHbEcFdEhF3hF2iG3hA62" prop_encDifferentSaltsNotEqual
   
   ✗ prop_encOnlyConsistsOfAlphabet failed at test/Test/Web/Hashids/Property.hs:67:9
-    after 1 test and 104 shrinks.
-    shrink path: 1:bfDa2CaBaB2aB4cAbC3eFdFd2F2eGfH2gHgHiDgJcA61
+    after 1 test and 101 shrinks.
+    shrink path: 1:bhA3bA2e3C3eCd2EfD4eAf2Ef2G2h2I2k2Ma62
   
        ┏━━ test/Test/Web/Hashids/Property.hs ━━━
     60 ┃ prop_encOnlyConsistsOfAlphabet :: Property
     61 ┃ prop_encOnlyConsistsOfAlphabet =
     62 ┃     withTests 500 $ property $ do
     63 ┃         alphabet <- forAll genAlphabet
-       ┃         │ "IPabcdefgilopqrz"
+       ┃         │ "ADabcdefghiktuyz"
     64 ┃         context  <- forAll (genHashidsContextWithAlphabet alphabet)
        ┃         │ Context
-       ┃         │   { guards = "b"
-       ┃         │   , seps = "iIcf"
+       ┃         │   { guards = "d"
+       ┃         │   , seps = "hcufit"
        ┃         │   , salt = "a"
        ┃         │   , minHashLength = 1
-       ┃         │   , alphabet = "Pdeplzqgrao"
+       ┃         │   , alphabet = "ADgkazybe"
        ┃         │   }
     65 ┃         x        <- forAll (Gen.integral Range.constantBounded)
        ┃         │ -1
@@ -147,11 +147,11 @@ Test suite hashids-test: RUNNING...
        ┃         │   error, called at src/Web/Hashids.hs:426:24 in hashids-1.1.1.0-inplace:Web.Hashids
   
     This failure can be reproduced by running:
-    > recheckAt (Seed 2338024457247037650 13525814105623846541) "1:bfDa2CaBaB2aB4cAbC3eFdFd2F2eGfH2gHgHiDgJcA61" prop_encOnlyConsistsOfAlphabet
+    > recheckAt (Seed 17499842457602709680 6954306853589742415) "1:bhA3bA2e3C3eCd2EfD4eAf2Ef2G2h2I2k2Ma62" prop_encOnlyConsistsOfAlphabet
   
   ✗ prop_encMinLength failed at test/Test/Web/Hashids/Property.hs:76:9
-    after 1 test and 113 shrinks.
-    shrink path: 1:bBGdBdEb2C2b2C2b2C2bD6eC4eC3d2C3d2C2eD2eDgJgHa61
+    after 1 test and 99 shrinks.
+    shrink path: 1:bgDb3Eb2CbCdCdGe3Hf2Ig2MoBcJlJmNlNo2A62
   
        ┏━━ test/Test/Web/Hashids/Property.hs ━━━
     69 ┃ prop_encMinLength :: Property
@@ -161,11 +161,11 @@ Test suite hashids-test: RUNNING...
        ┃         │ 1
     73 ┃         context       <- forAll (genHashidsContextWithMinLen minHashLength)
        ┃         │ Context
-       ┃         │   { guards = "k"
-       ┃         │   , seps = "icKV"
+       ┃         │   { guards = "D"
+       ┃         │   , seps = "iCch"
        ┃         │   , salt = "a"
        ┃         │   , minHashLength = 1
-       ┃         │   , alphabet = "almqoxrnwbp"
+       ┃         │   , alphabet = "AabkerldmBg"
        ┃         │   }
     74 ┃         x             <- forAll (Gen.integral Range.constantBounded)
        ┃         │ -1
@@ -178,7 +178,7 @@ Test suite hashids-test: RUNNING...
        ┃         │   error, called at src/Web/Hashids.hs:426:24 in hashids-1.1.1.0-inplace:Web.Hashids
   
     This failure can be reproduced by running:
-    > recheckAt (Seed 2338024457247037650 13525814105623846541) "1:bBGdBdEb2C2b2C2b2C2bD6eC4eC3d2C3d2C2eD2eDgJgHa61" prop_encMinLength
+    > recheckAt (Seed 17499842457602709680 6954306853589742415) "1:bgDb3Eb2CbCdCdGe3Hf2Ig2MoBcJlJmNlNo2A62" prop_encMinLength
   
   ✓ prop_decComplete passed 500 tests.
   ✓ prop_decCompleteLooksValid passed 500 tests.

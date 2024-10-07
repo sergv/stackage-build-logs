@@ -15,20 +15,20 @@ tests
       trivial-Either: OK
         +++ OK, passed 100 tests.
       bad-Int:        OK
-        +++ OK, failed as expected. Falsified (after 2 tests and 44 shrinks):
-        \a0 -> case a0 1 :: Int of { 0 -> 1 ; _ -> 0 }
-        \a0 -> 0
+        +++ OK, failed as expected. Falsified (after 2 tests and 56 shrinks):
+        \a0 -> case a0 0 :: Int of { 0 -> 0 ; _ -> 1 }
+        \a0 -> 1
         0 /= 1
       bad-Bool:       OK
-        +++ OK, failed as expected. Falsified (after 3 tests and 15 shrinks):
-        \a0 -> case a0 True :: Bool of { True -> True ; _ -> False }
-        \a0 -> False
-        True /= False
+        +++ OK, failed as expected. Falsified (after 6 tests and 14 shrinks):
+        \a0 -> case a0 False :: Bool of { True -> True ; _ -> False }
+        \a0 -> True
+        False /= True
       bad-Either:     OK
-        +++ OK, failed as expected. Falsified (after 13 tests and 5 shrinks):
-        \a0 -> case a0 (Right ()) :: Either _ _ of { Right a2 -> Right () ; _ -> Left () }
-        \a0 -> Left ()
-        Right () /= Left ()
+        +++ OK, failed as expected. Falsified (after 1 test and 3 shrinks):
+        \a0 -> case a0 (Left ()) :: Either _ _ of { Right a2 -> Right () ; _ -> Left () }
+        \a0 -> Right ()
+        Left () /= Right ()
 
 All 6 tests passed (0.00s)
 Test suite qcho-test: PASS

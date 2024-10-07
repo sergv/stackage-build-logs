@@ -58,12 +58,12 @@ Codec.Binary.Bech32
       50% no invalid characters
       50% one or more invalid characters
     Lengths are checked correctly. [✔]
-      +++ OK, passed 800 tests:
-      22.4% maximum length
-      20.5% too short
-      19.9% too long
-      19.0% minimum length
-      18.2% comfortably within bounds
+      +++ OK, passed 400 tests:
+      22.0% maximum length
+      21.8% too short
+      19.2% comfortably within bounds
+      18.8% minimum length
+      18.2% too long
   More Encoding/Decoding Cases
     length > maximum [✔]
     hrp lowercased [✔]
@@ -73,28 +73,28 @@ Codec.Binary.Bech32
   Arbitrary Bech32Char
     Generation always produces a valid character. [✔]
       +++ OK, passed 10000 tests:
-      53.62% is a data character: FALSE
-      46.38% is a data character: TRUE
+      52.67% is a data character: FALSE
+      47.33% is a data character: TRUE
     Shrinking always produces valid characters. [✔]
       +++ OK, passed 10000 tests.
     Shrinking always produces characters with codes that are smaller. [✔]
       +++ OK, passed 10000 tests.
   Decoding a corrupted string should fail
     Decoding fails when an adjacent pair of characters is swapped. [✔]
-      +++ OK, passed 10000 tests; 296 discarded.
+      +++ OK, passed 10000 tests; 314 discarded.
     Decoding fails when a character is omitted. [✔]
       +++ OK, passed 10000 tests.
     Decoding fails when a character is inserted. [✔]
       +++ OK, passed 10000 tests:
-      94.13% inserted into the middle
-       3.06% inserted after the end
-       2.81% inserted before the start
+      94.70% inserted into the middle
+       2.67% inserted before the start
+       2.63% inserted after the end
     Decoding fails when a single character is mutated. [✔]
-      +++ OK, passed 10000 tests; 157 discarded.
+      +++ OK, passed 10000 tests; 164 discarded.
     Decoding fails for an upper-case string with a lower-case character. [✔]
-      +++ OK, passed 10000 tests; 4751 discarded.
+      +++ OK, passed 10000 tests; 4786 discarded.
     Decoding fails for a lower-case string with an upper-case character. [✔]
-      +++ OK, passed 10000 tests; 4751 discarded.
+      +++ OK, passed 10000 tests; 4786 discarded.
   Roundtrip (encode . decode)
     Can perform roundtrip for valid data [✔]
       +++ OK, passed 100 tests.
@@ -118,7 +118,7 @@ Codec.Binary.Bech32
       +++ OK, passed 100 tests.
   Roundtrip (toBase32 . toBase256)
     Can perform roundtrip base conversion [✔]
-      +++ OK, passed 100 tests; 276 discarded.
+      +++ OK, passed 100 tests; 275 discarded.
   Roundtrip (dataCharToWord . dataCharFromWord)
     can perform roundtrip character set conversion [✔]
       +++ OK, passed 100 tests.
@@ -137,7 +137,7 @@ Codec.Binary.Bech32
   Pointless test to trigger coverage on derived instances
     Right (HumanReadablePart "ca") [✔]
 
-Finished in 82.3654 seconds
+Finished in 74.7697 seconds
 63 examples, 0 failures
 Test suite bech32-test: PASS
 Test suite logged to:

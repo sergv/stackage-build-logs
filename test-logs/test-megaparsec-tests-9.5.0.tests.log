@@ -55,13 +55,13 @@ Text.Megaparsec
       with two strings
         stream begins with the first string
           parses the string [✔]
-            +++ OK, passed 100 tests; 19 discarded.
+            +++ OK, passed 100 tests; 13 discarded.
         stream begins with the second string
           parses the string [✔]
-            +++ OK, passed 100 tests; 17 discarded.
+            +++ OK, passed 100 tests; 15 discarded.
         when stream does not begin with either string
           signals correct error message [✔]
-            +++ OK, passed 100 tests; 22 discarded.
+            +++ OK, passed 100 tests; 20 discarded.
       with two complex parsers
         when stream begins with matching character
           parses it [✔]
@@ -137,18 +137,18 @@ Text.Megaparsec
       returns correct value of context [✔]
         +++ OK, passed 100 tests.
       preserves hints [✔]
-        +++ OK, passed 100 tests; 1 discarded.
+        +++ OK, passed 100 tests.
     local
       modifies reader context correctly [✔]
         +++ OK, passed 100 tests.
       preserves hints [✔]
-        +++ OK, passed 100 tests; 1 discarded.
+        +++ OK, passed 100 tests.
   ParsecT MonadState instance
     get
       returns correct state value [✔]
         +++ OK, passed 100 tests.
       preserves hints [✔]
-        +++ OK, passed 100 tests; 1 discarded.
+        +++ OK, passed 100 tests.
     put
       replaces state value [✔]
         +++ OK, passed 100 tests.
@@ -173,26 +173,26 @@ Text.Megaparsec
       when inner parser succeeds consuming input
         inner parser does not produce any hints
           collection of hints remains empty [✔]
-            +++ OK, passed 100 tests; 18 discarded.
+            +++ OK, passed 100 tests; 17 discarded.
         inner parser produces hints
           does not alter the hints [✔]
-            +++ OK, passed 100 tests; 18 discarded.
+            +++ OK, passed 100 tests; 17 discarded.
       when inner parser consumes and fails
         reports parse error without modification [✔]
-          +++ OK, passed 100 tests; 18 discarded.
+          +++ OK, passed 100 tests; 21 discarded.
       when inner parser succeeds without consuming
         inner parser does not produce any hints
           collection of hints remains empty [✔]
-            +++ OK, passed 100 tests; 18 discarded.
+            +++ OK, passed 100 tests; 17 discarded.
         inner parser produces hints
           replaces the last hint with given label [✔]
-            +++ OK, passed 100 tests; 18 discarded.
+            +++ OK, passed 100 tests; 17 discarded.
       when inner parser fails without consuming
         is mentioned in parse error via its label [✔]
-          +++ OK, passed 100 tests; 15 discarded.
+          +++ OK, passed 100 tests; 18 discarded.
         when inner parser is composite with 2-hint sources
           both hint groups are replaced by the label [✔]
-            +++ OK, passed 100 tests; 18 discarded.
+            +++ OK, passed 100 tests; 16 discarded.
     hidden
       when inner parser succeeds consuming input
         inner parser does not produce any hints
@@ -291,12 +291,12 @@ Text.Megaparsec
             +++ OK, passed 100 tests.
         when recovering parser fails consuming input
           the original parse error (and state) is reported [✔]
-            +++ OK, passed 100 tests; 1 discarded.
+            +++ OK, passed 100 tests.
         when recovering parser succeeds without consuming
           its result is returned (and state) [✔]
             +++ OK, passed 100 tests.
           original hints are preserved [✔]
-            +++ OK, passed 100 tests; 1 discarded.
+            +++ OK, passed 100 tests.
         when recovering parser fails without consuming
           the original parse error (and state) is reported [✔]
             +++ OK, passed 100 tests.
@@ -318,7 +318,7 @@ Text.Megaparsec
         returns its parse error in Left preserving state [✔]
           +++ OK, passed 100 tests.
         creates correct hints [✔]
-          +++ OK, passed 100 tests; 1 discarded.
+          +++ OK, passed 100 tests.
     eof
       when input stream is empty
         succeeds [✔]
@@ -331,7 +331,7 @@ Text.Megaparsec
           +++ OK, passed 100 tests.
       when supplied predicate is not satisfied
         signals correct parse error [✔]
-          +++ OK, passed 100 tests; 1 discarded.
+          +++ OK, passed 100 tests.
       when stream is empty
         signals correct parse error [✔]
           +++ OK, passed 100 tests.
@@ -341,14 +341,14 @@ Text.Megaparsec
           +++ OK, passed 100 tests.
       when stream is not prefixed with given string
         signals correct parse error [✔]
-          +++ OK, passed 100 tests; 18 discarded.
+          +++ OK, passed 100 tests; 17 discarded.
       when matching the empty string
         eok continuation is used [✔]
           +++ OK, passed 100 tests.
     takeWhileP
       when stream is not empty
         consumes all matching tokens, zero or more [✔]
-          +++ OK, passed 100 tests; 15 discarded.
+          +++ OK, passed 100 tests; 18 discarded.
       when stream is empty
         succeeds returning empty chunk [✔]
       with two takeWhileP in a row (testing hints)
@@ -383,14 +383,14 @@ Text.Megaparsec
           succeeds returning zero-length chunk [✔]
         when stream is not empty
           succeeds returning zero-length chunk [✔]
-            +++ OK, passed 100 tests; 15 discarded.
+            +++ OK, passed 100 tests; 18 discarded.
       when taking <0 tokens
         when stream is empty
           succeeds returning zero-length chunk [✔]
             +++ OK, passed 100 tests.
         when stream is not empty
           succeeds returning zero-length chunk [✔]
-            +++ OK, passed 100 tests; 15 discarded.
+            +++ OK, passed 100 tests; 21 discarded.
       when taking >0 tokens
         when stream is empty
           with label
@@ -401,13 +401,13 @@ Text.Megaparsec
               +++ OK, passed 100 tests.
         when stream has not enough tokens
           signals correct parse error [✔]
-            +++ OK, passed 100 tests; 129 discarded.
+            +++ OK, passed 100 tests; 154 discarded.
         when stream has enough tokens
           succeeds returning the extracted tokens [✔]
-            +++ OK, passed 100 tests; 104 discarded.
+            +++ OK, passed 100 tests; 118 discarded.
       when failing right after takeP (testing hints)
         there are no hints to influence the parse error [✔]
-          +++ OK, passed 100 tests; 104 discarded.
+          +++ OK, passed 100 tests; 118 discarded.
   signaling parse errors
     failure
       signals correct parse error [✔]
@@ -450,7 +450,7 @@ Text.Megaparsec
           +++ OK, passed 100 tests.
       when stream does not begin with the character specified as argument
         parses first character in the stream [✔]
-          +++ OK, passed 100 tests; 15 discarded.
+          +++ OK, passed 100 tests; 21 discarded.
       when stream is empty
         signals correct parse error [✔]
     oneOf
@@ -459,14 +459,14 @@ Text.Megaparsec
           +++ OK, passed 100 tests.
       when stream does not begin with any of specified characters
         signals correct parse error [✔]
-          +++ OK, passed 100 tests; 11 discarded.
+          +++ OK, passed 100 tests; 12 discarded.
       when stream is empty
         signals correct parse error [✔]
           +++ OK, passed 100 tests.
     noneOf
       when stream does not begin with any of specified characters
         parses the character [✔]
-          +++ OK, passed 100 tests; 11 discarded.
+          +++ OK, passed 100 tests; 12 discarded.
       when stream begins with one of specified characters
         signals correct parse error [✔]
           +++ OK, passed 100 tests.
@@ -485,9 +485,9 @@ Text.Megaparsec
         does not produce hints [✔]
       when stream is not empty
         returns False [✔]
-          +++ OK, passed 100 tests; 15 discarded.
+          +++ OK, passed 100 tests; 18 discarded.
         does not produce hints [✔]
-          +++ OK, passed 100 tests; 15 discarded.
+          +++ OK, passed 100 tests; 18 discarded.
   combinators for manipulating parser state
     setInput and getInput
       sets input and gets it back [✔]
@@ -613,7 +613,7 @@ Text.Megaparsec
         +++ OK, passed 100 tests.
       when the inner parser fails
         backtracks state [✔]
-          +++ OK, passed 100 tests; 16 discarded.
+          +++ OK, passed 100 tests; 12 discarded.
   MonadParsec instance of strict RWST
     label
       allows to access reader context and state inside it [✔]
@@ -643,7 +643,7 @@ Text.Megaparsec
         +++ OK, passed 100 tests.
       when the inner parser fails
         backtracks state [✔]
-          +++ OK, passed 100 tests; 16 discarded.
+          +++ OK, passed 100 tests; 12 discarded.
     mkParsec
       enables defining new primitives [✔]
 Text.Megaparsec.Byte
@@ -674,7 +674,7 @@ Text.Megaparsec.Byte
         +++ OK, passed 100 tests.
     when stream begins with '\r', but it's not followed by '\n'
       signals correct parse error [✔]
-        +++ OK, passed 100 tests.
+        +++ OK, passed 100 tests; 1 discarded.
     when input stream is '\r'
       signals correct parse error [✔]
     when stream does not begin with newline or CRLF sequence
@@ -688,7 +688,7 @@ Text.Megaparsec.Byte
         +++ OK, passed 100 tests.
     when stream does not begin with tab
       signals correct parse error [✔]
-        +++ OK, passed 100 tests; 1 discarded.
+        +++ OK, passed 100 tests; 2 discarded.
     when stream is empty
       signals correct parse error [✔]
   space
@@ -700,7 +700,7 @@ Text.Megaparsec.Byte
   space1
     when stream does not start with a space character
       signals correct parse error [✔]
-        +++ OK, passed 100 tests; 2 discarded.
+        +++ OK, passed 100 tests; 5 discarded.
     when stream starts with a space character
       consumes space up to first non-space character [✔]
         +++ OK, passed 100 tests.
@@ -709,7 +709,7 @@ Text.Megaparsec.Byte
   hspace1
     when stream does not start with a space character
       signals correct parse error [✔]
-        +++ OK, passed 100 tests; 2 discarded.
+        +++ OK, passed 100 tests; 5 discarded.
     when stream starts with a space character
       consumes space up to first non-space character [✔]
         +++ OK, passed 100 tests.
@@ -718,10 +718,10 @@ Text.Megaparsec.Byte
   controlChar
     when stream begins with control character
       parses the control character [✔]
-        +++ OK, passed 100 tests; 276 discarded.
+        +++ OK, passed 100 tests; 351 discarded.
     when stream does not begin with control character
       signals correct parse error [✔]
-        +++ OK, passed 100 tests; 753 discarded.
+        +++ OK, passed 100 tests; 728 discarded.
     when stream is empty
       signals correct parse error [✔]
   spaceChar
@@ -751,10 +751,10 @@ Text.Megaparsec.Byte
   printChar
     when stream begins with printable character
       parses the printable character [✔]
-        +++ OK, passed 100 tests; 753 discarded.
+        +++ OK, passed 100 tests; 735 discarded.
     when stream does not begin with printable character
       signals correct parse error [✔]
-        +++ OK, passed 100 tests; 275 discarded.
+        +++ OK, passed 100 tests; 329 discarded.
     when stream is empty
       signals correct parse error [✔]
   digitChar
@@ -901,7 +901,7 @@ Text.Megaparsec.Byte
         +++ OK, passed 100 tests.
     when stream does not begin with the character specified as argument
       signals correct parse error [✔]
-        +++ OK, passed 100 tests; 5 discarded.
+        +++ OK, passed 100 tests; 7 discarded.
     when stream is empty
       signals correct parse error [✔]
         +++ OK, passed 100 tests.
@@ -992,7 +992,7 @@ Text.Megaparsec.Byte.Lexer
         +++ OK, passed 100 tests.
     when stream does not begin with decimal digits
       signals correct parse error [✔]
-        +++ OK, passed 100 tests; 2 discarded.
+        +++ OK, passed 100 tests; 5 discarded.
     when stream is empty
       signals correct parse error [✔]
   binary
@@ -1010,7 +1010,7 @@ Text.Megaparsec.Byte.Lexer
         +++ OK, passed 100 tests.
     when stream does not begin with octal digits
       signals correct parse error [✔]
-        +++ OK, passed 100 tests; 1 discarded.
+        +++ OK, passed 100 tests; 4 discarded.
     when stream is empty
       signals correct parse error [✔]
   hexadecimal
@@ -1022,7 +1022,7 @@ Text.Megaparsec.Byte.Lexer
         +++ OK, passed 100 tests.
     when stream does not begin with hexadecimal digits
       signals correct parse error [✔]
-        +++ OK, passed 100 tests; 7 discarded.
+        +++ OK, passed 100 tests; 8 discarded.
     when stream is empty
       signals correct parse error [✔]
   scientific
@@ -1046,7 +1046,7 @@ Text.Megaparsec.Byte.Lexer
         +++ OK, passed 100 tests.
     when stream does not begin with a float
       signals correct parse error [✔]
-        +++ OK, passed 100 tests; 2 discarded.
+        +++ OK, passed 100 tests; 5 discarded.
     when stream begins with an integer (decimal)
       signals correct parse error [✔]
         +++ OK, passed 100 tests.
@@ -1082,7 +1082,7 @@ Text.Megaparsec.Char
         +++ OK, passed 100 tests.
     when stream does not begin with newline
       signals correct parse error [✔]
-        +++ OK, passed 100 tests.
+        +++ OK, passed 100 tests; 2 discarded.
     when stream is empty
       signals correct parse error [✔]
   csrf
@@ -1103,12 +1103,12 @@ Text.Megaparsec.Char
         +++ OK, passed 100 tests.
     when stream begins with '\r', but it's not followed by '\n'
       signals correct parse error [✔]
-        +++ OK, passed 100 tests.
+        +++ OK, passed 100 tests; 1 discarded.
     when input stream is '\r'
       signals correct parse error [✔]
     when stream does not begin with newline or CRLF sequence
       signals correct parse error [✔]
-        +++ OK, passed 100 tests.
+        +++ OK, passed 100 tests; 2 discarded.
     when stream is empty
       signals correct parse error [✔]
   tab
@@ -1117,7 +1117,7 @@ Text.Megaparsec.Char
         +++ OK, passed 100 tests.
     when stream does not begin with tab
       signals correct parse error [✔]
-        +++ OK, passed 100 tests.
+        +++ OK, passed 100 tests; 2 discarded.
     when stream is empty
       signals correct parse error [✔]
   space
@@ -1129,7 +1129,7 @@ Text.Megaparsec.Char
   space1
     when stream does not start with a space character
       signals correct parse error [✔]
-        +++ OK, passed 100 tests; 4 discarded.
+        +++ OK, passed 100 tests; 6 discarded.
     when stream starts with a space character
       consumes space up to first non-space character [✔]
         +++ OK, passed 100 tests.
@@ -1138,7 +1138,7 @@ Text.Megaparsec.Char
   hspace1
     when stream does not start with a space character
       signals correct parse error [✔]
-        +++ OK, passed 100 tests; 3 discarded.
+        +++ OK, passed 100 tests; 4 discarded.
     when stream starts with a space character
       consumes space up to first non-space character [✔]
         +++ OK, passed 100 tests.
@@ -1147,10 +1147,10 @@ Text.Megaparsec.Char
   controlChar
     when stream begins with control character
       parses the control character [✔]
-        +++ OK, passed 100 tests; 399 discarded.
+        +++ OK, passed 100 tests; 366 discarded.
     when stream does not begin with control character
       signals correct parse error [✔]
-        +++ OK, passed 100 tests; 23 discarded.
+        +++ OK, passed 100 tests; 29 discarded.
     when stream is empty
       signals correct parse error [✔]
   spaceChar
@@ -1180,37 +1180,37 @@ Text.Megaparsec.Char
   upperChar
     when stream begins with uppercase letter
       parses the uppercase letter [✔]
-        +++ OK, passed 100 tests; 495 discarded.
+        +++ OK, passed 100 tests; 543 discarded.
     when stream does not begin with uppercase letter
       signals correct parse error [✔]
-        +++ OK, passed 100 tests; 21 discarded.
+        +++ OK, passed 100 tests; 16 discarded.
     when stream is empty
       signals correct parse error [✔]
   lowerChar
     when stream begins with lowercase letter
       parses the lowercase letter [✔]
-        +++ OK, passed 100 tests; 553 discarded.
+        +++ OK, passed 100 tests; 595 discarded.
     when stream does not begin with lowercase letter
       signals correct parse error [✔]
-        +++ OK, passed 100 tests; 21 discarded.
+        +++ OK, passed 100 tests; 22 discarded.
     when stream is empty
       signals correct parse error [✔]
   letterChar
     when stream begins with letter
       parses the letter [✔]
-        +++ OK, passed 100 tests; 138 discarded.
+        +++ OK, passed 100 tests; 137 discarded.
     when stream does not begin with letter
       signals correct parse error [✔]
-        +++ OK, passed 100 tests; 67 discarded.
+        +++ OK, passed 100 tests; 78 discarded.
     when stream is empty
       signals correct parse error [✔]
   printChar
     when stream begins with printable character
       parses the printable character [✔]
-        +++ OK, passed 100 tests; 40 discarded.
+        +++ OK, passed 100 tests; 46 discarded.
     when stream does not begin with printable character
       signals correct parse error [✔]
-        +++ OK, passed 100 tests; 199 discarded.
+        +++ OK, passed 100 tests; 224 discarded.
     when stream is empty
       signals correct parse error [✔]
   digitChar
@@ -1414,7 +1414,7 @@ Text.Megaparsec.Char
   punctuationChar
     when stream begins with punctuation
       parses the punctuation [✔]
-        +++ OK, passed 100 tests; 462 discarded.
+        +++ OK, passed 100 tests; 605 discarded.
     when stream does not begin with punctuation
       signals correct parse error [✔]
         +++ OK, passed 100 tests; 18 discarded.
@@ -1513,7 +1513,7 @@ Text.Megaparsec.Char
         +++ OK, passed 100 tests; 24 discarded.
     when stream does not begin with ASCII character
       signals correct parse error [✔]
-        +++ OK, passed 100 tests; 334 discarded.
+        +++ OK, passed 100 tests; 343 discarded.
     when stream is empty
       signals correct parse error [✔]
   latin1Char
@@ -1530,7 +1530,7 @@ Text.Megaparsec.Char
         +++ OK, passed 100 tests.
     when parser's category does not match next character's category
       fails [✔]
-        +++ OK, passed 100 tests; 6 discarded.
+        +++ OK, passed 100 tests; 3 discarded.
     when stream is empty
       signals correct parse error [✔]
         +++ OK, passed 100 tests.
@@ -1540,7 +1540,7 @@ Text.Megaparsec.Char
         +++ OK, passed 100 tests.
     when stream does not begin with the character specified as argument
       signals correct parse error [✔]
-        +++ OK, passed 100 tests; 1 discarded.
+        +++ OK, passed 100 tests.
     when stream is empty
       signals correct parse error [✔]
         +++ OK, passed 100 tests.
@@ -1553,7 +1553,7 @@ Text.Megaparsec.Char
           +++ OK, passed 100 tests.
     when stream does not begin with the character specified as argument
       signals correct parse error [✔]
-        +++ OK, passed 100 tests; 1 discarded.
+        +++ OK, passed 100 tests.
       when the character is not upper or lower
         lists correct options in the error message [✔]
           +++ OK, passed 100 tests.
@@ -1566,14 +1566,14 @@ Text.Megaparsec.Char
         +++ OK, passed 100 tests.
     when stream is not prefixed with given string
       signals correct parse error [✔]
-        +++ OK, passed 100 tests; 18 discarded.
+        +++ OK, passed 100 tests; 17 discarded.
   string'
     when stream is prefixed with given string
       parses the string [✔]
         +++ OK, passed 100 tests.
     when stream is not prefixed with given string
       signals correct parse error [✔]
-        +++ OK, passed 100 tests; 18 discarded.
+        +++ OK, passed 100 tests; 17 discarded.
 Text.Megaparsec.Char.Lexer
   space
     consumes any sort of white space [✔]
@@ -1638,7 +1638,7 @@ Text.Megaparsec.Char.Lexer
         +++ OK, passed 100 tests.
     when stream does not begin with decimal digits
       signals correct parse error [✔]
-        +++ OK, passed 100 tests; 7 discarded.
+        +++ OK, passed 100 tests; 6 discarded.
     when stream is empty
       signals correct parse error [✔]
   binary
@@ -1647,7 +1647,7 @@ Text.Megaparsec.Char.Lexer
         +++ OK, passed 100 tests.
     when stream does not begin with binary digits
       signals correct parse error [✔]
-        +++ OK, passed 100 tests.
+        +++ OK, passed 100 tests; 1 discarded.
     when stream is empty
       signals correct parse error [✔]
   octal
@@ -1656,7 +1656,7 @@ Text.Megaparsec.Char.Lexer
         +++ OK, passed 100 tests.
     when stream does not begin with octal digits
       signals correct parse error [✔]
-        +++ OK, passed 100 tests; 5 discarded.
+        +++ OK, passed 100 tests; 3 discarded.
     when stream is empty
       signals correct parse error [✔]
   hexadecimal
@@ -1665,7 +1665,7 @@ Text.Megaparsec.Char.Lexer
         +++ OK, passed 100 tests.
     when stream does not begin with hexadecimal digits
       signals correct parse error [✔]
-        +++ OK, passed 100 tests; 17 discarded.
+        +++ OK, passed 100 tests; 16 discarded.
     when stream is empty
       signals correct parse error [✔]
   scientific
@@ -1689,7 +1689,7 @@ Text.Megaparsec.Char.Lexer
         +++ OK, passed 100 tests.
     when stream does not begin with a float
       signals correct parse error [✔]
-        +++ OK, passed 100 tests; 7 discarded.
+        +++ OK, passed 100 tests; 6 discarded.
     when stream begins with an integer (decimal)
       signals correct parse error [✔]
         +++ OK, passed 100 tests.
@@ -1819,10 +1819,10 @@ Text.Megaparsec.Pos
   mkPos
     when the argument is a non-positive number
       throws InvalidPosException [✔]
-        +++ OK, passed 100 tests; 95 discarded.
+        +++ OK, passed 100 tests; 66 discarded.
     when the argument is not 0
       returns Pos with the given value [✔]
-        +++ OK, passed 100 tests; 112 discarded.
+        +++ OK, passed 100 tests; 140 discarded.
   Read and Show instances of Pos
     printed representation of Pos is isomorphic to its value [✔]
       +++ OK, passed 100 tests.
@@ -1868,7 +1868,7 @@ Text.Megaparsec.Stream
           +++ OK, passed 1 test.
       when input is not empty
         unconses a token [✔]
-          +++ OK, passed 100 tests; 15 discarded.
+          +++ OK, passed 100 tests; 18 discarded.
     takeN_
       requested length is 0
         returns Just empty chunk and original stream [✔]
@@ -1879,7 +1879,7 @@ Text.Megaparsec.Stream
             +++ OK, passed 100 tests.
         stream is not empty
           returns a chunk of correct length and rest of the stream [✔]
-            +++ OK, passed 100 tests; 15 discarded.
+            +++ OK, passed 100 tests; 21 discarded.
     takeWhile_
       extracts a chunk that is a prefix consisting of matching tokens [✔]
         +++ OK, passed 100 tests.
@@ -1973,7 +1973,7 @@ Text.Megaparsec.Stream
           +++ OK, passed 1 test.
       when input is not empty
         unconses a token [✔]
-          +++ OK, passed 100 tests; 15 discarded.
+          +++ OK, passed 100 tests; 18 discarded.
     takeN_
       requested length is 0
         returns Just empty chunk and original stream [✔]
@@ -1984,7 +1984,7 @@ Text.Megaparsec.Stream
             +++ OK, passed 100 tests.
         stream is not empty
           returns a chunk of correct length and rest of the stream [✔]
-            +++ OK, passed 100 tests; 15 discarded.
+            +++ OK, passed 100 tests; 21 discarded.
     takeWhile_
       extracts a chunk that is a prefix consisting of matching tokens [✔]
         +++ OK, passed 100 tests.
@@ -2078,7 +2078,7 @@ Text.Megaparsec.Stream
           +++ OK, passed 1 test.
       when input is not empty
         unconses a token [✔]
-          +++ OK, passed 100 tests; 15 discarded.
+          +++ OK, passed 100 tests; 18 discarded.
     takeN_
       requested length is 0
         returns Just empty chunk and original stream [✔]
@@ -2089,7 +2089,7 @@ Text.Megaparsec.Stream
             +++ OK, passed 100 tests.
         stream is not empty
           returns a chunk of correct length and rest of the stream [✔]
-            +++ OK, passed 100 tests; 15 discarded.
+            +++ OK, passed 100 tests; 21 discarded.
     takeWhile_
       extracts a chunk that is a prefix consisting of matching tokens [✔]
         +++ OK, passed 100 tests.
@@ -2183,7 +2183,7 @@ Text.Megaparsec.Stream
           +++ OK, passed 1 test.
       when input is not empty
         unconses a token [✔]
-          +++ OK, passed 100 tests; 15 discarded.
+          +++ OK, passed 100 tests; 18 discarded.
     takeN_
       requested length is 0
         returns Just empty chunk and original stream [✔]
@@ -2194,7 +2194,7 @@ Text.Megaparsec.Stream
             +++ OK, passed 100 tests.
         stream is not empty
           returns a chunk of correct length and rest of the stream [✔]
-            +++ OK, passed 100 tests; 15 discarded.
+            +++ OK, passed 100 tests; 21 discarded.
     takeWhile_
       extracts a chunk that is a prefix consisting of matching tokens [✔]
         +++ OK, passed 100 tests.
@@ -2288,7 +2288,7 @@ Text.Megaparsec.Stream
           +++ OK, passed 1 test.
       when input is not empty
         unconses a token [✔]
-          +++ OK, passed 100 tests; 15 discarded.
+          +++ OK, passed 100 tests; 18 discarded.
     takeN_
       requested length is 0
         returns Just empty chunk and original stream [✔]
@@ -2299,7 +2299,7 @@ Text.Megaparsec.Stream
             +++ OK, passed 100 tests.
         stream is not empty
           returns a chunk of correct length and rest of the stream [✔]
-            +++ OK, passed 100 tests; 15 discarded.
+            +++ OK, passed 100 tests; 21 discarded.
     takeWhile_
       extracts a chunk that is a prefix consisting of matching tokens [✔]
         +++ OK, passed 100 tests.
@@ -2372,7 +2372,7 @@ Text.Megaparsec.Stream
       works incrementally [✔]
         +++ OK, passed 100 tests.
 
-Finished in 0.4329 seconds
+Finished in 0.4461 seconds
 952 examples, 0 failures
 Test suite tests: PASS
 Test suite logged to:

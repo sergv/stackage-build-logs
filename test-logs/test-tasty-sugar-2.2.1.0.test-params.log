@@ -6,10 +6,7 @@ Building test suite 'test-params' for tasty-sugar-2.2.1.0...
 Running 1 test suites...
 Test suite test-params: RUNNING...
 elf
-  simple.noopt.clang.exe
-    optimization not specified
-      c-compiler=clang
-        simple.noopt.clang.exe #1: Sweets
+Sweets
   { rootBaseName = "simple"
   , rootMatchName = "simple.opt-clang.exe"
   , rootFile = "examples/params/samples/simple.opt-clang.exe"
@@ -32,6 +29,111 @@ elf
           , expParamsMatch =
               [ ( "c-compiler" , Explicit "clang" )
               , ( "optimization" , NotSpecified )
+              ]
+          , associated =
+              [ ( "c-source" , "examples/params/samples/simple.c" ) ]
+          }
+      ]
+  }
+Sweets
+  { rootBaseName = "simple"
+  , rootMatchName = "simple.opt-clang.exe"
+  , rootFile = "examples/params/samples/simple.opt-clang.exe"
+  , cubeParams =
+      [ ( "optimization" , Nothing )
+      , ( "c-compiler" , Just [ "gcc" , "clang" ] )
+      ]
+  , expected =
+      [ Expectation
+          { expectedFile = "examples/params/samples/simple-opt.expct"
+          , expParamsMatch =
+              [ ( "c-compiler" , Explicit "clang" )
+              , ( "optimization" , Explicit "opt" )
+              ]
+          , associated =
+              [ ( "c-source" , "examples/params/samples/simple.c" ) ]
+          }
+      , Expectation
+          { expectedFile = "examples/params/samples/simple.expct"
+          , expParamsMatch =
+              [ ( "c-compiler" , Explicit "clang" )
+              , ( "optimization" , NotSpecified )
+              ]
+          , associated =
+              [ ( "c-source" , "examples/params/samples/simple.c" ) ]
+          }
+      ]
+  }
+Sweets
+  { rootBaseName = "simple"
+  , rootMatchName = "simple.noopt.gcc.exe"
+  , rootFile = "examples/params/samples/simple.noopt.gcc.exe"
+  , cubeParams =
+      [ ( "optimization" , Nothing )
+      , ( "c-compiler" , Just [ "gcc" , "clang" ] )
+      ]
+  , expected =
+      [ Expectation
+          { expectedFile = "examples/params/samples/simple-opt.expct"
+          , expParamsMatch =
+              [ ( "c-compiler" , Explicit "gcc" )
+              , ( "optimization" , Explicit "opt" )
+              ]
+          , associated =
+              [ ( "c-source" , "examples/params/samples/simple.c" ) ]
+          }
+      , Expectation
+          { expectedFile = "examples/params/samples/simple.noopt-gcc.expct"
+          , expParamsMatch =
+              [ ( "c-compiler" , Explicit "gcc" )
+              , ( "optimization" , NotSpecified )
+              ]
+          , associated =
+              [ ( "c-source" , "examples/params/samples/simple.c" ) ]
+          }
+      , Expectation
+          { expectedFile = "examples/params/samples/simple.noopt-gcc.expct"
+          , expParamsMatch =
+              [ ( "c-compiler" , Explicit "gcc" )
+              , ( "optimization" , Explicit "noopt" )
+              ]
+          , associated =
+              [ ( "c-source" , "examples/params/samples/simple.c" ) ]
+          }
+      ]
+  }
+Sweets
+  { rootBaseName = "simple"
+  , rootMatchName = "simple.noopt.gcc.exe"
+  , rootFile = "examples/params/samples/simple.noopt.gcc.exe"
+  , cubeParams =
+      [ ( "optimization" , Nothing )
+      , ( "c-compiler" , Just [ "gcc" , "clang" ] )
+      ]
+  , expected =
+      [ Expectation
+          { expectedFile = "examples/params/samples/simple-opt.expct"
+          , expParamsMatch =
+              [ ( "c-compiler" , Explicit "gcc" )
+              , ( "optimization" , Explicit "opt" )
+              ]
+          , associated =
+              [ ( "c-source" , "examples/params/samples/simple.c" ) ]
+          }
+      , Expectation
+          { expectedFile = "examples/params/samples/simple.noopt-gcc.expct"
+          , expParamsMatch =
+              [ ( "c-compiler" , Explicit "gcc" )
+              , ( "optimization" , NotSpecified )
+              ]
+          , associated =
+              [ ( "c-source" , "examples/params/samples/simple.c" ) ]
+          }
+      , Expectation
+          { expectedFile = "examples/params/samples/simple.noopt-gcc.expct"
+          , expParamsMatch =
+              [ ( "c-compiler" , Explicit "gcc" )
+              , ( "optimization" , Explicit "noopt" )
               ]
           , associated =
               [ ( "c-source" , "examples/params/samples/simple.c" ) ]
@@ -70,35 +172,6 @@ Sweets
           , expParamsMatch =
               [ ( "c-compiler" , Explicit "clang" )
               , ( "optimization" , Explicit "noopt" )
-              ]
-          , associated =
-              [ ( "c-source" , "examples/params/samples/simple.c" ) ]
-          }
-      ]
-  }
-Sweets
-  { rootBaseName = "simple"
-  , rootMatchName = "simple.opt-clang.exe"
-  , rootFile = "examples/params/samples/simple.opt-clang.exe"
-  , cubeParams =
-      [ ( "optimization" , Nothing )
-      , ( "c-compiler" , Just [ "gcc" , "clang" ] )
-      ]
-  , expected =
-      [ Expectation
-          { expectedFile = "examples/params/samples/simple-opt.expct"
-          , expParamsMatch =
-              [ ( "c-compiler" , Explicit "clang" )
-              , ( "optimization" , Explicit "opt" )
-              ]
-          , associated =
-              [ ( "c-source" , "examples/params/samples/simple.c" ) ]
-          }
-      , Expectation
-          { expectedFile = "examples/params/samples/simple.expct"
-          , expParamsMatch =
-              [ ( "c-compiler" , Explicit "clang" )
-              , ( "optimization" , NotSpecified )
               ]
           , associated =
               [ ( "c-source" , "examples/params/samples/simple.c" ) ]
@@ -219,92 +292,19 @@ Sweets
           }
       ]
   }
-OK
+  simple.noopt.clang.exe
+    optimization not specified
+      c-compiler=clang
+        simple.noopt.clang.exe #1: OK
     noopt
       c-compiler=clang
         simple.noopt.clang.exe #1: OK
     opt
-Sweets
-  { rootBaseName = "simple"
-  , rootMatchName = "simple.noopt.gcc.exe"
-  , rootFile = "examples/params/samples/simple.noopt.gcc.exe"
-  , cubeParams =
-      [ ( "optimization" , Nothing )
-      , ( "c-compiler" , Just [ "gcc" , "clang" ] )
-      ]
-  , expected =
-      [ Expectation
-          { expectedFile = "examples/params/samples/simple-opt.expct"
-          , expParamsMatch =
-              [ ( "c-compiler" , Explicit "gcc" )
-              , ( "optimization" , Explicit "opt" )
-              ]
-          , associated =
-              [ ( "c-source" , "examples/params/samples/simple.c" ) ]
-          }
-      , Expectation
-          { expectedFile = "examples/params/samples/simple.noopt-gcc.expct"
-          , expParamsMatch =
-              [ ( "c-compiler" , Explicit "gcc" )
-              , ( "optimization" , NotSpecified )
-              ]
-          , associated =
-              [ ( "c-source" , "examples/params/samples/simple.c" ) ]
-          }
-      , Expectation
-          { expectedFile = "examples/params/samples/simple.noopt-gcc.expct"
-          , expParamsMatch =
-              [ ( "c-compiler" , Explicit "gcc" )
-              , ( "optimization" , Explicit "noopt" )
-              ]
-          , associated =
-              [ ( "c-source" , "examples/params/samples/simple.c" ) ]
-          }
-      ]
-  }
       c-compiler=clang
         simple.noopt.clang.exe #1: OK
   simple.noopt.gcc.exe
     optimization not specified
       c-compiler=gcc
-Sweets
-  { rootBaseName = "simple"
-  , rootMatchName = "simple.noopt.gcc.exe"
-  , rootFile = "examples/params/samples/simple.noopt.gcc.exe"
-  , cubeParams =
-      [ ( "optimization" , Nothing )
-      , ( "c-compiler" , Just [ "gcc" , "clang" ] )
-      ]
-  , expected =
-      [ Expectation
-          { expectedFile = "examples/params/samples/simple-opt.expct"
-          , expParamsMatch =
-              [ ( "c-compiler" , Explicit "gcc" )
-              , ( "optimization" , Explicit "opt" )
-              ]
-          , associated =
-              [ ( "c-source" , "examples/params/samples/simple.c" ) ]
-          }
-      , Expectation
-          { expectedFile = "examples/params/samples/simple.noopt-gcc.expct"
-          , expParamsMatch =
-              [ ( "c-compiler" , Explicit "gcc" )
-              , ( "optimization" , NotSpecified )
-              ]
-          , associated =
-              [ ( "c-source" , "examples/params/samples/simple.c" ) ]
-          }
-      , Expectation
-          { expectedFile = "examples/params/samples/simple.noopt-gcc.expct"
-          , expParamsMatch =
-              [ ( "c-compiler" , Explicit "gcc" )
-              , ( "optimization" , Explicit "noopt" )
-              ]
-          , associated =
-              [ ( "c-source" , "examples/params/samples/simple.c" ) ]
-          }
-      ]
-  }
         simple.noopt.gcc.exe #1:   OK
     noopt
       c-compiler=gcc

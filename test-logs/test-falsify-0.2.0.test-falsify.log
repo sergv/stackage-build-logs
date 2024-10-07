@@ -59,11 +59,11 @@ falsify
           shrinking:         OK
             100 successful tests
           minimum1:          OK (0.02s)
-            100 successful tests (discarded 119)
+            100 successful tests (discarded 100)
           minimum2:          OK (0.01s)
-            100 successful tests (discarded 77)
+            100 successful tests (discarded 100)
         replicateM
-          shrinking:         OK (0.03s)
+          shrinking:         OK (0.04s)
             100 successful tests
           minimum:           OK (0.02s)
             100 successful tests
@@ -73,19 +73,19 @@ falsify
             shrinking:       OK
               100 successful tests
             minimum:         OK
-              100 successful tests (discarded 80)
-            shrinking_wrong: OK (0.04s)
-              expected failure after 780 successful tests and 1 shrink
+              100 successful tests (discarded 137)
+            shrinking_wrong: OK (0.08s)
+              expected failure after 685 successful tests and 19 shrinks
               not (validShrink original shrunk)
-              original: (Just 100,99)
-              shrunk  : (Nothing,100)
+              original: (Just 99,0)
+              shrunk  : (Nothing,99)
           towardsJust
             shrinking:       OK
               100 successful tests
             minimum:         OK
-              100 successful tests (discarded 108)
+              100 successful tests (discarded 94)
             minimum_wrong:   OK
-              expected failure after 1 successful test and 0 shrinks (discarded 3)
+              expected failure after 1 successful test and 0 shrinks
               expected /= minimum
               expected: (Just 0,1)
               minimum : (Nothing,1)
@@ -95,19 +95,19 @@ falsify
       selective
         either
           shrinking:         OK
-            expected failure after 131 successful tests and 7 shrinks
+            expected failure after 125 successful tests and 1 shrink
             not (validShrink original shrunk)
-            original: Right 17382499244786263093
-            shrunk  : Left 4252925328496932329
+            original: Right 4999602773558416067
+            shrunk  : Left 9324420370834390808
       captureLocalTree
         shrinking1:          OK
           100 successful tests
         shrinking2:          OK
           100 successful tests
       stream
-        shrinking1:          OK (6.16s)
+        shrinking1:          OK (14.92s)
           100 successful tests
-        shrinking2:          OK (5.72s)
+        shrinking2:          OK (14.80s)
           100 successful tests
         minimum:             OK
           100 successful tests
@@ -115,19 +115,19 @@ falsify
       pair
         ifM:                 OK
           100 successful tests
-        ifS:                 OK (0.01s)
-          expected failure after 381 successful tests and 2 shrinks
+        ifS:                 OK (0.02s)
+          expected failure after 465 successful tests and 9 shrinks
           not (propEither original shrunk)
-          original: (12752243316966524170,Right 17)
-          shrunk  : (12752243316966524170,Left 100)
+          original: (8815301055685245122,Right 93)
+          shrunk  : (8815301055685245122,Left 100)
         ifThenElse:          OK
           100 successful tests
     TestSuite.Prop.Generator.Marking
       list
-        shrinking:           OK (0.07s)
+        shrinking:           OK (0.05s)
           100 successful tests
-        minimum:             OK (5.86s)
-          100 successful tests (discarded 105)
+        minimum:             OK (5.92s)
+          100 successful tests (discarded 101)
     TestSuite.Prop.Generator.Precision
       wordN
         Precision 0
@@ -165,32 +165,32 @@ falsify
           shrinking:         OK
             100 successful tests
           minimum:           OK
-            100 successful tests (discarded 296)
+            100 successful tests (discarded 294)
         3
           shrinking:         OK
             100 successful tests
           minimum:           OK
-            100 successful tests (discarded 197)
+            100 successful tests (discarded 173)
         4
           shrinking:         OK
             100 successful tests
           minimum:           OK
-            100 successful tests (discarded 130)
+            100 successful tests (discarded 129)
         5
           shrinking:         OK
             100 successful tests
           minimum:           OK
-            100 successful tests (discarded 91)
+            100 successful tests (discarded 148)
         63
           shrinking:         OK
             100 successful tests
           minimum:           OK (0.02s)
-            100 successful tests (discarded 97)
+            100 successful tests (discarded 70)
         64
           shrinking:         OK
             100 successful tests
           minimum:           OK (0.02s)
-            100 successful tests (discarded 116)
+            100 successful tests (discarded 87)
     TestSuite.Prop.Generator.Simple
       prim
         shrinking:           OK
@@ -236,9 +236,9 @@ falsify
               100 successful tests
             minimum
               0:             OK
-                100 successful tests (discarded 7)
+                100 successful tests (discarded 10)
               1:             OK
-                100 successful tests (discarded 12)
+                100 successful tests (discarded 8)
               99:            OK
                 100 successful tests
               100:           OK
@@ -248,21 +248,21 @@ falsify
               100 successful tests
             minimum
               0:             OK
-                100 successful tests (discarded 2)
+                100 successful tests (discarded 3)
               1:             OK
-                100 successful tests (discarded 1)
+                100 successful tests (discarded 2)
               99:            OK
                 100 successful tests (discarded 1)
               100:           OK
-                100 successful tests
+                100 successful tests (discarded 1)
           10_0
             shrinking:       OK
               100 successful tests
             minimum
               0:             OK
-                100 successful tests (discarded 9)
+                100 successful tests (discarded 11)
               1:             OK
-                100 successful tests (discarded 12)
+                100 successful tests (discarded 5)
               99:            OK
                 100 successful tests
               100:           OK
@@ -288,21 +288,21 @@ falsify
               1:             OK
                 100 successful tests
               99:            OK
-                100 successful tests
+                100 successful tests (discarded 1)
               100:           OK
-                100 successful tests
+                100 successful tests (discarded 2)
           100_0
             shrinking:       OK
               100 successful tests
             minimum
               0:             OK
-                100 successful tests (discarded 2)
+                100 successful tests (discarded 1)
               1:             OK
-                100 successful tests
+                100 successful tests (discarded 1)
               99:            OK
                 100 successful tests (discarded 1)
               100:           OK
-                100 successful tests (discarded 2)
+                100 successful tests (discarded 1)
           100_10
             shrinking:       OK
               100 successful tests
@@ -314,7 +314,7 @@ falsify
               99:            OK
                 100 successful tests (discarded 1)
               100:           OK
-                100 successful tests (discarded 1)
+                100 successful tests
           100_100
             shrinking:       OK
               100 successful tests
@@ -334,9 +334,9 @@ falsify
                 100 successful tests
               minimum
                 0:           OK
-                  100 successful tests (discarded 8)
+                  100 successful tests (discarded 10)
                 1:           OK
-                  100 successful tests (discarded 8)
+                  100 successful tests (discarded 9)
                 49:          OK
                   100 successful tests
                 50:          OK
@@ -352,9 +352,9 @@ falsify
                 100 successful tests
               minimum
                 0:           OK
-                  100 successful tests (discarded 12)
-                1:           OK
                   100 successful tests (discarded 10)
+                1:           OK
+                  100 successful tests (discarded 14)
                 49:          OK
                   100 successful tests
                 50:          OK
@@ -372,7 +372,7 @@ falsify
                 0:           OK
                   100 successful tests
                 1:           OK
-                  100 successful tests (discarded 2)
+                  100 successful tests (discarded 4)
                 49:          OK
                   100 successful tests
                 50:          OK
@@ -388,17 +388,17 @@ falsify
                 100 successful tests
               minimum
                 0:           OK
-                  100 successful tests
+                  100 successful tests (discarded 1)
                 1:           OK
-                  100 successful tests
-                49:          OK
                   100 successful tests (discarded 2)
+                49:          OK
+                  100 successful tests (discarded 1)
                 50:          OK
                   100 successful tests
                 51:          OK
-                  100 successful tests
-                99:          OK
                   100 successful tests (discarded 1)
+                99:          OK
+                  100 successful tests
                 100:         OK
                   100 successful tests
             0_100_100
@@ -408,17 +408,17 @@ falsify
                 0:           OK
                   100 successful tests
                 1:           OK
-                  100 successful tests (discarded 1)
+                  100 successful tests
                 49:          OK
-                  100 successful tests (discarded 1)
+                  100 successful tests
                 50:          OK
-                  100 successful tests (discarded 2)
-                51:          OK
                   100 successful tests (discarded 1)
+                51:          OK
+                  100 successful tests
                 99:          OK
                   100 successful tests
                 100:         OK
-                  100 successful tests (discarded 2)
+                  100 successful tests
             0_100_50
               shrinking:     OK
                 100 successful tests
@@ -428,35 +428,17 @@ falsify
                 1:           OK
                   100 successful tests
                 49:          OK
-                  100 successful tests (discarded 2)
+                  100 successful tests (discarded 1)
                 50:          OK
-                  100 successful tests (discarded 5)
+                  100 successful tests (discarded 2)
                 51:          OK
-                  100 successful tests (discarded 4)
+                  100 successful tests
                 99:          OK
                   100 successful tests
                 100:         OK
                   100 successful tests
           Word
             0_10_0
-              shrinking:     OK
-                100 successful tests
-              minimum
-                0:           OK
-                  100 successful tests (discarded 9)
-                1:           OK
-                  100 successful tests (discarded 6)
-                49:          OK
-                  100 successful tests
-                50:          OK
-                  100 successful tests
-                51:          OK
-                  100 successful tests
-                99:          OK
-                  100 successful tests
-                100:         OK
-                  100 successful tests
-            0_10_10
               shrinking:     OK
                 100 successful tests
               minimum
@@ -474,6 +456,24 @@ falsify
                   100 successful tests
                 100:         OK
                   100 successful tests
+            0_10_10
+              shrinking:     OK
+                100 successful tests
+              minimum
+                0:           OK
+                  100 successful tests (discarded 11)
+                1:           OK
+                  100 successful tests (discarded 10)
+                49:          OK
+                  100 successful tests
+                50:          OK
+                  100 successful tests
+                51:          OK
+                  100 successful tests
+                99:          OK
+                  100 successful tests
+                100:         OK
+                  100 successful tests
             0_10_5
               shrinking:     OK
                 100 successful tests
@@ -481,7 +481,7 @@ falsify
                 0:           OK
                   100 successful tests
                 1:           OK
-                  100 successful tests (discarded 4)
+                  100 successful tests (discarded 5)
                 49:          OK
                   100 successful tests
                 50:          OK
@@ -497,19 +497,19 @@ falsify
                 100 successful tests
               minimum
                 0:           OK
-                  100 successful tests (discarded 1)
+                  100 successful tests (discarded 3)
                 1:           OK
                   100 successful tests (discarded 2)
                 49:          OK
-                  100 successful tests
+                  100 successful tests (discarded 2)
                 50:          OK
-                  100 successful tests (discarded 1)
+                  100 successful tests
                 51:          OK
-                  100 successful tests (discarded 1)
+                  100 successful tests
                 99:          OK
-                  100 successful tests
+                  100 successful tests (discarded 1)
                 100:         OK
-                  100 successful tests
+                  100 successful tests (discarded 3)
             0_100_100
               shrinking:     OK
                 100 successful tests
@@ -521,13 +521,13 @@ falsify
                 49:          OK
                   100 successful tests
                 50:          OK
-                  100 successful tests (discarded 1)
+                  100 successful tests
                 51:          OK
-                  100 successful tests (discarded 2)
+                  100 successful tests
                 99:          OK
                   100 successful tests
                 100:         OK
-                  100 successful tests (discarded 3)
+                  100 successful tests (discarded 1)
             0_100_50
               shrinking:     OK
                 100 successful tests
@@ -537,13 +537,13 @@ falsify
                 1:           OK
                   100 successful tests
                 49:          OK
-                  100 successful tests (discarded 3)
+                  100 successful tests (discarded 1)
                 50:          OK
                   100 successful tests (discarded 5)
                 51:          OK
                   100 successful tests (discarded 4)
                 99:          OK
-                  100 successful tests (discarded 1)
+                  100 successful tests
                 100:         OK
                   100 successful tests
       char
@@ -553,7 +553,7 @@ falsify
     TestSuite.Prop.Generator.Shrinking
       prim
         prim:                OK
-          expected failure after 0 shrinks (discarded 1)
+          expected failure after 0 shrinks (discarded 4)
           expected /= minimum
           expected: 1
           minimum : 3
@@ -570,23 +570,23 @@ falsify
       shrinkWith
         minimum
           minimum:           OK
-            100 successful tests (discarded 104)
+            100 successful tests (discarded 93)
           list
             20:              OK (0.05s)
               100 successful tests
             40:              OK (0.09s)
               100 successful tests
-            60:              OK (0.13s)
+            60:              OK (0.12s)
               100 successful tests
-            80:              OK (0.17s)
+            80:              OK (0.16s)
               100 successful tests
-            100:             OK (0.21s)
+            100:             OK (0.20s)
               100 successful tests
-            120:             OK (0.23s)
+            120:             OK (0.24s)
               100 successful tests
-            140:             OK (0.27s)
+            140:             OK (0.28s)
               100 successful tests
-            160:             OK (0.31s)
+            160:             OK (0.32s)
               100 successful tests
             180:             OK (0.35s)
               100 successful tests
@@ -595,88 +595,88 @@ falsify
         towardsShorter
           shrinking:         OK (0.01s)
             100 successful tests
-          minimum:           OK (0.09s)
+          minimum:           OK (0.11s)
             100 successful tests
         towardsShorterEven
-          shrinking:         OK
-            expected failure after 8 successful tests and 2 shrinks
+          shrinking:         OK (0.01s)
+            expected failure after 20 successful tests and 2 shrinks
             (length original) < (length shrunk)
-            original       : [6,8,2,6,6,4]
-            shrunk         : [6,8,4,2,6,6,4]
-            length original: 6
-            length shrunk  : 7
-          minimum:           OK (0.65s)
-            100 successful tests (discarded 6)
+            original       : [10,6]
+            shrunk         : [2,10,6]
+            length original: 2
+            length shrunk  : 3
+          minimum:           OK (0.63s)
+            100 successful tests (discarded 10)
         towardsLonger
           shrinking:         OK
             100 successful tests
           minimum:           OK (0.10s)
-            100 successful tests (discarded 50)
+            100 successful tests (discarded 56)
         towardsOrigin
           minimum:           OK (0.04s)
-            100 successful tests (discarded 38)
+            100 successful tests (discarded 34)
       perm
         shrinking:           OK
           100 successful tests
         minimum
           0:                 OK (0.09s)
-            100 successful tests (discarded 32)
+            100 successful tests (discarded 22)
           1:                 OK (0.10s)
-            100 successful tests (discarded 26)
-          2:                 OK (0.11s)
-            100 successful tests (discarded 44)
-          3:                 OK (0.10s)
-            100 successful tests (discarded 56)
-          4:                 OK (0.09s)
-            100 successful tests (discarded 80)
-          5:                 OK (0.07s)
-            100 successful tests (discarded 121)
+            100 successful tests (discarded 19)
+          2:                 OK (0.12s)
+            100 successful tests (discarded 37)
+          3:                 OK (0.11s)
+            100 successful tests (discarded 48)
+          4:                 OK (0.10s)
+            100 successful tests (discarded 65)
+          5:                 OK (0.06s)
+            100 successful tests (discarded 99)
           6:                 OK (0.07s)
-            100 successful tests (discarded 154)
+            100 successful tests (discarded 193)
           7:                 OK (0.06s)
-            100 successful tests (discarded 237)
+            100 successful tests (discarded 235)
           8:                 OK (0.06s)
-            100 successful tests (discarded 505)
-          9:                 OK (0.05s)
-            100 successful tests (discarded 799)
+            100 successful tests (discarded 389)
+          9:                 OK (0.06s)
+            100 successful tests (discarded 825)
       tree
         towardsSmaller1:     OK (0.10s)
           100 successful tests (discarded 16)
-        towardsSmaller2:     OK (0.17s)
-          100 successful tests (discarded 26)
-        towardsOrigin1:      OK (0.44s)
-          100 successful tests (discarded 198)
-        towardsOrigin2:      OK (0.31s)
-          100 successful tests (discarded 460)
+        towardsSmaller2:     OK (0.16s)
+          100 successful tests (discarded 19)
+        towardsOrigin1:      OK (0.43s)
+          100 successful tests (discarded 176)
+        towardsOrigin2:      OK (0.25s)
+          100 successful tests (discarded 604)
       shrinkTree
         pathAny:             OK
-          100 successful tests (discarded 302)
-        toShrinkTree:        OK (0.03s)
-          100 successful tests (discarded 230)
+          100 successful tests (discarded 300)
+        toShrinkTree:        OK (0.05s)
+          100 successful tests (discarded 216)
       frequency
         shrinking:           OK
           100 successful tests
         shrinking_wrong:     OK
-          expected failure after 5 shrinks
+          expected failure after 27 successful tests and 4 shrinks
           not (propShrinkingList2 original shrunk)
-          original: [0,10]
-          shrunk  : [7]
+          original: [6,4,5]
+          shrunk  : [10,5]
         replicateM:          OK
           100 successful tests
     TestSuite.Prop.Generator.Function
       BoolToBool
         notConstant:         OK
-          100 successful tests (discarded 97)
+          100 successful tests (discarded 93)
         constant:            OK
-          100 successful tests (discarded 85)
+          100 successful tests (discarded 105)
       Word8ToBool:           OK (0.19s)
         100 successful tests
-      IntegerToBool:         OK (0.65s)
-        10 successful tests (discarded 9)
-      IntToInt:              OK (1.84s)
+      IntegerToBool:         OK (0.69s)
+        10 successful tests (discarded 13)
+      IntToInt:              OK (1.90s)
         100 successful tests
-      StringToBool:          OK (1.69s)
-        10 successful tests (discarded 31)
+      StringToBool:          OK (1.80s)
+        10 successful tests (discarded 39)
   TestSuite.GenDefault
     Int:                     OK
     Char:                    OK
@@ -685,7 +685,7 @@ falsify
     AString:                 OK
     Record:                  OK
 
-All 279 tests passed (37.05s)
+All 279 tests passed (55.16s)
 Test suite test-falsify: PASS
 Test suite logged to:
 /tmp/workdir-falsify/falsify-0.2.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/falsify-0.2.0/t/test-falsify/test/falsify-0.2.0-test-falsify.log

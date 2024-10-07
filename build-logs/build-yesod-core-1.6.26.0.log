@@ -402,8 +402,8 @@ Building test suite 'test-routes' for yesod-core-1.6.26.0...
 [10 of 11] Compiling Hierarchy
 [11 of 11] Compiling Main
 test/RouteSpec.hs:(57,1)-(102,16): Splicing declarations
-    do texts_auXN <- [t| [Text] |]
-       let resLeaves_auXO
+    do texts_auG1 <- [t| [Text] |]
+       let resLeaves_auG2
              = map
                  ResourceLeaf
                  [Resource "RootR" [] (Methods Nothing ["GET"]) ["foo", "bar"] True,
@@ -411,156 +411,156 @@ test/RouteSpec.hs:(57,1)-(102,16): Splicing declarations
                     "BlogPostR" [Static "blog", Dynamic $ ConT ''Text]
                     (Methods Nothing ["GET", "POST"]) [] True,
                   Resource
-                    "WikiR" [Static "wiki"] (Methods (Just texts_auXN) []) [] True,
+                    "WikiR" [Static "wiki"] (Methods (Just texts_auG1) []) [] True,
                   Resource
                     "SubsiteR" [Static "subsite"] (Subsite (ConT ''MySub) "getMySub")
                     [] True,
                   Resource
                     "SubparamR" [Static "subparam", Dynamic $ ConT ''Int]
                     (Subsite (ConT ''MySubParam) "getMySubParam") [] True]
-           resParent_auXP
+           resParent_auG3
              = ResourceParent
                  "ParentR" True [Static "foo", Dynamic $ ConT ''Text]
                  [ResourceLeaf
                     $ Resource "ChildR" [] (Methods Nothing ["GET"]) ["child"] True]
-           ress_auXQ = resParent_auXP : resLeaves_auXO
-       rrinst_auXR <- mkRenderRouteInstance [] (ConT ''MyApp) ress_auXQ
-       rainst_auXS <- mkRouteAttrsInstance [] (ConT ''MyApp) ress_auXQ
-       prinst_auXT <- mkParseRouteInstance [] (ConT ''MyApp) ress_auXQ
-       dispatch_auXW <- mkDispatchClause
+           ress_auG4 = resParent_auG3 : resLeaves_auG2
+       rrinst_auG5 <- mkRenderRouteInstance [] (ConT ''MyApp) ress_auG4
+       rainst_auG6 <- mkRouteAttrsInstance [] (ConT ''MyApp) ress_auG4
+       prinst_auG7 <- mkParseRouteInstance [] (ConT ''MyApp) ress_auG4
+       dispatch_auGa <- mkDispatchClause
                           MkDispatchSettings
                             {mdsRunHandler = [| runHandler |],
                              mdsSubDispatcher = [| subDispatch dispatcher |],
                              mdsGetPathInfo = [| fst |], mdsMethod = [| snd |],
-                             mdsSetPathInfo = [| \ p_auXU (_, m_auXV) -> (p_auXU, m_auXV) |],
+                             mdsSetPathInfo = [| \ p_auG8 (_, m_auG9) -> (p_auG8, m_auG9) |],
                              mds404 = [| pack "404" |], mds405 = [| pack "405" |],
                              mdsGetHandler = defaultGetHandler, mdsUnwrapper = return}
-                          ress_auXQ
+                          ress_auG4
        return
          $ InstanceD
              Nothing []
              (ConT ''Dispatcher `AppT` ConT ''MyApp `AppT` ConT ''MyApp)
-             [FunD (mkName "dispatcher") [dispatch_auXW]]
-             : prinst_auXT : rainst_auXS : rrinst_auXR
+             [FunD (mkName "dispatcher") [dispatch_auGa]]
+             : prinst_auG7 : rainst_auG6 : rrinst_auG5
   ======>
     instance Dispatcher MyApp MyApp where
-      dispatcher env8932_av9d req8932_av9e
-        = helper8932_av9f (fst req8932_av9e)
+      dispatcher env8131_auRr req8131_auRs
+        = helper8131_auRt (fst req8131_auRs)
         where
-            helper8932_av9f
+            helper8131_auRt
               ((:) "foo"
-                   ((:) (Web.PathPieces.fromPathPiece -> Just dyn_av9g) rest_av9h))
-              = helperParentR_av9i rest_av9h
+                   ((:) (Web.PathPieces.fromPathPiece -> Just dyn_auRu) rest_auRv))
+              = helperParentR_auRw rest_auRv
               where
-                  helperParentR_av9i []
-                    = case snd req8932_av9e of
+                  helperParentR_auRw []
+                    = case snd req8131_auRs of
                         "GET"
                           -> runHandler
-                               (getChildR dyn_av9g) env8932_av9d (Just (ParentR dyn_av9g ChildR))
-                               req8932_av9e
+                               (getChildR dyn_auRu) env8131_auRr (Just (ParentR dyn_auRu ChildR))
+                               req8131_auRs
                         _ -> runHandler
-                               (pack "405") env8932_av9d (Just (ParentR dyn_av9g ChildR))
-                               req8932_av9e
-                  helperParentR_av9i _
-                    = runHandler (pack "404") env8932_av9d Nothing req8932_av9e
-            helper8932_av9f []
-              = case snd req8932_av9e of
-                  "GET" -> runHandler getRootR env8932_av9d (Just RootR) req8932_av9e
-                  _ -> runHandler (pack "405") env8932_av9d (Just RootR) req8932_av9e
-            helper8932_av9f
+                               (pack "405") env8131_auRr (Just (ParentR dyn_auRu ChildR))
+                               req8131_auRs
+                  helperParentR_auRw _
+                    = runHandler (pack "404") env8131_auRr Nothing req8131_auRs
+            helper8131_auRt []
+              = case snd req8131_auRs of
+                  "GET" -> runHandler getRootR env8131_auRr (Just RootR) req8131_auRs
+                  _ -> runHandler (pack "405") env8131_auRr (Just RootR) req8131_auRs
+            helper8131_auRt
               ((:) "blog"
-                   ((:) (Web.PathPieces.fromPathPiece -> Just dyn_av9j) []))
-              = case snd req8932_av9e of
+                   ((:) (Web.PathPieces.fromPathPiece -> Just dyn_auRx) []))
+              = case snd req8131_auRs of
                   "GET"
                     -> runHandler
-                         (getBlogPostR dyn_av9j) env8932_av9d (Just (BlogPostR dyn_av9j))
-                         req8932_av9e
+                         (getBlogPostR dyn_auRx) env8131_auRr (Just (BlogPostR dyn_auRx))
+                         req8131_auRs
                   "POST"
                     -> runHandler
-                         (postBlogPostR dyn_av9j) env8932_av9d (Just (BlogPostR dyn_av9j))
-                         req8932_av9e
+                         (postBlogPostR dyn_auRx) env8131_auRr (Just (BlogPostR dyn_auRx))
+                         req8131_auRs
                   _ -> runHandler
-                         (pack "405") env8932_av9d (Just (BlogPostR dyn_av9j)) req8932_av9e
-            helper8932_av9f
-              ((:) "wiki" (Web.PathPieces.fromPathMultiPiece -> Just multi_av9k))
+                         (pack "405") env8131_auRr (Just (BlogPostR dyn_auRx)) req8131_auRs
+            helper8131_auRt
+              ((:) "wiki" (Web.PathPieces.fromPathMultiPiece -> Just multi_auRy))
               = runHandler
-                  (handleWikiR multi_av9k) env8932_av9d (Just (WikiR multi_av9k))
-                  req8932_av9e
-            helper8932_av9f ((:) "subsite" restPath_av9l)
+                  (handleWikiR multi_auRy) env8131_auRr (Just (WikiR multi_auRy))
+                  req8131_auRs
+            helper8131_auRt ((:) "subsite" restPath_auRz)
               = subDispatch
-                  dispatcher runHandler (\ sub_av9o -> getMySub sub_av9o)
-                  (\ sroute_av9p -> SubsiteR sroute_av9p) env8932_av9d
-                  ((\ p_av9m (_, m_av9n) -> (p_av9m, m_av9n))
-                     restPath_av9l req8932_av9e)
-            helper8932_av9f
+                  dispatcher runHandler (\ sub_auRC -> getMySub sub_auRC)
+                  (\ sroute_auRD -> SubsiteR sroute_auRD) env8131_auRr
+                  ((\ p_auRA (_, m_auRB) -> (p_auRA, m_auRB))
+                     restPath_auRz req8131_auRs)
+            helper8131_auRt
               ((:) "subparam"
-                   ((:) (Web.PathPieces.fromPathPiece -> Just dyn_av9q)
-                        restPath_av9r))
+                   ((:) (Web.PathPieces.fromPathPiece -> Just dyn_auRE)
+                        restPath_auRF))
               = subDispatch
                   dispatcher runHandler
-                  (\ sub_av9u -> getMySubParam sub_av9u dyn_av9q)
-                  (\ sroute_av9v -> SubparamR dyn_av9q sroute_av9v) env8932_av9d
-                  ((\ p_av9s (_, m_av9t) -> (p_av9s, m_av9t))
-                     restPath_av9r req8932_av9e)
-            helper8932_av9f _
-              = runHandler (pack "404") env8932_av9d Nothing req8932_av9e
+                  (\ sub_auRI -> getMySubParam sub_auRI dyn_auRE)
+                  (\ sroute_auRJ -> SubparamR dyn_auRE sroute_auRJ) env8131_auRr
+                  ((\ p_auRG (_, m_auRH) -> (p_auRG, m_auRH))
+                     restPath_auRF req8131_auRs)
+            helper8131_auRt _
+              = runHandler (pack "404") env8131_auRr Nothing req8131_auRs
     instance ParseRoute MyApp where
       parseRoute
-        = ((\ f_av9b x_av9c -> f_av9b () x_av9c) ::
-             (() -> ([Text], [(Text, Text)]) -> Maybe (YRC.Route a_av9a))
-             -> ([Text], [(Text, Text)]) -> Maybe (YRC.Route a_av9a))
-            helper_av99
+        = ((\ f_auRp x_auRq -> f_auRp () x_auRq) ::
+             (() -> ([Text], [(Text, Text)]) -> Maybe (YRC.Route a_auRo))
+             -> ([Text], [(Text, Text)]) -> Maybe (YRC.Route a_auRo))
+            helper_auRn
         where
-            helper_av99 env3262_av8B req3262_av8C
-              = helper3262_av8D (fst req3262_av8C)
+            helper_auRn env8347_auQP req8347_auQQ
+              = helper8347_auQR (fst req8347_auQQ)
               where
-                  helper3262_av8D
+                  helper8347_auQR
                     ((:) "foo"
-                         ((:) (Web.PathPieces.fromPathPiece -> Just dyn_av8F) rest_av8H))
-                    = helperParentR_av8I rest_av8H
+                         ((:) (Web.PathPieces.fromPathPiece -> Just dyn_auQT) rest_auQV))
+                    = helperParentR_auQW rest_auQV
                     where
-                        helperParentR_av8I []
-                          = (\ _ _ x_av8G _ -> x_av8G)
-                              (error "mdsGetHandler" dyn_av8F) env3262_av8B
-                              (Just (ParentR dyn_av8F ChildR)) req3262_av8C
-                        helperParentR_av8I _
-                          = (\ _ _ x_av8E _ -> x_av8E)
-                              (error "mds404") env3262_av8B Nothing req3262_av8C
-                  helper3262_av8D []
-                    = (\ _ _ x_av8J _ -> x_av8J)
-                        (error "mdsGetHandler") env3262_av8B (Just RootR) req3262_av8C
-                  helper3262_av8D
+                        helperParentR_auQW []
+                          = (\ _ _ x_auQU _ -> x_auQU)
+                              (error "mdsGetHandler" dyn_auQT) env8347_auQP
+                              (Just (ParentR dyn_auQT ChildR)) req8347_auQQ
+                        helperParentR_auQW _
+                          = (\ _ _ x_auQS _ -> x_auQS)
+                              (error "mds404") env8347_auQP Nothing req8347_auQQ
+                  helper8347_auQR []
+                    = (\ _ _ x_auQX _ -> x_auQX)
+                        (error "mdsGetHandler") env8347_auQP (Just RootR) req8347_auQQ
+                  helper8347_auQR
                     ((:) "blog"
-                         ((:) (Web.PathPieces.fromPathPiece -> Just dyn_av8K) []))
-                    = (\ _ _ x_av8L _ -> x_av8L)
-                        (error "mdsGetHandler" dyn_av8K) env3262_av8B
-                        (Just (BlogPostR dyn_av8K)) req3262_av8C
-                  helper3262_av8D
-                    ((:) "wiki" (Web.PathPieces.fromPathMultiPiece -> Just multi_av8M))
-                    = (\ _ _ x_av8N _ -> x_av8N)
-                        (error "mdsGetHandler" multi_av8M) env3262_av8B
-                        (Just (WikiR multi_av8M)) req3262_av8C
-                  helper3262_av8D ((:) "subsite" restPath_av8O)
-                    = (\ _runHandler_av8R _getSub_av8S toMaster_av8T _env_av8U
-                         -> (fmap toMaster_av8T . parseRoute))
-                        (\ _ _ x_av8V _ -> x_av8V) (\ sub_av8W -> getMySub sub_av8W)
-                        (\ sroute_av8X -> SubsiteR sroute_av8X) env3262_av8B
-                        ((\ p_av8P (_, q_av8Q) -> (p_av8P, q_av8Q))
-                           restPath_av8O req3262_av8C)
-                  helper3262_av8D
+                         ((:) (Web.PathPieces.fromPathPiece -> Just dyn_auQY) []))
+                    = (\ _ _ x_auQZ _ -> x_auQZ)
+                        (error "mdsGetHandler" dyn_auQY) env8347_auQP
+                        (Just (BlogPostR dyn_auQY)) req8347_auQQ
+                  helper8347_auQR
+                    ((:) "wiki" (Web.PathPieces.fromPathMultiPiece -> Just multi_auR0))
+                    = (\ _ _ x_auR1 _ -> x_auR1)
+                        (error "mdsGetHandler" multi_auR0) env8347_auQP
+                        (Just (WikiR multi_auR0)) req8347_auQQ
+                  helper8347_auQR ((:) "subsite" restPath_auR2)
+                    = (\ _runHandler_auR5 _getSub_auR6 toMaster_auR7 _env_auR8
+                         -> (fmap toMaster_auR7 . parseRoute))
+                        (\ _ _ x_auR9 _ -> x_auR9) (\ sub_auRa -> getMySub sub_auRa)
+                        (\ sroute_auRb -> SubsiteR sroute_auRb) env8347_auQP
+                        ((\ p_auR3 (_, q_auR4) -> (p_auR3, q_auR4))
+                           restPath_auR2 req8347_auQQ)
+                  helper8347_auQR
                     ((:) "subparam"
-                         ((:) (Web.PathPieces.fromPathPiece -> Just dyn_av8Y)
-                              restPath_av8Z))
-                    = (\ _runHandler_av92 _getSub_av93 toMaster_av94 _env_av95
-                         -> (fmap toMaster_av94 . parseRoute))
-                        (\ _ _ x_av96 _ -> x_av96)
-                        (\ sub_av97 -> getMySubParam sub_av97 dyn_av8Y)
-                        (\ sroute_av98 -> SubparamR dyn_av8Y sroute_av98) env3262_av8B
-                        ((\ p_av90 (_, q_av91) -> (p_av90, q_av91))
-                           restPath_av8Z req3262_av8C)
-                  helper3262_av8D _
-                    = (\ _ _ x_av8E _ -> x_av8E)
-                        (error "mds404") env3262_av8B Nothing req3262_av8C
+                         ((:) (Web.PathPieces.fromPathPiece -> Just dyn_auRc)
+                              restPath_auRd))
+                    = (\ _runHandler_auRg _getSub_auRh toMaster_auRi _env_auRj
+                         -> (fmap toMaster_auRi . parseRoute))
+                        (\ _ _ x_auRk _ -> x_auRk)
+                        (\ sub_auRl -> getMySubParam sub_auRl dyn_auRc)
+                        (\ sroute_auRm -> SubparamR dyn_auRc sroute_auRm) env8347_auQP
+                        ((\ p_auRe (_, q_auRf) -> (p_auRe, q_auRf))
+                           restPath_auRd req8347_auQQ)
+                  helper8347_auQR _
+                    = (\ _ _ x_auQS _ -> x_auQS)
+                        (error "mds404") env8347_auQP Nothing req8347_auQQ
     instance RouteAttrs MyApp where
       routeAttrs (ParentR _ ChildR {}) = Set.fromList [pack "child"]
       routeAttrs RootR {} = Set.fromList [pack "foo", pack "bar"]
@@ -577,27 +577,27 @@ test/RouteSpec.hs:(57,1)-(102,16): Splicing declarations
           SubsiteR (YRC.Route MySub) |
           SubparamR Int (YRC.Route MySubParam)
         deriving (Eq, Show, Read)
-      renderRoute (ParentR dyn_av8n child_av8o)
-        = (\ (a_av8q, b_av8r)
-             -> ((pack "foo" : (Web.PathPieces.toPathPiece dyn_av8n : a_av8q)), 
-                 b_av8r))
-            (childRender_av8p child_av8o)
+      renderRoute (ParentR dyn_auQB child_auQC)
+        = (\ (a_auQE, b_auQF)
+             -> ((pack "foo" : (Web.PathPieces.toPathPiece dyn_auQB : a_auQE)), 
+                 b_auQF))
+            (childRender_auQD child_auQC)
         where
-            childRender_av8p ChildR = ([], [])
+            childRender_auQD ChildR = ([], [])
       renderRoute RootR = ([], [])
-      renderRoute (BlogPostR dyn_av8s)
-        = ((pack "blog" : (Web.PathPieces.toPathPiece dyn_av8s : [])), [])
-      renderRoute (WikiR dyn_av8t)
-        = ((pack "wiki" : Web.PathPieces.toPathMultiPiece dyn_av8t), [])
-      renderRoute (SubsiteR sub_av8u)
-        = (\ (a_av8v, b_av8w) -> ((pack "subsite" : a_av8v), b_av8w))
-            (renderRoute sub_av8u)
-      renderRoute (SubparamR dyn_av8x sub_av8y)
-        = (\ (a_av8z, b_av8A)
+      renderRoute (BlogPostR dyn_auQG)
+        = ((pack "blog" : (Web.PathPieces.toPathPiece dyn_auQG : [])), [])
+      renderRoute (WikiR dyn_auQH)
+        = ((pack "wiki" : Web.PathPieces.toPathMultiPiece dyn_auQH), [])
+      renderRoute (SubsiteR sub_auQI)
+        = (\ (a_auQJ, b_auQK) -> ((pack "subsite" : a_auQJ), b_auQK))
+            (renderRoute sub_auQI)
+      renderRoute (SubparamR dyn_auQL sub_auQM)
+        = (\ (a_auQN, b_auQO)
              -> ((pack "subparam"
-                    : (Web.PathPieces.toPathPiece dyn_av8x : a_av8z)), 
-                 b_av8A))
-            (renderRoute sub_av8y)
+                    : (Web.PathPieces.toPathPiece dyn_auQL : a_auQN)), 
+                 b_auQO))
+            (renderRoute sub_auQM)
     data ParentR
       = ChildR
       deriving (Eq, Show, Read)

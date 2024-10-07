@@ -23,14 +23,14 @@ Test suite
     Test relationship between primitive NonEmpty and Unit combinators
       (QC) failureIf p err = label (const (neSingleton err)) (failureIf' p):                  OK
         +++ OK, passed 100 tests:
-        52% Trivial
-        48% Significant
+        50% Significant
+        50% Trivial
       (SC) failureIf p err = label (const (neSingleton err)) (failureIf' p):                  OK
         88 tests completed
       (QC) failureUnless p err = label (const (neSingleton err)) (failureUnless' p):          OK
         +++ OK, passed 100 tests:
-        54% Trivial
-        46% Significant
+        52% Trivial
+        48% Significant
       (SC) failureUnless p err = label (const (neSingleton err)) (failureUnless' p):          OK
         88 tests completed
     Test relationship between primitive 'if' and 'unless' combinators
@@ -38,7 +38,7 @@ Test suite
         +++ OK, passed 100 tests.
       (SC) failureIf' p = failureUnless' (not . p):                                           OK
         8 tests completed
-      (QC) failureIf p err = negateRule (neSingleton err) (failureUnless' p):                 OK (0.01s)
+      (QC) failureIf p err = negateRule (neSingleton err) (failureUnless' p):                 OK
         +++ OK, passed 100 tests.
       (SC) failureIf p err = negateRule (neSingleton err) (failureUnless' p):                 OK
         40 tests completed
@@ -47,7 +47,7 @@ Test suite
       (SC) failureIf' p = negateRule' (failureUnless' p):                                     OK
         8 tests completed
   Test negateRule function
-    (QC) negateRule . negateRule = id (assuming errors are unchanged):                        OK (0.01s)
+    (QC) negateRule . negateRule = id (assuming errors are unchanged):                        OK
       +++ OK, passed 100 tests.
     (SC) negateRule . negateRule = id (assuming errors are unchanged):                        OK
       120 tests completed
@@ -71,7 +71,7 @@ Test suite
         120 tests completed
       (QC) Complement: rule </> (negateRule e rule) = (negateRule e rule) </> rule = Success: OK
         +++ OK, passed 100 tests.
-      (SC) Complement: rule </> (negateRule e rule) = (negateRule e rule) </> rule = Success: OK (0.05s)
+      (SC) Complement: rule </> (negateRule e rule) = (negateRule e rule) </> rule = Success: OK (0.04s)
         1800 tests completed
     Test `andAlso` function
       (QC) mempty always succeeds:                                                            OK
@@ -80,7 +80,7 @@ Test suite
         6 tests completed
       (QC) Associativity: rule1 <> (rule2 <> rule3) = (rule1 <> rule2) <> rule3:              OK
         +++ OK, passed 100 tests.
-      (SC) Associativity: rule1 <> (rule2 <> rule3) = (rule1 <> rule2) <> rule3:              OK (0.05s)
+      (SC) Associativity: rule1 <> (rule2 <> rule3) = (rule1 <> rule2) <> rule3:              OK (0.04s)
         8192 tests completed
       (QC) Identity: rule <> mempty = mempty <> rule = rule:                                  OK
         +++ OK, passed 100 tests.
@@ -92,7 +92,7 @@ Test suite
         120 tests completed
       (QC) Complement: rule <> (negateRule e rule) = (negateRule e rule) <> rule = Failure:   OK
         +++ OK, passed 100 tests.
-      (SC) Complement: rule <> (negateRule e rule) = (negateRule e rule) <> rule = Failure:   OK (0.05s)
+      (SC) Complement: rule <> (negateRule e rule) = (negateRule e rule) <> rule = Failure:   OK (0.04s)
         1800 tests completed
       (QC) Idempotence: rule <> rule = rule:                                                  OK
         +++ OK, passed 100 tests.
@@ -154,15 +154,15 @@ Test suite
       +++ OK, passed 100 tests.
     (QC) either (const f) (const g) (toEither v) == validationConst f g v:                    OK
       +++ OK, passed 100 tests.
-    (SC) either (const f) (const g) (toEither v) == validationConst f g v:                    OK (2.97s)
+    (SC) either (const f) (const g) (toEither v) == validationConst f g v:                    OK (2.96s)
       297052 tests completed
     (QC) validationConst f g (fromEither e) == either (const f) (const g) e:                  OK
       +++ OK, passed 100 tests.
-    (SC) validationConst f g (fromEither e) == either (const f) (const g) e:                  OK (3.02s)
+    (SC) validationConst f g (fromEither e) == either (const f) (const g) e:                  OK (3.01s)
       297052 tests completed
     (QC) validationConst f g v == validation (const f) (const g) v:                           OK
       +++ OK, passed 100 tests.
-    (SC) validationConst f g v == validation (const f) (const g) v:                           OK (2.99s)
+    (SC) validationConst f g v == validation (const f) (const g) v:                           OK (3.03s)
       297052 tests completed
     (QC) partitionValidations xs = (failures xs, successes xs):                               OK
       +++ OK, passed 100 tests.
@@ -171,17 +171,17 @@ Test suite
   Test Validator relabeling
     (QC) Validator should yield relabeled ValidationRule error upon failure:                  OK
       +++ OK, passed 100 tests.
-    (SC) Validator should yield relabeled ValidationRule error upon failure:                  OK (0.10s)
+    (SC) Validator should yield relabeled ValidationRule error upon failure:                  OK (0.08s)
       15996 tests completed
     (QC) Validator should yield relabeled Bool error upon failure:                            OK
       +++ OK, passed 100 tests.
-    (SC) Validator should yield relabeled Bool error upon failure:                            OK (0.10s)
+    (SC) Validator should yield relabeled Bool error upon failure:                            OK (0.08s)
       15996 tests completed
   Test Validator error grouping
-    (SC) All errors from all validators should be combined upon failure:                      OK (0.06s)
+    (SC) All errors from all validators should be combined upon failure:                      OK (0.05s)
       1500 tests completed
 
-All 83 tests passed (3.02s)
+All 83 tests passed (3.04s)
 Test suite valida-test: PASS
 Test suite logged to:
 /tmp/workdir-valida-base/valida-base-0.2.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/valida-base-0.2.0/t/valida-test/test/valida-base-0.2.0-valida-test.log

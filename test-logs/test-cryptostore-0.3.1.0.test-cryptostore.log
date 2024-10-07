@@ -55,7 +55,7 @@ cryptostore
   KeyWrap.TripleDES
     3DES_EDE
       properties
-        unwrap . wrap == id:           OK (0.13s)
+        unwrap . wrap == id:           OK (0.14s)
           +++ OK, passed 10 tests.
       vectors
         1
@@ -71,7 +71,7 @@ cryptostore
           +++ OK, passed 10 tests.
     2DES_EEE
       properties
-        unwrap . wrap == id:           OK (0.13s)
+        unwrap . wrap == id:           OK (0.14s)
           +++ OK, passed 10 tests.
   KeyWrap.RC2
     properties
@@ -117,7 +117,7 @@ cryptostore
     Data
       read:                            OK
       write:                           OK
-    SignedData:                        OK
+    SignedData:                        OK (0.02s)
       verifying RSA
       verifying DSA
       verifying EC (named curve)
@@ -127,10 +127,10 @@ cryptostore
       verifying RSA
       verifying DSA
       verifying EC (named curve)
-      verifying EC (explicit prime curve)
+      verifying EC (explicit prime curve) (0.01s)
       verifying RSA-PSS
     EnvelopedData
-      KTRI:                            OK
+      KTRI:                            OK (0.05s)
         testing 3DES_CBC with RSAES-PKCS1
         testing 3DES_CBC with RSAES-OAEP
         testing AES128_CBC with RSAES-PKCS1
@@ -153,12 +153,12 @@ cryptostore
         testing AES256_ECB with RSAES-OAEP
         testing Camellia128_ECB with RSAES-PKCS1
         testing Camellia128_ECB with RSAES-OAEP
-      KARI:                            OK (0.08s)
-        testing 3DES_CBC with SHA1               (0.01s)
-        testing 3DES_CBC with SHA224
-        testing 3DES_CBC with SHA256
-        testing 3DES_CBC with SHA384             (0.01s)
-        testing 3DES_CBC with SHA512
+      KARI:                            OK (0.49s)
+        testing 3DES_CBC with SHA1               (0.02s)
+        testing 3DES_CBC with SHA224             (0.02s)
+        testing 3DES_CBC with SHA256             (0.02s)
+        testing 3DES_CBC with SHA384             (0.02s)
+        testing 3DES_CBC with SHA512             (0.02s)
         testing AES128_CBC with SHA1
         testing AES128_CBC with SHA224
         testing AES128_CBC with SHA256
@@ -179,10 +179,10 @@ cryptostore
         testing CAST5_CBC (128 bits) with SHA256
         testing CAST5_CBC (128 bits) with SHA384
         testing CAST5_CBC (128 bits) with SHA512
-        testing Camellia128_CBC with SHA1
-        testing Camellia128_CBC with SHA224
-        testing Camellia128_CBC with SHA256
-        testing Camellia128_CBC with SHA384
+        testing Camellia128_CBC with SHA1        (0.01s)
+        testing Camellia128_CBC with SHA224      (0.01s)
+        testing Camellia128_CBC with SHA256      (0.01s)
+        testing Camellia128_CBC with SHA384      (0.01s)
         testing Camellia128_CBC with SHA512
         testing RC2 (128 bits) with SHA1
         testing RC2 (128 bits) with SHA224
@@ -276,14 +276,14 @@ cryptostore
       decrypting Camellia128_ECB
       encrypting Camellia128_ECB
     AuthEnvelopedData
-      KTRI:                            OK
+      KTRI:                            OK (0.01s)
         testing AES128_GCM with RSAES-PKCS1
         testing AES128_GCM with RSAES-OAEP
         testing AES192_GCM with RSAES-PKCS1
         testing AES192_GCM with RSAES-OAEP
         testing AES256_GCM with RSAES-PKCS1
         testing AES256_GCM with RSAES-OAEP
-      KARI:                            OK (0.01s)
+      KARI:                            OK (0.11s)
         testing AES128_GCM with SHA1
         testing AES128_GCM with SHA224
         testing AES128_GCM with SHA256
@@ -304,147 +304,147 @@ cryptostore
         testing AES192_GCM
         testing AES256_GCM
     properties
-      marshalling:                     OK (4.85s)
+      marshalling:                     OK (118.75s)
         +++ OK, passed 100 tests:
-        60% 0 .. 1 KB
-        10% 4 .. 5 KB
-         8% 2 .. 3 KB
-         7% 1 .. 2 KB
+        56% 0 .. 1 KB
+        11% 1 .. 2 KB
+         6% 2 .. 3 KB
+         6% 3 .. 4 KB
          5% 7 .. 8 KB
-         4% 3 .. 4 KB
-         1% 11 .. 12 KB
+         3% 4 .. 5 KB
+         3% 5 .. 6 KB
+         3% 6 .. 7 KB
+         2% 10 .. 11 KB
+         2% 8 .. 9 KB
+         1% 12 .. 13 KB
          1% 13 .. 14 KB
-         1% 5 .. 6 KB
-         1% 6 .. 7 KB
-         1% 8 .. 9 KB
          1% 9 .. 10 KB
-      signing:                         OK (9.73s)
+      signing:                         OK (81.27s)
         +++ OK, passed 100 tests:
-         9% ECDSA SHA384
-         7% ECDSA SHA1
-         7% ECDSA SHA512
-         7% RSA MD5
+         8% ECDSA SHA512
+         7% RSA MD2
+         7% RSA SHA224
+         6% DSA SHA1
          6% ECDSA SHA224
+         6% ECDSA SHA256
          6% Ed448
-         6% RSA SHA1
-         5% DSA SHA1
-         5% ECDSA SHA256
-         5% Ed25519
-         5% RSA SHA256
-         5% RSA SHA384
+         6% RSA MD5
+         5% DSA SHA224
+         5% DSA SHA256
+         5% RSA SHA1
          5% RSA SHA512
-         4% DSA SHA256
-         4% RSA MD2
-         3% RSA SHA224
-         3% RSAAnyHash
-         2% DSA SHA224
-         1% RSAPSS (PSSParams {pssHashAlgorithm = MD2, pssMaskGenAlgorithm = MGF1 SHAKE128 (Proxy :: Proxy 128), pssSaltLength = 17})
-         1% RSAPSS (PSSParams {pssHashAlgorithm = MD4, pssMaskGenAlgorithm = MGF1 SHA512, pssSaltLength = 6})
-         1% RSAPSS (PSSParams {pssHashAlgorithm = MD5, pssMaskGenAlgorithm = MGF1 MD4, pssSaltLength = 22})
-         1% RSAPSS (PSSParams {pssHashAlgorithm = MD5, pssMaskGenAlgorithm = MGF1 SHA224, pssSaltLength = 21})
-         1% RSAPSS (PSSParams {pssHashAlgorithm = SHAKE256 (Proxy :: Proxy 128), pssMaskGenAlgorithm = MGF1 SHAKE256 (Proxy :: Proxy 128), pssSaltLength = 3})
-         1% RSAPSS (PSSParams {pssHashAlgorithm = SHAKE256_512, pssMaskGenAlgorithm = MGF1 SHA256, pssSaltLength = 18})
-      enveloping:                      OK (15.10s)
+         5% RSAAnyHash
+         4% ECDSA SHA1
+         3% ECDSA SHA384
+         3% Ed25519
+         3% RSA SHA256
+         3% RSA SHA384
+         1% RSAPSS (PSSParams {pssHashAlgorithm = SHA224, pssMaskGenAlgorithm = MGF1 MD4, pssSaltLength = 5})
+         1% RSAPSS (PSSParams {pssHashAlgorithm = SHA384, pssMaskGenAlgorithm = MGF1 SHA1, pssSaltLength = 16})
+         1% RSAPSS (PSSParams {pssHashAlgorithm = SHA384, pssMaskGenAlgorithm = MGF1 SHA1, pssSaltLength = 25})
+         1% RSAPSS (PSSParams {pssHashAlgorithm = SHA384, pssMaskGenAlgorithm = MGF1 SHA224, pssSaltLength = 3})
+         1% RSAPSS (PSSParams {pssHashAlgorithm = SHA384, pssMaskGenAlgorithm = MGF1 SHAKE128 (Proxy :: Proxy 129), pssSaltLength = 10})
+         1% RSAPSS (PSSParams {pssHashAlgorithm = SHA384, pssMaskGenAlgorithm = MGF1 SHAKE256_512, pssSaltLength = 19})
+         1% RSAPSS (PSSParams {pssHashAlgorithm = SHAKE128 (Proxy :: Proxy 128), pssMaskGenAlgorithm = MGF1 SHA1, pssSaltLength = 1})
+      enveloping:                      OK (135.49s)
         +++ OK, passed 100 tests:
-        10% DES_ECB
-         8% DES_EDE3_CBC
-         7% AES128_CBC
-         7% AES128_CFB
-         6% AES192_CBC
+        11% AES256_CBC
+         8% AES192_CBC
+         8% DES_CBC
+         7% AES192_CFB
+         7% CAST5_CBC
+         7% DES_EDE3_CBC
          6% AES192_ECB
-         6% CAST5_CBC
-         6% Camellia128_CTR
-         5% AES256_ECB
-         5% Camellia128_CFB
-         5% Camellia128_ECB
-         5% DES_CFB
-         5% RC2_CBC
-         4% AES128_ECB
-         4% AES256_CBC
-         4% DES_CBC
-         3% AES256_CFB
-         3% Camellia128_CBC
-         1% AES192_CFB
-      digesting:                       OK (4.43s)
-        +++ OK, passed 100 tests:
-        15% SHA384
-        10% MD4
-        10% MD5
-         9% SHA512
-         8% SHA256
-         7% MD2
-         6% SHA1
-         6% SHAKE128_256
-         6% SHAKE256_512
-         4% SHA224
-         4% SHAKE256 (Proxy :: Proxy 128)
-         3% SHAKE128 (Proxy :: Proxy 130)
-         3% SHAKE256 (Proxy :: Proxy 129)
-         3% SHAKE256 (Proxy :: Proxy 130)
-         2% SHAKE128 (Proxy :: Proxy 128)
-         2% SHAKE128 (Proxy :: Proxy 129)
-         1% SHAKE128 (Proxy :: Proxy 131)
-         1% SHAKE256 (Proxy :: Proxy 131)
-      encrypting:                      OK (6.08s)
-        +++ OK, passed 100 tests:
-        11% DES_CFB
-         8% AES128_ECB
-         8% DES_EDE3_CBC
-         8% RC2_CBC
-         7% AES256_CBC
-         7% AES256_ECB
-         6% Camellia128_CFB
-         6% Camellia128_CTR
-         5% AES192_ECB
-         5% CAST5_CBC
-         4% AES128_CBC
+         6% AES256_ECB
+         6% RC2_CBC
+         5% AES256_CFB
+         5% DES_ECB
          4% AES128_CFB
-         4% AES192_CBC
-         3% AES192_CFB
-         3% AES256_CFB
-         3% Camellia128_CBC
-         3% Camellia128_ECB
-         3% DES_CBC
-         2% DES_ECB
-      authenticating:                  OK (13.90s)
+         4% AES128_ECB
+         4% Camellia128_CBC
+         4% Camellia128_ECB
+         3% Camellia128_CFB
+         3% Camellia128_CTR
+         1% AES128_CBC
+         1% DES_CFB
+      digesting:                       OK (66.61s)
         +++ OK, passed 100 tests:
-        11% KMAC_SHAKE128 (Proxy :: Proxy 128) ""
-        10% KMAC_SHAKE256 (Proxy :: Proxy 128) "custom string"
-         8% HMAC SHA224
-         7% HMAC MD5
-         7% KMAC_SHAKE256 (Proxy :: Proxy 128) ""
-         6% HMAC SHA384
-         6% HMAC SHA512
-         6% KMAC_SHAKE128 (Proxy :: Proxy 128) "ctx"
-         4% HMAC SHA256
-         4% KMAC_SHAKE128 (Proxy :: Proxy 128) "custom string"
-         4% KMAC_SHAKE128 (Proxy :: Proxy 129) "ctx"
-         4% KMAC_SHAKE256 (Proxy :: Proxy 128) "ctx"
+        12% SHAKE256_512
+         9% MD5
+         9% SHA1
+         9% SHA256
+         8% SHAKE256 (Proxy :: Proxy 128)
+         7% SHA224
+         7% SHA384
+         7% SHA512
+         7% SHAKE128_256
+         6% MD2
+         5% SHAKE128 (Proxy :: Proxy 128)
+         4% MD4
+         4% SHAKE128 (Proxy :: Proxy 129)
+         3% SHAKE128 (Proxy :: Proxy 130)
+         2% SHAKE256 (Proxy :: Proxy 129)
+         1% SHAKE256 (Proxy :: Proxy 131)
+      encrypting:                      OK (78.31s)
+        +++ OK, passed 100 tests:
+        10% Camellia128_ECB
+         9% AES192_CFB
+         7% AES128_CFB
+         7% DES_EDE3_CBC
+         6% AES128_ECB
+         6% Camellia128_CBC
+         6% Camellia128_CTR
+         6% RC2_CBC
+         5% AES128_CBC
+         5% AES192_ECB
+         5% Camellia128_CFB
+         5% DES_CBC
+         4% AES192_CBC
+         4% CAST5_CBC
+         4% DES_ECB
+         3% AES256_CFB
+         3% AES256_ECB
+         3% DES_CFB
+         2% AES256_CBC
+      authenticating:                  OK (123.59s)
+        +++ OK, passed 100 tests:
+        12% KMAC_SHAKE256 (Proxy :: Proxy 128) "ctx"
+        11% KMAC_SHAKE256 (Proxy :: Proxy 128) ""
+         8% KMAC_SHAKE128 (Proxy :: Proxy 128) ""
+         7% HMAC SHA384
+         6% KMAC_SHAKE128 (Proxy :: Proxy 128) "custom string"
+         5% KMAC_SHAKE128 (Proxy :: Proxy 128) "ctx"
+         5% KMAC_SHAKE256 (Proxy :: Proxy 129) "ctx"
+         4% HMAC MD5
+         4% HMAC SHA1
+         4% HMAC SHA224
+         4% KMAC_SHAKE128 (Proxy :: Proxy 129) ""
          4% KMAC_SHAKE256 (Proxy :: Proxy 129) "custom string"
-         3% KMAC_SHAKE128 (Proxy :: Proxy 129) ""
-         2% KMAC_SHAKE128 (Proxy :: Proxy 130) "custom string"
-         2% KMAC_SHAKE128 (Proxy :: Proxy 131) "ctx"
-         2% KMAC_SHAKE256 (Proxy :: Proxy 129) "ctx"
-         2% KMAC_SHAKE256 (Proxy :: Proxy 131) "ctx"
-         1% HMAC SHA1
+         3% HMAC SHA256
+         3% KMAC_SHAKE128 (Proxy :: Proxy 130) "custom string"
+         3% KMAC_SHAKE256 (Proxy :: Proxy 128) "custom string"
+         3% KMAC_SHAKE256 (Proxy :: Proxy 129) ""
+         2% KMAC_SHAKE128 (Proxy :: Proxy 129) "ctx"
+         2% KMAC_SHAKE128 (Proxy :: Proxy 130) "ctx"
+         2% KMAC_SHAKE256 (Proxy :: Proxy 130) ""
+         2% KMAC_SHAKE256 (Proxy :: Proxy 131) "custom string"
+         1% HMAC SHA512
          1% KMAC_SHAKE128 (Proxy :: Proxy 129) "custom string"
          1% KMAC_SHAKE128 (Proxy :: Proxy 130) ""
-         1% KMAC_SHAKE128 (Proxy :: Proxy 130) "ctx"
-         1% KMAC_SHAKE128 (Proxy :: Proxy 131) ""
-         1% KMAC_SHAKE128 (Proxy :: Proxy 133) "ctx"
-         1% KMAC_SHAKE256 (Proxy :: Proxy 129) ""
+         1% KMAC_SHAKE128 (Proxy :: Proxy 131) "ctx"
          1% KMAC_SHAKE256 (Proxy :: Proxy 130) "ctx"
-      enveloping with authentication:  OK (12.46s)
+         1% KMAC_SHAKE256 (Proxy :: Proxy 130) "custom string"
+      enveloping with authentication:  OK (149.89s)
         +++ OK, passed 100 tests:
-        15% AES192_GCM
-        14% CHACHA20_POLY1305
-        13% AUTH_ENC_256
-        11% AES192_CCM
-        11% AES256_GCM
-        11% AUTH_ENC_128
-        10% AES256_CCM
-         8% AES128_GCM
-         7% AES128_CCM
+        14% AES256_GCM
+        13% AES128_CCM
+        13% AES192_CCM
+        13% AUTH_ENC_128
+        12% CHACHA20_POLY1305
+        10% AES128_GCM
+         9% AES192_GCM
+         9% AES256_CCM
+         7% AUTH_ENC_256
   X509
     RSA
       read public key:                 OK
@@ -489,9 +489,9 @@ cryptostore
       write certificate:               OK
       write public key:                OK
     properties
-      marshalling public keys:         OK (0.26s)
+      marshalling public keys:         OK (2.81s)
         +++ OK, passed 100 tests.
-      marshalling certificates:        OK (0.43s)
+      marshalling certificates:        OK (2.79s)
         +++ OK, passed 100 tests.
       marshalling CRLs:                OK
         +++ OK, passed 100 tests.
@@ -507,15 +507,15 @@ cryptostore
         PBES1
           read unencrypted:            OK
           read encrypted:              OK
-          same keys:                   OK (0.17s)
+          same keys:                   OK (0.18s)
         PBKDF2
           read unencrypted:            OK
           read encrypted:              OK
-          same keys:                   OK (0.08s)
+          same keys:                   OK (0.09s)
         Scrypt
           read unencrypted:            OK
           read encrypted:              OK
-          same keys:                   OK (0.08s)
+          same keys:                   OK (0.07s)
     DSA
       PrivateKey
         read outer:                    OK
@@ -551,11 +551,11 @@ cryptostore
         PBKDF2
           read unencrypted:            OK
           read encrypted:              OK
-          same keys:                   OK
+          same keys:                   OK (0.02s)
         Scrypt
           read unencrypted:            OK
           read encrypted:              OK
-          same keys:                   OK (0.05s)
+          same keys:                   OK (0.08s)
     EC (explicit prime curve)
       PrivateKey
         read outer:                    OK
@@ -571,7 +571,7 @@ cryptostore
         PBKDF2
           read unencrypted:            OK
           read encrypted:              OK
-          same keys:                   OK (0.05s)
+          same keys:                   OK (0.04s)
         Scrypt
           read unencrypted:            OK
           read encrypted:              OK
@@ -592,7 +592,7 @@ cryptostore
         Scrypt
           read unencrypted:            OK
           read encrypted:              OK
-          same keys:                   OK (0.08s)
+          same keys:                   OK (0.07s)
     X448
       PrivateKey
         read:                          OK
@@ -609,7 +609,7 @@ cryptostore
         Scrypt
           read unencrypted:            OK
           read encrypted:              OK
-          same keys:                   OK (0.08s)
+          same keys:                   OK (0.07s)
     Ed25519
       PrivateKey
         read:                          OK
@@ -626,7 +626,7 @@ cryptostore
         Scrypt
           read unencrypted:            OK
           read encrypted:              OK
-          same keys:                   OK (0.08s)
+          same keys:                   OK (0.05s)
     Ed448
       PrivateKey
         read:                          OK
@@ -643,22 +643,22 @@ cryptostore
         Scrypt
           read unencrypted:            OK
           read encrypted:              OK
-          same keys:                   OK (0.05s)
+          same keys:                   OK (0.08s)
     properties
-      marshalling:                     OK (0.26s)
+      marshalling:                     OK (3.89s)
         +++ OK, passed 100 tests.
-      marshalling with encryption:     OK (1.68s)
+      marshalling with encryption:     OK (9.03s)
         +++ OK, passed 100 tests.
   PKCS12
-    RSA:                               OK (0.59s)
+    RSA:                               OK (0.55s)
       Reading PKCS #12 files
       Reading private key
       Reading certificate
       Testing without integrity                         (0.07s)
       Testing integrity with SHA-1                      (0.07s)
       Testing integrity with SHA-256                    (0.07s)
-      Testing integrity with SHA-384                    (0.07s)
-      Testing without certificate privacy               (0.07s)
+      Testing integrity with SHA-384                    (0.06s)
+      Testing without certificate privacy               (0.06s)
       Testing certificate privacy with aes-128-cbc      (0.07s)
       Testing certificate privacy with PBE-SHA1-RC2-128 (0.07s)
       Testing certificate privacy with PBE-SHA1-RC2-40  (0.07s)
@@ -682,23 +682,23 @@ cryptostore
       Testing private-key privacy with aes-128-cbc
       Testing private-key privacy with PBE-SHA1-RC2-128
       Testing private-key privacy with PBE-SHA1-RC2-40
-    empty password:                    OK (0.46s)
+    empty password:                    OK (0.47s)
       Reading PKCS #12 files
       Testing Windows Certificate Export Wizard (0.07s)
       Testing OpenSSL                           (0.15s)
-      Testing GnuTLS with --empty-password      (0.16s)
-      Testing GnuTLS with --null-password       (0.07s)
+      Testing GnuTLS with --empty-password      (0.17s)
+      Testing GnuTLS with --null-password       (0.08s)
     properties
-      marshalling:                     OK (2.02s)
+      marshalling:                     OK (6.40s)
         +++ OK, passed 100 tests.
-      marshalling with authentication: OK (1.67s)
+      marshalling with authentication: OK (5.09s)
         +++ OK, passed 100 tests.
-      converting credentials:          OK (1.62s)
+      converting credentials:          OK (4.70s)
         +++ OK, passed 20 tests.
-      converting named credentials:    OK (2.08s)
+      converting named credentials:    OK (4.11s)
         +++ OK, passed 20 tests.
 
-All 217 tests passed (80.08s)
+All 217 tests passed (796.86s)
 Test suite test-cryptostore: PASS
 Test suite logged to:
 /tmp/workdir-cryptostore/cryptostore-0.3.1.0/dist-newstyle/build/x86_64-linux/ghc-9.6.6/cryptostore-0.3.1.0/t/test-cryptostore/test/cryptostore-0.3.1.0-test-cryptostore.log

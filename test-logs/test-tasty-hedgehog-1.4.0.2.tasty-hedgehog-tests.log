@@ -8,9 +8,9 @@ Test suite tasty-hedgehog-tests: RUNNING...
 tasty-hedgehog tests
   reverse involutive:          OK
       ✓ <interactive> passed 100 tests.
-        empty  2% ▍···················
-        small 30% ██████··············
-        large 70% ██████████████······
+        empty  5% █···················
+        small 32% ██████▍·············
+        large 68% █████████████▌······
   badReverse involutive fails: FAIL (expected)
       ✗ <interactive> failed at test/Main.hs:17:11
         after 3 tests and 1 shrink.
@@ -34,19 +34,19 @@ tasty-hedgehog tests
         37 ┃     test_involutive badReverse xs
       
         This failure can be reproduced by running:
-        > recheckAt (Seed 6375826234083953941 11858441317582688563) "3:b" <property>
+        > recheckAt (Seed 16877026469585382097 8952485406051432487) "3:b" <property>
       
-    Use "--pattern '$NF ~ /badReverse involutive fails/' --hedgehog-replay '3:b Seed 6375826234083953941 11858441317582688563'" to reproduce from the command-line.
+    Use "--pattern '$NF ~ /badReverse involutive fails/' --hedgehog-replay '3:b Seed 16877026469585382097 8952485406051432487'" to reproduce from the command-line.
      (expected failure)
   reverse involutive:          OK
       ✓ prop_reverse_involutive passed 100 tests.
-        empty  9% █▊··················
-        small 38% ███████▌············
-        large 62% ████████████▍·······
+        empty  5% █···················
+        small 34% ██████▊·············
+        large 66% █████████████▏······
   badReverse involutive fails: FAIL (expected)
       ✗ prop_badReverse_involutive failed at test/Main.hs:17:11
-        after 2 tests and 1 shrink.
-        shrink path: 2:b
+        after 3 tests and 2 shrinks.
+        shrink path: 3:b2
       
            ┏━━ test/Main.hs ━━━
         15 ┃ test_involutive :: (MonadTest m, Eq a, Show a) => (a -> a) -> a -> m ()
@@ -66,9 +66,9 @@ tasty-hedgehog tests
         37 ┃     test_involutive badReverse xs
       
         This failure can be reproduced by running:
-        > recheckAt (Seed 6794524707960773028 5336844151366331221) "2:b" prop_badReverse_involutive
+        > recheckAt (Seed 12555534166583443224 8805177446336291499) "3:b2" prop_badReverse_involutive
       
-    Use "--pattern '$NF ~ /badReverse involutive fails/' --hedgehog-replay '2:b Seed 6794524707960773028 5336844151366331221'" to reproduce from the command-line.
+    Use "--pattern '$NF ~ /badReverse involutive fails/' --hedgehog-replay '3:b2 Seed 12555534166583443224 8805177446336291499'" to reproduce from the command-line.
      (expected failure)
 
 All 4 tests passed (0.01s)
