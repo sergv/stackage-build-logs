@@ -1,11 +1,11 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - language-c99-util-0.2.0 (lib) (first run)
 Configuring library for language-c99-util-0.2.0...
 Preprocessing library for language-c99-util-0.2.0...
 Building library for language-c99-util-0.2.0...
 [1 of 4] Compiling Language.C99.Util.IsList
-
 src/Language/C99/Util/IsList.hs:25:10: warning: [GHC-06201] [-Wmissing-methods]
     • No explicit implementation for
         ‘toList’
@@ -45,6 +45,47 @@ src/Language/C99/Util/IsList.hs:47:10: warning: [GHC-06201] [-Wmissing-methods]
    |
 47 | instance IsList DeclnList where
    |          ^^^^^^^^^^^^^^^^
+
 [2 of 4] Compiling Language.C99.Util.Wrap
 [3 of 4] Compiling Language.C99.Util.Expr
+src/Language/C99/Util/Expr.hs:109:35: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+109 |         dec = takeWhile (/='e') $ tail $ dropWhile (/='.') ds
+    |                                   ^^^^
+
+src/Language/C99/Util/Expr.hs:112:16: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+112 |           _ -> tail e
+    |                ^^^^
+
+src/Language/C99/Util/Expr.hs:116:17: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+116 |       op = case head nat of
+    |                 ^^^^
+
+src/Language/C99/Util/Expr.hs:119:19: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+119 |       nat' = case head nat of
+    |                   ^^^^
+
+src/Language/C99/Util/Expr.hs:120:36: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+120 |         '-' -> digitseq $ digitsc (tail nat)
+    |                                    ^^^^
+
 [4 of 4] Compiling Language.C99.Util

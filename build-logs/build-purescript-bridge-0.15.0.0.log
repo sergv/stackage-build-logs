@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - purescript-bridge-0.15.0.0 (lib) (first run)
  - purescript-bridge-0.15.0.0 (test:tests) (first run)
@@ -9,8 +10,7 @@ Building library for purescript-bridge-0.15.0.0...
 [ 2 of 10] Compiling Language.PureScript.Bridge.TypeInfo
 [ 3 of 10] Compiling Language.PureScript.Bridge.SumType
 [ 4 of 10] Compiling Language.PureScript.Bridge.Printer
-
-src/Language/PureScript/Bridge/Printer.hs:13:1: warning: [-Wunused-imports]
+src/Language/PureScript/Bridge/Printer.hs:13:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
@@ -25,7 +25,7 @@ src/Language/PureScript/Bridge/Printer.hs:188:9: warning: [GHC-63397] [-Wname-sh
 188 |         instances params = genericInstance settings params <> ", " <> encodeInstance params
     |         ^^^^^^^^^
 
-src/Language/PureScript/Bridge/Printer.hs:193:9: warning: [-Wunused-local-binds]
+src/Language/PureScript/Bridge/Printer.hs:193:9: warning: [GHC-40910] [-Wunused-local-binds]
     Defined but not used: ‘encodeOpts’
     |
 193 |         encodeOpts =
@@ -51,16 +51,25 @@ src/Language/PureScript/Bridge/Printer.hs:222:9: warning: [GHC-63397] [-Wname-sh
     |
 222 |         instances params = genericInstance settings params <> ", " <> decodeJsonInstance params <> ", " <> decodeJsonFieldInstance params
     |         ^^^^^^^^^
-[ 5 of 10] Compiling Language.PureScript.Bridge.Builder
 
-src/Language/PureScript/Bridge/Builder.hs:46:1: warning: [-Wunused-imports]
+[ 5 of 10] Compiling Language.PureScript.Bridge.Builder
+src/Language/PureScript/Bridge/Builder.hs:46:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 46 | import           Data.Monoid ((<>))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [ 6 of 10] Compiling Language.PureScript.Bridge.PSTypes
+src/Language/PureScript/Bridge/PSTypes.hs:36:17: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+36 |   valueTypes <- tail <$> psTypeParameters
+   |                 ^^^^
+
 [ 7 of 10] Compiling Language.PureScript.Bridge.Tuple
 [ 8 of 10] Compiling Language.PureScript.Bridge.Primitives
 [ 9 of 10] Compiling Language.PureScript.Bridge
@@ -70,4 +79,36 @@ Preprocessing test suite 'tests' for purescript-bridge-0.15.0.0...
 Building test suite 'tests' for purescript-bridge-0.15.0.0...
 [1 of 2] Compiling TestData
 [2 of 2] Compiling Main
-[3 of 3] Linking /tmp/workdir-purescript-bridge/purescript-bridge-0.15.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/purescript-bridge-0.15.0.0/t/tests/build/tests/tests
+test/Spec.hs:100:15: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+100 |           m = head . map (moduleToText defaultSettings) . Map.elems $ modules
+    |               ^^^^
+
+test/Spec.hs:343:15: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+343 |           m = head . map (moduleToText settings) . Map.elems $ modules
+    |               ^^^^
+
+test/Spec.hs:430:15: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+430 |           m = head . map (moduleToText settings) . Map.elems $ modules
+    |               ^^^^
+
+test/Spec.hs:505:19: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+505 |                in head . map (moduleToText settings) . Map.elems $ modules
+    |                   ^^^^
+
+[3 of 3] Linking /tmp/workdir-purescript-bridge/purescript-bridge-0.15.0.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/purescript-bridge-0.15.0.0/t/tests/build/tests/tests

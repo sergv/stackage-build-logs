@@ -1,14 +1,31 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - bindings-DSL-1.0.25 (lib) (first run)
 Configuring library for bindings-DSL-1.0.25...
 Preprocessing library for bindings-DSL-1.0.25...
 Building library for bindings-DSL-1.0.25...
 [1 of 1] Compiling Bindings.Utilities
-
 Bindings/Utilities.hs:2:1: warning: [GHC-94817] [-Wtabs]
     Tab character found here, and in 11 further locations.
     Suggested fix: Please use spaces instead.
   |
 2 |         storableCast,
   | ^^^^^^^^
+
+Bindings/Utilities.hs:15:54: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+15 | storableCast a = storableCastArray [a] >>= (return . head)
+   |                                                      ^^^^
+
+Bindings/Utilities.hs:33:50: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+33 |         let (q,r) = divMod (length a * (sizeOf . head) a) (sizeOf u)
+   |                                                  ^^^^
+

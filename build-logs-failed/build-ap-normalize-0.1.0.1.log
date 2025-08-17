@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - ap-normalize-0.1.0.1 (lib) (first run)
  - ap-normalize-0.1.0.1 (test:example-test) (first run)
@@ -8,13 +9,13 @@ Preprocessing library for ap-normalize-0.1.0.1...
 Building library for ap-normalize-0.1.0.1...
 [1 of 3] Compiling ApNormalize.DList
 [2 of 3] Compiling ApNormalize.Aps
-
-src/ApNormalize/Aps.hs:19:29: warning: [-Wunused-imports]
+src/ApNormalize/Aps.hs:19:29: warning: [GHC-38856] [-Wunused-imports]
     The import of ‘liftA2’
     from module ‘Control.Applicative’ is redundant
    |
 19 | import Control.Applicative (liftA2, liftA3)
    |                             ^^^^^^
+
 [3 of 3] Compiling ApNormalize
 Configuring test suite 'example-test' for ap-normalize-0.1.0.1...
 Preprocessing test suite 'example-test' for ap-normalize-0.1.0.1...
@@ -26,7 +27,7 @@ test/example.hs:51:1: traverseNormal === traverseTree passed.
 inspection testing successful
       expected successes: 2
        expected failures: 1
-[2 of 2] Linking /tmp/workdir-ap-normalize/ap-normalize-0.1.0.1/dist-newstyle/build/x86_64-linux/ghc-9.6.5/ap-normalize-0.1.0.1/t/example-test/build/example-test/example-test
+[2 of 2] Linking /tmp/workdir-ap-normalize/ap-normalize-0.1.0.1/dist-newstyle/build/x86_64-linux/ghc-9.10.2/ap-normalize-0.1.0.1/t/example-test/build/example-test/example-test
 Configuring test suite 'assoc-test' for ap-normalize-0.1.0.1...
 Preprocessing test suite 'assoc-test' for ap-normalize-0.1.0.1...
 Building test suite 'assoc-test' for ap-normalize-0.1.0.1...
@@ -46,87 +47,94 @@ test/assoc.hs:77:151: assoc1'_'Cont === assoc2'_'Cont passed.
 test/assoc.hs:81:191: assoc1'_'AccumEndo === assoc2'_'AccumEndo passed.
 test/assoc.hs:82:199: assoc1'_'WriterEndo === assoc2'_'WriterEndo passed.
 test/assoc.hs:83:191: assoc1'_'RWSEndo ==- assoc2'_'RWSEndo failed:
+inequal terms:
+$fAlternativeRWST3
+  $fMonoidEndo $fFunctorIdentity $fMonadIdentity lvl_sfby x y
+and
+x
+in
+  comparing definitions of $wassoc1'_'RWSEndo =?= $wassoc2'_'RWSEndo
 LHS:
-    assoc1'_'RWSEndo = assoc1'_'RWSEndo_sd9R `cast` <Co:68> :: ...
+    assoc1'_'RWSEndo = assoc1'_'RWSEndo_seey `cast` <Co:68> :: ...
     
-    lvl_se0n
-      = \ @c @a @b ds_dcHB ds_dcHC ds_dcHD -> (ds_dcHB, ds_dcHC, ds_dcHD)
+    lvl_sfby
+      = \ @c @a @b ds_ddMa ds_ddMb ds_ddMc -> (ds_ddMa, ds_ddMb, ds_ddMc)
     
     $wassoc1'_'RWSEndo
-      = \ @r @w @s @a @b @c x y z eta_se8q eta_se8r ->
+      = \ @r @w @s @a @b @c x y z eta_sfjD eta_sfjE ->
           let {
-            ds2_sdZu
+            ds2_sfaF
               = $fAlternativeRWST3
                   $fMonoidEndo
                   $fFunctorIdentity
                   $fMonadIdentity
-                  lvl_se0n
+                  lvl_sfby
                   x
                   y
-                  eta_se8q
-                  eta_se8r } in
+                  eta_sfjD
+                  eta_sfjE } in
           let {
-            ds3_sdZw
+            ds3_sfaH
               = (z `cast` <Co:7> :: ...)
-                  eta_se8q
-                  (case ds2_sdZu `cast` <Co:10> :: ... of { (f, s', w2) -> s' }) } in
-          (# case ds2_sdZu `cast` <Co:10> :: ... of { (f, s', w2) ->
-             f (case ds3_sdZw `cast` <Co:6> :: ... of { (x, s'', w') -> x })
+                  eta_sfjD
+                  (case ds2_sfaF `cast` <Co:10> :: ... of { (f, s', w2) -> s' }) } in
+          (# case ds2_sfaF `cast` <Co:10> :: ... of { (f, s', w2) ->
+             f (case ds3_sfaH `cast` <Co:6> :: ... of { (x, s'', w') -> x })
              },
-             case ds3_sdZw `cast` <Co:6> :: ... of { (x, s'', w') -> s'' },
+             case ds3_sfaH `cast` <Co:6> :: ... of { (x, s'', w') -> s'' },
              (\ x ->
-                case ds2_sdZu `cast` <Co:10> :: ... of { (f, s', w2) ->
+                case ds2_sfaF `cast` <Co:10> :: ... of { (f, s', w2) ->
                 (w2 `cast` <Co:2> :: ...)
-                  (case ds3_sdZw `cast` <Co:6> :: ... of { (x, s'', w') ->
+                  (case ds3_sfaH `cast` <Co:6> :: ... of { (x, s'', w') ->
                    (w' `cast` <Co:2> :: ...) x
                    })
                 })
              `cast` <Co:3> :: ... #)
     
-    assoc1'_'RWSEndo_sd9R
-      = \ @r @w @s @a @b @c x y z eta_se8q eta_se8r ->
-          case $wassoc1'_'RWSEndo x y z eta_se8q eta_se8r of
+    assoc1'_'RWSEndo_seey
+      = \ @r @w @s @a @b @c x y z eta_sfjD eta_sfjE ->
+          case $wassoc1'_'RWSEndo x y z eta_sfjD eta_sfjE of
           { (# ww, ww, ww #) ->
           (ww, ww, ww) `cast` <Co:10> :: ...
           }
     
 RHS:
-    assoc2'_'RWSEndo = assoc2'_'RWSEndo_sd9T `cast` <Co:50> :: ...
+    assoc2'_'RWSEndo = assoc2'_'RWSEndo_seeA `cast` <Co:50> :: ...
     
-    lvl_se0o = \ @c @b ds_dcHt ds_dcHu -> (ds_dcHt, ds_dcHu)
+    lvl_sfbz = \ @c @b ds_ddM2 ds_ddM3 -> (ds_ddM2, ds_ddM3)
     
     $wassoc2'_'RWSEndo
-      = \ @r @w @s @a @b @c x y z eta_se8M eta_se8N ->
-          let { ds_sdZy = (x `cast` <Co:7> :: ...) eta_se8M eta_se8N } in
+      = \ @r @w @s @a @b @c x y z eta_sfjZ eta_sfk0 ->
+          let { ds_sfaJ = (x `cast` <Co:7> :: ...) eta_sfjZ eta_sfk0 } in
           let {
-            ds1_sdZA
+            ds1_sfaL
               = $fAlternativeRWST3
                   $fMonoidEndo
                   $fFunctorIdentity
                   $fMonadIdentity
-                  lvl_se0o
+                  lvl_sfbz
                   y
                   z
-                  eta_se8M
-                  (case ds_sdZy `cast` <Co:6> :: ... of { (a1, s', w1) -> s' }) } in
-          (# case ds1_sdZA `cast` <Co:8> :: ... of { (x, s'', w') ->
+                  eta_sfjZ
+                  (case ds_sfaJ `cast` <Co:6> :: ... of { (a1, s', w1) -> s' }) } in
+          (# case ds1_sfaL `cast` <Co:8> :: ... of { (x, s'', w') ->
              case x of { (y, z) ->
-             (case ds_sdZy `cast` <Co:6> :: ... of { (a1, s', w1) -> a1 }, y, z)
+             (case ds_sfaJ `cast` <Co:6> :: ... of { (a1, s', w1) -> a1 }, y, z)
              }
              },
-             case ds1_sdZA `cast` <Co:8> :: ... of { (x, s'', w') -> s'' },
+             case ds1_sfaL `cast` <Co:8> :: ... of { (x, s'', w') -> s'' },
              (\ x ->
-                case ds_sdZy `cast` <Co:6> :: ... of { (a1, s', w1) ->
+                case ds_sfaJ `cast` <Co:6> :: ... of { (a1, s', w1) ->
                 (w1 `cast` <Co:2> :: ...)
-                  (case ds1_sdZA `cast` <Co:8> :: ... of { (x, s'', w') ->
+                  (case ds1_sfaL `cast` <Co:8> :: ... of { (x, s'', w') ->
                    (w' `cast` <Co:2> :: ...) x
                    })
                 })
              `cast` <Co:3> :: ... #)
     
-    assoc2'_'RWSEndo_sd9T
-      = \ @r @w @s @a @b @c x y z eta_se8M eta_se8N ->
-          case $wassoc2'_'RWSEndo x y z eta_se8M eta_se8N of
+    assoc2'_'RWSEndo_seeA
+      = \ @r @w @s @a @b @c x y z eta_sfjZ eta_sfk0 ->
+          case $wassoc2'_'RWSEndo x y z eta_sfjZ eta_sfk0 of
           { (# ww, ww, ww #) ->
           (ww, ww, ww) `cast` <Co:10> :: ...
           }
@@ -137,7 +145,6 @@ test/assoc.hs:86:158: assoc1'_'RWS === assoc2'_'RWS failed expectedly.
 test/assoc.hs:89:123: assoc1'_'List === assoc2'_'List failed expectedly.
 test/assoc.hs:90:155: assoc1'_'ZipList === assoc2'_'ZipList failed expectedly.
 test/assoc.hs:91:155: assoc1'_'Select === assoc2'_'Select failed expectedly.
-
 test/assoc.hs: error:
     inspection testing unsuccessful
           expected successes: 13
@@ -145,6 +152,7 @@ test/assoc.hs: error:
          unexpected failures: 1
 
 <no location info>: error: ExitFailure 1
+
 Error: [Cabal-7125]
 Failed to build test:assoc-test from ap-normalize-0.1.0.1.
 

@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - TCache-0.13.3 (lib) (first run)
  - TCache-0.13.3 (test:caching) (first run)
@@ -8,8 +9,15 @@ Building library for TCache-0.13.3...
 [ 1 of 11] Compiling Data.Persistent.IDynamic
 [ 2 of 11] Compiling Data.TCache.Defs
 [ 3 of 11] Compiling Data.TCache.IResource
-[ 4 of 11] Compiling Data.TCache.Triggers
+Data/TCache/IResource.hs:37:30: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+37 |         readResourceByKey k= head <$> readResourcesByKey [k]
+   |                              ^^^^
 
+[ 4 of 11] Compiling Data.TCache.Triggers
 Data/TCache/Triggers.hs:44:3: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -17,7 +25,31 @@ Data/TCache/Triggers.hs:44:3: warning: [GHC-62161] [-Wincomplete-uni-patterns]
    |
 44 |   (_,atype:_)= splitTyConApp  . typeOf $ TriggerType tr
    |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Data/TCache/Triggers.hs:56:53: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+56 |    let ts = mbToList $ lookup   (typeOf $ fromJust (head mas)) map'
+   |                                                     ^^^^
+
 [ 5 of 11] Compiling Data.TCache
+Data/TCache.hs:473:43: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+473 |          in  [( getDBRef key1 :: DBRef a, tail  nstr)]
+    |                                           ^^^^
+
+Data/TCache.hs:697:89: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+697 |       applyTriggers (map (getDBRef . keyResource) ds) (repeat (Nothing `asTypeOf` Just (head ds)))
+    |                                                                                         ^^^^
 
 Data/TCache.hs:713:38: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
@@ -28,7 +60,31 @@ Data/TCache.hs:713:38: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     |
 713 | withResource r f= withResources [r] (\[mr]-> [f mr])
     |                                      ^^^^^^^^^^^^^^
+
+Data/TCache.hs:732:51: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+732 | getResource r= do{mr<- getResources [r];return $! head mr}
+    |                                                   ^^^^
+
+Data/TCache.hs:756:13: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘Resources a ()’ not matched: Retry
+    |
+756 |    f1 mrs = resources {toDelete=catMaybes mrs}
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [ 6 of 11] Compiling Data.TCache.Memoization
+Data/TCache/Memoization.hs:100:35: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘Resources (Cached a b) ()’ not matched: Retry
+    |
+100 |     withSTMResources [] . const $ resources{toAdd= [Cached a b c d] }
+    |                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Data/TCache/Memoization.hs:123:30: warning: [GHC-47082] [-Woperator-whitespace-ext-conflict]
     The prefix use of a ‘$’ would denote an untyped splice
@@ -37,9 +93,9 @@ Data/TCache/Memoization.hs:123:30: warning: [GHC-47082] [-Woperator-whitespace-e
     |
 123 |      let r = unsafePerformIO $return . fromJust =<< readResource proto   -- !> "fillIt"
     |                              ^
-[ 7 of 11] Compiling Data.TCache.IndexQuery
 
-Data/TCache/IndexQuery.hs:92:8: warning: [-Wcompat-unqualified-imports]
+[ 7 of 11] Compiling Data.TCache.IndexQuery
+Data/TCache/IndexQuery.hs:92:8: warning: [GHC-82347] [-Wcompat-unqualified-imports]
     To ensure compatibility with future core libraries changes
     imports to Data.List should be
     either qualified or have an explicit import list.
@@ -47,7 +103,7 @@ Data/TCache/IndexQuery.hs:92:8: warning: [-Wcompat-unqualified-imports]
 92 | import Data.List
    |        ^^^^^^^^^
 
-Data/TCache/IndexQuery.hs:94:31: warning: [-Wunused-imports]
+Data/TCache/IndexQuery.hs:94:31: warning: [GHC-38856] [-Wunused-imports]
     The import of ‘fromMaybe’ from module ‘Data.Maybe’ is redundant
    |
 94 | import Data.Maybe (catMaybes, fromMaybe)
@@ -117,9 +173,9 @@ Data/TCache/IndexQuery.hs:323:8: warning: [GHC-62161] [-Wincomplete-uni-patterns
     |
 323 |    let [one, two]= typeRepArgs $! typeOf selector
     |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[ 8 of 11] Compiling Data.TCache.IndexText
 
-Data/TCache/IndexText.hs:70:1: warning: [-Wunused-imports]
+[ 8 of 11] Compiling Data.TCache.IndexText
+Data/TCache/IndexText.hs:70:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘GHC.Conc’ is redundant
       except perhaps to import instances from ‘GHC.Conc’
     To import instances alone, use: import GHC.Conc()
@@ -169,19 +225,52 @@ Data/TCache/IndexText.hs:216:8: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     |
 216 |      $ \[r] -> resources{toReturn= r}
     |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Data/TCache/IndexText.hs:216:16: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘Resources IndexText ()’ not matched: Retry
+    |
+216 |      $ \[r] -> resources{toReturn= r}
+    |                ^^^^^^^^^^^^^^^^^^^^^^
+
 [ 9 of 11] Compiling Data.TCache.DefaultPersistence
 [10 of 11] Compiling Data.Persistent.Collection
-
-Data/Persistent/Collection.hs:34:1: warning: [-Wunused-imports]
+Data/Persistent/Collection.hs:34:1: warning: [GHC-38856] [-Wunused-imports]
     The import of ‘STM, atomically’
     from module ‘Control.Concurrent.STM’ is redundant
    |
 34 | import Control.Concurrent.STM(STM,atomically, retry)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Data/Persistent/Collection.hs:151:48: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+151 |                  writeDBRef tv  (Queue  n imp (Prelude.tail list ))
+    |                                                ^^^^^^^^^^^^
+
+Data/Persistent/Collection.hs:152:28: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+152 |                  return  $ Prelude.head list
+    |                            ^^^^^^^^^^^^
+
+Data/Persistent/Collection.hs:165:41: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+165 |     doit (Queue _ _  list ) = return  $ Prelude.head list
+    |                                         ^^^^^^^^^^^^
+
 [11 of 11] Compiling Paths_TCache
 Configuring test suite 'caching' for TCache-0.13.3...
 Preprocessing test suite 'caching' for TCache-0.13.3...
 Building test suite 'caching' for TCache-0.13.3...
 [1 of 2] Compiling Main
 [2 of 2] Compiling Paths_TCache
-[3 of 3] Linking /tmp/workdir-TCache/TCache-0.13.3/dist-newstyle/build/x86_64-linux/ghc-9.6.5/TCache-0.13.3/t/caching/build/caching/caching
+[3 of 3] Linking /tmp/workdir-TCache/TCache-0.13.3/dist-newstyle/build/x86_64-linux/ghc-9.10.2/TCache-0.13.3/t/caching/build/caching/caching

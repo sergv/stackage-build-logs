@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - turtle-1.6.2 (lib) (first run)
  - turtle-1.6.2 (test:tests) (first run)
@@ -11,18 +12,18 @@ Preprocessing library for turtle-1.6.2...
 Building library for turtle-1.6.2...
 [ 1 of 10] Compiling Turtle.Internal
 [ 2 of 10] Compiling Turtle.Line
-
-src/Turtle/Line.hs:67:3: warning: [-Wnoncanonical-monoid-instances]
+src/Turtle/Line.hs:67:3: warning: [GHC-50928] [-Wnoncanonical-monoid-instances]
     Noncanonical ‘(<>) = mappend’ definition detected
     in the instance declaration for ‘Semigroup Line’.
-    Move definition from ‘mappend’ to ‘(<>)’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    Suggested fix:
+      Move definition from ‘mappend’ to ‘(<>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
    |
 67 |   (<>) = mappend
    |   ^^^^^^^^^^^^^^
-[ 3 of 10] Compiling Turtle.Format
 
-src/Turtle/Format.hs:72:1: warning: [-Wunused-imports]
+[ 3 of 10] Compiling Turtle.Format
+src/Turtle/Format.hs:72:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
@@ -37,9 +38,9 @@ src/Turtle/Format.hs:100:13: warning: [GHC-58520] [-Wtype-equality-requires-oper
     |
 100 | instance (a ~ b) => IsString (Format a b) where
     |             ^
-[ 4 of 10] Compiling Turtle.Options
 
-src/Turtle/Options.hs:78:1: warning: [-Wunused-imports]
+[ 4 of 10] Compiling Turtle.Options
+src/Turtle/Options.hs:78:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
@@ -47,7 +48,7 @@ src/Turtle/Options.hs:78:1: warning: [-Wunused-imports]
 78 | import Data.Monoid
    | ^^^^^^^^^^^^^^^^^^
 
-src/Turtle/Options.hs:79:1: warning: [-Wunused-imports]
+src/Turtle/Options.hs:79:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Foldable’ is redundant
       except perhaps to import instances from ‘Data.Foldable’
     To import instances alone, use: import Data.Foldable()
@@ -55,7 +56,7 @@ src/Turtle/Options.hs:79:1: warning: [-Wunused-imports]
 79 | import Data.Foldable
    | ^^^^^^^^^^^^^^^^^^^^
 
-src/Turtle/Options.hs:84:1: warning: [-Wunused-imports]
+src/Turtle/Options.hs:84:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
@@ -63,7 +64,7 @@ src/Turtle/Options.hs:84:1: warning: [-Wunused-imports]
 84 | import Control.Applicative
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Turtle/Options.hs:87:1: warning: [-Wdeprecations]
+src/Turtle/Options.hs:87:1: warning: [GHC-15328] [-Wdeprecations]
     Module ‘Text.PrettyPrint.ANSI.Leijen’ is deprecated:
       "Compatibility module for users of ansi-wl-pprint - use \"Prettyprinter\" instead"
    |
@@ -109,23 +110,33 @@ src/Turtle/Options.hs:318:23: warning: [GHC-68441] [-Wdeprecations]
     |
 318 |     name' = displayS (renderCompact (getDescription name)) ""
     |                       ^^^^^^^^^^^^^
-[ 5 of 10] Compiling Turtle.Pattern
 
-src/Turtle/Pattern.hs:129:3: warning: [-Wnoncanonical-monoid-instances]
+[ 5 of 10] Compiling Turtle.Pattern
+src/Turtle/Pattern.hs:116:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.List’ is redundant
+      except perhaps to import instances from ‘Data.List’
+    To import instances alone, use: import Data.List()
+    |
+116 | import Data.List (foldl')
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Turtle/Pattern.hs:129:3: warning: [GHC-50928] [-Wnoncanonical-monoid-instances]
     Noncanonical ‘(<>) = mappend’ definition detected
     in the instance declaration for ‘Semigroup (Pattern a)’.
-    Move definition from ‘mappend’ to ‘(<>)’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    Suggested fix:
+      Move definition from ‘mappend’ to ‘(<>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
     |
 129 |   (<>) = mappend
     |   ^^^^^^^^^^^^^^
 
-src/Turtle/Pattern.hs:134:5: warning: [-Wnoncanonical-monoid-instances]
+src/Turtle/Pattern.hs:134:5: warning: [GHC-50928] [-Wnoncanonical-monoid-instances]
     Noncanonical ‘mappend’ definition detected
     in the instance declaration for ‘Monoid (Pattern a)’.
     ‘mappend’ will eventually be removed in favour of ‘(<>)’
-    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    Suggested fix:
+      Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
     |
 134 |     mappend = liftA2 mappend
     |     ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -137,9 +148,9 @@ src/Turtle/Pattern.hs:142:13: warning: [GHC-58520] [-Wtype-equality-requires-ope
     |
 142 | instance (a ~ Text) => IsString (Pattern a) where
     |             ^
-[ 6 of 10] Compiling Turtle.Shell
 
-src/Turtle/Shell.hs:89:1: warning: [-Wunused-imports]
+[ 6 of 10] Compiling Turtle.Shell
+src/Turtle/Shell.hs:89:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Foldable’ is redundant
       except perhaps to import instances from ‘Data.Foldable’
     To import instances alone, use: import Data.Foldable()
@@ -147,93 +158,106 @@ src/Turtle/Shell.hs:89:1: warning: [-Wunused-imports]
 89 | import Data.Foldable (Foldable)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Turtle/Shell.hs:175:5: warning: [-Wnoncanonical-monad-instances]
+src/Turtle/Shell.hs:175:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘pure = return’ definition detected
     in the instance declaration for ‘Applicative Shell’.
-    Move definition from ‘return’ to ‘pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Move definition from ‘return’ to ‘pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 175 |     pure  = return
     |     ^^^^^^^^^^^^^^
 
-src/Turtle/Shell.hs:179:5: warning: [-Wnoncanonical-monad-instances]
+src/Turtle/Shell.hs:179:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad Shell’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 179 |     return a = Shell (\(FoldShell step begin done) -> do
     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
-src/Turtle/Shell.hs:225:3: warning: [-Wnoncanonical-monoid-instances]
+src/Turtle/Shell.hs:225:3: warning: [GHC-50928] [-Wnoncanonical-monoid-instances]
     Noncanonical ‘(<>) = mappend’ definition detected
     in the instance declaration for ‘Semigroup (Shell a)’.
-    Move definition from ‘mappend’ to ‘(<>)’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    Suggested fix:
+      Move definition from ‘mappend’ to ‘(<>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
     |
 225 |   (<>) = mappend
     |   ^^^^^^^^^^^^^^
 
-src/Turtle/Shell.hs:230:5: warning: [-Wnoncanonical-monoid-instances]
+src/Turtle/Shell.hs:230:5: warning: [GHC-50928] [-Wnoncanonical-monoid-instances]
     Noncanonical ‘mappend’ definition detected
     in the instance declaration for ‘Monoid (Shell a)’.
     ‘mappend’ will eventually be removed in favour of ‘(<>)’
-    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    Suggested fix:
+      Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
     |
 230 |     mappend = liftA2 mappend
     |     ^^^^^^^^^^^^^^^^^^^^^^^^
-[ 7 of 10] Compiling Turtle.Prelude
 
-src/Turtle/Prelude.hs:319:1: warning: [-Wunused-imports]
+[ 7 of 10] Compiling Turtle.Prelude
+src/Turtle/Prelude.hs:319:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
     |
 319 | import Data.Monoid ((<>))
     | ^^^^^^^^^^^^^^^^^^^^^^^^^
-[ 8 of 10] Compiling Turtle.Bytes
 
-src/Turtle/Bytes.hs:52:1: warning: [-Wunused-imports]
+src/Turtle/Prelude.hs:1928:20: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+     |
+1928 | cut pattern' txt = head (match (selfless chars `sepBy` pattern') txt)
+     |                    ^^^^
+
+[ 8 of 10] Compiling Turtle.Bytes
+src/Turtle/Bytes.hs:52:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 52 | import Data.Monoid
    | ^^^^^^^^^^^^^^^^^^
+
 [ 9 of 10] Compiling Turtle
 [10 of 10] Compiling Turtle.Tutorial
 Configuring test suite 'tests' for turtle-1.6.2...
 Preprocessing test suite 'tests' for turtle-1.6.2...
 Building test suite 'tests' for turtle-1.6.2...
 [1 of 1] Compiling Main
-[2 of 2] Linking /tmp/workdir-turtle/turtle-1.6.2/dist-newstyle/build/x86_64-linux/ghc-9.6.5/turtle-1.6.2/t/tests/build/tests/tests
+[2 of 2] Linking /tmp/workdir-turtle/turtle-1.6.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/turtle-1.6.2/t/tests/build/tests/tests
 Configuring test suite 'system-filepath-tests' for turtle-1.6.2...
 Preprocessing test suite 'system-filepath-tests' for turtle-1.6.2...
 Building test suite 'system-filepath-tests' for turtle-1.6.2...
 [1 of 1] Compiling Main
-[2 of 2] Linking /tmp/workdir-turtle/turtle-1.6.2/dist-newstyle/build/x86_64-linux/ghc-9.6.5/turtle-1.6.2/t/system-filepath-tests/build/system-filepath-tests/system-filepath-tests
+[2 of 2] Linking /tmp/workdir-turtle/turtle-1.6.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/turtle-1.6.2/t/system-filepath-tests/build/system-filepath-tests/system-filepath-tests
 Configuring test suite 'regression-masking-exception' for turtle-1.6.2...
 Preprocessing test suite 'regression-masking-exception' for turtle-1.6.2...
 Building test suite 'regression-masking-exception' for turtle-1.6.2...
 [1 of 1] Compiling Main
-[2 of 2] Linking /tmp/workdir-turtle/turtle-1.6.2/dist-newstyle/build/x86_64-linux/ghc-9.6.5/turtle-1.6.2/t/regression-masking-exception/build/regression-masking-exception/regression-masking-exception
+[2 of 2] Linking /tmp/workdir-turtle/turtle-1.6.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/turtle-1.6.2/t/regression-masking-exception/build/regression-masking-exception/regression-masking-exception
 Configuring test suite 'regression-broken-pipe' for turtle-1.6.2...
 Preprocessing test suite 'regression-broken-pipe' for turtle-1.6.2...
 Building test suite 'regression-broken-pipe' for turtle-1.6.2...
 [1 of 1] Compiling Main
-[2 of 2] Linking /tmp/workdir-turtle/turtle-1.6.2/dist-newstyle/build/x86_64-linux/ghc-9.6.5/turtle-1.6.2/t/regression-broken-pipe/build/regression-broken-pipe/regression-broken-pipe
+[2 of 2] Linking /tmp/workdir-turtle/turtle-1.6.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/turtle-1.6.2/t/regression-broken-pipe/build/regression-broken-pipe/regression-broken-pipe
 Configuring test suite 'cptree' for turtle-1.6.2...
 Preprocessing test suite 'cptree' for turtle-1.6.2...
 Building test suite 'cptree' for turtle-1.6.2...
 [1 of 1] Compiling Main
-
-test/cptree.hs:6:1: warning: [-Wunused-imports]
+test/cptree.hs:6:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Monad’ is redundant
       except perhaps to import instances from ‘Control.Monad’
     To import instances alone, use: import Control.Monad()
   |
 6 | import Control.Monad (unless)
   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[2 of 2] Linking /tmp/workdir-turtle/turtle-1.6.2/dist-newstyle/build/x86_64-linux/ghc-9.6.5/turtle-1.6.2/t/cptree/build/cptree/cptree
+
+[2 of 2] Linking /tmp/workdir-turtle/turtle-1.6.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/turtle-1.6.2/t/cptree/build/cptree/cptree

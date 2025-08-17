@@ -1,0 +1,950 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - reflex-0.9.3.4 (lib) (first run)
+ - reflex-0.9.3.4 (test:semantics) (first run)
+ - reflex-0.9.3.4 (test:rootCleanup) (first run)
+ - reflex-0.9.3.4 (test:RequesterT) (first run)
+ - reflex-0.9.3.4 (test:QueryT) (first run)
+ - reflex-0.9.3.4 (test:Headless) (first run)
+ - reflex-0.9.3.4 (test:GC-Semantics) (first run)
+ - reflex-0.9.3.4 (test:EventWriterT) (first run)
+ - reflex-0.9.3.4 (test:DebugCycles) (first run)
+ - reflex-0.9.3.4 (test:CrossImpl) (first run)
+ - reflex-0.9.3.4 (test:Adjustable) (first run)
+Configuring library for reflex-0.9.3.4...
+Preprocessing library for reflex-0.9.3.4...
+Building library for reflex-0.9.3.4...
+[ 1 of 45] Compiling Control.Monad.ReaderIO
+src/Control/Monad/ReaderIO.hs:12:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+12 | import Control.Applicative
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[ 2 of 45] Compiling Data.AppendMap
+[ 3 of 45] Compiling Data.FastMutableIntMap
+[ 4 of 45] Compiling Data.FastWeakBag
+[ 5 of 45] Compiling Data.Map.Misc
+[ 6 of 45] Compiling Data.WeakBag
+[ 7 of 45] Compiling Reflex.FastWeak
+[ 8 of 45] Compiling Reflex.FunctorMaybe
+[ 9 of 45] Compiling Reflex.Class
+src/Reflex/Class.hs:757:22: warning: [GHC-68441] [-Wdeprecations]
+    In the use of type constructor or class ‘FunctorMaybe’
+    (imported from Reflex.FunctorMaybe):
+    Deprecated: "Use 'Filterable' from Data.Witherable instead"
+    |
+757 | instance Reflex t => FunctorMaybe (Event t) where
+    |                      ^^^^^^^^^^^^
+
+src/Reflex/Class.hs:757:22: warning: [GHC-68441] [-Wdeprecations]
+    In the use of type constructor or class ‘FunctorMaybe’
+    (imported from Reflex.FunctorMaybe):
+    Deprecated: "Use 'Filterable' from Data.Witherable instead"
+    |
+757 | instance Reflex t => FunctorMaybe (Event t) where
+    |                      ^^^^^^^^^^^^
+
+src/Reflex/Class.hs:1682:19: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction: Patterns of type ‘[a]’ not matched: []
+     |
+1682 |   fmapCheap (f . (\(h : t) -> h :| t) . IntMap.elems)
+     |                   ^^^^^^^^^^^^^^^^^^
+
+[10 of 45] Compiling Reflex.EventWriter.Class
+[11 of 45] Compiling Reflex.DynamicWriter.Class
+[12 of 45] Compiling Reflex.Dynamic.Uniq
+[13 of 45] Compiling Reflex.Dynamic
+src/Reflex/Dynamic.hs:461:69: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘DSum (HListPtr (h : t)) f’ not matched:
+            HHeadPtr :=> _
+    |
+461 |     ((HHeadPtr :=> h) : t) -> FHCons h . rebuildSortedFHList . map (\(HTailPtr p :=> v) -> p :=> v) $ t
+    |                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Reflex/Dynamic.hs:464:76: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘DSum (HListPtr (h : t)) Identity’ not matched:
+            HHeadPtr :=> _
+    |
+464 |     ((HHeadPtr :=> Identity h) : t) -> HCons h . rebuildSortedHList . map (\(HTailPtr p :=> v) -> p :=> v) $ t
+    |                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[14 of 45] Compiling Reflex.Dynamic.TH
+src/Reflex/Dynamic/TH.hs:92:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Name’ not matched:
+            TH.Name (TH.OccName _) TH.NameS
+            TH.Name (TH.OccName _) (TH.NameQ _)
+            TH.Name (TH.OccName _) (TH.NameU _)
+            TH.Name (TH.OccName _) (TH.NameL _)
+   |
+92 |     where TH.Name (TH.OccName occName) (TH.NameG _ _ (TH.ModName modName)) = 'unqMarker
+   |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Reflex/Dynamic/TH.hs:96:96: warning: [GHC-62161] [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In a case alternative:
+        Patterns of type ‘Hs.Splice Hs.SrcSpanInfo’ not matched:
+            Hs.TIdSplice _ _
+            Hs.TParenSplice _ _
+   |
+96 |               Hs.App l (Hs.Var l $ Hs.Qual l (Hs.ModuleName l modName) (Hs.Ident l occName)) $ case se of
+   |                                                                                                ^^^^^^^^^^...
+
+[15 of 45] Compiling Reflex.BehaviorWriter.Class
+[16 of 45] Compiling Reflex.Adjustable.Class
+[17 of 45] Compiling Reflex.Host.Class
+[18 of 45] Compiling Reflex.PostBuild.Class
+[19 of 45] Compiling Reflex.Collection
+[20 of 45] Compiling Reflex.Pure
+[21 of 45] Compiling Reflex.Query.Class
+src/Reflex/Query/Class.hs:30:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+30 | import Control.Applicative
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[22 of 45] Compiling Reflex.Requester.Class
+[23 of 45] Compiling Reflex.TriggerEvent.Class
+[24 of 45] Compiling Reflex.PerformEvent.Class
+[25 of 45] Compiling Reflex.TriggerEvent.Base
+src/Reflex/TriggerEvent/Base.hs:17:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+17 | import Control.Applicative (liftA2)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[26 of 45] Compiling Reflex.Time
+[27 of 45] Compiling Reflex.Requester.Base.Internal
+src/Reflex/Requester/Base/Internal.hs:34:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+34 | import Control.Applicative (liftA2)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[28 of 45] Compiling Reflex.Requester.Base
+[29 of 45] Compiling Reflex.PostBuild.Base
+src/Reflex/PostBuild/Base.hs:31:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+31 | import Control.Applicative (liftA2)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[30 of 45] Compiling Reflex.PerformEvent.Base
+[31 of 45] Compiling Reflex.EventWriter.Base
+src/Reflex/EventWriter/Base.hs:124:12: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction: Patterns of type ‘[w]’ not matched: []
+    |
+124 |         . (\(h : t) -> h :| t) -- Unconditional; 'merge' guarantees that it will only fire with non-empty DMaps
+    |            ^^^^^^^^^^^^^^^^^^
+
+[32 of 45] Compiling Reflex.Query.Base
+src/Reflex/Query/Base.hs:22:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+22 | import Control.Applicative (liftA2)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[33 of 45] Compiling Reflex.EventWriter
+[34 of 45] Compiling Reflex.DynamicWriter.Base
+[35 of 45] Compiling Reflex.DynamicWriter
+[36 of 45] Compiling Reflex.BehaviorWriter.Base
+[37 of 45] Compiling Reflex.NotReady.Class
+[38 of 45] Compiling Reflex.Spider.Internal
+src/Reflex/Spider/Internal.hs:32:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+32 | import Control.Applicative (liftA2)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Reflex/Spider/Internal.hs:2109:14: warning: [GHC-40910] [-Wunused-matches]
+    Defined but not used: ‘getParent’
+     |
+2109 | mergeGCheap' getParent getInitialSubscribers updateFunc destroy d = Event $ \sub -> do
+     |              ^^^^^^^^^
+
+[39 of 45] Compiling Reflex.Spider
+[40 of 45] Compiling Reflex.Profiled
+[41 of 45] Compiling Reflex.Network
+[42 of 45] Compiling Reflex
+[43 of 45] Compiling Reflex.Host.Headless
+[44 of 45] Compiling Reflex.Widget.Basic
+[45 of 45] Compiling Reflex.Workflow
+Configuring test suite 'semantics' for reflex-0.9.3.4...
+Preprocessing test suite 'semantics' for reflex-0.9.3.4...
+Building test suite 'semantics' for reflex-0.9.3.4...
+[1 of 7] Compiling Reflex.TestPlan
+[2 of 7] Compiling Reflex.Test.Micro
+test/Reflex/Test/Micro.hs:41:22: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘distributeListOverDynPure’
+    (imported from Reflex, but defined in Reflex.Dynamic):
+    Deprecated: "Use 'distributeListOverDyn' instead"
+   |
+41 |   return (join (fmap distributeListOverDynPure scans))
+   |                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/Reflex/Test/Micro.hs:229:34: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘distributeListOverDynPure’
+    (imported from Reflex, but defined in Reflex.Dynamic):
+    Deprecated: "Use 'distributeListOverDyn' instead"
+    |
+229 |     return $ current (join (fmap distributeListOverDynPure d))
+    |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[3 of 7] Compiling Reflex.Plan.Reflex
+test/Reflex/Plan/Reflex.hs:46:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Traversable’ is redundant
+      except perhaps to import instances from ‘Data.Traversable’
+    To import instances alone, use: import Data.Traversable()
+   |
+46 | import Data.Traversable (sequenceA, traverse)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/Reflex/Plan/Reflex.hs:57:51: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+57 | type MonadIORef m = (MonadIO m, MonadRef m, Ref m ~ Ref IO)
+   |                                                   ^
+
+test/Reflex/Plan/Reflex.hs:77:67: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+77 | instance (ReflexHost t, MonadRef (HostFrame t), Ref (HostFrame t) ~ Ref IO) => TestPlan t (Plan t) where
+   |                                                                   ^
+
+[4 of 7] Compiling Reflex.Plan.Pure
+[5 of 7] Compiling Reflex.Test
+[6 of 7] Compiling Reflex.Bench.Focused
+test/Reflex/Bench/Focused.hs:21:31: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘traverse’
+    from module ‘Data.Traversable’ is redundant
+   |
+21 | import Data.Traversable (for, traverse)
+   |                               ^^^^^^^^
+
+[7 of 7] Compiling Main
+[8 of 8] Linking /tmp/workdir-reflex/reflex-0.9.3.4/dist-newstyle/build/x86_64-linux/ghc-9.10.2/reflex-0.9.3.4/t/semantics/build/semantics/semantics
+Configuring test suite 'rootCleanup' for reflex-0.9.3.4...
+Preprocessing test suite 'rootCleanup' for reflex-0.9.3.4...
+Building test suite 'rootCleanup' for reflex-0.9.3.4...
+[1 of 4] Compiling Main
+[2 of 4] Compiling Reflex.TestPlan
+[3 of 4] Compiling Reflex.Plan.Pure
+[4 of 4] Compiling Test.Run
+test/Test/Run.hs:24:14: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+24 | runApp :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |              ^
+
+test/Test/Run.hs:24:41: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+24 | runApp :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |                                         ^
+
+test/Test/Run.hs:60:15: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+60 | runApp' :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |               ^
+
+test/Test/Run.hs:60:42: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+60 | runApp' :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |                                          ^
+
+test/Test/Run.hs:68:15: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+68 | runAppB :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |               ^
+
+test/Test/Run.hs:68:42: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+68 | runAppB :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |                                          ^
+
+[5 of 5] Linking /tmp/workdir-reflex/reflex-0.9.3.4/dist-newstyle/build/x86_64-linux/ghc-9.10.2/reflex-0.9.3.4/t/rootCleanup/build/rootCleanup/rootCleanup
+Configuring test suite 'RequesterT' for reflex-0.9.3.4...
+Preprocessing test suite 'RequesterT' for reflex-0.9.3.4...
+Building test suite 'RequesterT' for reflex-0.9.3.4...
+[1 of 4] Compiling Reflex.TestPlan
+[2 of 4] Compiling Reflex.Plan.Pure
+[3 of 4] Compiling Test.Run
+test/Test/Run.hs:24:14: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+24 | runApp :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |              ^
+
+test/Test/Run.hs:24:41: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+24 | runApp :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |                                         ^
+
+test/Test/Run.hs:60:15: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+60 | runApp' :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |               ^
+
+test/Test/Run.hs:60:42: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+60 | runApp' :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |                                          ^
+
+test/Test/Run.hs:68:15: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+68 | runAppB :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |               ^
+
+test/Test/Run.hs:68:42: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+68 | runAppB :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |                                          ^
+
+[4 of 4] Compiling Main
+test/RequesterT.hs:90:40: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+90 |   let !(Just [(1,"2")]) = M.toList <$> head (head os7)
+   |                                        ^^^^
+
+test/RequesterT.hs:90:46: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+90 |   let !(Just [(1,"2")]) = M.toList <$> head (head os7)
+   |                                              ^^^^
+
+test/RequesterT.hs:91:43: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+91 |   let !(Just [(1,"oyoy")]) = M.toList <$> head (head os8)
+   |                                           ^^^^
+
+test/RequesterT.hs:91:49: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+91 |   let !(Just [(1,"oyoy")]) = M.toList <$> head (head os8)
+   |                                                 ^^^^
+
+test/RequesterT.hs:106:30: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+106 | testOrdering :: ( Response m ~ Identity
+    |                              ^
+
+test/RequesterT.hs:107:29: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+107 |                 , Request m ~ RequestInt
+    |                             ^
+
+test/RequesterT.hs:115:34: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+115 | testSimultaneous :: ( Response m ~ Identity
+    |                                  ^
+
+test/RequesterT.hs:116:33: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+116 |                     , Request m ~ RequestInt
+    |                                 ^
+
+test/RequesterT.hs:135:19: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+135 |      , Response m ~ Identity
+    |                   ^
+
+test/RequesterT.hs:136:18: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+136 |      , Request m ~ RequestInt
+    |                  ^
+
+test/RequesterT.hs:153:19: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+153 |      , Response m ~ Identity
+    |                   ^
+
+test/RequesterT.hs:154:18: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+154 |      , Request m ~ RequestInt
+    |                  ^
+
+test/RequesterT.hs:177:19: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+177 |      , Response m ~ Identity
+    |                   ^
+
+test/RequesterT.hs:178:18: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+178 |      , Request m ~ RequestInt
+    |                  ^
+
+test/RequesterT.hs:199:19: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+199 |      , Response m ~ Identity
+    |                   ^
+
+test/RequesterT.hs:200:18: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+200 |      , Request m ~ RequestInt
+    |                  ^
+
+test/RequesterT.hs:229:81: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+229 |   (rawRequestMap, responses) <- matchResponsesWithRequests reqEncoder requests (head . M.toList <$> rawResponses)
+    |                                                                                 ^^^^
+
+[5 of 5] Linking /tmp/workdir-reflex/reflex-0.9.3.4/dist-newstyle/build/x86_64-linux/ghc-9.10.2/reflex-0.9.3.4/t/RequesterT/build/RequesterT/RequesterT
+Configuring test suite 'QueryT' for reflex-0.9.3.4...
+Preprocessing test suite 'QueryT' for reflex-0.9.3.4...
+Building test suite 'QueryT' for reflex-0.9.3.4...
+[1 of 5] Compiling Reflex.TestPlan
+[2 of 5] Compiling Reflex.Plan.Reflex
+test/Reflex/Plan/Reflex.hs:57:51: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+57 | type MonadIORef m = (MonadIO m, MonadRef m, Ref m ~ Ref IO)
+   |                                                   ^
+
+test/Reflex/Plan/Reflex.hs:77:67: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+77 | instance (ReflexHost t, MonadRef (HostFrame t), Ref (HostFrame t) ~ Ref IO) => TestPlan t (Plan t) where
+   |                                                                   ^
+
+[3 of 5] Compiling Reflex.Plan.Pure
+[4 of 5] Compiling Test.Run
+test/Test/Run.hs:24:14: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+24 | runApp :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |              ^
+
+test/Test/Run.hs:24:41: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+24 | runApp :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |                                         ^
+
+test/Test/Run.hs:60:15: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+60 | runApp' :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |               ^
+
+test/Test/Run.hs:60:42: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+60 | runApp' :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |                                          ^
+
+test/Test/Run.hs:68:15: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+68 | runAppB :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |               ^
+
+test/Test/Run.hs:68:42: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+68 | runAppB :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |                                          ^
+
+[5 of 5] Compiling Main
+test/QueryT.hs:89:14: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+89 |   let qDyn = head . AMap.keys . unSelector <$> incrementalToDynamic q
+   |              ^^^^
+
+[6 of 6] Linking /tmp/workdir-reflex/reflex-0.9.3.4/dist-newstyle/build/x86_64-linux/ghc-9.10.2/reflex-0.9.3.4/t/QueryT/build/QueryT/QueryT
+Configuring test suite 'Headless' for reflex-0.9.3.4...
+Preprocessing test suite 'Headless' for reflex-0.9.3.4...
+Building test suite 'Headless' for reflex-0.9.3.4...
+[1 of 1] Compiling Main
+[2 of 2] Linking /tmp/workdir-reflex/reflex-0.9.3.4/dist-newstyle/build/x86_64-linux/ghc-9.10.2/reflex-0.9.3.4/t/Headless/build/Headless/Headless
+Configuring test suite 'GC-Semantics' for reflex-0.9.3.4...
+Preprocessing test suite 'GC-Semantics' for reflex-0.9.3.4...
+Building test suite 'GC-Semantics' for reflex-0.9.3.4...
+[1 of 5] Compiling Main
+[2 of 5] Compiling Reflex.TestPlan
+[3 of 5] Compiling Reflex.Plan.Reflex
+test/Reflex/Plan/Reflex.hs:57:51: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+57 | type MonadIORef m = (MonadIO m, MonadRef m, Ref m ~ Ref IO)
+   |                                                   ^
+
+test/Reflex/Plan/Reflex.hs:77:67: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+77 | instance (ReflexHost t, MonadRef (HostFrame t), Ref (HostFrame t) ~ Ref IO) => TestPlan t (Plan t) where
+   |                                                                   ^
+
+[4 of 5] Compiling Reflex.Plan.Pure
+[5 of 5] Compiling Test.Run
+test/Test/Run.hs:24:14: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+24 | runApp :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |              ^
+
+test/Test/Run.hs:24:41: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+24 | runApp :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |                                         ^
+
+test/Test/Run.hs:60:15: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+60 | runApp' :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |               ^
+
+test/Test/Run.hs:60:42: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+60 | runApp' :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |                                          ^
+
+test/Test/Run.hs:68:15: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+68 | runAppB :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |               ^
+
+test/Test/Run.hs:68:42: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+68 | runAppB :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |                                          ^
+
+[6 of 6] Linking /tmp/workdir-reflex/reflex-0.9.3.4/dist-newstyle/build/x86_64-linux/ghc-9.10.2/reflex-0.9.3.4/t/GC-Semantics/build/GC-Semantics/GC-Semantics
+Configuring test suite 'EventWriterT' for reflex-0.9.3.4...
+Preprocessing test suite 'EventWriterT' for reflex-0.9.3.4...
+Building test suite 'EventWriterT' for reflex-0.9.3.4...
+[1 of 2] Compiling Test.Run
+test/Test/Run.hs:24:14: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+24 | runApp :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |              ^
+
+test/Test/Run.hs:24:41: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+24 | runApp :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |                                         ^
+
+test/Test/Run.hs:60:15: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+60 | runApp' :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |               ^
+
+test/Test/Run.hs:60:42: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+60 | runApp' :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |                                          ^
+
+test/Test/Run.hs:68:15: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+68 | runAppB :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |               ^
+
+test/Test/Run.hs:68:42: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+68 | runAppB :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |                                          ^
+
+[2 of 2] Compiling Main
+[3 of 3] Linking /tmp/workdir-reflex/reflex-0.9.3.4/dist-newstyle/build/x86_64-linux/ghc-9.10.2/reflex-0.9.3.4/t/EventWriterT/build/EventWriterT/EventWriterT
+Configuring test suite 'DebugCycles' for reflex-0.9.3.4...
+Preprocessing test suite 'DebugCycles' for reflex-0.9.3.4...
+Building test suite 'DebugCycles' for reflex-0.9.3.4...
+[1 of 2] Compiling Test.Run
+test/Test/Run.hs:24:14: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+24 | runApp :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |              ^
+
+test/Test/Run.hs:24:41: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+24 | runApp :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |                                         ^
+
+test/Test/Run.hs:60:15: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+60 | runApp' :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |               ^
+
+test/Test/Run.hs:60:42: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+60 | runApp' :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |                                          ^
+
+test/Test/Run.hs:68:15: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+68 | runAppB :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |               ^
+
+test/Test/Run.hs:68:42: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+68 | runAppB :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |                                          ^
+
+[2 of 2] Compiling Main
+[3 of 3] Linking /tmp/workdir-reflex/reflex-0.9.3.4/dist-newstyle/build/x86_64-linux/ghc-9.10.2/reflex-0.9.3.4/t/DebugCycles/build/DebugCycles/DebugCycles
+Configuring test suite 'CrossImpl' for reflex-0.9.3.4...
+Preprocessing test suite 'CrossImpl' for reflex-0.9.3.4...
+Building test suite 'CrossImpl' for reflex-0.9.3.4...
+[1 of 5] Compiling Main
+test/Reflex/Test/CrossImpl.hs:29:39: warning: [GHC-61689] [-Wdodgy-imports]
+    Module ‘Control.Monad.Identity’ does not export ‘forM’.
+   |
+29 | import Control.Monad.Identity hiding (forM, forM_, mapM, mapM_, sequence, sequence_)
+   |                                       ^^^^
+
+test/Reflex/Test/CrossImpl.hs:29:45: warning: [GHC-61689] [-Wdodgy-imports]
+    Module ‘Control.Monad.Identity’ does not export ‘forM_’.
+   |
+29 | import Control.Monad.Identity hiding (forM, forM_, mapM, mapM_, sequence, sequence_)
+   |                                             ^^^^^
+
+test/Reflex/Test/CrossImpl.hs:29:52: warning: [GHC-61689] [-Wdodgy-imports]
+    Module ‘Control.Monad.Identity’ does not export ‘mapM’.
+   |
+29 | import Control.Monad.Identity hiding (forM, forM_, mapM, mapM_, sequence, sequence_)
+   |                                                    ^^^^
+
+test/Reflex/Test/CrossImpl.hs:29:58: warning: [GHC-61689] [-Wdodgy-imports]
+    Module ‘Control.Monad.Identity’ does not export ‘mapM_’.
+   |
+29 | import Control.Monad.Identity hiding (forM, forM_, mapM, mapM_, sequence, sequence_)
+   |                                                          ^^^^^
+
+test/Reflex/Test/CrossImpl.hs:29:65: warning: [GHC-61689] [-Wdodgy-imports]
+    Module ‘Control.Monad.Identity’ does not export ‘sequence’.
+   |
+29 | import Control.Monad.Identity hiding (forM, forM_, mapM, mapM_, sequence, sequence_)
+   |                                                                 ^^^^^^^^
+
+test/Reflex/Test/CrossImpl.hs:29:75: warning: [GHC-61689] [-Wdodgy-imports]
+    Module ‘Control.Monad.Identity’ does not export ‘sequence_’.
+   |
+29 | import Control.Monad.Identity hiding (forM, forM_, mapM, mapM_, sequence, sequence_)
+   |                                                                           ^^^^^^^^^
+
+test/Reflex/Test/CrossImpl.hs:30:43: warning: [GHC-61689] [-Wdodgy-imports]
+    Module ‘Control.Monad.State.Strict’ does not export ‘forM’.
+   |
+30 | import Control.Monad.State.Strict hiding (forM, forM_, mapM, mapM_, sequence, sequence_)
+   |                                           ^^^^
+
+test/Reflex/Test/CrossImpl.hs:30:49: warning: [GHC-61689] [-Wdodgy-imports]
+    Module ‘Control.Monad.State.Strict’ does not export ‘forM_’.
+   |
+30 | import Control.Monad.State.Strict hiding (forM, forM_, mapM, mapM_, sequence, sequence_)
+   |                                                 ^^^^^
+
+test/Reflex/Test/CrossImpl.hs:30:56: warning: [GHC-61689] [-Wdodgy-imports]
+    Module ‘Control.Monad.State.Strict’ does not export ‘mapM’.
+   |
+30 | import Control.Monad.State.Strict hiding (forM, forM_, mapM, mapM_, sequence, sequence_)
+   |                                                        ^^^^
+
+test/Reflex/Test/CrossImpl.hs:30:62: warning: [GHC-61689] [-Wdodgy-imports]
+    Module ‘Control.Monad.State.Strict’ does not export ‘mapM_’.
+   |
+30 | import Control.Monad.State.Strict hiding (forM, forM_, mapM, mapM_, sequence, sequence_)
+   |                                                              ^^^^^
+
+test/Reflex/Test/CrossImpl.hs:30:69: warning: [GHC-61689] [-Wdodgy-imports]
+    Module ‘Control.Monad.State.Strict’ does not export ‘sequence’.
+   |
+30 | import Control.Monad.State.Strict hiding (forM, forM_, mapM, mapM_, sequence, sequence_)
+   |                                                                     ^^^^^^^^
+
+test/Reflex/Test/CrossImpl.hs:30:79: warning: [GHC-61689] [-Wdodgy-imports]
+    Module ‘Control.Monad.State.Strict’ does not export ‘sequence_’.
+   |
+30 | import Control.Monad.State.Strict hiding (forM, forM_, mapM, mapM_, sequence, sequence_)
+   |                                                                               ^^^^^^^^^
+
+test/Reflex/Test/CrossImpl.hs:36:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+36 | import Data.Monoid
+   | ^^^^^^^^^^^^^^^^^^
+
+test/Reflex/Test/CrossImpl.hs:37:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Traversable’ is redundant
+      except perhaps to import instances from ‘Data.Traversable’
+    To import instances alone, use: import Data.Traversable()
+   |
+37 | import Data.Traversable
+   | ^^^^^^^^^^^^^^^^^^^^^^^
+
+test/Reflex/Test/CrossImpl.hs:231:36: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘distributeListOverDynPure’
+    (imported from Reflex.Dynamic):
+    Deprecated: "Use 'distributeListOverDyn' instead"
+    |
+231 |        let b = current (join (fmap distributeListOverDynPure d))
+    |                                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[2 of 5] Compiling Reflex.TestPlan
+[3 of 5] Compiling Reflex.Plan.Reflex
+test/Reflex/Plan/Reflex.hs:46:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Traversable’ is redundant
+      except perhaps to import instances from ‘Data.Traversable’
+    To import instances alone, use: import Data.Traversable()
+   |
+46 | import Data.Traversable (sequenceA, traverse)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/Reflex/Plan/Reflex.hs:57:51: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+57 | type MonadIORef m = (MonadIO m, MonadRef m, Ref m ~ Ref IO)
+   |                                                   ^
+
+test/Reflex/Plan/Reflex.hs:77:67: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+77 | instance (ReflexHost t, MonadRef (HostFrame t), Ref (HostFrame t) ~ Ref IO) => TestPlan t (Plan t) where
+   |                                                                   ^
+
+[4 of 5] Compiling Reflex.Plan.Pure
+[5 of 5] Compiling Reflex.Test
+[6 of 6] Linking /tmp/workdir-reflex/reflex-0.9.3.4/dist-newstyle/build/x86_64-linux/ghc-9.10.2/reflex-0.9.3.4/t/CrossImpl/build/CrossImpl/CrossImpl
+Configuring test suite 'Adjustable' for reflex-0.9.3.4...
+Preprocessing test suite 'Adjustable' for reflex-0.9.3.4...
+Building test suite 'Adjustable' for reflex-0.9.3.4...
+[1 of 2] Compiling Test.Run
+test/Test/Run.hs:24:14: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+24 | runApp :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |              ^
+
+test/Test/Run.hs:24:41: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+24 | runApp :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |                                         ^
+
+test/Test/Run.hs:60:15: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+60 | runApp' :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |               ^
+
+test/Test/Run.hs:60:42: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+60 | runApp' :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |                                          ^
+
+test/Test/Run.hs:68:15: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+68 | runAppB :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |               ^
+
+test/Test/Run.hs:68:42: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+68 | runAppB :: (t ~ SpiderTimeline Global, m ~ SpiderHost Global)
+   |                                          ^
+
+[2 of 2] Compiling Main
+[3 of 3] Linking /tmp/workdir-reflex/reflex-0.9.3.4/dist-newstyle/build/x86_64-linux/ghc-9.10.2/reflex-0.9.3.4/t/Adjustable/build/Adjustable/Adjustable

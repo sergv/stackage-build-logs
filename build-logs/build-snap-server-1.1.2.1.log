@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - snap-server-1.1.2.1 (lib) (first run)
  - snap-server-1.1.2.1 (test:testsuite) (first run)
@@ -8,16 +9,32 @@ Building library for snap-server-1.1.2.1...
 [ 1 of 20] Compiling Control.Concurrent.Extended
 [ 2 of 20] Compiling Paths_snap_server
 [ 3 of 20] Compiling Snap.Internal.Http.Server.Address
-
 src/Snap/Internal/Http/Server/Address.hs:70:5: warning: [GHC-53633] [-Woverlapping-patterns]
     Pattern match is redundant
     In a case alternative: _ -> ...
    |
 70 |     _                     -> fail "Unsupported address type"
    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Snap/Internal/Http/Server/Address.hs:103:22: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+103 |             let ai = head ais
+    |                      ^^^^
+
 [ 4 of 20] Compiling Snap.Internal.Http.Server.Clock
 [ 5 of 20] Compiling Snap.Internal.Http.Server.Common
 [ 6 of 20] Compiling Snap.Internal.Http.Server.Config
+src/Snap/Internal/Http/Server/Config.hs:88:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.List’ is redundant
+      except perhaps to import instances from ‘Data.List’
+    To import instances alone, use: import Data.List()
+   |
+88 | import           Data.List                  (foldl')
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [ 7 of 20] Compiling Snap.Http.Server.Config
 [ 8 of 20] Compiling Snap.Internal.Http.Server.Date
 [ 9 of 20] Compiling Snap.Internal.Http.Server.Parser
@@ -26,20 +43,27 @@ src/Snap/Internal/Http/Server/Address.hs:70:5: warning: [GHC-53633] [-Woverlappi
 [12 of 20] Compiling Snap.Internal.Http.Server.Types
 [13 of 20] Compiling Snap.Internal.Http.Server.TLS
 [14 of 20] Compiling Snap.Internal.Http.Server.Session
+src/Snap/Internal/Http/Server/Session.hs:32:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.List’ is redundant
+      except perhaps to import instances from ‘Data.List’
+    To import instances alone, use: import Data.List()
+   |
+32 | import           Data.List                                (foldl')
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Snap/Internal/Http/Server/Session.hs:38:1: warning: [-Wunused-imports]
+src/Snap/Internal/Http/Server/Session.hs:38:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 38 | import           Data.Monoid                              ((<>))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [15 of 20] Compiling Snap.Http.Server.Types
 [16 of 20] Compiling System.FastLogger
 [17 of 20] Compiling System.SendFile.Linux
 [18 of 20] Compiling System.SendFile
 [19 of 20] Compiling Snap.Internal.Http.Server.Socket
-
 src/Snap/Internal/Http/Server/Socket.hs:183:40: warning: [GHC-68441] [-Wdeprecations]
     In the use of ‘fdSocket’
     (imported from Network.Socket, but defined in Network.Socket.Types):
@@ -47,13 +71,13 @@ src/Snap/Internal/Http/Server/Socket.hs:183:40: warning: [GHC-68441] [-Wdeprecat
     |
 183 |     go fileFd = do sockFd <- Fd `fmap` fdSocket sock
     |                                        ^^^^^^^^
+
 [20 of 20] Compiling Snap.Http.Server
 Configuring test suite 'testsuite' for snap-server-1.1.2.1...
 Preprocessing test suite 'testsuite' for snap-server-1.1.2.1...
 Building test suite 'testsuite' for snap-server-1.1.2.1...
 [ 1 of 31] Compiling Control.Concurrent.Extended
-
-src/Control/Concurrent/Extended.hs:28:1: warning: [-Wunused-imports]
+src/Control/Concurrent/Extended.hs:28:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Foreign.C.String’ is redundant
       except perhaps to import instances from ‘Foreign.C.String’
     To import instances alone, use: import Foreign.C.String()
@@ -61,7 +85,7 @@ src/Control/Concurrent/Extended.hs:28:1: warning: [-Wunused-imports]
 28 | import           Foreign.C.String       (CString)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Control/Concurrent/Extended.hs:29:1: warning: [-Wunused-imports]
+src/Control/Concurrent/Extended.hs:29:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘GHC.IO’ is redundant
       except perhaps to import instances from ‘GHC.IO’
     To import instances alone, use: import GHC.IO()
@@ -69,25 +93,42 @@ src/Control/Concurrent/Extended.hs:29:1: warning: [-Wunused-imports]
 29 | import           GHC.IO                 (IO (..))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Control/Concurrent/Extended.hs:30:1: warning: [-Wunused-imports]
+src/Control/Concurrent/Extended.hs:30:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘GHC.Ptr’ is redundant
       except perhaps to import instances from ‘GHC.Ptr’
     To import instances alone, use: import GHC.Ptr()
    |
 30 | import           GHC.Ptr                (Ptr (..))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [ 2 of 31] Compiling Paths_snap_server
 [ 3 of 31] Compiling Snap.Internal.Http.Server.Address
-
 src/Snap/Internal/Http/Server/Address.hs:70:5: warning: [GHC-53633] [-Woverlapping-patterns]
     Pattern match is redundant
     In a case alternative: _ -> ...
    |
 70 |     _                     -> fail "Unsupported address type"
    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Snap/Internal/Http/Server/Address.hs:103:22: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+103 |             let ai = head ais
+    |                      ^^^^
+
 [ 4 of 31] Compiling Snap.Internal.Http.Server.Clock
 [ 5 of 31] Compiling Snap.Internal.Http.Server.Common
 [ 6 of 31] Compiling Snap.Internal.Http.Server.Config
+src/Snap/Internal/Http/Server/Config.hs:88:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.List’ is redundant
+      except perhaps to import instances from ‘Data.List’
+    To import instances alone, use: import Data.List()
+   |
+88 | import           Data.List                  (foldl')
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [ 7 of 31] Compiling Snap.Http.Server.Config
 [ 8 of 31] Compiling Snap.Internal.Http.Server.Date
 [ 9 of 31] Compiling Snap.Internal.Http.Server.Parser
@@ -97,18 +138,25 @@ src/Snap/Internal/Http/Server/Address.hs:70:5: warning: [GHC-53633] [-Woverlappi
 [13 of 31] Compiling Snap.Internal.Http.Server.Types
 [14 of 31] Compiling Snap.Internal.Http.Server.TLS
 [15 of 31] Compiling Snap.Internal.Http.Server.Session
+src/Snap/Internal/Http/Server/Session.hs:32:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.List’ is redundant
+      except perhaps to import instances from ‘Data.List’
+    To import instances alone, use: import Data.List()
+   |
+32 | import           Data.List                                (foldl')
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Snap/Internal/Http/Server/Session.hs:38:1: warning: [-Wunused-imports]
+src/Snap/Internal/Http/Server/Session.hs:38:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 38 | import           Data.Monoid                              ((<>))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [16 of 31] Compiling Snap.Http.Server.Types
 [17 of 31] Compiling Snap.Test.Common
-
-test/Snap/Test/Common.hs:22:1: warning: [-Wunused-imports]
+test/Snap/Test/Common.hs:22:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
@@ -116,14 +164,22 @@ test/Snap/Test/Common.hs:22:1: warning: [-Wunused-imports]
 22 | import           Data.Monoid                 (Monoid (mappend, mempty))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-test/Snap/Test/Common.hs:25:1: warning: [-Wdodgy-imports]
-    Module ‘Network.Socket’ does not export ‘recv’
+test/Snap/Test/Common.hs:25:59: warning: [GHC-61689] [-Wdodgy-imports]
+    Module ‘Network.Socket’ does not export ‘recv’.
    |
 25 | import qualified Network.Socket              as N hiding (recv)
-   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[18 of 31] Compiling Snap.Internal.Http.Server.Session.Tests
+   |                                                           ^^^^
 
-test/Snap/Internal/Http/Server/Session/Tests.hs:29:1: warning: [-Wunused-imports]
+test/Snap/Test/Common.hs:75:36: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+75 |     addr <- liftM (N.addrAddress . Prelude.head) $
+   |                                    ^^^^^^^^^^^^
+
+[18 of 31] Compiling Snap.Internal.Http.Server.Session.Tests
+test/Snap/Internal/Http/Server/Session/Tests.hs:29:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
@@ -197,21 +253,21 @@ test/Snap/Internal/Http/Server/Session/Tests.hs:598:9: warning: [GHC-62161] [-Wi
     |
 598 |     let [Output out] = outputs
     |         ^^^^^^^^^^^^^^^^^^^^^^
-[19 of 31] Compiling Snap.Internal.Http.Server.Parser.Tests
 
-test/Snap/Internal/Http/Server/Parser/Tests.hs:14:1: warning: [-Wunused-imports]
+[19 of 31] Compiling Snap.Internal.Http.Server.Parser.Tests
+test/Snap/Internal/Http/Server/Parser/Tests.hs:14:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 14 | import           Data.Monoid                          (mconcat)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [20 of 31] Compiling Snap.Internal.Http.Server.Address.Tests
 [21 of 31] Compiling System.FastLogger
 [22 of 31] Compiling System.SendFile.Linux
 [23 of 31] Compiling System.SendFile
 [24 of 31] Compiling Snap.Internal.Http.Server.Socket
-
 src/Snap/Internal/Http/Server/Socket.hs:183:40: warning: [GHC-68441] [-Wdeprecations]
     In the use of ‘fdSocket’
     (imported from Network.Socket, but defined in Network.Socket.Types):
@@ -219,9 +275,9 @@ src/Snap/Internal/Http/Server/Socket.hs:183:40: warning: [GHC-68441] [-Wdeprecat
     |
 183 |     go fileFd = do sockFd <- Fd `fmap` fdSocket sock
     |                                        ^^^^^^^^
-[25 of 31] Compiling Snap.Internal.Http.Server.Socket.Tests
 
-test/Snap/Internal/Http/Server/Socket/Tests.hs:8:1: warning: [-Wunused-imports]
+[25 of 31] Compiling Snap.Internal.Http.Server.Socket.Tests
+test/Snap/Internal/Http/Server/Socket/Tests.hs:8:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
@@ -229,7 +285,7 @@ test/Snap/Internal/Http/Server/Socket/Tests.hs:8:1: warning: [-Wunused-imports]
 8 | import           Control.Applicative               ((<$>))
   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-test/Snap/Internal/Http/Server/Socket/Tests.hs:11:1: warning: [-Wunused-imports]
+test/Snap/Internal/Http/Server/Socket/Tests.hs:11:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Concurrent’ is redundant
       except perhaps to import instances from ‘Control.Concurrent’
     To import instances alone, use: import Control.Concurrent()
@@ -237,7 +293,7 @@ test/Snap/Internal/Http/Server/Socket/Tests.hs:11:1: warning: [-Wunused-imports]
 11 | import           Control.Concurrent                (forkIO, killThread, newEmptyMVar, putMVar, readMVar, takeMVar)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-test/Snap/Internal/Http/Server/Socket/Tests.hs:13:1: warning: [-Wunused-imports]
+test/Snap/Internal/Http/Server/Socket/Tests.hs:13:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.IORef’ is redundant
       except perhaps to import instances from ‘Data.IORef’
     To import instances alone, use: import Data.IORef()
@@ -245,24 +301,97 @@ test/Snap/Internal/Http/Server/Socket/Tests.hs:13:1: warning: [-Wunused-imports]
 13 | import           Data.IORef                        (newIORef, readIORef, writeIORef)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-test/Snap/Internal/Http/Server/Socket/Tests.hs:19:84: warning: [-Wunused-imports]
+test/Snap/Internal/Http/Server/Socket/Tests.hs:19:84: warning: [GHC-38856] [-Wunused-imports]
     The import of ‘withSock’
     from module ‘Snap.Test.Common’ is redundant
    |
 19 | import           Snap.Test.Common                  (eatException, expectException, withSock)
    |                                                                                    ^^^^^^^^
+
 [26 of 31] Compiling Snap.Http.Server
 [27 of 31] Compiling System.SendFile.Tests
+test/System/SendFile/Tests.hs:113:56: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+113 |             if null xs then ([], return Nothing) else (tail xs, fmap Just $! head xs)
+    |                                                        ^^^^
+
+test/System/SendFile/Tests.hs:113:78: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+113 |             if null xs then ([], return Nothing) else (tail xs, fmap Just $! head xs)
+    |                                                                              ^^^^
+
+test/System/SendFile/Tests.hs:142:56: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+142 |             if null xs then ([], return Nothing) else (tail xs, fmap Just $! head xs)
+    |                                                        ^^^^
+
+test/System/SendFile/Tests.hs:142:78: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+142 |             if null xs then ([], return Nothing) else (tail xs, fmap Just $! head xs)
+    |                                                                              ^^^^
+
 [28 of 31] Compiling Test.Common.Rot13
 [29 of 31] Compiling Test.Common.TestHandler
-
-test/Test/Common/TestHandler.hs:18:1: warning: [-Wunused-imports]
+test/Test/Common/TestHandler.hs:18:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 18 | import           Data.Monoid                   (Monoid (mappend, mconcat, mempty))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [30 of 31] Compiling Test.Blackbox
+test/Test/Blackbox.hs:255:17: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+255 |         let s = head $ ditchHeaders $ S.lines resp
+    |                 ^^^^
+
+test/Test/Blackbox.hs:430:17: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+430 |         let s = head $ ditchHeaders $ S.lines resp
+    |                 ^^^^
+
+test/Test/Blackbox.hs:457:17: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+457 |         let s = head $ ditchHeaders $ S.lines resp
+    |                 ^^^^
+
+test/Test/Blackbox.hs:484:17: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+484 |         let s = head $ ditchHeaders $ S.lines resp
+    |                 ^^^^
+
+test/Test/Blackbox.hs:539:17: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+539 |         let s = head $ ditchHeaders $ S.lines resp
+    |                 ^^^^
+
 [31 of 31] Compiling Main
-[32 of 32] Linking /tmp/workdir-snap-server/snap-server-1.1.2.1/dist-newstyle/build/x86_64-linux/ghc-9.6.5/snap-server-1.1.2.1/t/testsuite/build/testsuite/testsuite
+[32 of 32] Linking /tmp/workdir-snap-server/snap-server-1.1.2.1/dist-newstyle/build/x86_64-linux/ghc-9.10.2/snap-server-1.1.2.1/t/testsuite/build/testsuite/testsuite

@@ -1,0 +1,33 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - union-find-array-0.1.0.4 (lib) (first run)
+Configuring library for union-find-array-0.1.0.4...
+Preprocessing library for union-find-array-0.1.0.4...
+Building library for union-find-array-0.1.0.4...
+[1 of 5] Compiling Data.Union.Type
+[2 of 5] Compiling Data.Union.ST
+[3 of 5] Compiling Data.Union
+[4 of 5] Compiling Control.Monad.Union.Class
+[5 of 5] Compiling Control.Monad.Union
+src/Control/Monad/Union.hs:43:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad (UnionM l)’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+43 |     return x =  U (return x)
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Control/Monad/Union.hs:50:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative (UnionM l)’.
+    Suggested fix:
+      Move definition from ‘return’ to ‘pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+50 |     pure = return
+   |     ^^^^^^^^^^^^^
+

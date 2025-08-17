@@ -1,0 +1,303 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - distributed-process-execution-0.1.5.0 (lib) (first run)
+ - distributed-process-execution-0.1.5.0 (test:MailboxTests) (first run)
+ - distributed-process-execution-0.1.5.0 (test:ExchangeTests) (first run)
+Configuring library for distributed-process-execution-0.1.5.0...
+Preprocessing library for distributed-process-execution-0.1.5.0...
+Building library for distributed-process-execution-0.1.5.0...
+[1 of 7] Compiling Control.Distributed.Process.Execution.Exchange.Internal
+[2 of 7] Compiling Control.Distributed.Process.Execution.Exchange.Broadcast
+src/Control/Distributed/Process/Execution/Exchange/Broadcast.hs:124:26: warning: [GHC-82712] [-Wpartial-fields]
+    Use of partial record field selector: ‘outputStream’
+    |
+124 | data Binding = Binding { outputStream :: !OutputStream
+    |                          ^^^^^^^^^^^^
+
+src/Control/Distributed/Process/Execution/Exchange/Broadcast.hs:125:26: warning: [GHC-82712] [-Wpartial-fields]
+    Use of partial record field selector: ‘inputStream’
+    |
+125 |                        , inputStream  :: !(InputStream Message)
+    |                          ^^^^^^^^^^^
+
+src/Control/Distributed/Process/Execution/Exchange/Broadcast.hs:197:14: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘finally’
+    (imported from Control.Distributed.Process, but defined in Control.Distributed.Process.Internal.Primitives):
+    Deprecated: "Use Control.Monad.Catch.finally instead"
+    |
+197 |              P.finally (receiveWait [ matchChanP rp
+    |              ^^^^^^^^^
+
+src/Control/Distributed/Process/Execution/Exchange/Broadcast.hs:203:14: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘finally’
+    (imported from Control.Distributed.Process, but defined in Control.Distributed.Process.Internal.Primitives):
+    Deprecated: "Use Control.Monad.Catch.finally instead"
+    |
+203 |              P.finally (receiveWait [
+    |              ^^^^^^^^^
+
+src/Control/Distributed/Process/Execution/Exchange/Broadcast.hs:224:31: warning: [GHC-83475] [-Wunused-record-wildcards]
+    No variables bound in the record wildcard match are used
+    Suggested fix: Omit the ‘..’
+    |
+224 | bindToBroadcaster ex@Exchange{..} = do
+    |                               ^^
+
+src/Control/Distributed/Process/Execution/Exchange/Broadcast.hs:261:35: warning: [GHC-83475] [-Wunused-record-wildcards]
+    No variables bound in the record wildcard match are used
+    Suggested fix: Omit the ‘..’
+    |
+261 |     handleBindSTM ex'@BroadcastEx{..} msg' = do
+    |                                   ^^
+
+src/Control/Distributed/Process/Execution/Exchange/Broadcast.hs:282:34: warning: [GHC-83475] [-Wunused-record-wildcards]
+    No variables bound in the record wildcard match are used
+    Suggested fix: Omit the ‘..’
+    |
+282 |     handleBindPort x@BroadcastEx{..} BindPort{..} = do
+    |                                  ^^
+
+[3 of 7] Compiling Control.Distributed.Process.Execution.Exchange.Router
+src/Control/Distributed/Process/Execution/Exchange/Router.hs:79:18: warning: [GHC-82712] [-Wpartial-fields]
+    Use of partial record field selector: ‘bindingKey’
+   |
+79 |     BindKey    { bindingKey :: !String }
+   |                  ^^^^^^^^^^
+
+src/Control/Distributed/Process/Execution/Exchange/Router.hs:81:18: warning: [GHC-82712] [-Wpartial-fields]
+    Use of partial record field selector: ‘headerName’
+   |
+81 |                , headerName :: !HeaderName
+   |                  ^^^^^^^^^^
+
+src/Control/Distributed/Process/Execution/Exchange/Router.hs:144:11: warning: [GHC-62412] [-Wsimplifiable-class-constraints]
+    • The constraint ‘Bindable k’ matches
+        instance (Hashable k, Eq k, Serializable k) => Bindable k
+          -- Defined at src/Control/Distributed/Process/Execution/Exchange/Router.hs:91:10
+      This makes type inference for inner bindings fragile;
+        either use MonoLocalBinds, or simplify it using the instance
+    • In the type signature:
+        router :: (Bindable k) =>
+                  RelayType -> BindingSelector k -> Process Exchange
+    |
+144 | router :: (Bindable k) => RelayType -> BindingSelector k -> Process Exchange
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/Execution/Exchange/Router.hs:147:24: warning: [GHC-62412] [-Wsimplifiable-class-constraints]
+    • The constraint ‘Bindable k’ matches
+        instance (Hashable k, Eq k, Serializable k) => Bindable k
+          -- Defined at src/Control/Distributed/Process/Execution/Exchange/Router.hs:91:10
+      This makes type inference for inner bindings fragile;
+        either use MonoLocalBinds, or simplify it using the instance
+    • In the type signature:
+        supervisedRouterRef :: Bindable k =>
+                               RelayType
+                               -> BindingSelector k
+                                  -> SupervisorPid -> Process (ProcessId, P.Message)
+    |
+147 | supervisedRouterRef :: Bindable k
+    |                        ^^^^^^^^^^...
+
+src/Control/Distributed/Process/Execution/Exchange/Router.hs:158:21: warning: [GHC-62412] [-Wsimplifiable-class-constraints]
+    • The constraint ‘Bindable k’ matches
+        instance (Hashable k, Eq k, Serializable k) => Bindable k
+          -- Defined at src/Control/Distributed/Process/Execution/Exchange/Router.hs:91:10
+      This makes type inference for inner bindings fragile;
+        either use MonoLocalBinds, or simplify it using the instance
+    • In the type signature:
+        supervisedRouter :: Bindable k =>
+                            RelayType -> BindingSelector k -> SupervisorPid -> Process Exchange
+    |
+158 | supervisedRouter :: Bindable k
+    |                     ^^^^^^^^^^...
+
+src/Control/Distributed/Process/Execution/Exchange/Router.hs:166:12: warning: [GHC-62412] [-Wsimplifiable-class-constraints]
+    • The constraint ‘Bindable k’ matches
+        instance (Hashable k, Eq k, Serializable k) => Bindable k
+          -- Defined at src/Control/Distributed/Process/Execution/Exchange/Router.hs:91:10
+      This makes type inference for inner bindings fragile;
+        either use MonoLocalBinds, or simplify it using the instance
+    • In the type signature:
+        routerT :: Bindable k =>
+                   RelayType -> BindingSelector k -> Process (Router k)
+    |
+166 | routerT :: Bindable k
+    |            ^^^^^^^^^^...
+
+src/Control/Distributed/Process/Execution/Exchange/Router.hs:212:13: warning: [GHC-62412] [-Wsimplifiable-class-constraints]
+    • The constraint ‘Bindable k’ matches
+        instance (Hashable k, Eq k, Serializable k) => Bindable k
+          -- Defined at src/Control/Distributed/Process/Execution/Exchange/Router.hs:91:10
+      This makes type inference for inner bindings fragile;
+        either use MonoLocalBinds, or simplify it using the instance
+    • In the type signature:
+        apiRoute :: forall k. Bindable k =>
+                              State k -> Message -> Process (State k)
+    |
+212 | apiRoute :: forall k. Bindable k
+    |             ^^^^^^^^^^^^^^^^^^^^...
+
+src/Control/Distributed/Process/Execution/Exchange/Router.hs:228:17: warning: [GHC-62412] [-Wsimplifiable-class-constraints]
+    • The constraint ‘Bindable k’ matches
+        instance (Hashable k, Eq k, Serializable k) => Bindable k
+          -- Defined at src/Control/Distributed/Process/Execution/Exchange/Router.hs:91:10
+      This makes type inference for inner bindings fragile;
+        either use MonoLocalBinds, or simplify it using the instance
+    • In the type signature:
+        apiConfigure :: forall k. Bindable k =>
+                                  State k -> P.Message -> Process (State k)
+    |
+228 | apiConfigure :: forall k. Bindable k
+    |                 ^^^^^^^^^^^^^^^^^^^^...
+
+[4 of 7] Compiling Control.Distributed.Process.Execution.Exchange
+[5 of 7] Compiling Control.Distributed.Process.Execution.EventManager
+[6 of 7] Compiling Control.Distributed.Process.Execution.Mailbox
+src/Control/Distributed/Process/Execution/Mailbox.hs:318:3: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: ‘tag’
+    |
+318 |   tag    :: a -> BufferType
+    |   ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/Execution/Mailbox.hs:361:18: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘ViewR Message’ not matched: EmptyR
+    |
+361 |                 (\(s' :> a) -> Just (a, ( (buffer ^= s')
+    |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+src/Control/Distributed/Process/Execution/Mailbox.hs:378:28: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘ViewR Message’ not matched: EmptyR
+    |
+378 |       dropR q' = maybe q' (\(s' :> _) -> dropOne q' s') $ getR (q' ^. buffer)
+    |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/Execution/Mailbox.hs:379:28: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘ViewL Message’ not matched: EmptyL
+    |
+379 |       dropL q' = maybe q' (\(_ :< s') -> dropOne q' s') $ getL (q' ^. buffer)
+    |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/Execution/Mailbox.hs:583:5: warning: [GHC-53633] [-Woverlapping-patterns]
+    Pattern match is redundant
+    In an equation for ‘handleControlMessages’:
+        handleControlMessages st cm | otherwise = ...
+    |
+583 |   | otherwise                 = stop $ ExitOther "IllegalState"
+    |     ^^^^^^^^^
+
+src/Control/Distributed/Process/Execution/Mailbox.hs:634:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Mode’ not matched:
+            Notify
+            Passive
+    |
+634 |     let Active f = st ^. state ^. mode
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/Execution/Mailbox.hs:635:13: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘catch’
+    (imported from Control.Distributed.Process, but defined in Control.Distributed.Process.Internal.Primitives):
+    Deprecated: "Use Control.Monad.Catch.catch instead"
+    |
+635 |     unCl <- catch (unClosure f >>= return . Just)
+    |             ^^^^^
+
+src/Control/Distributed/Process/Execution/Mailbox.hs:681:1: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: ‘isStack’
+    |
+681 | isStack = (== Stack) . _bufferT . _state
+    | ^^^^^^^
+
+src/Control/Distributed/Process/Execution/Mailbox.hs:699:1: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: ‘bufferType’
+    |
+699 | bufferType = accessor _bufferT (\t st -> st { _bufferT = t })
+    | ^^^^^^^^^^
+
+src/Control/Distributed/Process/Execution/Mailbox.hs:724:2: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: ‘matching__sdict’
+    |
+724 | $(remotable ['everything, 'matching])
+    |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/Execution/Mailbox.hs:724:2: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: ‘everything__tdict’
+    |
+724 | $(remotable ['everything, 'matching])
+    |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/Execution/Mailbox.hs:724:2: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: ‘everything__sdict’
+    |
+724 | $(remotable ['everything, 'matching])
+    |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[7 of 7] Compiling Control.Distributed.Process.Execution
+Configuring test suite 'MailboxTests' for distributed-process-execution-0.1.5.0...
+Preprocessing test suite 'MailboxTests' for distributed-process-execution-0.1.5.0...
+Building test suite 'MailboxTests' for distributed-process-execution-0.1.5.0...
+[1 of 2] Compiling MailboxTestFilters
+[2 of 2] Compiling Main
+tests/TestMailbox.hs:36:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[String]’ not matched:
+            []
+            [_]
+            [_, _]
+            (_:_:_:_:_)
+   |
+36 |   let [a, b, c] = ["a", "b", "c"]
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/TestMailbox.hs:41:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[Message]’ not matched:
+            []
+            [_]
+            [_, _]
+            (_:_:_:_:_)
+   |
+41 |   let [ma', mb', mc'] = msgs
+   |       ^^^^^^^^^^^^^^^^^^^^^^
+
+tests/TestMailbox.hs:55:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[String]’ not matched:
+            []
+            [_]
+            [_, _]
+            [_, _, _]
+            ...
+   |
+55 |   let [a, b, c, d, e] = ["a", "b", "c", "d", "e"]
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/TestMailbox.hs:62:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[Message]’ not matched:
+            []
+            [_]
+            [_, _]
+            (_:_:_:_:_)
+   |
+62 |   let [mc', md', me'] = msgs
+   |       ^^^^^^^^^^^^^^^^^^^^^^
+
+[3 of 3] Linking /tmp/workdir-distributed-process-execution/distributed-process-execution-0.1.5.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/distributed-process-execution-0.1.5.0/t/MailboxTests/build/MailboxTests/MailboxTests
+Configuring test suite 'ExchangeTests' for distributed-process-execution-0.1.5.0...
+Preprocessing test suite 'ExchangeTests' for distributed-process-execution-0.1.5.0...
+Building test suite 'ExchangeTests' for distributed-process-execution-0.1.5.0...
+[1 of 1] Compiling Main
+[2 of 2] Linking /tmp/workdir-distributed-process-execution/distributed-process-execution-0.1.5.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/distributed-process-execution-0.1.5.0/t/ExchangeTests/build/ExchangeTests/ExchangeTests

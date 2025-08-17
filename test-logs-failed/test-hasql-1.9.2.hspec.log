@@ -1,0 +1,94 @@
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - hasql-1.9.2 (test:hspec) (ephemeral targets)
+Preprocessing test suite 'hspec' for hasql-1.9.2...
+Building test suite 'hspec' for hasql-1.9.2...
+Running 1 test suites...
+Test suite hspec: RUNNING...
+
+Hasql.Pipeline
+  Single-statement
+    Unprepared
+      Collects results and sends params [✘]
+    Prepared
+      Collects results and sends params [✘]
+  Multi-statement
+    On unprepared statements
+      Collects results and sends params [✘]
+    On prepared statements
+      Collects results and sends params [✘]
+    When a part in the middle fails
+      With query error
+        Captures the error [✘]
+        Leaves the connection usable [✘]
+      With decoding error
+        Captures the error [✘]
+        Leaves the connection usable [✘]
+
+Failures:
+
+  hspec/Hasql/PipelineSpec.hs:18:9: 
+  1) Hasql.Pipeline.Single-statement.Unprepared Collects results and sends params
+       expected: Right [0,1,2]
+        but got: Left (ConnectionError (Just "connection to server at \"localhost\" (::1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\nconnection to server at \"localhost\" (127.0.0.1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\n"))
+
+  To rerun use: --match "/Hasql.Pipeline/Single-statement/Unprepared/Collects results and sends params/" --seed 1060663527
+
+  hspec/Hasql/PipelineSpec.hs:25:9: 
+  2) Hasql.Pipeline.Single-statement.Prepared Collects results and sends params
+       expected: Right [0,1,2]
+        but got: Left (ConnectionError (Just "connection to server at \"localhost\" (::1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\nconnection to server at \"localhost\" (127.0.0.1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\n"))
+
+  To rerun use: --match "/Hasql.Pipeline/Single-statement/Prepared/Collects results and sends params/" --seed 1060663527
+
+  hspec/Hasql/PipelineSpec.hs:34:9: 
+  3) Hasql.Pipeline.Multi-statement, On unprepared statements, Collects results and sends params
+       expected: Right [[0,1,2],[0,1,2]]
+        but got: Left (ConnectionError (Just "connection to server at \"localhost\" (::1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\nconnection to server at \"localhost\" (127.0.0.1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\n"))
+
+  To rerun use: --match "/Hasql.Pipeline/Multi-statement/On unprepared statements/Collects results and sends params/" --seed 1060663527
+
+  hspec/Hasql/PipelineSpec.hs:42:9: 
+  4) Hasql.Pipeline.Multi-statement, On prepared statements, Collects results and sends params
+       expected: Right [[0,1,2],[0,1,2]]
+        but got: Left (ConnectionError (Just "connection to server at \"localhost\" (::1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\nconnection to server at \"localhost\" (127.0.0.1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\n"))
+
+  To rerun use: --match "/Hasql.Pipeline/Multi-statement/On prepared statements/Collects results and sends params/" --seed 1060663527
+
+  hspec/Hasql/PipelineSpec.hs:55:18: 
+  5) Hasql.Pipeline.Multi-statement, When a part in the middle fails, With query error, Captures the error
+       Unexpected result: Left (ConnectionError (Just "connection to server at \"localhost\" (::1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\nconnection to server at \"localhost\" (127.0.0.1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\n"))
+
+  To rerun use: --match "/Hasql.Pipeline/Multi-statement/When a part in the middle fails/With query error/Captures the error/" --seed 1060663527
+
+  hspec/Hasql/PipelineSpec.hs:68:11: 
+  6) Hasql.Pipeline.Multi-statement, When a part in the middle fails, With query error, Leaves the connection usable
+       expected: Right [0]
+        but got: Left (ConnectionError (Just "connection to server at \"localhost\" (::1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\nconnection to server at \"localhost\" (127.0.0.1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\n"))
+
+  To rerun use: --match "/Hasql.Pipeline/Multi-statement/When a part in the middle fails/With query error/Leaves the connection usable/" --seed 1060663527
+
+  hspec/Hasql/PipelineSpec.hs:80:18: 
+  7) Hasql.Pipeline.Multi-statement, When a part in the middle fails, With decoding error, Captures the error
+       Unexpected result: Left (ConnectionError (Just "connection to server at \"localhost\" (::1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\nconnection to server at \"localhost\" (127.0.0.1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\n"))
+
+  To rerun use: --match "/Hasql.Pipeline/Multi-statement/When a part in the middle fails/With decoding error/Captures the error/" --seed 1060663527
+
+  hspec/Hasql/PipelineSpec.hs:93:11: 
+  8) Hasql.Pipeline.Multi-statement, When a part in the middle fails, With decoding error, Leaves the connection usable
+       expected: Right [0]
+        but got: Left (ConnectionError (Just "connection to server at \"localhost\" (::1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\nconnection to server at \"localhost\" (127.0.0.1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\n"))
+
+  To rerun use: --match "/Hasql.Pipeline/Multi-statement/When a part in the middle fails/With decoding error/Leaves the connection usable/" --seed 1060663527
+
+Randomized with seed 1060663527
+
+Finished in 0.0137 seconds
+8 examples, 8 failures
+Test suite hspec: FAIL
+Test suite logged to:
+/tmp/workdir-hasql/hasql-1.9.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/hasql-1.9.2/t/hspec/test/hasql-1.9.2-hspec.log
+0 of 1 test suites (0 of 1 test cases) passed.
+Error: [Cabal-7125]
+Tests failed for test:hspec from hasql-1.9.2.
+

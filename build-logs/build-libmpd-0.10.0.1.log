@@ -1,0 +1,360 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - libmpd-0.10.0.1 (lib) (first run)
+ - libmpd-0.10.0.1 (test:specs) (first run)
+Configuring library for libmpd-0.10.0.1...
+Preprocessing library for libmpd-0.10.0.1...
+Building library for libmpd-0.10.0.1...
+[ 1 of 38] Compiling Network.MPD.Core.Error
+[ 2 of 38] Compiling Network.MPD.Core.Class
+[ 3 of 38] Compiling Network.MPD.Util
+[ 4 of 38] Compiling Network.MPD.Core
+src/Network/MPD/Core.hs:57:1: warning: [GHC-66111] [-Wunused-imports]
+    The qualified import of ‘Prelude’ is redundant
+      except perhaps to import instances from ‘Prelude’
+    To import instances alone, use: import Prelude()
+   |
+57 | import qualified Prelude
+   | ^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Network/MPD/Core.hs:92:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative MPD’.
+    Suggested fix:
+      Move definition from ‘return’ to ‘pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+92 |     pure  = return
+   |     ^^^^^^^^^^^^^^
+
+src/Network/MPD/Core.hs:143:17: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[ByteString]’ not matched:
+            []
+            (_:_:_)
+    |
+143 |             let [msg] = singleMsg
+    |                 ^^^^^^^^^^^^^^^^^
+
+src/Network/MPD/Core.hs:242:13: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+242 |         x = head xs
+    |             ^^^^
+
+[ 5 of 38] Compiling Network.MPD.Applicative.Internal
+src/Network/MPD/Applicative/Internal.hs:48:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad Parser’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+48 |     return a  = Parser $ \input -> Right (a, input)
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Network/MPD/Applicative/Internal.hs:55:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative Parser’.
+    Suggested fix:
+      Move definition from ‘return’ to ‘pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+55 |     pure  = return
+   |     ^^^^^^^^^^^^^^
+
+[ 6 of 38] Compiling Network.MPD.Applicative.Connection
+[ 7 of 38] Compiling Network.MPD.Commands.Connection
+[ 8 of 38] Compiling Network.MPD.Commands.Arg
+[ 9 of 38] Compiling Network.MPD.Commands.Types
+[10 of 38] Compiling Network.MPD.Commands.Parse
+src/Network/MPD/Commands/Parse.hs:16:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Control.Monad.Except’ is redundant
+      except perhaps to import instances from ‘Control.Monad.Except’
+    To import instances alone, use: import Control.Monad.Except()
+   |
+16 | import           Control.Monad.Except
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[11 of 38] Compiling Network.MPD.Commands.Query
+src/Network/MPD/Commands/Query.hs:80:5: warning: [GHC-50928] [-Wnoncanonical-monoid-instances]
+    Noncanonical ‘mappend’ definition detected
+    in the instance declaration for ‘Monoid Query’.
+    ‘mappend’ will eventually be removed in favour of ‘(<>)’
+    Suggested fix:
+      Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+   |
+80 |     Query  a  `mappend` Query    b  = Query (a ++ b)
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+src/Network/MPD/Commands/Query.hs:88:5: warning: [GHC-50928] [-Wnoncanonical-monoid-instances]
+    Noncanonical ‘(<>) = mappend’ definition detected
+    in the instance declaration for ‘Semigroup Query’.
+    Suggested fix:
+      Move definition from ‘mappend’ to ‘(<>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+   |
+88 |     (<>) = mappend
+   |     ^^^^^^^^^^^^^^
+
+[12 of 38] Compiling Network.MPD.Applicative.PlaybackControl
+[13 of 38] Compiling Network.MPD.Commands.PlaybackControl
+[14 of 38] Compiling Network.MPD.Applicative.Output
+[15 of 38] Compiling Network.MPD.Commands.Output
+[16 of 38] Compiling Network.MPD.Applicative.Util
+[17 of 38] Compiling Network.MPD.Applicative.StoredPlaylists
+[18 of 38] Compiling Network.MPD.Commands.StoredPlaylists
+[19 of 38] Compiling Network.MPD.Applicative.Stickers
+[20 of 38] Compiling Network.MPD.Commands.Stickers
+[21 of 38] Compiling Network.MPD.Applicative.Status
+[22 of 38] Compiling Network.MPD.Commands.Status
+[23 of 38] Compiling Network.MPD.Applicative.Reflection
+[24 of 38] Compiling Network.MPD.Commands.Reflection
+[25 of 38] Compiling Network.MPD.Applicative.PlaybackOptions
+[26 of 38] Compiling Network.MPD.Commands.PlaybackOptions
+[27 of 38] Compiling Network.MPD.Applicative.Mount
+[28 of 38] Compiling Network.MPD.Commands.Mount
+[29 of 38] Compiling Network.MPD.Applicative.Database
+[30 of 38] Compiling Network.MPD.Commands.Database
+[31 of 38] Compiling Network.MPD.Applicative.CurrentPlaylist
+[32 of 38] Compiling Network.MPD.Commands.CurrentPlaylist
+[33 of 38] Compiling Network.MPD.Applicative.ClientToClient
+[34 of 38] Compiling Network.MPD.Commands.ClientToClient
+[35 of 38] Compiling Network.MPD.Commands
+[36 of 38] Compiling Network.MPD.Commands.Extensions
+[37 of 38] Compiling Network.MPD
+[38 of 38] Compiling Network.MPD.Applicative
+Configuring test suite 'specs' for libmpd-0.10.0.1...
+Preprocessing test suite 'specs' for libmpd-0.10.0.1...
+Building test suite 'specs' for libmpd-0.10.0.1...
+<no location info>: warning: [GHC-32850] [-Wmissing-home-modules]
+    These modules are needed for compilation but not listed in your .cabal file's other-modules for ‘libmpd-0.10.0.1-inplace-specs’ :
+        Arbitrary
+        CommandSpec
+        EnvSpec
+        Network.MPD
+        Network.MPD.Applicative
+        Network.MPD.Applicative.ClientToClient
+        Network.MPD.Applicative.Connection
+        Network.MPD.Applicative.CurrentPlaylist
+        Network.MPD.Applicative.Database
+        Network.MPD.Applicative.Internal
+        Network.MPD.Applicative.Mount
+        Network.MPD.Applicative.Output
+        Network.MPD.Applicative.PlaybackControl
+        Network.MPD.Applicative.PlaybackOptions
+        Network.MPD.Applicative.Reflection
+        Network.MPD.Applicative.Status
+        Network.MPD.Applicative.Stickers
+        Network.MPD.Applicative.StoredPlaylists
+        Network.MPD.Applicative.Util
+        Network.MPD.Commands
+        Network.MPD.Commands.Arg
+        Network.MPD.Commands.ClientToClient
+        Network.MPD.Commands.Connection
+        Network.MPD.Commands.CurrentPlaylist
+        Network.MPD.Commands.Database
+        Network.MPD.Commands.Extensions
+        Network.MPD.Commands.Mount
+        Network.MPD.Commands.Output
+        Network.MPD.Commands.Parse
+        Network.MPD.Commands.PlaybackControl
+        Network.MPD.Commands.PlaybackOptions
+        Network.MPD.Commands.Query
+        Network.MPD.Commands.Reflection
+        Network.MPD.Commands.Status
+        Network.MPD.Commands.Stickers
+        Network.MPD.Commands.StoredPlaylists
+        Network.MPD.Commands.Types
+        Network.MPD.Core
+        Network.MPD.Core.Class
+        Network.MPD.Core.Error
+        Network.MPD.Util
+        ParserSpec
+        StringConn
+        TestUtil
+        TypeSpec
+        Unparse
+        UtilSpec
+
+[ 1 of 48] Compiling Network.MPD.Core.Error
+[ 2 of 48] Compiling Network.MPD.Core.Class
+[ 3 of 48] Compiling Network.MPD.Util
+[ 4 of 48] Compiling Network.MPD.Core
+src/Network/MPD/Core.hs:92:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative MPD’.
+    Suggested fix:
+      Move definition from ‘return’ to ‘pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+92 |     pure  = return
+   |     ^^^^^^^^^^^^^^
+
+src/Network/MPD/Core.hs:242:13: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+242 |         x = head xs
+    |             ^^^^
+
+[ 5 of 48] Compiling Network.MPD.Applicative.Internal
+src/Network/MPD/Applicative/Internal.hs:48:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad Parser’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+48 |     return a  = Parser $ \input -> Right (a, input)
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Network/MPD/Applicative/Internal.hs:55:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative Parser’.
+    Suggested fix:
+      Move definition from ‘return’ to ‘pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+55 |     pure  = return
+   |     ^^^^^^^^^^^^^^
+
+[ 6 of 48] Compiling Network.MPD.Applicative.Connection
+[ 7 of 48] Compiling Network.MPD.Commands.Connection
+[ 8 of 48] Compiling Network.MPD.Commands.Arg
+[ 9 of 48] Compiling Network.MPD.Commands.Types
+[10 of 48] Compiling Network.MPD.Commands.Parse
+[11 of 48] Compiling Arbitrary
+[12 of 48] Compiling Network.MPD.Commands.Query
+src/Network/MPD/Commands/Query.hs:80:5: warning: [GHC-50928] [-Wnoncanonical-monoid-instances]
+    Noncanonical ‘mappend’ definition detected
+    in the instance declaration for ‘Monoid Query’.
+    ‘mappend’ will eventually be removed in favour of ‘(<>)’
+    Suggested fix:
+      Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+   |
+80 |     Query  a  `mappend` Query    b  = Query (a ++ b)
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+src/Network/MPD/Commands/Query.hs:88:5: warning: [GHC-50928] [-Wnoncanonical-monoid-instances]
+    Noncanonical ‘(<>) = mappend’ definition detected
+    in the instance declaration for ‘Semigroup Query’.
+    Suggested fix:
+      Move definition from ‘mappend’ to ‘(<>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+   |
+88 |     (<>) = mappend
+   |     ^^^^^^^^^^^^^^
+
+[13 of 48] Compiling Network.MPD.Applicative.PlaybackControl
+[14 of 48] Compiling Network.MPD.Commands.PlaybackControl
+[15 of 48] Compiling Network.MPD.Applicative.Output
+[16 of 48] Compiling Network.MPD.Commands.Output
+[17 of 48] Compiling Network.MPD.Applicative.Util
+[18 of 48] Compiling Network.MPD.Applicative.StoredPlaylists
+[19 of 48] Compiling Network.MPD.Commands.StoredPlaylists
+[20 of 48] Compiling Network.MPD.Applicative.Stickers
+[21 of 48] Compiling Network.MPD.Commands.Stickers
+[22 of 48] Compiling Network.MPD.Applicative.Status
+[23 of 48] Compiling Network.MPD.Commands.Status
+[24 of 48] Compiling Network.MPD.Applicative.Reflection
+[25 of 48] Compiling Network.MPD.Commands.Reflection
+[26 of 48] Compiling Network.MPD.Applicative.PlaybackOptions
+[27 of 48] Compiling Network.MPD.Commands.PlaybackOptions
+[28 of 48] Compiling Network.MPD.Applicative.Mount
+[29 of 48] Compiling Network.MPD.Commands.Mount
+[30 of 48] Compiling Network.MPD.Applicative.Database
+[31 of 48] Compiling Network.MPD.Commands.Database
+[32 of 48] Compiling Network.MPD.Applicative.CurrentPlaylist
+[33 of 48] Compiling Network.MPD.Commands.CurrentPlaylist
+[34 of 48] Compiling Network.MPD.Applicative.ClientToClient
+[35 of 48] Compiling Network.MPD.Commands.ClientToClient
+[36 of 48] Compiling Network.MPD.Commands
+[37 of 48] Compiling Network.MPD.Commands.Extensions
+[38 of 48] Compiling Network.MPD
+[39 of 48] Compiling Network.MPD.Applicative
+[40 of 48] Compiling StringConn
+[41 of 48] Compiling TestUtil
+[42 of 48] Compiling EnvSpec
+[43 of 48] Compiling TypeSpec
+[44 of 48] Compiling Unparse
+[45 of 48] Compiling ParserSpec
+[46 of 48] Compiling CommandSpec
+[47 of 48] Compiling UtilSpec
+tests/UtilSpec.hs:83:27: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+83 |     let wrappers = [fst $ head xs]
+   |                           ^^^^
+
+tests/UtilSpec.hs:89:39: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+89 |     sort (concat $ splitGroups [fst $ head xs] xs) == sort xs
+   |                                       ^^^^
+
+[48 of 48] Compiling Main
+<no location info>: warning: [GHC-32850] [-Wmissing-home-modules]
+    These modules are needed for compilation but not listed in your .cabal file's other-modules for ‘libmpd-0.10.0.1-inplace-specs’ :
+        Arbitrary
+        CommandSpec
+        EnvSpec
+        Network.MPD
+        Network.MPD.Applicative
+        Network.MPD.Applicative.ClientToClient
+        Network.MPD.Applicative.Connection
+        Network.MPD.Applicative.CurrentPlaylist
+        Network.MPD.Applicative.Database
+        Network.MPD.Applicative.Internal
+        Network.MPD.Applicative.Mount
+        Network.MPD.Applicative.Output
+        Network.MPD.Applicative.PlaybackControl
+        Network.MPD.Applicative.PlaybackOptions
+        Network.MPD.Applicative.Reflection
+        Network.MPD.Applicative.Status
+        Network.MPD.Applicative.Stickers
+        Network.MPD.Applicative.StoredPlaylists
+        Network.MPD.Applicative.Util
+        Network.MPD.Commands
+        Network.MPD.Commands.Arg
+        Network.MPD.Commands.ClientToClient
+        Network.MPD.Commands.Connection
+        Network.MPD.Commands.CurrentPlaylist
+        Network.MPD.Commands.Database
+        Network.MPD.Commands.Extensions
+        Network.MPD.Commands.Mount
+        Network.MPD.Commands.Output
+        Network.MPD.Commands.Parse
+        Network.MPD.Commands.PlaybackControl
+        Network.MPD.Commands.PlaybackOptions
+        Network.MPD.Commands.Query
+        Network.MPD.Commands.Reflection
+        Network.MPD.Commands.Status
+        Network.MPD.Commands.Stickers
+        Network.MPD.Commands.StoredPlaylists
+        Network.MPD.Commands.Types
+        Network.MPD.Core
+        Network.MPD.Core.Class
+        Network.MPD.Core.Error
+        Network.MPD.Util
+        ParserSpec
+        StringConn
+        TestUtil
+        TypeSpec
+        Unparse
+        UtilSpec
+
+[49 of 49] Linking /tmp/workdir-libmpd/libmpd-0.10.0.1/dist-newstyle/build/x86_64-linux/ghc-9.10.2/libmpd-0.10.0.1/t/specs/build/specs/specs

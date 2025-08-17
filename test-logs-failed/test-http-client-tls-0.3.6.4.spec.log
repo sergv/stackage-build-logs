@@ -1,0 +1,60 @@
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - http-client-tls-0.3.6.4 (test:spec) (ephemeral targets)
+Preprocessing test suite 'spec' for http-client-tls-0.3.6.4...
+Building test suite 'spec' for http-client-tls-0.3.6.4...
+Running 1 test suites...
+Test suite spec: RUNNING...
+
+make a TLS connection [✔]
+digest authentication [✔]
+incorrect digest authentication [✔]
+BadSSL: expired [✔]
+BadSSL: self-signed [✔]
+BadSSL: wrong.host [✔]
+BadSSL: we do have case-insensitivity though [✘]
+accepts TLS settings [✘]
+global supports TLS [✔]
+
+Failures:
+
+  test/Spec.hs:47:5: 
+  1) BadSSL: we do have case-insensitivity though
+       uncaught exception: HttpException
+       HttpExceptionRequest Request {
+         host                 = "BADSSL.COM"
+         port                 = 443
+         secure               = True
+         requestHeaders       = []
+         path                 = "/"
+         queryString          = ""
+         method               = "GET"
+         proxy                = Nothing
+         rawBody              = False
+         redirectCount        = 10
+         responseTimeout      = ResponseTimeoutDefault
+         requestVersion       = HTTP/1.1
+         proxySecureMode      = ProxySecureWithConnect
+       }
+        (InternalException (HandshakeFailed (Error_Protocol "peer does not support Extended Main Secret" HandshakeFailure)))
+
+  To rerun use: --match "/BadSSL: we do have case-insensitivity though/" --seed 1475786235
+
+  test/Spec.hs:55:25: 
+  2) accepts TLS settings
+       uncaught exception: RecConError
+       test/Spec.hs:(55,25)-(59,13): Missing field in record construction settingClientSupported
+
+  To rerun use: --match "/accepts TLS settings/" --seed 1475786235
+
+Randomized with seed 1475786235
+
+Finished in 3.8096 seconds
+9 examples, 2 failures
+Test suite spec: FAIL
+Test suite logged to:
+/tmp/workdir-http-client-tls/http-client-tls-0.3.6.4/dist-newstyle/build/x86_64-linux/ghc-9.10.2/http-client-tls-0.3.6.4/t/spec/test/http-client-tls-0.3.6.4-spec.log
+0 of 1 test suites (0 of 1 test cases) passed.
+Error: [Cabal-7125]
+Tests failed for test:spec from http-client-tls-0.3.6.4.
+

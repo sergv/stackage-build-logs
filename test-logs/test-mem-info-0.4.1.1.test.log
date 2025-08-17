@@ -1,0 +1,116 @@
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - mem-info-0.4.1.1 (test:test) (ephemeral targets)
+Preprocessing test suite 'test' for mem-info-0.4.1.1...
+Building test suite 'test' for mem-info-0.4.1.1...
+Running 1 test suites...
+Test suite test: RUNNING...
+
+module System.MemInfo.Choices
+  should parse a Choices from the command line ok [✔]
+    +++ OK, passed 100 tests.
+module System.MemInfo.Proc
+  GenValid ExeInfo
+    genValid   :: Gen ExeInfo
+      only generates valid 'ExeInfo's [✔]
+        +++ OK, passed 100 tests.
+  parseExeInfo
+    should parse all valid values successfully [✔]
+      +++ OK, passed 100 tests.
+  parseStatusInfo
+    should parse all valid values successfully [✔]
+      +++ OK, passed 100 tests.
+  parseFromStatm
+    when using a kernel version with unknown sharing
+      should parse values to ProcUsage successfully [✔]
+        +++ OK, passed 100 tests.
+    when using a kernel version with known sharing
+      should parse values to ProcUsage successfully [✔]
+        +++ OK, passed 100 tests.
+    When the statm content is invalid
+      should not parse values to ProcUsage successfully [✔]
+        +++ OK, passed 100 tests.
+  parseFromSmap
+    should parse values to ProcUsage successfully [✔]
+      +++ OK, passed 100 tests.
+module System.MemInfo.Print
+  fmtAsHeader
+    when discriminating by pid
+      when swap is not required
+        does not show it [✔]
+      when swap is required
+        does show it [✔]
+    when not discriminating by pid
+      when swap is not required
+        does not show it [✔]
+      when swap is required
+        does show it [✔]
+  fmtOverall
+    when swap is not required
+      does not show it [✔]
+    when swap is required
+      does show it [✔]
+  fmtMemUsage
+    when displaying by-pid
+      and swap is not required
+        does not show it [✔]
+      when swap is required
+        shows it [✔]
+    when displaying by-name
+      and swap is not required
+        does not show it [✔]
+  styleOutput
+    when accurate and swap shown
+      when style is csv
+        when discriminating by pid
+          should generate the expected output [✔]
+        not discriminating by pid
+          should generate the expected output [✔]
+    when accurate and no swap shown
+      when style is normal
+        when discriminating by pid
+          should generate the expected output [✔]
+        not discriminating by pid
+          should generate the expected output [✔]
+module System.MemInfo.SysInfo
+  parseKernelVersion
+    should parse values from Text successfully [✔]
+      +++ OK, passed 100 tests.
+  mkReportBud
+    when the kernel is 2.4.x
+      and there is no Inact_ ram
+        generates the expected ReportBud [✔]
+          +++ OK, passed 100 tests.
+      and there is Inact_ ram
+        generates the expected ReportBud [✔]
+          +++ OK, passed 100 tests.
+    when the kernel is earlier than 2.4
+      generates the expected ReportBud [✔]
+        +++ OK, passed 100 tests.
+    when the kernel is a special 2.6 kernel
+      generates the expected ReportBud [✔]
+        +++ OK, passed 100 tests.
+    when the kernel is a later 2.6 kernel with no smap support
+      generates the expected ReportBud [✔]
+        +++ OK, passed 100 tests.
+    when the kernel is a later 2.6 kernel with smap support
+      and there are smap files but no Pss
+        generates the expected ReportBud [✔]
+          +++ OK, passed 100 tests.
+      and there are smap files but with Pss
+        generates the expected ReportBud [✔]
+          +++ OK, passed 100 tests.
+    when the kernel is later than 3.x
+      and there are smap files
+        generates the expected ReportBud [✔]
+          +++ OK, passed 100 tests.
+      and there are no smap files
+        generates the expected ReportBud [✔]
+          +++ OK, passed 100 tests.
+
+Finished in 0.2960 seconds
+31 examples, 0 failures
+Test suite test: PASS
+Test suite logged to:
+/tmp/workdir-mem-info/mem-info-0.4.1.1/dist-newstyle/build/x86_64-linux/ghc-9.10.2/mem-info-0.4.1.1/t/test/test/mem-info-0.4.1.1-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

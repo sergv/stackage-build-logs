@@ -1,0 +1,71 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - safe-decimal-0.2.1.0 (lib) (first run)
+ - safe-decimal-0.2.1.0 (test:tests) (first run)
+ - safe-decimal-0.2.1.0 (test:doctests) (first run)
+Configuring library for safe-decimal-0.2.1.0...
+Preprocessing library for safe-decimal-0.2.1.0...
+Building library for safe-decimal-0.2.1.0...
+[1 of 3] Compiling Numeric.Decimal.BoundedArithmetic
+src/Numeric/Decimal/BoundedArithmetic.hs:108:3: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad Arith’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+108 |   return = Arith
+    |   ^^^^^^^^^^^^^^
+
+[2 of 3] Compiling Numeric.Decimal.Internal
+src/Numeric/Decimal/Internal.hs:74:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+74 | import Control.Applicative
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[3 of 3] Compiling Numeric.Decimal
+Configuring test suite 'tests' for safe-decimal-0.2.1.0...
+Preprocessing test suite 'tests' for safe-decimal-0.2.1.0...
+Building test suite 'tests' for safe-decimal-0.2.1.0...
+[1 of 2] Compiling Numeric.DecimalSpec
+tests/Numeric/DecimalSpec.hs:145:18: error: [GHC-87543]
+    Ambiguous occurrence ‘assertException’.
+    It could refer to
+       either ‘Test.QuickCheck.Monadic.assertException’,
+              imported from ‘Test.QuickCheck.Monadic’ at tests/Numeric/DecimalSpec.hs:27:1-30,
+           or ‘Numeric.DecimalSpec.assertException’,
+              defined at tests/Numeric/DecimalSpec.hs:398:1.
+    |
+145 |     Left exc  -> assertException (==exc) (x `div` y)
+    |                  ^^^^^^^^^^^^^^^
+
+tests/Numeric/DecimalSpec.hs:158:18: error: [GHC-87543]
+    Ambiguous occurrence ‘assertException’.
+    It could refer to
+       either ‘Test.QuickCheck.Monadic.assertException’,
+              imported from ‘Test.QuickCheck.Monadic’ at tests/Numeric/DecimalSpec.hs:27:1-30,
+           or ‘Numeric.DecimalSpec.assertException’,
+              defined at tests/Numeric/DecimalSpec.hs:398:1.
+    |
+158 |     Left exc  -> assertException (==exc) (x `quot` y)
+    |                  ^^^^^^^^^^^^^^^
+
+tests/Numeric/DecimalSpec.hs:398:32: error: [GHC-87543]
+    Ambiguous occurrence ‘assertExceptionIO’.
+    It could refer to
+       either ‘Test.QuickCheck.Monadic.assertExceptionIO’,
+              imported from ‘Test.QuickCheck.Monadic’ at tests/Numeric/DecimalSpec.hs:27:1-30,
+           or ‘Numeric.DecimalSpec.assertExceptionIO’,
+              defined at tests/Numeric/DecimalSpec.hs:405:1.
+    |
+398 | assertException isExc action = assertExceptionIO isExc (return action)
+    |                                ^^^^^^^^^^^^^^^^^
+
+Error: [Cabal-7125]
+Failed to build test:tests from safe-decimal-0.2.1.0.
+

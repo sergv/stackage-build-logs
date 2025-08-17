@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - HTTP-4000.4.1 (lib) (first run)
  - HTTP-4000.4.1 (test:test) (first run)
@@ -9,14 +10,84 @@ Building library for HTTP-4000.4.1...
 [ 2 of 18] Compiling Network.HTTP.MD5Aux
 [ 3 of 18] Compiling Network.HTTP.Utils
 [ 4 of 18] Compiling Network.BufferType
+Network/BufferType.hs:100:28: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘hGetLine’ (imported from Data.ByteString):
+    Deprecated: "Deprecated since @bytestring-0.12@. Use 'Data.ByteString.Char8.hGetLine' instead. (Functions that rely on ASCII encodings belong in "Data.ByteString.Char8")"
+    |
+100 |       , buf_hGetLine     = Strict.hGetLine
+    |                            ^^^^^^^^^^^^^^^
+
+Network/BufferType.hs:125:35: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘hGetLine’ (imported from Data.ByteString):
+    Deprecated: "Deprecated since @bytestring-0.12@. Use 'Data.ByteString.Char8.hGetLine' instead. (Functions that rely on ASCII encodings belong in "Data.ByteString.Char8")"
+    |
+125 |       , buf_hGetLine     = \ h -> Strict.hGetLine h >>= \ l -> return (Lazy.fromChunks [l])
+    |                                   ^^^^^^^^^^^^^^^
+
 [ 5 of 18] Compiling Network.Stream
 [ 6 of 18] Compiling Network.HTTP.Headers
+Network/HTTP/Headers.hs:443:63: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+443 |           | isLineExtension h    = joinExtended (old ++ ' ' : tail h) t
+    |                                                               ^^^^
+
 [ 7 of 18] Compiling Network.HTTP.Cookie
 [ 8 of 18] Compiling Paths_HTTP
 [ 9 of 18] Compiling Network.HTTP.Base
+Network/HTTP/Base.hs:317:53: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+317 |             alt_uri = show $ if null (uriPath u) || head (uriPath u) /= '/'
+    |                                                     ^^^^
+
 [10 of 18] Compiling Network.TCP
+Network/TCP.hs:134:61: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘Conn ty’ not matched: ConnClosed
+    |
+134 | setStreamHooks h sh = modifyMVar_ (getRef h) (\ c -> return c{connHooks=Just sh})
+    |                                                             ^^^^^^^^^^^^^^^^^^^^
+
+Network/TCP.hs:385:57: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘Conn ty’ not matched: ConnClosed
+    |
+385 | closeEOF c flg = modifyMVar_ (getRef c) (\ co -> return co{connCloseEOF=flg})
+    |                                                         ^^^^^^^^^^^^^^^^^^^^
+
+Network/TCP.hs:392:48: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘Conn a’ not matched: ConnClosed
+    |
+392 |       modifyMVar_ (getRef ref) (\ co -> return co{connInput=Just b})
+    |                                                ^^^^^^^^^^^^^^^^^^^^
+
+Network/TCP.hs:414:46: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘Conn a’ not matched: ConnClosed
+    |
+414 |     modifyMVar_ (getRef ref) (\ co -> return co{connInput=Just b1})
+    |                                              ^^^^^^^^^^^^^^^^^^^^^
+
 [11 of 18] Compiling Network.StreamDebugger
 [12 of 18] Compiling Network.StreamSocket
+Network/StreamSocket.hs:90:16: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+90 |       else fn (head c:str)
+   |                ^^^^
+
 [13 of 18] Compiling Network.HTTP.Stream
 [14 of 18] Compiling Network.HTTP.HandleStream
 [15 of 18] Compiling Network.HTTP.Auth
@@ -27,8 +98,7 @@ Configuring test suite 'test' for HTTP-4000.4.1...
 Preprocessing test suite 'test' for HTTP-4000.4.1...
 Building test suite 'test' for HTTP-4000.4.1...
 [1 of 3] Compiling Httpd
-
-test/Httpd.hs:14:1: warning: [-Wunused-imports]
+test/Httpd.hs:14:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
@@ -36,7 +106,7 @@ test/Httpd.hs:14:1: warning: [-Wunused-imports]
 14 | import Control.Applicative
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-test/Httpd.hs:16:1: warning: [-Wunused-imports]
+test/Httpd.hs:16:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.DeepSeq’ is redundant
       except perhaps to import instances from ‘Control.DeepSeq’
     To import instances alone, use: import Control.DeepSeq()
@@ -44,7 +114,7 @@ test/Httpd.hs:16:1: warning: [-Wunused-imports]
 16 | import Control.DeepSeq
    | ^^^^^^^^^^^^^^^^^^^^^^
 
-test/Httpd.hs:18:1: warning: [-Wunused-imports]
+test/Httpd.hs:18:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Monad.Trans’ is redundant
       except perhaps to import instances from ‘Control.Monad.Trans’
     To import instances alone, use: import Control.Monad.Trans()
@@ -52,7 +122,7 @@ test/Httpd.hs:18:1: warning: [-Wunused-imports]
 18 | import Control.Monad.Trans ( liftIO )
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-test/Httpd.hs:19:1: warning: [-Wunused-imports]
+test/Httpd.hs:19:1: warning: [GHC-66111] [-Wunused-imports]
     The qualified import of ‘Data.ByteString’ is redundant
       except perhaps to import instances from ‘Data.ByteString’
     To import instances alone, use: import Data.ByteString()
@@ -60,7 +130,7 @@ test/Httpd.hs:19:1: warning: [-Wunused-imports]
 19 | import qualified Data.ByteString            as B
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-test/Httpd.hs:20:1: warning: [-Wunused-imports]
+test/Httpd.hs:20:1: warning: [GHC-66111] [-Wunused-imports]
     The qualified import of ‘Data.ByteString.Lazy’ is redundant
       except perhaps to import instances from ‘Data.ByteString.Lazy’
     To import instances alone, use: import Data.ByteString.Lazy()
@@ -68,7 +138,7 @@ test/Httpd.hs:20:1: warning: [-Wunused-imports]
 20 | import qualified Data.ByteString.Lazy       as BL
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-test/Httpd.hs:21:1: warning: [-Wunused-imports]
+test/Httpd.hs:21:1: warning: [GHC-66111] [-Wunused-imports]
     The qualified import of ‘Data.ByteString.Char8’ is redundant
       except perhaps to import instances from ‘Data.ByteString.Char8’
     To import instances alone, use: import Data.ByteString.Char8()
@@ -76,7 +146,7 @@ test/Httpd.hs:21:1: warning: [-Wunused-imports]
 21 | import qualified Data.ByteString.Char8      as BC
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-test/Httpd.hs:22:1: warning: [-Wunused-imports]
+test/Httpd.hs:22:1: warning: [GHC-66111] [-Wunused-imports]
     The qualified import of ‘Data.ByteString.Lazy.Char8’ is redundant
       except perhaps to import instances from ‘Data.ByteString.Lazy.Char8’
     To import instances alone, use: import Data.ByteString.Lazy.Char8()
@@ -84,7 +154,7 @@ test/Httpd.hs:22:1: warning: [-Wunused-imports]
 22 | import qualified Data.ByteString.Lazy.Char8 as BLC
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-test/Httpd.hs:26:1: warning: [-Wunused-imports]
+test/Httpd.hs:26:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Maybe’ is redundant
       except perhaps to import instances from ‘Data.Maybe’
     To import instances alone, use: import Data.Maybe()
@@ -92,14 +162,14 @@ test/Httpd.hs:26:1: warning: [-Wunused-imports]
 26 | import Data.Maybe ( fromJust )
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-test/Httpd.hs:27:27: warning: [-Wunused-imports]
+test/Httpd.hs:27:27: warning: [GHC-38856] [-Wunused-imports]
     The import of ‘parseRelativeReference’
     from module ‘Network.URI’ is redundant
    |
 27 | import Network.URI ( URI, parseRelativeReference )
    |                           ^^^^^^^^^^^^^^^^^^^^^^
 
-test/Httpd.hs:29:1: warning: [-Wunused-imports]
+test/Httpd.hs:29:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Network.Socket’ is redundant
       except perhaps to import instances from ‘Network.Socket’
     To import instances alone, use: import Network.Socket()
@@ -107,47 +177,47 @@ test/Httpd.hs:29:1: warning: [-Wunused-imports]
 29 | import Network.Socket
    | ^^^^^^^^^^^^^^^^^^^^^...
 
-test/Httpd.hs:43:7: warning: [-Wunused-imports]
+test/Httpd.hs:43:7: warning: [GHC-38856] [-Wunused-imports]
     The qualified import of ‘Request’
     from module ‘Network.Shed.Httpd’ is redundant
    |
 43 |     ( Request, Response(Response), initServer
    |       ^^^^^^^
 
-test/Httpd.hs:68:6: warning: [-Wunused-top-binds]
-    Defined but not used: ‘respStatus’
+test/Httpd.hs:68:6: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: record field of Response ‘respStatus’
    |
 68 |      respStatus :: Int,
    |      ^^^^^^^^^^
 
-test/Httpd.hs:69:6: warning: [-Wunused-top-binds]
-    Defined but not used: ‘respHeaders’
+test/Httpd.hs:69:6: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: record field of Response ‘respHeaders’
    |
 69 |      respHeaders :: [(String, String)],
    |      ^^^^^^^^^^^
 
-test/Httpd.hs:70:6: warning: [-Wunused-top-binds]
-    Defined but not used: ‘respBody’
+test/Httpd.hs:70:6: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: record field of Response ‘respBody’
    |
 70 |      respBody :: String
    |      ^^^^^^^^
 
-test/Httpd.hs:88:12: warning: [-Wunused-matches]
+test/Httpd.hs:88:12: warning: [GHC-40910] [-Wunused-matches]
     Defined but not used: ‘c’
    |
 88 |      strip c str = str
    |            ^
-[2 of 3] Compiling UnitTests
 
+[2 of 3] Compiling UnitTests
 test/UnitTests.hs:57:1: warning: [GHC-38417] [-Wmissing-signatures]
     Top-level binding with no type signature:
-      unitTests :: [test-framework-0.8.2.0:Test.Framework.Core.Test]
+      unitTests :: [test-framework-0.8.2.2:Test.Framework.Core.Test]
    |
 57 | unitTests =
    | ^^^^^^^^^
-[3 of 3] Compiling Main
 
-test/httpTests.hs:4:1: warning: [-Wunused-imports]
+[3 of 3] Compiling Main
+test/httpTests.hs:4:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
@@ -155,7 +225,7 @@ test/httpTests.hs:4:1: warning: [-Wunused-imports]
 4 | import Control.Applicative ((<$))
   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-test/httpTests.hs:5:1: warning: [-Wunused-imports]
+test/httpTests.hs:5:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Concurrent’ is redundant
       except perhaps to import instances from ‘Control.Concurrent’
     To import instances alone, use: import Control.Concurrent()
@@ -163,7 +233,7 @@ test/httpTests.hs:5:1: warning: [-Wunused-imports]
 5 | import Control.Concurrent (threadDelay)
   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-test/httpTests.hs:12:1: warning: [-Wunused-imports]
+test/httpTests.hs:12:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘System.IO.Error’ is redundant
       except perhaps to import instances from ‘System.IO.Error’
     To import instances alone, use: import System.IO.Error()
@@ -171,7 +241,7 @@ test/httpTests.hs:12:1: warning: [-Wunused-imports]
 12 | import System.IO.Error (userError)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-test/httpTests.hs:19:1: warning: [-Wunused-imports]
+test/httpTests.hs:19:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Network.HTTP.Base’ is redundant
       except perhaps to import instances from ‘Network.HTTP.Base’
     To import instances alone, use: import Network.HTTP.Base()
@@ -179,7 +249,7 @@ test/httpTests.hs:19:1: warning: [-Wunused-imports]
 19 | import Network.HTTP.Base
    | ^^^^^^^^^^^^^^^^^^^^^^^^
 
-test/httpTests.hs:21:1: warning: [-Wunused-imports]
+test/httpTests.hs:21:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Network.HTTP.Headers’ is redundant
       except perhaps to import instances from ‘Network.HTTP.Headers’
     To import instances alone, use: import Network.HTTP.Headers()
@@ -187,7 +257,7 @@ test/httpTests.hs:21:1: warning: [-Wunused-imports]
 21 | import Network.HTTP.Headers
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-test/httpTests.hs:22:1: warning: [-Wunused-imports]
+test/httpTests.hs:22:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Network.Stream’ is redundant
       except perhaps to import instances from ‘Network.Stream’
     To import instances alone, use: import Network.Stream()
@@ -195,7 +265,7 @@ test/httpTests.hs:22:1: warning: [-Wunused-imports]
 22 | import Network.Stream (Result)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-test/httpTests.hs:26:1: warning: [-Wunused-imports]
+test/httpTests.hs:26:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘System.Info’ is redundant
       except perhaps to import instances from ‘System.Info’
     To import instances alone, use: import System.Info()
@@ -203,7 +273,7 @@ test/httpTests.hs:26:1: warning: [-Wunused-imports]
 26 | import System.Info (os)
    | ^^^^^^^^^^^^^^^^^^^^^^^
 
-test/httpTests.hs:27:1: warning: [-Wunused-imports]
+test/httpTests.hs:27:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘System.IO’ is redundant
       except perhaps to import instances from ‘System.IO’
     To import instances alone, use: import System.IO()
@@ -299,14 +369,14 @@ test/httpTests.hs:434:18: warning: [GHC-63397] [-Wname-shadowing]
 test/httpTests.hs:528:1: warning: [GHC-38417] [-Wmissing-signatures]
     Top-level binding with no type signature:
       maybeTestGroup :: Bool
-                        -> test-framework-0.8.2.0:Test.Framework.Core.TestName
-                        -> [test-framework-0.8.2.0:Test.Framework.Core.Test]
-                        -> test-framework-0.8.2.0:Test.Framework.Core.Test
+                        -> test-framework-0.8.2.2:Test.Framework.Core.TestName
+                        -> [test-framework-0.8.2.2:Test.Framework.Core.Test]
+                        -> test-framework-0.8.2.2:Test.Framework.Core.Test
     |
 528 | maybeTestGroup True name xs = testGroup name xs
     | ^^^^^^^^^^^^^^
 
-test/httpTests.hs:528:1: warning: [-Wunused-top-binds]
+test/httpTests.hs:528:1: warning: [GHC-40910] [-Wunused-top-binds]
     Defined but not used: ‘maybeTestGroup’
     |
 528 | maybeTestGroup True name xs = testGroup name xs
@@ -317,7 +387,7 @@ test/httpTests.hs:531:1: warning: [GHC-38417] [-Wmissing-signatures]
       basicTests :: (?testUrl::ServerAddress,
                      ?secureTestUrl::ServerAddress, ?baduserpwUrl::ServerAddress,
                      ?userpwUrl::ServerAddress) =>
-                    test-framework-0.8.2.0:Test.Framework.Core.Test
+                    test-framework-0.8.2.2:Test.Framework.Core.Test
     |
 531 | basicTests =
     | ^^^^^^^^^^
@@ -326,7 +396,7 @@ test/httpTests.hs:547:1: warning: [GHC-38417] [-Wmissing-signatures]
     Top-level binding with no type signature:
       browserTests :: (?testUrl::ServerAddress,
                        ?secureTestUrl::ServerAddress) =>
-                      test-framework-0.8.2.0:Test.Framework.Core.Test
+                      test-framework-0.8.2.2:Test.Framework.Core.Test
     |
 547 | browserTests =
     | ^^^^^^^^^^^^
@@ -335,7 +405,7 @@ test/httpTests.hs:592:1: warning: [GHC-38417] [-Wmissing-signatures]
     Top-level binding with no type signature:
       port80Tests :: (?testUrl::ServerAddress,
                       ?altTestUrl::ServerAddress) =>
-                     test-framework-0.8.2.0:Test.Framework.Core.Test
+                     test-framework-0.8.2.2:Test.Framework.Core.Test
     |
 592 | port80Tests =
     | ^^^^^^^^^^^
@@ -354,6 +424,14 @@ test/httpTests.hs:619:25: warning: [GHC-63397] [-Wname-shadowing]
 619 | httpsAddress fam userpw port p = secureRoot fam userpw port ++ p
     |                         ^^^^
 
+test/httpTests.hs:647:43: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+647 |       let (portNum, (_, server,family)) = head numberedServers
+    |                                           ^^^^
+
 test/httpTests.hs:660:22: warning: [GHC-63397] [-Wname-shadowing]
     This binding for ‘args’ shadows the existing binding
       bound at test/httpTests.hs:623:3
@@ -367,4 +445,5 @@ test/httpTests.hs:665:6: warning: [GHC-63397] [-Wname-shadowing]
     |
 665 |      args -> do -- run the test harness as normal
     |      ^^^^
-[4 of 4] Linking /tmp/workdir-HTTP/HTTP-4000.4.1/dist-newstyle/build/x86_64-linux/ghc-9.6.5/HTTP-4000.4.1/t/test/build/test/test
+
+[4 of 4] Linking /tmp/workdir-HTTP/HTTP-4000.4.1/dist-newstyle/build/x86_64-linux/ghc-9.10.2/HTTP-4000.4.1/t/test/build/test/test

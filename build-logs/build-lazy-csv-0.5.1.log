@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - lazy-csv-0.5.1 (lib:lazy-csv, exe:csvSelect) (first run)
 Warning: lazy-csv.cabal:12:1: Tabs used as indentation at 12:1, 13:1, 14:1,
@@ -7,9 +8,105 @@ Configuring lazy-csv-0.5.1...
 Preprocessing executable 'csvSelect' for lazy-csv-0.5.1...
 Building executable 'csvSelect' for lazy-csv-0.5.1...
 [1 of 2] Compiling Text.CSV.Lazy.ByteString
+Text/CSV/Lazy/ByteString.hs:202:71: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+202 |       else [ IncorrectRow{ csvRow  = if null r then 0 else csvRowNum (head r)
+    |                                                                       ^^^^
+
+Text/CSV/Lazy/ByteString.hs:486:57: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+486 |     header         = map (BS.unpack . csvFieldContent) (head table)
+    |                                                         ^^^^
+
+Text/CSV/Lazy/ByteString.hs:503:57: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+503 |     header         = map (BS.unpack . csvFieldContent) (head table)
+    |                                                         ^^^^
+
 [2 of 2] Compiling Main
-[3 of 3] Linking /tmp/workdir-lazy-csv/lazy-csv-0.5.1/dist-newstyle/build/x86_64-linux/ghc-9.6.5/lazy-csv-0.5.1/build/csvSelect/csvSelect
+csvSelect.hs:19:15: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+19 |   let delim = head $ [ c | Delimiter c <- opts ]++","
+   |               ^^^^
+
+csvSelect.hs:51:53: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+51 |     header     = map (BS.unpack . csvFieldContent) (head table)
+   |                                                     ^^^^
+
+csvSelect.hs:82:57: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+82 |   , Option ['d']     ["delimiter"] (ReqArg (Delimiter . head) "@")
+   |                                                         ^^^^
+
+[3 of 3] Linking /tmp/workdir-lazy-csv/lazy-csv-0.5.1/dist-newstyle/build/x86_64-linux/ghc-9.10.2/lazy-csv-0.5.1/build/csvSelect/csvSelect
 Preprocessing library for lazy-csv-0.5.1...
 Building library for lazy-csv-0.5.1...
 [1 of 2] Compiling Text.CSV.Lazy.ByteString
+Text/CSV/Lazy/ByteString.hs:202:71: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+202 |       else [ IncorrectRow{ csvRow  = if null r then 0 else csvRowNum (head r)
+    |                                                                       ^^^^
+
+Text/CSV/Lazy/ByteString.hs:486:57: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+486 |     header         = map (BS.unpack . csvFieldContent) (head table)
+    |                                                         ^^^^
+
+Text/CSV/Lazy/ByteString.hs:503:57: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+503 |     header         = map (BS.unpack . csvFieldContent) (head table)
+    |                                                         ^^^^
+
 [2 of 2] Compiling Text.CSV.Lazy.String
+Text/CSV/Lazy/String.hs:197:71: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+197 |       else [ IncorrectRow{ csvRow  = if null r then 0 else csvRowNum (head r)
+    |                                                                       ^^^^
+
+Text/CSV/Lazy/String.hs:463:43: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+463 |     header         = map csvFieldContent (head table)
+    |                                           ^^^^
+
+Text/CSV/Lazy/String.hs:480:43: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+480 |     header         = map csvFieldContent (head table)
+    |                                           ^^^^
+

@@ -1,0 +1,54 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - tardis-0.5.0 (lib) (first run)
+ - tardis-0.5.0 (test:tardis-tests) (first run)
+Configuring library for tardis-0.5.0...
+Preprocessing library for tardis-0.5.0...
+Building library for tardis-0.5.0...
+[1 of 3] Compiling Control.Monad.Trans.Tardis
+src/Control/Monad/Trans/Tardis.hs:128:3: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad (TardisT bw fw m)’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+128 |   return x = tardis $ \s -> (x, s)
+    |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Control/Monad/Trans/Tardis.hs:138:3: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative (TardisT bw fw m)’.
+    Suggested fix:
+      Move definition from ‘return’ to ‘pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+138 |   pure = return
+    |   ^^^^^^^^^^^^^
+
+[2 of 3] Compiling Control.Monad.Tardis.Class
+[3 of 3] Compiling Control.Monad.Tardis
+Configuring test suite 'tardis-tests' for tardis-0.5.0...
+Preprocessing test suite 'tardis-tests' for tardis-0.5.0...
+Building test suite 'tardis-tests' for tardis-0.5.0...
+[1 of 2] Compiling Example
+test/Example.hs:39:17: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+39 |     let score = head scores
+   |                 ^^^^
+
+test/Example.hs:45:19: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+45 |       let score = head scores
+   |                   ^^^^
+
+[2 of 2] Compiling Main
+[3 of 3] Linking /tmp/workdir-tardis/tardis-0.5.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/tardis-0.5.0/t/tardis-tests/build/tardis-tests/tardis-tests

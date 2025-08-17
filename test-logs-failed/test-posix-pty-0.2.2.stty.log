@@ -1,4 +1,4 @@
-Build profile: -w ghc-9.6.5 -O1
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - posix-pty-0.2.2 (test:stty) (ephemeral targets)
 Preprocessing test suite 'stty' for posix-pty-0.2.2...
@@ -16,19 +16,19 @@ eof = ^D;
 eol = <undef>;
 eol2 = <undef>;
 swtch = <undef>;
-
 start = ^Q;
 stop = ^S;
 susp = ^Z;
 rprnt = ^R;
 werase = ^W;
 lnext = ^V;
+
 discard = ^O;
 min = 1; time = 0;
 -parenb
 -parodd
--cmspar cs8
--hupcl
+-cmspar
+cs8 -hupcl
 -cstopb
 cread
 -clocal
@@ -56,10 +56,13 @@ onlcr
 -ofill
 -ofdel nl0
 cr0 tab0
-bs0 vt0 ff0
-isig icanon
-iexten echo
-echoe echok
+bs0 vt0
+ff0
+isig
+icanon
+iexten
+echo echoe
+echok
 -echonl
 -noflsh
 -xcase
@@ -71,9 +74,16 @@ echoke
 -extproc
 
 stty: fdReadBuf: hardware fault (Input/output error)
+HasCallStack backtrace:
+  collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception
+  toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/IO.hs:260:11 in ghc-internal:GHC.Internal.IO
+  throwIO, called at libraries/ghc-internal/src/GHC/Internal/IO/Exception.hs:315:19 in ghc-internal:GHC.Internal.IO.Exception
+  ioException, called at libraries/ghc-internal/src/GHC/Internal/IO/Exception.hs:319:20 in ghc-internal:GHC.Internal.IO.Exception
+
+
 Test suite stty: FAIL
 Test suite logged to:
-/tmp/workdir-posix-pty/posix-pty-0.2.2/dist-newstyle/build/x86_64-linux/ghc-9.6.5/posix-pty-0.2.2/t/stty/test/posix-pty-0.2.2-stty.log
+/tmp/workdir-posix-pty/posix-pty-0.2.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/posix-pty-0.2.2/t/stty/test/posix-pty-0.2.2-stty.log
 0 of 1 test suites (0 of 1 test cases) passed.
 Error: [Cabal-7125]
 Tests failed for test:stty from posix-pty-0.2.2.

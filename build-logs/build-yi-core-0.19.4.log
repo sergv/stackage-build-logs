@@ -1,0 +1,785 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - yi-core-0.19.4 (lib) (first run)
+ - yi-core-0.19.4 (test:tasty) (first run)
+Configuring library for yi-core-0.19.4...
+Preprocessing library for yi-core-0.19.4...
+Building library for yi-core-0.19.4...
+[ 1 of 70] Compiling Control.Exc
+[ 2 of 70] Compiling Data.DelayList
+[ 3 of 70] Compiling Parser.Incremental
+src/Parser/Incremental.hs:231:23-34: warning: [GHC-53633] [-Woverlapping-patterns]
+    Pattern match is redundant
+    In a case alternative: Just [] -> ...
+    |
+231 |                       Just [] -> p -- no more info, stop feeding
+    |                       ^^^^^^^^^^^^
+
+[ 4 of 70] Compiling Paths_yi_core
+[ 5 of 70] Compiling System.CanonicalizePath
+src/System/CanonicalizePath.hs:27:1-48: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+27 | import           Data.Monoid              ((<>))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/System/CanonicalizePath.hs:61:23-26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+61 |     | not (null f) && head f `elem` ['~', pathSeparator] = return f
+   |                       ^^^^
+
+[ 6 of 70] Compiling System.FriendlyPath
+src/System/FriendlyPath.hs:26:19-22: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+26 |   | null path || (head path == pathSeparator) = (++ path) <$> getHomeDirectory
+   |                   ^^^^
+
+[ 7 of 70] Compiling Yi.Buffer.Implementation
+[ 8 of 70] Compiling Yi.Buffer.Undo
+[ 9 of 70] Compiling Yi.CompletionTree
+src/Yi/CompletionTree.hs:42:1-48: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Semigroup’ is redundant
+      except perhaps to import instances from ‘Data.Semigroup’
+    To import instances alone, use: import Data.Semigroup()
+   |
+42 | import           Data.Semigroup      (Semigroup)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Yi/CompletionTree.hs:81:63-66: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+81 |   | otherwise = case maximumBy' (compare `on` childrenIn xs) (tail $ LL.inits x) of
+   |                                                               ^^^^
+
+src/Yi/CompletionTree.hs:159:74-77: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+159 |       map (\p' -> (,fromJust $ LL.stripPrefix p' p) <$> M.lookup p' ct) (tail $ LL.inits p)
+    |                                                                          ^^^^
+
+[10 of 70] Compiling Yi.Config.Misc
+[11 of 70] Compiling Yi.Debug
+src/Yi/Debug.hs:23:1-27: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+23 | import Data.Monoid ( (<>) )
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[12 of 70] Compiling Yi.Event
+src/Yi/Event.hs:34:25-28: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+34 |         prettyKey key = tail $ show key
+   |                         ^^^^
+
+[13 of 70] Compiling Yi.IncrementalParse
+[14 of 70] Compiling Yi.Interact
+src/Yi/Interact.hs:122:5-17: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative (I ev w)’.
+    Suggested fix:
+      Move definition from ‘return’ to ‘pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+122 |     pure = return
+    |     ^^^^^^^^^^^^^
+
+src/Yi/Interact.hs:130:3-19: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad (I event w)’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+130 |   return  = Returns
+    |   ^^^^^^^^^^^^^^^^^
+
+src/Yi/Interact.hs:236:3-16: warning: [GHC-50928] [-Wnoncanonical-monoid-instances]
+    Noncanonical ‘(<>) = mappend’ definition detected
+    in the instance declaration for
+      ‘Semigroup (InteractState event w)’.
+    Suggested fix:
+      Move definition from ‘mappend’ to ‘(<>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    |
+236 |   (<>) = mappend
+    |   ^^^^^^^^^^^^^^
+
+src/Yi/Interact.hs:(241,5)-(250,60): warning: [GHC-50928] [-Wnoncanonical-monoid-instances]
+    Noncanonical ‘mappend’ definition detected
+    in the instance declaration for ‘Monoid (InteractState event w)’.
+    ‘mappend’ will eventually be removed in favour of ‘(<>)’
+    Suggested fix:
+      Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    |
+241 |     mappend (Running w c) _ = Running w c
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+src/Yi/Interact.hs:280:30-33: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+280 |         _ -> Ambiguous $ map head bests
+    |                              ^^^^
+
+[15 of 70] Compiling Yi.JumpList
+[16 of 70] Compiling Yi.KillRing
+src/Yi/KillRing.hs:32:1-43: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+32 | import           Data.Monoid         ((<>))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[17 of 70] Compiling Yi.Layout
+src/Yi/Layout.hs:57:46-51: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘foldl'’ from module ‘Data.List’ is redundant
+   |
+57 | import           Data.List                  (foldl', mapAccumL)
+   |                                              ^^^^^^
+
+src/Yi/Layout.hs:133:43-46: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+133 |                                then Just (head path) else Nothing) mbw
+    |                                           ^^^^
+
+[18 of 70] Compiling Yi.Monad
+[19 of 70] Compiling Yi.Paths
+[20 of 70] Compiling Yi.Process
+[21 of 70] Compiling Yi.String
+src/Yi/String.hs:34:1-35: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+34 | import           Data.Monoid ((<>))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[22 of 70] Compiling Yi.Syntax.Layout
+src/Yi/Syntax/Layout.hs:102:21-58: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[BlockOpen t]’ not matched:
+            []
+            []
+    |
+102 |               = let (_lev:levs) = dropWhile isParen levels
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[23 of 70] Compiling Yi.Syntax.Tree
+src/Yi/Syntax/Tree.hs:41:86-89: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘<>’ from module ‘Data.Monoid’ is redundant
+   |
+41 | import           Data.Monoid         (First (First, getFirst), Last (Last, getLast), (<>))
+   |                                                                                      ^^^^
+
+src/Yi/Syntax/Tree.hs:87:11-42: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘([tree (Tok a)], [tree (Tok a)])’ not matched:
+            (_, [])
+   |
+87 |           (left,c:rs) = splitAt x children
+   |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Yi/Syntax/Tree.hs:(285,11)-(286,80): warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[Yi.Lexer.Alex.Posn]’ not matched:
+            []
+            [_]
+            (_:_:_:_)
+    |
+285 |     where bounds@[firstOff, _last] = fmap (tokPosn . assertJust)
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+src/Yi/Syntax/Tree.hs:287:11-54: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[Int]’ not matched:
+            []
+            [_]
+            (_:_:_:_)
+    |
+287 |           [firstLine, lastLine] = fmap posnLine bounds
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[24 of 70] Compiling Yi.Syntax.OnlineTree
+src/Yi/Syntax/OnlineTree.hs:30:33-53: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[Tree t]’ not matched:
+            []
+            [_]
+            (_:_:_:_)
+   |
+30 |     uniplate (Bin l r) = ([l,r],\[l',r'] -> Bin l' r')
+   |                                 ^^^^^^^^^^^^^^^^^^^^^
+
+[25 of 70] Compiling Yi.Syntax.Driver
+src/Yi/Syntax/Driver.hs:48:76-79: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+48 |                   newResult = if null recomputed then oldResult else snd $ head recomputed
+   |                                                                            ^^^^
+
+[26 of 70] Compiling Yi.UI.Common
+[27 of 70] Compiling Yi.Window
+[28 of 70] Compiling Yi.Tab
+[29 of 70] Compiling Yi.Types
+src/Yi/Types.hs:188:5-17: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative BufferM’.
+    Suggested fix:
+      Move definition from ‘return’ to ‘pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+188 |     pure = return
+    |     ^^^^^^^^^^^^^
+
+[30 of 70] Compiling Yi.Config.Lens
+[31 of 70] Compiling Yi.Config
+[32 of 70] Compiling Yi.Config.Simple.Types
+[33 of 70] Compiling Yi.Buffer.Misc
+src/Yi/Buffer/Misc.hs:200:1-45: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+    |
+200 | import           Control.Applicative (liftA2)
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[34 of 70] Compiling Yi.Buffer.Region
+[35 of 70] Compiling Yi.Buffer.TextUnit
+[36 of 70] Compiling Yi.Buffer.Normal
+src/Yi/Buffer/Normal.hs:81:8-43: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[Point]’ not matched:
+            []
+            [_]
+            (_:_:_:_)
+   |
+81 |    let [start, stop] = sort [start', stop']
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[37 of 70] Compiling Yi.Buffer.HighLevel
+src/Yi/Buffer/HighLevel.hs:125:50-54: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘forM_’ from module ‘Control.Monad’ is redundant
+    |
+125 | import           Control.Monad            (forM, forM_, replicateM_, unless, void, when)
+    |                                                  ^^^^^
+
+src/Yi/Buffer/HighLevel.hs:132:1-48: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+    |
+132 | import           Data.Monoid              ((<>))
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Yi/Buffer/HighLevel.hs:984:9-21: warning: [GHC-81995] [-Wunused-do-bind]
+    A do-notation statement discarded a result of type ‘Int’
+    Suggested fix: Suppress this warning by saying ‘_ <- lineMoveRel i’
+    |
+984 |         lineMoveRel i
+    |         ^^^^^^^^^^^^^
+
+src/Yi/Buffer/HighLevel.hs:1108:76-79: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+     |
+1108 |     go ('0':'x':xs) = (\ys -> '0':'x':ys) . (`showHex` "") . (+ n) . fst . head . readHex $ xs
+     |                                                                            ^^^^
+
+src/Yi/Buffer/HighLevel.hs:1109:76-79: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+     |
+1109 |     go ('0':'o':xs) = (\ys -> '0':'o':ys) . (`showOct` "") . (+ n) . fst . head . readOct $ xs
+     |                                                                            ^^^^
+
+[38 of 70] Compiling Yi.Buffer.Indent
+src/Yi/Buffer/Indent.hs:37:1-43: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+37 | import           Data.Monoid         ((<>))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Yi/Buffer/Indent.hs:145:5-8: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+145 |     head (above ++ below)
+    |     ^^^^
+
+src/Yi/Buffer/Indent.hs:168:5-8: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+168 |     head $ filter (> currentIndent) hints ++ [ currentIndent ]
+    |     ^^^^
+
+[39 of 70] Compiling Yi.Buffer
+[40 of 70] Compiling Yi.UI.Utils
+src/Yi/UI/Utils.hs:39:30-33: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+39 |           else (do h <- gets head
+   |                              ^^^^
+
+src/Yi/UI/Utils.hs:40:27-30: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+40 |                    modify tail
+   |                           ^^^^
+
+[41 of 70] Compiling Yi.UI.LineNumbers
+[42 of 70] Compiling Yi.Editor
+src/Yi/Editor.hs:114:1-105: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘foldl'’ from module ‘Data.Foldable’ is redundant
+    |
+114 | import           Data.Foldable                  (Foldable (foldl, foldl', foldr), all, concatMap, toList)
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Yi/Editor.hs:129:1-54: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Semigroup’ is redundant
+      except perhaps to import instances from ‘Data.Semigroup’
+    To import instances alone, use: import Data.Semigroup()
+    |
+129 | import           Data.Semigroup                 ((<>))
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Yi/Editor.hs:285:19-22: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+285 |           other = head $ (bs' \\ visibleBuffers) ++ delete k bs'
+    |                   ^^^^
+
+src/Yi/Editor.hs:429:24-27: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+429 | statusLineInfo = snd . head . statusLines
+    |                        ^^^^
+
+src/Yi/Editor.hs:594:5-8: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+594 |     head $ concatMap (\win -> [win | wkey win == k]) $ windows e
+    |     ^^^^
+
+src/Yi/Editor.hs:661:19-22: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+661 |        Nothing -> head lms
+    |                   ^^^^
+
+src/Yi/Editor.hs:817:7-77: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding: Patterns of type ‘[T.Text]’ not matched: []
+    |
+817 |       (name : names) = (fmap (("tmp-" Mon.<>) . T.pack . show) [0 :: Int ..])
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[43 of 70] Compiling Yi.UI.TabBar
+src/Yi/UI/TabBar.hs:53:19-22: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+53 |     abbrev path | head path == '.' && last path == '/' = take 2 path ++ "/"
+   |                   ^^^^
+
+src/Yi/UI/TabBar.hs:54:38-41: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+54 |                 | last path == '/' = head path : "/"
+   |                                      ^^^^
+
+[44 of 70] Compiling Yi.UI.SimpleLayout
+src/Yi/UI/SimpleLayout.hs:24:1-54: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+24 | import           Data.Monoid                    ((<>))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Yi/UI/SimpleLayout.hs:113:9-60: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe WinMarks’ not matched: Nothing
+    |
+113 |         Just (MarkSet fromM _ _) = evalBuffer (getMarks win)
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[45 of 70] Compiling Yi.Tag
+src/Yi/Tag.hs:107:38-52: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘Either String b’ not matched: Left _
+    |
+107 |               where getLineNumber = (\(Right x) -> x) . fmap fst . R.decimal
+    |                                      ^^^^^^^^^^^^^^^
+
+[46 of 70] Compiling Yi.Search.Internal
+[47 of 70] Compiling Yi.Rectangle
+src/Yi/Rectangle.hs:17:45-53: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘transpose’ from module ‘Data.List’ is redundant
+   |
+17 | import           Data.List           (sort, transpose)
+   |                                             ^^^^^^^^^
+
+src/Yi/Rectangle.hs:18:1-43: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+18 | import           Data.Monoid         ((<>))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Yi/Rectangle.hs:19:1-77: warning: [GHC-66111] [-Wunused-imports]
+    The qualified import of ‘Data.Text’ is redundant
+      except perhaps to import instances from ‘Data.Text’
+    To import instances alone, use: import Data.Text()
+   |
+19 | import qualified Data.Text           as T (Text, concat, justifyLeft, length)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Yi/Rectangle.hs:23:1-65: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘lines', unlines'’
+    from module ‘Yi.String’ is redundant
+   |
+23 | import           Yi.String           (lines', mapLines, unlines')
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Yi/Rectangle.hs:55:17-54: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[R.YiString]’ not matched:
+            []
+            [_]
+            [_, _]
+            (_:_:_:_:_)
+   |
+55 |           where [left,_,right] = multiSplit [l,r] line
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Yi/Rectangle.hs:65:26-65: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[R.YiString]’ not matched:
+            []
+            [_]
+            [_, _]
+            (_:_:_:_:_)
+   |
+65 |           cut line = let [left,mid,right] = multiSplit [l,r] line
+   |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[48 of 70] Compiling Yi.Keymap
+[49 of 70] Compiling Yi.Keymap.Keys
+[50 of 70] Compiling Yi.Hooks
+src/Yi/Hooks.hs:102:46: warning: [GHC-47082] [-Woperator-whitespace-ext-conflict]
+    The prefix use of a ‘$’ would denote an untyped splice
+      were the TemplateHaskell extension enabled.
+    Suggested fix: Add whitespace after the ‘$’.
+    |
+102 |     runHookImpl lookupHook a = runHookImpl (($a) . lookupHook)
+    |                                              ^
+
+[51 of 70] Compiling Yi.Hoogle
+src/Yi/Hoogle.hs:73:27-30: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+73 | hoogleFunModule a = map ((head &&& (!! 1)) . R.words) . gv <$> hoogleRaw a ""
+   |                           ^^^^
+
+[52 of 70] Compiling Yi.History
+src/Yi/History.hs:26:1-43: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+26 | import           Data.Monoid         ((<>))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[53 of 70] Compiling Yi.Search
+src/Yi/Search.hs:67:1-43: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+67 | import           Data.Monoid         ((<>))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Yi/Search.hs:115:9-42: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Either String SearchExp’ not matched: Left _
+    |
+115 |     let Right c_re = makeSearchOptsM fs re
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Yi/Search.hs:235:34-37: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+235 |   return . not . T.null . fst3 $ head s
+    |                                  ^^^^
+
+src/Yi/Search.hs:243:11-64: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Either String SearchExp’ not matched: Left _
+    |
+243 |     where Right se = makeSearchOptsM [QuoteRegex] (R.toString s)
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Yi/Search.hs:257:33-36: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+257 |   let (previous,p0,direction) = head s
+    |                                 ^^^^
+
+[54 of 70] Compiling Yi.PersistentState
+[55 of 70] Compiling Yi.Completion
+src/Yi/Completion.hs:27:1-43: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+27 | import           Data.Monoid         ((<>))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[56 of 70] Compiling Yi.TextCompletion
+[57 of 70] Compiling Yi.Core
+src/Yi/Core.hs:68:1-87: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘<>, mempty’ from module ‘Data.Monoid’ is redundant
+   |
+68 | import           Data.Monoid                    (First (First, getFirst), (<>), mempty)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Yi/Core.hs:344:9-34: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding: Patterns of type ‘[[Char]]’ not matched: []
+    |
+344 |     let (f:args) = splitOn " " cmd
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[58 of 70] Compiling Yi.MiniBuffer
+src/Yi/MiniBuffer.hs:247:30-33: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+247 |       | otherwise          = head matches
+    |                              ^^^^
+
+[59 of 70] Compiling Yi.Mode.Common
+[60 of 70] Compiling Yi.Misc
+[61 of 70] Compiling Yi.Dired
+src/Yi/Dired.hs:58:50-55: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘foldl'’ from module ‘Data.Foldable’ is redundant
+   |
+58 | import           Data.Foldable            (find, foldl')
+   |                                                  ^^^^^^
+
+src/Yi/Dired.hs:65:1-48: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+65 | import           Data.Monoid              ((<>))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Yi/Dired.hs:(272,11)-(274,46): warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe AnyMode’ not matched: Nothing
+    |
+272 |           Just mode = find (\(AnyMode m) -> modeName m == hmode) tbl <|>
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+src/Yi/Dired.hs:570:42-45: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+570 |                   let l1details = init $ head strss'
+    |                                          ^^^^
+
+src/Yi/Dired.hs:915:25-28: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+915 |         where (fn, _) = head fs -- the only item
+    |                         ^^^^
+
+src/Yi/Dired.hs:961:24-27: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+961 |       where (fn, de) = head fs -- the only item
+    |                        ^^^^
+
+[62 of 70] Compiling Yi.File
+src/Yi/File.hs:36:60-62: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘use’ from module ‘Lens.Micro.Platform’ is redundant
+   |
+36 | import           Lens.Micro.Platform    ((.=), makeLenses, use, view, (^.))
+   |                                                            ^^^
+
+src/Yi/File.hs:40:1-46: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+40 | import           Data.Monoid            ((<>))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Yi/File.hs:153:9-14: warning: [GHC-40910] [-Wunused-matches]
+    Defined but not used: ‘mayErr’
+    |
+153 |         mayErr <- liftBase $ R.writeFile f contents
+    |         ^^^^^^
+
+[63 of 70] Compiling Yi.Mode.Compilation
+[64 of 70] Compiling Yi.Mode.Interactive
+src/Yi/Mode/Interactive.hs:17:1-44: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+17 | import           Data.Monoid          ((<>))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[65 of 70] Compiling Yi.Eval
+src/Yi/Eval.hs:45:1-42: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘forever, void’
+    from module ‘Control.Monad’ is redundant
+   |
+45 | import Control.Monad (when, forever, void)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Yi/Eval.hs:52:1-25: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+52 | import Data.Monoid ((<>))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Yi/Eval.hs:53:1-35: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Semigroup’ is redundant
+      except perhaps to import instances from ‘Data.Semigroup’
+    To import instances alone, use: import Data.Semigroup()
+   |
+53 | import Data.Semigroup ( Semigroup )
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[66 of 70] Compiling Yi.Command.Help
+[67 of 70] Compiling Yi.Command
+src/Yi/Command.hs:18:39-42: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘MVar’ from module ‘Control.Concurrent’ is redundant
+   |
+18 | import           Control.Concurrent  (MVar,newEmptyMVar,putMVar,takeMVar)
+   |                                       ^^^^
+
+[68 of 70] Compiling Yi.Config.Default
+src/Yi/Config/Default.hs:9:1-28: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+  |
+9 | import           Data.Monoid
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[69 of 70] Compiling Yi.Config.Simple
+[70 of 70] Compiling Yi
+Configuring test suite 'tasty' for yi-core-0.19.4...
+Preprocessing test suite 'tasty' for yi-core-0.19.4...
+Building test suite 'tasty' for yi-core-0.19.4...
+[1 of 5] Compiling Yi.CompletionTests
+test/Yi/CompletionTests.hs:4:1-18: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+  |
+4 | import Data.Monoid
+  | ^^^^^^^^^^^^^^^^^^
+
+[2 of 5] Compiling Yi.CompletionTreeTests
+test/Yi/CompletionTreeTests.hs:22:53-56: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+22 |       \listOfStrings -> null listOfStrings || null (head listOfStrings) || "" `elem` CT.toList (CT.update (CT.fromList listOfStrings) (head listOfStrings))
+   |                                                     ^^^^
+
+test/Yi/CompletionTreeTests.hs:22:136-139: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+22 |       \listOfStrings -> null listOfStrings || null (head listOfStrings) || "" `elem` CT.toList (CT.update (CT.fromList listOfStrings) (head listOfStrings))
+   |                                                                                                                                        ^^^^
+
+[3 of 5] Compiling Yi.Mode.CommonTests
+[4 of 5] Compiling Yi.TagTests
+[5 of 5] Compiling Main
+[6 of 6] Linking /tmp/workdir-yi-core/yi-core-0.19.4/dist-newstyle/build/x86_64-linux/ghc-9.10.2/yi-core-0.19.4/t/tasty/build/tasty/tasty

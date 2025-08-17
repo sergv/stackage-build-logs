@@ -1,0 +1,44 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - rocksdb-haskell-jprupp-2.1.7 (lib) (first run)
+ - rocksdb-haskell-jprupp-2.1.7 (test:spec) (first run)
+Configuring library for rocksdb-haskell-jprupp-2.1.7...
+Preprocessing library for rocksdb-haskell-jprupp-2.1.7...
+Building library for rocksdb-haskell-jprupp-2.1.7...
+[1 of 6] Compiling Database.RocksDB.C
+[2 of 6] Compiling Database.RocksDB.Internal
+[3 of 6] Compiling Database.RocksDB.Iterator
+[4 of 6] Compiling Database.RocksDB.Base
+src/Database/RocksDB/Base.hs:166:50: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+166 |                               , columnFamilies = tail cfs
+    |                                                  ^^^^
+
+src/Database/RocksDB/Base.hs:239:14: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+239 |         fmap head $ peekArray 1 size_ptrs >>= mapM toInt64
+    |              ^^^^
+
+[5 of 6] Compiling Database.RocksDB
+[6 of 6] Compiling Paths_rocksdb_haskell_jprupp
+Configuring test suite 'spec' for rocksdb-haskell-jprupp-2.1.7...
+Preprocessing test suite 'spec' for rocksdb-haskell-jprupp-2.1.7...
+Building test suite 'spec' for rocksdb-haskell-jprupp-2.1.7...
+[1 of 2] Compiling Main
+test/Spec.hs:37:19: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+37 |         let two = head $ columnFamilies db
+   |                   ^^^^
+
+[2 of 2] Compiling Paths_rocksdb_haskell_jprupp
+[3 of 3] Linking /tmp/workdir-rocksdb-haskell-jprupp/rocksdb-haskell-jprupp-2.1.7/dist-newstyle/build/x86_64-linux/ghc-9.10.2/rocksdb-haskell-jprupp-2.1.7/t/spec/build/spec/spec

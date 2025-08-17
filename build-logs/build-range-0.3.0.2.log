@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - range-0.3.0.2 (lib) (first run)
  - range-0.3.0.2 (test:test-range) (first run)
@@ -8,8 +9,55 @@ Building library for range-0.3.0.2...
 [ 1 of 12] Compiling Data.Range.Data
 [ 2 of 12] Compiling Data.Range.Operators
 [ 3 of 12] Compiling Data.Range.Util
+Data/Range/Util.hs:132:92: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+132 | takeEvenly xss = (catMaybes . map safeHead $ xss) ++ takeEvenly (filter (not . null) . map tail $ xss)
+    |                                                                                            ^^^^
+
+Data/Range/Util.hs:140:20: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+140 | pairs xs = zip xs (tail xs)
+    |                    ^^^^
+
 [ 4 of 12] Compiling Data.Range.Spans
 [ 5 of 12] Compiling Data.Range.RangeInternal
+Data/Range/RangeInternal.hs:35:38: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘RangeMerge a’ not matched: IRM
+   |
+35 | storeRange (LowerBoundRange lower) = emptyRangeMerge { largestLowerBound = Just lower }
+   |                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Data/Range/RangeInternal.hs:36:38: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘RangeMerge a’ not matched: IRM
+   |
+36 | storeRange (UpperBoundRange upper) = emptyRangeMerge { largestUpperBound = Just upper }
+   |                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Data/Range/RangeInternal.hs:39:18: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘RangeMerge a’ not matched: IRM
+   |
+39 |    | otherwise = emptyRangeMerge { spanRanges = [(minBounds x y, maxBounds x y)] }
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Data/Range/RangeInternal.hs:40:33: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘RangeMerge a’ not matched: IRM
+   |
+40 | storeRange (SingletonRange x) = emptyRangeMerge { spanRanges = [(Bound x Inclusive, Bound x Inclusive)] }
+   |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Data/Range/RangeInternal.hs:63:11: warning: [GHC-56147]
     Rule "load/export" ignored
@@ -17,15 +65,47 @@ Data/Range/RangeInternal.hs:63:11: warning: [GHC-56147]
    |
 63 | {-# RULES "load/export" [1] forall x. loadRanges (exportRangeMerge x) = x #-}
    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Data/Range/RangeInternal.hs:142:43: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘RangeMerge a’ not matched: IRM
+    |
+142 |       filterTwo = foldr filterUpperBound (filterOne { spanRanges = [] }) (spanRanges filterOne)
+    |                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Data/Range/RangeInternal.hs:203:43: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+203 |       newUpperValue = invertBound . fst . head . spanRanges $ rm
+    |                                           ^^^^
+
 [ 6 of 12] Compiling Data.Range.Algebra.Internal
 [ 7 of 12] Compiling Data.Range.Algebra.Range
 [ 8 of 12] Compiling Data.Range.Algebra.Predicate
 [ 9 of 12] Compiling Data.Range.Algebra
 [10 of 12] Compiling Data.Range
+Data/Range.hs:393:46: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+393 |          InfiniteRange -> zero : takeEvenly [tail $ iterate succ zero, tail $ iterate pred zero]
+    |                                              ^^^^
+
+Data/Range.hs:393:72: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+393 |          InfiniteRange -> zero : takeEvenly [tail $ iterate succ zero, tail $ iterate pred zero]
+    |                                                                        ^^^^
+
 [11 of 12] Compiling Data.Range.Parser
 [12 of 12] Compiling Data.Ranges
-
-Data/Ranges.hs:37:1: warning: [-Wunused-imports]
+Data/Ranges.hs:37:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Semigroup’ is redundant
       except perhaps to import instances from ‘Data.Semigroup’
     To import instances alone, use: import Data.Semigroup()
@@ -33,19 +113,20 @@ Data/Ranges.hs:37:1: warning: [-Wunused-imports]
 37 | import Data.Semigroup
    | ^^^^^^^^^^^^^^^^^^^^^
 
-Data/Ranges.hs:56:4: warning: [-Wnoncanonical-monoid-instances]
+Data/Ranges.hs:56:4: warning: [GHC-50928] [-Wnoncanonical-monoid-instances]
     Noncanonical ‘mappend’ definition detected
     in the instance declaration for ‘Monoid (Ranges a)’.
     ‘mappend’ will eventually be removed in favour of ‘(<>)’
-    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    Suggested fix:
+      Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
    |
 56 |    mappend (Ranges a) (Ranges b) = Ranges . R.mergeRanges $ a ++ b
    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Configuring test suite 'test-range' for range-0.3.0.2...
 Preprocessing test suite 'test-range' for range-0.3.0.2...
 Building test suite 'test-range' for range-0.3.0.2...
-
 <no location info>: warning: [GHC-32850] [-Wmissing-home-modules]
     These modules are needed for compilation but not listed in your .cabal file's other-modules for ‘range-0.3.0.2-inplace-test-range’ :
         Data.Range
@@ -58,11 +139,59 @@ Building test suite 'test-range' for range-0.3.0.2...
         Data.Range.RangeInternal
         Data.Range.Spans
         Data.Range.Util
+
 [ 1 of 12] Compiling Data.Range.Data
 [ 2 of 12] Compiling Data.Range.Operators
 [ 3 of 12] Compiling Data.Range.Util
+Data/Range/Util.hs:132:92: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+132 | takeEvenly xss = (catMaybes . map safeHead $ xss) ++ takeEvenly (filter (not . null) . map tail $ xss)
+    |                                                                                            ^^^^
+
+Data/Range/Util.hs:140:20: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+140 | pairs xs = zip xs (tail xs)
+    |                    ^^^^
+
 [ 4 of 12] Compiling Data.Range.Spans
 [ 5 of 12] Compiling Data.Range.RangeInternal
+Data/Range/RangeInternal.hs:35:38: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘RangeMerge a’ not matched: IRM
+   |
+35 | storeRange (LowerBoundRange lower) = emptyRangeMerge { largestLowerBound = Just lower }
+   |                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Data/Range/RangeInternal.hs:36:38: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘RangeMerge a’ not matched: IRM
+   |
+36 | storeRange (UpperBoundRange upper) = emptyRangeMerge { largestUpperBound = Just upper }
+   |                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Data/Range/RangeInternal.hs:39:18: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘RangeMerge a’ not matched: IRM
+   |
+39 |    | otherwise = emptyRangeMerge { spanRanges = [(minBounds x y, maxBounds x y)] }
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Data/Range/RangeInternal.hs:40:33: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘RangeMerge a’ not matched: IRM
+   |
+40 | storeRange (SingletonRange x) = emptyRangeMerge { spanRanges = [(Bound x Inclusive, Bound x Inclusive)] }
+   |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Data/Range/RangeInternal.hs:63:11: warning: [GHC-56147]
     Rule "load/export" ignored
@@ -70,57 +199,89 @@ Data/Range/RangeInternal.hs:63:11: warning: [GHC-56147]
    |
 63 | {-# RULES "load/export" [1] forall x. loadRanges (exportRangeMerge x) = x #-}
    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Data/Range/RangeInternal.hs:142:43: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘RangeMerge a’ not matched: IRM
+    |
+142 |       filterTwo = foldr filterUpperBound (filterOne { spanRanges = [] }) (spanRanges filterOne)
+    |                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Data/Range/RangeInternal.hs:203:43: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+203 |       newUpperValue = invertBound . fst . head . spanRanges $ rm
+    |                                           ^^^^
+
 [ 6 of 12] Compiling Data.Range.Algebra.Internal
 [ 7 of 12] Compiling Data.Range.Algebra.Range
 [ 8 of 12] Compiling Data.Range.Algebra.Predicate
 [ 9 of 12] Compiling Data.Range.Algebra
 [10 of 12] Compiling Data.Range
-[11 of 12] Compiling Test.RangeMerge
+Data/Range.hs:393:46: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+393 |          InfiniteRange -> zero : takeEvenly [tail $ iterate succ zero, tail $ iterate pred zero]
+    |                                              ^^^^
 
+Data/Range.hs:393:72: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+393 |          InfiniteRange -> zero : takeEvenly [tail $ iterate succ zero, tail $ iterate pred zero]
+    |                                                                        ^^^^
+
+[11 of 12] Compiling Test.RangeMerge
 Test/RangeMerge.hs:69:1: warning: [GHC-38417] [-Wmissing-signatures]
     Top-level binding with no type signature:
-      test_loadRM :: test-framework-0.8.2.0:Test.Framework.Core.Test
+      test_loadRM :: test-framework-0.8.2.2:Test.Framework.Core.Test
    |
 69 | test_loadRM = testGroup "loadRanges function"
    | ^^^^^^^^^^^
 
 Test/RangeMerge.hs:76:1: warning: [GHC-38417] [-Wmissing-signatures]
     Top-level binding with no type signature:
-      test_invertRM :: test-framework-0.8.2.0:Test.Framework.Core.Test
+      test_invertRM :: test-framework-0.8.2.2:Test.Framework.Core.Test
    |
 76 | test_invertRM = testGroup "invertRM function"
    | ^^^^^^^^^^^^^
 
 Test/RangeMerge.hs:86:1: warning: [GHC-38417] [-Wmissing-signatures]
     Top-level binding with no type signature:
-      test_unionRM :: test-framework-0.8.2.0:Test.Framework.Core.Test
+      test_unionRM :: test-framework-0.8.2.2:Test.Framework.Core.Test
    |
 86 | test_unionRM = testGroup "unionRangeMerges function"
    | ^^^^^^^^^^^^
 
 Test/RangeMerge.hs:99:1: warning: [GHC-38417] [-Wmissing-signatures]
     Top-level binding with no type signature:
-      test_intersectionRM :: test-framework-0.8.2.0:Test.Framework.Core.Test
+      test_intersectionRM :: test-framework-0.8.2.2:Test.Framework.Core.Test
    |
 99 | test_intersectionRM = testGroup "intersectionRangeMerges function"
    | ^^^^^^^^^^^^^^^^^^^
 
 Test/RangeMerge.hs:112:1: warning: [GHC-38417] [-Wmissing-signatures]
     Top-level binding with no type signature:
-      test_complex_laws :: test-framework-0.8.2.0:Test.Framework.Core.Test
+      test_complex_laws :: test-framework-0.8.2.2:Test.Framework.Core.Test
     |
 112 | test_complex_laws = testGroup "complex set theory rules"
     | ^^^^^^^^^^^^^^^^^
 
 Test/RangeMerge.hs:117:1: warning: [GHC-38417] [-Wmissing-signatures]
     Top-level binding with no type signature:
-      rangeMergeTestCases :: [test-framework-0.8.2.0:Test.Framework.Core.Test]
+      rangeMergeTestCases :: [test-framework-0.8.2.2:Test.Framework.Core.Test]
     |
 117 | rangeMergeTestCases =
     | ^^^^^^^^^^^^^^^^^^^
-[12 of 12] Compiling Main
 
-Test/Range.hs:11:1: warning: [-Wunused-imports]
+[12 of 12] Compiling Main
+Test/Range.hs:11:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
@@ -130,7 +291,7 @@ Test/Range.hs:11:1: warning: [-Wunused-imports]
 
 Test/Range.hs:51:1: warning: [GHC-38417] [-Wmissing-signatures]
     Top-level binding with no type signature:
-      tests_inRange :: test-framework-0.8.2.0:Test.Framework.Core.Test
+      tests_inRange :: test-framework-0.8.2.2:Test.Framework.Core.Test
    |
 51 | tests_inRange = testGroup "inRange Function"
    | ^^^^^^^^^^^^^
@@ -177,21 +338,21 @@ Test/Range.hs:53:6: warning: [GHC-18042] [-Wtype-defaults]
 
 Test/Range.hs:88:1: warning: [GHC-38417] [-Wmissing-signatures]
     Top-level binding with no type signature:
-      test_ranges_invert :: test-framework-0.8.2.0:Test.Framework.Core.Test
+      test_ranges_invert :: test-framework-0.8.2.2:Test.Framework.Core.Test
    |
 88 | test_ranges_invert = testGroup "invert function for ranges"
    | ^^^^^^^^^^^^^^^^^^
 
 Test/Range.hs:107:1: warning: [GHC-38417] [-Wmissing-signatures]
     Top-level binding with no type signature:
-      test_algebra_equivalence :: test-framework-0.8.2.0:Test.Framework.Core.Test
+      test_algebra_equivalence :: test-framework-0.8.2.2:Test.Framework.Core.Test
     |
 107 | test_algebra_equivalence = testGroup "algebra equivalence"
     | ^^^^^^^^^^^^^^^^^^^^^^^^
 
 Test/Range.hs:112:1: warning: [GHC-38417] [-Wmissing-signatures]
     Top-level binding with no type signature:
-      tests :: [test-framework-0.8.2.0:Test.Framework.Core.Test]
+      tests :: [test-framework-0.8.2.2:Test.Framework.Core.Test]
     |
 112 | tests =
     | ^^^^^
@@ -214,4 +375,5 @@ Test/Range.hs:119:1: warning: [GHC-38417] [-Wmissing-signatures]
         Data.Range.RangeInternal
         Data.Range.Spans
         Data.Range.Util
-[13 of 13] Linking /tmp/workdir-range/range-0.3.0.2/dist-newstyle/build/x86_64-linux/ghc-9.6.5/range-0.3.0.2/t/test-range/build/test-range/test-range
+
+[13 of 13] Linking /tmp/workdir-range/range-0.3.0.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/range-0.3.0.2/t/test-range/build/test-range/test-range

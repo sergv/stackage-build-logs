@@ -1,0 +1,364 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - type-natural-1.3.0.2 (lib) (first run)
+ - type-natural-1.3.0.2 (test:type-natural-test) (first run)
+Configuring library for type-natural-1.3.0.2...
+Preprocessing library for type-natural-1.3.0.2...
+Building library for type-natural-1.3.0.2...
+src/Data/Type/Natural/Lemma/Arithmetic.hs:17:14: warning: [GHC-53692] [-Wdeprecated-flags]
+    -XTypeInType is deprecated: use -XDataKinds and -XPolyKinds instead
+   |
+17 | {-# LANGUAGE TypeInType #-}
+   |              ^^^^^^^^^^
+
+src/Data/Type/Natural/Lemma/Order.hs:19:14: warning: [GHC-53692] [-Wdeprecated-flags]
+    -XTypeInType is deprecated: use -XDataKinds and -XPolyKinds instead
+   |
+19 | {-# LANGUAGE TypeInType #-}
+   |              ^^^^^^^^^^
+
+src/Data/Type/Ordinal.hs:20:14: warning: [GHC-53692] [-Wdeprecated-flags]
+    -XTypeInType is deprecated: use -XDataKinds and -XPolyKinds instead
+   |
+20 | {-# LANGUAGE TypeInType #-}
+   |              ^^^^^^^^^^
+
+src/Data/Type/Natural/Lemma/Presburger.hs:18:14: warning: [GHC-53692] [-Wdeprecated-flags]
+    -XTypeInType is deprecated: use -XDataKinds and -XPolyKinds instead
+   |
+18 | {-# LANGUAGE TypeInType #-}
+   |              ^^^^^^^^^^
+
+[ 1 of 10] Compiling Data.Type.Natural.Core
+src/Data/Type/Natural/Core.hs:70:5: warning: [GHC-47854] [-Wduplicate-exports]
+    ‘Natural’ is exported by ‘module GHC.TypeNats’ and ‘Natural’
+   |
+70 |     module GHC.TypeNats,
+   |     ^^^^^^^^^^^^^^^^^^^
+
+src/Data/Type/Natural/Core.hs:82:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Numeric.Natural’ is redundant
+      except perhaps to import instances from ‘Numeric.Natural’
+    To import instances alone, use: import Numeric.Natural()
+   |
+82 | import Numeric.Natural
+   | ^^^^^^^^^^^^^^^^^^^^^^
+
+[ 2 of 10] Compiling Data.Type.Natural.Lemma.Presburger
+src/Data/Type/Natural/Lemma/Presburger.hs:37:24: warning: [GHC-40564] [-Winaccessible-code]
+    • Inaccessible code in
+        a pattern with constructor: Refl :: forall {k} (a :: k). a :~: a,
+        in an equation for ‘succNonCyclic’
+      Couldn't match type ‘n’ with ‘n1 + 1’
+      ‘n’ is a rigid type variable bound by
+        the type signature for:
+          succNonCyclic :: forall (n :: Nat).
+                           SNat n -> (Succ n :~: 0) -> Void
+        at src/Data/Type/Natural/Lemma/Presburger.hs:35:1-47
+    • In the pattern: Refl
+      In an equation for ‘succNonCyclic’:
+          succNonCyclic (Succ n) Refl = succNonCyclic n Refl
+    • Relevant bindings include
+        succNonCyclic :: SNat n -> (Succ n :~: 0) -> Void
+          (bound at src/Data/Type/Natural/Lemma/Presburger.hs:36:1)
+   |
+37 | succNonCyclic (Succ n) Refl = succNonCyclic n Refl
+   |                        ^^^^
+
+[ 3 of 10] Compiling Data.Type.Natural.Lemma.Arithmetic
+[ 4 of 10] Compiling Data.Type.Natural.Lemma.Order
+src/Data/Type/Natural/Lemma/Order.hs:235:24: warning: [GHC-40564] [-Winaccessible-code]
+    • Inaccessible code in
+        a pattern with pattern synonym:
+          Zero :: forall (n :: Natural). () => (n ~ 0) => SNat n,
+        in an equation for ‘boolToPropLeq’
+      Couldn't match type ‘n’ with ‘n1 + 1’
+      ‘n’ is a rigid type variable bound by
+        the type signature for:
+          boolToPropLeq :: forall (n :: Nat) (m :: Nat).
+                           (n <= m) =>
+                           SNat n -> SNat m -> Leq n m
+        at src/Data/Type/Natural/Lemma/Order.hs:232:1-56
+    • In the pattern: Zero
+      In an equation for ‘boolToPropLeq’:
+          boolToPropLeq (Succ n) Zero = absurd $ succLeqZeroAbsurd n Witness
+    • Relevant bindings include
+        boolToPropLeq :: SNat n -> SNat m -> Leq n m
+          (bound at src/Data/Type/Natural/Lemma/Order.hs:233:1)
+    |
+235 | boolToPropLeq (Succ n) Zero = absurd $ succLeqZeroAbsurd n Witness
+    |                        ^^^^
+
+src/Data/Type/Natural/Lemma/Order.hs:254:23: warning: [GHC-40564] [-Winaccessible-code]
+    • Inaccessible code in
+        a pattern with pattern synonym:
+          Zero :: forall (n :: Natural). () => (n ~ 0) => SNat n,
+        in an equation for ‘boolToPropLt’
+      Couldn't match type ‘n’ with ‘n1 + 1’
+      ‘n’ is a rigid type variable bound by
+        the type signature for:
+          boolToPropLt :: forall (n :: Nat) (m :: Nat).
+                          (n < m) =>
+                          SNat n -> SNat m -> n :<: m
+        at src/Data/Type/Natural/Lemma/Order.hs:252:1-52
+    • In the pattern: Zero
+      In an equation for ‘boolToPropLt’:
+          boolToPropLt (Succ n) Zero
+            = eliminate
+                $ start STrue =~= (Succ n %<? Zero)
+                    =~= sOrdCond (sCmpNat (Succ n) Zero) STrue SFalse SFalse
+                    ===
+                      sOrdCond SGT STrue SFalse SFalse
+                        `because` sOrdCondCong1 (cmpSuccZeroGT n) STrue SFalse SFalse
+                    =~= SFalse
+    • Relevant bindings include
+        boolToPropLt :: SNat n -> SNat m -> n :<: m
+          (bound at src/Data/Type/Natural/Lemma/Order.hs:253:1)
+    |
+254 | boolToPropLt (Succ n) Zero = eliminate $
+    |                       ^^^^
+
+src/Data/Type/Natural/Lemma/Order.hs:586:9: warning: [GHC-40564] [-Winaccessible-code]
+    • Inaccessible code in
+        a pattern with constructor:
+          LeqZero :: forall (n :: Nat). SNat n -> LeqView 0 n,
+        in a case alternative
+      Couldn't match type ‘x + 1’ with ‘0’
+    • In the pattern: LeqZero _
+      In a case alternative: LeqZero _ -> absurd $ succNonCyclic n Refl
+      In the expression:
+        case viewLeq (sSucc n) m snLEQm of
+          LeqZero _ -> absurd $ succNonCyclic n Refl
+          LeqSucc (_ :: SNat n') pm nLEQpm
+            -> succDiffNat n pm
+                 $ ih pm $ coerceLeqL (succInj Refl :: n' :~: x) pm nLEQpm
+    • Relevant bindings include
+        snLEQm :: IsTrue (Succ x <=? m1)
+          (bound at src/Data/Type/Natural/Lemma/Order.hs:583:54)
+        ih :: forall (m :: Nat). SNat m -> IsTrue (x <=? m) -> DiffNat x m
+          (bound at src/Data/Type/Natural/Lemma/Order.hs:583:34)
+        n :: SNat x (bound at src/Data/Type/Natural/Lemma/Order.hs:583:11)
+        step :: SNat x -> LeqWitPf x -> LeqWitPf (Succ x)
+          (bound at src/Data/Type/Natural/Lemma/Order.hs:583:5)
+    |
+586 |         LeqZero _ -> absurd $ succNonCyclic n Refl
+    |         ^^^^^^^^^
+
+src/Data/Type/Natural/Lemma/Order.hs:765:5: warning: [GHC-40564] [-Winaccessible-code]
+    • Inaccessible code in
+        a pattern with constructor: SLT :: SOrdering LT,
+        in a case alternative
+      Couldn't match type ‘OrdCond (CmpNat m n) True True False’
+                     with ‘True’
+    • In the pattern: SLT
+      In a case alternative: SLT -> Refl
+      In the expression:
+        case sCmpNat n m of
+          SLT -> Refl
+          SEQ -> Refl
+          SGT -> Refl
+    • Relevant bindings include
+        m :: SNat m (bound at src/Data/Type/Natural/Lemma/Order.hs:763:12)
+        n :: SNat n (bound at src/Data/Type/Natural/Lemma/Order.hs:763:10)
+        geqToMax :: SNat n -> SNat m -> IsTrue (m <=? n) -> Max n m :~: n
+          (bound at src/Data/Type/Natural/Lemma/Order.hs:763:1)
+    |
+765 |     SLT -> Refl
+    |     ^^^
+
+[ 5 of 10] Compiling Data.Type.Natural
+[ 6 of 10] Compiling Data.Type.Natural.Builtin
+[ 7 of 10] Compiling Data.Type.Natural.Presburger.MinMaxSolver
+src/Data/Type/Natural/Presburger/MinMaxSolver.hs:13:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘GHC.Plugins’ is redundant
+      except perhaps to import instances from ‘GHC.Plugins’
+    To import instances alone, use: import GHC.Plugins()
+   |
+13 | import GHC.Plugins
+   | ^^^^^^^^^^^^^^^^^^...
+
+src/Data/Type/Natural/Presburger/MinMaxSolver.hs:20:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘GHC.Tc.Plugin’ is redundant
+      except perhaps to import instances from ‘GHC.Tc.Plugin’
+    To import instances alone, use: import GHC.Tc.Plugin()
+   |
+20 | import GHC.Tc.Plugin
+   | ^^^^^^^^^^^^^^^^^^^^
+
+[ 8 of 10] Compiling Data.Type.Natural.Utils
+[ 9 of 10] Compiling Data.Type.Ordinal
+[10 of 10] Compiling Data.Type.Ordinal.Builtin
+Configuring test suite 'type-natural-test' for type-natural-1.3.0.2...
+Preprocessing test suite 'type-natural-test' for type-natural-1.3.0.2...
+Building test suite 'type-natural-test' for type-natural-1.3.0.2...
+[1 of 8] Compiling Data.Type.Natural.Presburger.Cases
+tests/Data/Type/Natural/Presburger/Cases.hs:9:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Proxy’ is redundant
+      except perhaps to import instances from ‘Data.Proxy’
+    To import instances alone, use: import Data.Proxy()
+  |
+9 | import Data.Proxy (Proxy (Proxy))
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Data/Type/Natural/Presburger/Cases.hs:12:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘GHC.TypeNats’ is redundant
+      except perhaps to import instances from ‘GHC.TypeNats’
+    To import instances alone, use: import GHC.TypeNats()
+   |
+12 | import GHC.TypeNats
+   | ^^^^^^^^^^^^^^^^^^^
+
+tests/Data/Type/Natural/Presburger/Cases.hs:27:16: warning: [GHC-25897] [-Wdeferred-type-errors]
+    • Could not deduce ‘ghc-internal-9.1002.0:GHC.Internal.Data.Type.Ord.OrdCond
+                          (CmpNat n m) n n m
+                        ~ m’
+      from the context: n <= m
+        bound by the type signature for:
+                   falsity :: forall (n :: Nat) (m :: Nat) (p :: Nat -> Type)
+                                     (q :: Nat -> Type).
+                              (n <= m) =>
+                              p n -> q m -> Min n m :~: m
+        at tests/Data/Type/Natural/Presburger/Cases.hs:26:1-48
+      Expected: Min n m :~: m
+        Actual: m :~: m
+      Type synonyms expanded:
+      Expected type: ghc-internal-9.1002.0:GHC.Internal.Data.Type.Ord.OrdCond
+                       (ghc-internal-9.1002.0:GHC.Internal.Data.Type.Ord.Compare n m)
+                       n
+                       n
+                       m
+                     :~: m
+        Actual type: m :~: m
+      ‘m’ is a rigid type variable bound by
+        the type signature for:
+          falsity :: forall (n :: Nat) (m :: Nat) (p :: Nat -> Type)
+                            (q :: Nat -> Type).
+                     (n <= m) =>
+                     p n -> q m -> Min n m :~: m
+        at tests/Data/Type/Natural/Presburger/Cases.hs:26:1-48
+    • In the expression: Refl
+      In an equation for ‘falsity’: falsity _ _ = Refl
+    • Relevant bindings include
+        falsity :: p n -> q m -> Min n m :~: m
+          (bound at tests/Data/Type/Natural/Presburger/Cases.hs:27:1)
+   |
+27 | falsity _ _  = Refl
+   |                ^^^^
+
+[2 of 8] Compiling Data.Type.OrdinalSpec
+[3 of 8] Compiling Shared
+tests/Shared.hs:20:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Numeric.Natural’ is redundant
+      except perhaps to import instances from ‘Numeric.Natural’
+    To import instances alone, use: import Numeric.Natural()
+   |
+20 | import Numeric.Natural
+   | ^^^^^^^^^^^^^^^^^^^^^^
+
+[4 of 8] Compiling Data.Type.NaturalSpec.TH
+tests/Data/Type/NaturalSpec/TH.hs:11:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Numeric.Natural’ is redundant
+      except perhaps to import instances from ‘Numeric.Natural’
+    To import instances alone, use: import Numeric.Natural()
+   |
+11 | import Numeric.Natural
+   | ^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Data/Type/NaturalSpec/TH.hs:13:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Test.Tasty’ is redundant
+      except perhaps to import instances from ‘Test.Tasty’
+    To import instances alone, use: import Test.Tasty()
+   |
+13 | import Test.Tasty
+   | ^^^^^^^^^^^^^^^^^
+
+[5 of 8] Compiling Data.Type.NaturalSpec
+tests/Data/Type/NaturalSpec.hs:13:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘GHC.TypeNats’ is redundant
+      except perhaps to import instances from ‘GHC.TypeNats’
+    To import instances alone, use: import GHC.TypeNats()
+   |
+13 | import GHC.TypeNats
+   | ^^^^^^^^^^^^^^^^^^^
+
+tests/Data/Type/NaturalSpec.hs:14:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Shared’ is redundant
+      except perhaps to import instances from ‘Shared’
+    To import instances alone, use: import Shared()
+   |
+14 | import Shared
+   | ^^^^^^^^^^^^^
+
+tests/Data/Type/NaturalSpec.hs:17:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Test.QuickCheck’ is redundant
+      except perhaps to import instances from ‘Test.QuickCheck’
+    To import instances alone, use: import Test.QuickCheck()
+   |
+17 | import Test.QuickCheck
+   | ^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Data/Type/NaturalSpec.hs:18:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Control.Monad’ is redundant
+      except perhaps to import instances from ‘Control.Monad’
+    To import instances alone, use: import Control.Monad()
+   |
+18 | import Control.Monad (join)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[6 of 8] Compiling Data.Type.Natural.Presburger.MinMaxSolverSpec
+tests/Data/Type/Natural/Presburger/MinMaxSolverSpec.hs:16:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Shared’ is redundant
+      except perhaps to import instances from ‘Shared’
+    To import instances alone, use: import Shared()
+   |
+16 | import Shared
+   | ^^^^^^^^^^^^^
+
+tests/Data/Type/Natural/Presburger/MinMaxSolverSpec.hs:17:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Test.QuickCheck’ is redundant
+      except perhaps to import instances from ‘Test.QuickCheck’
+    To import instances alone, use: import Test.QuickCheck()
+   |
+17 | import Test.QuickCheck (ioProperty)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Data/Type/Natural/Presburger/MinMaxSolverSpec.hs:19:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Test.Tasty.HUnit’ is redundant
+      except perhaps to import instances from ‘Test.Tasty.HUnit’
+    To import instances alone, use: import Test.Tasty.HUnit()
+   |
+19 | import Test.Tasty.HUnit
+   | ^^^^^^^^^^^^^^^^^^^^^^^
+
+[7 of 8] Compiling Data.Type.Natural.Lemma.OrderSpec
+tests/Data/Type/Natural/Lemma/OrderSpec.hs:135:11: warning: [GHC-40910] [-Wunused-matches]
+    Defined but not used: ‘v’
+    |
+135 |     Right v -> 
+    |           ^
+
+tests/Data/Type/Natural/Lemma/OrderSpec.hs:353:13: warning: [GHC-40564] [-Winaccessible-code]
+    • Inaccessible code in
+        a pattern with constructor: STrue :: SBool True,
+        in a case alternative
+      Couldn't match type ‘False’ with ‘True’
+    • In the pattern: STrue
+      In a case alternative: STrue -> error "impossible!"
+      In the expression:
+        case n %<=? m of
+          STrue -> error "impossible!"
+          SFalse -> totalWitness $ notLeqToLeq n m
+    |
+353 |             STrue -> error "impossible!"
+    |             ^^^^^
+
+tests/Data/Type/Natural/Lemma/OrderSpec.hs:353:13: warning: [GHC-94210] [-Woverlapping-patterns]
+    Pattern match has inaccessible right hand side
+    In a case alternative: STrue -> ...
+    |
+353 |             STrue -> error "impossible!"
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[8 of 8] Compiling Main
+[9 of 9] Linking /tmp/workdir-type-natural/type-natural-1.3.0.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/type-natural-1.3.0.2/t/type-natural-test/build/type-natural-test/type-natural-test

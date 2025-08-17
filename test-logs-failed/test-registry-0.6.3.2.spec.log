@@ -1,0 +1,143 @@
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - registry-0.6.3.2 (test:spec) (ephemeral targets)
+Preprocessing test suite 'spec' for registry-0.6.3.2...
+Building test suite 'spec' for registry-0.6.3.2...
+Running 1 test suites...
+Test suite spec: RUNNING...
+All
+  Test.Data.Registry.Internal.DynamicSpec
+    we can collect the input types of a function:                                                                     OK
+        ✓ we can collect the input types of a function passed 1 test.
+    we can get the output type of a function:                                                                         OK
+        ✓ we can get the output type of a function passed 1 test.
+    we can apply a list of dynamic values to a dynamic function:                                                      OK
+        ✓ we can apply a list of dynamic values to a dynamic function passed 1 test.
+  Test.Data.Registry.Internal.ReflectionSpec
+    we can check if a type rep represents a function:                                                                 OK
+        ✓ we can check if a type rep represents a function passed 1 test.
+    show value for a simple type:                                                                                     OK
+        ✓ show value for a simple type passed 1 test.
+    show value for a nested types:                                                                                    FAIL
+        ✗ show value for a nested types failed at test/Test/Data/Registry/Internal/ReflectionSpec.hs:28:62
+          after 1 test.
+          shrink path: 1:
+        
+             ┏━━ test/Test/Data/Registry/Internal/ReflectionSpec.hs ━━━
+          27 ┃ test_show_value_nested_type = test "show value for a nested types" $ do
+          28 ┃   valDescriptionToText (describeValue (Just 1 :: Maybe Int)) === "Maybe Int: Just 1"
+             ┃   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+             ┃   │ ━━━ Failed (- lhs) (+ rhs) ━━━
+             ┃   │ - "GHC.Internal.Maybe.Maybe Int: Just 1"
+             ┃   │ + "Maybe Int: Just 1"
+          29 ┃ 
+          30 ┃   -- putting parentheses around types doesn't really work when type constructors
+          31 ┃   -- have more than one argument :-(
+          32 ┃   valDescriptionToText (describeValue (Right 1 :: Either Text Int)) === "Either (Text Int): Right 1"
+          33 ┃   valDescriptionToText (describeValue ([1] :: [Int])) === "[Int]: [1]"
+          34 ┃ 
+          35 ┃   -- user types must be shown with their full component names
+          36 ┃   valDescriptionToText (describeValue mod1) === "Test.Data.Registry.Internal.ReflectionSpec.Mod Int: Mod 1 \"hey\""
+        
+          This failure can be reproduced by running:
+          > recheckAt (Seed 1467204552763838967 2477487853784000533) "1:" show value for a nested types
+        
+      Use "--pattern '$NF ~ /show value for a nested types/' --hedgehog-replay '1: Seed 1467204552763838967 2477487853784000533'" to reproduce from the command-line.
+      
+      Use -p '/show value for a nested types/' to rerun this test only.
+    show simple functions:                                                                                            OK
+        ✓ show simple functions passed 1 test.
+  Test.Data.Registry.Make.MakeSpec
+    functions can be lifted in order to participate in building instances:                                            OK
+        ✓ functions can be lifted in order to participate in building instances passed 1 test.
+    cycle can be detected:                                                                                            OK
+        ✓ cycle can be detected passed 1 test.
+    makeSafe checks statically that a :                                                                               OK
+        ✓ makeSafe checks statically that a  passed 1 test.
+  Test.Data.Registry.Make.RioSpec
+    a cached value can still be mapped over:                                                                          OK
+        ✓ a cached value can still be mapped over passed 1 test.
+    some effectful components can be cached to become singletons in some contexts:                                    OK
+        ✓ some effectful components can be cached to become singletons in some contexts passed 1 test.
+  Test.Data.Registry.Make.SpecializationFunctionsSpec
+    values can be built from specialized functions depending on some context:                                         OK
+        ✓ values can be built from specialized functions depending on some context passed 1 test.
+    values can be built from specialized functions depending on some context:                                         OK
+        ✓ values can be built from specialized functions depending on some context passed 1 test.
+    we can override an IO value with an IO function:                                                                  OK
+        ✓ we can override an IO value with an IO function passed 1 test.
+    we can specialize an IO value with an IO function:                                                                OK
+        ✓ we can specialize an IO value with an IO function passed 1 test.
+  Test.Data.Registry.Make.SpecializationSpec
+    values can use other values depending on some context:                                                            OK
+        ✓ values can use other values depending on some context passed 1 test.
+    more specialized context:                                                                                         OK
+        ✓ more specialized context passed 1 test.
+    specialized values must be kept up to their start context:                                                        OK
+        ✓ specialized values must be kept up to their start context passed 1 test.
+    values can be specialized for a given path:                                                                       OK
+        ✓ values can be specialized for a given path passed 1 test.
+    values can be specialized for a given path - other case:                                                          OK
+        ✓ values can be specialized for a given path - other case passed 1 test.
+    specialized values can be made:                                                                                   OK
+        ✓ specialized values can be made passed 1 test.
+  Test.Data.Registry.Make.TweakingSpec
+    created values can be modified prior to being stored:                                                             OK
+        ✓ created values can be modified prior to being stored passed 1 test.
+    a modified value must not lose its context, specialization or dependencies:                                       OK
+        ✓ a modified value must not lose its context, specialization or dependencies passed 1 test.
+  Test.Data.Registry.MonadRandomSpec
+    a function using MonadRandom can be executed with the RandomGenerator component and return random values:         OK
+        ✓ a function using MonadRandom can be executed with the RandomGenerator component and return random values passed 1 test.
+    a function using MonadRandom can be executed with the RandomGenerator component and return predetermined values:  OK
+        ✓ a function using MonadRandom can be executed with the RandomGenerator component and return predetermined values passed 1 test.
+    a function using MonadRandom can be executed with the RandomGenerator component can return always the same value: OK
+        ✓ a function using MonadRandom can be executed with the RandomGenerator component can return always the same value passed 1 test.
+  Test.Data.Registry.RegistrySpec
+    2 values can be appended together:                                                                                OK
+        ✓ 2 values can be appended together passed 1 test.
+    a value can be appended to a registry:                                                                            OK
+        ✓ a value can be appended to a registry passed 1 test.
+    a value can be prepended to a registry:                                                                           OK
+        ✓ a value can be prepended to a registry passed 1 test.
+  Test.Data.Registry.SmallExample
+    create the application:                                                                                           OK
+        ✓ create the application passed 1 test.
+  Test.Tasty.Extensions
+    a dot graph can be generated from a registry:                                                                     OK
+        ✓ a dot graph can be generated from a registry passed 100 tests.
+    generate just one employee:                                                                                       OK (0.01s)
+        ✓ generate just one employee passed 100 tests.
+    generate both fixed and variable salaries:                                                                        OK (0.04s)
+        ✓ generate both fixed and variable salaries passed 100 tests.
+    making inputs when there's a cycle must be detected:                                                              OK (0.08s)
+        ✓ making inputs when there's a cycle must be detected passed 100 tests.
+    no value can be found if nothing is stored in the registry:                                                       OK
+        ✓ no value can be found if nothing is stored in the registry passed 100 tests.
+    find a value in a list of values when there are no specializations:                                               OK (0.02s)
+        ✓ find a value in a list of values when there are no specializations passed 100 tests.
+    find a value in a list of values when there is a specialization for a given context:                              OK (0.02s)
+        ✓ find a value in a list of values when there is a specialization for a given context passed 100 tests.
+    no constructor can be found if nothing is stored in the registry:                                                 OK
+        ✓ no constructor can be found if nothing is stored in the registry passed 100 tests.
+    find a constructor in a list of constructors:                                                                     OK (0.02s)
+        ✓ find a constructor in a list of constructors passed 100 tests.
+    a value can be stored in the list of values:                                                                      OK (0.01s)
+        ✓ a value can be stored in the list of values passed 100 tests.
+    a value can be stored in the list of values but modified beforehand:                                              OK (0.01s)
+        ✓ a value can be stored in the list of values but modified beforehand passed 100 tests.
+    modifiers are applied in a LIFO order:                                                                            OK (0.02s)
+        ✓ modifiers are applied in a LIFO order passed 100 tests.
+    there are preferable specializations than others in a given context:                                              OK
+        ✓ there are preferable specializations than others in a given context passed 100 tests.
+    no args constructors are considered as functions:                                                                 OK
+        ✓ no args constructors are considered as functions passed 100 tests.
+
+1 out of 45 tests failed (0.08s)
+Test suite spec: FAIL
+Test suite logged to:
+/tmp/workdir-registry/registry-0.6.3.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/registry-0.6.3.2/t/spec/test/registry-0.6.3.2-spec.log
+0 of 1 test suites (0 of 1 test cases) passed.
+Error: [Cabal-7125]
+Tests failed for test:spec from registry-0.6.3.2.
+

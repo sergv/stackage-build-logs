@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - ghcjs-perch-0.3.3.3 (lib) (first run)
 Configuring library for ghcjs-perch-0.3.3.3...
@@ -6,23 +7,22 @@ Preprocessing library for ghcjs-perch-0.3.3.3...
 Building library for ghcjs-perch-0.3.3.3...
 [1 of 5] Compiling Internal.FFI
 [2 of 5] Compiling Internal.Type
-
 src/Internal/Type.hs:20:1: warning: [GHC-38417] [-Wmissing-signatures]
     Top-level binding with no type signature: unpack :: a
    |
 20 | unpack = undefined
    | ^^^^^^
-[3 of 5] Compiling Internal.API
 
-src/Internal/API.hs:4:1: warning: [-Wunused-imports]
+[3 of 5] Compiling Internal.API
+src/Internal/API.hs:4:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Internal.FFI’ is redundant
       except perhaps to import instances from ‘Internal.FFI’
     To import instances alone, use: import Internal.FFI()
   |
 4 | import           Internal.FFI
   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[4 of 5] Compiling Internal.Perch
 
+[4 of 5] Compiling Internal.Perch
 src/Internal/Perch.hs:28:1: warning: [GHC-38417] [-Wmissing-signatures]
     Top-level binding with no type signature: pack :: a
    |
@@ -52,22 +52,24 @@ src/Internal/Perch.hs:68:10: warning: [GHC-06201] [-Wmissing-methods]
 68 | instance Applicative PerchM
    |          ^^^^^^^^^^^^^^^^^^
 
-src/Internal/Perch.hs:71:3: warning: [-Wnoncanonical-monad-instances]
+src/Internal/Perch.hs:71:3: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘(>>)’ definition detected
     in the instance declaration for ‘Monad PerchM’.
     ‘(>>)’ will eventually be removed in favour of ‘(*>)’
-    Either remove definition for ‘(>>)’ (recommended) or define as ‘(>>) = (*>)’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘(>>)’ (recommended) or define as ‘(>>) = (*>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
    |
 71 |   (>>) x y = mappend (unsafeCoerce x) y
    |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Internal/Perch.hs:73:3: warning: [-Wnoncanonical-monad-instances]
+src/Internal/Perch.hs:73:3: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad PerchM’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
    |
 73 |   return = mempty
    |   ^^^^^^^^^^^^^^^
@@ -78,4 +80,5 @@ src/Internal/Perch.hs:411:16: warning: [GHC-63397] [-Wname-shadowing]
     |
 411 | withPerchBuild p act e =
     |                ^
+
 [5 of 5] Compiling GHCJS.Perch

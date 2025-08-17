@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - funcmp-1.9 (lib:funcmp) (first run)
 Warning: funcmp.cabal:70:39: version operators used. To use version operators
@@ -10,10 +11,42 @@ Preprocessing library for funcmp-1.9...
 Building library for funcmp-1.9...
 [ 1 of 17] Compiling FMP.Color
 [ 2 of 17] Compiling FMP.File
+FMP/File.hs:87:34: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+87 |               where (a,b)     =  head (lex t)
+   |                                  ^^^^
+
 [ 3 of 17] Compiling FMP.Types
 [ 4 of 17] Compiling FMP.Term
 [ 5 of 17] Compiling FMP.Picture
 [ 6 of 17] Compiling FMP.Tree
+FMP/Tree.hs:398:42: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+398 |                                  | l <- (tail [0..length (levels nt)-1])]
+    |                                          ^^^^
+
+FMP/Tree.hs:404:34: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+404 |               placements      =  tail (relPlacements nt)
+    |                                  ^^^^
+
+FMP/Tree.hs:529:39: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+529 |                                  ++ 0:tail (fitLeft (getHDist nd) (drop (n-1) es))
+    |                                       ^^^^
+
 [ 7 of 17] Compiling FMP.Syntax
 [ 8 of 17] Compiling FMP.Symbols
 [ 9 of 17] Compiling FMP.Resolve
@@ -21,6 +54,14 @@ Building library for funcmp-1.9...
 [11 of 17] Compiling FMP.Matrix
 [12 of 17] Compiling FMP.Frames
 [13 of 17] Compiling FMP.Core
+FMP/Core.hs:167:46: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+167 |    newBBox (Just b)           =  let nBBox = head ([ n | (m,n,_) <- mapping, m==b]++[0])
+    |                                              ^^^^
+
 [14 of 17] Compiling FMP.Canvas
 [15 of 17] Compiling FMP.Turtle
 [16 of 17] Compiling Paths_funcmp

@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - split-0.2.5 (lib) (first run)
  - split-0.2.5 (test:split-tests) (first run)
@@ -11,4 +12,100 @@ Configuring test suite 'split-tests' for split-0.2.5...
 Preprocessing test suite 'split-tests' for split-0.2.5...
 Building test suite 'split-tests' for split-0.2.5...
 [1 of 1] Compiling Main
-[2 of 2] Linking /tmp/workdir-split/split-0.2.5/dist-newstyle/build/x86_64-linux/ghc-9.6.5/split-0.2.5/t/split-tests/build/split-tests/split-tests
+test/Properties.hs:186:28: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+186 |     xs -> (not . isDelim $ head xs) && (not . isDelim $ last xs)
+    |                            ^^^^
+
+test/Properties.hs:201:70: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+201 | prop_oneOf elts l = all ((== 1) . length) ds && all ((`elem` elts) . head) ds
+    |                                                                      ^^^^
+
+test/Properties.hs:219:65: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+219 | prop_whenElt (Fun _ p) l = all ((== 1) . length) ds && all (p . head) ds
+    |                                                                 ^^^^
+
+test/Properties.hs:239:58: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+239 |   all (isJust . matchDelim (delimiter s)) [c | Text c <- tail p]
+    |                                                          ^^^^
+
+test/Properties.hs:264:37: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+264 | prop_dropInitBlank s (NonEmpty l) = head p /= Text []
+    |                                     ^^^^
+
+test/Properties.hs:277:56: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+277 | prop_startsWith s (NonEmpty l) = all (s `isPrefixOf`) (tail $ split (startsWith s) l)
+    |                                                        ^^^^
+
+test/Properties.hs:280:63: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+280 | prop_startsWithOneOf elts (NonEmpty l) = all ((`elem` elts) . head) (tail $ split (startsWithOneOf elts) l)
+    |                                                               ^^^^
+
+test/Properties.hs:280:70: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+280 | prop_startsWithOneOf elts (NonEmpty l) = all ((`elem` elts) . head) (tail $ split (startsWithOneOf elts) l)
+    |                                                                      ^^^^
+
+test/Properties.hs:416:24: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+416 |   allSame zs = all (== head zs) (tail zs)
+    |                        ^^^^
+
+test/Properties.hs:416:34: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+416 |   allSame zs = all (== head zs) (tail zs)
+    |                                  ^^^^
+
+test/Properties.hs:426:24: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+426 | takeEvery n lst = (map head . chunksOf n) lst
+    |                        ^^^^
+
+test/Properties.hs:437:14: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+437 |   hds2 = map head $ divvy n m elems
+    |              ^^^^
+
+[2 of 2] Linking /tmp/workdir-split/split-0.2.5/dist-newstyle/build/x86_64-linux/ghc-9.10.2/split-0.2.5/t/split-tests/build/split-tests/split-tests

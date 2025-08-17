@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - xmlgen-0.6.2.2 (lib) (first run)
  - xmlgen-0.6.2.2 (test:xmlgen-tests) (first run)
@@ -10,9 +11,8 @@ Configuring test suite 'xmlgen-tests' for xmlgen-0.6.2.2...
 Preprocessing test suite 'xmlgen-tests' for xmlgen-0.6.2.2...
 Building test suite 'xmlgen-tests' for xmlgen-0.6.2.2...
 [1 of 1] Compiling Main
-
-test/GeneratorTest.hs:196:16: error:
-    • The constructor ‘Q.Success’ should have 6 arguments, but has been given 3
+test/GeneratorTest.hs:196:16: error: [GHC-27346]
+    • The data constructor ‘Q.Success’ should have 6 arguments, but has been given 3
     • In the pattern: Q.Success _ _ _
       In a case alternative: Q.Success _ _ _ -> return ()
       In a stmt of a 'do' block:
@@ -23,6 +23,7 @@ test/GeneratorTest.hs:196:16: error:
     |
 196 |                Q.Success _ _ _ -> return ()
     |                ^^^^^^^^^^^^^^^
+
 Error: [Cabal-7125]
 Failed to build test:xmlgen-tests from xmlgen-0.6.2.2.
 

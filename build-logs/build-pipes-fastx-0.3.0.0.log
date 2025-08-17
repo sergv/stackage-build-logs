@@ -1,17 +1,31 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - pipes-fastx-0.3.0.0 (lib) (first run)
 Configuring library for pipes-fastx-0.3.0.0...
 Preprocessing library for pipes-fastx-0.3.0.0...
 Building library for pipes-fastx-0.3.0.0...
 [1 of 1] Compiling Pipes.Fastx
-
-Pipes/Fastx.hs:3:1: warning: [-Wdeprecations]
+Pipes/Fastx.hs:3:1: warning: [GHC-15328] [-Wdeprecations]
     Module ‘Data.Attoparsec.Char8’ is deprecated:
       "This module will be removed in the next major release."
   |
 3 | import Data.Attoparsec.Char8
   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Pipes/Fastx.hs:34:23: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘hGetLine’ (imported from Data.ByteString):
+    Deprecated: "Deprecated since @bytestring-0.12@. Use 'Data.ByteString.Char8.hGetLine' instead. (Functions that rely on ASCII encodings belong in "Data.ByteString.Char8")"
+   |
+34 |         l <- liftIO $ B.hGetLine h
+   |                       ^^^^^^^^^^
+
+Pipes/Fastx.hs:49:58: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘hGetLine’ (imported from Data.ByteString):
+    Deprecated: "Deprecated since @bytestring-0.12@. Use 'Data.ByteString.Char8.hGetLine' instead. (Functions that rely on ASCII encodings belong in "Data.ByteString.Char8")"
+   |
+49 |                         l@(PS fpl offl lenl) <- liftIO $ B.hGetLine h
+   |                                                          ^^^^^^^^^^
 
 Pipes/Fastx.hs:58:70: warning: [GHC-68441] [-Wdeprecations]
     In the use of ‘memcpy’
@@ -20,3 +34,11 @@ Pipes/Fastx.hs:58:70: warning: [GHC-68441] [-Wdeprecations]
    |
 58 |                                 liftIO $ withForeignPtr fpl $ \ps -> memcpy (p' `plusPtr` nt) (ps `plusPtr` offl) lenl
    |                                                                      ^^^^^^
+
+Pipes/Fastx.hs:67:23: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘hGetLine’ (imported from Data.ByteString):
+    Deprecated: "Deprecated since @bytestring-0.12@. Use 'Data.ByteString.Char8.hGetLine' instead. (Functions that rely on ASCII encodings belong in "Data.ByteString.Char8")"
+   |
+67 |         let getline = B.hGetLine h
+   |                       ^^^^^^^^^^
+

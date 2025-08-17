@@ -1,0 +1,582 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - dependent-sum-template-0.2.0.2 (lib) (first run)
+ - dependent-sum-template-0.2.0.2 (test:test) (first run)
+Configuring library for dependent-sum-template-0.2.0.2...
+Preprocessing library for dependent-sum-template-0.2.0.2...
+Building library for dependent-sum-template-0.2.0.2...
+[1 of 4] Compiling Data.GADT.Compare.Monad
+[2 of 4] Compiling Data.GADT.TH.Internal
+[3 of 4] Compiling Data.GADT.Show.TH
+[4 of 4] Compiling Data.GADT.Compare.TH
+Configuring test suite 'test' for dependent-sum-template-0.2.0.2...
+Preprocessing test suite 'test' for dependent-sum-template-0.2.0.2...
+Building test suite 'test' for dependent-sum-template-0.2.0.2...
+[1 of 1] Compiling Main
+test/test.hs:34:1-19: Splicing declarations
+    deriveGShow ''MySum
+  ======>
+    instance GShow MySum where
+      gshowsPrec _ MySum_Int = showString "MySum_Int"
+      gshowsPrec _ MySum_String = showString "MySum_String"
+test/test.hs:35:1-17: Splicing declarations
+    deriveGEq ''MySum
+  ======>
+    instance GEq MySum where
+      geq MySum_Int MySum_Int = do return Refl
+      geq MySum_String MySum_String = do return Refl
+      geq _ _ = Nothing
+test/test.hs:36:1-22: Splicing declarations
+    deriveGCompare ''MySum
+  ======>
+    instance GCompare MySum where
+      gcompare MySum_Int MySum_Int = runGComparing (do return GEQ)
+      gcompare MySum_Int {} _ = GLT
+      gcompare _ MySum_Int {} = GGT
+      gcompare MySum_String MySum_String = runGComparing (do return GEQ)
+      gcompare MySum_String {} _ = GLT
+      gcompare _ MySum_String {} = GGT
+test/test.hs:37:1-21: Splicing declarations
+    deriveArgDict ''MySum
+  ======>
+    instance (c_a4eZ Int, c_a4eZ String) =>
+             Data.Constraint.Extras.Has c_a4eZ MySum where
+      Data.Constraint.Extras.argDict
+        = \case
+            MySum_Int {}
+              -> constraints-0.14.2-ee81e14575017909768f33bcd3cf605f6cb6aec786b2848065fc651a4e5c57e5:Data.Constraint.Dict
+            MySum_String {}
+              -> constraints-0.14.2-ee81e14575017909768f33bcd3cf605f6cb6aec786b2848065fc651a4e5c57e5:Data.Constraint.Dict
+test/test.hs:48:1-25: Splicing declarations
+    deriveGShow ''MyNestedSum
+  ======>
+    instance GShow MyNestedSum where
+      gshowsPrec prec_a4Dk (MyNestedSum_MySum x_a4Dl)
+        = showParen
+            (prec_a4Dk > 10)
+            (showString "MyNestedSum_MySum"
+               . (showChar ' ' . (showsPrec 11 x_a4Dl . id)))
+      gshowsPrec prec_a4DX (MyNestedSum_Int x_a4DY)
+        = showParen
+            (prec_a4DX > 10)
+            (showString "MyNestedSum_Int"
+               . (showChar ' ' . (showsPrec 11 x_a4DY . id)))
+      gshowsPrec prec_a4E1 (MyNestedSum_String x_a4E2)
+        = showParen
+            (prec_a4E1 > 10)
+            (showString "MyNestedSum_String"
+               . (showChar ' ' . (showsPrec 11 x_a4E2 . id)))
+test/test.hs:49:1-23: Splicing declarations
+    deriveGEq ''MyNestedSum
+  ======>
+    instance GEq MyNestedSum where
+      geq (MyNestedSum_MySum x_a4HL) (MyNestedSum_MySum y_a4HM)
+        = do Refl <- geq x_a4HL y_a4HM
+             return Refl
+      geq (MyNestedSum_Int x_a4HQ) (MyNestedSum_Int y_a4HR)
+        = do guard (x_a4HQ == y_a4HR)
+             return Refl
+      geq (MyNestedSum_String x_a4HS) (MyNestedSum_String y_a4HT)
+        = do guard (x_a4HS == y_a4HT)
+             return Refl
+      geq _ _ = Nothing
+test/test.hs:50:1-28: Splicing declarations
+    deriveGCompare ''MyNestedSum
+  ======>
+    instance GCompare MyNestedSum where
+      gcompare (MyNestedSum_MySum x_a4Kq) (MyNestedSum_MySum y_a4Kr)
+        = runGComparing
+            (do Refl <- geq' x_a4Kq y_a4Kr
+                return GEQ)
+      gcompare MyNestedSum_MySum {} _ = GLT
+      gcompare _ MyNestedSum_MySum {} = GGT
+      gcompare (MyNestedSum_Int x_a4Kv) (MyNestedSum_Int y_a4Kw)
+        = runGComparing
+            (do compare' x_a4Kv y_a4Kw
+                return GEQ)
+      gcompare MyNestedSum_Int {} _ = GLT
+      gcompare _ MyNestedSum_Int {} = GGT
+      gcompare (MyNestedSum_String x_a4Kx) (MyNestedSum_String y_a4Ky)
+        = runGComparing
+            (do compare' x_a4Kx y_a4Ky
+                return GEQ)
+      gcompare MyNestedSum_String {} _ = GLT
+      gcompare _ MyNestedSum_String {} = GGT
+test/test.hs:51:1-27: Splicing declarations
+    deriveArgDict ''MyNestedSum
+  ======>
+    instance (Data.Constraint.Extras.Has c_a4NA MySum,
+              c_a4NA Int,
+              c_a4NA String) =>
+             Data.Constraint.Extras.Has c_a4NA MyNestedSum where
+      Data.Constraint.Extras.argDict
+        = \case
+            MyNestedSum_MySum x_a4NG -> Data.Constraint.Extras.argDict x_a4NG
+            MyNestedSum_Int {}
+              -> constraints-0.14.2-ee81e14575017909768f33bcd3cf605f6cb6aec786b2848065fc651a4e5c57e5:Data.Constraint.Dict
+            MyNestedSum_String {}
+              -> constraints-0.14.2-ee81e14575017909768f33bcd3cf605f6cb6aec786b2848065fc651a4e5c57e5:Data.Constraint.Dict
+test/test.hs:99:1-15: Splicing declarations
+    deriveGEq ''Foo
+  ======>
+    instance (GEq Foo, GEq Foo) => GEq Foo where
+      geq I I = do return Refl
+      geq D D = do return Refl
+      geq (A x_a55g x_a55h) (A y_a55i y_a55j)
+        = do Refl <- geq x_a55g y_a55i
+             Refl <- geq x_a55h y_a55j
+             return Refl
+      geq _ _ = Nothing
+test/test.hs:100:1-15: Splicing declarations
+    deriveGEq ''Bar
+  ======>
+    instance (GEq Foo, GEq Foo) => GEq Bar where
+      geq (F x_a57x) (F y_a57y)
+        = do Refl <- geq x_a57x y_a57y
+             return Refl
+      geq S S = do return Refl
+      geq _ _ = Nothing
+test/test.hs:101:1-15: Splicing declarations
+    deriveGEq ''Qux
+  ======>
+    instance (GEq Foo, GEq Foo, GEq Foo, GEq Foo) => GEq Qux where
+      geq (FB x_a595 x_a596) (FB y_a597 y_a598)
+        = do Refl <- geq x_a595 y_a597
+             Refl <- geq x_a596 y_a598
+             return Refl
+      geq _ _ = Nothing
+test/test.hs:102:1-15: Splicing declarations
+    deriveGEq ''Baz
+  ======>
+    instance (GEq Foo, GEq Foo, GEq Foo, GEq Foo) => GEq Baz where
+      geq (L x_a5b0 x_a5b1) (L y_a5b2 y_a5b3)
+        = do Refl <- geq x_a5b0 y_a5b2
+             guard (x_a5b1 == y_a5b3)
+             return Refl
+      geq _ _ = Nothing
+test/test.hs:104:1-20: Splicing declarations
+    deriveGCompare ''Foo
+  ======>
+    instance (GCompare Foo, GCompare Foo) => GCompare Foo where
+      gcompare I I = runGComparing (do return GEQ)
+      gcompare I {} _ = GLT
+      gcompare _ I {} = GGT
+      gcompare D D = runGComparing (do return GEQ)
+      gcompare D {} _ = GLT
+      gcompare _ D {} = GGT
+      gcompare (A x_a5cL x_a5cM) (A y_a5cN y_a5cO)
+        = runGComparing
+            (do Refl <- geq' x_a5cL y_a5cN
+                Refl <- geq' x_a5cM y_a5cO
+                return GEQ)
+      gcompare A {} _ = GLT
+      gcompare _ A {} = GGT
+test/test.hs:105:1-20: Splicing declarations
+    deriveGCompare ''Bar
+  ======>
+    instance (GCompare Foo, GCompare Foo) => GCompare Bar where
+      gcompare (F x_a5gf) (F y_a5gg)
+        = runGComparing
+            (do Refl <- geq' x_a5gf y_a5gg
+                return GEQ)
+      gcompare F {} _ = GLT
+      gcompare _ F {} = GGT
+      gcompare S S = runGComparing (do return GEQ)
+      gcompare S {} _ = GLT
+      gcompare _ S {} = GGT
+test/test.hs:106:1-20: Splicing declarations
+    deriveGCompare ''Qux
+  ======>
+    instance (GCompare Foo,
+              GCompare Foo,
+              GCompare Foo,
+              GCompare Foo) =>
+             GCompare Qux where
+      gcompare (FB x_a5iu x_a5iv) (FB y_a5iw y_a5ix)
+        = runGComparing
+            (do Refl <- geq' x_a5iu y_a5iw
+                Refl <- geq' x_a5iv y_a5ix
+                return GEQ)
+      gcompare FB {} _ = GLT
+      gcompare _ FB {} = GGT
+test/test.hs:107:1-20: Splicing declarations
+    deriveGCompare ''Baz
+  ======>
+    instance (GCompare Foo,
+              GCompare Foo,
+              GCompare Foo,
+              GCompare Foo) =>
+             GCompare Baz where
+      gcompare (L x_a5l3 x_a5l4) (L y_a5l5 y_a5l6)
+        = runGComparing
+            (do Refl <- geq' x_a5l3 y_a5l5
+                compare' x_a5l4 y_a5l6
+                return GEQ)
+      gcompare L {} _ = GLT
+      gcompare _ L {} = GGT
+test/test.hs:109:1-17: Splicing declarations
+    deriveGShow ''Foo
+  ======>
+    instance GShow Foo where
+      gshowsPrec _ I = showString "I"
+      gshowsPrec _ D = showString "D"
+      gshowsPrec prec_a5np (A x_a5nq x_a5nr)
+        = showParen
+            (prec_a5np > 10)
+            (showString "A"
+               . (showChar ' '
+                    . (gshowsPrec 11 x_a5nq
+                         . (showChar ' ' . (gshowsPrec 11 x_a5nr . id)))))
+test/test.hs:111:1-17: Splicing declarations
+    deriveGShow ''Bar
+  ======>
+    instance GShow Bar where
+      gshowsPrec prec_a5pI (F x_a5pJ)
+        = showParen
+            (prec_a5pI > 10)
+            (showString "F" . (showChar ' ' . (showsPrec 11 x_a5pJ . id)))
+      gshowsPrec _ S = showString "S"
+test/test.hs:113:1-17: Splicing declarations
+    deriveGShow ''Qux
+  ======>
+    instance GShow Qux where
+      gshowsPrec prec_a5rF (FB x_a5rG x_a5rH)
+        = showParen
+            (prec_a5rF > 10)
+            (showString "FB"
+               . (showChar ' '
+                    . (showsPrec 11 x_a5rG
+                         . (showChar ' ' . (showsPrec 11 x_a5rH . id)))))
+test/test.hs:115:1-17: Splicing declarations
+    deriveGShow ''Baz
+  ======>
+    instance GShow Baz where
+      gshowsPrec prec_a5tV (L x_a5tW x_a5tX)
+        = showParen
+            (prec_a5tV > 10)
+            (showString "L"
+               . (showChar ' '
+                    . (showsPrec 11 x_a5tW
+                         . (showChar ' ' . (showsPrec 11 x_a5tX . id)))))
+test/test.hs:121:1-19: Splicing declarations
+    deriveGEq ''Squudge
+  ======>
+    instance (GEq Foo, GEq Foo) => GEq Squudge where
+      geq (E x_a5wz) (E y_a5wA)
+        = do Refl <- geq x_a5wz y_a5wA
+             return Refl
+      geq _ _ = Nothing
+test/test.hs:122:1-24: Splicing declarations
+    deriveGCompare ''Squudge
+  ======>
+    instance (GCompare Foo, GCompare Foo) => GCompare Squudge where
+      gcompare (E x_a5y1) (E y_a5y2)
+        = runGComparing
+            (do Refl <- geq' x_a5y1 y_a5y2
+                return GEQ)
+      gcompare E {} _ = GLT
+      gcompare _ E {} = GGT
+test/test.hs:123:1-21: Splicing declarations
+    deriveGShow ''Squudge
+  ======>
+    instance GShow Squudge where
+      gshowsPrec prec_a5zX (E x_a5zY)
+        = showParen
+            (prec_a5zX > 10)
+            (showString "E" . (showChar ' ' . (showsPrec 11 x_a5zY . id)))
+test/test.hs:151:1-17: Splicing declarations
+    deriveGEq ''Empty
+  ======>
+    instance GEq Empty where
+      geq _ _ = Nothing
+test/test.hs:152:1-22: Splicing declarations
+    deriveGCompare ''Empty
+  ======>
+    instance GCompare Empty where
+      gcompare = \ x_a63c y_a63d -> seq x_a63c (seq y_a63d undefined)
+test/test.hs:159:1-18: Splicing declarations
+    deriveGEq ''Spleeb
+  ======>
+    instance (GEq a_a63g, GEq Foo, GEq Foo, GEq Foo, GEq Foo) =>
+             GEq (Spleeb (a_a63g :: Type -> Type)) where
+      geq (P x_a655 x_a656) (P y_a657 y_a658)
+        = do Refl <- geq x_a655 y_a657
+             Refl <- geq x_a656 y_a658
+             return Refl
+      geq _ _ = Nothing
+test/test.hs:160:1-23: Splicing declarations
+    deriveGCompare ''Spleeb
+  ======>
+    instance (GCompare a_a63g,
+              GCompare Foo,
+              GCompare Foo,
+              GCompare Foo,
+              GCompare Foo) =>
+             GCompare (Spleeb (a_a63g :: Type -> Type)) where
+      gcompare (P x_a6gW x_a6gX) (P y_a6gY y_a6gZ)
+        = runGComparing
+            (do Refl <- geq' x_a6gW y_a6gY
+                Refl <- geq' x_a6gX y_a6gZ
+                return GEQ)
+      gcompare P {} _ = GLT
+      gcompare _ P {} = GGT
+test/test.hs:166:1-20: Splicing declarations
+    deriveGShow ''Spleeb
+  ======>
+    instance Show (a_a63g Double) =>
+             GShow (Spleeb (a_a63g :: Type -> Type)) where
+      gshowsPrec prec_a6kg (P x_a6kh x_a6ki)
+        = showParen
+            (prec_a6kg > 10)
+            (showString "P"
+               . (showChar ' '
+                    . (showsPrec 11 x_a6kh
+                         . (showChar ' ' . (showsPrec 11 x_a6ki . id)))))
+test/test.hs:(178,1)-(190,9): Splicing declarations
+    do [geqInst_a6ng,
+        gcompareInst_a6nh,
+        gshowInst_a6ni] <- [d| instance (Show (a_a6nd Double),
+                                         Show (a_a6nd Int),
+                                         GShow Qux,
+                                         GShow Foo) =>
+                                        GShow (SpleebHard a_a6nd)
+                               instance GCompare a_a6ne => GCompare (SpleebHard a_a6ne)
+                               instance GEq a_a6nf => GEq (SpleebHard a_a6nf) |]
+       concat
+         <$>
+           sequence
+             [deriveGEq geqInst_a6ng, deriveGCompare gcompareInst_a6nh,
+              deriveGShow gshowInst_a6ni]
+  ======>
+    instance GEq (a_a6ky :: Type -> Type) =>
+             GEq (SpleebHard (a_a6ky :: Type -> Type)) where
+      geq (PH x_a6PC x_a6PD) (PH y_a6PE y_a6PF)
+        = do Refl <- geq x_a6PC y_a6PE
+             Refl <- geq x_a6PD y_a6PF
+             return Refl
+      geq (PI x_a6PP x_a6PQ) (PI y_a6PR y_a6PS)
+        = do Refl <- geq x_a6PP y_a6PR
+             Refl <- geq x_a6PQ y_a6PS
+             return Refl
+      geq _ _ = Nothing
+    instance GCompare (a_a6ky :: Type -> Type) =>
+             GCompare (SpleebHard (a_a6ky :: Type -> Type)) where
+      gcompare (PH x_a6Qq x_a6Qr) (PH y_a6Qs y_a6Qt)
+        = runGComparing
+            (do Refl <- geq' x_a6Qq y_a6Qs
+                Refl <- geq' x_a6Qr y_a6Qt
+                return GEQ)
+      gcompare PH {} _ = GLT
+      gcompare _ PH {} = GGT
+      gcompare (PI x_a6QD x_a6QE) (PI y_a6QF y_a6QG)
+        = runGComparing
+            (do Refl <- geq' x_a6QD y_a6QF
+                Refl <- geq' x_a6QE y_a6QG
+                return GEQ)
+      gcompare PI {} _ = GLT
+      gcompare _ PI {} = GGT
+    instance (Show ((a_a6ky :: Type -> Type) Double),
+              Show ((a_a6ky :: Type -> Type) Int),
+              GShow Qux,
+              GShow Foo) =>
+             GShow (SpleebHard (a_a6ky :: Type -> Type)) where
+      gshowsPrec prec_a6Ry (PH x_a6Rz x_a6RA)
+        = showParen
+            (prec_a6Ry > 10)
+            (showString "PH"
+               . (showChar ' '
+                    . (showsPrec 11 x_a6Rz
+                         . (showChar ' ' . (showsPrec 11 x_a6RA . id)))))
+      gshowsPrec prec_a6RN (PI x_a6RO x_a6RP)
+        = showParen
+            (prec_a6RN > 10)
+            (showString "PI"
+               . (showChar ' '
+                    . (showsPrec 11 x_a6RO
+                         . (showChar ' ' . (showsPrec 11 x_a6RP . id)))))
+test/test.hs:198:1-23: Splicing declarations
+    deriveGEq ''SpleebHard2
+  ======>
+    instance (GEq a_a6S5,
+              GEq Foo,
+              GEq Foo,
+              GEq Foo,
+              GEq Foo,
+              GEq a_a6S5,
+              GEq Foo,
+              GEq Foo) =>
+             GEq (SpleebHard2 (a_a6S5 :: Type -> Type)) where
+      geq (PH2 x_a71M x_a71N) (PH2 y_a71O y_a71P)
+        = do Refl <- geq x_a71M y_a71O
+             Refl <- geq x_a71N y_a71P
+             return Refl
+      geq (PI2 x_a71Z x_a720) (PI2 y_a721 y_a722)
+        = do Refl <- geq x_a71Z y_a721
+             Refl <- geq x_a720 y_a722
+             return Refl
+      geq _ _ = Nothing
+test/test.hs:199:1-28: Splicing declarations
+    deriveGCompare ''SpleebHard2
+  ======>
+    instance (GCompare a_a6S5,
+              GCompare Foo,
+              GCompare Foo,
+              GCompare Foo,
+              GCompare Foo,
+              GCompare a_a6S5,
+              GCompare Foo,
+              GCompare Foo) =>
+             GCompare (SpleebHard2 (a_a6S5 :: Type -> Type)) where
+      gcompare (PH2 x_a755 x_a756) (PH2 y_a757 y_a758)
+        = runGComparing
+            (do Refl <- geq' x_a755 y_a757
+                Refl <- geq' x_a756 y_a758
+                return GEQ)
+      gcompare PH2 {} _ = GLT
+      gcompare _ PH2 {} = GGT
+      gcompare (PI2 x_a75i x_a75j) (PI2 y_a75k y_a75l)
+        = runGComparing
+            (do Refl <- geq' x_a75i y_a75k
+                Refl <- geq' x_a75j y_a75l
+                return GEQ)
+      gcompare PI2 {} _ = GLT
+      gcompare _ PI2 {} = GGT
+test/test.hs:200:1-25: Splicing declarations
+    deriveGShow ''SpleebHard2
+  ======>
+    instance (Show (a_a6S5 Double), Show (a_a6S5 Int)) =>
+             GShow (SpleebHard2 (a_a6S5 :: Type -> Type)) where
+      gshowsPrec prec_a79m (PH2 x_a79n x_a79o)
+        = showParen
+            (prec_a79m > 10)
+            (showString "PH2"
+               . (showChar ' '
+                    . (showsPrec 11 x_a79n
+                         . (showChar ' ' . (showsPrec 11 x_a79o . id)))))
+      gshowsPrec prec_a79B (PI2 x_a79C x_a79D)
+        = showParen
+            (prec_a79B > 10)
+            (showString "PI2"
+               . (showChar ' '
+                    . (showsPrec 11 x_a79C
+                         . (showChar ' ' . (showsPrec 11 x_a79D . id)))))
+test/test.hs:(203,1)-(217,9): Splicing declarations
+    do decs_a7bU <- [d| data Fnord_a7bQ a_a7bT
+                          where
+                            Yarr_a7bR :: Fnord_a7bQ Double
+                            Grr_a7bS :: Fnord_a7bQ (Int -> String) |]
+       geqInst_a7bV <- deriveGEq decs_a7bU
+       gcompareInst_a7bW <- deriveGCompare decs_a7bU
+       gshowInst_a7bX <- deriveGShow decs_a7bU
+       return
+         $ concat
+             [decs_a7bU, geqInst_a7bV, gcompareInst_a7bW, gshowInst_a7bX]
+  ======>
+    data Fnord_a7fd a_a7fg
+      where
+        Yarr_a7fe :: Fnord_a7fd Double
+        Grr_a7ff :: Fnord_a7fd (Int -> String)
+    instance GEq Fnord_a7fd where
+      geq Yarr_a7fe Yarr_a7fe = do return Refl
+      geq Grr_a7ff Grr_a7ff = do return Refl
+      geq _ _ = Nothing
+    instance GCompare Fnord_a7fd where
+      gcompare Yarr_a7fe Yarr_a7fe = runGComparing (do return GEQ)
+      gcompare Yarr_a7fe {} _ = GLT
+      gcompare _ Yarr_a7fe {} = GGT
+      gcompare Grr_a7ff Grr_a7ff = runGComparing (do return GEQ)
+      gcompare Grr_a7ff {} _ = GLT
+      gcompare _ Grr_a7ff {} = GGT
+    instance GShow Fnord_a7fd where
+      gshowsPrec _ Yarr_a7fe = showString "Yarr"
+      gshowsPrec _ Grr_a7ff = showString "Grr"
+test/test.hs:230:1-20: Splicing declarations
+    deriveGShow ''MyTest
+  ======>
+    instance GShow (MyTest (a_a7fm :: k_a7gs)) where
+      gshowsPrec _ MyTest_1 = showString "MyTest_1"
+      gshowsPrec _ MyTest_2 = showString "MyTest_2"
+test/test.hs:231:1-18: Splicing declarations
+    deriveGEq ''MyTest
+  ======>
+    instance GEq (MyTest (a_a7fm :: k_a7gs)) where
+      geq MyTest_1 MyTest_1 = do return Refl
+      geq MyTest_2 MyTest_2 = do return Refl
+      geq _ _ = Nothing
+test/test.hs:232:1-23: Splicing declarations
+    deriveGCompare ''MyTest
+  ======>
+    instance GCompare (MyTest (a_a7fm :: k_a7gs)) where
+      gcompare MyTest_1 MyTest_1 = runGComparing (do return GEQ)
+      gcompare MyTest_1 {} _ = GLT
+      gcompare _ MyTest_1 {} = GGT
+      gcompare MyTest_2 MyTest_2 = runGComparing (do return GEQ)
+      gcompare MyTest_2 {} _ = GLT
+      gcompare _ MyTest_2 {} = GGT
+test/test.hs:233:1-22: Splicing declarations
+    deriveArgDict ''MyTest
+  ======>
+    instance (c_a7tN (), c_a7tN Int) =>
+             Data.Constraint.Extras.Has c_a7tN (MyTest a_a7tM) where
+      Data.Constraint.Extras.argDict
+        = \case
+            MyTest_1 {}
+              -> constraints-0.14.2-ee81e14575017909768f33bcd3cf605f6cb6aec786b2848065fc651a4e5c57e5:Data.Constraint.Dict
+            MyTest_2 {}
+              -> constraints-0.14.2-ee81e14575017909768f33bcd3cf605f6cb6aec786b2848065fc651a4e5c57e5:Data.Constraint.Dict
+test/test.hs:26:15: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+26 | data MySum :: * -> * where
+   |               ^
+
+test/test.hs:26:20: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+26 | data MySum :: * -> * where
+   |                    ^
+
+test/test.hs:39:21: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+39 | data MyNestedSum :: * -> * where
+   |                     ^
+
+test/test.hs:39:26: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+39 | data MyNestedSum :: * -> * where
+   |                          ^
+
+test/test.hs:222:18: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+    |
+222 | data MyTest a :: * -> * where
+    |                  ^
+
+test/test.hs:222:23: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+    |
+222 | data MyTest a :: * -> * where
+    |                       ^
+
+[2 of 2] Linking /tmp/workdir-dependent-sum-template/dependent-sum-template-0.2.0.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/dependent-sum-template-0.2.0.2/t/test/build/test/test

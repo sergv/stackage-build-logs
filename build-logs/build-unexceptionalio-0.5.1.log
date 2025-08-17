@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - unexceptionalio-0.5.1 (lib) (first run)
  - unexceptionalio-0.5.1 (test:tests) (first run)
@@ -6,50 +7,53 @@ Configuring library for unexceptionalio-0.5.1...
 Preprocessing library for unexceptionalio-0.5.1...
 Building library for unexceptionalio-0.5.1...
 [1 of 1] Compiling UnexceptionalIO
-
-UnexceptionalIO.hs:201:9: warning: [-Wnoncanonical-monad-instances]
+UnexceptionalIO.hs:201:9: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘pure = return’ definition detected
     in the instance declaration for ‘Applicative UIO’.
-    Move definition from ‘return’ to ‘pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Move definition from ‘return’ to ‘pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 201 |         pure = return
     |         ^^^^^^^^^^^^^
 
-UnexceptionalIO.hs:205:9: warning: [-Wnoncanonical-monad-instances]
+UnexceptionalIO.hs:205:9: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad UIO’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 205 |         return = UIO . return
     |         ^^^^^^^^^^^^^^^^^^^^^
+
 Configuring test suite 'tests' for unexceptionalio-0.5.1...
 Preprocessing test suite 'tests' for unexceptionalio-0.5.1...
 Building test suite 'tests' for unexceptionalio-0.5.1...
 [1 of 2] Compiling UnexceptionalIO
-
-UnexceptionalIO.hs:201:9: warning: [-Wnoncanonical-monad-instances]
+UnexceptionalIO.hs:201:9: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘pure = return’ definition detected
     in the instance declaration for ‘Applicative UIO’.
-    Move definition from ‘return’ to ‘pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Move definition from ‘return’ to ‘pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 201 |         pure = return
     |         ^^^^^^^^^^^^^
 
-UnexceptionalIO.hs:205:9: warning: [-Wnoncanonical-monad-instances]
+UnexceptionalIO.hs:205:9: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad UIO’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 205 |         return = UIO . return
     |         ^^^^^^^^^^^^^^^^^^^^^
-[2 of 2] Compiling Main
 
+[2 of 2] Compiling Main
 tests/suite.hs:21:10: warning: [GHC-06201] [-Wmissing-methods]
     • No explicit implementation for
         ‘testClassMethod’
@@ -104,4 +108,5 @@ tests/suite.hs:109:101: warning: [GHC-20125] [-Wmissing-fields]
     |
 109 |                         testCase "update not present record field" (fromIOPasses $ void (return $! (BadRecord {} { otherfld = "hai" })))
     |                                                                                                     ^^^^^^^^^^^^
-[3 of 3] Linking /tmp/workdir-unexceptionalio/unexceptionalio-0.5.1/dist-newstyle/build/x86_64-linux/ghc-9.6.5/unexceptionalio-0.5.1/t/tests/build/tests/tests
+
+[3 of 3] Linking /tmp/workdir-unexceptionalio/unexceptionalio-0.5.1/dist-newstyle/build/x86_64-linux/ghc-9.10.2/unexceptionalio-0.5.1/t/tests/build/tests/tests

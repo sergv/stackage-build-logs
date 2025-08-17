@@ -1,27 +1,38 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - data-inttrie-0.1.4 (lib) (first run)
 Configuring library for data-inttrie-0.1.4...
 Preprocessing library for data-inttrie-0.1.4...
 Building library for data-inttrie-0.1.4...
 [1 of 1] Compiling Data.IntTrie
-
-Data/IntTrie.hs:50:5: warning: [-Wnoncanonical-monoid-instances]
+Data/IntTrie.hs:50:5: warning: [GHC-50928] [-Wnoncanonical-monoid-instances]
     Noncanonical ‘mappend’ definition detected
     in the instance declaration for ‘Monoid (BitTrie a)’.
     ‘mappend’ will eventually be removed in favour of ‘(<>)’
-    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    Suggested fix:
+      Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
    |
 50 |     mappend = liftA2 mappend
    |     ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Data/IntTrie.hs:65:5: warning: [-Wnoncanonical-monoid-instances]
+Data/IntTrie.hs:65:5: warning: [GHC-50928] [-Wnoncanonical-monoid-instances]
     Noncanonical ‘mappend’ definition detected
     in the instance declaration for ‘Monoid (IntTrie a)’.
     ‘mappend’ will eventually be removed in favour of ‘(<>)’
-    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    Suggested fix:
+      Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
    |
 65 |     mappend = liftA2 mappend
    |     ^^^^^^^^^^^^^^^^^^^^^^^^
+
+Data/IntTrie.hs:162:48: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+162 |     (one', ifs')      = if i == 1 then (f one, tail ifs) else (one, ifs)
+    |                                                ^^^^
+

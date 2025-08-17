@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - poly-0.5.1.0 (lib) (first run)
  - poly-0.5.1.0 (test:poly-tests) (first run)
@@ -6,6 +7,12 @@ Configuring library for poly-0.5.1.0...
 Preprocessing library for poly-0.5.1.0...
 Building library for poly-0.5.1.0...
 [ 1 of 21] Compiling Data.Poly.Internal.Dense
+src/Data/Poly/Internal/Dense.hs:54:19: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘foldl'’ from module ‘Data.List’ is redundant
+   |
+54 | import Data.List (foldl', intersperse)
+   |                   ^^^^^^
+
 [ 2 of 21] Compiling Data.Poly.Internal.Dense.DFT
 [ 3 of 21] Compiling Data.Poly.Internal.Dense.GcdDomain
 [ 4 of 21] Compiling Data.Poly.Internal.Dense.Field
@@ -23,6 +30,62 @@ Building library for poly-0.5.1.0...
 [16 of 21] Compiling Data.Poly.Multi.Semiring
 [17 of 21] Compiling Data.Poly.Semiring
 [18 of 21] Compiling Data.Poly.Orthogonal
+src/Data/Poly/Orthogonal.hs:55:66: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+55 |     xs = 1 : toPoly [-1, 2] : zipWith3 rec (iterate (+ 1) 1) xs (tail xs)
+   |                                                                  ^^^^
+
+src/Data/Poly/Orthogonal.hs:74:55: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+74 |     xs = x0 : x1 : zipWith3 rec (iterate (+ 1) 2) xs (tail xs)
+   |                                                       ^^^^
+
+src/Data/Poly/Orthogonal.hs:93:71: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+93 |     xs = 1 : monomial 1 1 : zipWith (\pm1 p -> scale 1 2 p - pm1) xs (tail xs)
+   |                                                                       ^^^^
+
+src/Data/Poly/Orthogonal.hs:105:71: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+105 |     xs = 1 : monomial 1 2 : zipWith (\pm1 p -> scale 1 2 p - pm1) xs (tail xs)
+    |                                                                       ^^^^
+
+src/Data/Poly/Orthogonal.hs:116:64: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+116 |     xs = 1 : monomial 1 1 : zipWith3 rec (iterate (+ 1) 1) xs (tail xs)
+    |                                                                ^^^^
+
+src/Data/Poly/Orthogonal.hs:128:64: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+128 |     xs = 1 : monomial 1 2 : zipWith3 rec (iterate (+ 1) 1) xs (tail xs)
+    |                                                                ^^^^
+
+src/Data/Poly/Orthogonal.hs:148:55: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+148 |     xs = x0 : x1 : zipWith3 rec (iterate (+ 1) 1) xs (tail xs)
+    |                                                       ^^^^
+
 [19 of 21] Compiling Data.Poly.Sparse
 [20 of 21] Compiling Data.Poly.Sparse.Laurent
 [21 of 21] Compiling Data.Poly.Sparse.Semiring
@@ -30,14 +93,36 @@ Configuring test suite 'poly-tests' for poly-0.5.1.0...
 Preprocessing test suite 'poly-tests' for poly-0.5.1.0...
 Building test suite 'poly-tests' for poly-0.5.1.0...
 [ 1 of 11] Compiling Orthogonal
+test/Orthogonal.hs:9:19: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘foldl'’ from module ‘Data.List’ is redundant
+  |
+9 | import Data.List (foldl', tails)
+  |                   ^^^^^^
+
 [ 2 of 11] Compiling Quaternion
 [ 3 of 11] Compiling TestUtils
 [ 4 of 11] Compiling SparseLaurent
 [ 5 of 11] Compiling Sparse
+test/Sparse.hs:161:23: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+161 |   = map (\ws -> (fst (head ws), sum (map snd ws)))
+    |                       ^^^^
+
 [ 6 of 11] Compiling MultiLaurent
 [ 7 of 11] Compiling Multi
+test/Multi.hs:150:23: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+150 |   = map (\ws -> (fst (head ws), sum (map snd ws)))
+    |                       ^^^^
+
 [ 8 of 11] Compiling DenseLaurent
 [ 9 of 11] Compiling Dense
 [10 of 11] Compiling DFT
 [11 of 11] Compiling Main
-[12 of 12] Linking /tmp/workdir-poly/poly-0.5.1.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/poly-0.5.1.0/t/poly-tests/build/poly-tests/poly-tests
+[12 of 12] Linking /tmp/workdir-poly/poly-0.5.1.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/poly-0.5.1.0/t/poly-tests/build/poly-tests/poly-tests

@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - zstd-0.1.3.0 (lib) (first run)
  - zstd-0.1.3.0 (test:tests) (first run)
@@ -9,15 +10,14 @@ Building library for zstd-0.1.3.0...
 [ 2 of 10] Compiling Codec.Compression.Zstd.FFI
 [ 3 of 10] Compiling Codec.Compression.Zstd.Base.Types
 [ 4 of 10] Compiling Codec.Compression.Zstd.Base
-
-Codec/Compression/Zstd/Base.hs:88:19: warning: [-Wunused-imports]
+Codec/Compression/Zstd/Base.hs:88:19: warning: [GHC-38856] [-Wunused-imports]
     The import of ‘Word’ from module ‘Data.Word’ is redundant
    |
 88 | import Data.Word (Word, Word64)
    |                   ^^^^
-[ 5 of 10] Compiling Codec.Compression.Zstd.Streaming
 
-Codec/Compression/Zstd/Streaming.hs:92:19: warning: [-Wunused-matches]
+[ 5 of 10] Compiling Codec.Compression.Zstd.Streaming
+Codec/Compression/Zstd/Streaming.hs:92:19: warning: [GHC-40910] [-Wunused-matches]
     Defined but not used: ‘opos’
    |
 92 |   finish cfp obfp opos dfp = do
@@ -30,11 +30,11 @@ Codec/Compression/Zstd/Streaming.hs:98:10: warning: [GHC-62161] [-Wincomplete-pa
    |
 98 |       if | leftover <= 0 -> do -- leftover will never be <0, but compiler does not know that
    |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
 [ 6 of 10] Compiling Codec.Compression.Zstd.Lazy
 [ 7 of 10] Compiling Codec.Compression.Zstd.Types
 [ 8 of 10] Compiling Codec.Compression.Zstd.Internal
-
-Codec/Compression/Zstd/Internal.hs:38:19: warning: [-Wunused-imports]
+Codec/Compression/Zstd/Internal.hs:38:19: warning: [GHC-38856] [-Wunused-imports]
     The import of ‘Word’ from module ‘Data.Word’ is redundant
    |
 38 | import Data.Word (Word, Word8)
@@ -55,14 +55,14 @@ Codec/Compression/Zstd/Internal.hs:167:40: warning: [GHC-68441] [-Wdeprecations]
     |
 167 |             else B.create size $ \p -> B.memcpy p dict size
     |                                        ^^^^^^^^
+
 [ 9 of 10] Compiling Codec.Compression.Zstd.Efficient
 [10 of 10] Compiling Codec.Compression.Zstd
 Configuring test suite 'tests' for zstd-0.1.3.0...
 Preprocessing test suite 'tests' for zstd-0.1.3.0...
 Building test suite 'tests' for zstd-0.1.3.0...
 [1 of 3] Compiling QuickCheckUtils
-
-tests/QuickCheckUtils.hs:24:1: warning: [-Wunused-imports]
+tests/QuickCheckUtils.hs:24:1: warning: [GHC-66111] [-Wunused-imports]
     The qualified import of ‘Codec.Compression.Zstd.Lazy’ is redundant
       except perhaps to import instances from ‘Codec.Compression.Zstd.Lazy’
     To import instances alone, use: import Codec.Compression.Zstd.Lazy()
@@ -70,7 +70,7 @@ tests/QuickCheckUtils.hs:24:1: warning: [-Wunused-imports]
 24 | import qualified Codec.Compression.Zstd.Lazy as L
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-tests/QuickCheckUtils.hs:27:1: warning: [-Wunused-imports]
+tests/QuickCheckUtils.hs:27:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Bits’ is redundant
       except perhaps to import instances from ‘Data.Bits’
     To import instances alone, use: import Data.Bits()
@@ -78,7 +78,7 @@ tests/QuickCheckUtils.hs:27:1: warning: [-Wunused-imports]
 27 | import Data.Bits (xor)
    | ^^^^^^^^^^^^^^^^^^^^^^
 
-tests/QuickCheckUtils.hs:29:1: warning: [-Wunused-imports]
+tests/QuickCheckUtils.hs:29:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
@@ -86,7 +86,7 @@ tests/QuickCheckUtils.hs:29:1: warning: [-Wunused-imports]
 29 | import Data.Monoid ((<>))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-tests/QuickCheckUtils.hs:31:1: warning: [-Wunused-imports]
+tests/QuickCheckUtils.hs:31:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Test.Framework’ is redundant
       except perhaps to import instances from ‘Test.Framework’
     To import instances alone, use: import Test.Framework()
@@ -94,16 +94,16 @@ tests/QuickCheckUtils.hs:31:1: warning: [-Wunused-imports]
 31 | import Test.Framework (Test, testGroup)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-tests/QuickCheckUtils.hs:32:1: warning: [-Wunused-imports]
+tests/QuickCheckUtils.hs:32:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Test.Framework.Providers.QuickCheck2’ is redundant
       except perhaps to import instances from ‘Test.Framework.Providers.QuickCheck2’
     To import instances alone, use: import Test.Framework.Providers.QuickCheck2()
    |
 32 | import Test.Framework.Providers.QuickCheck2 (testProperty)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[2 of 3] Compiling Properties
 
-tests/Properties.hs:19:1: warning: [-Wunused-imports]
+[2 of 3] Compiling Properties
+tests/Properties.hs:19:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Codec.Compression.Zstd.Streaming’ is redundant
       except perhaps to import instances from ‘Codec.Compression.Zstd.Streaming’
     To import instances alone, use: import Codec.Compression.Zstd.Streaming()
@@ -111,7 +111,7 @@ tests/Properties.hs:19:1: warning: [-Wunused-imports]
 19 | import Codec.Compression.Zstd.Streaming (Result(..))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-tests/Properties.hs:20:1: warning: [-Wunused-imports]
+tests/Properties.hs:20:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.ByteString’ is redundant
       except perhaps to import instances from ‘Data.ByteString’
     To import instances alone, use: import Data.ByteString()
@@ -119,7 +119,7 @@ tests/Properties.hs:20:1: warning: [-Wunused-imports]
 20 | import Data.ByteString (ByteString, pack, unpack)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-tests/Properties.hs:24:1: warning: [-Wunused-imports]
+tests/Properties.hs:24:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Test.QuickCheck’ is redundant
       except perhaps to import instances from ‘Test.QuickCheck’
     To import instances alone, use: import Test.QuickCheck()
@@ -127,7 +127,7 @@ tests/Properties.hs:24:1: warning: [-Wunused-imports]
 24 | import Test.QuickCheck
    | ^^^^^^^^^^^^^^^^^^^^^^
 
-tests/Properties.hs:25:1: warning: [-Wunused-imports]
+tests/Properties.hs:25:1: warning: [GHC-66111] [-Wunused-imports]
     The qualified import of ‘Control.Exception’ is redundant
       except perhaps to import instances from ‘Control.Exception’
     To import instances alone, use: import Control.Exception()
@@ -185,9 +185,10 @@ tests/Properties.hs:54:1: warning: [GHC-38417] [-Wmissing-signatures]
 
 tests/Properties.hs:57:1: warning: [GHC-38417] [-Wmissing-signatures]
     Top-level binding with no type signature:
-      t_stream_roundtrip :: CLevel -> [Int] -> ByteString -> Bool
+      t_stream_roundtrip :: CLevel -> [Int] -> B.StrictByteString -> Bool
    |
 57 | t_stream_roundtrip (CLevel n) cs s =
    | ^^^^^^^^^^^^^^^^^^
+
 [3 of 3] Compiling Main
-[4 of 4] Linking /tmp/workdir-zstd/zstd-0.1.3.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/zstd-0.1.3.0/t/tests/build/tests/tests
+[4 of 4] Linking /tmp/workdir-zstd/zstd-0.1.3.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/zstd-0.1.3.0/t/tests/build/tests/tests

@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - fmt-0.6.3.0 (lib) (first run)
  - fmt-0.6.3.0 (test:doctests) (first run)
@@ -7,7 +8,6 @@ Configuring library for fmt-0.6.3.0...
 Preprocessing library for fmt-0.6.3.0...
 Building library for fmt-0.6.3.0...
 [1 of 9] Compiling Fmt.Internal.Core
-
 lib/Fmt/Internal/Core.hs:35:13: warning: [GHC-58520] [-Wtype-equality-requires-operators]
     The use of ‘~’ without TypeOperators
     will become an error in a future GHC release.
@@ -23,8 +23,8 @@ lib/Fmt/Internal/Core.hs:59:13: warning: [GHC-58520] [-Wtype-equality-requires-o
    |
 59 | instance (a ~ ()) => FromBuilder (IO a) where
    |             ^
-[2 of 9] Compiling Fmt.Internal.Formatters
 
+[2 of 9] Compiling Fmt.Internal.Formatters
 lib/Fmt/Internal/Formatters.hs:267:27: warning: [GHC-58520] [-Wtype-equality-requires-operators]
     The use of ‘~’ without TypeOperators
     will become an error in a future GHC release.
@@ -72,9 +72,18 @@ lib/Fmt/Internal/Formatters.hs:333:24: warning: [GHC-58520] [-Wtype-equality-req
     |
 333 |      (IsList t, Item t ~ (k, v))
     |                        ^
+
 [3 of 9] Compiling Fmt.Internal.Numeric
 [4 of 9] Compiling Fmt.Internal.Template
 [5 of 9] Compiling Fmt.Internal.Tuple
+lib/Fmt/Internal/Tuple.hs:110:24: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+110 |            (not (null (tail ls)),
+    |                        ^^^^
+
 [6 of 9] Compiling Fmt.Internal.Generic
 [7 of 9] Compiling Fmt.Internal
 [8 of 9] Compiling Fmt.Time
@@ -83,9 +92,9 @@ Configuring test suite 'doctests' for fmt-0.6.3.0...
 Preprocessing test suite 'doctests' for fmt-0.6.3.0...
 Building test suite 'doctests' for fmt-0.6.3.0...
 [1 of 1] Compiling Main
-[2 of 2] Linking /tmp/workdir-fmt/fmt-0.6.3.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/fmt-0.6.3.0/t/doctests/build/doctests/doctests
+[2 of 2] Linking /tmp/workdir-fmt/fmt-0.6.3.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/fmt-0.6.3.0/t/doctests/build/doctests/doctests
 Configuring test suite 'tests' for fmt-0.6.3.0...
 Preprocessing test suite 'tests' for fmt-0.6.3.0...
 Building test suite 'tests' for fmt-0.6.3.0...
 [1 of 1] Compiling Main
-[2 of 2] Linking /tmp/workdir-fmt/fmt-0.6.3.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/fmt-0.6.3.0/t/tests/build/tests/tests
+[2 of 2] Linking /tmp/workdir-fmt/fmt-0.6.3.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/fmt-0.6.3.0/t/tests/build/tests/tests

@@ -1,0 +1,379 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - ihaskell-0.12.0.0 (lib) (first run)
+ - ihaskell-0.12.0.0 (exe:ihaskell) (first run)
+ - ihaskell-0.12.0.0 (test:hspec) (first run)
+Configuring library for ihaskell-0.12.0.0...
+Preprocessing library for ihaskell-0.12.0.0...
+Building library for ihaskell-0.12.0.0...
+[ 1 of 26] Compiling IHaskell.CSS
+[ 2 of 26] Compiling IHaskellPrelude
+src/IHaskellPrelude.hs:118:21: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+118 | headMay = wrapEmpty head
+    |                     ^^^^
+
+src/IHaskellPrelude.hs:121:21: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+121 | tailMay = wrapEmpty tail
+    |                     ^^^^
+
+[ 3 of 26] Compiling IHaskell.Types
+src/IHaskell/Types.hs:48:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Function’ is redundant
+      except perhaps to import instances from ‘Data.Function’
+    To import instances alone, use: import Data.Function()
+   |
+48 | import           Data.Function (on)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[ 4 of 26] Compiling IHaskell.IPython.Stdin
+src/IHaskell/IPython/Stdin.hs:31:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+31 | import           Control.Applicative ((<$>))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/IHaskell/IPython/Stdin.hs:75:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Handle’ not matched: DuplexHandle _ _ _
+   |
+75 |       let FileHandle _ mvar = stdin
+   |           ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[ 5 of 26] Compiling IHaskell.Flags
+src/IHaskell/Flags.hs:84:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘([String], [String])’ not matched: (_, [])
+   |
+84 |       let (start, first:end) = splitAt idx flags
+   |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[ 6 of 26] Compiling IHaskell.Eval.ParseShell
+[ 7 of 26] Compiling IHaskell.Convert.LhsToIpynb
+src/IHaskell/Convert/LhsToIpynb.hs:7:1: warning: [GHC-66111] [-Wunused-imports]
+    The qualified import of ‘Data.Text’ is redundant
+      except perhaps to import instances from ‘Data.Text’
+    To import instances alone, use: import Data.Text()
+  |
+7 | import qualified Data.Text as T
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/IHaskell/Convert/LhsToIpynb.hs:19:1: warning: [GHC-66111] [-Wunused-imports]
+    The qualified import of ‘Data.Aeson.KeyMap’ is redundant
+      except perhaps to import instances from ‘Data.Aeson.KeyMap’
+    To import instances alone, use: import Data.Aeson.KeyMap()
+   |
+19 | import qualified Data.Aeson.KeyMap as KeyMap
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[ 8 of 26] Compiling IHaskell.Convert.IpynbToLhs
+src/IHaskell/Convert/IpynbToLhs.hs:33:58: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘Value’ not matched:
+            Array _
+            String _
+            aeson-2.2.3.0-b3a825e2f67ab5a4d5bb39d786867e2cbf864ed801765a874518037b4a2f156b:Data.Aeson.Types.Internal.Number
+            _
+            aeson-2.2.3.0-b3a825e2f67ab5a4d5bb39d786867e2cbf864ed801765a874518037b4a2f156b:Data.Aeson.Types.Internal.Bool
+            _
+            ...
+   |
+33 |       LTIO.writeFile to $ LT.unlines $ V.toList $ V.map (\(Object y) -> convCell sty y) cells
+   |                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/IHaskell/Convert/IpynbToLhs.hs:51:6: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In an irrefutable pattern:
+        Patterns of type ‘Maybe LT.Text’ not matched: Nothing
+   |
+51 |     ~(Just s) <- concatWithPrefix "" xs
+   |      ^^^^^^^^
+
+src/IHaskell/Convert/IpynbToLhs.hs:57:6: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In an irrefutable pattern:
+        Patterns of type ‘Maybe LT.Text’ not matched:
+            Nothing
+            Nothing
+            Nothing
+            Nothing
+            ...
+   |
+57 |     ~(Just i) <- concatWithPrefix (lhsCodePrefix sty) a,
+   |      ^^^^^^^^
+
+[ 9 of 26] Compiling IHaskell.Convert.Args
+[10 of 26] Compiling IHaskell.Convert
+[11 of 26] Compiling IHaskell.BrokenPackages
+[12 of 26] Compiling Paths_ihaskell
+[13 of 26] Compiling StringUtils
+src/StringUtils.hs:34:3: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[[Char]]’ not matched:
+            []
+            [_]
+   |
+34 |   (head:_:tail) = Split.split (Split.onSublist delim) str
+   |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[14 of 26] Compiling IHaskell.IPython
+[15 of 26] Compiling IHaskell.Eval.Util
+src/IHaskell/Eval/Util.hs:44:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘GHC.Driver.CmdLine’ is redundant
+      except perhaps to import instances from ‘GHC.Driver.CmdLine’
+    To import instances alone, use: import GHC.Driver.CmdLine()
+   |
+44 | import           GHC.Driver.CmdLine
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/IHaskell/Eval/Util.hs:59:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘GHC.Runtime.Loader’ is redundant
+      except perhaps to import instances from ‘GHC.Runtime.Loader’
+    To import instances alone, use: import GHC.Runtime.Loader()
+   |
+59 | import           GHC.Runtime.Loader
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/IHaskell/Eval/Util.hs:255:7: warning: [GHC-62161] [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In a case alternative:
+        Patterns of type ‘Maybe Language’ not matched: Just GHC2024
+    |
+255 |       case language dflags of
+    |       ^^^^^^^^^^^^^^^^^^^^^^^...
+
+[16 of 26] Compiling IHaskell.Eval.Parser
+src/IHaskell/Eval/Parser.hs:216:32: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+216 |   if signatureOrDecl $ unloc $ head blocks
+    |                                ^^^^
+
+src/IHaskell/Eval/Parser.hs:218:10: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+218 |     else head blocks : joinFunctions (tail blocks)
+    |          ^^^^
+
+src/IHaskell/Eval/Parser.hs:218:39: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+218 |     else head blocks : joinFunctions (tail blocks)
+    |                                       ^^^^
+
+src/IHaskell/Eval/Parser.hs:222:19: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+222 |     lnum = line $ head decls
+    |                   ^^^^
+
+src/IHaskell/Eval/Parser.hs:261:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[String]’ not matched:
+            []
+            []
+    |
+261 |             _:restLine = words directive
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/IHaskell/Eval/Parser.hs:272:29: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+272 |         dir:_ -> dir `elem` tail (inits dirname)
+    |                             ^^^^
+
+[17 of 26] Compiling IHaskell.Eval.Hoogle
+src/IHaskell/Eval/Hoogle.hs:195:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[String]’ not matched:
+            []
+            [_]
+            (_:_:_:_)
+    |
+195 |       let [name, args] = splitFirst "::" string
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[18 of 26] Compiling IHaskell.Display
+[19 of 26] Compiling IHaskell.Publish
+[20 of 26] Compiling IHaskell.Eval.Widgets
+[21 of 26] Compiling IHaskell.Eval.Lint
+src/IHaskell/Eval/Lint.hs:8:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Maybe’ is redundant
+      except perhaps to import instances from ‘Data.Maybe’
+    To import instances alone, use: import Data.Maybe()
+  |
+8 | import           Data.Maybe (mapMaybe)
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[22 of 26] Compiling IHaskell.Eval.Evaluate.HTML
+src/IHaskell/Eval/Evaluate/HTML.hs:35:60: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+35 |     getLines xs = (curLine <> [spaceBoundary]) : getLines (L.tail rest)
+   |                                                            ^^^^^^
+
+[23 of 26] Compiling IHaskell.Eval.Evaluate
+src/IHaskell/Eval/Evaluate.hs:732:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding: Patterns of type ‘String’ not matched: []
+    |
+732 |   let stripped@(firstChar:remainder) = mods
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/IHaskell/Eval/Evaluate.hs:1094:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Display’ not matched: ManyDisplay _
+     |
+1094 |         Display disps = evalResult evalOut
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/IHaskell/Eval/Evaluate.hs:1115:40: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+     |
+1115 |               after = init $ unwords $ tail $ dropWhile (/= "(Show") before
+     |                                        ^^^^
+
+src/IHaskell/Eval/Evaluate.hs:1119:34: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+     |
+1119 |                      then init $ tail after
+     |                                  ^^^^
+
+src/IHaskell/Eval/Evaluate.hs:1126:46: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+     |
+1126 |   let nonDataNames = filter (not . isUpper . head) boundNames
+     |                                              ^^^^
+
+[24 of 26] Compiling IHaskell.Eval.Inspect
+[25 of 26] Compiling IHaskell.Eval.Info
+[26 of 26] Compiling IHaskell.Eval.Completion
+Configuring executable 'ihaskell' for ihaskell-0.12.0.0...
+Preprocessing executable 'ihaskell' for ihaskell-0.12.0.0...
+Building executable 'ihaskell' for ihaskell-0.12.0.0...
+[1 of 2] Compiling Paths_ihaskell
+[2 of 2] Compiling Main
+[3 of 3] Linking /tmp/workdir-ihaskell/ihaskell-0.12.0.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/ihaskell-0.12.0.0/x/ihaskell/build/ihaskell/ihaskell
+Configuring test suite 'hspec' for ihaskell-0.12.0.0...
+Preprocessing test suite 'hspec' for ihaskell-0.12.0.0...
+Building test suite 'hspec' for ihaskell-0.12.0.0...
+[1 of 6] Compiling IHaskell.Test.Hoogle
+src/tests/IHaskell/Test/Hoogle.hs:52:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘HoogleResult’ not matched:
+            DocResult _
+            NoResult _
+   |
+52 |     let (SearchResult (HoogleResponse loc signature _docUrl)) = head results
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/tests/IHaskell/Test/Hoogle.hs:52:65: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+52 |     let (SearchResult (HoogleResponse loc signature _docUrl)) = head results
+   |                                                                 ^^^^
+
+src/tests/IHaskell/Test/Hoogle.hs:58:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘HoogleResult’ not matched:
+            DocResult _
+            NoResult _
+   |
+58 |     let (SearchResult (HoogleResponse _loc signature _docUrl)) = head results
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/tests/IHaskell/Test/Hoogle.hs:58:66: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+58 |     let (SearchResult (HoogleResponse _loc signature _docUrl)) = head results
+   |                                                                  ^^^^
+
+src/tests/IHaskell/Test/Hoogle.hs:62:23: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+62 |       (render Plain $ head results) `shouldStartWith` "module Universum.Functor.Fmap"
+   |                       ^^^^
+
+src/tests/IHaskell/Test/Hoogle.hs:63:23: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+63 |       (render HTML  $ head results) `shouldStartWith` "<span class='hoogle-head'>module</span>"
+   |                       ^^^^
+
+[2 of 6] Compiling IHaskell.Test.Util
+[3 of 6] Compiling IHaskell.Test.Parser
+[4 of 6] Compiling IHaskell.Test.Eval
+src/tests/IHaskell/Test/Eval.hs:61:38: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘(Display, String)’ not matched:
+            ((Display _), _)
+            ((ManyDisplay []), _)
+            ((ManyDisplay ((ManyDisplay _):_)), _)
+            ((ManyDisplay ((Display _):_:_)), _)
+   |
+61 |       forM_ (zip results expected) $ \(ManyDisplay [Display result], expect) -> case extractPlain result of
+   |                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+[5 of 6] Compiling IHaskell.Test.Completion
+src/tests/IHaskell/Test/Completion.hs:19:60: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘Backend’ from module ‘GHC’ is redundant
+   |
+19 |                       parseImportDecl, interpreterBackend, Backend(..), InteractiveImport(..))
+   |                                                            ^^^^^^^^^^^
+
+src/tests/IHaskell/Test/Completion.hs:19:60: warning: [GHC-99623] [-Wdodgy-imports]
+    The import item ‘GHC.Driver.Backend.Backend(..)’ suggests that
+    ‘GHC.Driver.Backend.Backend’ has (in-scope) constructors or record fields,
+                                     but it has none
+   |
+19 |                       parseImportDecl, interpreterBackend, Backend(..), InteractiveImport(..))
+   |                                                            ^^^^^^^^^^^
+
+[6 of 6] Compiling Main
+[7 of 7] Linking /tmp/workdir-ihaskell/ihaskell-0.12.0.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/ihaskell-0.12.0.0/t/hspec/build/hspec/hspec

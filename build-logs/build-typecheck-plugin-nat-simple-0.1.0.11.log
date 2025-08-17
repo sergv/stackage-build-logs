@@ -1,0 +1,119 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - typecheck-plugin-nat-simple-0.1.0.11 (lib) (first run)
+ - typecheck-plugin-nat-simple-0.1.0.11 (test:typecheck-plugin-nat-simple-test-tryLog) (first run)
+ - typecheck-plugin-nat-simple-0.1.0.11 (test:typecheck-plugin-nat-simple-test-spec) (first run)
+ - typecheck-plugin-nat-simple-0.1.0.11 (test:typecheck-plugin-nat-simple-test-log) (first run)
+Configuring library for typecheck-plugin-nat-simple-0.1.0.11...
+Preprocessing library for typecheck-plugin-nat-simple-0.1.0.11...
+Building library for typecheck-plugin-nat-simple-0.1.0.11...
+[ 1 of 14] Compiling Control.Monad.StateT
+[ 2 of 14] Compiling Control.Monad.Try
+[ 3 of 14] Compiling Data.Log
+[ 4 of 14] Compiling Data.Derivation.Constraint
+[ 5 of 14] Compiling Data.Derivation.Expression.Internal
+src/Data/Derivation/Expression/Internal.hs:157:65: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+157 | untilFixed f x = fst . fromJust . find (uncurry (==)) $ zip xs (tail xs)
+    |                                                                 ^^^^
+
+[ 6 of 14] Compiling Data.Derivation.Expression
+[ 7 of 14] Compiling Data.Derivation.CanDerive
+[ 8 of 14] Compiling Data.Parse
+[ 9 of 14] Compiling Data.Derivation.Parse
+[10 of 14] Compiling Paths_typecheck_plugin_nat_simple
+[11 of 14] Compiling Plugin.TypeCheck.Nat.Simple.UnNomEq
+[12 of 14] Compiling Plugin.TypeCheck.Nat.Simple.Decode
+src/Plugin/TypeCheck/Nat/Simple/Decode.hs:60:13: warning: [GHC-40910] [-Wunused-matches]
+    Defined but not used: ‘cmp’
+   |
+60 | exBool (oc, cmp) (TyConApp tc [_,
+   |             ^^^
+
+[13 of 14] Compiling Plugin.TypeCheck.Nat.Simple.TypeCheckWith
+[14 of 14] Compiling Plugin.TypeCheck.Nat.Simple
+Configuring test suite 'typecheck-plugin-nat-simple-test-tryLog' for typecheck-plugin-nat-simple-0.1.0.11...
+Preprocessing test suite 'typecheck-plugin-nat-simple-test-tryLog' for typecheck-plugin-nat-simple-0.1.0.11...
+Building test suite 'typecheck-plugin-nat-simple-test-tryLog' for typecheck-plugin-nat-simple-0.1.0.11...
+[1 of 2] Compiling Main
+test/tryLog.hs:5:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘GHC.Utils.Outputable’ is redundant
+      except perhaps to import instances from ‘GHC.Utils.Outputable’
+    To import instances alone, use: import GHC.Utils.Outputable()
+  |
+5 | import GHC.Utils.Outputable
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/tryLog.hs:6:34: warning: [GHC-61689] [-Wdodgy-imports]
+    Module ‘Control.Monad.Try’ does not export ‘Message’.
+  |
+6 | import Control.Monad.Try hiding (Message)
+  |                                  ^^^^^^^
+
+[2 of 2] Compiling Paths_typecheck_plugin_nat_simple
+[3 of 3] Linking /tmp/workdir-typecheck-plugin-nat-simple/typecheck-plugin-nat-simple-0.1.0.11/dist-newstyle/build/x86_64-linux/ghc-9.10.2/typecheck-plugin-nat-simple-0.1.0.11/t/typecheck-plugin-nat-simple-test-tryLog/build/typecheck-plugin-nat-simple-test-tryLog/typecheck-plugin-nat-simple-test-tryLog
+Configuring test suite 'typecheck-plugin-nat-simple-test-spec' for typecheck-plugin-nat-simple-0.1.0.11...
+Preprocessing test suite 'typecheck-plugin-nat-simple-test-spec' for typecheck-plugin-nat-simple-0.1.0.11...
+Building test suite 'typecheck-plugin-nat-simple-test-spec' for typecheck-plugin-nat-simple-0.1.0.11...
+[1 of 2] Compiling Main
+[2 of 2] Compiling Paths_typecheck_plugin_nat_simple
+[3 of 3] Linking /tmp/workdir-typecheck-plugin-nat-simple/typecheck-plugin-nat-simple-0.1.0.11/dist-newstyle/build/x86_64-linux/ghc-9.10.2/typecheck-plugin-nat-simple-0.1.0.11/t/typecheck-plugin-nat-simple-test-spec/build/typecheck-plugin-nat-simple-test-spec/typecheck-plugin-nat-simple-test-spec
+Configuring test suite 'typecheck-plugin-nat-simple-test-log' for typecheck-plugin-nat-simple-0.1.0.11...
+Preprocessing test suite 'typecheck-plugin-nat-simple-test-log' for typecheck-plugin-nat-simple-0.1.0.11...
+Building test suite 'typecheck-plugin-nat-simple-test-log' for typecheck-plugin-nat-simple-0.1.0.11...
+[1 of 2] Compiling Main
+test/log.hs:10:1: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: ‘foo’
+   |
+10 | foo = id
+   | ^^^
+
+test/log.hs:13:1: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: ‘bar’
+   |
+13 | bar = id
+   | ^^^
+
+test/log.hs:16:1: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: ‘baz’
+   |
+16 | baz = id
+   | ^^^
+
+test/log.hs:19:1: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: ‘hoge’
+   |
+19 | hoge = id
+   | ^^^^
+
+[2 of 2] Compiling Paths_typecheck_plugin_nat_simple
+[1 of 3] Compiling Main [Impure plugin forced recompilation]
+test/log.hs:10:1: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: ‘foo’
+   |
+10 | foo = id
+   | ^^^
+
+test/log.hs:13:1: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: ‘bar’
+   |
+13 | bar = id
+   | ^^^
+
+test/log.hs:16:1: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: ‘baz’
+   |
+16 | baz = id
+   | ^^^
+
+test/log.hs:19:1: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: ‘hoge’
+   |
+19 | hoge = id
+   | ^^^^
+
+[3 of 3] Linking /tmp/workdir-typecheck-plugin-nat-simple/typecheck-plugin-nat-simple-0.1.0.11/dist-newstyle/build/x86_64-linux/ghc-9.10.2/typecheck-plugin-nat-simple-0.1.0.11/t/typecheck-plugin-nat-simple-test-log/build/typecheck-plugin-nat-simple-test-log/typecheck-plugin-nat-simple-test-log

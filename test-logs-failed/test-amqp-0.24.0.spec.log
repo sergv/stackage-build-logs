@@ -1,0 +1,306 @@
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - amqp-0.24.0 (test:spec) (ephemeral targets)
+Preprocessing test suite 'spec' for amqp-0.24.0...
+Building test suite 'spec' for amqp-0.24.0...
+<no location info>: warning: [GHC-32850] [-Wmissing-home-modules]
+    These modules are needed for compilation but not listed in your .cabal file's other-modules for ‘amqp-0.24.0-inplace-spec’ :
+        Network.AMQP
+        Network.AMQP.ChannelAllocator
+        Network.AMQP.Generated
+        Network.AMQP.Helpers
+        Network.AMQP.Internal
+        Network.AMQP.Protocol
+        Network.AMQP.Types
+        Paths_amqp
+
+<no location info>: warning: [GHC-32850] [-Wmissing-home-modules]
+    These modules are needed for compilation but not listed in your .cabal file's other-modules for ‘amqp-0.24.0-inplace-spec’ :
+        Network.AMQP
+        Network.AMQP.ChannelAllocator
+        Network.AMQP.Generated
+        Network.AMQP.Helpers
+        Network.AMQP.Internal
+        Network.AMQP.Protocol
+        Network.AMQP.Types
+        Paths_amqp
+
+Running 1 test suites...
+Test suite spec: RUNNING...
+
+ConnectionSpec
+  openConnection
+    with default vhost and default admin credentials
+      connects successfully [✘]
+    with custom vhost and valid credentials
+      connects successfully [✘]
+    with custom vhost and valid credentials
+      raises an exception [✘]
+ChannelSpec
+  openChannel
+    with automatically allocated channel id
+      opens a new channel with unique id [✘]
+  closeChannel
+    with an open channel
+      closes the channel [‐]
+        # PENDING: No reason given
+  qos
+    with prefetchCount = 5
+      sets prefetch count [✘]
+ExchangeDeclareSpec
+  declareExchange
+    client-named, fanout, durable, non-autodelete
+      declares the exchange [✘]
+    client-named, topic, non-durable, non-autodelete
+      declares the exchange [✘]
+    passive declaration when the exchange DOES NOT exist
+      throws an exception [✘]
+ExchangeDeleteSpec
+  deleteExchange
+    when exchange exists
+      deletes the exchange [✘]
+    when exchange DOES NOT exist
+      throws an exception [✘]
+FromURISpec
+  fromURI
+    empty [✔]
+    amqp auth host [✔]
+    amqp auth host-2 [✔]
+    amqp auth host port [✔]
+    amqp auth host-2 port [✔]
+    amqp auth host-2 port-2 [✔]
+    amqp auth host port vhost [✔]
+    amqp auth host-2 port-2 vhost [✔]
+    amqp auth host-3 port-3 vhost [✔]
+    amqp host [✔]
+    amqp host-2 [✔]
+    amqps auth host [✔]
+    amqps auth host-2 [✔]
+    amqps auth host port [✔]
+    amqps auth host-2 port [✔]
+    amqps auth host-2 port-2 [✔]
+    amqps auth host port vhost [✔]
+    amqps auth host-2 port-2 vhost [✔]
+    amqps host [✔]
+    amqps host-2 [✔]
+QueueDeclareSpec
+  declareQueue
+    client named, durable, non-autodelete, non-exclusive
+      declares the queue [✘]
+    server- named, non-durable, non-autodelete, exclusive
+      declares the queue, providing access to the server-generated name [✘]
+    passive declaration when the queue DOES NOT exist
+      throws an exception [✘]
+QueueDeleteSpec
+  deleteQueue
+    when queue exists
+      deletes the queue [✘]
+      when queue DOES NOT exist
+        throws an exception [✘]
+QueuePurgeSpec
+  purgeQueue
+    when queue exists
+      empties the queue [✘]
+    when queue DOES NOT exist
+      empties the queue [✘]
+BasicPublishSpec
+  publishMsg
+    with a routing key
+      publishes a message [✘]
+    with a blank routing key
+      publishes a message [✘]
+    confirmSelect
+      receives a confirmation message [✘]
+BasicRejectSpec
+  rejectMsg
+    requeue = True
+      requeues a message [✘]
+    requeue = False
+      rejects a message [✘]
+  rejectEnv
+    requeue = True
+      requeues a message [✘]
+    requeue = False
+      rejects a message [✘]
+
+Failures:
+
+  test/ConnectionSpec.hs:15:13: 
+  1) ConnectionSpec.openConnection, with default vhost and default admin credentials, connects successfully
+       uncaught exception: AMQPException
+       ConnectionClosedException Abnormal "Could not connect to any of the provided brokers: [((\"127.0.0.1\",5672),HostCannotConnect \"127.0.0.1\" [Network.Socket.connect: <socket: 8>: does not exist (Connection refused)])]"
+
+  To rerun use: --match "/ConnectionSpec/openConnection/with default vhost and default admin credentials/connects successfully/" --seed 990531100
+
+  test/ConnectionSpec.hs:20:13: 
+  2) ConnectionSpec.openConnection, with custom vhost and valid credentials, connects successfully
+       uncaught exception: AMQPException
+       ConnectionClosedException Abnormal "Could not connect to any of the provided brokers: [((\"127.0.0.1\",5672),HostCannotConnect \"127.0.0.1\" [Network.Socket.connect: <socket: 8>: does not exist (Connection refused)])]"
+
+  To rerun use: --match "/ConnectionSpec/openConnection/with custom vhost and valid credentials/connects successfully/" --seed 990531100
+
+  test/ConnectionSpec.hs:32:79: 
+  3) ConnectionSpec.openConnection, with custom vhost and valid credentials, raises an exception
+       predicate failed on expected exception: AMQPException
+       ConnectionClosedException Abnormal "Could not connect to any of the provided brokers: [((\"127.0.0.1\",5672),HostCannotConnect \"127.0.0.1\" [Network.Socket.connect: <socket: 8>: does not exist (Connection refused)])]"
+
+  To rerun use: --match "/ConnectionSpec/openConnection/with custom vhost and valid credentials/raises an exception/" --seed 990531100
+
+  test/ChannelSpec.hs:16:13: 
+  4) ChannelSpec.openChannel, with automatically allocated channel id, opens a new channel with unique id
+       uncaught exception: AMQPException
+       ConnectionClosedException Abnormal "Could not connect to any of the provided brokers: [((\"127.0.0.1\",5672),HostCannotConnect \"127.0.0.1\" [Network.Socket.connect: <socket: 8>: does not exist (Connection refused)])]"
+
+  To rerun use: --match "/ChannelSpec/openChannel/with automatically allocated channel id/opens a new channel with unique id/" --seed 990531100
+
+  test/ChannelSpec.hs:35:13: 
+  5) ChannelSpec.qos, with prefetchCount = 5, sets prefetch count
+       uncaught exception: AMQPException
+       ConnectionClosedException Abnormal "Could not connect to any of the provided brokers: [((\"127.0.0.1\",5672),HostCannotConnect \"127.0.0.1\" [Network.Socket.connect: <socket: 8>: does not exist (Connection refused)])]"
+
+  To rerun use: --match "/ChannelSpec/qos/with prefetchCount = 5/sets prefetch count/" --seed 990531100
+
+  test/ExchangeDeclareSpec.hs:15:13: 
+  6) ExchangeDeclareSpec.declareExchange, client-named, fanout, durable, non-autodelete, declares the exchange
+       uncaught exception: AMQPException
+       ConnectionClosedException Abnormal "Could not connect to any of the provided brokers: [((\"127.0.0.1\",5672),HostCannotConnect \"127.0.0.1\" [Network.Socket.connect: <socket: 8>: does not exist (Connection refused)])]"
+
+  To rerun use: --match "/ExchangeDeclareSpec/declareExchange/client-named, fanout, durable, non-autodelete/declares the exchange/" --seed 990531100
+
+  test/ExchangeDeclareSpec.hs:32:13: 
+  7) ExchangeDeclareSpec.declareExchange, client-named, topic, non-durable, non-autodelete, declares the exchange
+       uncaught exception: AMQPException
+       ConnectionClosedException Abnormal "Could not connect to any of the provided brokers: [((\"127.0.0.1\",5672),HostCannotConnect \"127.0.0.1\" [Network.Socket.connect: <socket: 8>: does not exist (Connection refused)])]"
+
+  To rerun use: --match "/ExchangeDeclareSpec/declareExchange/client-named, topic, non-durable, non-autodelete/declares the exchange/" --seed 990531100
+
+  test/ExchangeDeclareSpec.hs:49:13: 
+  8) ExchangeDeclareSpec.declareExchange, passive declaration when the exchange DOES NOT exist, throws an exception
+       uncaught exception: AMQPException
+       ConnectionClosedException Abnormal "Could not connect to any of the provided brokers: [((\"127.0.0.1\",5672),HostCannotConnect \"127.0.0.1\" [Network.Socket.connect: <socket: 8>: does not exist (Connection refused)])]"
+
+  To rerun use: --match "/ExchangeDeclareSpec/declareExchange/passive declaration when the exchange DOES NOT exist/throws an exception/" --seed 990531100
+
+  test/ExchangeDeleteSpec.hs:15:14: 
+  9) ExchangeDeleteSpec.deleteExchange, when exchange exists, deletes the exchange
+       uncaught exception: AMQPException
+       ConnectionClosedException Abnormal "Could not connect to any of the provided brokers: [((\"127.0.0.1\",5672),HostCannotConnect \"127.0.0.1\" [Network.Socket.connect: <socket: 8>: does not exist (Connection refused)])]"
+
+  To rerun use: --match "/ExchangeDeleteSpec/deleteExchange/when exchange exists/deletes the exchange/" --seed 990531100
+
+  test/ExchangeDeleteSpec.hs:36:14: 
+  10) ExchangeDeleteSpec.deleteExchange, when exchange DOES NOT exist, throws an exception
+       uncaught exception: AMQPException
+       ConnectionClosedException Abnormal "Could not connect to any of the provided brokers: [((\"127.0.0.1\",5672),HostCannotConnect \"127.0.0.1\" [Network.Socket.connect: <socket: 8>: does not exist (Connection refused)])]"
+
+  To rerun use: --match "/ExchangeDeleteSpec/deleteExchange/when exchange DOES NOT exist/throws an exception/" --seed 990531100
+
+  test/QueueDeclareSpec.hs:17:13: 
+  11) QueueDeclareSpec.declareQueue, client named, durable, non-autodelete, non-exclusive, declares the queue
+       uncaught exception: AMQPException
+       ConnectionClosedException Abnormal "Could not connect to any of the provided brokers: [((\"127.0.0.1\",5672),HostCannotConnect \"127.0.0.1\" [Network.Socket.connect: <socket: 8>: does not exist (Connection refused)])]"
+
+  To rerun use: --match "/QueueDeclareSpec/declareQueue/client named, durable, non-autodelete, non-exclusive/declares the queue/" --seed 990531100
+
+  test/QueueDeclareSpec.hs:34:13: 
+  12) QueueDeclareSpec.declareQueue, server- named, non-durable, non-autodelete, exclusive, declares the queue, providing access to the server-generated name
+       uncaught exception: AMQPException
+       ConnectionClosedException Abnormal "Could not connect to any of the provided brokers: [((\"127.0.0.1\",5672),HostCannotConnect \"127.0.0.1\" [Network.Socket.connect: <socket: 8>: does not exist (Connection refused)])]"
+
+  To rerun use: --match "/QueueDeclareSpec/declareQueue/server- named, non-durable, non-autodelete, exclusive/declares the queue, providing access to the server-generated name/" --seed 990531100
+
+  test/QueueDeclareSpec.hs:55:13: 
+  13) QueueDeclareSpec.declareQueue, passive declaration when the queue DOES NOT exist, throws an exception
+       uncaught exception: AMQPException
+       ConnectionClosedException Abnormal "Could not connect to any of the provided brokers: [((\"127.0.0.1\",5672),HostCannotConnect \"127.0.0.1\" [Network.Socket.connect: <socket: 8>: does not exist (Connection refused)])]"
+
+  To rerun use: --match "/QueueDeclareSpec/declareQueue/passive declaration when the queue DOES NOT exist/throws an exception/" --seed 990531100
+
+  test/QueueDeleteSpec.hs:15:11: 
+  14) QueueDeleteSpec.deleteQueue, when queue exists, deletes the queue
+       uncaught exception: AMQPException
+       ConnectionClosedException Abnormal "Could not connect to any of the provided brokers: [((\"127.0.0.1\",5672),HostCannotConnect \"127.0.0.1\" [Network.Socket.connect: <socket: 8>: does not exist (Connection refused)])]"
+
+  To rerun use: --match "/QueueDeleteSpec/deleteQueue/when queue exists/deletes the queue/" --seed 990531100
+
+  test/QueueDeleteSpec.hs:34:15: 
+  15) QueueDeleteSpec.deleteQueue, when queue exists, when queue DOES NOT exist, throws an exception
+       uncaught exception: AMQPException
+       ConnectionClosedException Abnormal "Could not connect to any of the provided brokers: [((\"127.0.0.1\",5672),HostCannotConnect \"127.0.0.1\" [Network.Socket.connect: <socket: 8>: does not exist (Connection refused)])]"
+
+  To rerun use: --match "/QueueDeleteSpec/deleteQueue/when queue exists/when queue DOES NOT exist/throws an exception/" --seed 990531100
+
+  test/QueuePurgeSpec.hs:18:14: 
+  16) QueuePurgeSpec.purgeQueue, when queue exists, empties the queue
+       uncaught exception: AMQPException
+       ConnectionClosedException Abnormal "Could not connect to any of the provided brokers: [((\"127.0.0.1\",5672),HostCannotConnect \"127.0.0.1\" [Network.Socket.connect: <socket: 8>: does not exist (Connection refused)])]"
+
+  To rerun use: --match "/QueuePurgeSpec/purgeQueue/when queue exists/empties the queue/" --seed 990531100
+
+  test/QueuePurgeSpec.hs:43:14: 
+  17) QueuePurgeSpec.purgeQueue, when queue DOES NOT exist, empties the queue
+       uncaught exception: AMQPException
+       ConnectionClosedException Abnormal "Could not connect to any of the provided brokers: [((\"127.0.0.1\",5672),HostCannotConnect \"127.0.0.1\" [Network.Socket.connect: <socket: 8>: does not exist (Connection refused)])]"
+
+  To rerun use: --match "/QueuePurgeSpec/purgeQueue/when queue DOES NOT exist/empties the queue/" --seed 990531100
+
+  test/BasicPublishSpec.hs:23:13: 
+  18) BasicPublishSpec.publishMsg, with a routing key, publishes a message
+       uncaught exception: AMQPException
+       ConnectionClosedException Abnormal "Could not connect to any of the provided brokers: [((\"127.0.0.1\",5672),HostCannotConnect \"127.0.0.1\" [Network.Socket.connect: <socket: 8>: does not exist (Connection refused)])]"
+
+  To rerun use: --match "/BasicPublishSpec/publishMsg/with a routing key/publishes a message/" --seed 990531100
+
+  test/BasicPublishSpec.hs:44:13: 
+  19) BasicPublishSpec.publishMsg, with a blank routing key, publishes a message
+       uncaught exception: AMQPException
+       ConnectionClosedException Abnormal "Could not connect to any of the provided brokers: [((\"127.0.0.1\",5672),HostCannotConnect \"127.0.0.1\" [Network.Socket.connect: <socket: 8>: does not exist (Connection refused)])]"
+
+  To rerun use: --match "/BasicPublishSpec/publishMsg/with a blank routing key/publishes a message/" --seed 990531100
+
+  test/BasicPublishSpec.hs:68:13: 
+  20) BasicPublishSpec.publishMsg.confirmSelect receives a confirmation message
+       uncaught exception: AMQPException
+       ConnectionClosedException Abnormal "Could not connect to any of the provided brokers: [((\"127.0.0.1\",5672),HostCannotConnect \"127.0.0.1\" [Network.Socket.connect: <socket: 8>: does not exist (Connection refused)])]"
+
+  To rerun use: --match "/BasicPublishSpec/publishMsg/confirmSelect/receives a confirmation message/" --seed 990531100
+
+  test/BasicRejectSpec.hs:25:13: 
+  21) BasicRejectSpec.rejectMsg, requeue = True, requeues a message
+       uncaught exception: AMQPException
+       ConnectionClosedException Abnormal "Could not connect to any of the provided brokers: [((\"127.0.0.1\",5672),HostCannotConnect \"127.0.0.1\" [Network.Socket.connect: <socket: 8>: does not exist (Connection refused)])]"
+
+  To rerun use: --match "/BasicRejectSpec/rejectMsg/requeue = True/requeues a message/" --seed 990531100
+
+  test/BasicRejectSpec.hs:46:13: 
+  22) BasicRejectSpec.rejectMsg, requeue = False, rejects a message
+       uncaught exception: AMQPException
+       ConnectionClosedException Abnormal "Could not connect to any of the provided brokers: [((\"127.0.0.1\",5672),HostCannotConnect \"127.0.0.1\" [Network.Socket.connect: <socket: 8>: does not exist (Connection refused)])]"
+
+  To rerun use: --match "/BasicRejectSpec/rejectMsg/requeue = False/rejects a message/" --seed 990531100
+
+  test/BasicRejectSpec.hs:68:13: 
+  23) BasicRejectSpec.rejectEnv, requeue = True, requeues a message
+       uncaught exception: AMQPException
+       ConnectionClosedException Abnormal "Could not connect to any of the provided brokers: [((\"127.0.0.1\",5672),HostCannotConnect \"127.0.0.1\" [Network.Socket.connect: <socket: 8>: does not exist (Connection refused)])]"
+
+  To rerun use: --match "/BasicRejectSpec/rejectEnv/requeue = True/requeues a message/" --seed 990531100
+
+  test/BasicRejectSpec.hs:89:13: 
+  24) BasicRejectSpec.rejectEnv, requeue = False, rejects a message
+       uncaught exception: AMQPException
+       ConnectionClosedException Abnormal "Could not connect to any of the provided brokers: [((\"127.0.0.1\",5672),HostCannotConnect \"127.0.0.1\" [Network.Socket.connect: <socket: 8>: does not exist (Connection refused)])]"
+
+  To rerun use: --match "/BasicRejectSpec/rejectEnv/requeue = False/rejects a message/" --seed 990531100
+
+Randomized with seed 990531100
+
+Finished in 0.3519 seconds
+45 examples, 24 failures, 1 pending
+Test suite spec: FAIL
+Test suite logged to:
+/tmp/workdir-amqp/amqp-0.24.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/amqp-0.24.0/t/spec/test/amqp-0.24.0-spec.log
+0 of 1 test suites (0 of 1 test cases) passed.
+Error: [Cabal-7125]
+Tests failed for test:spec from amqp-0.24.0.
+

@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - non-negative-0.1.2 (lib) (first run)
  - non-negative-0.1.2 (test:test) (first run)
@@ -6,17 +7,16 @@ Configuring library for non-negative-0.1.2...
 Preprocessing library for non-negative-0.1.2...
 Building library for non-negative-0.1.2...
 [1 of 4] Compiling Numeric.NonNegative.Class
-
-src/Numeric/NonNegative/Class.hs:33:1: warning: [-Wunused-imports]
+src/Numeric/NonNegative/Class.hs:33:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 33 | import Data.Monoid (Monoid, )
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[2 of 4] Compiling Numeric.NonNegative.ChunkyPrivate
 
-src/Numeric/NonNegative/ChunkyPrivate.hs:21:1: warning: [-Wunused-imports]
+[2 of 4] Compiling Numeric.NonNegative.ChunkyPrivate
+src/Numeric/NonNegative/ChunkyPrivate.hs:21:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
@@ -24,7 +24,7 @@ src/Numeric/NonNegative/ChunkyPrivate.hs:21:1: warning: [-Wunused-imports]
 21 | import Data.Monoid (Monoid(mempty, mappend), )
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Numeric/NonNegative/ChunkyPrivate.hs:22:1: warning: [-Wunused-imports]
+src/Numeric/NonNegative/ChunkyPrivate.hs:22:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Semigroup’ is redundant
       except perhaps to import instances from ‘Data.Semigroup’
     To import instances alone, use: import Data.Semigroup()
@@ -32,19 +32,20 @@ src/Numeric/NonNegative/ChunkyPrivate.hs:22:1: warning: [-Wunused-imports]
 22 | import Data.Semigroup (Semigroup((<>)), )
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Numeric/NonNegative/ChunkyPrivate.hs:202:4: warning: [-Wnoncanonical-monoid-instances]
+src/Numeric/NonNegative/ChunkyPrivate.hs:202:4: warning: [GHC-50928] [-Wnoncanonical-monoid-instances]
     Noncanonical ‘mappend’ definition detected
     in the instance declaration for ‘Monoid (T a)’.
     ‘mappend’ will eventually be removed in favour of ‘(<>)’
-    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    Suggested fix:
+      Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
     |
 202 |    mappend = lift2 (++)
     |    ^^^^^^^^^^^^^^^^^^^^
+
 [3 of 4] Compiling Numeric.NonNegative.Chunky
 [4 of 4] Compiling Numeric.NonNegative.Wrapper
-
-src/Numeric/NonNegative/Wrapper.hs:18:1: warning: [-Wunused-imports]
+src/Numeric/NonNegative/Wrapper.hs:18:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
@@ -52,43 +53,44 @@ src/Numeric/NonNegative/Wrapper.hs:18:1: warning: [-Wunused-imports]
 18 | import Data.Monoid (Monoid(mempty, mappend, mconcat))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Numeric/NonNegative/Wrapper.hs:19:1: warning: [-Wunused-imports]
+src/Numeric/NonNegative/Wrapper.hs:19:1: warning: [GHC-38856] [-Wunused-imports]
     The import of ‘<>’ from module ‘Data.Semigroup’ is redundant
    |
 19 | import Data.Semigroup (Semigroup(sconcat, (<>)))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Numeric/NonNegative/Wrapper.hs:115:4: warning: [-Wnoncanonical-monoid-instances]
+src/Numeric/NonNegative/Wrapper.hs:115:4: warning: [GHC-50928] [-Wnoncanonical-monoid-instances]
     Noncanonical ‘mappend’ definition detected
     in the instance declaration for ‘Monoid (T a)’.
     ‘mappend’ will eventually be removed in favour of ‘(<>)’
-    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    Suggested fix:
+      Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
     |
 115 |    mappend (Cons x) (Cons y) = Cons (x+y)
     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Configuring test suite 'test' for non-negative-0.1.2...
 Preprocessing test suite 'test' for non-negative-0.1.2...
 Building test suite 'test' for non-negative-0.1.2...
-
 <no location info>: warning: [GHC-32850] [-Wmissing-home-modules]
     These modules are needed for compilation but not listed in your .cabal file's other-modules for ‘non-negative-0.1.2-inplace-test’ :
         Numeric.NonNegative.Chunky
         Numeric.NonNegative.ChunkyPrivate
         Numeric.NonNegative.Class
         Numeric.NonNegative.Wrapper
-[1 of 7] Compiling Numeric.NonNegative.Class
 
-src/Numeric/NonNegative/Class.hs:33:1: warning: [-Wunused-imports]
+[1 of 7] Compiling Numeric.NonNegative.Class
+src/Numeric/NonNegative/Class.hs:33:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 33 | import Data.Monoid (Monoid, )
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[2 of 7] Compiling Numeric.NonNegative.ChunkyPrivate
 
-src/Numeric/NonNegative/ChunkyPrivate.hs:21:1: warning: [-Wunused-imports]
+[2 of 7] Compiling Numeric.NonNegative.ChunkyPrivate
+src/Numeric/NonNegative/ChunkyPrivate.hs:21:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
@@ -96,7 +98,7 @@ src/Numeric/NonNegative/ChunkyPrivate.hs:21:1: warning: [-Wunused-imports]
 21 | import Data.Monoid (Monoid(mempty, mappend), )
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Numeric/NonNegative/ChunkyPrivate.hs:22:1: warning: [-Wunused-imports]
+src/Numeric/NonNegative/ChunkyPrivate.hs:22:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Semigroup’ is redundant
       except perhaps to import instances from ‘Data.Semigroup’
     To import instances alone, use: import Data.Semigroup()
@@ -104,19 +106,20 @@ src/Numeric/NonNegative/ChunkyPrivate.hs:22:1: warning: [-Wunused-imports]
 22 | import Data.Semigroup (Semigroup((<>)), )
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Numeric/NonNegative/ChunkyPrivate.hs:202:4: warning: [-Wnoncanonical-monoid-instances]
+src/Numeric/NonNegative/ChunkyPrivate.hs:202:4: warning: [GHC-50928] [-Wnoncanonical-monoid-instances]
     Noncanonical ‘mappend’ definition detected
     in the instance declaration for ‘Monoid (T a)’.
     ‘mappend’ will eventually be removed in favour of ‘(<>)’
-    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    Suggested fix:
+      Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
     |
 202 |    mappend = lift2 (++)
     |    ^^^^^^^^^^^^^^^^^^^^
+
 [3 of 7] Compiling Numeric.NonNegative.Chunky
 [4 of 7] Compiling Numeric.NonNegative.Wrapper
-
-src/Numeric/NonNegative/Wrapper.hs:18:1: warning: [-Wunused-imports]
+src/Numeric/NonNegative/Wrapper.hs:18:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
@@ -124,29 +127,31 @@ src/Numeric/NonNegative/Wrapper.hs:18:1: warning: [-Wunused-imports]
 18 | import Data.Monoid (Monoid(mempty, mappend, mconcat))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Numeric/NonNegative/Wrapper.hs:19:1: warning: [-Wunused-imports]
+src/Numeric/NonNegative/Wrapper.hs:19:1: warning: [GHC-38856] [-Wunused-imports]
     The import of ‘<>’ from module ‘Data.Semigroup’ is redundant
    |
 19 | import Data.Semigroup (Semigroup(sconcat, (<>)))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Numeric/NonNegative/Wrapper.hs:115:4: warning: [-Wnoncanonical-monoid-instances]
+src/Numeric/NonNegative/Wrapper.hs:115:4: warning: [GHC-50928] [-Wnoncanonical-monoid-instances]
     Noncanonical ‘mappend’ definition detected
     in the instance declaration for ‘Monoid (T a)’.
     ‘mappend’ will eventually be removed in favour of ‘(<>)’
-    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    Suggested fix:
+      Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
     |
 115 |    mappend (Cons x) (Cons y) = Cons (x+y)
     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [5 of 7] Compiling Test.Numeric.NonNegative.Chunky
 [6 of 7] Compiling Main
 [7 of 7] Compiling Test.Utility
-
 <no location info>: warning: [GHC-32850] [-Wmissing-home-modules]
     These modules are needed for compilation but not listed in your .cabal file's other-modules for ‘non-negative-0.1.2-inplace-test’ :
         Numeric.NonNegative.Chunky
         Numeric.NonNegative.ChunkyPrivate
         Numeric.NonNegative.Class
         Numeric.NonNegative.Wrapper
-[8 of 8] Linking /tmp/workdir-non-negative/non-negative-0.1.2/dist-newstyle/build/x86_64-linux/ghc-9.6.5/non-negative-0.1.2/t/test/build/test/test
+
+[8 of 8] Linking /tmp/workdir-non-negative/non-negative-0.1.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/non-negative-0.1.2/t/test/build/test/test

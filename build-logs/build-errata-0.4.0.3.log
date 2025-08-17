@@ -1,0 +1,57 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - errata-0.4.0.3 (lib) (first run)
+ - errata-0.4.0.3 (test:errata-test) (first run)
+ - errata-0.4.0.3 (exe:errata-example) (first run)
+Configuring library for errata-0.4.0.3...
+Preprocessing library for errata-0.4.0.3...
+Building library for errata-0.4.0.3...
+[1 of 5] Compiling Errata.Source
+[2 of 5] Compiling Errata.Types
+[3 of 5] Compiling Errata.Styles
+[4 of 5] Compiling Errata.Internal.Render
+src/Errata/Internal/Render.hs:35:29: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘foldl'’ from module ‘Data.List’ is redundant
+   |
+35 | import           Data.List (foldl', inits, sortOn)
+   |                             ^^^^^^
+
+src/Errata/Internal/Render.hs:110:50: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+110 | slices xs = (xs <> repeat emptySource) : slices (tail xs)
+    |                                                  ^^^^
+
+src/Errata/Internal/Render.hs:276:60: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+276 |                                 | snd . connAround . fst $ head ls -> " " <> TB.fromText styleVertical
+    |                                                            ^^^^
+
+src/Errata/Internal/Render.hs:321:62: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+321 |                         : (map connectorAndLabel . reverse . tail $ inits hasLabels)
+    |                                                              ^^^^
+
+[5 of 5] Compiling Errata
+Configuring test suite 'errata-test' for errata-0.4.0.3...
+Preprocessing test suite 'errata-test' for errata-0.4.0.3...
+Building test suite 'errata-test' for errata-0.4.0.3...
+[1 of 4] Compiling Errata.StylesSpec
+[2 of 4] Compiling Errata.TypesSpec
+[3 of 4] Compiling ErrataSpec
+[4 of 4] Compiling Main
+[5 of 5] Linking /tmp/workdir-errata/errata-0.4.0.3/dist-newstyle/build/x86_64-linux/ghc-9.10.2/errata-0.4.0.3/t/errata-test/build/errata-test/errata-test
+Configuring executable 'errata-example' for errata-0.4.0.3...
+Preprocessing executable 'errata-example' for errata-0.4.0.3...
+Building executable 'errata-example' for errata-0.4.0.3...
+[1 of 1] Compiling Main
+[2 of 2] Linking /tmp/workdir-errata/errata-0.4.0.3/dist-newstyle/build/x86_64-linux/ghc-9.10.2/errata-0.4.0.3/x/errata-example/build/errata-example/errata-example

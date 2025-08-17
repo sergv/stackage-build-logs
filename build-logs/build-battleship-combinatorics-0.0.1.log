@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - battleship-combinatorics-0.0.1 (lib) (first run)
  - battleship-combinatorics-0.0.1 (test:battleship-combinatorics-test) (first run)
@@ -13,9 +14,16 @@ Building library for battleship-combinatorics-0.0.1...
 [ 5 of 16] Compiling Combinatorics.Battleship.Enumeration
 [ 6 of 16] Compiling Combinatorics.Battleship.Count.InclusionExclusion
 [ 7 of 16] Compiling Combinatorics.Battleship.Count.DiagonalFrontier
-[ 8 of 16] Compiling Combinatorics.Battleship.Fleet
+src/Combinatorics/Battleship/Count/DiagonalFrontier.hs:162:24: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+162 |           else [(fst $ head lower, cy), (cx, snd $ last lower)]) ++
+    |                        ^^^^
 
-src/Combinatorics/Battleship/Fleet.hs:39:1: warning: [-Wunused-imports]
+[ 8 of 16] Compiling Combinatorics.Battleship.Fleet
+src/Combinatorics/Battleship/Fleet.hs:39:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Foldable’ is redundant
       except perhaps to import instances from ‘Data.Foldable’
     To import instances alone, use: import Data.Foldable()
@@ -23,7 +31,7 @@ src/Combinatorics/Battleship/Fleet.hs:39:1: warning: [-Wunused-imports]
 39 | import Data.Foldable (foldMap, )
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Combinatorics/Battleship/Fleet.hs:42:1: warning: [-Wunused-imports]
+src/Combinatorics/Battleship/Fleet.hs:42:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
@@ -31,27 +39,27 @@ src/Combinatorics/Battleship/Fleet.hs:42:1: warning: [-Wunused-imports]
 42 | import Data.Monoid (Monoid, mempty, mappend, )
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Combinatorics/Battleship/Fleet.hs:43:1: warning: [-Wunused-imports]
+src/Combinatorics/Battleship/Fleet.hs:43:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Semigroup’ is redundant
       except perhaps to import instances from ‘Data.Semigroup’
     To import instances alone, use: import Data.Semigroup()
    |
 43 | import Data.Semigroup (Semigroup, (<>), )
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [ 9 of 16] Compiling Combinatorics.Battleship.Count.SquareBySquare
 [10 of 16] Compiling Combinatorics.Battleship.Count.Estimate
 [11 of 16] Compiling Combinatorics.Battleship.SetCover
-
-src/Combinatorics/Battleship/SetCover.hs:24:23: warning: [-Wunused-imports]
+src/Combinatorics/Battleship/SetCover.hs:24:23: warning: [GHC-38856] [-Wunused-imports]
     The import of ‘foldMap’ from module ‘Data.Foldable’ is redundant
    |
 24 | import Data.Foldable (foldMap, forM_)
    |                       ^^^^^^^
+
 [12 of 16] Compiling Combinatorics.Battleship.Size
 [13 of 16] Compiling Combinatorics.Battleship.Count.Frontier
 [14 of 16] Compiling Combinatorics.Battleship.Count.CountMap
-
-src/Combinatorics/Battleship/Count/CountMap.hs:43:1: warning: [-Wunused-imports]
+src/Combinatorics/Battleship/Count/CountMap.hs:43:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
@@ -59,7 +67,7 @@ src/Combinatorics/Battleship/Count/CountMap.hs:43:1: warning: [-Wunused-imports]
 43 | import Control.Applicative ((<$>), )
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Combinatorics/Battleship/Count/CountMap.hs:48:1: warning: [-Wunused-imports]
+src/Combinatorics/Battleship/Count/CountMap.hs:48:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
@@ -67,7 +75,7 @@ src/Combinatorics/Battleship/Count/CountMap.hs:48:1: warning: [-Wunused-imports]
 48 | import Data.Monoid (Monoid, mempty, mappend, mconcat, )
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Combinatorics/Battleship/Count/CountMap.hs:49:1: warning: [-Wunused-imports]
+src/Combinatorics/Battleship/Count/CountMap.hs:49:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Semigroup’ is redundant
       except perhaps to import instances from ‘Data.Semigroup’
     To import instances alone, use: import Data.Semigroup()
@@ -75,40 +83,58 @@ src/Combinatorics/Battleship/Count/CountMap.hs:49:1: warning: [-Wunused-imports]
 49 | import Data.Semigroup (Semigroup, (<>))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Combinatorics/Battleship/Count/CountMap.hs:273:4: warning: [-Wnoncanonical-monoid-instances]
+src/Combinatorics/Battleship/Count/CountMap.hs:273:4: warning: [GHC-50928] [-Wnoncanonical-monoid-instances]
     Noncanonical ‘mappend’ definition detected
     in the instance declaration for ‘Monoid (T w a)’.
     ‘mappend’ will eventually be removed in favour of ‘(<>)’
-    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    Suggested fix:
+      Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
     |
 273 |    mappend = merge
     |    ^^^^^^^^^^^^^^^
-[15 of 16] Compiling Combinatorics.Battleship.Count.ShortenShip
 
-src/Combinatorics/Battleship/Count/ShortenShip.hs:35:1: warning: [-Wunused-imports]
+[15 of 16] Compiling Combinatorics.Battleship.Count.ShortenShip
+src/Combinatorics/Battleship/Count/ShortenShip.hs:35:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 35 | import Data.Monoid (mappend, )
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[16 of 16] Compiling Combinatorics.Battleship.Count.ShortenShip.Distribution
 
-src/Combinatorics/Battleship/Count/ShortenShip/Distribution.hs:17:1: warning: [-Wunused-imports]
+src/Combinatorics/Battleship/Count/ShortenShip.hs:149:24: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+149 |                       (tail $
+    |                        ^^^^
+
+src/Combinatorics/Battleship/Count/ShortenShip.hs:239:25: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+239 |                        (tail $
+    |                         ^^^^
+
+[16 of 16] Compiling Combinatorics.Battleship.Count.ShortenShip.Distribution
+src/Combinatorics/Battleship/Count/ShortenShip/Distribution.hs:17:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
    |
 17 | import Control.Applicative ((<$>))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Configuring test suite 'battleship-combinatorics-test' for battleship-combinatorics-0.0.1...
 Preprocessing test suite 'battleship-combinatorics-test' for battleship-combinatorics-0.0.1...
 Building test suite 'battleship-combinatorics-test' for battleship-combinatorics-0.0.1...
 [1 of 1] Compiling Main
-[2 of 2] Linking /tmp/workdir-battleship-combinatorics/battleship-combinatorics-0.0.1/dist-newstyle/build/x86_64-linux/ghc-9.6.5/battleship-combinatorics-0.0.1/t/battleship-combinatorics-test/build/battleship-combinatorics-test/battleship-combinatorics-test
+[2 of 2] Linking /tmp/workdir-battleship-combinatorics/battleship-combinatorics-0.0.1/dist-newstyle/build/x86_64-linux/ghc-9.10.2/battleship-combinatorics-0.0.1/t/battleship-combinatorics-test/build/battleship-combinatorics-test/battleship-combinatorics-test
 Configuring executable 'battleship-combinatorics' for battleship-combinatorics-0.0.1...
 Preprocessing executable 'battleship-combinatorics' for battleship-combinatorics-0.0.1...
 Building executable 'battleship-combinatorics' for battleship-combinatorics-0.0.1...
 [1 of 1] Compiling Main
-[2 of 2] Linking /tmp/workdir-battleship-combinatorics/battleship-combinatorics-0.0.1/dist-newstyle/build/x86_64-linux/ghc-9.6.5/battleship-combinatorics-0.0.1/x/battleship-combinatorics/build/battleship-combinatorics/battleship-combinatorics
+[2 of 2] Linking /tmp/workdir-battleship-combinatorics/battleship-combinatorics-0.0.1/dist-newstyle/build/x86_64-linux/ghc-9.10.2/battleship-combinatorics-0.0.1/x/battleship-combinatorics/build/battleship-combinatorics/battleship-combinatorics

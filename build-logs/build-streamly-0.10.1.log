@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - streamly-0.10.1 (lib:streamly) (first run)
 Configuring streamly-0.10.1...
@@ -58,6 +59,13 @@ Building library for streamly-0.10.1...
 [34 of 72] Compiling Streamly.Internal.Data.Stream.MkType
 [35 of 72] Compiling Streamly.Data.Stream.MkType
 [36 of 72] Compiling Streamly.Internal.Data.Stream.Serial
+src/Streamly/Internal/Data/Stream/Serial.hs:63:1: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘Foldable, foldl'’
+    from module ‘Data.Foldable’ is redundant
+   |
+63 | import Data.Foldable (Foldable(foldl'), fold)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [37 of 72] Compiling Streamly.Internal.Data.Stream.SVar.Generate
 [38 of 72] Compiling Streamly.Internal.Data.Stream.SVar.Eliminate
 [39 of 72] Compiling Streamly.Internal.Data.Stream.SVar
@@ -68,6 +76,13 @@ Building library for streamly-0.10.1...
 [44 of 72] Compiling Streamly.Internal.Data.Stream.Prelude
 [45 of 72] Compiling Streamly.Data.Stream.Prelude
 [46 of 72] Compiling Streamly.Internal.Data.Stream.Zip
+src/Streamly/Internal/Data/Stream/Zip.hs:42:1: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘Foldable, foldl'’
+    from module ‘Data.Foldable’ is redundant
+   |
+42 | import Data.Foldable (Foldable(foldl'), fold)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [47 of 72] Compiling Streamly.Internal.Data.Stream.ZipAsync
 [48 of 72] Compiling Streamly.Internal.Data.Stream.IsStream.Type
 [49 of 72] Compiling Streamly.Internal.Data.Stream.IsStream.Lift
@@ -88,10 +103,18 @@ Building library for streamly-0.10.1...
 [64 of 72] Compiling Streamly.Internal.FileSystem.Event.Linux
 [65 of 72] Compiling Streamly.Internal.FileSystem.Event
 [66 of 72] Compiling Streamly.Internal.Network.Socket
+src/Streamly/Internal/Network/Socket.hs:266:5: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘unsafePinnedAsPtr’
+    (imported from Streamly.Internal.Data.MutArray, but defined in Streamly.Internal.Data.MutArray.Type):
+    Deprecated: "Pin the array and then use unsafeAsPtr."
+    |
+266 |     MArray.unsafePinnedAsPtr arr $ \p -> do
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^
+
 [67 of 72] Compiling Streamly.Internal.Network.Inet.TCP
 [68 of 72] Compiling Streamly.Internal.Unicode.Char
 [69 of 72] Compiling Streamly.Internal.Unicode.Utf8
 [70 of 72] Compiling Streamly.Network.Inet.TCP
 [71 of 72] Compiling Streamly.Network.Socket
 [72 of 72] Compiling Streamly.Prelude
-<<ghc: 134345862032 bytes, 257 GCs, 182806596/254451864 avg/max bytes residency (11 samples), 1195M in use, 0.001 INIT (0.001 elapsed), 87.563 MUT (32.225 elapsed), 3.558 GC (16.818 elapsed) :ghc>>
+<<ghc: 124587210720 bytes, 240 GCs, 179760943/267024736 avg/max bytes residency (9 samples), 1296M in use, 0.001 INIT (0.001 elapsed), 78.986 MUT (30.170 elapsed), 3.579 GC (14.389 elapsed) :ghc>>

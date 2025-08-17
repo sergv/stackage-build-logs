@@ -1,4 +1,4 @@
-Build profile: -w ghc-9.6.5 -O1
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - quickcheck-higherorder-0.1.0.1 (test:qcho-test) (ephemeral targets)
 Preprocessing test suite 'qcho-test' for quickcheck-higherorder-0.1.0.1...
@@ -15,23 +15,23 @@ tests
       trivial-Either: OK
         +++ OK, passed 100 tests.
       bad-Int:        OK
-        +++ OK, failed as expected. Falsified (after 3 tests and 11 shrinks):
-        \a0 -> case a0 1 :: Int of { -1 -> 0 ; _ -> 1 }
-        \a0 -> -1
-        1 /= 0
+        +++ OK, failed as expected. Falsified (after 3 tests and 10 shrinks):
+        \a0 -> case a0 (-2) :: Int of { -2 -> 0 ; _ -> 1 }
+        \a0 -> 0
+        0 /= 1
       bad-Bool:       OK
-        +++ OK, failed as expected. Falsified (after 3 tests and 39 shrinks):
-        \a0 -> case a0 False :: Bool of { True -> False ; _ -> True }
+        +++ OK, failed as expected. Falsified (after 4 tests and 14 shrinks):
+        \a0 -> case a0 False :: Bool of { False -> False ; _ -> True }
         \a0 -> True
-        True /= False
+        False /= True
       bad-Either:     OK
-        +++ OK, failed as expected. Falsified (after 7 tests and 6 shrinks):
-        \a0 -> case a0 (Right ()) :: Either _ _ of { Right a2 -> Left () ; _ -> Right () }
-        \a0 -> Left ()
-        Left () /= Right ()
+        +++ OK, failed as expected. Falsified (after 2 tests and 19 shrinks):
+        \a0 -> case a0 (Left ()) :: Either _ _ of { Right a2 -> Left () ; _ -> Right () }
+        \a0 -> Right ()
+        Right () /= Left ()
 
 All 6 tests passed (0.00s)
 Test suite qcho-test: PASS
 Test suite logged to:
-/tmp/workdir-quickcheck-higherorder/quickcheck-higherorder-0.1.0.1/dist-newstyle/build/x86_64-linux/ghc-9.6.5/quickcheck-higherorder-0.1.0.1/t/qcho-test/test/quickcheck-higherorder-0.1.0.1-qcho-test.log
+/tmp/workdir-quickcheck-higherorder/quickcheck-higherorder-0.1.0.1/dist-newstyle/build/x86_64-linux/ghc-9.10.2/quickcheck-higherorder-0.1.0.1/t/qcho-test/test/quickcheck-higherorder-0.1.0.1-qcho-test.log
 1 of 1 test suites (1 of 1 test cases) passed.

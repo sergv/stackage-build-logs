@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - more-containers-0.2.2.2 (lib) (first run)
  - more-containers-0.2.2.2 (test:more-containers-test) (first run)
@@ -6,8 +7,29 @@ Configuring library for more-containers-0.2.2.2...
 Preprocessing library for more-containers-0.2.2.2...
 Building library for more-containers-0.2.2.2...
 [1 of 8] Compiling Data.Multimap.Collection
+src/Data/Multimap/Collection.hs:12:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Foldable’ is redundant
+      except perhaps to import instances from ‘Data.Foldable’
+    To import instances alone, use: import Data.Foldable()
+   |
+12 | import Data.Foldable (foldl')
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [2 of 8] Compiling Data.Multiset
+src/Data/Multiset.hs:48:23: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘foldl'’ from module ‘Data.Foldable’ is redundant
+   |
+48 | import Data.Foldable (foldl', foldr, toList)
+   |                       ^^^^^^
+
 [3 of 8] Compiling Data.Multimap.Generic
+src/Data/Multimap/Generic.hs:37:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Foldable’ is redundant
+      except perhaps to import instances from ‘Data.Foldable’
+    To import instances alone, use: import Data.Foldable()
+   |
+37 | import Data.Foldable (foldl')
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 src/Data/Multimap/Generic.hs:77:68: warning: [GHC-58520] [-Wtype-equality-requires-operators]
     The use of ‘~’ without TypeOperators
@@ -32,6 +54,7 @@ src/Data/Multimap/Generic.hs:91:64: warning: [GHC-58520] [-Wtype-equality-requir
    |
 91 |   :: (Collection c, GHC.Exts.IsList (c k), GHC.Exts.Item (c k) ~ k, Ord k, Ord v)
    |                                                                ^
+
 [4 of 8] Compiling Data.Multimap.Set
 [5 of 8] Compiling Data.Multimap.Seq
 [6 of 8] Compiling Data.Multimap.List
@@ -44,4 +67,4 @@ Building test suite 'more-containers-test' for more-containers-0.2.2.2...
 [2 of 4] Compiling Spec.Multimap
 [3 of 4] Compiling Spec.Multiset
 [4 of 4] Compiling Main
-[5 of 5] Linking /tmp/workdir-more-containers/more-containers-0.2.2.2/dist-newstyle/build/x86_64-linux/ghc-9.6.5/more-containers-0.2.2.2/t/more-containers-test/build/more-containers-test/more-containers-test
+[5 of 5] Linking /tmp/workdir-more-containers/more-containers-0.2.2.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/more-containers-0.2.2.2/t/more-containers-test/build/more-containers-test/more-containers-test

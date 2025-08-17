@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - exact-combinatorics-0.2.0.11 (lib) (first run)
 Configuring library for exact-combinatorics-0.2.0.11...
@@ -6,4 +7,36 @@ Preprocessing library for exact-combinatorics-0.2.0.11...
 Building library for exact-combinatorics-0.2.0.11...
 [1 of 3] Compiling Math.Combinatorics.Exact.Factorial
 [2 of 3] Compiling Math.Combinatorics.Exact.Primes
+src/Math/Combinatorics/Exact/Primes.hs:53:37: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+53 |         [ n' | o  <- s : [2*s,3*s..(head ps-1)*s]
+   |                                     ^^^^
+
+src/Math/Combinatorics/Exact/Primes.hs:57:22: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+57 |         ++ seive ws (tail ps) (tail qs)
+   |                      ^^^^
+
+src/Math/Combinatorics/Exact/Primes.hs:57:32: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+57 |         ++ seive ws (tail ps) (tail qs)
+   |                                ^^^^
+
 [3 of 3] Compiling Math.Combinatorics.Exact.Binomial
+src/Math/Combinatorics/Exact/Binomial.hs:18:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.List’ is redundant
+      except perhaps to import instances from ‘Data.List’
+    To import instances alone, use: import Data.List()
+   |
+18 | import Data.List                       (foldl')
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

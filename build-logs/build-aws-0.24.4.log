@@ -1,0 +1,243 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - aws-0.24.4 (lib) (first run)
+ - aws-0.24.4 (test:sqs-tests) (first run)
+ - aws-0.24.4 (test:s3-tests) (first run)
+ - aws-0.24.4 (test:dynamodb-tests) (first run)
+Configuring library for aws-0.24.4...
+Preprocessing library for aws-0.24.4...
+Building library for aws-0.24.4...
+[ 1 of 92] Compiling Aws.Ec2.InstanceMetadata
+[ 2 of 92] Compiling Aws.Network
+Aws/Network.hs:13:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+13 |   addr <- (addrAddress . head) `fmap` getAddrInfo (Just (defaultHints { addrFlags = [ AI_PASSIVE ] } )) (Just h) (Just "80")
+   |                          ^^^^
+
+[ 3 of 92] Compiling Aws.Core
+Aws/Core.hs:188:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad (Response m)’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+188 |     return x = Response mempty (Right x)
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[ 4 of 92] Compiling Aws.Iam.Core
+[ 5 of 92] Compiling Aws.Iam.Internal
+[ 6 of 92] Compiling Aws.Iam.Commands.UpdateUser
+[ 7 of 92] Compiling Aws.Iam.Commands.UpdateGroup
+[ 8 of 92] Compiling Aws.Iam.Commands.UpdateAccessKey
+[ 9 of 92] Compiling Aws.Iam.Commands.RemoveUserFromGroup
+[10 of 92] Compiling Aws.Iam.Commands.PutUserPolicy
+[11 of 92] Compiling Aws.Iam.Commands.PutGroupPolicy
+[12 of 92] Compiling Aws.Iam.Commands.ListUsers
+[13 of 92] Compiling Aws.Iam.Commands.ListUserPolicies
+[14 of 92] Compiling Aws.Iam.Commands.ListMfaDevices
+[15 of 92] Compiling Aws.Iam.Commands.ListGroups
+[16 of 92] Compiling Aws.Iam.Commands.ListGroupPolicies
+[17 of 92] Compiling Aws.Iam.Commands.ListAccessKeys
+[18 of 92] Compiling Aws.Iam.Commands.GetUserPolicy
+[19 of 92] Compiling Aws.Iam.Commands.GetUser
+[20 of 92] Compiling Aws.Iam.Commands.GetGroupPolicy
+[21 of 92] Compiling Aws.Iam.Commands.DeleteUserPolicy
+[22 of 92] Compiling Aws.Iam.Commands.DeleteUser
+[23 of 92] Compiling Aws.Iam.Commands.DeleteGroupPolicy
+[24 of 92] Compiling Aws.Iam.Commands.DeleteGroup
+[25 of 92] Compiling Aws.Iam.Commands.DeleteAccessKey
+[26 of 92] Compiling Aws.Iam.Commands.CreateUser
+[27 of 92] Compiling Aws.Iam.Commands.CreateGroup
+[28 of 92] Compiling Aws.Iam.Commands.CreateAccessKey
+[29 of 92] Compiling Aws.Iam.Commands.AddUserToGroup
+[30 of 92] Compiling Aws.Iam.Commands
+[31 of 92] Compiling Aws.Iam
+[32 of 92] Compiling Aws.DynamoDb.Core
+Aws/DynamoDb/Core.hs:539:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Value’ not matched:
+            Array _
+            String _
+            Number _
+            Bool _
+            ...
+    |
+539 |       let Object p1 = toJSON h
+    |           ^^^^^^^^^^^^^^^^^^^^
+
+Aws/DynamoDb/Core.hs:540:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Value’ not matched:
+            Array _
+            String _
+            Number _
+            Bool _
+            ...
+    |
+540 |           Object p2 = toJSON r
+    |           ^^^^^^^^^^^^^^^^^^^^
+
+Aws/DynamoDb/Core.hs:547:25: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+547 |           1 -> return $ head l 
+    |                         ^^^^
+
+Aws/DynamoDb/Core.hs:1122:56: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+     |
+1122 |               return $ (\(k, v) -> (AK.toText k, v)) $ head $ KM.toList m)
+     |                                                        ^^^^
+
+Aws/DynamoDb/Core.hs:1257:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad Parser’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+     |
+1257 |     return a = Parser $ \_kf ks -> ks a
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Aws/DynamoDb/Core.hs:1276:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
+    Noncanonical ‘pure = return’ definition detected
+    in the instance declaration for ‘Applicative Parser’.
+    Suggested fix:
+      Move definition from ‘return’ to ‘pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+     |
+1276 |     pure  = return
+     |     ^^^^^^^^^^^^^^
+
+[33 of 92] Compiling Aws.DynamoDb.Commands.UpdateItem
+[34 of 92] Compiling Aws.DynamoDb.Commands.Table
+[35 of 92] Compiling Aws.DynamoDb.Commands.Scan
+[36 of 92] Compiling Aws.DynamoDb.Commands.Query
+[37 of 92] Compiling Aws.DynamoDb.Commands.PutItem
+[38 of 92] Compiling Aws.DynamoDb.Commands.GetItem
+[39 of 92] Compiling Aws.DynamoDb.Commands.DeleteItem
+[40 of 92] Compiling Aws.DynamoDb.Commands.BatchWriteItem
+Aws/DynamoDb/Commands/BatchWriteItem.hs:28:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Foldable’ is redundant
+      except perhaps to import instances from ‘Data.Foldable’
+    To import instances alone, use: import Data.Foldable()
+   |
+28 | import           Data.Foldable (asum)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[41 of 92] Compiling Aws.DynamoDb.Commands.BatchGetItem
+Aws/DynamoDb/Commands/BatchGetItem.hs:75:29: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘(T.Text, [GetItem])’ not matched: (_, [])
+   |
+75 |                     in map (\(table,items@(i:_)) ->(table,GetRequestItem 
+   |                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+[42 of 92] Compiling Aws.DynamoDb.Commands
+[43 of 92] Compiling Aws.DynamoDb
+[44 of 92] Compiling Aws.Aws
+[45 of 92] Compiling Aws
+[46 of 92] Compiling Aws.S3.Core
+[47 of 92] Compiling Aws.S3.Commands.PutObject
+[48 of 92] Compiling Aws.S3.Commands.PutBucketVersioning
+[49 of 92] Compiling Aws.S3.Commands.PutBucket
+[50 of 92] Compiling Aws.S3.Commands.Multipart
+[51 of 92] Compiling Aws.S3.Commands.HeadObject
+[52 of 92] Compiling Aws.S3.Commands.GetService
+[53 of 92] Compiling Aws.S3.Commands.GetObject
+[54 of 92] Compiling Aws.S3.Commands.GetBucketVersioning
+[55 of 92] Compiling Aws.S3.Commands.GetBucketObjectVersions
+[56 of 92] Compiling Aws.S3.Commands.GetBucketLocation
+[57 of 92] Compiling Aws.S3.Commands.GetBucket
+[58 of 92] Compiling Aws.S3.Commands.DeleteObjects
+[59 of 92] Compiling Aws.S3.Commands.DeleteObjectVersion
+[60 of 92] Compiling Aws.S3.Commands.DeleteObject
+[61 of 92] Compiling Aws.S3.Commands.DeleteBucket
+[62 of 92] Compiling Aws.S3.Commands.CopyObject
+[63 of 92] Compiling Aws.S3.Commands
+[64 of 92] Compiling Aws.S3
+[65 of 92] Compiling Aws.Ses.Core
+[66 of 92] Compiling Aws.Ses.Commands.VerifyEmailIdentity
+[67 of 92] Compiling Aws.Ses.Commands.VerifyDomainIdentity
+[68 of 92] Compiling Aws.Ses.Commands.VerifyDomainDkim
+[69 of 92] Compiling Aws.Ses.Commands.SetIdentityNotificationTopic
+[70 of 92] Compiling Aws.Ses.Commands.SetIdentityFeedbackForwardingEnabled
+[71 of 92] Compiling Aws.Ses.Commands.SetIdentityDkimEnabled
+[72 of 92] Compiling Aws.Ses.Commands.SendRawEmail
+[73 of 92] Compiling Aws.Ses.Commands.ListIdentities
+[74 of 92] Compiling Aws.Ses.Commands.GetIdentityVerificationAttributes
+[75 of 92] Compiling Aws.Ses.Commands.GetIdentityNotificationAttributes
+[76 of 92] Compiling Aws.Ses.Commands.GetIdentityDkimAttributes
+[77 of 92] Compiling Aws.Ses.Commands.DeleteIdentity
+[78 of 92] Compiling Aws.Ses.Commands
+[79 of 92] Compiling Aws.Ses
+[80 of 92] Compiling Aws.SimpleDb.Core
+[81 of 92] Compiling Aws.SimpleDb.Commands.Select
+[82 of 92] Compiling Aws.SimpleDb.Commands.Domain
+[83 of 92] Compiling Aws.SimpleDb.Commands.Attributes
+[84 of 92] Compiling Aws.SimpleDb.Commands
+[85 of 92] Compiling Aws.SimpleDb
+[86 of 92] Compiling Aws.Sqs.Core
+[87 of 92] Compiling Aws.Sqs.Commands.QueueAttributes
+[88 of 92] Compiling Aws.Sqs.Commands.Queue
+[89 of 92] Compiling Aws.Sqs.Commands.Permission
+[90 of 92] Compiling Aws.Sqs.Commands.Message
+[91 of 92] Compiling Aws.Sqs.Commands
+[92 of 92] Compiling Aws.Sqs
+Configuring test suite 'sqs-tests' for aws-0.24.4...
+Preprocessing test suite 'sqs-tests' for aws-0.24.4...
+Building test suite 'sqs-tests' for aws-0.24.4...
+[1 of 2] Compiling Utils
+[2 of 2] Compiling Main
+tests/Sqs/Main.hs:59:32: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+59 |     runMain args $ map (second tail . span (/= '=')) args
+   |                                ^^^^
+
+[3 of 3] Linking /tmp/workdir-aws/aws-0.24.4/dist-newstyle/build/x86_64-linux/ghc-9.10.2/aws-0.24.4/t/sqs-tests/build/sqs-tests/sqs-tests
+Configuring test suite 's3-tests' for aws-0.24.4...
+Preprocessing test suite 's3-tests' for aws-0.24.4...
+Building test suite 's3-tests' for aws-0.24.4...
+[1 of 2] Compiling Main
+tests/S3/Main.hs:63:32: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+63 |     runMain args $ map (second tail . span (/= '=')) args
+   |                                ^^^^
+
+[2 of 2] Compiling Utils
+[3 of 3] Linking /tmp/workdir-aws/aws-0.24.4/dist-newstyle/build/x86_64-linux/ghc-9.10.2/aws-0.24.4/t/s3-tests/build/s3-tests/s3-tests
+Configuring test suite 'dynamodb-tests' for aws-0.24.4...
+Preprocessing test suite 'dynamodb-tests' for aws-0.24.4...
+Building test suite 'dynamodb-tests' for aws-0.24.4...
+[1 of 3] Compiling Utils
+[2 of 3] Compiling DynamoDb.Utils
+[3 of 3] Compiling Main
+tests/DynamoDb/Main.hs:54:32: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+54 |     runMain args $ map (second tail . span (/= '=')) args
+   |                                ^^^^
+
+[4 of 4] Linking /tmp/workdir-aws/aws-0.24.4/dist-newstyle/build/x86_64-linux/ghc-9.10.2/aws-0.24.4/t/dynamodb-tests/build/dynamodb-tests/dynamodb-tests

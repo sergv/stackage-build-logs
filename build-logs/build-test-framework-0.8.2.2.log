@@ -1,0 +1,72 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - test-framework-0.8.2.2 (lib) (first run)
+ - test-framework-0.8.2.2 (test:test-framework-tests) (first run)
+Configuring library for test-framework-0.8.2.2...
+Preprocessing library for test-framework-0.8.2.2...
+Building library for test-framework-0.8.2.2...
+[ 1 of 24] Compiling Test.Framework.Improving
+[ 2 of 24] Compiling Test.Framework.Runners.Console.Colors
+[ 3 of 24] Compiling Test.Framework.Runners.Console.ProgressBar
+[ 4 of 24] Compiling Test.Framework.Runners.Console.Utilities
+[ 5 of 24] Compiling Test.Framework.Runners.Processors
+[ 6 of 24] Compiling Test.Framework.Runners.ThreadPool
+[ 7 of 24] Compiling Test.Framework.Utilities
+[ 8 of 24] Compiling Test.Framework.Seed
+[ 9 of 24] Compiling Test.Framework.Runners.TimedConsumption
+[10 of 24] Compiling Test.Framework.Runners.TestPattern
+[11 of 24] Compiling Test.Framework.Runners.Console.Table
+src/Test/Framework/Runners/Console/Table.hs:45:73: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+45 | eitherSideSeperator columns = zipWith (||) (False:column_is_seperator) (tail column_is_seperator ++ [False])
+   |                                                                         ^^^^
+
+[12 of 24] Compiling Test.Framework.Options
+[13 of 24] Compiling Test.Framework.Runners.Options
+[14 of 24] Compiling Test.Framework.Core
+[15 of 24] Compiling Test.Framework.Runners.Core
+[16 of 24] Compiling Test.Framework.Runners.XML.JUnitWriter
+[17 of 24] Compiling Test.Framework.Runners.Statistics
+[18 of 24] Compiling Test.Framework.Runners.XML
+[19 of 24] Compiling Test.Framework.Runners.Console.Statistics
+[20 of 24] Compiling Test.Framework.Runners.API
+[21 of 24] Compiling Test.Framework.Runners.Console.Run
+[22 of 24] Compiling Test.Framework.Runners.Console
+[23 of 24] Compiling Test.Framework.Providers.API
+[24 of 24] Compiling Test.Framework
+Configuring test suite 'test-framework-tests' for test-framework-0.8.2.2...
+Preprocessing test suite 'test-framework-tests' for test-framework-0.8.2.2...
+Building test suite 'test-framework-tests' for test-framework-0.8.2.2...
+[ 1 of 13] Compiling Test.Framework.Improving
+[ 2 of 13] Compiling Test.Framework.Runners.ThreadPool
+[ 3 of 13] Compiling Test.Framework.Tests.Runners.ThreadPool
+test/Test/Framework/Tests/Runners/ThreadPool.hs:34:6: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In an irrefutable pattern: Patterns of type ‘[Int]’ not matched: []
+   |
+34 |     ~(first_output:rest) <- executeOnPool 4 $ return 10 : (return 20) : replicate first_output (return 99) :: IO [Int]
+   |      ^^^^^^^^^^^^^^^^^^^
+
+[ 4 of 13] Compiling Test.Framework.Utilities
+[ 5 of 13] Compiling Test.Framework.Seed
+[ 6 of 13] Compiling Test.Framework.Runners.TestPattern
+[ 7 of 13] Compiling Test.Framework.Options
+[ 8 of 13] Compiling Test.Framework.Runners.Options
+[ 9 of 13] Compiling Test.Framework.Core
+[10 of 13] Compiling Test.Framework.Runners.Core
+[11 of 13] Compiling Test.Framework.Runners.XML.JUnitWriter
+[12 of 13] Compiling Test.Framework.Tests.Runners.XMLTests
+test/Test/Framework/Tests/Runners/XMLTests.hs:97:13: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+97 |   where x = head $ morphFlatTestCase [] $ RunTestGroup "top" [RunTestGroup "g1" [RunTest "t1" "" ("", True)]]
+   |             ^^^^
+
+[13 of 13] Compiling Main
+[14 of 14] Linking /tmp/workdir-test-framework/test-framework-0.8.2.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/test-framework-0.8.2.2/t/test-framework-tests/build/test-framework-tests/test-framework-tests

@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - persistable-record-0.6.0.6 (lib) (first run)
  - persistable-record-0.6.0.6 (test:nested) (first run)
@@ -7,22 +8,21 @@ Preprocessing library for persistable-record-0.6.0.6...
 Building library for persistable-record-0.6.0.6...
 [1 of 9] Compiling Database.Record.KeyConstraint
 [2 of 9] Compiling Database.Record.Persistable
-
-src/Database/Record/Persistable.hs:38:1: warning: [-Wunused-imports]
+src/Database/Record/Persistable.hs:38:1: warning: [GHC-38856] [-Wunused-imports]
     The import of ‘<$>, pure’
     from module ‘Control.Applicative’ is redundant
    |
 38 | import Control.Applicative ((<$>), pure, Const (..))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Database/Record/Persistable.hs:39:21: warning: [-Wunused-imports]
+src/Database/Record/Persistable.hs:39:21: warning: [GHC-38856] [-Wunused-imports]
     The import of ‘Monoid’ from module ‘Data.Monoid’ is redundant
    |
 39 | import Data.Monoid (Monoid, Sum (..))
    |                     ^^^^^^
-[3 of 9] Compiling Database.Record.FromSql
 
-src/Database/Record/FromSql.hs:35:1: warning: [-Wunused-imports]
+[3 of 9] Compiling Database.Record.FromSql
+src/Database/Record/FromSql.hs:35:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
@@ -30,43 +30,62 @@ src/Database/Record/FromSql.hs:35:1: warning: [-Wunused-imports]
 35 | import Control.Applicative ((<$>), Applicative (pure, (<*>)))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Database/Record/FromSql.hs:96:3: warning: [-Wnoncanonical-monad-instances]
+src/Database/Record/FromSql.hs:96:3: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad (RecordFromSql q)’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
    |
 96 |   return a = createRecordFromSql ((,) a)
    |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Database/Record/FromSql.hs:108:3: warning: [-Wnoncanonical-monad-instances]
+src/Database/Record/FromSql.hs:108:3: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘pure = return’ definition detected
     in the instance declaration for ‘Applicative (RecordFromSql q)’.
-    Move definition from ‘return’ to ‘pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Move definition from ‘return’ to ‘pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 108 |   pure  = return
     |   ^^^^^^^^^^^^^^
+
+src/Database/Record/FromSql.hs:192:58: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+192 | valueRecordFromSql d = createRecordFromSql $ \qs -> (d $ head qs, tail qs)
+    |                                                          ^^^^
+
+src/Database/Record/FromSql.hs:192:67: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+192 | valueRecordFromSql d = createRecordFromSql $ \qs -> (d $ head qs, tail qs)
+    |                                                                   ^^^^
+
 [4 of 9] Compiling Database.Record.ToSql
 [5 of 9] Compiling Database.Record.InternalTH
-
-src/Database/Record/InternalTH.hs:11:1: warning: [-Wunused-imports]
+src/Database/Record/InternalTH.hs:11:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
    |
 11 | import Control.Applicative ((<$>))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[6 of 9] Compiling Database.Record.TupleInstances
 
-src/Database/Record/TupleInstances.hs:7:1: warning: [-Wunused-imports]
+[6 of 9] Compiling Database.Record.TupleInstances
+src/Database/Record/TupleInstances.hs:7:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
   |
 7 | import Control.Applicative ((<$>))
   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [7 of 9] Compiling Database.Record
 [8 of 9] Compiling Database.Record.TH
 [9 of 9] Compiling Database.Record.Instances
@@ -75,4 +94,4 @@ Preprocessing test suite 'nested' for persistable-record-0.6.0.6...
 Building test suite 'nested' for persistable-record-0.6.0.6...
 [1 of 2] Compiling Model
 [2 of 2] Compiling Main
-[3 of 3] Linking /tmp/workdir-persistable-record/persistable-record-0.6.0.6/dist-newstyle/build/x86_64-linux/ghc-9.6.5/persistable-record-0.6.0.6/t/nested/build/nested/nested
+[3 of 3] Linking /tmp/workdir-persistable-record/persistable-record-0.6.0.6/dist-newstyle/build/x86_64-linux/ghc-9.10.2/persistable-record-0.6.0.6/t/nested/build/nested/nested

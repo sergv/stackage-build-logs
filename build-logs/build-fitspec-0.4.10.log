@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - fitspec-0.4.10 (lib) (first run)
  - fitspec-0.4.10 (test:utils) (first run)
@@ -9,15 +10,111 @@ Configuring library for fitspec-0.4.10...
 Preprocessing library for fitspec-0.4.10...
 Building library for fitspec-0.4.10...
 [ 1 of 13] Compiling Test.FitSpec.Mutable
+src/Test/FitSpec/Mutable.hs:162:48: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+162 |                      Just fx -> ((,) x) `mapT` tail (mutiers fx)
+    |                                                ^^^^
+
 [ 2 of 13] Compiling Test.FitSpec.Mutable.Tuples
 [ 3 of 13] Compiling Test.FitSpec.PrettyPrint
+src/Test/FitSpec/PrettyPrint.hs:60:37: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+60 | above cs ds = if last cs == '\n' || head ds == '\n'
+   |                                     ^^^^
+
 [ 4 of 13] Compiling Test.FitSpec.ShowMutable
+src/Test/FitSpec/ShowMutable.hs:101:16: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+101 | defaultNames = head defaultFunctionNames : defVarNames
+    |                ^^^^
+
+src/Test/FitSpec/ShowMutable.hs:220:42: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+220 |         show1 n m             = let fn = head $ fvnames n
+    |                                          ^^^^
+
+src/Test/FitSpec/ShowMutable.hs:244:41: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+244 |     bound    = zipWith const vns (fst $ head bs)
+    |                                         ^^^^
+
+src/Test/FitSpec/ShowMutable.hs:261:41: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+261 |     bound    = zipWith const vns (fst $ head bs)
+    |                                         ^^^^
+
 [ 5 of 13] Compiling Test.FitSpec.Derive
 [ 6 of 13] Compiling Test.FitSpec.ShowMutable.Tuples
 [ 7 of 13] Compiling Test.FitSpec.TestTypes
 [ 8 of 13] Compiling Test.FitSpec.Utils
 [ 9 of 13] Compiling Test.FitSpec.Engine
+src/Test/FitSpec/Engine.hs:90:70: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+90 |   where removeNonCanon = filter (not . (\p' -> (p' `contains`) `any` tail (sets r)))
+   |                                                                      ^^^^
+
+src/Test/FitSpec/Engine.hs:132:29: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+132 |         ms' = take (nms+1) (tail $ mutants f)
+    |                             ^^^^
+
+src/Test/FitSpec/Engine.hs:145:55: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+145 |              $ takeWhileIncreasingOn ((totalMutants . head) *** id)
+    |                                                       ^^^^
+
 [10 of 13] Compiling Test.FitSpec.Report
+src/Test/FitSpec/Report.hs:146:27: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+146 |   let nm = totalMutants $ head results
+    |                           ^^^^
+
+src/Test/FitSpec/Report.hs:147:23: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+147 |       nt = maxTests $ head results
+    |                       ^^^^
+
+src/Test/FitSpec/Report.hs:150:32: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+150 |       mex = mutantsExhausted $ head results
+    |                                ^^^^
+
 [11 of 13] Compiling Test.FitSpec.Main
 [12 of 13] Compiling Test.FitSpec
 [13 of 13] Compiling Test.FitSpec.Dot
@@ -25,19 +122,19 @@ Configuring test suite 'utils' for fitspec-0.4.10...
 Preprocessing test suite 'utils' for fitspec-0.4.10...
 Building test suite 'utils' for fitspec-0.4.10...
 [1 of 1] Compiling Main
-[2 of 2] Linking /tmp/workdir-fitspec/fitspec-0.4.10/dist-newstyle/build/x86_64-linux/ghc-9.6.5/fitspec-0.4.10/t/utils/build/utils/utils
+[2 of 2] Linking /tmp/workdir-fitspec/fitspec-0.4.10/dist-newstyle/build/x86_64-linux/ghc-9.10.2/fitspec-0.4.10/t/utils/build/utils/utils
 Configuring test suite 'showmutable' for fitspec-0.4.10...
 Preprocessing test suite 'showmutable' for fitspec-0.4.10...
 Building test suite 'showmutable' for fitspec-0.4.10...
 [1 of 1] Compiling Main
-[2 of 2] Linking /tmp/workdir-fitspec/fitspec-0.4.10/dist-newstyle/build/x86_64-linux/ghc-9.6.5/fitspec-0.4.10/t/showmutable/build/showmutable/showmutable
+[2 of 2] Linking /tmp/workdir-fitspec/fitspec-0.4.10/dist-newstyle/build/x86_64-linux/ghc-9.10.2/fitspec-0.4.10/t/showmutable/build/showmutable/showmutable
 Configuring test suite 'mutate' for fitspec-0.4.10...
 Preprocessing test suite 'mutate' for fitspec-0.4.10...
 Building test suite 'mutate' for fitspec-0.4.10...
 [1 of 1] Compiling Main
-[2 of 2] Linking /tmp/workdir-fitspec/fitspec-0.4.10/dist-newstyle/build/x86_64-linux/ghc-9.6.5/fitspec-0.4.10/t/mutate/build/mutate/mutate
+[2 of 2] Linking /tmp/workdir-fitspec/fitspec-0.4.10/dist-newstyle/build/x86_64-linux/ghc-9.10.2/fitspec-0.4.10/t/mutate/build/mutate/mutate
 Configuring test suite 'derive' for fitspec-0.4.10...
 Preprocessing test suite 'derive' for fitspec-0.4.10...
 Building test suite 'derive' for fitspec-0.4.10...
 [1 of 1] Compiling Main
-[2 of 2] Linking /tmp/workdir-fitspec/fitspec-0.4.10/dist-newstyle/build/x86_64-linux/ghc-9.6.5/fitspec-0.4.10/t/derive/build/derive/derive
+[2 of 2] Linking /tmp/workdir-fitspec/fitspec-0.4.10/dist-newstyle/build/x86_64-linux/ghc-9.10.2/fitspec-0.4.10/t/derive/build/derive/derive

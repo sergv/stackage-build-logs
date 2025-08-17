@@ -1,0 +1,127 @@
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - wild-bind-0.1.2.12 (test:spec) (ephemeral targets)
+Preprocessing test suite 'spec' for wild-bind-0.1.2.12...
+Building test suite 'spec' for wild-bind-0.1.2.12...
+Running 1 test suites...
+Test suite spec: RUNNING...
+
+WildBind.Binding
+  Binding (Monoid instances)
+    mempty returns empty binding [✔]
+      +++ OK, passed 100 tests.
+    mempty `mappend` random == mempty [✔]
+    random `mappend` mempty == mempty [✔]
+  binding
+    returns a stateless Binding [✔]
+    prefers the latter action if multiple actions are bound to the same input [✔]
+  whenFront
+    adds a condition on the front-end state [✔]
+    is AND condition [✔]
+    should be effective for derived Bindings [✔]
+  ifFront
+    chooses from independent Bindings [✔]
+    adds AND conditions when nested [✔]
+  Binding (mappend)
+    combines two stateless Bindings [✔]
+    front-end conditions are preserved [✔]
+    prefers the latter Binding [✔]
+    preserves implicit back-end states [✔]
+  convFront
+    converts front-end state [✔]
+  convInput
+    converts input symbols [✔]
+  advice
+    converts all actions in Binder [✔]
+    preserves the order of binding. [✔]
+    can nest [✔]
+  before
+    prepends a monadic action [✔]
+  after
+    appends a monadic action [✔]
+  convBack
+    can convert the back-end state by isomorphism [✔]
+    can convert the back-end state by a lens [✔]
+  binding'
+    returns a stateful Binding [✔]
+    prefers the latter action if multiple actions are bound to the same input [✔]
+    can create a stateful Binding with different bound inputs for different back-end state [✔]
+  Binding (mappend, stateful)
+    shares the explicit back-end state [✔]
+  ifBack
+    chooses from unconditional bindings [✔]
+    combines an extended stateless binding with a stateful binding [✔]
+    combines implicit stateful binding with a binding with newly introduced states [✔]
+  whenBack
+    adds a condition to the back-end state [✔]
+  extend
+    extends a stateless Binding [✔]
+  ifBoth
+    chooses bindings according to front-end and back-end states [✔]
+  whenBoth
+    adds a condition to both front-end and back-end states [✔]
+    creates independent conditions when combined with <> [✔]
+  Monadic construction of Binding
+    binds
+      constructs stateless Binding [✔]
+      prefers the latter action if multiple actions are bound to the same input [✔]
+    Binder
+      can bind actions with different result types [✔]
+    binds'
+      constructs stateful Binding [✔]
+      prefers the latter action if multiple actions are bound to the same input [✔]
+    as
+      sets ActionDescription [✔]
+  binding with ReaderT action
+    bindsF
+      allows actions to access front-end state [✔]
+    bindsF'
+      allows stateful actions to access front-end state [✔]
+  revise
+    should allow unbinding [✔]
+    should allow revising description [✔]
+    should revise conditionally on front-end state [✔]
+    should revise conditionally on back-end state [✔]
+    should allow modifying the action [✔]
+    should be effective after change of back-end state [✔]
+  revise'
+    should allow modifying the back-end state [✔]
+    should allow unbind conditionally [✔]
+WildBind.Exec
+  wildBind
+    should enable input grabs [✔]
+    should enable/disable grabs when the front-end state changes [✔]
+    should enable/disable grabs when the back-end state changes [✔]
+Exception from WildBind action: user error (ERROR!!)
+    should crush exceptions from bound actions [✔]
+Exception from WildBind action: user error (ERROR!)
+Exception from WildBind action: user error (ERROR!)
+    should keep the current back-state when exception is thrown from bound actions [✔]
+  optBindingHook
+    hooks change of binding because front-end state changes [✔]
+    hooks change of binding because back-end state changes [✔]
+  optCatch
+    receives front-state, input and exception [✔]
+WildBind.Seq
+  prefix
+    no prefix [✔]
+    one prefix [✔]
+    two prefixes [✔]
+    cancel binding [✔]
+  SeqBinding
+    withPrefix
+      should allow nesting [✔]
+    mappend
+      should be able to combine SeqBindings with different prefixes. [✔]
+    withCancel
+      should weakly add 'cancel' binding when at least one prefix is kept in the state. [✔]
+  reviseSeq
+    should allow access to prefix keys input so far [✔]
+    should allow unbinding [✔]
+
+Finished in 0.0429 seconds
+68 examples, 0 failures
+Test suite spec: PASS
+Test suite logged to:
+/tmp/workdir-wild-bind/wild-bind-0.1.2.12/dist-newstyle/build/x86_64-linux/ghc-9.10.2/wild-bind-0.1.2.12/t/spec/test/wild-bind-0.1.2.12-spec.log
+1 of 1 test suites (1 of 1 test cases) passed.

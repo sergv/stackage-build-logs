@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - alex-meta-0.3.0.13 (lib) (first run)
 Configuring library for alex-meta-0.3.0.13...
@@ -7,6 +8,22 @@ Building library for alex-meta-0.3.0.13...
 [ 1 of 23] Compiling Data.Ranged.Boundaries
 [ 2 of 23] Compiling Data.Ranged.Ranges
 [ 3 of 23] Compiling Data.Ranged.RangedSet
+src/Data/Ranged/RangedSet.hs:89:50: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+89 | validRangeList rs = and $ zipWith okAdjacent rs (tail rs)
+   |                                                  ^^^^
+
+src/Data/Ranged/RangedSet.hs:310:32: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+310 | prop_unfold v = (v <= 99999 && head (show v) == '1') == (initial1 -?- v)
+    |                                ^^^^
+
 [ 4 of 23] Compiling Data.Ranged
 [ 5 of 23] Compiling Map
 [ 6 of 23] Compiling Set
@@ -14,54 +31,82 @@ Building library for alex-meta-0.3.0.13...
 [ 8 of 23] Compiling Sort
 [ 9 of 23] Compiling UTF8
 [10 of 23] Compiling CharSet
+src/CharSet.hs:86:34: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+86 | byteSetToArray set = array (fst (head ass), fst (last ass)) ass
+   |                                  ^^^^
+
 [11 of 23] Compiling Util
 [12 of 23] Compiling AbsSyn
 [13 of 23] Compiling Text.Alex.AlexTemplate
 [14 of 23] Compiling ParseMonad
-
-src/ParseMonad.hs:92:2: warning: [-Wnoncanonical-monad-instances]
+src/ParseMonad.hs:92:2: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad P’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
    |
 92 |  return a = P $ \env -> Right (env,a)
    |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/ParseMonad.hs:109:3: warning: [-Wnoncanonical-monad-instances]
+src/ParseMonad.hs:109:3: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘pure = return’ definition detected
     in the instance declaration for ‘Applicative P’.
-    Move definition from ‘return’ to ‘pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Move definition from ‘return’ to ‘pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 109 |   pure = return
     |   ^^^^^^^^^^^^^
+
 [15 of 23] Compiling Scan
 [16 of 23] Compiling Parser
 [17 of 23] Compiling Output
-[18 of 23] Compiling NFA
+src/Output.hs:184:33: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+184 |            | otherwise   = snd (head (maximumBy lengths eq))
+    |                                 ^^^^
 
-src/NFA.hs:167:3: warning: [-Wnoncanonical-monad-instances]
+[18 of 23] Compiling NFA
+src/NFA.hs:167:3: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad NFAM’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 167 |   return a = N $ \s n e -> (s,n,a)
     |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/NFA.hs:177:3: warning: [-Wnoncanonical-monad-instances]
+src/NFA.hs:177:3: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘pure = return’ definition detected
     in the instance declaration for ‘Applicative NFAM’.
-    Move definition from ‘return’ to ‘pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Move definition from ‘return’ to ‘pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 177 |   pure = return
     |   ^^^^^^^^^^^^^
+
 [19 of 23] Compiling Info
 [20 of 23] Compiling DFAMin
+src/DFAMin.hs:58:52: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+58 |                     accs = map fix_acc (state_acc (head old_states))
+   |                                                    ^^^^
+
 [21 of 23] Compiling DFA
 [22 of 23] Compiling Text.Alex
 [23 of 23] Compiling Text.Alex.Quote

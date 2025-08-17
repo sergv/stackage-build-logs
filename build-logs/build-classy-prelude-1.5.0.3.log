@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - classy-prelude-1.5.0.3 (lib) (first run)
  - classy-prelude-1.5.0.3 (test:test) (first run)
@@ -6,14 +7,7 @@ Configuring library for classy-prelude-1.5.0.3...
 Preprocessing library for classy-prelude-1.5.0.3...
 Building library for classy-prelude-1.5.0.3...
 [1 of 2] Compiling ClassyPrelude
-
-src/ClassyPrelude.hs:156:1: warning: [-Wdodgy-imports]
-    Module ‘Data.Functor’ does not export ‘unzip’
-    |
-156 | import Data.Functor hiding (unzip)
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-src/ClassyPrelude.hs:157:1: warning: [-Wunused-imports]
+src/ClassyPrelude.hs:157:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Exception’ is redundant
       except perhaps to import instances from ‘Control.Exception’
     To import instances alone, use: import Control.Exception()
@@ -28,16 +22,38 @@ src/ClassyPrelude.hs:248:23: warning: [GHC-58520] [-Wtype-equality-requires-oper
     |
 248 | readMay :: (Element c ~ Char, MonoFoldable c, Read a) => c -> Maybe a
     |                       ^
+
+src/ClassyPrelude.hs:248:23: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+248 | readMay :: (Element c ~ Char, MonoFoldable c, Read a) => c -> Maybe a
+    |                       ^
+
 [2 of 2] Compiling Paths_classy_prelude
 Configuring test suite 'test' for classy-prelude-1.5.0.3...
 Preprocessing test suite 'test' for classy-prelude-1.5.0.3...
 Building test suite 'test' for classy-prelude-1.5.0.3...
 [1 of 2] Compiling Main
-
 test/main.hs:20:21: warning: [GHC-58520] [-Wtype-equality-requires-operators]
     The use of ‘~’ without TypeOperators
     will become an error in a future GHC release.
     Suggested fix: Perhaps you intended to use TypeOperators
+   |
+20 |     :: ( MapValue c ~ Char
+   |                     ^
+
+test/main.hs:20:21: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
    |
 20 |     :: ( MapValue c ~ Char
    |                     ^
@@ -50,10 +66,32 @@ test/main.hs:21:25: warning: [GHC-58520] [-Wtype-equality-requires-operators]
 21 |        , ContainerKey c ~ Int
    |                         ^
 
+test/main.hs:21:25: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+   |
+21 |        , ContainerKey c ~ Int
+   |                         ^
+
 test/main.hs:41:17: warning: [GHC-58520] [-Wtype-equality-requires-operators]
     The use of ‘~’ without TypeOperators
     will become an error in a future GHC release.
     Suggested fix: Perhaps you intended to use TypeOperators
+   |
+41 | mapProps :: ( i ~ Element c
+   |                 ^
+
+test/main.hs:41:17: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
    |
 41 | mapProps :: ( i ~ Element c
    |                 ^
@@ -66,6 +104,17 @@ test/main.hs:122:26: warning: [GHC-58520] [-Wtype-equality-requires-operators]
 122 |              , Element c ~ Int
     |                          ^
 
+test/main.hs:122:26: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+122 |              , Element c ~ Int
+    |                          ^
+
 test/main.hs:164:31: warning: [GHC-58520] [-Wtype-equality-requires-operators]
     The use of ‘~’ without TypeOperators
     will become an error in a future GHC release.
@@ -73,5 +122,17 @@ test/main.hs:164:31: warning: [GHC-58520] [-Wtype-equality-requires-operators]
     |
 164 |                   , Element a ~ Element c
     |                               ^
+
+test/main.hs:164:31: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+164 |                   , Element a ~ Element c
+    |                               ^
+
 [2 of 2] Compiling Paths_classy_prelude
-[3 of 3] Linking /tmp/workdir-classy-prelude/classy-prelude-1.5.0.3/dist-newstyle/build/x86_64-linux/ghc-9.6.5/classy-prelude-1.5.0.3/t/test/build/test/test
+[3 of 3] Linking /tmp/workdir-classy-prelude/classy-prelude-1.5.0.3/dist-newstyle/build/x86_64-linux/ghc-9.10.2/classy-prelude-1.5.0.3/t/test/build/test/test

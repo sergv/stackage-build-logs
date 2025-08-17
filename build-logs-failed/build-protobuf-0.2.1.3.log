@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - protobuf-0.2.1.3 (lib) (first run)
  - protobuf-0.2.1.3 (test:protobuf-test) (first run)
@@ -7,8 +8,7 @@ Preprocessing library for protobuf-0.2.1.3...
 Building library for protobuf-0.2.1.3...
 [1 of 8] Compiling Data.ProtocolBuffers.Orphans
 [2 of 8] Compiling Data.ProtocolBuffers.Types
-
-src/Data/ProtocolBuffers/Types.hs:31:1: warning: [-Wunused-imports]
+src/Data/ProtocolBuffers/Types.hs:31:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Foldable’ is redundant
       except perhaps to import instances from ‘Data.Foldable’
     To import instances alone, use: import Data.Foldable()
@@ -16,7 +16,7 @@ src/Data/ProtocolBuffers/Types.hs:31:1: warning: [-Wunused-imports]
 31 | import Data.Foldable as Fold
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Data/ProtocolBuffers/Types.hs:33:1: warning: [-Wunused-imports]
+src/Data/ProtocolBuffers/Types.hs:33:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Semigroup’ is redundant
       except perhaps to import instances from ‘Data.Semigroup’
     To import instances alone, use: import Data.Semigroup()
@@ -24,7 +24,7 @@ src/Data/ProtocolBuffers/Types.hs:33:1: warning: [-Wunused-imports]
 33 | import Data.Semigroup (Semigroup(..))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Data/ProtocolBuffers/Types.hs:34:1: warning: [-Wunused-imports]
+src/Data/ProtocolBuffers/Types.hs:34:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Traversable’ is redundant
       except perhaps to import instances from ‘Data.Traversable’
     To import instances alone, use: import Data.Traversable()
@@ -76,9 +76,9 @@ src/Data/ProtocolBuffers/Types.hs:169:45: warning: [GHC-39567] [-Wstar-is-type]
     |
 169 | type family Required (n :: Nat) (a :: *) :: *
     |                                             ^
+
 [3 of 8] Compiling Data.ProtocolBuffers.Wire
 [4 of 8] Compiling Data.ProtocolBuffers.Encode
-
 src/Data/ProtocolBuffers/Encode.hs:42:20: warning: [GHC-39567] [-Wstar-is-type]
     Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
     relies on the StarIsType extension, which will become
@@ -105,9 +105,9 @@ src/Data/ProtocolBuffers/Encode.hs:52:26: warning: [GHC-39567] [-Wstar-is-type]
    |
 52 | class GEncode (f :: * -> *) where
    |                          ^
-[5 of 8] Compiling Data.ProtocolBuffers.Decode
 
-src/Data/ProtocolBuffers/Decode.hs:28:1: warning: [-Wunused-imports]
+[5 of 8] Compiling Data.ProtocolBuffers.Decode
+src/Data/ProtocolBuffers/Decode.hs:28:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Traversable’ is redundant
       except perhaps to import instances from ‘Data.Traversable’
     To import instances alone, use: import Data.Traversable()
@@ -151,9 +151,9 @@ src/Data/ProtocolBuffers/Decode.hs:70:26: warning: [GHC-39567] [-Wstar-is-type]
    |
 70 | class GDecode (f :: * -> *) where
    |                          ^
-[6 of 8] Compiling Data.ProtocolBuffers.Message
 
-src/Data/ProtocolBuffers/Message.hs:20:1: warning: [-Wunused-imports]
+[6 of 8] Compiling Data.ProtocolBuffers.Message
+src/Data/ProtocolBuffers/Message.hs:20:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
@@ -161,7 +161,7 @@ src/Data/ProtocolBuffers/Message.hs:20:1: warning: [-Wunused-imports]
 20 | import Data.Monoid hiding ((<>))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Data/ProtocolBuffers/Message.hs:23:1: warning: [-Wunused-imports]
+src/Data/ProtocolBuffers/Message.hs:23:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Traversable’ is redundant
       except perhaps to import instances from ‘Data.Traversable’
     To import instances alone, use: import Data.Traversable()
@@ -169,7 +169,7 @@ src/Data/ProtocolBuffers/Message.hs:23:1: warning: [-Wunused-imports]
 23 | import Data.Traversable
    | ^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Data/ProtocolBuffers/Message.hs:24:1: warning: [-Wunused-imports]
+src/Data/ProtocolBuffers/Message.hs:24:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Semigroup’ is redundant
       except perhaps to import instances from ‘Data.Semigroup’
     To import instances alone, use: import Data.Semigroup()
@@ -194,13 +194,13 @@ src/Data/ProtocolBuffers/Message.hs:113:33: warning: [GHC-39567] [-Wstar-is-type
     |
 113 | class GMessageMonoid (f :: * -> *) where
     |                                 ^
+
 [7 of 8] Compiling Data.ProtocolBuffers.Internal
 [8 of 8] Compiling Data.ProtocolBuffers
 Configuring test suite 'protobuf-test' for protobuf-0.2.1.3...
 Preprocessing test suite 'protobuf-test' for protobuf-0.2.1.3...
 Building test suite 'protobuf-test' for protobuf-0.2.1.3...
 [1 of 1] Compiling Main
-
 tests/Main.hs:426:30: error: [GHC-83865]
     • Couldn't match type ‘Either String’ with ‘IO’
       Expected: IO B.ByteString
@@ -442,6 +442,7 @@ tests/Main.hs:515:31: error: [GHC-83865]
     |
 515 | test15 = testSpecific msg =<< unhex "38003800" where
     |                               ^^^^^^^^^^^^^^^^
+
 Error: [Cabal-7125]
 Failed to build test:protobuf-test from protobuf-0.2.1.3.
 

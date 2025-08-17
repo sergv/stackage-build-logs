@@ -1,0 +1,55 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - derive-topdown-0.1.0.0 (lib) (first run)
+ - derive-topdown-0.1.0.0 (test:derive-topdown-test) (first run)
+Configuring library for derive-topdown-0.1.0.0...
+Preprocessing library for derive-topdown-0.1.0.0...
+Building library for derive-topdown-0.1.0.0...
+[1 of 8] Compiling Data.Derive.TopDown.Lib
+src/Data/Derive/TopDown/Lib.hs:154:17: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+154 | getConstrArgs = tail . unappTy
+    |                 ^^^^
+
+src/Data/Derive/TopDown/Lib.hs:171:21: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+171 |             -> case head vars of
+    |                     ^^^^
+
+[2 of 8] Compiling Data.Derive.TopDown.IsInstance
+[3 of 8] Compiling Data.Derive.TopDown.CxtGen
+[4 of 8] Compiling Data.Derive.TopDown.Instance
+[5 of 8] Compiling Data.Derive.Superclass
+[6 of 8] Compiling Data.Derive.TopDown.Standalone
+[7 of 8] Compiling Data.Derive.TopDown.TH
+[8 of 8] Compiling Data.Derive.TopDown
+Configuring test suite 'derive-topdown-test' for derive-topdown-0.1.0.0...
+Preprocessing test suite 'derive-topdown-test' for derive-topdown-0.1.0.0...
+Building test suite 'derive-topdown-test' for derive-topdown-0.1.0.0...
+[1 of 9] Compiling Arity
+[2 of 9] Compiling Paths_derive_topdown
+[3 of 9] Compiling Types
+test/Types.hs:256:2: warning: [GHC-60661] [-Wpartial-type-signatures]
+    • Found type wildcard ‘_’ standing for ‘(Binary x, Binary y)’
+    • In the instance declaration for ‘Binary (E x y)’
+    Suggested fix:
+      Perhaps you intended to use PartialTypeSignatures
+      to use the inferred type
+    |
+256 | $(deriving_with ''Binary ''E Nothing [] genHoleContext)
+    |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[4 of 9] Compiling Utils
+[5 of 9] Compiling Template
+[6 of 9] Compiling Instance
+[7 of 9] Compiling Generic
+[8 of 9] Compiling Derive
+[9 of 9] Compiling Main
+[10 of 10] Linking /tmp/workdir-derive-topdown/derive-topdown-0.1.0.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/derive-topdown-0.1.0.0/t/derive-topdown-test/build/derive-topdown-test/derive-topdown-test

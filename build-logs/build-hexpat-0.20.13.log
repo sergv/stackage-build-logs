@@ -1,12 +1,12 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - hexpat-0.20.13 (lib) (first run)
 Configuring library for hexpat-0.20.13...
 Preprocessing library for hexpat-0.20.13...
 Building library for hexpat-0.20.13...
 [ 1 of 12] Compiling Text.XML.Expat.Internal.IO
-
-Text/XML/Expat/Internal/IO.hs:17:1: warning: [-Wunused-imports]
+Text/XML/Expat/Internal/IO.hs:17:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
@@ -29,18 +29,34 @@ Text/XML/Expat/Internal/IO.hs:212:21: warning: [GHC-68441] [-Wdeprecations]
     |
 212 |                     I.memcpy (castPtr ctext) (ctextBS `plusPtr` offset) (fromIntegral len)
     |                     ^^^^^^^^
-[ 2 of 12] Compiling Text.XML.Expat.SAX
 
-Text/XML/Expat/SAX.hs:52:1: warning: [-Wunused-imports]
+[ 2 of 12] Compiling Text.XML.Expat.SAX
+Text/XML/Expat/SAX.hs:52:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
    |
 52 | import Control.Applicative
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^
-[ 3 of 12] Compiling Text.XML.Expat.Internal.NodeClass
 
-Text/XML/Expat/Internal/NodeClass.hs:11:1: warning: [-Wunused-imports]
+Text/XML/Expat/SAX.hs:96:14: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+96 |     gxHead = head
+   |              ^^^^
+
+Text/XML/Expat/SAX.hs:97:14: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+97 |     gxTail = tail
+   |              ^^^^
+
+[ 3 of 12] Compiling Text.XML.Expat.Internal.NodeClass
+Text/XML/Expat/Internal/NodeClass.hs:11:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
@@ -92,18 +108,18 @@ Text/XML/Expat/Internal/NodeClass.hs:32:68: warning: [GHC-39567] [-Wstar-is-type
    |
 32 | class (Functor c, List c) => NodeClass (n :: (* -> *) -> * -> * -> *) c where
    |                                                                    ^
+
 [ 4 of 12] Compiling Text.XML.Expat.Proc
 [ 5 of 12] Compiling Text.XML.Expat.Internal.Qualified
-
-Text/XML/Expat/Internal/Qualified.hs:24:1: warning: [-Wunused-imports]
+Text/XML/Expat/Internal/Qualified.hs:24:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 24 | import Data.Monoid
    | ^^^^^^^^^^^^^^^^^^
-[ 6 of 12] Compiling Text.XML.Expat.Internal.DocumentClass
 
+[ 6 of 12] Compiling Text.XML.Expat.Internal.DocumentClass
 Text/XML/Expat/Internal/DocumentClass.hs:22:36: warning: [GHC-39567] [-Wstar-is-type]
     Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
     relies on the StarIsType extension, which will become
@@ -229,49 +245,50 @@ Text/XML/Expat/Internal/DocumentClass.hs:46:83: warning: [GHC-39567] [-Wstar-is-
    |
 46 | class (Functor c, List c, NodeClass (NodeType d) c) => DocumentClass d (c :: * -> *) where
    |                                                                                   ^
+
 [ 7 of 12] Compiling Text.XML.Expat.Internal.Namespaced
 [ 8 of 12] Compiling Text.XML.Expat.Extended
-
-Text/XML/Expat/Extended.hs:85:1: warning: [-Wunused-imports]
+Text/XML/Expat/Extended.hs:85:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 85 | import Data.Monoid
    | ^^^^^^^^^^^^^^^^^^
-[ 9 of 12] Compiling Text.XML.Expat.Annotated
 
-Text/XML/Expat/Annotated.hs:75:1: warning: [-Wunused-imports]
+[ 9 of 12] Compiling Text.XML.Expat.Annotated
+Text/XML/Expat/Annotated.hs:75:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 75 | import Data.Monoid
    | ^^^^^^^^^^^^^^^^^^
-[10 of 12] Compiling Text.XML.Expat.Tree
 
-Text/XML/Expat/Tree.hs:152:1: warning: [-Wunused-imports]
+[10 of 12] Compiling Text.XML.Expat.Tree
+Text/XML/Expat/Tree.hs:152:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
     |
 152 | import Data.Monoid (Monoid,mempty,mappend)
     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[11 of 12] Compiling Text.XML.Expat.Format
 
-Text/XML/Expat/Format.hs:53:1: warning: [-Wunused-imports]
+[11 of 12] Compiling Text.XML.Expat.Format
+Text/XML/Expat/Format.hs:53:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 53 | import Data.Monoid
    | ^^^^^^^^^^^^^^^^^^
-[12 of 12] Compiling Text.XML.Expat.Cursor
 
-Text/XML/Expat/Cursor.hs:98:1: warning: [-Wunused-imports]
+[12 of 12] Compiling Text.XML.Expat.Cursor
+Text/XML/Expat/Cursor.hs:98:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 98 | import Data.Monoid
    | ^^^^^^^^^^^^^^^^^^
+

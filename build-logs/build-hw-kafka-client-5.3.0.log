@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - hw-kafka-client-5.3.0 (lib) (first run)
  - hw-kafka-client-5.3.0 (test:tests) (first run)
@@ -12,7 +13,6 @@ Building library for hw-kafka-client-5.3.0...
 [ 5 of 19] Compiling Kafka.Consumer.Types
 [ 6 of 19] Compiling Kafka.Producer.Types
 [ 7 of 19] Compiling Kafka.Internal.Shared
-
 src/Kafka/Internal/Shared.hs:47:5: warning: [GHC-68441] [-Wdeprecations]
     In the use of ‘memcpy’
     (imported from Data.ByteString.Internal, but defined in Data.ByteString.Internal.Type):
@@ -20,10 +20,19 @@ src/Kafka/Internal/Shared.hs:47:5: warning: [GHC-68441] [-Wdeprecations]
    |
 47 |     BSI.memcpy bsptr ptr len
    |     ^^^^^^^^^^
+
 [ 8 of 19] Compiling Kafka.Producer.Convert
 [ 9 of 19] Compiling Kafka.Consumer.Subscription
 [10 of 19] Compiling Kafka.Consumer.Convert
 [11 of 19] Compiling Kafka.Metadata
+src/Kafka/Metadata.hs:127:53: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+127 |                   else watermarkOffsets' k timeout (head $ kmTopics tm)
+    |                                                     ^^^^
+
 [12 of 19] Compiling Kafka.Callbacks
 [13 of 19] Compiling Kafka.Producer.Callbacks
 [14 of 19] Compiling Kafka.Producer.ProducerProperties
@@ -36,7 +45,6 @@ Configuring test suite 'tests' for hw-kafka-client-5.3.0...
 Preprocessing test suite 'tests' for hw-kafka-client-5.3.0...
 Building test suite 'tests' for hw-kafka-client-5.3.0...
 [1 of 3] Compiling Kafka.Consumer.ConsumerRecordMapSpec
-
 tests/Kafka/Consumer/ConsumerRecordMapSpec.hs:30:54: warning: [GHC-68441] [-Wdeprecations]
     In the use of ‘crMapKey’ (imported from Kafka.Consumer.Types):
     Deprecated: "Isn't concern of this library. Use 'first'"
@@ -57,6 +65,7 @@ tests/Kafka/Consumer/ConsumerRecordMapSpec.hs:36:46: warning: [GHC-68441] [-Wdep
    |
 36 |       bisequence testRecord `shouldBe` Just (crMapKV (const testKey) (const testValue) testRecord)
    |                                              ^^^^^^^
+
 [2 of 3] Compiling Kafka.Consumer.ConsumerRecordTraverseSpec
 [3 of 3] Compiling Main
-[4 of 4] Linking /tmp/workdir-hw-kafka-client/hw-kafka-client-5.3.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/hw-kafka-client-5.3.0/t/tests/build/tests/tests
+[4 of 4] Linking /tmp/workdir-hw-kafka-client/hw-kafka-client-5.3.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/hw-kafka-client-5.3.0/t/tests/build/tests/tests

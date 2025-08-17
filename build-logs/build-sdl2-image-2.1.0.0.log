@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - sdl2-image-2.1.0.0 (lib) (first run)
  - sdl2-image-2.1.0.0 (exe:sdl2-image-example) (first run)
@@ -9,8 +10,23 @@ Preprocessing library for sdl2-image-2.1.0.0...
 Building library for sdl2-image-2.1.0.0...
 [1 of 4] Compiling Paths_sdl2_image
 [2 of 4] Compiling SDL.Raw.Helper
-[3 of 4] Compiling SDL.Raw.Image
+src/SDL/Raw/Helper.hs:95:22: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+95 | applyTo f es = loop (tail es) . AppE (VarE f) $ head es
+   |                      ^^^^
 
+src/SDL/Raw/Helper.hs:95:49: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+95 | applyTo f es = loop (tail es) . AppE (VarE f) $ head es
+   |                                                 ^^^^
+
+[3 of 4] Compiling SDL.Raw.Image
 src/SDL/Raw/Image.hsc:87:1: warning: [GHC-38417] [-Wmissing-kind-signatures]
     Top-level type constructor with no standalone kind signature or CUSK:
       type InitFlags :: *
@@ -59,8 +75,8 @@ src/SDL/Raw/Image.hsc:110:1: warning: [GHC-38417] [-Wmissing-kind-signatures]
     |
 110 | type Format = CString
     | ^^^^^^^^^^^^^^^^^^^^^
-[4 of 4] Compiling SDL.Image
 
+[4 of 4] Compiling SDL.Image
 src/SDL/Image.hs:106:1: warning: [GHC-38417] [-Wmissing-kind-signatures]
     Top-level type constructor with no standalone kind signature or CUSK:
       type InitFlag :: *
@@ -74,6 +90,7 @@ src/SDL/Image.hs:230:1: warning: [GHC-38417] [-Wmissing-kind-signatures]
     |
 230 | data Format
     | ^^^^^^^^^^^...
+
 Warning: sdl2-image.cabal:53:3: The field "autogen-modules" is available only
 since the Cabal specification version 2.0. This field will be ignored.
 Configuring executable 'sdl2-image-example' for sdl2-image-2.1.0.0...
@@ -81,4 +98,4 @@ Preprocessing executable 'sdl2-image-example' for sdl2-image-2.1.0.0...
 Building executable 'sdl2-image-example' for sdl2-image-2.1.0.0...
 [1 of 2] Compiling Main
 [2 of 2] Compiling Paths_sdl2_image
-[3 of 3] Linking /tmp/workdir-sdl2-image/sdl2-image-2.1.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/sdl2-image-2.1.0.0/x/sdl2-image-example/build/sdl2-image-example/sdl2-image-example
+[3 of 3] Linking /tmp/workdir-sdl2-image/sdl2-image-2.1.0.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/sdl2-image-2.1.0.0/x/sdl2-image-example/build/sdl2-image-example/sdl2-image-example

@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - LambdaHack-0.11.0.1 (lib) (first run)
  - LambdaHack-0.11.0.1 (test:test) (first run)
@@ -9,14 +10,14 @@ Configuring library for LambdaHack-0.11.0.1...
 Preprocessing library for LambdaHack-0.11.0.1...
 Building library for LambdaHack-0.11.0.1...
 [  1 of 149] Compiling Game.LambdaHack.Core.Prelude
-
-definition-src/Game/LambdaHack/Core/Prelude.hs:36:1: warning: [-Wunused-imports]
+definition-src/Game/LambdaHack/Core/Prelude.hs:36:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
    |
 36 | import           Control.Applicative
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [  2 of 149] Compiling Game.LambdaHack.Core.Frequency
 [  3 of 149] Compiling Game.LambdaHack.Core.Dice
 [  4 of 149] Compiling Game.LambdaHack.Common.Thread
@@ -34,26 +35,90 @@ definition-src/Game/LambdaHack/Core/Prelude.hs:36:1: warning: [-Wunused-imports]
 [ 16 of 149] Compiling Game.LambdaHack.Definition.DefsInternal
 [ 17 of 149] Compiling Game.LambdaHack.Definition.Defs
 [ 18 of 149] Compiling Game.LambdaHack.Common.Point
+engine-src/Game/LambdaHack/Common/Point.hs:146:15: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Game.LambdaHack.Core.Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+146 |   else Just $ tail $ bresenhamsLineAlgorithmBegin eps source target
+    |               ^^^^
+
+engine-src/Game/LambdaHack/Common/Point.hs:162:30: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Game.LambdaHack.Core.Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+162 |       walk w xy = xy : walk (tail w) (step (head w) xy)
+    |                              ^^^^
+
+engine-src/Game/LambdaHack/Common/Point.hs:162:45: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Game.LambdaHack.Core.Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+162 |       walk w xy = xy : walk (tail w) (step (head w) xy)
+    |                                             ^^^^
+
 [ 19 of 149] Compiling Game.LambdaHack.Common.Vector
 [ 20 of 149] Compiling Game.LambdaHack.Common.Types
 [ 21 of 149] Compiling Game.LambdaHack.Common.Perception
 [ 22 of 149] Compiling Game.LambdaHack.Client.UI.PointUI
 [ 23 of 149] Compiling Game.LambdaHack.Client.UI.Overlay
-
 engine-src/Game/LambdaHack/Client/UI/Overlay.hs: warning: [-Wmissed-specialisations]
     Could not specialise imported function ‘ghc-prim:GHC.Classes.$fEqList_$c==’
       when specialising ‘ghc-prim:GHC.Classes.$fEqList_$c/=’
     Probable fix: add INLINABLE pragma on ‘ghc-prim:GHC.Classes.$fEqList_$c==’
+
 [ 24 of 149] Compiling Game.LambdaHack.Client.UI.Msg
 [ 25 of 149] Compiling Game.LambdaHack.Client.UI.Key
 [ 26 of 149] Compiling Game.LambdaHack.Common.Area
 [ 27 of 149] Compiling Game.LambdaHack.Common.Analytics
 [ 28 of 149] Compiling Game.LambdaHack.Definition.ContentData
+definition-src/Game/LambdaHack/Definition/ContentData.hs:48:15: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Game.LambdaHack.Core.Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+48 |         | map head (groupBy ((==) `on` fst) sortedRarity) /= sortedRarity ]
+   |               ^^^^
+
+definition-src/Game/LambdaHack/Definition/ContentData.hs:60:57: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Game.LambdaHack.Core.Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+60 |          tailOfGroups = if null groups then groups else tail groups
+   |                                                         ^^^^
+
 [ 29 of 149] Compiling Game.LambdaHack.Common.PointArray
 [ 30 of 149] Compiling Game.LambdaHack.Client.Bfs
 [ 31 of 149] Compiling Game.LambdaHack.Definition.Flavour
 [ 32 of 149] Compiling Game.LambdaHack.Content.ItemKind
 [ 33 of 149] Compiling Game.LambdaHack.Content.TileKind
+definition-src/Game/LambdaHack/Content/TileKind.hs:180:19: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Game.LambdaHack.Core.Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+180 |         | talter (head content) /= 1
+    |                   ^^^^
+
+definition-src/Game/LambdaHack/Content/TileKind.hs:181:21: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Game.LambdaHack.Core.Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+181 |           || tname (head content) /= "unknown space" ]
+    |                     ^^^^
+
+definition-src/Game/LambdaHack/Content/TileKind.hs:183:40: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Game.LambdaHack.Core.Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+183 |         | any (\tk -> talter tk == 1) (tail content) ]
+    |                                        ^^^^
+
 [ 34 of 149] Compiling Game.LambdaHack.Content.PlaceKind
 [ 35 of 149] Compiling Game.LambdaHack.Content.RuleKind
 [ 36 of 149] Compiling Game.LambdaHack.Content.FactionKind
@@ -63,17 +128,17 @@ engine-src/Game/LambdaHack/Client/UI/Overlay.hs: warning: [-Wmissed-specialisati
 [ 40 of 149] Compiling Game.LambdaHack.Common.ItemAspect
 [ 41 of 149] Compiling Game.LambdaHack.Common.Faction
 [ 42 of 149] Compiling Game.LambdaHack.Common.HighScore
-
 engine-src/Game/LambdaHack/Common/HighScore.hs: warning: [-Wmissed-specialisations]
     Could not specialise imported function ‘ghc-prim:GHC.Classes.$fEqList_$c==’
       when specialising ‘ghc-prim:GHC.Classes.$fEqList_$c/=’
     Probable fix: add INLINABLE pragma on ‘ghc-prim:GHC.Classes.$fEqList_$c==’
-[ 43 of 149] Compiling Game.LambdaHack.Client.UI.Slideshow
 
+[ 43 of 149] Compiling Game.LambdaHack.Client.UI.Slideshow
 engine-src/Game/LambdaHack/Client/UI/Slideshow.hs: warning: [-Wmissed-specialisations]
     Could not specialise imported function ‘ghc-prim:GHC.Classes.$fEqList_$c==’
       when specialising ‘ghc-prim:GHC.Classes.$fEqList_$c/=’
     Probable fix: add INLINABLE pragma on ‘ghc-prim:GHC.Classes.$fEqList_$c==’
+
 [ 44 of 149] Compiling Game.LambdaHack.Client.Request
 [ 45 of 149] Compiling Game.LambdaHack.Client.UI.HumanCmd
 [ 46 of 149] Compiling Game.LambdaHack.Client.UI.UIOptions
@@ -89,11 +154,11 @@ engine-src/Game/LambdaHack/Client/UI/Slideshow.hs: warning: [-Wmissed-specialisa
 [ 56 of 149] Compiling Game.LambdaHack.Client.UI.ContentClientUI
 [ 57 of 149] Compiling Game.LambdaHack.Client.UI.KeyBindings
 [ 58 of 149] Compiling Game.LambdaHack.Client.UI.Animation
-
 engine-src/Game/LambdaHack/Client/UI/Animation.hs: warning: [-Wmissed-specialisations]
     Could not specialise imported function ‘ghc-prim:GHC.Classes.$fEqList_$c==’
       when specialising ‘ghc-prim:GHC.Classes.$fEqList_$c/=’
     Probable fix: add INLINABLE pragma on ‘ghc-prim:GHC.Classes.$fEqList_$c==’
+
 [ 59 of 149] Compiling Client.UI.Content.Screen
 [ 60 of 149] Compiling Game.LambdaHack.Common.Kind
 [ 61 of 149] Compiling Game.LambdaHack.Common.Save
@@ -109,19 +174,43 @@ engine-src/Game/LambdaHack/Client/UI/Animation.hs: warning: [-Wmissed-specialisa
 [ 71 of 149] Compiling Game.LambdaHack.Client.UI.ActorUI
 [ 72 of 149] Compiling Game.LambdaHack.Client.State
 [ 73 of 149] Compiling Game.LambdaHack.Client.UI.SessionUI
-
 engine-src/Game/LambdaHack/Client/UI/SessionUI.hs: warning: [-Wmissed-specialisations]
     Could not specialise imported function ‘ghc-prim:GHC.Classes.$fEqList_$c==’
       when specialising ‘ghc-prim:GHC.Classes.$fEqList_$c/=’
     Probable fix: add INLINABLE pragma on ‘ghc-prim:GHC.Classes.$fEqList_$c==’
+
 [ 74 of 149] Compiling Game.LambdaHack.Client.MonadClient
 [ 75 of 149] Compiling Game.LambdaHack.Client.CommonM
 [ 76 of 149] Compiling Game.LambdaHack.Client.UI.MonadClientUI
+engine-src/Game/LambdaHack/Client/UI/MonadClientUI.hs:358:41: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Game.LambdaHack.Core.Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+358 |                            (T.unwords $ tail $ T.words $ gname fact)
+    |                                         ^^^^
+
 [ 77 of 149] Compiling Game.LambdaHack.Client.UI.RunM
 [ 78 of 149] Compiling Game.LambdaHack.Client.UI.MsgM
 [ 79 of 149] Compiling Game.LambdaHack.Client.BfsM
+engine-src/Game/LambdaHack/Client/BfsM.hs:292:31: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Game.LambdaHack.Core.Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+292 |       dist = bfs PointArray.! head closestPoss
+    |                               ^^^^
+
 [ 80 of 149] Compiling Game.LambdaHack.Client.AI.ConditionM
 [ 81 of 149] Compiling Game.LambdaHack.Client.AI.PickTargetM
+engine-src/Game/LambdaHack/Client/AI/PickTargetM.hs:341:46: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Game.LambdaHack.Core.Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+341 |                               pathList = map head $ group traSlack7
+    |                                              ^^^^
+
 [ 82 of 149] Compiling Game.LambdaHack.Client.AI.PickActorM
 [ 83 of 149] Compiling Game.LambdaHack.Client.AI.PickActionM
 [ 84 of 149] Compiling Game.LambdaHack.Client.AI
@@ -136,10 +225,66 @@ engine-src/Game/LambdaHack/Client/UI/SessionUI.hs: warning: [-Wmissed-specialisa
 [ 93 of 149] Compiling Game.LambdaHack.Client.UI.FrameM
 [ 94 of 149] Compiling Game.LambdaHack.Client.UI.SlideshowM
 [ 95 of 149] Compiling Game.LambdaHack.Client.UI.HandleHelperM
+engine-src/Game/LambdaHack/Client/UI/HandleHelperM.hs:724:29: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Game.LambdaHack.Core.Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+724 |                 tailWords = tail . T.words . makePhrase
+    |                             ^^^^
+
+engine-src/Game/LambdaHack/Client/UI/HandleHelperM.hs:748:53: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Game.LambdaHack.Core.Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+748 |                                                    (head subjects) verbs]
+    |                                                     ^^^^
+
+engine-src/Game/LambdaHack/Client/UI/HandleHelperM.hs:763:37: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Game.LambdaHack.Core.Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+763 |                  (MU.SubjectVerbSg (head subjects) "lie here"
+    |                                     ^^^^
+
 [ 96 of 149] Compiling Game.LambdaHack.Client.UI.Watch.WatchQuitM
 [ 97 of 149] Compiling Game.LambdaHack.Client.UI.Watch.WatchCommonM
+engine-src/Game/LambdaHack/Client/UI/Watch/WatchCommonM.hs:49:24: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Game.LambdaHack.Core.Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+49 |   displayFrames arena (tail animFrs)  -- no basic frame between fadeout and in
+   |                        ^^^^
+
 [ 98 of 149] Compiling Game.LambdaHack.Client.UI.Watch.WatchUpdAtomicM
+engine-src/Game/LambdaHack/Client/UI/Watch/WatchUpdAtomicM.hs:1025:41: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Game.LambdaHack.Core.Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+     |
+1025 |       name = if ikObvious && T.unwords (tail (T.words knownName)) /= name1
+     |                                         ^^^^
+
 [ 99 of 149] Compiling Game.LambdaHack.Client.UI.Watch.WatchSfxAtomicM
+engine-src/Game/LambdaHack/Client/UI/Watch/WatchSfxAtomicM.hs:219:37: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Game.LambdaHack.Core.Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+219 |           let fidName = T.unwords $ tail $ T.words fidNameRaw
+    |                                     ^^^^
+
+engine-src/Game/LambdaHack/Client/UI/Watch/WatchSfxAtomicM.hs:228:43: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Game.LambdaHack.Core.Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+228 |           let fidSourceName = T.unwords $ tail $ T.words fidSourceNameRaw
+    |                                           ^^^^
+
 [100 of 149] Compiling Game.LambdaHack.Client.UI.Watch
 [101 of 149] Compiling Game.LambdaHack.Client.UI.InventoryM
 [102 of 149] Compiling Game.LambdaHack.Client.UI.HandleHumanLocalM
@@ -155,7 +300,31 @@ engine-src/Game/LambdaHack/Client/UI/SessionUI.hs: warning: [-Wmissed-specialisa
 [112 of 149] Compiling Content.ItemKindBlast
 [113 of 149] Compiling Game.LambdaHack.Server.DungeonGen.AreaRnd
 [114 of 149] Compiling Game.LambdaHack.Server.DungeonGen.Place
+engine-src/Game/LambdaHack/Server/DungeonGen/Place.hs:138:39: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Game.LambdaHack.Core.Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+138 |                          || T.length (head (ptopLeft kr)) < 10)
+    |                                       ^^^^
+
+engine-src/Game/LambdaHack/Server/DungeonGen/Place.hs:160:38: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Game.LambdaHack.Core.Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+160 |                          + T.length (head (ptopLeft kr))
+    |                                      ^^^^
+
 [115 of 149] Compiling Game.LambdaHack.Server.DungeonGen.Cave
+engine-src/Game/LambdaHack/Server/DungeonGen/Cave.hs:241:22: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Game.LambdaHack.Core.Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+241 |           cns <- map head . group . sort
+    |                      ^^^^
+
 [116 of 149] Compiling Game.LambdaHack.Server.FovDigital
 [117 of 149] Compiling Game.LambdaHack.Server.Fov
 [118 of 149] Compiling Game.LambdaHack.Server.ItemRev
@@ -164,18 +333,50 @@ engine-src/Game/LambdaHack/Client/UI/SessionUI.hs: warning: [-Wmissed-specialisa
 [121 of 149] Compiling Game.LambdaHack.Server.State
 [122 of 149] Compiling Paths_LambdaHack
 [123 of 149] Compiling Game.LambdaHack.Server.MonadServer
+engine-src/Game/LambdaHack/Server/MonadServer.hs:187:32: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Game.LambdaHack.Core.Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+187 |                 <+> T.unwords (tail (T.words (tshow sbandSpawned)))]
+    |                                ^^^^
+
+engine-src/Game/LambdaHack/Server/MonadServer.hs:202:41: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Game.LambdaHack.Core.Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+202 |                            (T.unwords $ tail $ T.words $ gname fact)
+    |                                         ^^^^
+
 [124 of 149] Compiling Game.LambdaHack.Server.ItemM
 [125 of 149] Compiling Game.LambdaHack.Server.HandleAtomicM
 [126 of 149] Compiling Game.LambdaHack.Server.DebugM
 [127 of 149] Compiling Game.LambdaHack.Server.ProtocolM
 [128 of 149] Compiling Game.LambdaHack.Server.CommonM
 [129 of 149] Compiling Game.LambdaHack.Server.StartM
+engine-src/Game/LambdaHack/Server/StartM.hs:236:37: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Game.LambdaHack.Core.Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+236 |             colorName = T.toLower $ head $ T.words fname
+    |                                     ^^^^
+
 [130 of 149] Compiling Game.LambdaHack.Server.PeriodicM
 [131 of 149] Compiling Game.LambdaHack.Server.HandleEffectM
 [132 of 149] Compiling Game.LambdaHack.Server.HandleRequestM
 [133 of 149] Compiling Game.LambdaHack.Server.LoopM
 [134 of 149] Compiling Game.LambdaHack.Server.BroadcastAtomic
 [135 of 149] Compiling Game.LambdaHack.Server.Commandline
+engine-src/Game/LambdaHack/Server/Commandline.hs:168:41: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Game.LambdaHack.Core.Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+168 |   toGameMode = DefsInternal.GroupName . head . T.words . T.pack
+    |                                         ^^^^
+
 [136 of 149] Compiling Game.LambdaHack.Server
 [137 of 149] Compiling Implementation.MonadClientImplementation
 [138 of 149] Compiling Implementation.MonadServerImplementation
@@ -185,6 +386,14 @@ engine-src/Game/LambdaHack/Client/UI/SessionUI.hs: warning: [-Wmissed-specialisa
 [142 of 149] Compiling Content.ItemKindEmbed
 [143 of 149] Compiling Content.TileKind
 [144 of 149] Compiling Content.PlaceKind
+GameDefinition/Content/PlaceKind.hs:995:41: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Game.LambdaHack.Core.Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+995 |   { pname     = T.unwords $ "a gated" : tail (T.words (pname s))
+    |                                         ^^^^
+
 [145 of 149] Compiling Content.FactionKind
 [146 of 149] Compiling Content.ItemKind
 [147 of 149] Compiling Content.CaveKind
@@ -197,6 +406,22 @@ Preprocessing test suite 'test' for LambdaHack-0.11.0.1...
 Building test suite 'test' for LambdaHack-0.11.0.1...
 [ 1 of 15] Compiling ItemKindUnitTests
 [ 2 of 15] Compiling ItemRevUnitTests
+test/ItemRevUnitTests.hs:31:22: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Game.LambdaHack.Core.Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+31 |       flavourBlack = head $ zipStory [Black]
+   |                      ^^^^
+
+test/ItemRevUnitTests.hs:32:22: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Game.LambdaHack.Core.Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+32 |       flavourGreen = head $ zipStory [Green]
+   |                      ^^^^
+
 [ 3 of 15] Compiling SessionUIMock
 [ 4 of 15] Compiling SessionUIUnitTests
 [ 5 of 15] Compiling UnitTestHelpers
@@ -204,17 +429,25 @@ Building test suite 'test' for LambdaHack-0.11.0.1...
 [ 7 of 15] Compiling MonadClientUIUnitTests
 [ 8 of 15] Compiling LevelUnitTests
 [ 9 of 15] Compiling ItemDescriptionUnitTests
+test/ItemDescriptionUnitTests.hs:28:24: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Game.LambdaHack.Core.Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+28 |           , jflavour = head $ zipPlain [Green]
+   |                        ^^^^
+
 [10 of 15] Compiling InventoryMUnitTests
 [11 of 15] Compiling HandleHumanLocalMUnitTests
 [12 of 15] Compiling HandleHelperMUnitTests
 [13 of 15] Compiling CommonMUnitTests
 [14 of 15] Compiling ActorStateUnitTests
 [15 of 15] Compiling Main
-[16 of 16] Linking /tmp/workdir-LambdaHack/LambdaHack-0.11.0.1/dist-newstyle/build/x86_64-linux/ghc-9.6.5/LambdaHack-0.11.0.1/t/test/build/test/test
+[16 of 16] Linking /tmp/workdir-LambdaHack/LambdaHack-0.11.0.1/dist-newstyle/build/x86_64-linux/ghc-9.10.2/LambdaHack-0.11.0.1/t/test/build/test/test
 Warning: LambdaHack.cabal:342:5: Inconsistent indentation. Indentation jumps
 at lines 342, 350, 353
 Configuring executable 'LambdaHack' for LambdaHack-0.11.0.1...
 Preprocessing executable 'LambdaHack' for LambdaHack-0.11.0.1...
 Building executable 'LambdaHack' for LambdaHack-0.11.0.1...
 [1 of 1] Compiling Main
-[2 of 2] Linking /tmp/workdir-LambdaHack/LambdaHack-0.11.0.1/dist-newstyle/build/x86_64-linux/ghc-9.6.5/LambdaHack-0.11.0.1/x/LambdaHack/build/LambdaHack/LambdaHack
+[2 of 2] Linking /tmp/workdir-LambdaHack/LambdaHack-0.11.0.1/dist-newstyle/build/x86_64-linux/ghc-9.10.2/LambdaHack-0.11.0.1/x/LambdaHack/build/LambdaHack/LambdaHack

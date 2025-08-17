@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - syb-0.7.2.4 (lib) (first run)
  - syb-0.7.2.4 (test:unit-tests) (first run)
@@ -12,6 +13,54 @@ Building library for syb-0.7.2.4...
 [ 5 of 16] Compiling Data.Generics.Schemes
 [ 6 of 16] Compiling Data.Generics.Text
 [ 7 of 16] Compiling Data.Generics.Twins
+src/Data/Generics/Twins.hs:224:17: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+224 |   perkid a d = (tail a, unGT (head a) d)
+    |                 ^^^^
+
+src/Data/Generics/Twins.hs:224:31: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+224 |   perkid a d = (tail a, unGT (head a) d)
+    |                               ^^^^
+
+src/Data/Generics/Twins.hs:237:17: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+237 |   perkid a d = (tail a, unGM (head a) d)
+    |                 ^^^^
+
+src/Data/Generics/Twins.hs:237:31: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+237 |   perkid a d = (tail a, unGM (head a) d)
+    |                               ^^^^
+
+src/Data/Generics/Twins.hs:249:17: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+249 |   perkid a d = (tail a, unGQ (head a) d)
+    |                 ^^^^
+
+src/Data/Generics/Twins.hs:249:31: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+249 |   perkid a d = (tail a, unGQ (head a) d)
+    |                               ^^^^
+
 [ 8 of 16] Compiling Data.Generics
 [ 9 of 16] Compiling Generics.SYB
 [10 of 16] Compiling Generics.SYB.Aliases
@@ -42,8 +91,32 @@ Building test suite 'unit-tests' for syb-0.7.2.4...
 [16 of 37] Compiling GShow2
 [17 of 37] Compiling GZip
 [18 of 37] Compiling GenUpTo
+tests/GenUpTo.hs:61:42: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+61 |      cons = dataTypeConstrs (dataTypeOf (head result))
+   |                                          ^^^^
+
+tests/GenUpTo.hs:78:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+78 |         ty = dataTypeOf (head result)
+   |                          ^^^^
+
 [19 of 37] Compiling GetC
 [20 of 37] Compiling HList
+tests/HList.hs:40:13: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+40 | tailHList = tail
+   |             ^^^^
+
 [21 of 37] Compiling HOPat
 [22 of 37] Compiling Labels
 [23 of 37] Compiling LocalQuantors
@@ -51,14 +124,62 @@ Building test suite 'unit-tests' for syb-0.7.2.4...
 [25 of 37] Compiling Newtype
 [26 of 37] Compiling Paradise
 [27 of 37] Compiling Perm
+tests/Perm.hs:47:36: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+47 |                         else Just (tail x, head x)
+   |                                    ^^^^
+
+tests/Perm.hs:47:44: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+47 |                         else Just (tail x, head x)
+   |                                            ^^^^
+
 [28 of 37] Compiling Polymatch
 [29 of 37] Compiling Reify
 [30 of 37] Compiling Strings
 [31 of 37] Compiling Tree
+tests/Tree.hs:49:28: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+49 |         perkid ts = const (tail ts, tree2data (head ts))
+   |                            ^^^^
+
+tests/Tree.hs:49:48: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+49 |         perkid ts = const (tail ts, tree2data (head ts))
+   |                                                ^^^^
+
 [32 of 37] Compiling Twin
 [33 of 37] Compiling Typecase1
 [34 of 37] Compiling Typecase2
 [35 of 37] Compiling Where
 [36 of 37] Compiling XML
+tests/XML.hs:159:36: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+159 |                         else Just (tail x, head x)
+    |                                    ^^^^
+
+tests/XML.hs:159:44: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+159 |                         else Just (tail x, head x)
+    |                                            ^^^^
+
 [37 of 37] Compiling Main
-[38 of 38] Linking /tmp/workdir-syb/syb-0.7.2.4/dist-newstyle/build/x86_64-linux/ghc-9.6.5/syb-0.7.2.4/t/unit-tests/build/unit-tests/unit-tests
+[38 of 38] Linking /tmp/workdir-syb/syb-0.7.2.4/dist-newstyle/build/x86_64-linux/ghc-9.10.2/syb-0.7.2.4/t/unit-tests/build/unit-tests/unit-tests

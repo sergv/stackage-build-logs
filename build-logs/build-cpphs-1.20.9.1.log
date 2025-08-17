@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - cpphs-1.20.9.1 (lib) (first run)
  - cpphs-1.20.9.1 (exe:cpphs) (first run)
@@ -7,14 +8,118 @@ Preprocessing library for cpphs-1.20.9.1...
 Building library for cpphs-1.20.9.1...
 [ 1 of 12] Compiling Language.Preprocessor.Cpphs.HashDefine
 [ 2 of 12] Compiling Language.Preprocessor.Cpphs.Options
+Language/Preprocessor/Cpphs/Options.hs:106:67: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+106 | rawOption ('-':'D':xs) = Just $ Macro (s, if null d then "1" else tail d)
+    |                                                                   ^^^^
+
 [ 3 of 12] Compiling Language.Preprocessor.Cpphs.Position
+Language/Preprocessor/Cpphs/Position.hs:90:56: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+90 |                                             ++unwords (tail (words line))
+   |                                                        ^^^^
+
 [ 4 of 12] Compiling Language.Preprocessor.Cpphs.ReadFirst
 [ 5 of 12] Compiling Language.Preprocessor.Cpphs.SymTab
+Language/Preprocessor/Cpphs/SymTab.hs:42:43: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+42 |                        else (Just . snd . head) vs
+   |                                           ^^^^
+
 [ 6 of 12] Compiling Language.Preprocessor.Cpphs.Tokenise
 [ 7 of 12] Compiling Language.Preprocessor.Unlit
 [ 8 of 12] Compiling TimeCompat
 [ 9 of 12] Compiling Language.Preprocessor.Cpphs.MacroPass
 [10 of 12] Compiling Language.Preprocessor.Cpphs.CppIfdef
+Language/Preprocessor/Cpphs/CppIfdef.hs:76:39: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+76 |         cmd = if null ws then "" else head ws
+   |                                       ^^^^
+
+Language/Preprocessor/Cpphs/CppIfdef.hs:77:40: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+77 |         line = if null ws then [] else tail ws
+   |                                        ^^^^
+
+Language/Preprocessor/Cpphs/CppIfdef.hs:78:42: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+78 |         sym  = if null line then "" else head line
+   |                                          ^^^^
+
+Language/Preprocessor/Cpphs/CppIfdef.hs:79:42: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+79 |         rest = if null line then [] else tail line
+   |                                          ^^^^
+
+Language/Preprocessor/Cpphs/CppIfdef.hs:100:45: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+100 |         "endif"  -> skipn syms False (Keep (tail ps)) xs
+    |                                             ^^^^
+
+Language/Preprocessor/Cpphs/CppIfdef.hs:124:47: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+124 |                     cpp (newpos (read n) (un (tail ws)) p)
+    |                                               ^^^^
+
+Language/Preprocessor/Cpphs/CppIfdef.hs:135:39: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+135 |         cmd = if null ws then "" else head ws
+    |                                       ^^^^
+
+Language/Preprocessor/Cpphs/CppIfdef.hs:139:38: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+139 |         dend     | n==1      = Keep (tail ps)
+    |                                      ^^^^
+
+Language/Preprocessor/Cpphs/CppIfdef.hs:140:46: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+140 |                  | otherwise = Drop (n-1) b (tail ps)
+    |                                              ^^^^
+
+Language/Preprocessor/Cpphs/CppIfdef.hs:152:72: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+152 |     else if cmd == "elif"  then do v <- gatherDefined p syms (unwords (tail ws))
+    |                                                                        ^^^^
+
 [11 of 12] Compiling Language.Preprocessor.Cpphs.RunCpphs
 [12 of 12] Compiling Language.Preprocessor.Cpphs
 Configuring executable 'cpphs' for cpphs-1.20.9.1...
@@ -22,15 +127,119 @@ Preprocessing executable 'cpphs' for cpphs-1.20.9.1...
 Building executable 'cpphs' for cpphs-1.20.9.1...
 [ 1 of 13] Compiling Language.Preprocessor.Cpphs.HashDefine
 [ 2 of 13] Compiling Language.Preprocessor.Cpphs.Options
+Language/Preprocessor/Cpphs/Options.hs:106:67: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+106 | rawOption ('-':'D':xs) = Just $ Macro (s, if null d then "1" else tail d)
+    |                                                                   ^^^^
+
 [ 3 of 13] Compiling Language.Preprocessor.Cpphs.Position
+Language/Preprocessor/Cpphs/Position.hs:90:56: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+90 |                                             ++unwords (tail (words line))
+   |                                                        ^^^^
+
 [ 4 of 13] Compiling Language.Preprocessor.Cpphs.ReadFirst
 [ 5 of 13] Compiling Language.Preprocessor.Cpphs.SymTab
+Language/Preprocessor/Cpphs/SymTab.hs:42:43: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+42 |                        else (Just . snd . head) vs
+   |                                           ^^^^
+
 [ 6 of 13] Compiling Language.Preprocessor.Cpphs.Tokenise
 [ 7 of 13] Compiling Language.Preprocessor.Unlit
 [ 8 of 13] Compiling TimeCompat
 [ 9 of 13] Compiling Language.Preprocessor.Cpphs.MacroPass
 [10 of 13] Compiling Language.Preprocessor.Cpphs.CppIfdef
+Language/Preprocessor/Cpphs/CppIfdef.hs:76:39: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+76 |         cmd = if null ws then "" else head ws
+   |                                       ^^^^
+
+Language/Preprocessor/Cpphs/CppIfdef.hs:77:40: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+77 |         line = if null ws then [] else tail ws
+   |                                        ^^^^
+
+Language/Preprocessor/Cpphs/CppIfdef.hs:78:42: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+78 |         sym  = if null line then "" else head line
+   |                                          ^^^^
+
+Language/Preprocessor/Cpphs/CppIfdef.hs:79:42: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+79 |         rest = if null line then [] else tail line
+   |                                          ^^^^
+
+Language/Preprocessor/Cpphs/CppIfdef.hs:100:45: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+100 |         "endif"  -> skipn syms False (Keep (tail ps)) xs
+    |                                             ^^^^
+
+Language/Preprocessor/Cpphs/CppIfdef.hs:124:47: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+124 |                     cpp (newpos (read n) (un (tail ws)) p)
+    |                                               ^^^^
+
+Language/Preprocessor/Cpphs/CppIfdef.hs:135:39: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+135 |         cmd = if null ws then "" else head ws
+    |                                       ^^^^
+
+Language/Preprocessor/Cpphs/CppIfdef.hs:139:38: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+139 |         dend     | n==1      = Keep (tail ps)
+    |                                      ^^^^
+
+Language/Preprocessor/Cpphs/CppIfdef.hs:140:46: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+140 |                  | otherwise = Drop (n-1) b (tail ps)
+    |                                              ^^^^
+
+Language/Preprocessor/Cpphs/CppIfdef.hs:152:72: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+152 |     else if cmd == "elif"  then do v <- gatherDefined p syms (unwords (tail ws))
+    |                                                                        ^^^^
+
 [11 of 13] Compiling Language.Preprocessor.Cpphs.RunCpphs
 [12 of 13] Compiling Language.Preprocessor.Cpphs
 [13 of 13] Compiling Main
-[14 of 14] Linking /tmp/workdir-cpphs/cpphs-1.20.9.1/dist-newstyle/build/x86_64-linux/ghc-9.6.5/cpphs-1.20.9.1/x/cpphs/build/cpphs/cpphs
+[14 of 14] Linking /tmp/workdir-cpphs/cpphs-1.20.9.1/dist-newstyle/build/x86_64-linux/ghc-9.10.2/cpphs-1.20.9.1/x/cpphs/build/cpphs/cpphs

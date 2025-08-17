@@ -1,0 +1,46 @@
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - rhine-1.5 (test:test) (ephemeral targets)
+Preprocessing test suite 'test' for rhine-1.5...
+Building test suite 'test' for rhine-1.5...
+Running 1 test suites...
+Test suite test: RUNNING...
+Main
+  Clock
+    Except
+      ExceptClock
+        Raises the exception in ExceptT on EOF:                                            OK
+      CatchClock
+        Outputs the exception of the second clock as well:                                 OK
+        Can recover from an exception:                                                     OK
+      DelayedClock
+        DelayException delays error by 1 step:                                             OK
+        DelayException throws error after 1 step:                                          OK
+      DelayException throws error after 1 step, but can write down results:                OK
+    Clock.FixedStep
+      Outputs linearly increasing ticks:                                                   OK
+      Outputs scheduled ticks in order:                                                    OK
+      Outputs scheduled ticks in order (mirrored):                                         OK
+      Resamples correctly:                                                                 OK
+    Millisecond
+      Outputs milliseconds chronologically:                                                OK
+      Schedules chronologically:                                                           OK (0.10s)
+  Except
+    Can raise and catch an exception:                                                      OK
+    Can raise and catch very many exceptions without steps in between:                     OK (0.05s)
+    Can raise, catch, and keep very many exceptions without steps in between:              OK
+    Can raise, catch, and keep very many exceptions without steps in between, using Monad: OK
+  Schedule
+    scheduleList
+      schedule waits chronologically:                                                      OK
+      schedule waits chronologically (mirrored):                                           OK
+    runningSchedule
+      chronological ticks:                                                                 OK
+    ParallelClock
+      chronological ticks:                                                                 OK
+
+All 20 tests passed (0.16s)
+Test suite test: PASS
+Test suite logged to:
+/tmp/workdir-rhine/rhine-1.5/dist-newstyle/build/x86_64-linux/ghc-9.10.2/rhine-1.5/t/test/test/rhine-1.5-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - FenwickTree-0.1.2.1 (lib) (first run)
  - FenwickTree-0.1.2.1 (test:test_FenwickTree) (first run)
@@ -8,17 +9,56 @@ Configuring library for FenwickTree-0.1.2.1...
 Preprocessing library for FenwickTree-0.1.2.1...
 Building library for FenwickTree-0.1.2.1...
 [1 of 1] Compiling Data.Tree.Fenwick
+Data/Tree/Fenwick.hs:159:15: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+159 |     a       = head rest
+    |               ^^^^
+
+Data/Tree/Fenwick.hs:160:15: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+160 |     lsRight = tail rest
+    |               ^^^^
+
 Warning: FenwickTree.cabal:32:3: The field "other-extensions" is available
 only since the Cabal specification version 1.10.
 Configuring test suite 'test_FenwickTree' for FenwickTree-0.1.2.1...
 Preprocessing test suite 'test_FenwickTree' for FenwickTree-0.1.2.1...
 Building test suite 'test_FenwickTree' for FenwickTree-0.1.2.1...
-
 <no location info>: warning: [GHC-32850] [-Wmissing-home-modules]
     These modules are needed for compilation but not listed in your .cabal file's other-modules for ‘FenwickTree-0.1.2.1-inplace-test_FenwickTree’ :
         Data.Tree.Fenwick
+
 [1 of 2] Compiling Data.Tree.Fenwick
+Data/Tree/Fenwick.hs:159:15: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+159 |     a       = head rest
+    |               ^^^^
+
+Data/Tree/Fenwick.hs:160:15: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+160 |     lsRight = tail rest
+    |               ^^^^
+
 [2 of 2] Compiling Main
+tests/test_Fenwick.hs:61:53: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+61 | prop_freqList ls = toFreqList (mkTree uls) ==~ zip (tail $ scanl (\a b -> snd b + a) 0.0 uls) uls
+   |                                                     ^^^^
 
 tests/test_Fenwick.hs:101:9: warning: [GHC-39584]
     Name prop_freqList_invQuery found in source file but was not in scope
@@ -71,4 +111,5 @@ tests/test_Fenwick.hs:101:9: warning: [GHC-39584]
 <no location info>: warning: [GHC-32850] [-Wmissing-home-modules]
     These modules are needed for compilation but not listed in your .cabal file's other-modules for ‘FenwickTree-0.1.2.1-inplace-test_FenwickTree’ :
         Data.Tree.Fenwick
-[3 of 3] Linking /tmp/workdir-FenwickTree/FenwickTree-0.1.2.1/dist-newstyle/build/x86_64-linux/ghc-9.6.5/FenwickTree-0.1.2.1/t/test_FenwickTree/build/test_FenwickTree/test_FenwickTree
+
+[3 of 3] Linking /tmp/workdir-FenwickTree/FenwickTree-0.1.2.1/dist-newstyle/build/x86_64-linux/ghc-9.10.2/FenwickTree-0.1.2.1/t/test_FenwickTree/build/test_FenwickTree/test_FenwickTree

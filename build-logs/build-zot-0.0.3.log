@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - zot-0.0.3 (exe:zot) (first run)
 Warning: zot.cabal:43:29: version operators used. To use version operators the
@@ -8,6 +9,13 @@ Preprocessing executable 'zot' for zot-0.0.3...
 Building executable 'zot' for zot-0.0.3...
 [1 of 8] Compiling Parse
 [2 of 8] Compiling LambdaToSki
+src/LambdaToSki.hs:49:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+49 | readLambda = fst . fst . head . ( parseLambda >*> eof ) . lexer
+   |                          ^^^^
 
 src/LambdaToSki.hs:59:19: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
@@ -22,9 +30,25 @@ src/LambdaToSki.hs:59:19: warning: [GHC-62161] [-Wincomplete-uni-patterns]
    |
 59 |         `build` ( \( "\\", ( ps, ( "->", e ) ) ) -> makeFun ps e )
    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/LambdaToSki.hs:62:32: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+62 | parseAtom = ( spot ( isLower . head ) `build` Var ) `alt` parseParens
+   |                                ^^^^
+
+src/LambdaToSki.hs:68:40: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+68 | parseParams = list1 $ spot $ isLower . head
+   |                                        ^^^^
+
 [3 of 8] Compiling SKI
 [4 of 8] Compiling SkiToLambda
-
 src/SkiToLambda.hs:61:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -36,15 +60,25 @@ src/SkiToLambda.hs:61:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
    |
 61 |         [ ( fx, x ), ( fy, y ), ( fz, z ) ] =
    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
 [5 of 8] Compiling SkiToZot
 [6 of 8] Compiling Zot
 [7 of 8] Compiling ZotToSki
-[8 of 8] Compiling Main
+src/ZotToSki.hs:9:18: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+  |
+9 | zotToSKI = fst . head . ( parseZot >*> eof `build` fst )
+  |                  ^^^^
 
-src/zot.hs:14:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+[8 of 8] Compiling Main
+src/zot.hs:14:15: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
-    In a pattern binding: Patterns of type ‘[String]’ not matched: []
+    In an irrefutable pattern:
+        Patterns of type ‘[String]’ not matched: []
    |
 14 |         ca@( ~( cmd : args ) ) <- getArgs
-   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[9 of 9] Linking /tmp/workdir-zot/zot-0.0.3/dist-newstyle/build/x86_64-linux/ghc-9.6.5/zot-0.0.3/build/zot/zot
+   |               ^^^^^^^^^^^^^^
+
+[9 of 9] Linking /tmp/workdir-zot/zot-0.0.3/dist-newstyle/build/x86_64-linux/ghc-9.10.2/zot-0.0.3/build/zot/zot

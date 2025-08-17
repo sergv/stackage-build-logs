@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - vinyl-0.14.3 (lib) (first run)
  - vinyl-0.14.3 (test:spec) (first run)
@@ -8,7 +9,6 @@ Preprocessing library for vinyl-0.14.3...
 Building library for vinyl-0.14.3...
 [ 1 of 19] Compiling Data.Vinyl.ARec.Internal.SmallArray
 [ 2 of 19] Compiling Data.Vinyl.TypeLevel
-
 Data/Vinyl/TypeLevel.hs:82:31: warning: [GHC-39567] [-Wstar-is-type]
     Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
     relies on the StarIsType extension, which will become
@@ -26,8 +26,8 @@ Data/Vinyl/TypeLevel.hs:82:52: warning: [GHC-39567] [-Wstar-is-type]
    |
 82 | type family RecAll (f :: u -> *) (rs :: [u]) (c :: * -> Constraint) :: Constraint where
    |                                                    ^
-[ 3 of 19] Compiling Data.Vinyl.Functor
 
+[ 3 of 19] Compiling Data.Vinyl.Functor
 Data/Vinyl/Functor.hs:76:32: warning: [GHC-39567] [-Wstar-is-type]
     Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
     relies on the StarIsType extension, which will become
@@ -46,12 +46,13 @@ Data/Vinyl/Functor.hs:79:28: warning: [GHC-39567] [-Wstar-is-type]
 79 | newtype Compose (f :: l -> *) (g :: k -> l) (x :: k)
    |                            ^
 
-Data/Vinyl/Functor.hs:88:3: warning: [-Wnoncanonical-monoid-instances]
+Data/Vinyl/Functor.hs:88:3: warning: [GHC-50928] [-Wnoncanonical-monoid-instances]
     Noncanonical ‘mappend’ definition detected
     in the instance declaration for ‘Monoid (Compose f g a)’.
     ‘mappend’ will eventually be removed in favour of ‘(<>)’
-    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    Suggested fix:
+      Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
    |
 88 |   mappend (Compose x) (Compose y) = Compose (mappend x y)
    |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -65,37 +66,40 @@ Data/Vinyl/Functor.hs:99:21: warning: [GHC-39567] [-Wstar-is-type]
 99 | newtype Const (a :: *) (b :: k)
    |                     ^
 
-Data/Vinyl/Functor.hs:137:3: warning: [-Wnoncanonical-monoid-instances]
+Data/Vinyl/Functor.hs:137:3: warning: [GHC-50928] [-Wnoncanonical-monoid-instances]
     Noncanonical ‘mappend’ definition detected
     in the instance declaration for ‘Monoid (ElField '(s, t))’.
     ‘mappend’ will eventually be removed in favour of ‘(<>)’
-    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    Suggested fix:
+      Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
     |
 137 |   mappend (Field x) (Field y) = Field (mappend x y)
     |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Data/Vinyl/Functor.hs:200:3: warning: [-Wnoncanonical-monad-instances]
+Data/Vinyl/Functor.hs:200:3: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad Identity’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 200 |   return = Identity
     |   ^^^^^^^^^^^^^^^^^
 
-Data/Vinyl/Functor.hs:211:3: warning: [-Wnoncanonical-monad-instances]
+Data/Vinyl/Functor.hs:211:3: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad Thunk’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 211 |   return = Thunk
     |   ^^^^^^^^^^^^^^
-[ 4 of 19] Compiling Data.Vinyl.Core
 
+[ 4 of 19] Compiling Data.Vinyl.Core
 Data/Vinyl/Core.hs:64:19: warning: [GHC-39567] [-Wstar-is-type]
     Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
     relies on the StarIsType extension, which will become
@@ -114,22 +118,24 @@ Data/Vinyl/Core.hs:64:32: warning: [GHC-39567] [-Wstar-is-type]
 64 | data Rec :: (u -> *) -> [u] -> * where
    |                                ^
 
-Data/Vinyl/Core.hs:349:3: warning: [-Wnoncanonical-monoid-instances]
+Data/Vinyl/Core.hs:349:3: warning: [GHC-50928] [-Wnoncanonical-monoid-instances]
     Noncanonical ‘mappend’ definition detected
     in the instance declaration for ‘Monoid (Rec f '[])’.
     ‘mappend’ will eventually be removed in favour of ‘(<>)’
-    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    Suggested fix:
+      Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
     |
 349 |   RNil `mappend` RNil = RNil
     |   ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Data/Vinyl/Core.hs:353:3: warning: [-Wnoncanonical-monoid-instances]
+Data/Vinyl/Core.hs:353:3: warning: [GHC-50928] [-Wnoncanonical-monoid-instances]
     Noncanonical ‘mappend’ definition detected
     in the instance declaration for ‘Monoid (Rec f (r ': rs))’.
     ‘mappend’ will eventually be removed in favour of ‘(<>)’
-    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    Suggested fix:
+      Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
     |
 353 |   (x :& xs) `mappend` (y :& ys) = (mappend x y) :& (mappend xs ys)
     |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -151,8 +157,8 @@ Data/Vinyl/Core.hs:423:64: warning: [GHC-39567] [-Wstar-is-type]
     |
 423 | type family AllRepsMatch_ (f :: j -> *) (xs :: [j]) (g :: k -> *) (ys :: [k]) :: Constraint where
     |                                                                ^
-[ 5 of 19] Compiling Data.Vinyl.Recursive
 
+[ 5 of 19] Compiling Data.Vinyl.Recursive
 Data/Vinyl/Recursive.hs:150:43: warning: [GHC-39567] [-Wstar-is-type]
     Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
     relies on the StarIsType extension, which will become
@@ -179,8 +185,8 @@ Data/Vinyl/Recursive.hs:160:42: warning: [GHC-39567] [-Wstar-is-type]
     |
 160 | rpureConstraints :: forall cs (f :: * -> *) proxy ts. (AllAllSat cs ts, RecApplicative ts)
     |                                          ^
-[ 6 of 19] Compiling Data.Vinyl.Lens
 
+[ 6 of 19] Compiling Data.Vinyl.Lens
 Data/Vinyl/Lens.hs:49:31: warning: [GHC-39567] [-Wstar-is-type]
     Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
     relies on the StarIsType extension, which will become
@@ -216,9 +222,9 @@ Data/Vinyl/Lens.hs:154:40: warning: [GHC-39567] [-Wstar-is-type]
     |
 154 |   type RecSubsetFCtx record (f :: k -> *) :: Constraint
     |                                        ^
+
 [ 7 of 19] Compiling Data.Vinyl.Tutorial.Overview
 [ 8 of 19] Compiling Data.Vinyl.SRec
-
 Data/Vinyl/SRec.hs:135:26: warning: [GHC-39567] [-Wstar-is-type]
     Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
     relies on the StarIsType extension, which will become
@@ -299,9 +305,9 @@ Data/Vinyl/SRec.hs:348:38: warning: [GHC-39567] [-Wstar-is-type]
     |
 348 | srecSetSubset :: forall u (f :: u -> *) (ss :: [u]) (rs :: [u]).
     |                                      ^
+
 [ 9 of 19] Compiling Data.Vinyl.Notation
 [10 of 19] Compiling Data.Vinyl.ARec.Internal
-
 Data/Vinyl/ARec/Internal.hs:73:25: warning: [GHC-39567] [-Wstar-is-type]
     Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
     relies on the StarIsType extension, which will become
@@ -319,9 +325,9 @@ Data/Vinyl/ARec/Internal.hs:78:28: warning: [GHC-39567] [-Wstar-is-type]
    |
 78 |   :: forall a k (f :: k -> *) (ts :: [k]).
    |                            ^
+
 [11 of 19] Compiling Data.Vinyl.ARec
 [12 of 19] Compiling Data.Vinyl.Derived
-
 Data/Vinyl/Derived.hs:74:55: warning: [GHC-39567] [-Wstar-is-type]
     Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
     relies on the StarIsType extension, which will become
@@ -330,9 +336,9 @@ Data/Vinyl/Derived.hs:74:55: warning: [GHC-39567] [-Wstar-is-type]
    |
 74 | (=:) :: KnownSymbol l => Label (l :: Symbol) -> (v :: *) -> ElField (l ::: v)
    |                                                       ^
+
 [13 of 19] Compiling Data.Vinyl.Syntax
 [14 of 19] Compiling Data.Vinyl.CoRec
-
 Data/Vinyl/CoRec.hs:27:21: warning: [GHC-39567] [-Wstar-is-type]
     Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
     relies on the StarIsType extension, which will become
@@ -350,8 +356,8 @@ Data/Vinyl/CoRec.hs:27:34: warning: [GHC-39567] [-Wstar-is-type]
    |
 27 | data CoRec :: (k -> *) -> [k] -> * where
    |                                  ^
-[15 of 19] Compiling Data.Vinyl.Class.Method
 
+[15 of 19] Compiling Data.Vinyl.Class.Method
 Data/Vinyl/Class/Method.hs:143:59: warning: [GHC-39567] [-Wstar-is-type]
     Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
     relies on the StarIsType extension, which will become
@@ -378,6 +384,7 @@ Data/Vinyl/Class/Method.hs:158:39: warning: [GHC-39567] [-Wstar-is-type]
     |
 158 | type family PayloadType f (a :: u) :: * where
     |                                       ^
+
 [16 of 19] Compiling Data.Vinyl.XRec
 [17 of 19] Compiling Data.Vinyl.FromTuple
 [18 of 19] Compiling Data.Vinyl
@@ -386,7 +393,6 @@ Configuring test suite 'spec' for vinyl-0.14.3...
 Preprocessing test suite 'spec' for vinyl-0.14.3...
 Building test suite 'spec' for vinyl-0.14.3...
 [1 of 4] Compiling CoRecSpec
-
 tests/CoRecSpec.hs:50:50: warning: [GHC-83865] [-Wdeferred-type-errors]
     • Couldn't match type: '[Int]
                      with: '[]
@@ -405,12 +411,13 @@ tests/CoRecSpec.hs:50:50: warning: [GHC-83865] [-Wdeferred-type-errors]
    |
 50 |       in shouldNotTypecheck (either id matchNil (handlers x))
    |                                                  ^^^^^^^^^^
+
 [2 of 4] Compiling Test.ARec
 [3 of 4] Compiling XRecSpec
 [4 of 4] Compiling Main
-[5 of 5] Linking /tmp/workdir-vinyl/vinyl-0.14.3/dist-newstyle/build/x86_64-linux/ghc-9.6.5/vinyl-0.14.3/t/spec/build/spec/spec
+[5 of 5] Linking /tmp/workdir-vinyl/vinyl-0.14.3/dist-newstyle/build/x86_64-linux/ghc-9.10.2/vinyl-0.14.3/t/spec/build/spec/spec
 Configuring test suite 'aeson' for vinyl-0.14.3...
 Preprocessing test suite 'aeson' for vinyl-0.14.3...
 Building test suite 'aeson' for vinyl-0.14.3...
 [1 of 1] Compiling Main
-[2 of 2] Linking /tmp/workdir-vinyl/vinyl-0.14.3/dist-newstyle/build/x86_64-linux/ghc-9.6.5/vinyl-0.14.3/t/aeson/build/aeson/aeson
+[2 of 2] Linking /tmp/workdir-vinyl/vinyl-0.14.3/dist-newstyle/build/x86_64-linux/ghc-9.10.2/vinyl-0.14.3/t/aeson/build/aeson/aeson

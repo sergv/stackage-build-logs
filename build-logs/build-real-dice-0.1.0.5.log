@@ -1,0 +1,146 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - real-dice-0.1.0.5 (lib) (first run)
+ - real-dice-0.1.0.5 (test:real-dice-test) (first run)
+ - real-dice-0.1.0.5 (exe:real-dice) (first run)
+Configuring library for real-dice-0.1.0.5...
+Preprocessing library for real-dice-0.1.0.5...
+Building library for real-dice-0.1.0.5...
+[ 1 of 16] Compiling RealDice.Convert.BinaryString
+[ 2 of 16] Compiling RealDice.Convert.CSV
+[ 3 of 16] Compiling RealDice.Convert
+[ 4 of 16] Compiling RealDice.Generate.BalancedTables
+[ 5 of 16] Compiling RealDice.Generate.PseudoRandomizedInts
+[ 6 of 16] Compiling RealDice.Manipulate.GetValueFromRNGTable
+[ 7 of 16] Compiling RealDice.Coin
+[ 8 of 16] Compiling RealDice.Manipulate.RandomizeList
+src/RealDice/Manipulate/RandomizeList.hs:49:10: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+49 |         (head l : l')
+   |          ^^^^
+
+src/RealDice/Manipulate/RandomizeList.hs:54:17: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+54 |         (l' ++ [head l])
+   |                 ^^^^
+
+[ 9 of 16] Compiling RealDice.Manipulate
+[10 of 16] Compiling RealDice.Die
+[11 of 16] Compiling RealDice.RNG
+[12 of 16] Compiling RealDice.Util.Prime
+[13 of 16] Compiling RealDice.Util
+[14 of 16] Compiling RealDice.Generate.RawData
+[15 of 16] Compiling RealDice.Generate
+[16 of 16] Compiling RealDice
+Configuring test suite 'real-dice-test' for real-dice-0.1.0.5...
+Preprocessing test suite 'real-dice-test' for real-dice-0.1.0.5...
+Building test suite 'real-dice-test' for real-dice-0.1.0.5...
+[1 of 6] Compiling RealDice.CoinSpec
+[2 of 6] Compiling RealDice.DieSpec
+test/RealDice/DieSpec.hs:34:9: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+34 |     ==> head (generateRolls n)
+   |         ^^^^
+
+test/RealDice/DieSpec.hs:35:17: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+35 |       `notElem` tail (generateRolls n)
+   |                 ^^^^
+
+test/RealDice/DieSpec.hs:38:44: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+38 | returns_0_for_inputs_under_1 n = n < 1 ==> head (generateRolls n) == 0
+   |                                            ^^^^
+
+[3 of 6] Compiling RealDice.RNGSpec
+test/RealDice/RNGSpec.hs:39:5: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+39 |     head (generateRandomNumbers n) `notElem` tail (generateRandomNumbers n)
+   |     ^^^^
+
+test/RealDice/RNGSpec.hs:39:46: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+39 |     head (generateRandomNumbers n) `notElem` tail (generateRandomNumbers n)
+   |                                              ^^^^
+
+test/RealDice/RNGSpec.hs:56:5: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+56 |     head (generateRandomFloats n) `notElem` tail (generateRandomFloats n)
+   |     ^^^^
+
+test/RealDice/RNGSpec.hs:56:45: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+56 |     head (generateRandomFloats n) `notElem` tail (generateRandomFloats n)
+   |                                             ^^^^
+
+test/RealDice/RNGSpec.hs:78:5: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+78 |     head (generateRandomDoubles n) `notElem` tail (generateRandomDoubles n)
+   |     ^^^^
+
+test/RealDice/RNGSpec.hs:78:46: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+78 |     head (generateRandomDoubles n) `notElem` tail (generateRandomDoubles n)
+   |                                              ^^^^
+
+[4 of 6] Compiling RealDice.Util.PrimeSpec
+test/RealDice/Util/PrimeSpec.hs:27:17: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+27 |   n > 1 ==> n < head (filter isPrime [result + 1, result + 2 ..])
+   |                 ^^^^
+
+test/RealDice/Util/PrimeSpec.hs:35:38: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+35 |     greatestPrimeNotGreaterThan n == head (filter isPrime [n, n - 1 ..])
+   |                                      ^^^^
+
+[5 of 6] Compiling TestCheck
+[6 of 6] Compiling Main
+[7 of 7] Linking /tmp/workdir-real-dice/real-dice-0.1.0.5/dist-newstyle/build/x86_64-linux/ghc-9.10.2/real-dice-0.1.0.5/t/real-dice-test/build/real-dice-test/real-dice-test
+Configuring executable 'real-dice' for real-dice-0.1.0.5...
+Preprocessing executable 'real-dice' for real-dice-0.1.0.5...
+Building executable 'real-dice' for real-dice-0.1.0.5...
+[1 of 3] Compiling StdGenRandomize
+[2 of 3] Compiling Generate
+[3 of 3] Compiling Main
+[4 of 4] Linking /tmp/workdir-real-dice/real-dice-0.1.0.5/dist-newstyle/build/x86_64-linux/ghc-9.10.2/real-dice-0.1.0.5/x/real-dice/build/real-dice/real-dice

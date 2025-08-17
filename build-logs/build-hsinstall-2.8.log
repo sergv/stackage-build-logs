@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - hsinstall-2.8 (lib) (first run)
  - hsinstall-2.8 (exe:hsinstall) (first run)
@@ -6,6 +7,14 @@ Configuring library for hsinstall-2.8...
 Preprocessing library for hsinstall-2.8...
 Building library for hsinstall-2.8...
 [1 of 2] Compiling HSInstall.Paths
+src/lib/HSInstall/Paths.hs:45:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+45 | stripVersion = reverse . tail . dropWhile (/= '-') . reverse
+   |                          ^^^^
+
 [2 of 2] Compiling Paths_hsinstall
 Configuring executable 'hsinstall' for hsinstall-2.8...
 Preprocessing executable 'hsinstall' for hsinstall-2.8...
@@ -15,8 +24,7 @@ Building executable 'hsinstall' for hsinstall-2.8...
 [3 of 9] Compiling Paths_hsinstall
 [4 of 9] Compiling HSInstall.Common
 [5 of 9] Compiling HSInstall.Opts
-
-src/app/HSInstall/Opts.hs:22:1: warning: [-Wdeprecations]
+src/app/HSInstall/Opts.hs:22:1: warning: [GHC-15328] [-Wdeprecations]
     Module ‘Text.PrettyPrint.ANSI.Leijen’ is deprecated:
       "Compatibility module for users of ansi-wl-pprint - use \"Prettyprinter\" instead"
    |
@@ -30,8 +38,9 @@ src/app/HSInstall/Opts.hs:102:30: warning: [GHC-68441] [-Wdeprecations]
     |
 102 | footer' = footerDoc . Just . string . printf content . showVersion $ version
     |                              ^^^^^^
+
 [6 of 9] Compiling HSInstall.Build
 [7 of 9] Compiling HSInstall.DeploymentInfo
 [8 of 9] Compiling HSInstall.AppImage
 [9 of 9] Compiling Main
-[10 of 10] Linking /tmp/workdir-hsinstall/hsinstall-2.8/dist-newstyle/build/x86_64-linux/ghc-9.6.5/hsinstall-2.8/x/hsinstall/build/hsinstall/hsinstall
+[10 of 10] Linking /tmp/workdir-hsinstall/hsinstall-2.8/dist-newstyle/build/x86_64-linux/ghc-9.10.2/hsinstall-2.8/x/hsinstall/build/hsinstall/hsinstall

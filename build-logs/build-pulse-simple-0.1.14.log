@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - pulse-simple-0.1.14 (lib:pulse-simple) (first run)
 Warning: pulse-simple.cabal:20:32: version operators used. To use version
@@ -7,7 +8,6 @@ Configuring pulse-simple-0.1.14...
 Preprocessing library for pulse-simple-0.1.14...
 Building library for pulse-simple-0.1.14...
 [1 of 1] Compiling Sound.Pulse.Simple
-
 Sound/Pulse/Simple.hsc:137:10: warning: [GHC-06201] [-Wmissing-methods]
     • No explicit implementation for
         either ‘peek’ or ‘peekElemOff’ or ‘peekByteOff’
@@ -31,3 +31,12 @@ Sound/Pulse/Simple.hsc:184:10: warning: [GHC-06201] [-Wmissing-methods]
     |
 184 | instance Storable BufferAttr where
     |          ^^^^^^^^^^^^^^^^^^^
+
+Sound/Pulse/Simple.hsc:250:39: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+250 |         size=fromIntegral $ n*sizeOf (head xs)
+    |                                       ^^^^
+

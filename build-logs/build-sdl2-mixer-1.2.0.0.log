@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - sdl2-mixer-1.2.0.0 (lib) (first run)
  - sdl2-mixer-1.2.0.0 (exe:sdl2-mixer-music) (first run)
@@ -11,8 +12,23 @@ Preprocessing library for sdl2-mixer-1.2.0.0...
 Building library for sdl2-mixer-1.2.0.0...
 [1 of 4] Compiling Paths_sdl2_mixer
 [2 of 4] Compiling SDL.Raw.Helper
-[3 of 4] Compiling SDL.Raw.Mixer
+src/SDL/Raw/Helper.hs:92:22: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+92 | applyTo f es = loop (tail es) . AppE (VarE f) $ head es
+   |                      ^^^^
 
+src/SDL/Raw/Helper.hs:92:49: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+92 | applyTo f es = loop (tail es) . AppE (VarE f) $ head es
+   |                                                 ^^^^
+
+[3 of 4] Compiling SDL.Raw.Mixer
 src/SDL/Raw/Mixer.hsc:185:1: warning: [GHC-38417] [-Wmissing-exported-pattern-synonym-signatures]
     Pattern synonym with no type signature:
       pattern SDL_MIXER_MAJOR_VERSION :: forall {a}. (Eq a, Num a) => a
@@ -320,8 +336,8 @@ src/SDL/Raw/Mixer.hsc:473:1: warning: [GHC-38417] [-Wmissing-kind-signatures]
     |
 473 | type EffectFinished = Channel -> Ptr () -> IO ()
     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[4 of 4] Compiling SDL.Mixer
 
+[4 of 4] Compiling SDL.Mixer
 src/SDL/Mixer.hs:223:1: warning: [GHC-38417] [-Wmissing-kind-signatures]
     Top-level type constructor with no standalone kind signature or CUSK:
       type InitFlag :: *
@@ -461,33 +477,50 @@ src/SDL/Mixer.hs:1077:1: warning: [GHC-38417] [-Wmissing-kind-signatures]
      |
 1077 | type EffectFinished = Channel -> IO ()
      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Configuring executable 'sdl2-mixer-music' for sdl2-mixer-1.2.0.0...
 Preprocessing executable 'sdl2-mixer-music' for sdl2-mixer-1.2.0.0...
 Building executable 'sdl2-mixer-music' for sdl2-mixer-1.2.0.0...
 [1 of 2] Compiling Main
+examples/Music/Main.hs:18:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+18 |       xs -> runExample $ head xs
+   |                          ^^^^
+
 [2 of 2] Compiling Paths_sdl2_mixer
-[3 of 3] Linking /tmp/workdir-sdl2-mixer/sdl2-mixer-1.2.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/sdl2-mixer-1.2.0.0/x/sdl2-mixer-music/build/sdl2-mixer-music/sdl2-mixer-music
+[3 of 3] Linking /tmp/workdir-sdl2-mixer/sdl2-mixer-1.2.0.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/sdl2-mixer-1.2.0.0/x/sdl2-mixer-music/build/sdl2-mixer-music/sdl2-mixer-music
 Configuring executable 'sdl2-mixer-effect' for sdl2-mixer-1.2.0.0...
 Preprocessing executable 'sdl2-mixer-effect' for sdl2-mixer-1.2.0.0...
 Building executable 'sdl2-mixer-effect' for sdl2-mixer-1.2.0.0...
 [1 of 2] Compiling Main
+examples/Effect/Main.hs:21:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+21 |       xs -> runExample $ head xs
+   |                          ^^^^
+
 [2 of 2] Compiling Paths_sdl2_mixer
-[3 of 3] Linking /tmp/workdir-sdl2-mixer/sdl2-mixer-1.2.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/sdl2-mixer-1.2.0.0/x/sdl2-mixer-effect/build/sdl2-mixer-effect/sdl2-mixer-effect
+[3 of 3] Linking /tmp/workdir-sdl2-mixer/sdl2-mixer-1.2.0.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/sdl2-mixer-1.2.0.0/x/sdl2-mixer-effect/build/sdl2-mixer-effect/sdl2-mixer-effect
 Configuring executable 'sdl2-mixer-basic-raw' for sdl2-mixer-1.2.0.0...
 Preprocessing executable 'sdl2-mixer-basic-raw' for sdl2-mixer-1.2.0.0...
 Building executable 'sdl2-mixer-basic-raw' for sdl2-mixer-1.2.0.0...
 [1 of 2] Compiling Main
 [2 of 2] Compiling Paths_sdl2_mixer
-[3 of 3] Linking /tmp/workdir-sdl2-mixer/sdl2-mixer-1.2.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/sdl2-mixer-1.2.0.0/x/sdl2-mixer-basic-raw/build/sdl2-mixer-basic-raw/sdl2-mixer-basic-raw
+[3 of 3] Linking /tmp/workdir-sdl2-mixer/sdl2-mixer-1.2.0.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/sdl2-mixer-1.2.0.0/x/sdl2-mixer-basic-raw/build/sdl2-mixer-basic-raw/sdl2-mixer-basic-raw
 Configuring executable 'sdl2-mixer-basic-jumbled' for sdl2-mixer-1.2.0.0...
 Preprocessing executable 'sdl2-mixer-basic-jumbled' for sdl2-mixer-1.2.0.0...
 Building executable 'sdl2-mixer-basic-jumbled' for sdl2-mixer-1.2.0.0...
 [1 of 2] Compiling Main
 [2 of 2] Compiling Paths_sdl2_mixer
-[3 of 3] Linking /tmp/workdir-sdl2-mixer/sdl2-mixer-1.2.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/sdl2-mixer-1.2.0.0/x/sdl2-mixer-basic-jumbled/build/sdl2-mixer-basic-jumbled/sdl2-mixer-basic-jumbled
+[3 of 3] Linking /tmp/workdir-sdl2-mixer/sdl2-mixer-1.2.0.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/sdl2-mixer-1.2.0.0/x/sdl2-mixer-basic-jumbled/build/sdl2-mixer-basic-jumbled/sdl2-mixer-basic-jumbled
 Configuring executable 'sdl2-mixer-basic' for sdl2-mixer-1.2.0.0...
 Preprocessing executable 'sdl2-mixer-basic' for sdl2-mixer-1.2.0.0...
 Building executable 'sdl2-mixer-basic' for sdl2-mixer-1.2.0.0...
 [1 of 2] Compiling Main
 [2 of 2] Compiling Paths_sdl2_mixer
-[3 of 3] Linking /tmp/workdir-sdl2-mixer/sdl2-mixer-1.2.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/sdl2-mixer-1.2.0.0/x/sdl2-mixer-basic/build/sdl2-mixer-basic/sdl2-mixer-basic
+[3 of 3] Linking /tmp/workdir-sdl2-mixer/sdl2-mixer-1.2.0.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/sdl2-mixer-1.2.0.0/x/sdl2-mixer-basic/build/sdl2-mixer-basic/sdl2-mixer-basic

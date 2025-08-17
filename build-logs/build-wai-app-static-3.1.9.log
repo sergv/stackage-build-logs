@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - wai-app-static-3.1.9 (lib) (first run)
  - wai-app-static-3.1.9 (exe:warp) (first run)
@@ -10,16 +11,55 @@ Building library for wai-app-static-3.1.9...
 [2 of 9] Compiling Util
 [3 of 9] Compiling WaiAppStatic.Listing
 [4 of 9] Compiling WaiAppStatic.Storage.Filesystem
+WaiAppStatic/Storage/Filesystem.hs:20:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.List’ is redundant
+      except perhaps to import instances from ‘Data.List’
+    To import instances alone, use: import Data.List()
+   |
+20 | import Data.List (foldl')
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [5 of 9] Compiling WaiAppStatic.Storage.Embedded.TH
 [6 of 9] Compiling WaiAppStatic.Storage.Embedded.Runtime
+WaiAppStatic/Storage/Embedded/Runtime.hs:87:33: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+87 |         next = map (\(x, y) -> (head x, (tail x, y))) orig
+   |                                 ^^^^
+
+WaiAppStatic/Storage/Embedded/Runtime.hs:87:42: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+87 |         next = map (\(x, y) -> (head x, (tail x, y))) orig
+   |                                          ^^^^
+
+WaiAppStatic/Storage/Embedded/Runtime.hs:91:30: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+91 |         hoisted = map (fst . head &&& map snd) grouped
+   |                              ^^^^
+
 [7 of 9] Compiling WaiAppStatic.Storage.Embedded
 [8 of 9] Compiling Network.Wai.Application.Static
 [9 of 9] Compiling WaiAppStatic.CmdLine
+WaiAppStatic/CmdLine.hs:135:18: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘def’ (imported from Network.Wai.Middleware.Gzip):
+    Deprecated: "Please use 'defaultGzipSettings'. 'def' and the Default instance will be removed in a future major update."
+    |
+135 |             gzip def{gzipFiles = GzipCompress}
+    |                  ^^^
+
 Configuring executable 'warp' for wai-app-static-3.1.9...
 Preprocessing executable 'warp' for wai-app-static-3.1.9...
 Building executable 'warp' for wai-app-static-3.1.9...
 [1 of 1] Compiling Main
-[2 of 2] Linking /tmp/workdir-wai-app-static/wai-app-static-3.1.9/dist-newstyle/build/x86_64-linux/ghc-9.6.5/wai-app-static-3.1.9/x/warp/build/warp/warp
+[2 of 2] Linking /tmp/workdir-wai-app-static/wai-app-static-3.1.9/dist-newstyle/build/x86_64-linux/ghc-9.10.2/wai-app-static-3.1.9/x/warp/build/warp/warp
 Configuring test suite 'runtests' for wai-app-static-3.1.9...
 Preprocessing test suite 'runtests' for wai-app-static-3.1.9...
 Building test suite 'runtests' for wai-app-static-3.1.9...
@@ -27,4 +67,4 @@ Building test suite 'runtests' for wai-app-static-3.1.9...
 [2 of 4] Compiling WaiAppEmbeddedTest
 [3 of 4] Compiling WaiAppStaticTest
 [4 of 4] Compiling Main
-[5 of 5] Linking /tmp/workdir-wai-app-static/wai-app-static-3.1.9/dist-newstyle/build/x86_64-linux/ghc-9.6.5/wai-app-static-3.1.9/t/runtests/build/runtests/runtests
+[5 of 5] Linking /tmp/workdir-wai-app-static/wai-app-static-3.1.9/dist-newstyle/build/x86_64-linux/ghc-9.10.2/wai-app-static-3.1.9/t/runtests/build/runtests/runtests

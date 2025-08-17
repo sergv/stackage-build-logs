@@ -1,0 +1,52 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - kdt-0.2.6 (lib) (first run)
+ - kdt-0.2.6 (test:StaticTest) (first run)
+ - kdt-0.2.6 (test:DynamicTest) (first run)
+Configuring library for kdt-0.2.6...
+Preprocessing library for kdt-0.2.6...
+Building library for kdt-0.2.6...
+[1 of 4] Compiling Data.KdMap.Static
+lib-src/Data/KdMap/Static.hs:181:50: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+181 |   let singletonTreeNode = TreeNode Empty (p, v) (head $ p2l p) Empty
+    |                                                  ^^^^
+
+lib-src/Data/KdMap/Static.hs:221:15: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘([a], (p, v))’ not matched: ([], _)
+    |
+221 |               (medianAxisVal : _, _) =
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^...
+
+lib-src/Data/KdMap/Static.hs:222:41: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+222 |                 quickselect (comparing (head . fst)) (n `div` 2) ps
+    |                                         ^^^^
+
+[2 of 4] Compiling Data.KdMap.Dynamic
+[3 of 4] Compiling Data.KdTree.Dynamic
+[4 of 4] Compiling Data.KdTree.Static
+Configuring test suite 'StaticTest' for kdt-0.2.6...
+Preprocessing test suite 'StaticTest' for kdt-0.2.6...
+Building test suite 'StaticTest' for kdt-0.2.6...
+[1 of 2] Compiling Data.Point2d
+[2 of 2] Compiling Main
+app-src/Tests/StaticTest.hs:18:1: error: [GHC-87110]
+    Could not find module ‘Tests.TestHelpers’.
+    Use -v to see a list of the files searched for.
+   |
+18 | import Tests.TestHelpers (nearestsLinear, withinDistanceOfKthNearest)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Error: [Cabal-7125]
+Failed to build test:StaticTest from kdt-0.2.6.
+

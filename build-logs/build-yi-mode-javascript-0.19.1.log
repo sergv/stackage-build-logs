@@ -1,0 +1,51 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - yi-mode-javascript-0.19.1 (lib) (first run)
+Configuring library for yi-mode-javascript-0.19.1...
+Preprocessing library for yi-mode-javascript-0.19.1...
+Building library for yi-mode-javascript-0.19.1...
+[1 of 6] Compiling Paths_yi_mode_javascript
+[2 of 6] Compiling Yi.Lexer.JavaScript
+[3 of 6] Compiling Yi.Syntax.JavaScript
+src/Yi/Syntax/JavaScript.hs:26:50-53: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘<>’ from module ‘Data.Monoid’ is redundant
+   |
+26 | import           Data.Monoid         (Endo (..), (<>))
+   |                                                  ^^^^
+
+src/Yi/Syntax/JavaScript.hs:578:14-17: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+578 | firstTok x = head (toList x)
+    |              ^^^^
+
+[4 of 6] Compiling Yi.Verifier.JavaScript
+src/Yi/Verifier/JavaScript.hs:65:43-46: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+65 |                (nameOf $ tokT $ funName $ head dupFuns)
+   |                                           ^^^^
+
+src/Yi/Verifier/JavaScript.hs:74:55-58: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+74 |     (say (Warn (UnreachableCode (tokPosn $ firstTok $ head afterReturn))))
+   |                                                       ^^^^
+
+[5 of 6] Compiling Yi.Mode.JavaScript
+src/Yi/Mode/JavaScript.hs:26:1-49: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+26 | import           Data.Monoid               ((<>))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[6 of 6] Compiling Yi.Config.Default.JavaScriptMode

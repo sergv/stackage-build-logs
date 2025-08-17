@@ -1,0 +1,126 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - large-hashable-0.1.2.0 (lib) (first run)
+ - large-hashable-0.1.2.0 (test:large-hashable-test) (first run)
+Configuring library for large-hashable-0.1.2.0...
+Preprocessing library for large-hashable-0.1.2.0...
+Building library for large-hashable-0.1.2.0...
+[1 of 7] Compiling Data.LargeHashable.Endianness
+[2 of 7] Compiling Data.LargeHashable.Intern
+[3 of 7] Compiling Data.LargeHashable.Class
+src/Data/LargeHashable/Class.hs:23:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Foldable’ is redundant
+      except perhaps to import instances from ‘Data.Foldable’
+    To import instances alone, use: import Data.Foldable()
+   |
+23 | import Data.Foldable
+   | ^^^^^^^^^^^^^^^^^^^^
+
+[4 of 7] Compiling Data.LargeHashable.LargeWord
+[5 of 7] Compiling Data.LargeHashable.MD5
+[6 of 7] Compiling Data.LargeHashable.TH
+[7 of 7] Compiling Data.LargeHashable
+Configuring test suite 'large-hashable-test' for large-hashable-0.1.2.0...
+Preprocessing test suite 'large-hashable-test' for large-hashable-0.1.2.0...
+Building test suite 'large-hashable-test' for large-hashable-0.1.2.0...
+[1 of 8] Compiling Data.LargeHashable.Tests.Helper
+[2 of 8] Compiling Data.LargeHashable.Tests.Class
+[3 of 8] Compiling Data.LargeHashable.Tests.Inspection
+[4 of 8] Compiling Data.LargeHashable.Tests.LargeWord
+[5 of 8] Compiling Data.LargeHashable.Tests.MD5
+[6 of 8] Compiling Data.LargeHashable.Tests.Stable
+[7 of 8] Compiling Data.LargeHashable.Tests.TH
+test/Data/LargeHashable/Tests/TH.hs:20:2-31: Splicing declarations
+    deriveLargeHashable ''BlaFoo
+  ======>
+    instance LargeHashable a_a3R3 =>
+             LargeHashable (BlaFoo a_a3R3) where
+      updateHash Foo
+        = updateHash (0 :: ghc-internal:GHC.Internal.Word.Word64)
+      updateHash (Bar a b)
+        = ((updateHash (1 :: ghc-internal:GHC.Internal.Word.Word64)
+              >> updateHash a)
+             >> updateHash b)
+      updateHash (Baz a b c)
+        = (((updateHash (2 :: ghc-internal:GHC.Internal.Word.Word64)
+               >> updateHash a)
+              >> updateHash b)
+             >> updateHash c)
+      updateHashStable Foo
+        = updateHash (0 :: ghc-internal:GHC.Internal.Word.Word64)
+      updateHashStable (Bar a b)
+        = ((updateHash (1 :: ghc-internal:GHC.Internal.Word.Word64)
+              >> updateHashStable a)
+             >> updateHashStable b)
+      updateHashStable (Baz a b c)
+        = (((updateHash (2 :: ghc-internal:GHC.Internal.Word.Word64)
+               >> updateHashStable a)
+              >> updateHashStable b)
+             >> updateHashStable c)
+test/Data/LargeHashable/Tests/TH.hs:38:2-29: Splicing declarations
+    deriveLargeHashable ''Fool
+  ======>
+    instance LargeHashable Fool where
+      updateHash (Fool a) = (return () >> updateHash a)
+      updateHashStable (Fool a) = (return () >> updateHashStable a)
+test/Data/LargeHashable/Tests/TH.hs:77:2-35: Splicing declarations
+    deriveLargeHashable ''GadtNoArgs
+  ======>
+    instance LargeHashable GadtNoArgs where
+      updateHash (GadtNoArgsA a b)
+        = ((updateHash (0 :: ghc-internal:GHC.Internal.Word.Word64)
+              >> updateHash a)
+             >> updateHash b)
+      updateHash (GadtNoArgsB a)
+        = (updateHash (1 :: ghc-internal:GHC.Internal.Word.Word64)
+             >> updateHash a)
+      updateHashStable (GadtNoArgsA a b)
+        = ((updateHash (0 :: ghc-internal:GHC.Internal.Word.Word64)
+              >> updateHashStable a)
+             >> updateHashStable b)
+      updateHashStable (GadtNoArgsB a)
+        = (updateHash (1 :: ghc-internal:GHC.Internal.Word.Word64)
+             >> updateHashStable a)
+test/Data/LargeHashable/Tests/TH.hs:89:2-35: Splicing declarations
+    deriveLargeHashable ''GadtOneArg
+  ======>
+    instance LargeHashable a_afma =>
+             LargeHashable (GadtOneArg a_afma) where
+      updateHash (GadtOneArgA a b)
+        = ((updateHash (0 :: ghc-internal:GHC.Internal.Word.Word64)
+              >> updateHash a)
+             >> updateHash b)
+      updateHash (GadtOneArgB a)
+        = (updateHash (1 :: ghc-internal:GHC.Internal.Word.Word64)
+             >> updateHash a)
+      updateHashStable (GadtOneArgA a b)
+        = ((updateHash (0 :: ghc-internal:GHC.Internal.Word.Word64)
+              >> updateHashStable a)
+             >> updateHashStable b)
+      updateHashStable (GadtOneArgB a)
+        = (updateHash (1 :: ghc-internal:GHC.Internal.Word.Word64)
+             >> updateHashStable a)
+test/Data/LargeHashable/Tests/TH.hs:102:2-41: Splicing declarations
+    deriveLargeHashable ''GadtMultipleArgs
+  ======>
+    instance (LargeHashable a_afxb,
+              LargeHashable b_afxc,
+              LargeHashable c_afxd) =>
+             LargeHashable (GadtMultipleArgs a_afxb b_afxc c_afxd) where
+      updateHash (GadtMultipleArgsA a b)
+        = ((updateHash (0 :: ghc-internal:GHC.Internal.Word.Word64)
+              >> updateHash a)
+             >> updateHash b)
+      updateHash (GadtMultipleArgsB a)
+        = (updateHash (1 :: ghc-internal:GHC.Internal.Word.Word64)
+             >> updateHash a)
+      updateHashStable (GadtMultipleArgsA a b)
+        = ((updateHash (0 :: ghc-internal:GHC.Internal.Word.Word64)
+              >> updateHashStable a)
+             >> updateHashStable b)
+      updateHashStable (GadtMultipleArgsB a)
+        = (updateHash (1 :: ghc-internal:GHC.Internal.Word.Word64)
+             >> updateHashStable a)
+[8 of 8] Compiling Main
+[9 of 9] Linking /tmp/workdir-large-hashable/large-hashable-0.1.2.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/large-hashable-0.1.2.0/t/large-hashable-test/build/large-hashable-test/large-hashable-test

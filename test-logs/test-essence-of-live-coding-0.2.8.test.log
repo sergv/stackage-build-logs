@@ -1,0 +1,118 @@
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - essence-of-live-coding-0.2.8 (test:test) (ephemeral targets)
+Preprocessing test suite 'test' for essence-of-live-coding-0.2.8...
+Building test suite 'test' for essence-of-live-coding-0.2.8...
+Running 1 test suites...
+Test suite test: RUNNING...
+Builtin types:
+  Same: [OK, passed 100 tests]
+  Different: [OK, passed 100 tests]
+Product types:
+  Adds default field: [OK, passed 100 tests]
+  Keeps only sensible field: [OK, passed 100 tests]
+Records:
+  Takes record field names into account: [OK, passed 100 tests]
+  Migrates nested records: [OK, passed 100 tests]
+Constructors:
+  Finds correct constructor: [OK, passed 100 tests]
+  Finds correct constructor with records: [OK, passed 100 tests]
+  Finds correct constructor if type doesn't change: [OK, passed 100 tests]
+  Does not migrate for different types: [OK, passed 100 tests]
+User migration:
+  Can add migration from Int to Integer: [OK, passed 100 tests]
+Newtypes:
+  Wraps into newtype: [OK, passed 100 tests]
+Debugging:
+  To debugging state: [OK, passed 100 tests]
+  From debugging state: [OK, passed 100 tests]
+Cells:
+  Sequential composition:
+    From 1: [OK, passed 100 tests]
+  Choice:
+    From left: [OK, passed 100 tests]
+  Control flow:
+    Into safe: [OK, passed 100 tests]
+  Cell:
+    steps produces outputs: [OK, passed 100 tests]
+    sumC works as expected: [OK, passed 100 tests]
+    Utility unit tests:
+      buffered works as expected: [OK, passed 100 tests]
+      buffered can be used in an asynchronous setting: [OK, passed 100 tests]
+      delay a >>> changes >>> hold a = delay a: [OK, passed 100 tests]
+      changes applied to a cell that outputs a constant, always outputs Nothing: [OK, passed 100 tests]
+      changes works as expected: [OK, passed 100 tests]
+      changes migrates correctly to itself: [OK, passed 100 tests]
+      delay migrates correctly to itself: [OK, passed 100 tests]
+      delay migrates correctly with original type wrapped in data type with single constructor: [OK, passed 100 tests]
+      resampleListPar works as expected: [OK, passed 100 tests]
+      resampleListPar grow: [OK, passed 100 tests]
+      resampleListPar shrink: [OK, passed 100 tests]
+      resampleListPar grow then shrink: [OK, passed 100 tests]
+      resampleListPar shrink then grow: [OK, passed 100 tests]
+      Selective instance is sound: [OK, passed 100 tests]
+    Traversing unit tests:
+      traverse' (arr f) = arr (f <$>):
+        Maybe: [OK, passed 100 tests]
+        []: [OK, passed 100 tests]
+        Vector Vector 10: [OK, passed 100 tests]
+        Seq: [OK, passed 100 tests]
+        Map Int: [OK, passed 100 tests]
+      traverse' works as expected for any Cell Identy Int Int created with constructor Cell:
+        Maybe: [OK, passed 100 tests]
+        []: [OK, passed 100 tests]
+        Vector Vector 10: [OK, passed 100 tests]
+        Seq: [OK, passed 100 tests]
+        Map Int: [OK, passed 100 tests]
+      traverse' by itself does not force the entire list (ArrM): [OK, passed 100 tests]
+      traverse' by itself does not force the entire list (Cell): [OK, passed 100 tests]
+    Cell.Monad.Trans:
+      readerC: [OK, passed 100 tests]
+  Handle:
+    Preserve Handles: [OK, passed 100 tests]
+    Initialise Handles upon migration: [OK, passed 100 tests]
+    Preserve Handles in more complex migration: [OK, passed 100 tests]
+    Reinitialise Handles in too complex migration: [OK, passed 100 tests]
+    Doesn't crash when handle is introspected by migration: [OK, passed 100 tests]
+    Trigger destructors: [OK, passed 100 tests]
+    Changing parameters triggers destructors: [OK, passed 100 tests]
+    Transient control flow does not trigger destructors or constructors: [OK, passed 100 tests]
+    Permanent control flow does not trigger destructors or constructors: [OK, passed 100 tests]
+    Change of type level tags trigger destructors: [OK, passed 100 tests]
+    Handle.LiveProgram:
+      Trigger destructors in live program: [OK, passed 100 tests]
+  Migrate:
+    Internal assumptions:
+      matchingAlgebraicDataTypes:
+        True for types with the same name: [OK, passed 100 tests]
+        debugging tests:
+          isAlgType: [OK, passed 100 tests]
+    standard migrations:
+      castMigration:
+        Migrates for same data type: [OK, passed 100 tests]
+        Does not migrate for different data types: [OK, passed 100 tests]
+        Migrates for same builtin type: [OK, passed 100 tests]
+        Does not migrate for different builtin types: [OK, passed 100 tests]
+      sameConstructorMigration:
+        Migrates when constructor names and arity match: [OK, passed 100 tests]
+        Migrates for same data type: [OK, passed 100 tests]
+    NoMigration unit tests:
+      LiveCoding.Migrate.NoMigration.delay migrates correctly to itself: [OK, passed 100 tests]
+      LiveCoding.Migrate.NoMigration.delay different type will not migrate: [OK, passed 100 tests]
+  State effect: [OK, passed 100 tests]
+  Feedback:
+    Migrates into feedback: [OK, passed 100 tests]
+    Migrates out of feedback: [OK, passed 100 tests]
+Monad.Trans:
+  Migrates into runStateL: [OK, passed 100 tests]
+  Migrates from runStateL: [OK, passed 100 tests]
+HandlingStateT destroys all handles: [OK]
+
+         Properties  Test Cases  Total 
+ Passed  72          1           73    
+ Failed  0           0           0     
+ Total   72          1           73    
+Test suite test: PASS
+Test suite logged to:
+/tmp/workdir-essence-of-live-coding/essence-of-live-coding-0.2.8/dist-newstyle/build/x86_64-linux/ghc-9.10.2/essence-of-live-coding-0.2.8/t/test/test/essence-of-live-coding-0.2.8-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

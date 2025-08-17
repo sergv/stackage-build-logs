@@ -1,0 +1,586 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - HPDF-1.7 (lib) (first run)
+ - HPDF-1.7 (test:HPDF-Tests) (first run)
+ - HPDF-1.7 (exe:HPDF-Demo) (first run)
+Configuring library for HPDF-1.7...
+Preprocessing library for HPDF-1.7...
+Building library for HPDF-1.7...
+[ 1 of 36] Compiling Graphics.PDF.Data.Trie
+[ 2 of 36] Compiling Graphics.PDF.Documentation
+[ 3 of 36] Compiling Graphics.PDF.Expression
+Graphics/PDF/Expression.hs:42:1: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘<*>, liftA2, pure’
+    from module ‘Control.Applicative’ is redundant
+   |
+42 | import Control.Applicative (pure, liftA2, liftA3, (<*>))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[ 4 of 36] Compiling Graphics.PDF.LowLevel.Serializer
+[ 5 of 36] Compiling Graphics.PDF.LowLevel.Types
+[ 6 of 36] Compiling Graphics.PDF.Fonts.FontTypes
+[ 7 of 36] Compiling Graphics.PDF.Fonts.Encoding
+Graphics/PDF/Fonts/Encoding.hs:65:65: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+65 |     return . M.fromList . mapMaybe (toMacData . C.split '\t') . tail . C.lines $ pdfencodings
+   |                                                                 ^^^^
+
+[ 8 of 36] Compiling Graphics.PDF.Data.PDFTree
+[ 9 of 36] Compiling Graphics.PDF.Coordinates
+[10 of 36] Compiling Graphics.PDF.Action
+[11 of 36] Compiling Graphics.PDF.Resources
+[12 of 36] Compiling Graphics.PDF.Fonts.Font
+[13 of 36] Compiling Graphics.PDF.Fonts.AFMParser
+Graphics/PDF/Fonts/AFMParser.hs:303:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[Double]’ not matched:
+            []
+            [_]
+            [_, _]
+            [_, _, _]
+            ...
+    |
+303 |     let [_,ymin,_,ymax] = afmBBox afm'
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[14 of 36] Compiling Graphics.PDF.Fonts.Type1
+Graphics/PDF/Fonts/Type1.hs:81:25: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+81 |             firstChar = head . sort $ codes
+   |                         ^^^^
+
+Graphics/PDF/Fonts/Type1.hs:82:24: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+82 |             lastChar = head . reverse . sort $ codes
+   |                        ^^^^
+
+[15 of 36] Compiling Graphics.PDF.Fonts.StandardFont
+[16 of 36] Compiling Graphics.PDF.Draw
+Graphics/PDF/Draw.hs:217:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad Draw’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+217 |     return x = Draw $ \_env -> return x
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Graphics/PDF/Draw.hs:295:43: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+295 |     modifyStrict $ \s -> s {supplyNames = tail xs}
+    |                                           ^^^^
+
+Graphics/PDF/Draw.hs:296:13: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+296 |     return (head xs)
+    |             ^^^^
+
+Graphics/PDF/Draw.hs:326:38: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+326 |     modifyStrict $ \s -> s {matrix = tail (matrix s)}
+    |                                      ^^^^
+
+Graphics/PDF/Draw.hs:330:69: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding: Patterns of type ‘[Matrix]’ not matched: []
+    |
+330 | multiplyCurrentMatrixWith m' = modifyStrict $ \s -> s {matrix = let (m:l) = matrix s in (m' * m ):l}
+    |                                                                     ^^^^^^^^^^^^^^^^
+
+Graphics/PDF/Draw.hs:334:42: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+334 | currentMatrix = gets matrix >>= return . head
+    |                                          ^^^^
+
+Graphics/PDF/Draw.hs:794:13: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+794 | instance (a ~ PDFFloat, b ~ PDFFloat, c ~ PDFFloat) => ColorTuple (a,b,c) where
+    |             ^
+
+Graphics/PDF/Draw.hs:794:27: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+794 | instance (a ~ PDFFloat, b ~ PDFFloat, c ~ PDFFloat) => ColorTuple (a,b,c) where
+    |                           ^
+
+Graphics/PDF/Draw.hs:794:41: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+794 | instance (a ~ PDFFloat, b ~ PDFFloat, c ~ PDFFloat) => ColorTuple (a,b,c) where
+    |                                         ^
+
+Graphics/PDF/Draw.hs:802:8: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+802 |     (a ~ PDFFloat, b ~ PDFFloat, c ~ PDFFloat, d ~ PDFFloat) =>
+    |        ^
+
+Graphics/PDF/Draw.hs:802:22: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+802 |     (a ~ PDFFloat, b ~ PDFFloat, c ~ PDFFloat, d ~ PDFFloat) =>
+    |                      ^
+
+Graphics/PDF/Draw.hs:802:36: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+802 |     (a ~ PDFFloat, b ~ PDFFloat, c ~ PDFFloat, d ~ PDFFloat) =>
+    |                                    ^
+
+Graphics/PDF/Draw.hs:802:50: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+802 |     (a ~ PDFFloat, b ~ PDFFloat, c ~ PDFFloat, d ~ PDFFloat) =>
+    |                                                  ^
+
+Graphics/PDF/Draw.hs:966:12: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+966 |     (Local ~ scope, ColorTuple a, Eq a, Expr.Result e) =>
+    |            ^
+
+Graphics/PDF/Draw.hs:978:12: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+978 |     (Local ~ scope, ColorTuple a, Ord a, Expr.Result e) =>
+    |            ^
+
+Graphics/PDF/Draw.hs:995:34: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+995 | mapAdjacent f xs = zipWith f xs (tail xs)
+    |                                  ^^^^
+
+Graphics/PDF/Draw.hs:1016:12: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+     |
+1016 |     (Local ~ scope, ColorTuple a, Expr.Result e) =>
+     |            ^
+
+Graphics/PDF/Draw.hs:1038:12: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+     |
+1038 |     (Local ~ scope, ColorTuple a, Eq a, Expr.Result e) =>
+     |            ^
+
+Graphics/PDF/Draw.hs:1045:12: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+     |
+1045 |     (Local ~ scope, ColorTuple a, Ord a, Expr.Result e) =>
+     |            ^
+
+Graphics/PDF/Draw.hs:1062:12: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+     |
+1062 |     (Local ~ scope, ColorTuple a, Expr.Result e) =>
+     |            ^
+
+Graphics/PDF/Draw.hs:1127:20: warning: [GHC-47082] [-Woperator-whitespace-ext-conflict]
+    The prefix use of a ‘$’ would denote an untyped splice
+      were the TemplateHaskell extension enabled.
+    Suggested fix: Add whitespace after the ‘$’.
+     |
+1127 |     tell . mconcat $[ serialize '\n'
+     |                    ^
+
+[17 of 36] Compiling Graphics.PDF.Pages
+Graphics/PDF/Pages.hs:233:60: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+233 |     let refs = zip4 (Nothing : init refs') refs' children (tail refs' ++ [Nothing])
+    |                                                            ^^^^
+
+Graphics/PDF/Pages.hs:235:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe
+                            (PDFReference PDFOutlineEntry)’ not matched:
+            Nothing
+    |
+235 |         Just first = current (head refs)
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Graphics/PDF/Pages.hs:235:31: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+235 |         Just first = current (head refs)
+    |                               ^^^^
+
+Graphics/PDF/Pages.hs:236:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe
+                            (PDFReference PDFOutlineEntry)’ not matched:
+            Nothing
+    |
+236 |         Just end = current (last refs)
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[18 of 36] Compiling Graphics.PDF.Pattern
+Graphics/PDF/Pattern.hs:134:23: warning: [GHC-47082] [-Woperator-whitespace-ext-conflict]
+    The prefix use of a ‘$’ would denote an untyped splice
+      were the TemplateHaskell extension enabled.
+    Suggested fix: Add whitespace after the ‘$’.
+    |
+134 |        tell . mconcat $[ serialize "\n/"
+    |                       ^
+
+Graphics/PDF/Pattern.hs:138:23: warning: [GHC-47082] [-Woperator-whitespace-ext-conflict]
+    The prefix use of a ‘$’ would denote an untyped splice
+      were the TemplateHaskell extension enabled.
+    Suggested fix: Add whitespace after the ‘$’.
+    |
+138 |        tell . mconcat $[ serialize '\n'
+    |                       ^
+
+Graphics/PDF/Pattern.hs:157:20: warning: [GHC-47082] [-Woperator-whitespace-ext-conflict]
+    The prefix use of a ‘$’ would denote an untyped splice
+      were the TemplateHaskell extension enabled.
+    Suggested fix: Add whitespace after the ‘$’.
+    |
+157 |     tell . mconcat $[ serialize "\n/" 
+    |                    ^
+
+[19 of 36] Compiling Graphics.PDF.Navigation
+Graphics/PDF/Navigation.hs:32:13: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+32 | isFirst r = head r
+   |             ^^^^
+
+Graphics/PDF/Navigation.hs:40:60: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+40 | addedOutline = modifyStrict $ \s -> s{firstOutline = False:tail (firstOutline s)}
+   |                                                            ^^^^
+
+Graphics/PDF/Navigation.hs:47:43: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+47 |     modifyStrict $ \s -> s{firstOutline = tail (firstOutline s)}
+   |                                           ^^^^
+
+[20 of 36] Compiling Graphics.PDF.Image
+[21 of 36] Compiling Graphics.PDF.Annotation
+[22 of 36] Compiling Graphics.PDF.Colors
+Graphics/PDF/Colors.hs:61:20: warning: [GHC-47082] [-Woperator-whitespace-ext-conflict]
+    The prefix use of a ‘$’ would denote an untyped splice
+      were the TemplateHaskell extension enabled.
+    Suggested fix: Add whitespace after the ‘$’.
+   |
+61 |     tell . mconcat $[ serialize "\n/" 
+   |                    ^
+
+Graphics/PDF/Colors.hs:73:20: warning: [GHC-47082] [-Woperator-whitespace-ext-conflict]
+    The prefix use of a ‘$’ would denote an untyped splice
+      were the TemplateHaskell extension enabled.
+    Suggested fix: Add whitespace after the ‘$’.
+   |
+73 |     tell . mconcat $[ serialize "\n/" 
+   |                    ^
+
+Graphics/PDF/Colors.hs:88:20: warning: [GHC-47082] [-Woperator-whitespace-ext-conflict]
+    The prefix use of a ‘$’ would denote an untyped splice
+      were the TemplateHaskell extension enabled.
+    Suggested fix: Add whitespace after the ‘$’.
+   |
+88 |     tell . mconcat $[ serialize "\n"
+   |                    ^
+
+Graphics/PDF/Colors.hs:99:24: warning: [GHC-47082] [-Woperator-whitespace-ext-conflict]
+    The prefix use of a ‘$’ would denote an untyped splice
+      were the TemplateHaskell extension enabled.
+    Suggested fix: Add whitespace after the ‘$’.
+   |
+99 |         tell . mconcat $[ serialize "\n"
+   |                        ^
+
+Graphics/PDF/Colors.hs:112:20: warning: [GHC-47082] [-Woperator-whitespace-ext-conflict]
+    The prefix use of a ‘$’ would denote an untyped splice
+      were the TemplateHaskell extension enabled.
+    Suggested fix: Add whitespace after the ‘$’.
+    |
+112 |     tell . mconcat $[ serialize "\n"
+    |                    ^
+
+Graphics/PDF/Colors.hs:122:20: warning: [GHC-47082] [-Woperator-whitespace-ext-conflict]
+    The prefix use of a ‘$’ would denote an untyped splice
+      were the TemplateHaskell extension enabled.
+    Suggested fix: Add whitespace after the ‘$’.
+    |
+122 |     tell . mconcat $[ serialize "\n"
+    |                    ^
+
+[23 of 36] Compiling Graphics.PDF.Shapes
+Graphics/PDF/Shapes.hs:154:29: warning: [GHC-47082] [-Woperator-whitespace-ext-conflict]
+    The prefix use of a ‘$’ would denote an untyped splice
+      were the TemplateHaskell extension enabled.
+    Suggested fix: Add whitespace after the ‘$’.
+    |
+154 | setWidth w = tell . mconcat $[ serialize "\n" 
+    |                             ^
+
+Graphics/PDF/Shapes.hs:161:34: warning: [GHC-47082] [-Woperator-whitespace-ext-conflict]
+    The prefix use of a ‘$’ would denote an untyped splice
+      were the TemplateHaskell extension enabled.
+    Suggested fix: Add whitespace after the ‘$’.
+    |
+161 | setMiterLimit w = tell . mconcat $[ serialize "\n" 
+    |                                  ^
+
+Graphics/PDF/Shapes.hs:180:31: warning: [GHC-47082] [-Woperator-whitespace-ext-conflict]
+    The prefix use of a ‘$’ would denote an untyped splice
+      were the TemplateHaskell extension enabled.
+    Suggested fix: Add whitespace after the ‘$’.
+    |
+180 | setLineCap w = tell . mconcat $[ serialize "\n " 
+    |                               ^
+
+Graphics/PDF/Shapes.hs:187:32: warning: [GHC-47082] [-Woperator-whitespace-ext-conflict]
+    The prefix use of a ‘$’ would denote an untyped splice
+      were the TemplateHaskell extension enabled.
+    Suggested fix: Add whitespace after the ‘$’.
+    |
+187 | setLineJoin w = tell . mconcat $[ serialize "\n " 
+    |                                ^
+
+Graphics/PDF/Shapes.hs:250:20: warning: [GHC-47082] [-Woperator-whitespace-ext-conflict]
+    The prefix use of a ‘$’ would denote an untyped splice
+      were the TemplateHaskell extension enabled.
+    Suggested fix: Add whitespace after the ‘$’.
+    |
+250 |     tell . mconcat $[ serialize "\n" 
+    |                    ^
+
+[24 of 36] Compiling Graphics.PDF.Shading
+Graphics/PDF/Shading.hs:83:20: warning: [GHC-47082] [-Woperator-whitespace-ext-conflict]
+    The prefix use of a ‘$’ would denote an untyped splice
+      were the TemplateHaskell extension enabled.
+    Suggested fix: Add whitespace after the ‘$’.
+   |
+83 |     tell . mconcat $[ serialize "\n/" 
+   |                    ^
+
+[25 of 36] Compiling Graphics.PDF.Document
+[26 of 36] Compiling Graphics.PDF.Text
+Graphics/PDF/Text.hs:50:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.List’ is redundant
+      except perhaps to import instances from ‘Data.List’
+    To import instances alone, use: import Data.List()
+   |
+50 | import Data.List(foldl')
+   | ^^^^^^^^^^^^^^^^^^^^^^^^
+
+Graphics/PDF/Text.hs:254:20: warning: [GHC-47082] [-Woperator-whitespace-ext-conflict]
+    The prefix use of a ‘$’ would denote an untyped splice
+      were the TemplateHaskell extension enabled.
+    Suggested fix: Add whitespace after the ‘$’.
+    |
+254 |     tell . mconcat $[ serialize '\n'
+    |                    ^
+
+[27 of 36] Compiling Graphics.PDF.Transparency
+[28 of 36] Compiling Graphics.PDF.Typesetting.Box
+[29 of 36] Compiling Graphics.PDF.Typesetting.WritingSystem
+[30 of 36] Compiling Graphics.PDF.Typesetting.Breaking
+Graphics/PDF/Typesetting/Breaking.hs:283:37: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+283 | createZList l = ZList NoCB (0,0,0,1,head l) (tail l)
+    |                                     ^^^^
+
+Graphics/PDF/Typesetting/Breaking.hs:283:46: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+283 | createZList l = ZList NoCB (0,0,0,1,head l) (tail l)
+    |                                              ^^^^
+
+Graphics/PDF/Typesetting/Breaking.hs:322:38: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+322 |     ZList (OneCB c) (w'',y'',z'',p+1,head r) (tail r)
+    |                                      ^^^^
+
+Graphics/PDF/Typesetting/Breaking.hs:322:47: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+322 |     ZList (OneCB c) (w'',y'',z'',p+1,head r) (tail r)
+    |                                               ^^^^
+
+Graphics/PDF/Typesetting/Breaking.hs:327:38: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+327 |         ZList (OneCB c) (w'',y,z,p+1,head r) (tail r)
+    |                                      ^^^^
+
+Graphics/PDF/Typesetting/Breaking.hs:327:47: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+327 |         ZList (OneCB c) (w'',y,z,p+1,head r) (tail r)
+    |                                               ^^^^
+
+Graphics/PDF/Typesetting/Breaking.hs:429:33: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+429 |         getRightOrderNodeList = tail . reverse . genNodeList
+    |                                 ^^^^
+
+Graphics/PDF/Typesetting/Breaking.hs:501:23: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+501 |                  case head t' of
+    |                       ^^^^
+
+[31 of 36] Compiling Graphics.PDF.Typesetting.Layout
+Graphics/PDF/Typesetting/Layout.hs:46:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.List’ is redundant
+      except perhaps to import instances from ‘Data.List’
+    To import instances alone, use: import Data.List()
+   |
+46 | import Data.List(foldl')
+   | ^^^^^^^^^^^^^^^^^^^^^^^^
+
+[32 of 36] Compiling Graphics.PDF.Typesetting.Horizontal
+Graphics/PDF/Typesetting/Horizontal.hs:31:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.List’ is redundant
+      except perhaps to import instances from ‘Data.List’
+    To import instances alone, use: import Data.List()
+   |
+31 | import Data.List(foldl')
+   | ^^^^^^^^^^^^^^^^^^^^^^^^
+
+[33 of 36] Compiling Graphics.PDF.Typesetting.Vertical
+Graphics/PDF/Typesetting/Vertical.hs:29:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.List’ is redundant
+      except perhaps to import instances from ‘Data.List’
+    To import instances alone, use: import Data.List()
+   |
+29 | import Data.List(foldl')
+   | ^^^^^^^^^^^^^^^^^^^^^^^^
+
+[34 of 36] Compiling Graphics.PDF.Typesetting.StandardStyle
+[35 of 36] Compiling Graphics.PDF.Typesetting
+[36 of 36] Compiling Graphics.PDF
+Graphics/PDF.hs:226:19: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+226 |    let lengths =  tail . scanl (\len obj -> len + (B.length . toLazyByteString $ obj)) 0 $ l
+    |                   ^^^^
+
+Graphics/PDF.hs:236:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+236 |   let entries = reverse (tail ens)  
+    |                          ^^^^
+
+Graphics/PDF.hs:282:17: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe AnyPdfObject’ not matched: Nothing
+    |
+282 |             let Just o = IM.lookup k im
+    |                 ^^^^^^^^^^^^^^^^^^^^^^^
+
+Configuring test suite 'HPDF-Tests' for HPDF-1.7...
+Preprocessing test suite 'HPDF-Tests' for HPDF-1.7...
+Building test suite 'HPDF-Tests' for HPDF-1.7...
+[1 of 1] Compiling Main
+[2 of 2] Linking /tmp/workdir-HPDF/HPDF-1.7/dist-newstyle/build/x86_64-linux/ghc-9.10.2/HPDF-1.7/t/HPDF-Tests/build/HPDF-Tests/HPDF-Tests
+Configuring executable 'HPDF-Demo' for HPDF-1.7...
+Preprocessing executable 'HPDF-Demo' for HPDF-1.7...
+Building executable 'HPDF-Demo' for HPDF-1.7...
+[1 of 2] Compiling Penrose
+[2 of 2] Compiling Main
+Test/test.hs:317:64: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+317 |     updateStyle (SuperCrazy  f a b) = SuperCrazy f (drop 8 a) (tail b)
+    |                                                                ^^^^
+
+[3 of 3] Linking /tmp/workdir-HPDF/HPDF-1.7/dist-newstyle/build/x86_64-linux/ghc-9.10.2/HPDF-1.7/x/HPDF-Demo/build/HPDF-Demo/HPDF-Demo

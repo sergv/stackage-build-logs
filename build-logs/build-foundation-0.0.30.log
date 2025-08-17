@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - foundation-0.0.30 (lib) (first run)
  - foundation-0.0.30 (test:check-foundation) (first run)
@@ -10,10 +11,109 @@ Building library for foundation-0.0.30...
 [  3 of 103] Compiling Foundation.Collection.Copy
 [  4 of 103] Compiling Foundation.Collection.Element
 [  5 of 103] Compiling Foundation.Collection.Collection
+Foundation/Collection/Collection.hs:68:25: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+   |
+68 | class (IsList c, Item c ~ Element c) => Collection c where
+   |                         ^
+
+Foundation/Collection/Collection.hs:79:33: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+   |
+79 |     elem :: forall a . (Eq a, a ~ Element c) => Element c -> c -> Bool
+   |                                 ^
+
+Foundation/Collection/Collection.hs:84:36: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+   |
+84 |     notElem :: forall a . (Eq a, a ~ Element c) => Element c -> c -> Bool
+   |                                    ^
+
+Foundation/Collection/Collection.hs:88:37: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+   |
+88 |     maximum :: forall a . (Ord a, a ~ Element c) => NonEmpty c -> Element c
+   |                                     ^
+
+Foundation/Collection/Collection.hs:90:37: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+   |
+90 |     minimum :: forall a . (Ord a, a ~ Element c) => NonEmpty c -> Element c
+   |                                     ^
+
+Foundation/Collection/Collection.hs:160:37: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+160 | and :: (Collection col, Element col ~ Bool) => col -> Bool
+    |                                     ^
+
+Foundation/Collection/Collection.hs:164:36: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+164 | or :: (Collection col, Element col ~ Bool) => col -> Bool
+    |                                    ^
+
 [  6 of 103] Compiling Foundation.Collection.Buildable
 [  7 of 103] Compiling Foundation.Collection.Foldable
 [  8 of 103] Compiling Foundation.Collection.Indexed
 [  9 of 103] Compiling Foundation.Collection.InnerFunctor
+Foundation/Collection/InnerFunctor.hs:16:47: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+   |
+16 |     default imap :: (Functor f, Element (f a) ~ a, f a ~ c) => (Element c -> Element c) -> c -> c
+   |                                               ^
+
+Foundation/Collection/InnerFunctor.hs:16:56: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+   |
+16 |     default imap :: (Functor f, Element (f a) ~ a, f a ~ c) => (Element c -> Element c) -> c -> c
+   |                                                        ^
+
 [ 10 of 103] Compiling Foundation.Collection.Keyed
 [ 11 of 103] Compiling Foundation.Collection.Mappable
 [ 12 of 103] Compiling Foundation.Collection.Mutable
@@ -37,7 +137,150 @@ Building library for foundation-0.0.30...
 [ 30 of 103] Compiling Foundation.Conduit.Internal
 [ 31 of 103] Compiling Foundation.Collection.List
 [ 32 of 103] Compiling Foundation.Collection.Sequential
+Foundation/Collection/Sequential.hs:36:25: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+   |
+36 | class (IsList c, Item c ~ Element c, Monoid c, Collection c) => Sequential c where
+   |                         ^
+
 [ 33 of 103] Compiling Foundation.Collection.Zippable
+Foundation/Collection/Zippable.hs:111:24: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+111 |          , Element col ~ (Element a, Element b) )
+    |                        ^
+
+Foundation/Collection/Zippable.hs:117:25: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+117 |           , Element col ~ (Element a, Element b, Element c) )
+    |                         ^
+
+Foundation/Collection/Zippable.hs:123:25: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+123 |           , Element col ~ (Element a, Element b, Element c, Element d) )
+    |                         ^
+
+Foundation/Collection/Zippable.hs:129:25: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+129 |           , Element col ~ (Element a, Element b, Element c, Element d, Element e) )
+    |                         ^
+
+Foundation/Collection/Zippable.hs:135:25: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+135 |           , Element col ~ (Element a, Element b, Element c, Element d, Element e, Element f) )
+    |                         ^
+
+Foundation/Collection/Zippable.hs:141:25: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+141 |           , Element col ~ (Element a, Element b, Element c, Element d, Element e, Element f, Element g) )
+    |                         ^
+
+Foundation/Collection/Zippable.hs:147:53: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+147 |   unzip :: (Sequential a, Sequential b, Element col ~ (Element a, Element b))
+    |                                                     ^
+
+Foundation/Collection/Zippable.hs:157:27: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+157 |             , Element col ~ (Element a, Element b, Element c) )
+    |                           ^
+
+Foundation/Collection/Zippable.hs:167:27: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+167 |             , Element col ~ (Element a, Element b, Element c, Element d) )
+    |                           ^
+
+Foundation/Collection/Zippable.hs:177:27: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+177 |             , Element col ~ (Element a, Element b, Element c, Element d, Element e) )
+    |                           ^
+
+Foundation/Collection/Zippable.hs:187:27: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+187 |             , Element col ~ (Element a, Element b, Element c, Element d, Element e, Element f) )
+    |                           ^
+
+Foundation/Collection/Zippable.hs:197:27: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+197 |             , Element col ~ (Element a, Element b, Element c, Element d, Element e, Element f, Element g) )
+    |                           ^
+
 [ 34 of 103] Compiling Foundation.Collection
 [ 35 of 103] Compiling Foundation.List.DList
 [ 36 of 103] Compiling Foundation.Conduit.Textual
@@ -54,6 +297,50 @@ Building library for foundation-0.0.30...
 [ 47 of 103] Compiling Foundation.Strict
 [ 48 of 103] Compiling Foundation.String
 [ 49 of 103] Compiling Foundation.Parser
+Foundation/Parser.hs:330:28: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+330 |            , Element input ~ Element (Chunk input)
+    |                            ^
+
+Foundation/Parser.hs:342:37: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+342 |             , Element (Chunk input) ~ Element input
+    |                                     ^
+
+Foundation/Parser.hs:350:42: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+350 |                  , Element (Chunk input) ~ Element input
+    |                                          ^
+
+Foundation/Parser.hs:393:25: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+393 |         , Element input ~ Element (Chunk input)
+    |                         ^
+
 [ 50 of 103] Compiling Foundation.String.Builder
 [ 51 of 103] Compiling Foundation.String.Read
 [ 52 of 103] Compiling Foundation.System.Bindings.Hs
@@ -90,17 +377,270 @@ Building library for foundation-0.0.30...
 [ 83 of 103] Compiling Foundation.Tuple
 [ 84 of 103] Compiling Foundation.Hashing.Hashable
 [ 85 of 103] Compiling Foundation.Network.IPv6
+Foundation/Network/IPv6.hs:160:50: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+160 | ipv6Parser :: (ParserSource input, Element input ~ Char, Element (Chunk input) ~ Char)
+    |                                                  ^
+
+Foundation/Network/IPv6.hs:160:80: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+160 | ipv6Parser :: (ParserSource input, Element input ~ Char, Element (Chunk input) ~ Char)
+    |                                                                                ^
+
+Foundation/Network/IPv6.hs:174:59: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+174 | ipv6ParserPreferred :: (ParserSource input, Element input ~ Char, Element (Chunk input) ~ Char)
+    |                                                           ^
+
+Foundation/Network/IPv6.hs:174:89: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+174 | ipv6ParserPreferred :: (ParserSource input, Element input ~ Char, Element (Chunk input) ~ Char)
+    |                                                                                         ^
+
+Foundation/Network/IPv6.hs:201:62: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+201 | ipv6ParserIpv4Embedded :: (ParserSource input, Element input ~ Char, Element (Chunk input) ~ Char)
+    |                                                              ^
+
+Foundation/Network/IPv6.hs:201:92: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+201 | ipv6ParserIpv4Embedded :: (ParserSource input, Element input ~ Char, Element (Chunk input) ~ Char)
+    |                                                                                            ^
+
+Foundation/Network/IPv6.hs:234:60: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+234 | ipv6ParserCompressed :: (ParserSource input, Element input ~ Char, Element (Chunk input) ~ Char)
+    |                                                            ^
+
+Foundation/Network/IPv6.hs:234:90: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+234 | ipv6ParserCompressed :: (ParserSource input, Element input ~ Char, Element (Chunk input) ~ Char)
+    |                                                                                          ^
+
+Foundation/Network/IPv6.hs:254:49: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+254 | skipColon :: (ParserSource input, Element input ~ Char, Element (Chunk input) ~ Char)
+    |                                                 ^
+
+Foundation/Network/IPv6.hs:254:79: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+254 | skipColon :: (ParserSource input, Element input ~ Char, Element (Chunk input) ~ Char)
+    |                                                                               ^
+
+Foundation/Network/IPv6.hs:257:47: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+257 | skipDot :: (ParserSource input, Element input ~ Char, Element (Chunk input) ~ Char)
+    |                                               ^
+
+Foundation/Network/IPv6.hs:257:77: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+257 | skipDot :: (ParserSource input, Element input ~ Char, Element (Chunk input) ~ Char)
+    |                                                                             ^
+
+Foundation/Network/IPv6.hs:260:50: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+260 | takeAWord8 :: (ParserSource input, Element input ~ Char, Element (Chunk input) ~ Char)
+    |                                                  ^
+
+Foundation/Network/IPv6.hs:260:80: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+260 | takeAWord8 :: (ParserSource input, Element input ~ Char, Element (Chunk input) ~ Char)
+    |                                                                                ^
+
+Foundation/Network/IPv6.hs:263:51: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+263 | takeAWord16 :: (ParserSource input, Element input ~ Char, Element (Chunk input) ~ Char)
+    |                                                   ^
+
+Foundation/Network/IPv6.hs:263:81: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+263 | takeAWord16 :: (ParserSource input, Element input ~ Char, Element (Chunk input) ~ Char)
+    |                                                                                 ^
+
 [ 86 of 103] Compiling Foundation.Network.IPv4
+Foundation/Network/IPv4.hs:99:51: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+   |
+99 | ipv4Parser :: ( ParserSource input, Element input ~ Char
+   |                                                   ^
+
+Foundation/Network/IPv4.hs:100:57: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+100 |               , Sequential (Chunk input), Element input ~ Element (Chunk input)
+    |                                                         ^
+
 [ 87 of 103] Compiling Foundation.Hashing
 [ 88 of 103] Compiling Foundation
 [ 89 of 103] Compiling Foundation.Tuple.Nth
 [ 90 of 103] Compiling Foundation.UUID
+Foundation/UUID.hs:106:51: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+106 | uuidParser :: ( ParserSource input, Element input ~ Char
+    |                                                   ^
+
+Foundation/UUID.hs:107:57: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+107 |               , Sequential (Chunk input), Element input ~ Element (Chunk input)
+    |                                                         ^
+
+Foundation/UUID.hs:120:49: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+120 | parseHex :: ( ParserSource input, Element input ~ Char
+    |                                                 ^
+
+Foundation/UUID.hs:121:55: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+121 |             , Sequential (Chunk input), Element input ~ Element (Chunk input)
+    |                                                       ^
+
 [ 91 of 103] Compiling Foundation.VFS.Path
 [ 92 of 103] Compiling Foundation.VFS.FilePath
 [ 93 of 103] Compiling Foundation.VFS
 [ 94 of 103] Compiling Foundation.IO.File
 [ 95 of 103] Compiling Foundation.IO
 [ 96 of 103] Compiling Foundation.Conduit
+Foundation/Conduit.hs:63:45: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+   |
+63 | yields :: (Monad m, Foldable os, Element os ~ o) => os -> Conduit i o m ()
+   |                                             ^
+
 [ 97 of 103] Compiling Foundation.Format.CSV.Parser
 [ 98 of 103] Compiling Foundation.Format.CSV
 [ 99 of 103] Compiling Foundation.Foreign.MemoryMap.Types
@@ -112,21 +652,31 @@ Configuring test suite 'check-foundation' for foundation-0.0.30...
 Preprocessing test suite 'check-foundation' for foundation-0.0.30...
 Building test suite 'check-foundation' for foundation-0.0.30...
 [ 1 of 19] Compiling Test.Basement.UTF8
-
-tests/Test/Basement/UTF8.hs:13:1: warning: [-Wunused-imports]
+tests/Test/Basement/UTF8.hs:13:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Foundation.String’ is redundant
       except perhaps to import instances from ‘Foundation.String’
     To import instances alone, use: import Foundation.String()
    |
 13 | import Foundation.String
    | ^^^^^^^^^^^^^^^^^^^^^^^^
+
 [ 2 of 19] Compiling Test.Basement
 [ 3 of 19] Compiling Test.Checks.Property.Collection
-
 tests/Test/Checks/Property/Collection.hs:55:32: warning: [GHC-58520] [-Wtype-equality-requires-operators]
     The use of ‘~’ without TypeOperators
     will become an error in a future GHC release.
     Suggested fix: Perhaps you intended to use TypeOperators
+   |
+55 | fromListP :: (IsList c, Item c ~ Element c) => Proxy c -> [Element c] -> c
+   |                                ^
+
+tests/Test/Checks/Property/Collection.hs:55:32: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
    |
 55 | fromListP :: (IsList c, Item c ~ Element c) => Proxy c -> [Element c] -> c
    |                                ^
@@ -139,10 +689,32 @@ tests/Test/Checks/Property/Collection.hs:63:30: warning: [GHC-58520] [-Wtype-equ
 63 | toListP :: (IsList c, Item c ~ Element c) => Proxy c -> c -> [Element c]
    |                              ^
 
+tests/Test/Checks/Property/Collection.hs:63:30: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+   |
+63 | toListP :: (IsList c, Item c ~ Element c) => Proxy c -> c -> [Element c]
+   |                              ^
+
 tests/Test/Checks/Property/Collection.hs:100:48: warning: [GHC-58520] [-Wtype-equality-requires-operators]
     The use of ‘~’ without TypeOperators
     will become an error in a future GHC release.
     Suggested fix: Perhaps you intended to use TypeOperators
+    |
+100 |                           , Element collection ~ Item collection
+    |                                                ^
+
+tests/Test/Checks/Property/Collection.hs:100:48: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
     |
 100 |                           , Element collection ~ Item collection
     |                                                ^
@@ -155,10 +727,32 @@ tests/Test/Checks/Property/Collection.hs:121:48: warning: [GHC-58520] [-Wtype-eq
 121 |                           , Element collection ~ Item collection
     |                                                ^
 
+tests/Test/Checks/Property/Collection.hs:121:48: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+121 |                           , Element collection ~ Item collection
+    |                                                ^
+
 tests/Test/Checks/Property/Collection.hs:140:47: warning: [GHC-58520] [-Wtype-equality-requires-operators]
     The use of ‘~’ without TypeOperators
     will become an error in a future GHC release.
     Suggested fix: Perhaps you intended to use TypeOperators
+    |
+140 |                          , Element collection ~ Item collection
+    |                                               ^
+
+tests/Test/Checks/Property/Collection.hs:140:47: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
     |
 140 |                          , Element collection ~ Item collection
     |                                               ^
@@ -170,17 +764,28 @@ tests/Test/Checks/Property/Collection.hs:155:46: warning: [GHC-58520] [-Wtype-eq
     |
 155 |                         , Element collection ~ Item collection
     |                                              ^
-[ 4 of 19] Compiling Test.Data.List
 
-tests/Test/Data/List.hs:11:42: warning: [-Wunused-imports]
+tests/Test/Checks/Property/Collection.hs:155:46: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+155 |                         , Element collection ~ Item collection
+    |                                              ^
+
+[ 4 of 19] Compiling Test.Data.List
+tests/Test/Data/List.hs:11:42: warning: [GHC-38856] [-Wunused-imports]
     The import of ‘NonEmpty’
     from module ‘Foundation.Collection’ is redundant
    |
 11 | import Foundation.Collection (nonEmpty_, NonEmpty)
    |                                          ^^^^^^^^
+
 [ 5 of 19] Compiling Test.Data.Network
 [ 6 of 19] Compiling Test.Foundation.Bits
-
 tests/Test/Foundation/Bits.hs:21:61: warning: [GHC-58520] [-Wtype-equality-requires-operators]
     The use of ‘~’ without TypeOperators
     will become an error in a future GHC release.
@@ -188,16 +793,38 @@ tests/Test/Foundation/Bits.hs:21:61: warning: [GHC-58520] [-Wtype-equality-requi
    |
 21 | testBits :: forall a . (Additive a, Bounded a, Difference a ~ a, Integral a, IsIntegral a, Bits a, Show a, Subtractive a, Eq a, Arbitrary a, Typeable a)
    |                                                             ^
+
+tests/Test/Foundation/Bits.hs:21:61: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+   |
+21 | testBits :: forall a . (Additive a, Bounded a, Difference a ~ a, Integral a, IsIntegral a, Bits a, Show a, Subtractive a, Eq a, Arbitrary a, Typeable a)
+   |                                                             ^
+
 [ 7 of 19] Compiling Test.Foundation.Conduit
 [ 8 of 19] Compiling Test.Foundation.Format.CSV
 [ 9 of 19] Compiling Test.Foundation.Format
 [10 of 19] Compiling Test.Foundation.Misc
 [11 of 19] Compiling Test.Foundation.Number
-
 tests/Test/Foundation/Number.hs:61:140: warning: [GHC-58520] [-Wtype-equality-requires-operators]
     The use of ‘~’ without TypeOperators
     will become an error in a future GHC release.
     Suggested fix: Perhaps you intended to use TypeOperators
+   |
+61 | testOperatorPrecedence :: forall a . (Show a, Eq a, Prelude.Num a, IsIntegral a, Additive a, Subtractive a, Multiplicative a, Difference a ~ a, Arbitrary a, Typeable a)
+   |                                                                                                                                            ^
+
+tests/Test/Foundation/Number.hs:61:140: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
    |
 61 | testOperatorPrecedence :: forall a . (Show a, Eq a, Prelude.Num a, IsIntegral a, Additive a, Subtractive a, Multiplicative a, Difference a ~ a, Arbitrary a, Typeable a)
    |                                                                                                                                            ^
@@ -209,9 +836,20 @@ tests/Test/Foundation/Number.hs:75:117: warning: [GHC-58520] [-Wtype-equality-re
    |
 75 | testNumber :: (Show a, Eq a, Prelude.Num a, IsIntegral a, Additive a, Multiplicative a, Subtractive a, Difference a ~ a, IDivisible a, Arbitrary a, Typeable a)
    |                                                                                                                     ^
-[12 of 19] Compiling Test.Foundation.Primitive.BlockN
 
-tests/Test/Foundation/Primitive/BlockN.hs:11:1: warning: [-Wunused-imports]
+tests/Test/Foundation/Number.hs:75:117: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+   |
+75 | testNumber :: (Show a, Eq a, Prelude.Num a, IsIntegral a, Additive a, Multiplicative a, Subtractive a, Difference a ~ a, IDivisible a, Arbitrary a, Typeable a)
+   |                                                                                                                     ^
+
+[12 of 19] Compiling Test.Foundation.Primitive.BlockN
+tests/Test/Foundation/Primitive/BlockN.hs:11:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Proxy’ is redundant
       except perhaps to import instances from ‘Data.Proxy’
     To import instances alone, use: import Data.Proxy()
@@ -226,10 +864,10 @@ tests/Test/Foundation/Primitive/BlockN.hs:42:5: warning: [GHC-62161] [-Wincomple
    |
 42 |     Just blockN = toBlockN block :: Maybe (BlockN n Int)
    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [13 of 19] Compiling Test.Foundation.Random
 [14 of 19] Compiling Test.Foundation.Storable
-
-tests/Test/Foundation/Storable.hs:18:1: warning: [-Wunused-imports]
+tests/Test/Foundation/Storable.hs:18:1: warning: [GHC-66111] [-Wunused-imports]
     The qualified import of ‘Foreign.Marshal.Array’ is redundant
       except perhaps to import instances from ‘Foreign.Marshal.Array’
     To import instances alone, use: import Foreign.Marshal.Array()
@@ -237,25 +875,25 @@ tests/Test/Foundation/Storable.hs:18:1: warning: [-Wunused-imports]
 18 | import qualified Foreign.Marshal.Array
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-tests/Test/Foundation/Storable.hs:59:21: warning: [-Wunused-matches]
+tests/Test/Foundation/Storable.hs:59:21: warning: [GHC-40910] [-Wunused-matches]
     Defined but not used: ‘p’
    |
 59 | testPropertyBE name p = Group name
    |                     ^
 
-tests/Test/Foundation/Storable.hs:68:27: warning: [-Wunused-matches]
+tests/Test/Foundation/Storable.hs:68:27: warning: [GHC-40910] [-Wunused-matches]
     Defined but not used: ‘p’
    |
 68 | testPropertyStorable name p = Group name
    |                           ^
 
-tests/Test/Foundation/Storable.hs:88:1: warning: [-Wunused-top-binds]
+tests/Test/Foundation/Storable.hs:88:1: warning: [GHC-40910] [-Wunused-top-binds]
     Defined but not used: ‘testPropertyStorablePeek’
    |
 88 | testPropertyStorablePeek _ v = CheckPlan "storable-peek" $ do
    | ^^^^^^^^^^^^^^^^^^^^^^^^
 
-tests/Test/Foundation/Storable.hs:98:1: warning: [-Wunused-top-binds]
+tests/Test/Foundation/Storable.hs:98:1: warning: [GHC-40910] [-Wunused-top-binds]
     Defined but not used: ‘testPropertyStorablePoke’
    |
 98 | testPropertyStorablePoke _ v = CheckPlan "storable-poke" $ do
@@ -268,17 +906,18 @@ tests/Test/Foundation/Storable.hs:118:13: warning: [GHC-62161] [-Wincomplete-uni
     |
 118 |             Just (CountOf minsz) = (size p + alignment p - size p)
     |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [15 of 19] Compiling Test.Foundation.Network.IPv6
 [16 of 19] Compiling Test.Foundation.Network.IPv4
 [17 of 19] Compiling Test.Foundation.String
 [18 of 19] Compiling Test.Foundation.String.Base64
-
-tests/Test/Foundation/String/Base64.hs:10:1: warning: [-Wunused-imports]
+tests/Test/Foundation/String/Base64.hs:10:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Monad’ is redundant
       except perhaps to import instances from ‘Control.Monad’
     To import instances alone, use: import Control.Monad()
    |
 10 | import Control.Monad
    | ^^^^^^^^^^^^^^^^^^^^
+
 [19 of 19] Compiling Main
-[20 of 20] Linking /tmp/workdir-foundation/foundation-0.0.30/dist-newstyle/build/x86_64-linux/ghc-9.6.5/foundation-0.0.30/t/check-foundation/build/check-foundation/check-foundation
+[20 of 20] Linking /tmp/workdir-foundation/foundation-0.0.30/dist-newstyle/build/x86_64-linux/ghc-9.10.2/foundation-0.0.30/t/check-foundation/build/check-foundation/check-foundation

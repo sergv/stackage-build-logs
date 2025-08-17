@@ -1,0 +1,179 @@
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - cron-0.7.2 (test:test) (ephemeral targets)
+Preprocessing test suite 'test' for cron-0.7.2...
+Building test suite 'test' for cron-0.7.2...
+Running 1 test suites...
+Test suite test: RUNNING...
+cron
+  System.Cron
+    scheduleMatches
+      matches a catch-all:                                               OK
+      matches a specific field:                                          OK
+      matches a range:                                                   OK
+      matches a list:                                                    OK
+      matches a step field:                                              OK
+      does not match something missing the step field:                   OK
+      matches starred stepped fields:                                    OK
+      does not match fields that miss starred stepped fields:            OK
+      matches multiple fields at once:                                   OK
+      matches a monday as 1:                                             OK
+      matches a sunday as 0:                                             OK
+      matches a sunday as 7:                                             OK
+      matches weekly on a sunday at 0:00:                                OK
+      does not match weekly on a sunday at some time past midnight:      OK
+      does not match weekly on another day at midnight:                  OK
+      only needs weekday or monthday to match:                           OK
+      correctly schedules steps and ranges:                              OK
+      star matches everything:                                           OK
+          ✓ <interactive> passed 100 tests.
+      exact time matches:                                                OK
+          ✓ <interactive> passed 100 tests.
+      any time with the same minute as n * * * * matches:                OK
+          ✓ <interactive> passed 100 tests.
+      any time with the diff minute as n * * * * does not match:         OK
+          ✓ <interactive> passed 100 tests.
+      any time with the same hour as * n * * * matches:                  OK
+          ✓ <interactive> passed 100 tests.
+      any time with the diff hour as * n * * * does not match:           OK
+          ✓ <interactive> passed 100 tests.
+      any time with the same day as * * n * * matches:                   OK
+          ✓ <interactive> passed 100 tests.
+      any time with the diff day as * * n * * does not match:            OK
+          ✓ <interactive> passed 100 tests.
+    CronSchedule show
+      formats stars:                                                     OK
+      formats specific numbers:                                          OK
+      formats lists:                                                     OK
+      formats ranges:                                                    OK
+      formats steps:                                                     OK
+      formats @yearly:                                                   OK
+      formats @monthly:                                                  OK
+      formats @weekly:                                                   OK
+      formats @daily:                                                    OK
+      formats @hourly:                                                   OK
+      formats everyMinute:                                               OK
+    CrontabEntry Show
+      formats environment variable sets:                                 OK
+      formats command entries:                                           OK
+    Crontab Show
+      prints nothing for an empty crontab:                               OK
+    nextMatch
+      is always in the future (at least 1 minute advanced):              OK (0.20s)
+          ✓ <interactive> passed 100 tests.
+      always produces a time that will match the schedule:               OK (0.18s)
+          ✓ <interactive> passed 100 tests.
+      returns the first minute in the future that matches:               OK (0.23s)
+          ✓ <interactive> passed 100 tests.
+      a schedule that produces Just for one t will produce it for any t: OK (0.26s)
+          ✓ <interactive> passed 100 tests.
+      does not match impossible dates (restricted dow/dom bug):          OK
+  System.Cron.Describe
+    describeCronSchedule
+      describes all stars
+        verbose:                                                         OK
+        non-verbose:                                                     OK
+      describes specific values
+        verbose:                                                         OK
+        non-verbose:                                                     OK
+        12-hour (verbose):                                               OK
+      describes list values
+        verbose:                                                         OK
+        non-verbose:                                                     OK
+      describes range values
+        verbose:                                                         OK
+        non-verbose:                                                     OK
+      describes step values
+        verbose:                                                         OK
+        non-verbose:                                                     OK
+      describes other values
+        verbose:                                                         OK
+        non-verbose:                                                     OK
+      handles Sunday weirdness
+        range of values (Sunday at 0):                                   OK
+        range of values (Sunday at 7):                                   OK
+        range of values:                                                 OK
+      describes complicated times
+        describes specific times - twenty four hour:                     OK
+        describes specific times - twelve hour:                          OK
+        describes a range of minutes - twenty four hour:                 OK
+        describes a range of minutes - twelve hour:                      OK
+        describes times for lists of hours
+          simple list of hours - twenty four hour:                       OK
+          simple list of hours - twelve hour:                            OK
+          list of hours, and range - twenty four hour:                   OK
+          list of hours, and range - twelve hour:                        OK
+          list of hours, and star:                                       OK
+        describes other times
+          range of minutes, range of hours:                              OK
+          range of minutes, every hour:                                  OK
+          range of minutes, interval of hours:                           OK
+          list of minutes, at an hour:                                   OK
+          step minutes, step hours:                                      OK
+  System.Cron.Parser
+    cronSchedule
+      parses all stars:                                                  OK
+      parses specific values:                                            OK
+      parses list values:                                                OK
+      parses range values:                                               OK
+      parses step values:                                                OK
+      refuses to parse recursive steps:                                  OK
+      refuses to parse sparse lists:                                     OK
+      refuses too few fields:                                            OK
+      refuses too many fields:                                           OK
+      refuses extraneous input:                                          OK
+      parses @hourly:                                                    OK
+      parses @daily:                                                     OK
+      parses @monthly:                                                   OK
+      parses @yearly:                                                    OK
+      parses ranges at the last field:                                   OK
+      parses lists at the last field:                                    OK
+      parses steps at the last field:                                    OK
+      parses a sunday as 7:                                              OK
+      parses a sunday as 0:                                              OK
+      parses another example:                                            OK
+    cronScheduleLoose
+      is okay with extaneous input:                                      OK
+    crontab
+      parses an empty input:                                             OK
+      parses whitespace:                                                 OK
+      parses a single line:                                              OK
+      ignores comments:                                                  OK
+      ignores comments with leading whitespace:                          OK
+      parses comments interspersed with actual commands:                 OK
+    crontabEntry
+      parses an environment variable assignment:                         OK
+      parses an environment variable with whitespace at the front:       OK
+      parses an environment variable with whitespace in the middle:      OK
+      parses a command:                                                  OK
+      parses a command with any amount of whitespace inbetween:          OK
+      parses a command with whitespace at the front:                     OK
+    serialize/parse CronSchedule
+      roundtrips:                                                        OK (0.17s)
+          ✓ <interactive> passed 100 tests.
+    serialize/parse Crontab
+      roundtrips:                                                        OK (1.00s)
+          ✓ <interactive> passed 100 tests.
+  System.Cron.Schedule
+    MonadSchedule
+      should place the first job as the last job stated.:                OK
+      should place the last job as the first job stated.:                OK
+      should read all three jobs.:                                       OK
+    execSchedule
+      should set an mvar each minute:                                    OK (60.00s)
+  System.Cron.Schedule
+    findNextMinuteDelay'
+      should find next minute of arbitrary time.:                        OK
+      should find next minute of 59 minutes.:                            OK
+      should find next minute of 0 minute.:                              OK
+      should find next minute before midnight.:                          OK
+      invariance: next minute is after and no more than 60s later.:      OK
+          ✓ <interactive> passed 100 tests.
+      invariance: next minute after next minute is *exactly* 60s.:       OK
+          ✓ <interactive> passed 100 tests.
+
+All 119 tests passed (60.00s)
+Test suite test: PASS
+Test suite logged to:
+/tmp/workdir-cron/cron-0.7.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/cron-0.7.2/t/test/test/cron-0.7.2-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

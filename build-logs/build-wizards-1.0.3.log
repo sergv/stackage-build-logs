@@ -1,14 +1,71 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - wizards-1.0.3 (lib) (first run)
 Configuring library for wizards-1.0.3...
 Preprocessing library for wizards-1.0.3...
 Building library for wizards-1.0.3...
-
-on the commandline: warning: [-Wdeprecated-flags]
+on the commandline: warning: [GHC-53692] [-Wdeprecated-flags]
     -XOverlappingInstances is deprecated: instead use per-instance pragmas OVERLAPPING/OVERLAPPABLE/OVERLAPS
+
 [1 of 5] Compiling System.Console.Wizard.Internal
 [2 of 5] Compiling System.Console.Wizard
 [3 of 5] Compiling System.Console.Wizard.Haskeline
 [4 of 5] Compiling System.Console.Wizard.BasicIO
 [5 of 5] Compiling System.Console.Wizard.Pure
+System/Console/Wizard/Pure.hs:36:23: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+36 |                  x <- head . fst <$> get
+   |                       ^^^^
+
+System/Console/Wizard/Pure.hs:37:32: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+37 |                  modify (first tail)
+   |                                ^^^^
+
+System/Console/Wizard/Pure.hs:46:30: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+46 |                  x <- null . head . fst <$> get
+   |                              ^^^^
+
+System/Console/Wizard/Pure.hs:48:35: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+48 |                     modify (first tail)
+   |                                   ^^^^
+
+System/Console/Wizard/Pure.hs:51:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+51 |                     r <- head . head . fst <$> get
+   |                          ^^^^
+
+System/Console/Wizard/Pure.hs:51:33: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+51 |                     r <- head . head . fst <$> get
+   |                                 ^^^^
+
+System/Console/Wizard/Pure.hs:52:49: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+52 |                     modify (first (\ (x : r) -> tail x : r))
+   |                                                 ^^^^
+

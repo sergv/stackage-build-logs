@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - hxt-regex-xmlschema-9.2.0.7 (lib) (first run)
  - hxt-regex-xmlschema-9.2.0.7 (test:SimpleMatch) (first run)
@@ -7,9 +8,89 @@ Configuring library for hxt-regex-xmlschema-9.2.0.7...
 Preprocessing library for hxt-regex-xmlschema-9.2.0.7...
 Building library for hxt-regex-xmlschema-9.2.0.7...
 [1 of 9] Compiling Text.Regex.XMLSchema.Generic.StringLike
+src/Text/Regex/XMLSchema/Generic/StringLike.hs:69:21: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+69 |   headS           = head
+   |                     ^^^^
+
 [2 of 9] Compiling Text.Regex.XMLSchema.Generic.Regex
+src/Text/Regex/XMLSchema/Generic/Regex.hs:443:17: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+443 |         | null (tail cs) &&
+    |                 ^^^^
+
+src/Text/Regex/XMLSchema/Generic/Regex.hs:444:17: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+444 |           rng1 (head cs)
+    |                 ^^^^
+
+src/Text/Regex/XMLSchema/Generic/Regex.hs:445:44: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+445 |                                 = escRng . head $ cs
+    |                                            ^^^^
+
 [3 of 9] Compiling Text.Regex.XMLSchema.Generic.RegexParser
+src/Text/Regex/XMLSchema/Generic/RegexParser.hs:107:56: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+107 |           | "^"   `isPrefixOf` re   = ([],             tail   re)
+    |                                                        ^^^^
+
 [4 of 9] Compiling Text.Regex.XMLSchema.Generic.Matching
+src/Text/Regex/XMLSchema/Generic/Matching.hs:83:33: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+83 |                   return (snd . head $ sms, rest)
+   |                                 ^^^^
+
+src/Text/Regex/XMLSchema/Generic/Matching.hs:175:25: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+175 |             tok = snd . head $ toks
+    |                         ^^^^
+
+src/Text/Regex/XMLSchema/Generic/Matching.hs:269:25: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+269 |             tok = snd . head $ toks
+    |                         ^^^^
+
+src/Text/Regex/XMLSchema/Generic/Matching.hs:318:42: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+318 |             res = map (first fromJust) . tail $ toks
+    |                                          ^^^^
+
+src/Text/Regex/XMLSchema/Generic/Matching.hs:319:25: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+319 |             tok = snd . head $ toks
+    |                         ^^^^
+
 [5 of 9] Compiling Text.Regex.XMLSchema.Generic
 [6 of 9] Compiling Text.Regex.Glob.Generic.RegexParser
 [7 of 9] Compiling Text.Regex.Glob.Generic
@@ -19,12 +100,11 @@ Configuring test suite 'SimpleMatch' for hxt-regex-xmlschema-9.2.0.7...
 Preprocessing test suite 'SimpleMatch' for hxt-regex-xmlschema-9.2.0.7...
 Building test suite 'SimpleMatch' for hxt-regex-xmlschema-9.2.0.7...
 [1 of 1] Compiling Main
-[2 of 2] Linking /tmp/workdir-hxt-regex-xmlschema/hxt-regex-xmlschema-9.2.0.7/dist-newstyle/build/x86_64-linux/ghc-9.6.5/hxt-regex-xmlschema-9.2.0.7/t/SimpleMatch/build/SimpleMatch/SimpleMatch
+[2 of 2] Linking /tmp/workdir-hxt-regex-xmlschema/hxt-regex-xmlschema-9.2.0.7/dist-newstyle/build/x86_64-linux/ghc-9.10.2/hxt-regex-xmlschema-9.2.0.7/t/SimpleMatch/build/SimpleMatch/SimpleMatch
 Configuring test suite 'Date' for hxt-regex-xmlschema-9.2.0.7...
 Preprocessing test suite 'Date' for hxt-regex-xmlschema-9.2.0.7...
 Building test suite 'Date' for hxt-regex-xmlschema-9.2.0.7...
 [1 of 1] Compiling Main
-
 test/Date.hs:356:25: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -113,4 +193,21 @@ test/Date.hs:418:25: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     |
 418 |                     let [h] = tokenize num s
     |                         ^^^^^^^^^^^^^^^^^^^^
-[2 of 2] Linking /tmp/workdir-hxt-regex-xmlschema/hxt-regex-xmlschema-9.2.0.7/dist-newstyle/build/x86_64-linux/ghc-9.6.5/hxt-regex-xmlschema-9.2.0.7/t/Date/build/Date/Date
+
+test/Date.hs:485:41: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+485 |                       return (v, read . head . tokenizeExt year $ v, sem' == "ssem")
+    |                                         ^^^^
+
+test/Date.hs:496:38: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+496 |       (\ l -> if null l then 99 else head l) .
+    |                                      ^^^^
+
+[2 of 2] Linking /tmp/workdir-hxt-regex-xmlschema/hxt-regex-xmlschema-9.2.0.7/dist-newstyle/build/x86_64-linux/ghc-9.10.2/hxt-regex-xmlschema-9.2.0.7/t/Date/build/Date/Date

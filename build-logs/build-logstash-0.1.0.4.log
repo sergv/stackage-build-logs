@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - logstash-0.1.0.4 (lib) (first run)
 Configuring library for logstash-0.1.0.4...
@@ -7,6 +8,13 @@ Building library for logstash-0.1.0.4...
 [1 of 4] Compiling Logstash.Connection
 [2 of 4] Compiling Logstash
 [3 of 4] Compiling Logstash.TCP
+src/Logstash/TCP.hs:60:13: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+60 |     addr <- head <$> getAddrInfo 
+   |             ^^^^
 
 src/Logstash/TCP.hs:100:23: warning: [GHC-68441] [-Wdeprecations]
     In the use of ‘createPool’ (imported from Data.Pool):
@@ -21,4 +29,5 @@ src/Logstash/TCP.hs:148:5: warning: [GHC-68441] [-Wdeprecations]
     |
 148 |     createPool (createTlsConnection cfg params) closeConnection 
     |     ^^^^^^^^^^
+
 [4 of 4] Compiling Paths_logstash

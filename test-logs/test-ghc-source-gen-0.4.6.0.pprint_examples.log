@@ -1,0 +1,107 @@
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - ghc-source-gen-0.4.6.0 (test:pprint_examples) (ephemeral targets)
+Preprocessing test suite 'pprint_examples' for ghc-source-gen-0.4.6.0...
+Building test suite 'pprint_examples' for ghc-source-gen-0.4.6.0...
+Running 1 test suites...
+Test suite pprint_examples: RUNNING...
+========
+(Foo.abc, #def, 'g', 
+ let
+   result :: A B
+   result x _ = foo 'c'
+ in result)
+========
+module Foo (
+        efg
+    ) where
+efg, h :: (A, B)
+efg
+  = 'a'
+  where
+      q :: Q
+      q | True = 'q'
+f x y
+  = case y of _ -> x
+  where
+      q = 't'
+========
+lambdas = \ y -> \case z -> 'a'
+ifs x = if b then t else f
+ifs y
+  = if | False -> 'f'
+       | True -> 't'
+ifs z
+  = if | f x -> "f"
+       | g x -> "g"
+       | otherwise -> "h"
+do'
+  = do x <- act
+       return x
+types :: forall x y. Show x => y
+types' :: Show x => forall x y. y
+swap (x, y) = (y, x)
+char 'a' = 'b'
+string "abc" = "def"
+as x@(y, z) = x
+con (A b (C d)) = (b, d)
+ops x y = x + y
+ops' = 1 * (2 + 3)
+ops' = A x * (B y + C z)
+ops' = A x `mult` (B y + C z)
+cons' = X 1 (Y 2 3) Z
+cons' = f (g x)
+f :: X a (Y b c) Z
+g :: A x * (B y + C z)
+class A a => B b b' where
+  f :: b -> b'
+  f = id
+class () => F a b c | a b -> c, a -> b c
+class () => Ident a b | a -> b, b -> a where
+  ident :: a -> b
+type A b c = D
+data A b c
+  = A b c | D
+  deriving (X, Y)
+newtype A b c
+  = A b
+  deriving (X, Y)
+instance A b c where
+  f :: b -> c
+  f = undefined
+class (Real a, Enum a) => Integral a where
+  divMod :: a -> a -> (a, a)
+  div :: a -> a -> a
+  div x y = fst (divMod x y)
+instance Show Bool where
+  show :: Bool -> String
+  show True = "True"
+  show False = "False"
+data X b
+  = X (A b) !(A b) ~(A b) |
+    (:+) (A b) !(A b) ~(A b) |
+    !(A b) `Y` ~(A b) |
+    !(A b) :* ~(A b) |
+    (A b) :* (A b) |
+    Z {x :: Int, y :: (A b), y :: !(A b), y :: ~(A b)}
+strictness !(A b) ~(A b) = 'x'
+unit :: () -> ()
+unit () = ()
+========
+module Const (
+        const
+    ) where
+const :: a -> b -> a
+const _ x = x
+========
+module M (
+        a, A, B(..), C(d, E)
+    ) where
+import qualified A
+import B as C
+import D ( d )
+import E hiding ( e )
+Test suite pprint_examples: PASS
+Test suite logged to:
+/tmp/workdir-ghc-source-gen/ghc-source-gen-0.4.6.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/ghc-source-gen-0.4.6.0/t/pprint_examples/test/ghc-source-gen-0.4.6.0-pprint_examples.log
+1 of 1 test suites (1 of 1 test cases) passed.

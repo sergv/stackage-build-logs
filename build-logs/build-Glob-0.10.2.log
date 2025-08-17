@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - Glob-0.10.2 (lib) (first run)
  - Glob-0.10.2 (test:glob-tests) (first run)
@@ -7,25 +8,176 @@ Preprocessing library for Glob-0.10.2...
 Building library for Glob-0.10.2...
 [1 of 7] Compiling System.FilePath.Glob.Utils
 [2 of 7] Compiling System.FilePath.Glob.Base
+System/FilePath/Glob/Base.hs:415:42: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+415 |                        r      -> r : go (tail rest)
+    |                                          ^^^^
+
+System/FilePath/Glob/Base.hs:567:42: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+567 |    fin (LongLiteral 1 s : xs) = Literal (head s) : fin xs
+    |                                          ^^^^
+
+System/FilePath/Glob/Base.hs:656:45: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+656 |                      range            = (c, head catable)
+    |                                             ^^^^
+
+System/FilePath/Glob/Base.hs:659:47: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+659 |                      if null catable || null (tail catable)
+    |                                               ^^^^
+
 [3 of 7] Compiling System.FilePath.Glob.Simplify
 [4 of 7] Compiling System.FilePath.Glob.Primitive
 [5 of 7] Compiling System.FilePath.Glob.Match
+System/FilePath/Glob/Match.hs:99:11: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+99 |           tail . takeWhile (not.null.snd) . map (`splitAt` n) $ [0..]
+   |           ^^^^
+
+System/FilePath/Glob/Match.hs:132:48: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+132 |       else hasMatch && all (not.isExtSeparator.head) matchedDirs
+    |                                                ^^^^
+
 [6 of 7] Compiling System.FilePath.Glob.Directory
+System/FilePath/Glob/Directory.hs:151:19: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+151 | globDir1 p = fmap head . globDir [p]
+    |                   ^^^^
+
+System/FilePath/Glob/Directory.hs:213:61: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+213 |                 null (unPattern p) && not (isExtSeparator $ head path)
+    |                                                             ^^^^
+
+System/FilePath/Glob/Directory.hs:350:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+350 |       | isPathSeparator (head rest) = (Pattern     ps, Just "")
+    |                          ^^^^
+
 [7 of 7] Compiling System.FilePath.Glob
 Configuring test suite 'glob-tests' for Glob-0.10.2...
 Preprocessing test suite 'glob-tests' for Glob-0.10.2...
 Building test suite 'glob-tests' for Glob-0.10.2...
 [ 1 of 16] Compiling System.FilePath.Glob.Utils
 [ 2 of 16] Compiling System.FilePath.Glob.Base
+System/FilePath/Glob/Base.hs:415:42: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+415 |                        r      -> r : go (tail rest)
+    |                                          ^^^^
+
+System/FilePath/Glob/Base.hs:567:42: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+567 |    fin (LongLiteral 1 s : xs) = Literal (head s) : fin xs
+    |                                          ^^^^
+
+System/FilePath/Glob/Base.hs:656:45: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+656 |                      range            = (c, head catable)
+    |                                             ^^^^
+
+System/FilePath/Glob/Base.hs:659:47: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+659 |                      if null catable || null (tail catable)
+    |                                               ^^^^
+
 [ 3 of 16] Compiling System.FilePath.Glob.Simplify
 [ 4 of 16] Compiling System.FilePath.Glob.Primitive
 [ 5 of 16] Compiling System.FilePath.Glob.Match
+System/FilePath/Glob/Match.hs:99:11: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+99 |           tail . takeWhile (not.null.snd) . map (`splitAt` n) $ [0..]
+   |           ^^^^
+
+System/FilePath/Glob/Match.hs:132:48: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+132 |       else hasMatch && all (not.isExtSeparator.head) matchedDirs
+    |                                                ^^^^
+
 [ 6 of 16] Compiling System.FilePath.Glob.Directory
+System/FilePath/Glob/Directory.hs:151:19: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+151 | globDir1 p = fmap head . globDir [p]
+    |                   ^^^^
+
+System/FilePath/Glob/Directory.hs:213:61: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+213 |                 null (unPattern p) && not (isExtSeparator $ head path)
+    |                                                             ^^^^
+
+System/FilePath/Glob/Directory.hs:350:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+350 |       | isPathSeparator (head rest) = (Pattern     ps, Just "")
+    |                          ^^^^
+
 [ 7 of 16] Compiling Tests.Base
 [ 8 of 16] Compiling Tests.Compiler
 [ 9 of 16] Compiling Tests.Directory
-[10 of 16] Compiling Tests.Instances
+tests/Tests/Directory.hs:76:31: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+76 |    let naiveGlobDir1 p = fmap head . globDir [p, p]
+   |                               ^^^^
 
+[10 of 16] Compiling Tests.Instances
 tests/Tests/Instances.hs:32:8: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -48,17 +200,67 @@ tests/Tests/Instances.hs:60:8: warning: [GHC-62161] [-Wincomplete-uni-patterns]
    |
 60 |        [a,b] = map fromRight es
    |        ^^^^^^^^^^^^^^^^^^^^^^^^
-[11 of 16] Compiling Tests.Matcher
 
-tests/Tests/Matcher.hs:62:8: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+[11 of 16] Compiling Tests.Matcher
+tests/Tests/Matcher.hs:32:49: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+32 |           if (not (null p0) && isPathSeparator (head p0)) /=
+   |                                                 ^^^^
+
+tests/Tests/Matcher.hs:33:54: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+33 |                 (not (null pth0) && isPathSeparator (head pth0))
+   |                                                      ^^^^
+
+tests/Tests/Matcher.hs:42:41: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+42 |        ==> all (uncurry (==)) . (zip`ap`tail) $
+   |                                         ^^^^
+
+tests/Tests/Matcher.hs:43:35: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+43 |               if isPathSeparator (head p)
+   |                                   ^^^^
+
+tests/Tests/Matcher.hs:44:56: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+44 |                  && not (null pth) && isPathSeparator (head pth)
+   |                                                        ^^^^
+
+tests/Tests/Matcher.hs:62:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
-    In a pattern binding: Patterns of type ‘String’ not matched: []
+    In an irrefutable pattern:
+        Patterns of type ‘String’ not matched: []
    |
 62 |        ~(x:_) = p
-   |        ^^^^^^^^^^
+   |         ^^^^^
+
 [12 of 16] Compiling Tests.Optimizer
 [13 of 16] Compiling Tests.Regression
 [14 of 16] Compiling Tests.Simplifier
 [15 of 16] Compiling Tests.Utils
+tests/Tests/Utils.hs:43:27: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+43 |     in s == reverse [a .. head s]
+   |                           ^^^^
+
 [16 of 16] Compiling Main
-[17 of 17] Linking /tmp/workdir-Glob/Glob-0.10.2/dist-newstyle/build/x86_64-linux/ghc-9.6.5/Glob-0.10.2/t/glob-tests/build/glob-tests/glob-tests
+[17 of 17] Linking /tmp/workdir-Glob/Glob-0.10.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/Glob-0.10.2/t/glob-tests/build/glob-tests/glob-tests

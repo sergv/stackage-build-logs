@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - gridtables-0.1.0.0 (lib) (first run)
  - gridtables-0.1.0.0 (test:test-gridtables) (first run)
@@ -7,10 +8,26 @@ Preprocessing library for gridtables-0.1.0.0...
 Building library for gridtables-0.1.0.0...
 [1 of 4] Compiling Text.GridTable.ArrayTable
 [2 of 4] Compiling Text.GridTable.Trace
+src/Text/GridTable/Trace.hs:29:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.List’ is redundant
+      except perhaps to import instances from ‘Data.List’
+    To import instances alone, use: import Data.List()
+   |
+29 | import Data.List (foldl')
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Text/GridTable/Trace.hs:413:48: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+413 |       colwidths = [ b - a - 1 | (b, a) <- zip (tail colseps) colseps ]
+    |                                                ^^^^
+
 [3 of 4] Compiling Text.GridTable.Parse
 [4 of 4] Compiling Text.GridTable
 Configuring test suite 'test-gridtables' for gridtables-0.1.0.0...
 Preprocessing test suite 'test-gridtables' for gridtables-0.1.0.0...
 Building test suite 'test-gridtables' for gridtables-0.1.0.0...
 [1 of 1] Compiling Main
-[2 of 2] Linking /tmp/workdir-gridtables/gridtables-0.1.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/gridtables-0.1.0.0/t/test-gridtables/build/test-gridtables/test-gridtables
+[2 of 2] Linking /tmp/workdir-gridtables/gridtables-0.1.0.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/gridtables-0.1.0.0/t/test-gridtables/build/test-gridtables/test-gridtables

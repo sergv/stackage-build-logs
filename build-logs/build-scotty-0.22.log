@@ -1,0 +1,161 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - scotty-0.22 (lib) (first run)
+ - scotty-0.22 (test:spec) (first run)
+ - scotty-0.22 (test:doctest) (first run)
+Configuring library for scotty-0.22...
+Preprocessing library for scotty-0.22...
+Building library for scotty-0.22...
+[ 1 of 10] Compiling Web.Scotty.Internal.Types
+Web/Scotty/Internal/Types.hs:25:53: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘StateT’
+    from module ‘Control.Monad.State.Strict’ is redundant
+   |
+25 | import           Control.Monad.State.Strict (State, StateT(..))
+   |                                                     ^^^^^^^^^^
+
+[ 2 of 10] Compiling Web.Scotty.Util
+[ 3 of 10] Compiling Web.Scotty.Body
+[ 4 of 10] Compiling Web.Scotty.Action
+Web/Scotty/Action.hs:105:106: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘decodeUtf8Lenient’
+    from module ‘Web.Scotty.Util’ is redundant
+    |
+105 | import           Web.Scotty.Util (mkResponse, addIfNotPresent, add, replace, lazyTextToStrictByteString, decodeUtf8Lenient)
+    |                                                                                                          ^^^^^^^^^^^^^^^^^
+
+Web/Scotty/Action.hs:135:3: warning: [GHC-68441] [-Wdeprecations]
+    In the use of data constructor ‘StatusError’
+    (imported from Web.Scotty.Internal.Types):
+    Deprecated: "If it is supposed to be caught, a proper exception type should be defined"
+    |
+135 |   StatusError s e -> do
+    |   ^^^^^^^^^^^
+
+Web/Scotty/Action.hs:220:27: warning: [GHC-68441] [-Wdeprecations]
+    In the use of data constructor ‘StatusError’
+    (imported from Web.Scotty.Internal.Types):
+    Deprecated: "If it is supposed to be caught, a proper exception type should be defined"
+    |
+220 | raiseStatus s = E.throw . StatusError s
+    |                           ^^^^^^^^^^^
+
+[ 5 of 10] Compiling Web.Scotty.Trans.Lazy
+Web/Scotty/Trans/Lazy.hs:19:10: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘raise’ (imported from Web.Scotty.Action):
+    Deprecated: "Throw an exception instead"
+   |
+19 | raise  = Base.raise . T.toStrict
+   |          ^^^^^^^^^^
+
+Web/Scotty/Trans/Lazy.hs:26:17: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘raiseStatus’ (imported from Web.Scotty.Action):
+    Deprecated: "Use status, text, and finish instead"
+   |
+26 | raiseStatus s = Base.raiseStatus s . T.toStrict
+   |                 ^^^^^^^^^^^^^^^^
+
+[ 6 of 10] Compiling Web.Scotty.Route
+Web/Scotty/Route.hs:26:101: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘ActionT’
+    from module ‘Web.Scotty.Internal.Types’ is redundant
+   |
+26 | import           Web.Scotty.Internal.Types (Options, RoutePattern(..), RouteOptions, ActionEnv(..), ActionT, ScottyState(..), ScottyT(..), ErrorHandler, Middleware, BodyInfo, File, handler, addRoute, defaultScottyResponse)
+   |                                                                                                     ^^^^^^^
+
+[ 7 of 10] Compiling Web.Scotty.Trans
+Web/Scotty/Trans.hs:133:12: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘options’ shadows the existing binding
+      imported from ‘Web.Scotty.Route’ at Web/Scotty/Trans.hs:80:1-23
+      (and originally defined at Web/Scotty/Route.hs:82:1-7)
+    |
+133 | scottyAppT options runActionToIO defs = do
+    |            ^^^^^^^
+
+[ 8 of 10] Compiling Web.Scotty.Trans.Strict
+[ 9 of 10] Compiling Web.Scotty
+Web/Scotty.hs:70:1: warning: [GHC-66111] [-Wunused-imports]
+    The qualified import of ‘Network.Wai.Parse’ is redundant
+      except perhaps to import instances from ‘Network.Wai.Parse’
+    To import instances alone, use: import Network.Wai.Parse()
+   |
+70 | import qualified Network.Wai.Parse as W (defaultParseRequestBodyOptions)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Web/Scotty.hs:156:9: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘raise’
+    (imported from Web.Scotty.Trans, but defined in Web.Scotty.Trans.Lazy):
+    Deprecated: "Throw an exception instead"
+    |
+156 | raise = Trans.raise
+    |         ^^^^^^^^^^^
+
+Web/Scotty.hs:163:15: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘raiseStatus’
+    (imported from Web.Scotty.Trans, but defined in Web.Scotty.Trans.Lazy):
+    Deprecated: "Use status, text, and finish instead"
+    |
+163 | raiseStatus = Trans.raiseStatus
+    |               ^^^^^^^^^^^^^^^^^
+
+Web/Scotty.hs:213:10: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘rescue’
+    (imported from Web.Scotty.Trans, but defined in Web.Scotty.Action):
+    Deprecated: "Use catch instead"
+    |
+213 | rescue = Trans.rescue
+    |          ^^^^^^^^^^^^
+
+Web/Scotty.hs:218:18: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘liftAndCatchIO’
+    (imported from Web.Scotty.Trans, but defined in Web.Scotty.Action):
+    Deprecated: "Use liftIO instead"
+    |
+218 | liftAndCatchIO = Trans.liftAndCatchIO
+    |                  ^^^^^^^^^^^^^^^^^^^^
+
+Web/Scotty.hs:284:9: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘param’
+    (imported from Web.Scotty.Trans, but defined in Web.Scotty.Action):
+    Deprecated: "(#204) Not a good idea to treat all parameters identically. Use captureParam, formParam and queryParam instead. "
+    |
+284 | param = Trans.param . toStrict
+    |         ^^^^^^^^^^^
+
+Web/Scotty.hs:360:10: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘params’
+    (imported from Web.Scotty.Trans, but defined in Web.Scotty.Action):
+    Deprecated: "(#204) Not a good idea to treat all parameters identically. Use pathParams, formParams and queryParams instead. "
+    |
+360 | params = Trans.params
+    |          ^^^^^^^^^^^^
+
+[10 of 10] Compiling Web.Scotty.Cookie
+Configuring test suite 'spec' for scotty-0.22...
+Preprocessing test suite 'spec' for scotty-0.22...
+Building test suite 'spec' for scotty-0.22...
+[1 of 3] Compiling Test.Hspec.Wai.Extra
+[2 of 3] Compiling Web.ScottySpec
+test/Web/ScottySpec.hs:5:115: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘postHtmlForm’
+    from module ‘Test.Hspec.Wai’ is redundant
+  |
+5 | import           Test.Hspec.Wai (with, request, get, post, put, patch, delete, options, (<:>), shouldRespondWith, postHtmlForm, matchHeaders, matchBody, matchStatus)
+  |                                                                                                                   ^^^^^^^^^^^^
+
+test/Web/ScottySpec.hs:198:64: warning: [GHC-68441] [-Wdeprecations]
+    In the use of type constructor or class ‘StatusError’
+    (imported from Web.Scotty, but defined in Web.Scotty.Internal.Types):
+    Deprecated: "If it is supposed to be caught, a proper exception type should be defined"
+    |
+198 |       withApp (Scotty.get "/" $ (fail "boom!") `catch` (\(_ :: StatusError) -> text "ok")) $
+    |                                                                ^^^^^^^^^^^
+
+[3 of 3] Compiling Main
+[4 of 4] Linking /tmp/workdir-scotty/scotty-0.22/dist-newstyle/build/x86_64-linux/ghc-9.10.2/scotty-0.22/t/spec/build/spec/spec
+Configuring test suite 'doctest' for scotty-0.22...
+Preprocessing test suite 'doctest' for scotty-0.22...
+Building test suite 'doctest' for scotty-0.22...
+[1 of 1] Compiling Main
+[2 of 2] Linking /tmp/workdir-scotty/scotty-0.22/dist-newstyle/build/x86_64-linux/ghc-9.10.2/scotty-0.22/t/doctest/build/doctest/doctest

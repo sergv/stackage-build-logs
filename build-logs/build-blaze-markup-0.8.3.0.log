@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - blaze-markup-0.8.3.0 (lib) (first run)
  - blaze-markup-0.8.3.0 (test:blaze-markup-tests) (first run)
@@ -6,8 +7,7 @@ Configuring library for blaze-markup-0.8.3.0...
 Preprocessing library for blaze-markup-0.8.3.0...
 Building library for blaze-markup-0.8.3.0...
 [1 of 6] Compiling Text.Blaze.Internal
-
-src/Text/Blaze/Internal.hs:82:1: warning: [-Wunused-imports]
+src/Text/Blaze/Internal.hs:82:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
@@ -15,7 +15,7 @@ src/Text/Blaze/Internal.hs:82:1: warning: [-Wunused-imports]
 82 | import           Control.Applicative    (Applicative (..))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Text/Blaze/Internal.hs:84:1: warning: [-Wunused-imports]
+src/Text/Blaze/Internal.hs:84:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
@@ -23,22 +23,24 @@ src/Text/Blaze/Internal.hs:84:1: warning: [-Wunused-imports]
 84 | import           Data.Monoid            (Monoid, mappend, mconcat, mempty)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Text/Blaze/Internal.hs:223:5: warning: [-Wnoncanonical-monad-instances]
+src/Text/Blaze/Internal.hs:223:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad MarkupM’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 223 |     return x = Empty x
     |     ^^^^^^^^^^^^^^^^^^
 
-src/Text/Blaze/Internal.hs:225:5: warning: [-Wnoncanonical-monad-instances]
+src/Text/Blaze/Internal.hs:225:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘(>>)’ definition detected
     in the instance declaration for ‘Monad MarkupM’.
     ‘(>>)’ will eventually be removed in favour of ‘(*>)’
-    Either remove definition for ‘(>>)’ (recommended) or define as ‘(>>) = (*>)’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘(>>)’ (recommended) or define as ‘(>>) = (*>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 225 |     (>>) = Append
     |     ^^^^^^^^^^^^^
@@ -50,9 +52,9 @@ src/Text/Blaze/Internal.hs:230:13: warning: [GHC-58520] [-Wtype-equality-require
     |
 230 | instance (a ~ ()) => IsString (MarkupM a) where
     |             ^
-[2 of 6] Compiling Text.Blaze
 
-src/Text/Blaze.hs:92:1: warning: [-Wunused-imports]
+[2 of 6] Compiling Text.Blaze
+src/Text/Blaze.hs:92:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
@@ -60,37 +62,37 @@ src/Text/Blaze.hs:92:1: warning: [-Wunused-imports]
 92 | import           Data.Monoid            (mconcat)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Text/Blaze.hs:93:42: warning: [-Wunused-imports]
+src/Text/Blaze.hs:93:42: warning: [GHC-38856] [-Wunused-imports]
     The import of ‘Word’ from module ‘Data.Word’ is redundant
    |
 93 | import           Data.Word              (Word, Word32, Word64)
    |                                          ^^^^
+
 [3 of 6] Compiling Text.Blaze.Renderer.String
 [4 of 6] Compiling Text.Blaze.Renderer.Pretty
 [5 of 6] Compiling Text.Blaze.Renderer.Text
-
-src/Text/Blaze/Renderer/Text.hs:15:1: warning: [-Wunused-imports]
+src/Text/Blaze/Renderer/Text.hs:15:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 15 | import Data.Monoid (mappend, mempty)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[6 of 6] Compiling Text.Blaze.Renderer.Utf8
 
-src/Text/Blaze/Renderer/Utf8.hs:11:1: warning: [-Wunused-imports]
+[6 of 6] Compiling Text.Blaze.Renderer.Utf8
+src/Text/Blaze/Renderer/Utf8.hs:11:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 11 | import Data.Monoid (mappend, mempty)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Configuring test suite 'blaze-markup-tests' for blaze-markup-0.8.3.0...
 Preprocessing test suite 'blaze-markup-tests' for blaze-markup-0.8.3.0...
 Building test suite 'blaze-markup-tests' for blaze-markup-0.8.3.0...
 [1 of 9] Compiling Text.Blaze.Internal
-
-src/Text/Blaze/Internal.hs:82:1: warning: [-Wunused-imports]
+src/Text/Blaze/Internal.hs:82:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
@@ -98,7 +100,7 @@ src/Text/Blaze/Internal.hs:82:1: warning: [-Wunused-imports]
 82 | import           Control.Applicative    (Applicative (..))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Text/Blaze/Internal.hs:84:1: warning: [-Wunused-imports]
+src/Text/Blaze/Internal.hs:84:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
@@ -106,22 +108,24 @@ src/Text/Blaze/Internal.hs:84:1: warning: [-Wunused-imports]
 84 | import           Data.Monoid            (Monoid, mappend, mconcat, mempty)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Text/Blaze/Internal.hs:223:5: warning: [-Wnoncanonical-monad-instances]
+src/Text/Blaze/Internal.hs:223:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad MarkupM’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 223 |     return x = Empty x
     |     ^^^^^^^^^^^^^^^^^^
 
-src/Text/Blaze/Internal.hs:225:5: warning: [-Wnoncanonical-monad-instances]
+src/Text/Blaze/Internal.hs:225:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘(>>)’ definition detected
     in the instance declaration for ‘Monad MarkupM’.
     ‘(>>)’ will eventually be removed in favour of ‘(*>)’
-    Either remove definition for ‘(>>)’ (recommended) or define as ‘(>>) = (*>)’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘(>>)’ (recommended) or define as ‘(>>) = (*>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 225 |     (>>) = Append
     |     ^^^^^^^^^^^^^
@@ -133,9 +137,9 @@ src/Text/Blaze/Internal.hs:230:13: warning: [GHC-58520] [-Wtype-equality-require
     |
 230 | instance (a ~ ()) => IsString (MarkupM a) where
     |             ^
-[2 of 9] Compiling Text.Blaze
 
-src/Text/Blaze.hs:92:1: warning: [-Wunused-imports]
+[2 of 9] Compiling Text.Blaze
+src/Text/Blaze.hs:92:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
@@ -143,35 +147,35 @@ src/Text/Blaze.hs:92:1: warning: [-Wunused-imports]
 92 | import           Data.Monoid            (mconcat)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Text/Blaze.hs:93:42: warning: [-Wunused-imports]
+src/Text/Blaze.hs:93:42: warning: [GHC-38856] [-Wunused-imports]
     The import of ‘Word’ from module ‘Data.Word’ is redundant
    |
 93 | import           Data.Word              (Word, Word32, Word64)
    |                                          ^^^^
+
 [3 of 9] Compiling Text.Blaze.Renderer.String
 [4 of 9] Compiling Text.Blaze.Renderer.Pretty
 [5 of 9] Compiling Text.Blaze.Renderer.Text
-
-src/Text/Blaze/Renderer/Text.hs:15:1: warning: [-Wunused-imports]
+src/Text/Blaze/Renderer/Text.hs:15:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 15 | import Data.Monoid (mappend, mempty)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[6 of 9] Compiling Text.Blaze.Renderer.Utf8
 
-src/Text/Blaze/Renderer/Utf8.hs:11:1: warning: [-Wunused-imports]
+[6 of 9] Compiling Text.Blaze.Renderer.Utf8
+src/Text/Blaze/Renderer/Utf8.hs:11:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 11 | import Data.Monoid (mappend, mempty)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [7 of 9] Compiling Text.Blaze.Tests.Util
 [8 of 9] Compiling Text.Blaze.Tests
-
-tests/Text/Blaze/Tests.hs:9:1: warning: [-Wunused-imports]
+tests/Text/Blaze/Tests.hs:9:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
@@ -179,12 +183,13 @@ tests/Text/Blaze/Tests.hs:9:1: warning: [-Wunused-imports]
 9 | import Data.Monoid (mempty, mappend)
   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-tests/Text/Blaze/Tests.hs:11:1: warning: [-Wunused-imports]
+tests/Text/Blaze/Tests.hs:11:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
    |
 11 | import Control.Applicative (Applicative (..), (<$>))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [9 of 9] Compiling Main
-[10 of 10] Linking /tmp/workdir-blaze-markup/blaze-markup-0.8.3.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/blaze-markup-0.8.3.0/t/blaze-markup-tests/build/blaze-markup-tests/blaze-markup-tests
+[10 of 10] Linking /tmp/workdir-blaze-markup/blaze-markup-0.8.3.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/blaze-markup-0.8.3.0/t/blaze-markup-tests/build/blaze-markup-tests/blaze-markup-tests

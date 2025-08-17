@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - tfp-1.0.2 (lib) (first run)
  - tfp-1.0.2 (test:tfp-test) (first run)
@@ -6,20 +7,96 @@ Configuring library for tfp-1.0.2...
 Preprocessing library for tfp-1.0.2...
 Building library for tfp-1.0.2...
 [ 1 of 16] Compiling Type.Base.Proxy
-
-src/Type/Base/Proxy.hs:6:17: warning: [-Wunused-imports]
+src/Type/Base/Proxy.hs:6:17: warning: [GHC-38856] [-Wunused-imports]
     The import of ‘String’ from module ‘Prelude’ is redundant
   |
 6 | import Prelude (String, Eq, Functor, fmap)
   |                 ^^^^^^
+
 [ 2 of 16] Compiling Type.Data.Bool
 [ 3 of 16] Compiling Type.Data.List
 [ 4 of 16] Compiling Type.Data.Num
-[ 5 of 16] Compiling Data.SizedWord
+src/Type/Data/Num.hs:171:35: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+171 | instance (Integer x, IsNatural x  ~ True) => Natural x
+    |                                   ^
 
+src/Type/Data/Num.hs:173:35: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+173 | instance (Integer x, IsPositive x ~ True) => Positive x
+    |                                   ^
+
+src/Type/Data/Num.hs:175:35: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+175 | instance (Integer x, IsNegative x ~ True) => Negative x
+    |                                   ^
+
+src/Type/Data/Num.hs:184:39: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+184 |         (forall s. (Integer s, Repr s ~ r) => Proxy s -> a) ->
+    |                                       ^
+
+src/Type/Data/Num.hs:248:36: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+248 |     (forall s. (Positive s, Repr s ~ r) => Proxy s -> a) ->
+    |                                    ^
+
+src/Type/Data/Num.hs:256:36: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+256 |     (forall s. (Negative s, Repr s ~ r) => Proxy s -> a) ->
+    |                                    ^
+
+src/Type/Data/Num.hs:264:35: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+264 |     (forall s. (Natural s, Repr s ~ r) => Proxy s -> a) ->
+    |                                   ^
+
+[ 5 of 16] Compiling Data.SizedWord
 src/Data/SizedWord.hs:111:10: warning: [GHC-06201] [-Wmissing-methods]
     • No explicit implementation for
-        ‘GHC.Bits.bitSizeMaybe’
+        ‘ghc-internal-9.1002.0:GHC.Internal.Bits.bitSizeMaybe’
     • In the instance declaration for ‘Bits (SizedWord nT)’
     |
 111 | instance Num.Natural nT => Bits (SizedWord nT) where
@@ -27,7 +104,7 @@ src/Data/SizedWord.hs:111:10: warning: [GHC-06201] [-Wmissing-methods]
 
 src/Data/SizedWord.hs:119:18: warning: [GHC-68441] [-Wdeprecations]
     In the use of ‘bitSize’
-    (imported from Data.Bits, but defined in GHC.Bits):
+    (imported from Data.Bits, but defined in GHC.Internal.Bits):
     Deprecated: "Use 'bitSizeMaybe' or 'finiteBitSize' instead"
     |
 119 |           | b >= bitSize s -> error $ "Bits.bit{" ++ showSizedWordType s ++ "}: tried to set too large position"
@@ -35,7 +112,7 @@ src/Data/SizedWord.hs:119:18: warning: [GHC-68441] [-Wdeprecations]
 
 src/Data/SizedWord.hs:123:14: warning: [GHC-68441] [-Wdeprecations]
     In the use of ‘bitSize’
-    (imported from Data.Bits, but defined in GHC.Bits):
+    (imported from Data.Bits, but defined in GHC.Internal.Bits):
     Deprecated: "Use 'bitSizeMaybe' or 'finiteBitSize' instead"
     |
 123 |       | b >= bitSize s = error $ "Bits.testBit{" ++ showSizedWordType s ++ "}: tried to test too large position"
@@ -43,7 +120,7 @@ src/Data/SizedWord.hs:123:14: warning: [GHC-68441] [-Wdeprecations]
 
 src/Data/SizedWord.hs:139:46: warning: [GHC-68441] [-Wdeprecations]
     In the use of ‘bitSize’
-    (imported from Data.Bits, but defined in GHC.Bits):
+    (imported from Data.Bits, but defined in GHC.Internal.Bits):
     Deprecated: "Use 'bitSizeMaybe' or 'finiteBitSize' instead"
     |
 139 |             ((x `shiftL` b) .|. (x `shiftR` (bitSize s - b)))
@@ -51,16 +128,16 @@ src/Data/SizedWord.hs:139:46: warning: [GHC-68441] [-Wdeprecations]
 
 src/Data/SizedWord.hs:145:46: warning: [GHC-68441] [-Wdeprecations]
     In the use of ‘bitSize’
-    (imported from Data.Bits, but defined in GHC.Bits):
+    (imported from Data.Bits, but defined in GHC.Internal.Bits):
     Deprecated: "Use 'bitSizeMaybe' or 'finiteBitSize' instead"
     |
 145 |             ((x `shiftR` b) .|. (x `shiftL` (bitSize s - b)))
     |                                              ^^^^^^^
-[ 6 of 16] Compiling Data.SizedInt
 
+[ 6 of 16] Compiling Data.SizedInt
 src/Data/SizedInt.hs:130:10: warning: [GHC-06201] [-Wmissing-methods]
     • No explicit implementation for
-        ‘GHC.Bits.bitSizeMaybe’
+        ‘ghc-internal-9.1002.0:GHC.Internal.Bits.bitSizeMaybe’
     • In the instance declaration for ‘Bits (SizedInt nT)’
     |
 130 | instance Num.Natural nT => Bits (SizedInt nT) where
@@ -68,7 +145,7 @@ src/Data/SizedInt.hs:130:10: warning: [GHC-06201] [-Wmissing-methods]
 
 src/Data/SizedInt.hs:138:18: warning: [GHC-68441] [-Wdeprecations]
     In the use of ‘bitSize’
-    (imported from Data.Bits, but defined in GHC.Bits):
+    (imported from Data.Bits, but defined in GHC.Internal.Bits):
     Deprecated: "Use 'bitSizeMaybe' or 'finiteBitSize' instead"
     |
 138 |           | b >= bitSize s -> error $ "Bits.bit{" ++ showSizedIntType s ++ "}: tried to set too large position"
@@ -76,11 +153,12 @@ src/Data/SizedInt.hs:138:18: warning: [GHC-68441] [-Wdeprecations]
 
 src/Data/SizedInt.hs:142:14: warning: [GHC-68441] [-Wdeprecations]
     In the use of ‘bitSize’
-    (imported from Data.Bits, but defined in GHC.Bits):
+    (imported from Data.Bits, but defined in GHC.Internal.Bits):
     Deprecated: "Use 'bitSizeMaybe' or 'finiteBitSize' instead"
     |
 142 |       | b >= bitSize s = error $ "Bits.testBit{" ++ showSizedIntType s ++ "}: tried to test too large position"
     |              ^^^^^^^
+
 [ 7 of 16] Compiling Type.Data.Num.Unary
 [ 8 of 16] Compiling Type.Data.Num.Unary.Literal
 [ 9 of 16] Compiling Type.Data.Num.Decimal.Digit
@@ -95,4 +173,26 @@ Configuring test suite 'tfp-test' for tfp-1.0.2...
 Preprocessing test suite 'tfp-test' for tfp-1.0.2...
 Building test suite 'tfp-test' for tfp-1.0.2...
 [1 of 1] Compiling Main
-[2 of 2] Linking /tmp/workdir-tfp/tfp-1.0.2/dist-newstyle/build/x86_64-linux/ghc-9.6.5/tfp-1.0.2/t/tfp-test/build/tfp-test/tfp-test
+test/Test.hs:350:36: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+350 | instance ( Num.Natural n, EQT n D0 ~ True )
+    |                                    ^
+
+test/Test.hs:354:36: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+354 | instance ( Num.Natural n, EQT n D0 ~ False
+    |                                    ^
+
+[2 of 2] Linking /tmp/workdir-tfp/tfp-1.0.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/tfp-1.0.2/t/tfp-test/build/tfp-test/tfp-test

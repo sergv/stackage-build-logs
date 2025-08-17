@@ -1,0 +1,91 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - vector-fftw-0.1.4.1 (lib) (first run)
+ - vector-fftw-0.1.4.1 (test:properties) (first run)
+Configuring library for vector-fftw-0.1.4.1...
+Preprocessing library for vector-fftw-0.1.4.1...
+Building library for vector-fftw-0.1.4.1...
+[1 of 8] Compiling Numeric.FFT.Vector.Base
+Numeric/FFT/Vector/Base.hsc:39:1: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘PrimMonad, RealWorld’
+    from module ‘Control.Monad.Primitive’ is redundant
+   |
+39 | import Control.Monad.Primitive (RealWorld,PrimMonad(..), PrimBase,
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+[2 of 8] Compiling Numeric.FFT.Vector.Plan
+[3 of 8] Compiling Numeric.FFT.Vector.Unnormalized
+[4 of 8] Compiling Numeric.FFT.Vector.Unitary
+[5 of 8] Compiling Numeric.FFT.Vector.Invertible
+[6 of 8] Compiling Numeric.FFT.Vector.Unnormalized.Multi
+[7 of 8] Compiling Numeric.FFT.Vector.Unitary.Multi
+[8 of 8] Compiling Numeric.FFT.Vector.Invertible.Multi
+Configuring test suite 'properties' for vector-fftw-0.1.4.1...
+Preprocessing test suite 'properties' for vector-fftw-0.1.4.1...
+Building test suite 'properties' for vector-fftw-0.1.4.1...
+[1 of 1] Compiling Main
+tests/FFTProperties.hs:21:1: warning: [GHC-38417] [-Wmissing-signatures]
+    Top-level binding with no type signature: main :: IO ()
+   |
+21 | main = defaultMain
+   | ^^^^
+
+tests/FFTProperties.hs:66:1: warning: [GHC-90177] [-Worphans]
+    Orphan class instance:
+      instance (V.Unbox a, Arbitrary a) => Arbitrary (V.Vector a)
+    Suggested fix:
+      Move the instance declaration to the module of the class or of the type, or
+      wrap the type with a newtype and declare the instance on the new type.
+   |
+66 | instance (V.Unbox a, Arbitrary a) => Arbitrary (V.Vector a) where
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+tests/FFTProperties.hs:98:1: warning: [GHC-38417] [-Wmissing-signatures]
+    Top-level binding with no type signature:
+      prop_invert :: (Mag a1, VS.Storable a1, VS.Storable a2, V.Unbox a1,
+                      Data.Vector.Generic.Base.Vector V.Vector a2,
+                      Data.Vector.Generic.Mutable.Base.MVector V.MVector a2) =>
+                     Transform a1 a2 -> Transform a2 a1 -> V.Vector a1 -> Property
+   |
+98 | prop_invert f g a = let
+   | ^^^^^^^^^^^
+
+tests/FFTProperties.hs:104:1: warning: [GHC-38417] [-Wmissing-signatures]
+    Top-level binding with no type signature:
+      prop_orthog :: (Mag a1, Mag a2, VS.Storable a1, VS.Storable a2,
+                      V.Unbox a2, V.Unbox a1) =>
+                     Transform a1 a2 -> V.Vector a1 -> Property
+    |
+104 | prop_orthog f a = let
+    | ^^^^^^^^^^^
+
+tests/FFTProperties.hs:121:1: warning: [GHC-38417] [-Wmissing-signatures]
+    Top-level binding with no type signature:
+      prop_invertND :: (V.Unbox a1, Mag a1,
+                        Data.Vector.Generic.Base.Vector V.Vector a2,
+                        Data.Vector.Generic.Mutable.Base.MVector V.MVector a2,
+                        VS.Storable a1, VS.Storable a2) =>
+                       TransformND a1 a2
+                       -> TransformND a2 a1 -> DimsAndValues a1 -> Property
+    |
+121 | prop_invertND f g (DimsAndValues ds a) = let
+    | ^^^^^^^^^^^^^
+
+tests/FFTProperties.hs:126:1: warning: [GHC-38417] [-Wmissing-signatures]
+    Top-level binding with no type signature:
+      prop_orthogND :: (V.Unbox a1, V.Unbox a2, Mag a1, Mag a2,
+                        VS.Storable a1, VS.Storable a2) =>
+                       TransformND a1 a2 -> DimsAndValues a1 -> Property
+    |
+126 | prop_orthogND f (DimsAndValues ds a) = let
+    | ^^^^^^^^^^^^^
+
+tests/FFTProperties.hs:130:1: warning: [GHC-38417] [-Wmissing-signatures]
+    Top-level binding with no type signature:
+      norm2 :: (V.Unbox a, Mag a) => V.Vector a -> Double
+    |
+130 | norm2 a = sqrt $ V.sum $ V.map (\x -> x*x) $ V.map mag a
+    | ^^^^^
+
+[2 of 2] Linking /tmp/workdir-vector-fftw/vector-fftw-0.1.4.1/dist-newstyle/build/x86_64-linux/ghc-9.10.2/vector-fftw-0.1.4.1/t/properties/build/properties/properties

@@ -1,0 +1,61 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - sequenceTools-1.6.0.0 (lib) (first run)
+ - sequenceTools-1.6.0.0 (exe:vcf2eigenstrat) (first run)
+ - sequenceTools-1.6.0.0 (test:sequenceToolsTests) (first run)
+ - sequenceTools-1.6.0.0 (exe:pileupCaller) (first run)
+ - sequenceTools-1.6.0.0 (exe:genoStats) (first run)
+Configuring library for sequenceTools-1.6.0.0...
+Preprocessing library for sequenceTools-1.6.0.0...
+Building library for sequenceTools-1.6.0.0...
+[1 of 3] Compiling Paths_sequenceTools
+[2 of 3] Compiling SequenceTools.Utils
+src/SequenceTools/Utils.hs:39:56: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+39 |     remove i xs = let (ys, zs) = splitAt i xs in ys ++ tail zs
+   |                                                        ^^^^
+
+[3 of 3] Compiling SequenceTools.PileupCaller
+src/SequenceTools/PileupCaller.hs:68:49: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+68 |     let groupedAlleles = sortOn fst [(length g, head g) | g <- group . sort $ alleles]
+   |                                                 ^^^^
+
+Configuring executable 'vcf2eigenstrat' for sequenceTools-1.6.0.0...
+Preprocessing executable 'vcf2eigenstrat' for sequenceTools-1.6.0.0...
+Building executable 'vcf2eigenstrat' for sequenceTools-1.6.0.0...
+[1 of 1] Compiling Main
+[2 of 2] Linking /tmp/workdir-sequenceTools/sequenceTools-1.6.0.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/sequenceTools-1.6.0.0/x/vcf2eigenstrat/build/vcf2eigenstrat/vcf2eigenstrat
+Configuring test suite 'sequenceToolsTests' for sequenceTools-1.6.0.0...
+Preprocessing test suite 'sequenceToolsTests' for sequenceTools-1.6.0.0...
+Building test suite 'sequenceToolsTests' for sequenceTools-1.6.0.0...
+[1 of 3] Compiling SequenceTools.PileupCallerSpec
+[2 of 3] Compiling SequenceTools.UtilsSpec
+[3 of 3] Compiling Main
+[4 of 4] Linking /tmp/workdir-sequenceTools/sequenceTools-1.6.0.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/sequenceTools-1.6.0.0/t/sequenceToolsTests/build/sequenceToolsTests/sequenceToolsTests
+Configuring executable 'pileupCaller' for sequenceTools-1.6.0.0...
+Preprocessing executable 'pileupCaller' for sequenceTools-1.6.0.0...
+Building executable 'pileupCaller' for sequenceTools-1.6.0.0...
+[1 of 2] Compiling Paths_sequenceTools
+[2 of 2] Compiling Main
+src-executables/pileupCaller.hs:240:61: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+240 |     processPopNames names = if length names == 1 then Left (head names) else Right names
+    |                                                             ^^^^
+
+[3 of 3] Linking /tmp/workdir-sequenceTools/sequenceTools-1.6.0.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/sequenceTools-1.6.0.0/x/pileupCaller/build/pileupCaller/pileupCaller
+Configuring executable 'genoStats' for sequenceTools-1.6.0.0...
+Preprocessing executable 'genoStats' for sequenceTools-1.6.0.0...
+Building executable 'genoStats' for sequenceTools-1.6.0.0...
+[1 of 1] Compiling Main
+[2 of 2] Linking /tmp/workdir-sequenceTools/sequenceTools-1.6.0.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/sequenceTools-1.6.0.0/x/genoStats/build/genoStats/genoStats

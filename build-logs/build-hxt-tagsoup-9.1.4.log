@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - hxt-tagsoup-9.1.4 (lib:hxt-tagsoup) (first run)
 Warning: hxt-tagsoup.cabal:35:43: version operators used. To use version
@@ -7,25 +8,50 @@ Configuring hxt-tagsoup-9.1.4...
 Preprocessing library for hxt-tagsoup-9.1.4...
 Building library for hxt-tagsoup-9.1.4...
 [1 of 3] Compiling Text.XML.HXT.Parser.TagSoup
-
-src/Text/XML/HXT/Parser/TagSoup.hs:76:5: warning: [-Wnoncanonical-monad-instances]
+src/Text/XML/HXT/Parser/TagSoup.hs:76:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘pure = return’ definition detected
     in the instance declaration for ‘Applicative Parser’.
-    Move definition from ‘return’ to ‘pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Move definition from ‘return’ to ‘pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
    |
 76 |     pure  = return
    |     ^^^^^^^^^^^^^^
 
-src/Text/XML/HXT/Parser/TagSoup.hs:80:5: warning: [-Wnoncanonical-monad-instances]
+src/Text/XML/HXT/Parser/TagSoup.hs:80:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad Parser’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
    |
 80 |     return x    = P $ \ ts -> (x, ts)
    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Text/XML/HXT/Parser/TagSoup.hs:97:50: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+97 | lookAhead p     = P $ \ s -> (not (null s) && p (head s), s)
+   |                                                  ^^^^
+
+src/Text/XML/HXT/Parser/TagSoup.hs:145:31: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+145 | getTag          = P $ \ t -> (head t, tail t)
+    |                               ^^^^
+
+src/Text/XML/HXT/Parser/TagSoup.hs:145:39: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+145 | getTag          = P $ \ t -> (head t, tail t)
+    |                                       ^^^^
 
 src/Text/XML/HXT/Parser/TagSoup.hs:218:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
@@ -34,6 +60,14 @@ src/Text/XML/HXT/Parser/TagSoup.hs:218:5: warning: [GHC-62161] [-Wincomplete-uni
     |
 218 |     (px, (_ : lp))                      = span(/= ':') s
     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Text/XML/HXT/Parser/TagSoup.hs:233:37: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+233 |           (null lp || (not . null . tail $ lp))
+    |                                     ^^^^
 
 src/Text/XML/HXT/Parser/TagSoup.hs:285:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
@@ -47,5 +81,22 @@ src/Text/XML/HXT/Parser/TagSoup.hs:285:5: warning: [GHC-62161] [-Wincomplete-uni
     |
 285 |     (TagText s) : r = lookupEntity withWarnings asHtml (e, b)
     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Text/XML/HXT/Parser/TagSoup.hs:387:47: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+387 |                           n1 `closesHtmlTag` (head ns)
+    |                                               ^^^^
+
+src/Text/XML/HXT/Parser/TagSoup.hs:471:43: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+471 |                                   insCls (head ns')
+    |                                           ^^^^
+
 [2 of 3] Compiling Text.XML.HXT.Arrow.TagSoupInterface
 [3 of 3] Compiling Text.XML.HXT.TagSoup

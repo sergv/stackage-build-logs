@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - language-lua-0.11.0.2 (lib) (first run)
  - language-lua-0.11.0.2 (test:tests) (first run)
@@ -6,30 +7,38 @@ Configuring library for language-lua-0.11.0.2...
 Preprocessing library for language-lua-0.11.0.2...
 Building library for language-lua-0.11.0.2...
 [ 1 of 14] Compiling Language.Lua.StringLiteral
+src/Language/Lua/StringLiteral.hs:17:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.List’ is redundant
+      except perhaps to import instances from ‘Data.List’
+    To import instances alone, use: import Data.List()
+   |
+17 | import           Data.List (foldl')
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [ 2 of 14] Compiling Language.Lua.Token
 [ 3 of 14] Compiling Language.Lua.LexerUtils
-
-src/Language/Lua/LexerUtils.hs:44:6: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+src/Language/Lua/LexerUtils.hs:44:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
-    In a pattern binding:
+    In an irrefutable pattern:
         Patterns of type ‘Mode’ not matched:
             NormalMode
             CommentMode _
             QuoteMode _ _ _
    |
 44 |   do ~(StringMode _strTy _errs inp0) <- getLexerState
-   |      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Language/Lua/LexerUtils.hs:60:6: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+src/Language/Lua/LexerUtils.hs:60:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
-    In a pattern binding:
+    In an irrefutable pattern:
         Patterns of type ‘Mode’ not matched:
             NormalMode
             CommentMode _
             QuoteMode _ _ _
    |
 60 |      ~(StringMode m errs inp0) <- getLexerState
-   |      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^
+
 [ 4 of 14] Compiling Language.Lua.Annotated.Lexer
 [ 5 of 14] Compiling Language.Lua.Utils
 [ 6 of 14] Compiling Language.Lua.Syntax
@@ -45,4 +54,4 @@ Configuring test suite 'tests' for language-lua-0.11.0.2...
 Preprocessing test suite 'tests' for language-lua-0.11.0.2...
 Building test suite 'tests' for language-lua-0.11.0.2...
 [1 of 1] Compiling Main
-[2 of 2] Linking /tmp/workdir-language-lua/language-lua-0.11.0.2/dist-newstyle/build/x86_64-linux/ghc-9.6.5/language-lua-0.11.0.2/t/tests/build/tests/tests
+[2 of 2] Linking /tmp/workdir-language-lua/language-lua-0.11.0.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/language-lua-0.11.0.2/t/tests/build/tests/tests

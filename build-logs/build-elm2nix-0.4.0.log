@@ -1,0 +1,64 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - elm2nix-0.4.0 (lib) (first run)
+ - elm2nix-0.4.0 (test:elm2nix-test) (first run)
+ - elm2nix-0.4.0 (exe:elm2nix) (first run)
+Configuring library for elm2nix-0.4.0...
+Preprocessing library for elm2nix-0.4.0...
+Building library for elm2nix-0.4.0...
+[1 of 5] Compiling Elm2Nix.ElmJson
+[2 of 5] Compiling Elm2Nix.FixedOutput
+src/Elm2Nix/FixedOutput.hs:39:52: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+39 |         2 -> return $ FixedDerivation (BS.unpack $ head ls)
+   |                                                    ^^^^
+
+src/Elm2Nix/FixedOutput.hs:40:53: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+40 |                                        (BS.unpack $ head $ tail ls)
+   |                                                     ^^^^
+
+src/Elm2Nix/FixedOutput.hs:40:60: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+40 |                                        (BS.unpack $ head $ tail ls)
+   |                                                            ^^^^
+
+[3 of 5] Compiling Elm2Nix.PackagesSnapshot
+[4 of 5] Compiling Elm2Nix
+[5 of 5] Compiling Paths_elm2nix
+Configuring test suite 'elm2nix-test' for elm2nix-0.4.0...
+Preprocessing test suite 'elm2nix-test' for elm2nix-0.4.0...
+Building test suite 'elm2nix-test' for elm2nix-0.4.0...
+[1 of 1] Compiling Main
+[2 of 2] Linking /tmp/workdir-elm2nix/elm2nix-0.4.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/elm2nix-0.4.0/t/elm2nix-test/build/elm2nix-test/elm2nix-test
+Configuring executable 'elm2nix' for elm2nix-0.4.0...
+Preprocessing executable 'elm2nix' for elm2nix-0.4.0...
+Building executable 'elm2nix' for elm2nix-0.4.0...
+[1 of 2] Compiling Paths_elm2nix
+[2 of 2] Compiling Main
+elm2nix/Main.hs:13:1: warning: [GHC-15328] [-Wdeprecations]
+    Module ‘Text.PrettyPrint.ANSI.Leijen’ is deprecated:
+      "Compatibility module for users of ansi-wl-pprint - use \"Prettyprinter\" instead"
+   |
+13 | import qualified Text.PrettyPrint.ANSI.Leijen as PP
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+elm2nix/Main.hs:38:28: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘string’
+    (imported from Text.PrettyPrint.ANSI.Leijen):
+    Deprecated: "Compatibility module for users of ansi-wl-pprint - use "Prettyprinter" instead"
+   |
+38 |       <> footerDoc (Just $ PP.string exampleText)
+   |                            ^^^^^^^^^
+
+[3 of 3] Linking /tmp/workdir-elm2nix/elm2nix-0.4.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/elm2nix-0.4.0/x/elm2nix/build/elm2nix/elm2nix

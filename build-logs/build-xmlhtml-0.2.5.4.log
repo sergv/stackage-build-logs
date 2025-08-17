@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - xmlhtml-0.2.5.4 (lib) (first run)
  - xmlhtml-0.2.5.4 (test:testsuite) (first run)
@@ -6,21 +7,92 @@ Configuring library for xmlhtml-0.2.5.4...
 Preprocessing library for xmlhtml-0.2.5.4...
 Building library for xmlhtml-0.2.5.4...
 [ 1 of 10] Compiling Text.XmlHtml.HTML.Meta
+src/Text/XmlHtml/HTML/Meta.hs:146:30: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+146 | reversePredefinedRefs = fmap head $ Map.fromList entNames
+    |                              ^^^^
+
 [ 2 of 10] Compiling Text.XmlHtml.Common
 [ 3 of 10] Compiling Text.XmlHtml.TextParser
 [ 4 of 10] Compiling Text.XmlHtml.XML.Parse
 [ 5 of 10] Compiling Text.XmlHtml.HTML.Parse
 [ 6 of 10] Compiling Text.XmlHtml.XML.Render
+src/Text/XmlHtml/XML/Render.hs:29:49: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+29 |                 | otherwise = firstNode opts e (head ns)
+   |                                                 ^^^^
+
+src/Text/XmlHtml/XML/Render.hs:30:61: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+30 |                     `mappend` (mconcat $ map (node opts e) (tail ns))
+   |                                                             ^^^^
+
 [ 7 of 10] Compiling Text.XmlHtml.HTML.Render
+src/Text/XmlHtml/HTML/Render.hs:37:49: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+37 |                 | otherwise = firstNode opts e (head ns)
+   |                                                 ^^^^
+
+src/Text/XmlHtml/HTML/Render.hs:38:61: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+38 |                     `mappend` (mconcat $ map (node opts e) (tail ns))
+   |                                                             ^^^^
+
 [ 8 of 10] Compiling Text.XmlHtml
 [ 9 of 10] Compiling Text.XmlHtml.Cursor
+src/Text/XmlHtml/Cursor.hs:151:33: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+151 |             else Just $ Cursor (head rest)
+    |                                 ^^^^
+
+src/Text/XmlHtml/Cursor.hs:153:33: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+153 |                                (tail rest)
+    |                                 ^^^^
+
+src/Text/XmlHtml/Cursor.hs:169:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+169 |       in  Just $ Cursor (head rc) (tail rc) [] ((ls, (t,a), rs):ps)
+    |                          ^^^^
+
+src/Text/XmlHtml/Cursor.hs:169:36: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+169 |       in  Just $ Cursor (head rc) (tail rc) [] ((ls, (t,a), rs):ps)
+    |                                    ^^^^
+
 [10 of 10] Compiling Text.Blaze.Renderer.XmlHtml
 Configuring test suite 'testsuite' for xmlhtml-0.2.5.4...
 Preprocessing test suite 'testsuite' for xmlhtml-0.2.5.4...
 Building test suite 'testsuite' for xmlhtml-0.2.5.4...
 [1 of 6] Compiling Text.XmlHtml.OASISTest
-
-test/src/Text/XmlHtml/OASISTest.hs:5:1: warning: [-Wunused-imports]
+test/src/Text/XmlHtml/OASISTest.hs:5:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
@@ -28,7 +100,7 @@ test/src/Text/XmlHtml/OASISTest.hs:5:1: warning: [-Wunused-imports]
 5 | import           Control.Applicative ((<*>))
   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-test/src/Text/XmlHtml/OASISTest.hs:9:1: warning: [-Wunused-imports]
+test/src/Text/XmlHtml/OASISTest.hs:9:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Functor’ is redundant
       except perhaps to import instances from ‘Data.Functor’
     To import instances alone, use: import Data.Functor()
@@ -36,7 +108,7 @@ test/src/Text/XmlHtml/OASISTest.hs:9:1: warning: [-Wunused-imports]
 9 | import           Data.Functor ((<$>))
   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-test/src/Text/XmlHtml/OASISTest.hs:13:1: warning: [-Wunused-imports]
+test/src/Text/XmlHtml/OASISTest.hs:13:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
@@ -93,10 +165,10 @@ test/src/Text/XmlHtml/OASISTest.hs:189:9: warning: [GHC-62161] [-Wincomplete-uni
     |
 189 |     let Right d2 = parseHTML "" src2
     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [2 of 6] Compiling Text.XmlHtml.TestCommon
 [3 of 6] Compiling Text.XmlHtml.DocumentTests
 [4 of 6] Compiling Text.XmlHtml.CursorTests
-
 test/src/Text/XmlHtml/CursorTests.hs:111:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -729,14 +801,15 @@ test/src/Text/XmlHtml/CursorTests.hs:498:12: warning: [GHC-62161] [-Wincomplete-
     |
 498 |        let [a,c]    = childNodes (current del)
     |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[5 of 6] Compiling Text.XmlHtml.Tests
 
-test/src/Text/XmlHtml/Tests.hs:9:1: warning: [-Wunused-imports]
+[5 of 6] Compiling Text.XmlHtml.Tests
+test/src/Text/XmlHtml/Tests.hs:9:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
   |
 9 | import           Data.Monoid (mappend, mempty)
   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [6 of 6] Compiling Main
-[7 of 7] Linking /tmp/workdir-xmlhtml/xmlhtml-0.2.5.4/dist-newstyle/build/x86_64-linux/ghc-9.6.5/xmlhtml-0.2.5.4/t/testsuite/build/testsuite/testsuite
+[7 of 7] Linking /tmp/workdir-xmlhtml/xmlhtml-0.2.5.4/dist-newstyle/build/x86_64-linux/ghc-9.10.2/xmlhtml-0.2.5.4/t/testsuite/build/testsuite/testsuite

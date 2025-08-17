@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - io-streams-1.5.2.2 (lib) (first run)
  - io-streams-1.5.2.2 (test:testsuite) (first run)
@@ -6,35 +7,38 @@ Configuring library for io-streams-1.5.2.2...
 Preprocessing library for io-streams-1.5.2.2...
 Building library for io-streams-1.5.2.2...
 [ 1 of 23] Compiling System.IO.Streams.Internal
-
-src/System/IO/Streams/Internal.hs:599:4: warning: [-Wnoncanonical-monad-instances]
+src/System/IO/Streams/Internal.hs:599:4: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad (Generator r)’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 599 |    return = Generator . return . Right
     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/System/IO/Streams/Internal.hs:659:5: warning: [-Wnoncanonical-monad-instances]
+src/System/IO/Streams/Internal.hs:659:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad (Consumer c)’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 659 |     return = Consumer . return . Right
     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/System/IO/Streams/Internal.hs:682:5: warning: [-Wnoncanonical-monad-instances]
+src/System/IO/Streams/Internal.hs:682:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘pure = return’ definition detected
     in the instance declaration for ‘Applicative (Consumer r)’.
-    Move definition from ‘return’ to ‘pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Move definition from ‘return’ to ‘pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 682 |     pure = return
     |     ^^^^^^^^^^^^^
+
 [ 2 of 23] Compiling System.IO.Streams.Handle
 [ 3 of 23] Compiling System.IO.Streams.File
 [ 4 of 23] Compiling System.IO.Streams.Debug
@@ -43,7 +47,6 @@ src/System/IO/Streams/Internal.hs:682:5: warning: [-Wnoncanonical-monad-instance
 [ 7 of 23] Compiling System.IO.Streams.Combinators
 [ 8 of 23] Compiling System.IO.Streams.Builder
 [ 9 of 23] Compiling System.IO.Streams.Internal.Attoparsec
-
 src/System/IO/Streams/Internal/Attoparsec.hs:94:17: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -52,6 +55,7 @@ src/System/IO/Streams/Internal/Attoparsec.hs:94:17: warning: [GHC-62161] [-Winco
    |
 94 |     err r = let (Left (!_,c,m)) = eitherResult r
    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [10 of 23] Compiling System.IO.Streams.Attoparsec.Text
 [11 of 23] Compiling System.IO.Streams.Attoparsec.ByteString
 [12 of 23] Compiling System.IO.Streams.Attoparsec
@@ -64,41 +68,52 @@ src/System/IO/Streams/Internal/Attoparsec.hs:94:17: warning: [GHC-62161] [-Winco
 [19 of 23] Compiling System.IO.Streams.Text
 [20 of 23] Compiling System.IO.Streams.Tutorial
 [21 of 23] Compiling System.IO.Streams.Vector
+src/System/IO/Streams/Vector.hs:33:47: warning: [GHC-99623] [-Wdodgy-imports]
+    The import item ‘Control.Monad.Primitive.PrimState(..)’ suggests that
+    ‘Control.Monad.Primitive.PrimState’ has (in-scope) constructors or record fields,
+                                            but it has none
+   |
+33 | import           Control.Monad.Primitive     (PrimState (..), RealWorld)
+   |                                               ^^^^^^^^^^^^^^
+
 [22 of 23] Compiling System.IO.Streams.Zlib
 [23 of 23] Compiling System.IO.Streams
 Configuring test suite 'testsuite' for io-streams-1.5.2.2...
 Preprocessing test suite 'testsuite' for io-streams-1.5.2.2...
 Building test suite 'testsuite' for io-streams-1.5.2.2...
 [ 1 of 39] Compiling System.IO.Streams.Internal
-
-src/System/IO/Streams/Internal.hs:599:4: warning: [-Wnoncanonical-monad-instances]
+src/System/IO/Streams/Internal.hs:599:4: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad (Generator r)’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 599 |    return = Generator . return . Right
     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/System/IO/Streams/Internal.hs:659:5: warning: [-Wnoncanonical-monad-instances]
+src/System/IO/Streams/Internal.hs:659:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad (Consumer c)’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 659 |     return = Consumer . return . Right
     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/System/IO/Streams/Internal.hs:682:5: warning: [-Wnoncanonical-monad-instances]
+src/System/IO/Streams/Internal.hs:682:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘pure = return’ definition detected
     in the instance declaration for ‘Applicative (Consumer r)’.
-    Move definition from ‘return’ to ‘pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Move definition from ‘return’ to ‘pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 682 |     pure = return
     |     ^^^^^^^^^^^^^
+
 [ 2 of 39] Compiling System.IO.Streams.Handle
 [ 3 of 39] Compiling System.IO.Streams.File
 [ 4 of 39] Compiling System.IO.Streams.Debug
@@ -107,7 +122,6 @@ src/System/IO/Streams/Internal.hs:682:5: warning: [-Wnoncanonical-monad-instance
 [ 7 of 39] Compiling System.IO.Streams.Combinators
 [ 8 of 39] Compiling System.IO.Streams.Builder
 [ 9 of 39] Compiling System.IO.Streams.Internal.Attoparsec
-
 src/System/IO/Streams/Internal/Attoparsec.hs:94:17: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -116,6 +130,7 @@ src/System/IO/Streams/Internal/Attoparsec.hs:94:17: warning: [GHC-62161] [-Winco
    |
 94 |     err r = let (Left (!_,c,m)) = eitherResult r
    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [10 of 39] Compiling System.IO.Streams.Attoparsec.Text
 [11 of 39] Compiling System.IO.Streams.Attoparsec.ByteString
 [12 of 39] Compiling System.IO.Streams.Internal.Network
@@ -128,9 +143,33 @@ src/System/IO/Streams/Internal/Attoparsec.hs:94:17: warning: [GHC-62161] [-Winco
 [19 of 39] Compiling System.IO.Streams.Tests.Internal
 [20 of 39] Compiling System.IO.Streams.Tests.List
 [21 of 39] Compiling System.IO.Streams.Tests.Network
+test/System/IO/Streams/Tests/Network.hs:106:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+106 |                         (tail codes, head codes)
+    |                          ^^^^
+
+test/System/IO/Streams/Tests/Network.hs:106:38: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+106 |                         (tail codes, head codes)
+    |                                      ^^^^
+
 [22 of 39] Compiling System.IO.Streams.Text
 [23 of 39] Compiling System.IO.Streams.Tests.Text
 [24 of 39] Compiling System.IO.Streams.Vector
+src/System/IO/Streams/Vector.hs:33:47: warning: [GHC-99623] [-Wdodgy-imports]
+    The import item ‘Control.Monad.Primitive.PrimState(..)’ suggests that
+    ‘Control.Monad.Primitive.PrimState’ has (in-scope) constructors or record fields,
+                                            but it has none
+   |
+33 | import           Control.Monad.Primitive     (PrimState (..), RealWorld)
+   |                                               ^^^^^^^^^^^^^^
+
 [25 of 39] Compiling System.IO.Streams.Zlib
 [26 of 39] Compiling System.IO.Streams
 [27 of 39] Compiling System.IO.Streams.Tests.Zlib
@@ -140,19 +179,26 @@ src/System/IO/Streams/Internal/Attoparsec.hs:94:17: warning: [GHC-62161] [-Winco
 [31 of 39] Compiling System.IO.Streams.Tests.File
 [32 of 39] Compiling System.IO.Streams.Tests.Debug
 [33 of 39] Compiling System.IO.Streams.Tests.Concurrent
+test/System/IO/Streams/Tests/Concurrent.hs:44:21: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+44 |     let firstMVar = head mvars
+   |                     ^^^^
+
 [34 of 39] Compiling System.IO.Streams.Tests.Combinators
 [35 of 39] Compiling System.IO.Streams.Tests.ByteString
 [36 of 39] Compiling System.IO.Streams.Tests.Builder
-
-test/System/IO/Streams/Tests/Builder.hs:13:1: warning: [-Wunused-imports]
+test/System/IO/Streams/Tests/Builder.hs:13:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 13 | import           Data.Monoid
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[37 of 39] Compiling System.IO.Streams.Tests.Attoparsec.Text
 
+[37 of 39] Compiling System.IO.Streams.Tests.Attoparsec.Text
 test/System/IO/Streams/Tests/Attoparsec/Text.hs:113:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -161,8 +207,8 @@ test/System/IO/Streams/Tests/Attoparsec/Text.hs:113:9: warning: [GHC-62161] [-Wi
     |
 113 |     let (Right x) = eitherResult $ Done undefined 4 :: Either (Text, [String], String) Int
     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[38 of 39] Compiling System.IO.Streams.Tests.Attoparsec.ByteString
 
+[38 of 39] Compiling System.IO.Streams.Tests.Attoparsec.ByteString
 test/System/IO/Streams/Tests/Attoparsec/ByteString.hs:100:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -172,5 +218,6 @@ test/System/IO/Streams/Tests/Attoparsec/ByteString.hs:100:9: warning: [GHC-62161
     |
 100 |     let (Right x) = eitherResult $ Done undefined 4 :: Either (ByteString, [String], String) Int
     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [39 of 39] Compiling Main
-[40 of 40] Linking /tmp/workdir-io-streams/io-streams-1.5.2.2/dist-newstyle/build/x86_64-linux/ghc-9.6.5/io-streams-1.5.2.2/t/testsuite/build/testsuite/testsuite
+[40 of 40] Linking /tmp/workdir-io-streams/io-streams-1.5.2.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/io-streams-1.5.2.2/t/testsuite/build/testsuite/testsuite

@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - HUnit-1.6.2.0 (lib) (first run)
  - HUnit-1.6.2.0 (test:tests) (first run)
@@ -9,6 +10,14 @@ Building library for HUnit-1.6.2.0...
 [2 of 6] Compiling Test.HUnit.Lang
 [3 of 6] Compiling Test.HUnit.Base
 [4 of 6] Compiling Test.HUnit.Terminal
+src/Test/HUnit/Terminal.hs:41:41: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+41 |     | otherwise          = ta f (c:bs) (tail as) cs
+   |                                         ^^^^
+
 [5 of 6] Compiling Test.HUnit.Text
 [6 of 6] Compiling Test.HUnit
 Configuring test suite 'tests' for HUnit-1.6.2.0...
@@ -17,7 +26,15 @@ Building test suite 'tests' for HUnit-1.6.2.0...
 [1 of 6] Compiling Example
 [2 of 6] Compiling HUnitTestBase
 [3 of 6] Compiling HUnitTestExtended
+tests/HUnitTestExtended.hs:18:43: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+18 |         expectUnspecifiedError (TestCase (tail [] `seq` return ()))
+   |                                           ^^^^
+
 [4 of 6] Compiling Paths_HUnit
 [5 of 6] Compiling TerminalTest
 [6 of 6] Compiling Main
-[7 of 7] Linking /tmp/workdir-HUnit/HUnit-1.6.2.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/HUnit-1.6.2.0/t/tests/build/tests/tests
+[7 of 7] Linking /tmp/workdir-HUnit/HUnit-1.6.2.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/HUnit-1.6.2.0/t/tests/build/tests/tests

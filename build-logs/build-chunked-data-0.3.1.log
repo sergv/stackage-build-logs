@@ -1,11 +1,11 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - chunked-data-0.3.1 (lib) (first run)
 Configuring library for chunked-data-0.3.1...
 Preprocessing library for chunked-data-0.3.1...
 Building library for chunked-data-0.3.1...
 [1 of 4] Compiling Data.Builder
-
 src/Data/Builder.hs:71:13: warning: [GHC-58520] [-Wtype-equality-requires-operators]
     The use of ‘~’ without TypeOperators
     will become an error in a future GHC release.
@@ -21,8 +21,43 @@ src/Data/Builder.hs:83:13: warning: [GHC-58520] [-Wtype-equality-requires-operat
    |
 83 | instance (a ~ Char) => ToBuilder [a] BB.Builder where
    |             ^
+
 [2 of 4] Compiling Data.ChunkedZip
+src/Data/ChunkedZip.hs:38:13: warning: [GHC-63394] [-Wx-data-list-nonempty-unzip]
+    In the use of ‘unzip’ (imported from Data.List.NonEmpty):
+    "This function will be made monomorphic in base-4.22, consider switching to Data.Functor.unzip"
+   |
+38 |     unzip = NonEmpty.unzip
+   |             ^^^^^^^^^^^^^^
+
 [3 of 4] Compiling Data.IOData
+src/Data/IOData.hs:41:22: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘getLine’ (imported from Data.ByteString):
+    Deprecated: "Deprecated since @bytestring-0.12@. Use 'Data.ByteString.Char8.getLine' instead. (Functions that rely on ASCII encodings belong in "Data.ByteString.Char8")"
+   |
+41 |     getLine = liftIO ByteString.getLine
+   |                      ^^^^^^^^^^^^^^^^^^
+
+src/Data/IOData.hs:43:25: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘hGetLine’ (imported from Data.ByteString):
+    Deprecated: "Deprecated since @bytestring-0.12@. Use 'Data.ByteString.Char8.hGetLine' instead. (Functions that rely on ASCII encodings belong in "Data.ByteString.Char8")"
+   |
+43 |     hGetLine = liftIO . ByteString.hGetLine
+   |                         ^^^^^^^^^^^^^^^^^^^
+
+src/Data/IOData.hs:50:52: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘getLine’ (imported from Data.ByteString):
+    Deprecated: "Deprecated since @bytestring-0.12@. Use 'Data.ByteString.Char8.getLine' instead. (Functions that rely on ASCII encodings belong in "Data.ByteString.Char8")"
+   |
+50 |     getLine = liftM LByteString.fromStrict (liftIO ByteString.getLine)
+   |                                                    ^^^^^^^^^^^^^^^^^^
+
+src/Data/IOData.hs:52:56: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘hGetLine’ (imported from Data.ByteString):
+    Deprecated: "Deprecated since @bytestring-0.12@. Use 'Data.ByteString.Char8.hGetLine' instead. (Functions that rely on ASCII encodings belong in "Data.ByteString.Char8")"
+   |
+52 |     hGetLine = liftM LByteString.fromStrict . liftIO . ByteString.hGetLine
+   |                                                        ^^^^^^^^^^^^^^^^^^^
 
 src/Data/IOData.hs:87:16: warning: [GHC-58520] [-Wtype-equality-requires-operators]
     The use of ‘~’ without TypeOperators
@@ -31,4 +66,16 @@ src/Data/IOData.hs:87:16: warning: [GHC-58520] [-Wtype-equality-requires-operato
    |
 87 | instance (Char ~ c) => IOData [c] where
    |                ^
+
+src/Data/IOData.hs:87:16: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+   |
+87 | instance (Char ~ c) => IOData [c] where
+   |                ^
+
 [4 of 4] Compiling Paths_chunked_data

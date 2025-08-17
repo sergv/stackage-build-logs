@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - elerea-2.9.0 (lib:elerea) (first run)
 Warning: elerea.cabal:57:36: version operators used. To use version operators
@@ -8,43 +9,47 @@ Preprocessing library for elerea-2.9.0...
 Building library for elerea-2.9.0...
 [1 of 4] Compiling FRP.Elerea
 [2 of 4] Compiling FRP.Elerea.Param
-
-FRP/Elerea/Param.hs:114:3: warning: [-Wnoncanonical-monad-instances]
+FRP/Elerea/Param.hs:114:3: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘pure = return’ definition detected
     in the instance declaration for ‘Applicative (SignalGen p)’.
-    Move definition from ‘return’ to ‘pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Move definition from ‘return’ to ‘pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 114 |   pure = return
     |   ^^^^^^^^^^^^^
 
-FRP/Elerea/Param.hs:118:3: warning: [-Wnoncanonical-monad-instances]
+FRP/Elerea/Param.hs:118:3: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad (SignalGen p)’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 118 |   return x = SG $ \_ _ -> return x
     |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[3 of 4] Compiling FRP.Elerea.Simple
 
-FRP/Elerea/Simple.hs:108:5: warning: [-Wnoncanonical-monad-instances]
+[3 of 4] Compiling FRP.Elerea.Simple
+FRP/Elerea/Simple.hs:108:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘pure = return’ definition detected
     in the instance declaration for ‘Applicative SignalGen’.
-    Move definition from ‘return’ to ‘pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Move definition from ‘return’ to ‘pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 108 |     pure = return
     |     ^^^^^^^^^^^^^
 
-FRP/Elerea/Simple.hs:112:5: warning: [-Wnoncanonical-monad-instances]
+FRP/Elerea/Simple.hs:112:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad SignalGen’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 112 |     return x = SG $ \_ -> return x
     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [4 of 4] Compiling FRP.Elerea.Simple.Pure

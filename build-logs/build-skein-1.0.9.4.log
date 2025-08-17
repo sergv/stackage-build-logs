@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - skein-1.0.9.4 (lib) (first run)
  - skein-1.0.9.4 (test:runtests) (first run)
@@ -6,7 +7,6 @@ Configuring library for skein-1.0.9.4...
 Preprocessing library for skein-1.0.9.4...
 Building library for skein-1.0.9.4...
 [1 of 2] Compiling Crypto.Skein.Internal
-
 src/Crypto/Skein/Internal.hsc:101:13: warning: [GHC-68441] [-Wdeprecations]
     In the use of ‘memcpy’
     (imported from Data.ByteString.Internal, but defined in Data.ByteString.Internal.Type):
@@ -54,14 +54,14 @@ src/Crypto/Skein/Internal.hsc:124:13: warning: [GHC-68441] [-Wdeprecations]
     |
 124 |             BI.memcpy (castPtr ptr) (castPtr bs_ptr) (fromIntegral size1024Ctx)
     |             ^^^^^^^^^
+
 [2 of 2] Compiling Crypto.Skein
 Configuring test suite 'runtests' for skein-1.0.9.4...
 Preprocessing test suite 'runtests' for skein-1.0.9.4...
 Building test suite 'runtests' for skein-1.0.9.4...
 [1 of 2] Compiling Paths_skein
 [2 of 2] Compiling Main
-
-tests/runtests.hs:2:1: warning: [-Wunused-imports]
+tests/runtests.hs:2:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
@@ -69,26 +69,26 @@ tests/runtests.hs:2:1: warning: [-Wunused-imports]
 2 | import Control.Applicative ((<$>))
   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-tests/runtests.hs:60:18: warning: [-Wunused-top-binds]
-    Defined but not used: ‘skeinType’
+tests/runtests.hs:60:18: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: record field of Kat ‘skeinType’
    |
 60 | data Kat = Kat { skeinType :: SkeinType
    |                  ^^^^^^^^^
 
-tests/runtests.hs:61:18: warning: [-Wunused-top-binds]
-    Defined but not used: ‘message’
+tests/runtests.hs:61:18: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: record field of Kat ‘message’
    |
 61 |                , message   :: B.ByteString
    |                  ^^^^^^^
 
-tests/runtests.hs:62:18: warning: [-Wunused-top-binds]
-    Defined but not used: ‘macKey’
+tests/runtests.hs:62:18: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: record field of Kat ‘macKey’
    |
 62 |                , macKey    :: Maybe B.ByteString
    |                  ^^^^^^
 
-tests/runtests.hs:63:18: warning: [-Wunused-top-binds]
-    Defined but not used: ‘result’
+tests/runtests.hs:63:18: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: record field of Kat ‘result’
    |
 63 |                , result    :: B.ByteString
    |                  ^^^^^^
@@ -116,13 +116,21 @@ tests/runtests.hs:108:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
 108 |         (':':_,    xs3)     = break isNumber xs2
     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-tests/runtests.hs:139:13: warning: [-Wunused-local-binds]
+tests/runtests.hs:124:66: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+124 |     | otherwise          = let (data_, rest') = span ((== ' ') . head) rest
+    |                                                                  ^^^^
+
+tests/runtests.hs:139:13: warning: [GHC-40910] [-Wunused-local-binds]
     Defined but not used: ‘f’
     |
 139 |             f = undefined
     |             ^
 
-tests/runtests.hs:141:13: warning: [-Wunused-local-binds]
+tests/runtests.hs:141:13: warning: [GHC-40910] [-Wunused-local-binds]
     Defined but not used: ‘p’
     |
 141 |             p = f t `asTypeOf` digest
@@ -148,4 +156,5 @@ tests/runtests.hs:160:33: warning: [GHC-63397] [-Wname-shadowing]
     |
 160 |        forM_ myMacKats $ \(msg, macKey, ret) -> do
     |                                 ^^^^^^
-[3 of 3] Linking /tmp/workdir-skein/skein-1.0.9.4/dist-newstyle/build/x86_64-linux/ghc-9.6.5/skein-1.0.9.4/t/runtests/build/runtests/runtests
+
+[3 of 3] Linking /tmp/workdir-skein/skein-1.0.9.4/dist-newstyle/build/x86_64-linux/ghc-9.10.2/skein-1.0.9.4/t/runtests/build/runtests/runtests

@@ -1,0 +1,113 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - greskell-core-1.0.0.6 (lib) (first run)
+ - greskell-core-1.0.0.6 (test:spec) (first run)
+Configuring library for greskell-core-1.0.0.6...
+Preprocessing library for greskell-core-1.0.0.6...
+Building library for greskell-core-1.0.0.6...
+[1 of 7] Compiling Data.Greskell.GraphSON.GraphSONTyped
+[2 of 7] Compiling Data.Greskell.GraphSON.Core
+[3 of 7] Compiling Data.Greskell.GraphSON.GValue
+[4 of 7] Compiling Data.Greskell.GMap
+src/Data/Greskell/GMap.hs:82:64: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+82 | instance (FromJSON k, FromJSON v, IsList (c k v), Item (c k v) ~ (k,v)) => FromJSON (FlattenedMap c k v) where
+   |                                                                ^
+
+src/Data/Greskell/GMap.hs:98:54: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+   |
+98 | parseToFlattenedMap :: (IsList (c k v), Item (c k v) ~ (k,v))
+   |                                                      ^
+
+src/Data/Greskell/GMap.hs:106:60: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+106 | instance (ToJSON k, ToJSON v, IsList (c k v), Item (c k v) ~ (k,v)) => ToJSON (FlattenedMap c k v) where
+    |                                                            ^
+
+src/Data/Greskell/GMap.hs:138:46: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+138 | parseToGMap :: (IsList (c k v), Item (c k v) ~ (k,v))
+    |                                              ^
+
+src/Data/Greskell/GMap.hs:148:64: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+148 | instance (FromJSON k, FromJSON v, IsList (c k v), Item (c k v) ~ (k,v), FromJSON (c k v)) => FromJSON (GMap c k v) where
+    |                                                                ^
+
+src/Data/Greskell/GMap.hs:156:60: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+156 | instance (ToJSON k, ToJSON v, IsList (c k v), Item (c k v) ~ (k,v), ToJSON (c k v)) => ToJSON (GMap c k v) where
+    |                                                            ^
+
+src/Data/Greskell/GMap.hs:274:44: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+274 | singleton :: (IsList (c k v), Item (c k v) ~ (k,v)) => GMapEntry k v -> GMap c k v
+    |                                            ^
+
+src/Data/Greskell/GMap.hs:280:41: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+280 | toList :: (IsList (c k v), Item (c k v) ~ (k,v)) => GMap c k v -> [GMapEntry k v]
+    |                                         ^
+
+[5 of 7] Compiling Data.Greskell.GraphSON
+src/Data/Greskell/GraphSON.hs:145:33: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+145 | parseUnwrapList :: (IsList a, i ~ Item a, FromGraphSON i) => GValue -> Parser a
+    |                                 ^
+
+src/Data/Greskell/GraphSON.hs:287:72: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+287 | instance (FromGraphSON k, FromGraphSON v, IsList (c k v), Item (c k v) ~ (k,v)) => FromGraphSON (FlattenedMap c k v) where
+    |                                                                        ^
+
+src/Data/Greskell/GraphSON.hs:298:72: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+298 | instance (FromGraphSON k, FromGraphSON v, IsList (c k v), Item (c k v) ~ (k,v), Traversable (c k), FromJSON (c k GValue))
+    |                                                                        ^
+
+[6 of 7] Compiling Data.Greskell.AsIterator
+[7 of 7] Compiling Data.Greskell.Greskell
+Configuring test suite 'spec' for greskell-core-1.0.0.6...
+Preprocessing test suite 'spec' for greskell-core-1.0.0.6...
+Building test suite 'spec' for greskell-core-1.0.0.6...
+[1 of 6] Compiling Data.Greskell.GMapSpec
+[2 of 6] Compiling Data.Greskell.GraphSONSpec
+[3 of 6] Compiling Data.Greskell.Test.QuickCheck
+[4 of 6] Compiling Data.Greskell.GreskellSpec
+[5 of 6] Compiling ExamplesSpec
+[6 of 6] Compiling Main
+[7 of 7] Linking /tmp/workdir-greskell-core/greskell-core-1.0.0.6/dist-newstyle/build/x86_64-linux/ghc-9.10.2/greskell-core-1.0.0.6/t/spec/build/spec/spec

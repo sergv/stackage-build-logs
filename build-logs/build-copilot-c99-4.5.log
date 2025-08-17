@@ -1,0 +1,218 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - copilot-c99-4.5 (lib) (first run)
+ - copilot-c99-4.5 (test:unit-tests) (first run)
+Configuring library for copilot-c99-4.5...
+Preprocessing library for copilot-c99-4.5...
+Building library for copilot-c99-4.5...
+[ 1 of 10] Compiling Copilot.Compile.C99.Error
+[ 2 of 10] Compiling Copilot.Compile.C99.Name
+[ 3 of 10] Compiling Copilot.Compile.C99.External
+[ 4 of 10] Compiling Copilot.Compile.C99.Representation
+src/Copilot/Compile/C99/Representation.hs:19:31: warning: [GHC-18042] [-Wtype-defaults]
+    • Defaulting the type variable ‘b0’ to type ‘Integer’ in the following constraints
+        (Show b0)
+          arising from a use of ‘mkUnique’
+          at src/Copilot/Compile/C99/Representation.hs:19:31-38
+        (Num b0)
+          arising from the literal ‘0’
+          at src/Copilot/Compile/C99/Representation.hs:19:44
+        (Enum b0)
+          arising from the arithmetic sequence ‘0 .. ’
+          at src/Copilot/Compile/C99/Representation.hs:19:43-47
+    • In the first argument of ‘zipWith’, namely ‘mkUnique’
+      In the expression: zipWith mkUnique ts [0 .. ]
+      In an equation for ‘mkUniqueTriggers’:
+          mkUniqueTriggers ts
+            = zipWith mkUnique ts [0 .. ]
+            where
+                mkUnique t@(Trigger name _ _) n
+                  = UniqueTrigger (name ++ "_" ++ show n) t
+   |
+19 | mkUniqueTriggers ts = zipWith mkUnique ts [0..]
+   |                               ^^^^^^^^
+
+[ 5 of 10] Compiling Copilot.Compile.C99.Settings
+[ 6 of 10] Compiling Copilot.Compile.C99.Type
+[ 7 of 10] Compiling Copilot.Compile.C99.Expr
+src/Copilot/Compile/C99/Expr.hs:66:13: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘i’ shadows the existing binding
+      bound at src/Copilot/Compile/C99/Expr.hs:64:4
+   |
+66 |   modify (\(i, x, y) -> (i + 1, x, y))
+   |             ^
+
+src/Copilot/Compile/C99/Expr.hs:71:13: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘i’ shadows the existing binding
+      bound at src/Copilot/Compile/C99/Expr.hs:64:4
+   |
+71 |   modify (\(i, x, y) -> (i, x ++ [initDecl], y))
+   |             ^
+
+src/Copilot/Compile/C99/Expr.hs:95:13: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘i’ shadows the existing binding
+      bound at src/Copilot/Compile/C99/Expr.hs:64:4
+   |
+95 |   modify (\(i, x, y) -> (i, x, y ++ [ initStmt, updateStmt ]))
+   |             ^
+
+src/Copilot/Compile/C99/Expr.hs:104:11: warning: [GHC-40910] [-Wunused-matches]
+    Defined but not used: ‘e’
+    |
+104 | transExpr e@(Op3 (UpdateArray arrTy@(Array ty2)) e1 e2 e3) = do
+    |           ^
+
+src/Copilot/Compile/C99/Expr.hs:112:13: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘i’ shadows the existing binding
+      bound at src/Copilot/Compile/C99/Expr.hs:110:4
+    |
+112 |   modify (\(i, x, y) -> (i + 1, x, y))
+    |             ^
+
+src/Copilot/Compile/C99/Expr.hs:117:13: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘i’ shadows the existing binding
+      bound at src/Copilot/Compile/C99/Expr.hs:110:4
+    |
+117 |   modify (\(i, x, y) -> (i, x ++ [initDecl], y))
+    |             ^
+
+src/Copilot/Compile/C99/Expr.hs:120:7: warning: [GHC-62161] [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In an equation for ‘size’:
+        Patterns of type ‘Type (Array n t)’ not matched: Struct _
+    |
+120 |       size arrTy@(Array ty) = C.LitInt (fromIntegral $ typeLength arrTy)
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+src/Copilot/Compile/C99/Expr.hs:120:12: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘arrTy’ shadows the existing binding
+      bound at src/Copilot/Compile/C99/Expr.hs:104:31
+    |
+120 |       size arrTy@(Array ty) = C.LitInt (fromIntegral $ typeLength arrTy)
+    |            ^^^^^
+
+src/Copilot/Compile/C99/Expr.hs:131:13: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘size’ shadows the existing binding
+      bound at src/Copilot/Compile/C99/Expr.hs:120:7
+    |
+131 |             size = C.LitInt
+    |             ^^^^
+
+src/Copilot/Compile/C99/Expr.hs:141:13: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘i’ shadows the existing binding
+      bound at src/Copilot/Compile/C99/Expr.hs:110:4
+    |
+141 |   modify (\(i, x, y) -> (i, x, y ++ [ initStmt, updateStmt ]))
+    |             ^
+
+src/Copilot/Compile/C99/Expr.hs:161:3: warning: [GHC-62161] [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In a case alternative:
+        Patterns of type ‘Op1 a b’ not matched:
+            GetField Bool _ _
+            GetField Int8 _ _
+            GetField Int16 _ _
+            GetField Int32 _ _
+            ...
+    |
+161 |   case op of
+    |   ^^^^^^^^^^...
+
+[ 8 of 10] Compiling Copilot.Compile.C99.CodeGen
+src/Copilot/Compile/C99/CodeGen.hs:71:1: warning: [GHC-62161] [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In an equation for ‘mkStructDecln’:
+        Patterns of type ‘Type a’ not matched:
+            Bool
+            Int8
+            Int16
+            Int32
+            ...
+   |
+71 | mkStructDecln (Struct x) = C.TypeDecln struct
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+src/Copilot/Compile/C99/CodeGen.hs:81:1: warning: [GHC-62161] [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In an equation for ‘mkStructForwDecln’:
+        Patterns of type ‘Type a’ not matched:
+            Bool
+            Int8
+            Int16
+            Int32
+            ...
+   |
+81 | mkStructForwDecln (Struct x) = C.TypeDecln struct
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+[ 9 of 10] Compiling Copilot.Compile.C99.Compile
+[10 of 10] Compiling Copilot.Compile.C99
+Configuring test suite 'unit-tests' for copilot-c99-4.5...
+Preprocessing test suite 'unit-tests' for copilot-c99-4.5...
+Building test suite 'unit-tests' for copilot-c99-4.5...
+[1 of 2] Compiling Test.Copilot.Compile.C99
+tests/Test/Copilot/Compile/C99.hs:37:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Copilot.Core.Type.Array’ is redundant
+      except perhaps to import instances from ‘Copilot.Core.Type.Array’
+    To import instances alone, use: import Copilot.Core.Type.Array()
+   |
+37 | import Copilot.Core.Type.Array (array)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Test/Copilot/Compile/C99.hs:437:5: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: record field of TestCase1 ‘wrapTC1Expr’
+    |
+437 |   { wrapTC1Expr :: Spec
+    |     ^^^^^^^^^^^
+
+tests/Test/Copilot/Compile/C99.hs:441:5: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: record field of TestCase1 ‘wrapTC1Fun’
+    |
+441 |   , wrapTC1Fun :: [a] -> [b]
+    |     ^^^^^^^^^^
+
+tests/Test/Copilot/Compile/C99.hs:445:5: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: record field of TestCase1 ‘wrapTC1CopInp’
+    |
+445 |   , wrapTC1CopInp :: (String -> String, String, String, Gen a)
+    |     ^^^^^^^^^^^^^
+
+tests/Test/Copilot/Compile/C99.hs:459:5: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: record field of TestCase1 ‘wrapTC1CopOut’
+    |
+459 |   , wrapTC1CopOut :: (String, String)
+    |     ^^^^^^^^^^^^^
+
+tests/Test/Copilot/Compile/C99.hs:470:5: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: record field of TestCase2 ‘wrapTC2Expr’
+    |
+470 |   { wrapTC2Expr :: Spec
+    |     ^^^^^^^^^^^
+
+tests/Test/Copilot/Compile/C99.hs:474:5: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: record field of TestCase2 ‘wrapTC2Fun’
+    |
+474 |   , wrapTC2Fun :: [a] -> [b] -> [c]
+    |     ^^^^^^^^^^
+
+tests/Test/Copilot/Compile/C99.hs:478:5: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: record field of TestCase2 ‘wrapTC2CopInp1’
+    |
+478 |   , wrapTC2CopInp1 :: (String -> String, String, String, Gen a)
+    |     ^^^^^^^^^^^^^^
+
+tests/Test/Copilot/Compile/C99.hs:492:5: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: record field of TestCase2 ‘wrapTC2CopInp2’
+    |
+492 |   , wrapTC2CopInp2 :: (String -> String, String, String, Gen b)
+    |     ^^^^^^^^^^^^^^
+
+tests/Test/Copilot/Compile/C99.hs:506:5: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: record field of TestCase2 ‘wrapTC2CopOut’
+    |
+506 |   , wrapTC2CopOut :: (String, String)
+    |     ^^^^^^^^^^^^^
+
+[2 of 2] Compiling Main
+[3 of 3] Linking /tmp/workdir-copilot-c99/copilot-c99-4.5/dist-newstyle/build/x86_64-linux/ghc-9.10.2/copilot-c99-4.5/t/unit-tests/build/unit-tests/unit-tests

@@ -1,0 +1,83 @@
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - vcr-0.1.0 (test:spec) (ephemeral targets)
+Preprocessing test suite 'spec' for vcr-0.1.0...
+Building test suite 'spec' for vcr-0.1.0...
+Running 1 test suites...
+Test suite spec: RUNNING...
+
+VCR
+  with
+    when mode is AnyOrder
+      records requests in the order they were made [✔]
+      with repeated requests to a resource
+        records the first request, replays subsequent requests [✔]
+      with an existing tape
+        replays existing requests from the tape [✔]
+        records new requests to the tape [✔]
+      with concurrent requests
+        records the requests concurrently, without blocking [✔]
+      on exception
+        writes the tape to disk [✔]
+      with an Authorization header
+        redacts the Authorization header [✔]
+    when mode is Sequential
+      with repeated requests to a resource
+        records all interactions [✔]
+      with an existing tape
+        replays request in order [✔]
+        with an out of order request
+          fails [✔]
+        with a missing request
+          fails [✔]
+        with additional requests
+          records additional requests [✔]
+      on exception
+        writes the tape to disk [✔]
+      with an Authorization header
+        redacts the Authorization header [✔]
+  record
+    when mode is AnyOrder
+      with repeated requests to a resource
+        records only the last interaction [✔]
+      with an existing tape
+        records new requests to the tape [✔]
+        updates existing requests, keeping the original order [✔]
+    when mode is Sequential
+      with repeated requests to a resource
+        records all interactions [✔]
+      with an existing tape
+        overwrites the existing tape [✔]
+  play
+    when mode is AnyOrder
+      replays existing requests from the tape [✔]
+      fails on new requests [✔]
+    when mode is Sequential
+      replays request in order [✔]
+      when not all requests are used
+        fails [✔]
+      with additional requests
+        fails [✔]
+WebMock.Util
+  requestBodyToByteString
+    with RequestBodyLBS
+      converts it to a ByteString [✔]
+    with RequestBodyBS
+      converts it to a ByteString [✔]
+    with RequestBodyBuilder
+      converts it to a ByteString [✔]
+      with wrong length
+        throws an exception [✔]
+    with RequestBodyStream
+      converts it to a ByteString [✔]
+      with wrong length
+        throws an exception [✔]
+    with RequestBodyStreamChunked
+      converts it to a ByteString [✔]
+
+Finished in 0.0625 seconds
+31 examples, 0 failures
+Test suite spec: PASS
+Test suite logged to:
+/tmp/workdir-vcr/vcr-0.1.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/vcr-0.1.0/t/spec/test/vcr-0.1.0-spec.log
+1 of 1 test suites (1 of 1 test cases) passed.

@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - OpenGL-3.0.3.0 (lib) (first run)
 Configuring library for OpenGL-3.0.3.0...
@@ -15,25 +16,27 @@ Building library for OpenGL-3.0.3.0...
 [  9 of 118] Compiling Graphics.Rendering.OpenGL.GL.GLboolean
 [ 10 of 118] Compiling Graphics.Rendering.OpenGL.GL.EdgeFlag
 [ 11 of 118] Compiling Graphics.Rendering.OpenGL.GL.IOState
-
-src/Graphics/Rendering/OpenGL/GL/IOState.hs:34:4: warning: [-Wnoncanonical-monad-instances]
+src/Graphics/Rendering/OpenGL/GL/IOState.hs:34:4: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘pure = return’ definition detected
     in the instance declaration for ‘Applicative (IOState s)’.
-    Move definition from ‘return’ to ‘pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Move definition from ‘return’ to ‘pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
    |
 34 |    pure  = return
    |    ^^^^^^^^^^^^^^
 
-src/Graphics/Rendering/OpenGL/GL/IOState.hs:41:4: warning: [-Wnoncanonical-monad-instances]
+src/Graphics/Rendering/OpenGL/GL/IOState.hs:41:4: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad (IOState s)’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
    |
 41 |    return a = IOState $ \s -> return (a, s)
    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [ 12 of 118] Compiling Graphics.Rendering.OpenGL.GL.PeekPoke
 [ 13 of 118] Compiling Graphics.Rendering.OpenGL.GL.FramebufferObjects.RenderbufferTarget
 [ 14 of 118] Compiling Graphics.Rendering.OpenGL.GL.FramebufferObjects.FramebufferObjectAttachment
@@ -49,7 +52,6 @@ src/Graphics/Rendering/OpenGL/GL/IOState.hs:41:4: warning: [-Wnoncanonical-monad
 [ 24 of 118] Compiling Graphics.Rendering.OpenGL.GL.Rectangles
 [ 25 of 118] Compiling Graphics.Rendering.OpenGL.GL.Texturing.Filter
 [ 26 of 118] Compiling Graphics.Rendering.OpenGL.GL.Texturing.PixelInternalFormat
-
 src/Graphics/Rendering/OpenGL/GL/Texturing/PixelInternalFormat.hs:361:6: warning: [GHC-53633] [-Woverlapping-patterns]
     Pattern match is redundant
     In an equation for ‘unmarshalPixelInternalFormat’:
@@ -65,6 +67,7 @@ src/Graphics/Rendering/OpenGL/GL/Texturing/PixelInternalFormat.hs:362:6: warning
     |
 362 |    | y == GL_R32UI = RG32UI
     |      ^^^^^^^^^^^^^
+
 [ 27 of 118] Compiling Graphics.Rendering.OpenGL.GL.Texturing.TextureUnit
 [ 28 of 118] Compiling Graphics.Rendering.OpenGL.GL.VertexAttributes
 [ 29 of 118] Compiling Graphics.Rendering.OpenGL.GLU.ErrorsInternal
@@ -78,14 +81,14 @@ src/Graphics/Rendering/OpenGL/GL/Texturing/PixelInternalFormat.hs:362:6: warning
 [ 37 of 118] Compiling Graphics.Rendering.OpenGL.GL.Feedback
 [ 38 of 118] Compiling Graphics.Rendering.OpenGL.GL.PixelRectangles.PixelStorage
 [ 39 of 118] Compiling Graphics.Rendering.OpenGL.GL.PixelRectangles.PixelMap
-
-src/Graphics/Rendering/OpenGL/GL/PixelRectangles/PixelMap.hs:23:8: warning: [-Wcompat-unqualified-imports]
+src/Graphics/Rendering/OpenGL/GL/PixelRectangles/PixelMap.hs:23:8: warning: [GHC-82347] [-Wcompat-unqualified-imports]
     To ensure compatibility with future core libraries changes
     imports to Data.List should be
     either qualified or have an explicit import list.
    |
 23 | import Data.List
    |        ^^^^^^^^^
+
 [ 40 of 118] Compiling Graphics.Rendering.OpenGL.GL.MatrixComponent
 [ 41 of 118] Compiling Graphics.Rendering.OpenGL.GL.Hints
 [ 42 of 118] Compiling Graphics.Rendering.OpenGL.GL.Domain
@@ -130,14 +133,14 @@ src/Graphics/Rendering/OpenGL/GL/PixelRectangles/PixelMap.hs:23:8: warning: [-Wc
 [ 81 of 118] Compiling Graphics.Rendering.OpenGL.GL.Texturing.TextureTarget
 [ 82 of 118] Compiling Graphics.Rendering.OpenGL.GL.Texturing.TexParameter
 [ 83 of 118] Compiling Graphics.Rendering.OpenGL.GL.Texturing.Objects
-
-src/Graphics/Rendering/OpenGL/GL/Texturing/Objects.hs:23:8: warning: [-Wcompat-unqualified-imports]
+src/Graphics/Rendering/OpenGL/GL/Texturing/Objects.hs:23:8: warning: [GHC-82347] [-Wcompat-unqualified-imports]
     To ensure compatibility with future core libraries changes
     imports to Data.List should be
     either qualified or have an explicit import list.
    |
 23 | import Data.List
    |        ^^^^^^^^^
+
 [ 84 of 118] Compiling Graphics.Rendering.OpenGL.GL.Texturing.Application
 [ 85 of 118] Compiling Graphics.Rendering.OpenGL.GL.PixelRectangles.Histogram
 [ 86 of 118] Compiling Graphics.Rendering.OpenGL.GL.PixelRectangles
@@ -152,7 +155,6 @@ src/Graphics/Rendering/OpenGL/GL/Texturing/Objects.hs:23:8: warning: [-Wcompat-u
 [ 95 of 118] Compiling Graphics.Rendering.OpenGL.GL.Texturing
 [ 96 of 118] Compiling Graphics.Rendering.OpenGL.GL.Polygons
 [ 97 of 118] Compiling Graphics.Rendering.OpenGL.GL.Framebuffer
-
 src/Graphics/Rendering/OpenGL/GL/Framebuffer.hs:90:29: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a lambda abstraction:
@@ -172,29 +174,45 @@ src/Graphics/Rendering/OpenGL/GL/Framebuffer.hs:98:32: warning: [GHC-62161] [-Wi
    |
 98 |       withBufferModes [mode] $ \[m] ->
    |                                ^^^^^^^...
-[ 98 of 118] Compiling Graphics.Rendering.OpenGL.GL.Shaders.ProgramObjects
 
-src/Graphics/Rendering/OpenGL/GL/Shaders/ProgramObjects.hs:40:8: warning: [-Wcompat-unqualified-imports]
+[ 98 of 118] Compiling Graphics.Rendering.OpenGL.GL.Shaders.ProgramObjects
+src/Graphics/Rendering/OpenGL/GL/Shaders/ProgramObjects.hs:40:8: warning: [GHC-82347] [-Wcompat-unqualified-imports]
     To ensure compatibility with future core libraries changes
     imports to Data.List should be
     either qualified or have an explicit import list.
    |
 40 | import Data.List
    |        ^^^^^^^^^
+
 [ 99 of 118] Compiling Graphics.Rendering.OpenGL.GL.Shaders.Uniform
 [100 of 118] Compiling Graphics.Rendering.OpenGL.GL.Shaders
 [101 of 118] Compiling Graphics.Rendering.OpenGL.GL.PerFragment
 [102 of 118] Compiling Graphics.Rendering.OpenGL.GL.Bitmaps
 [103 of 118] Compiling Graphics.Rendering.OpenGL.GL.ControlPoint
 [104 of 118] Compiling Graphics.Rendering.OpenGL.GL.Evaluators
-
-src/Graphics/Rendering/OpenGL/GL/Evaluators.hs:48:8: warning: [-Wcompat-unqualified-imports]
+src/Graphics/Rendering/OpenGL/GL/Evaluators.hs:48:8: warning: [GHC-82347] [-Wcompat-unqualified-imports]
     To ensure compatibility with future core libraries changes
     imports to Data.List should be
     either qualified or have an explicit import list.
    |
 48 | import Data.List
    |        ^^^^^^^^^
+
+src/Graphics/Rendering/OpenGL/GL/Evaluators.hs:146:35: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+146 |       let stride = numComponents (head controlPoints)
+    |                                   ^^^^
+
+src/Graphics/Rendering/OpenGL/GL/Evaluators.hs:154:35: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+154 |       let stride = numComponents (head controlPoints)
+    |                                   ^^^^
 
 src/Graphics/Rendering/OpenGL/GL/Evaluators.hs:167:19: warning: [GHC-39567] [-Wstar-is-type]
     Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
@@ -214,6 +232,54 @@ src/Graphics/Rendering/OpenGL/GL/Evaluators.hs:167:24: warning: [GHC-39567] [-Ws
 167 | data GLmap1 (c :: * -> *) d =
     |                        ^
 
+src/Graphics/Rendering/OpenGL/GL/Evaluators.hs:237:36: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+237 |       let vStride = numComponents (head (head controlPoints))
+    |                                    ^^^^
+
+src/Graphics/Rendering/OpenGL/GL/Evaluators.hs:237:42: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+237 |       let vStride = numComponents (head (head controlPoints))
+    |                                          ^^^^
+
+src/Graphics/Rendering/OpenGL/GL/Evaluators.hs:238:35: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+238 |           vOrder = genericLength (head controlPoints)
+    |                                   ^^^^
+
+src/Graphics/Rendering/OpenGL/GL/Evaluators.hs:249:36: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+249 |       let vStride = numComponents (head (head controlPoints))
+    |                                    ^^^^
+
+src/Graphics/Rendering/OpenGL/GL/Evaluators.hs:249:42: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+249 |       let vStride = numComponents (head (head controlPoints))
+    |                                          ^^^^
+
+src/Graphics/Rendering/OpenGL/GL/Evaluators.hs:250:35: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+250 |           vOrder = genericLength (head controlPoints)
+    |                                   ^^^^
+
 src/Graphics/Rendering/OpenGL/GL/Evaluators.hs:267:19: warning: [GHC-39567] [-Wstar-is-type]
     Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
     relies on the StarIsType extension, which will become
@@ -231,6 +297,7 @@ src/Graphics/Rendering/OpenGL/GL/Evaluators.hs:267:24: warning: [GHC-39567] [-Ws
     |
 267 | data GLmap2 (c :: * -> *) d =
     |                        ^
+
 [105 of 118] Compiling Graphics.Rendering.OpenGL.GL.Colors
 [106 of 118] Compiling Graphics.Rendering.OpenGL.GL.ColorSum
 [107 of 118] Compiling Graphics.Rendering.OpenGL.GL.Clipping
@@ -243,5 +310,13 @@ src/Graphics/Rendering/OpenGL/GL/Evaluators.hs:267:24: warning: [GHC-39567] [-Ws
 [114 of 118] Compiling Graphics.Rendering.OpenGL.GLU.NURBS
 [115 of 118] Compiling Graphics.Rendering.OpenGL.GLU.Quadrics
 [116 of 118] Compiling Graphics.Rendering.OpenGL.GLU.Tessellation
+src/Graphics/Rendering/OpenGL/GLU/Tessellation.hs:126:24: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+126 |    length vs * sizeOf (head vs)
+    |                        ^^^^
+
 [117 of 118] Compiling Graphics.Rendering.OpenGL.GLU
 [118 of 118] Compiling Graphics.Rendering.OpenGL

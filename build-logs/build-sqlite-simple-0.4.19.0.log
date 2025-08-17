@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - sqlite-simple-0.4.19.0 (lib) (first run)
  - sqlite-simple-0.4.19.0 (test:test) (first run)
@@ -6,16 +7,17 @@ Configuring library for sqlite-simple-0.4.19.0...
 Preprocessing library for sqlite-simple-0.4.19.0...
 Building library for sqlite-simple-0.4.19.0...
 [ 1 of 12] Compiling Database.SQLite.Simple.Ok
-
-Database/SQLite/Simple/Ok.hs:76:5: warning: [-Wnoncanonical-monad-instances]
+Database/SQLite/Simple/Ok.hs:76:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad Ok’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
    |
 76 |     return = Ok
    |     ^^^^^^^^^^^
+
 [ 2 of 12] Compiling Database.SQLite.Simple.Internal
 [ 3 of 12] Compiling Database.SQLite.Simple.Time.Implementation
 [ 4 of 12] Compiling Database.SQLite.Simple.Time
@@ -25,6 +27,22 @@ Database/SQLite/Simple/Ok.hs:76:5: warning: [-Wnoncanonical-monad-instances]
 [ 8 of 12] Compiling Database.SQLite.Simple.QQ
 [ 9 of 12] Compiling Database.SQLite.Simple.FromField
 [10 of 12] Compiling Database.SQLite.Simple.FromRow
+Database/SQLite/Simple/FromRow.hs:119:28: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+119 |     lift (put (column + 1, tail remaining))
+    |                            ^^^^
+
+Database/SQLite/Simple/FromRow.hs:124:15: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+124 |       let r = head remaining
+    |               ^^^^
+
 [11 of 12] Compiling Database.SQLite.Simple
 [12 of 12] Compiling Database.SQLite.Simple.Function
 Configuring test suite 'test' for sqlite-simple-0.4.19.0...
@@ -34,14 +52,62 @@ Building test suite 'test' for sqlite-simple-0.4.19.0...
 [ 2 of 14] Compiling Debug
 [ 3 of 14] Compiling DirectSqlite
 [ 4 of 14] Compiling Errors
+test/Errors.hs:53:46: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+53 |   assertEqual "string" (Only "test string") (head rows)
+   |                                              ^^^^
+
 [ 5 of 14] Compiling Fold
 [ 6 of 14] Compiling Function
 [ 7 of 14] Compiling ParamConv
 [ 8 of 14] Compiling QQ
 [ 9 of 14] Compiling Simple
+test/Simple.hs:39:33: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+39 |   assertEqual "value" (Only 2) (head rows)
+   |                                 ^^^^
+
+test/Simple.hs:47:46: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+47 |   assertEqual "string" (Only "test string") (head rows)
+   |                                              ^^^^
+
+test/Simple.hs:49:48: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+49 |   assertEqual "int,string" (1, "test string") (head rows)
+   |                                                ^^^^
+
+test/Simple.hs:74:46: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+74 |   assertEqual "string" (Only "test string") (head rows)
+   |                                              ^^^^
+
+test/Simple.hs:143:29: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+143 |   (Only "test string") @=? (head rows)
+    |                             ^^^^
+
 [10 of 14] Compiling Statement
 [11 of 14] Compiling TestImports
 [12 of 14] Compiling UserInstances
 [13 of 14] Compiling Utf8Strings
 [14 of 14] Compiling Main
-[15 of 15] Linking /tmp/workdir-sqlite-simple/sqlite-simple-0.4.19.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/sqlite-simple-0.4.19.0/t/test/build/test/test
+[15 of 15] Linking /tmp/workdir-sqlite-simple/sqlite-simple-0.4.19.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/sqlite-simple-0.4.19.0/t/test/build/test/test

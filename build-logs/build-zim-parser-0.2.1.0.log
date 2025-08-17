@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - zim-parser-0.2.1.0 (lib) (first run)
  - zim-parser-0.2.1.0 (test:spec) (first run)
@@ -6,7 +7,6 @@ Configuring library for zim-parser-0.2.1.0...
 Preprocessing library for zim-parser-0.2.1.0...
 Building library for zim-parser-0.2.1.0...
 [1 of 2] Compiling Codec.Archive.Zim.Parser
-
 src/Codec/Archive/Zim/Parser.hs:361:16: warning: [GHC-68441] [-Wdeprecations]
     In the use of ‘$$’
     (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
@@ -113,12 +113,12 @@ src/Codec/Archive/Zim/Parser.hs:635:13: warning: [GHC-62161] [-Wincomplete-uni-p
     |
 635 |             Just (TitleIndex ubi, ub') = ub
     |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [2 of 2] Compiling Paths_zim_parser
 Configuring test suite 'spec' for zim-parser-0.2.1.0...
 Preprocessing test suite 'spec' for zim-parser-0.2.1.0...
 Building test suite 'spec' for zim-parser-0.2.1.0...
 [1 of 3] Compiling Codec.Archive.Zim.Parser
-
 src/Codec/Archive/Zim/Parser.hs:361:16: warning: [GHC-68441] [-Wdeprecations]
     In the use of ‘$$’
     (imported from Data.Conduit, but defined in Data.Conduit.Internal.Conduit):
@@ -225,7 +225,15 @@ src/Codec/Archive/Zim/Parser.hs:635:13: warning: [GHC-62161] [-Wincomplete-uni-p
     |
 635 |             Just (TitleIndex ubi, ub') = ub
     |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [2 of 3] Compiling Codec.Archive.Zim.ParserSpec
+test/Codec/Archive/Zim/ParserSpec.hs:86:20: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude.Compat, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+86 |             (fst . head) res `shouldBe` 3
+   |                    ^^^^
 
 test/Codec/Archive/Zim/ParserSpec.hs:97:17: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
@@ -280,6 +288,14 @@ test/Codec/Archive/Zim/ParserSpec.hs:134:17: warning: [GHC-62161] [-Wincomplete-
 134 |             let Just (m, c) = res
     |                 ^^^^^^^^^^^^^^^^^
 
+test/Codec/Archive/Zim/ParserSpec.hs:144:35: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude.Compat, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+144 |                 (zimDeUrl . snd . head $ res) `shouldBe` url
+    |                                   ^^^^
+
 test/Codec/Archive/Zim/ParserSpec.hs:152:45: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a lambda abstraction:
@@ -289,5 +305,6 @@ test/Codec/Archive/Zim/ParserSpec.hs:152:45: warning: [GHC-62161] [-Wincomplete-
     |
 152 |                 (url, res) `shouldSatisfy` (\(_, Just (_, bs)) -> BL.length bs > 0)
     |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [3 of 3] Compiling Main
-[4 of 4] Linking /tmp/workdir-zim-parser/zim-parser-0.2.1.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/zim-parser-0.2.1.0/t/spec/build/spec/spec
+[4 of 4] Linking /tmp/workdir-zim-parser/zim-parser-0.2.1.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/zim-parser-0.2.1.0/t/spec/build/spec/spec

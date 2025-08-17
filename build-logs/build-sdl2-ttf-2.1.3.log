@@ -1,9 +1,26 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - sdl2-ttf-2.1.3 (lib) (first run)
 Configuring library for sdl2-ttf-2.1.3...
 Preprocessing library for sdl2-ttf-2.1.3...
 Building library for sdl2-ttf-2.1.3...
 [1 of 3] Compiling SDL.Raw.Helper
+src/SDL/Raw/Helper.hs:73:22: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+73 | applyTo f es = loop (tail es) . AppE (VarE f) $ head es
+   |                      ^^^^
+
+src/SDL/Raw/Helper.hs:73:49: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+73 | applyTo f es = loop (tail es) . AppE (VarE f) $ head es
+   |                                                 ^^^^
+
 [2 of 3] Compiling SDL.Raw.Font
 [3 of 3] Compiling SDL.Font

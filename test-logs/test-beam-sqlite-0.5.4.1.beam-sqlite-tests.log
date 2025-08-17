@@ -1,0 +1,29 @@
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - beam-sqlite-0.5.4.1 (test:beam-sqlite-tests) (ephemeral targets)
+Preprocessing test suite 'beam-sqlite-tests' for beam-sqlite-0.5.4.1...
+Building test suite 'beam-sqlite-tests' for beam-sqlite-0.5.4.1...
+Running 1 test suites...
+Test suite beam-sqlite-tests: RUNNING...
+beam-sqlite tests
+  Migration tests
+    verifySchema correctly detects primary key:               OK (0.07s)
+    verifySchema correctly handles table with no primary key: OK
+  Selection tests
+    EXCEPT with VALUES works:                                 FAIL (expected) (0.04s)
+      test/Database/Beam/Sqlite/Test.hs:9:
+      SQLite3 returned ErrorError while attempting to perform prepare "SELECT \"t0\".\"res0\" AS \"res0\" FROM (VALUES (?), (?)) AS \"t0\"(\"res0\") EXCEPT SELECT \"t0\".\"res0\" AS \"res0\" FROM (VALUES (?)) AS \"t0\"(\"res0\")": near "(": syntax error (expected failure)
+    IN with row values works:                                 OK
+    IN (SELECT ...) works:                                    OK
+  Insertion tests
+    runInsertReturningList with mismatching column order:     OK
+    insert only default values:                               OK
+    upsert only default values:                               FAIL (expected)
+      test/Database/Beam/Sqlite/Test.hs:9:
+      SQLite3 returned ErrorError while attempting to perform prepare "INSERT INTO \"with_defaults\" DEFAULT VALUES ON CONFLICT  DO NOTHING": near "ON": syntax error (expected failure)
+
+All 8 tests passed (0.12s)
+Test suite beam-sqlite-tests: PASS
+Test suite logged to:
+/tmp/workdir-beam-sqlite/beam-sqlite-0.5.4.1/dist-newstyle/build/x86_64-linux/ghc-9.10.2/beam-sqlite-0.5.4.1/t/beam-sqlite-tests/test/beam-sqlite-0.5.4.1-beam-sqlite-tests.log
+1 of 1 test suites (1 of 1 test cases) passed.

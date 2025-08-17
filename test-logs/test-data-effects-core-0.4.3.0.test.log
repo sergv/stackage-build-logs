@@ -1,0 +1,31 @@
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - data-effects-core-0.4.3.0 (test:test) (ephemeral targets)
+Preprocessing test suite 'test' for data-effects-core-0.4.3.0...
+Building test suite 'test' for data-effects-core-0.4.3.0...
+Running 1 test suites...
+Test suite test: RUNNING...
+test/Driver.hs
+  membership
+    Open-Union Membership
+      Membership (A 0) '[B 1 2, A 0] -> 1:                                OK
+      Membership (B 5 6) '[B 1 2, B 3 4, A 1, B 5 6, A 0] -> 3:           OK
+      Membership (B 5 ?) '[B 1 2, B 3 4, A 1, B 5 6, A 0] --infer--> ?=6: OK
+  onlyFOEs
+    onlyFOEs index shift
+      '[<F>, F , F , F ] -> '[ H ,<F>, F , H , H , F , H , F ]:           OK
+      '[ F ,<F>, F , F ] -> '[ H , F ,<F>, H , H , F , H , F ]:           OK
+      '[ F , F ,<F>, F ] -> '[ H , F , F , H , H ,<F>, H , F ]:           OK
+      '[ F , F , F ,<F>] -> '[ H , F , F , H , H , F , H ,<F>]:           OK
+  onlyPolys
+    onlyPolys index shift
+      '[<P>, P , P , P ] -> '[ E ,<P>, P , E , E , P , E , P ]:           OK
+      '[ P ,<P>, P , P ] -> '[ E , P ,<P>, E , E , P , E , P ]:           OK
+      '[ P , P ,<P>, P ] -> '[ E , P , P , E , E ,<P>, E , P ]:           OK
+      '[ P , P , P ,<P>] -> '[ E , P , P , E , E , P , E ,<P>]:           OK
+
+All 11 tests passed (0.00s)
+Test suite test: PASS
+Test suite logged to:
+/tmp/workdir-data-effects-core/data-effects-core-0.4.3.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/data-effects-core-0.4.3.0/t/test/test/data-effects-core-0.4.3.0-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

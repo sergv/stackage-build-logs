@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - yesod-1.6.2.1 (lib) (first run)
 Configuring library for yesod-1.6.2.1...
@@ -6,6 +7,13 @@ Preprocessing library for yesod-1.6.2.1...
 Building library for yesod-1.6.2.1...
 [1 of 6] Compiling Yesod
 [2 of 6] Compiling Yesod.Default.Config
+Yesod/Default/Config.hs:63:41: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+63 |                     return $ ArgConfig (head envs) 0
+   |                                         ^^^^
 
 Yesod/Default/Config.hs:197:14: warning: [GHC-68441] [-Wdeprecations]
     In the use of ‘parseMonad’ (imported from Data.Yaml):
@@ -27,15 +35,23 @@ Yesod/Default/Config.hs:246:65: warning: [GHC-68441] [-Wdeprecations]
     |
 246 |             | Just v <- M.lookup (fromString $ show env) obj -> parseMonad f v
     |                                                                 ^^^^^^^^^^
-[3 of 6] Compiling Yesod.Default.Config2
 
-Yesod/Default/Config2.hs:31:1: warning: [-Wunused-imports]
+[3 of 6] Compiling Yesod.Default.Config2
+Yesod/Default/Config2.hs:31:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Semigroup’ is redundant
       except perhaps to import instances from ‘Data.Semigroup’
     To import instances alone, use: import Data.Semigroup()
    |
 31 | import Data.Semigroup
    | ^^^^^^^^^^^^^^^^^^^^^
+
 [4 of 6] Compiling Yesod.Default.Handlers
 [5 of 6] Compiling Yesod.Default.Main
+Yesod/Default/Main.hs:107:12: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘def’ (imported from Network.Wai.Middleware.Gzip):
+    Deprecated: "Please use 'defaultGzipSettings'. 'def' and the Default instance will be removed in a future major update."
+    |
+107 |     gset = def { gzipFiles = GzipCacheFolder staticCache }
+    |            ^^^
+
 [6 of 6] Compiling Yesod.Default.Util

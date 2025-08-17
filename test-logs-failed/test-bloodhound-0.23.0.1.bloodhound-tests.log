@@ -1,0 +1,36 @@
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - bloodhound-0.23.0.1 (test:bloodhound-tests) (ephemeral targets)
+Preprocessing test suite 'bloodhound-tests' for bloodhound-0.23.0.1...
+Building test suite 'bloodhound-tests' for bloodhound-0.23.0.1...
+Running 1 test suites...
+Test suite bloodhound-tests: RUNNING...
+bloodhound-tests: HttpExceptionRequest Request {
+  host                 = "localhost"
+  port                 = 9200
+  secure               = False
+  requestHeaders       = [("Content-Type","application/json")]
+  path                 = "/_nodes/_local"
+  queryString          = ""
+  method               = "GET"
+  proxy                = Nothing
+  rawBody              = False
+  redirectCount        = 10
+  responseTimeout      = ResponseTimeoutDefault
+  requestVersion       = HTTP/1.1
+  proxySecureMode      = ProxySecureWithConnect
+}
+ (ConnectionFailure Network.Socket.connect: <socket: 8>: does not exist (Connection refused))
+HasCallStack backtrace:
+  collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception
+  toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/IO.hs:260:11 in ghc-internal:GHC.Internal.IO
+  throwIO, called at ./Network/HTTP/Client/Core.hs:237:29 in http-client-0.7.19-0dfad51e4a0d717d445a0b0bd105145c2bf25cba13566d9785df1465bebad8c2:Network.HTTP.Client.Core
+
+
+Test suite bloodhound-tests: FAIL
+Test suite logged to:
+/tmp/workdir-bloodhound/bloodhound-0.23.0.1/dist-newstyle/build/x86_64-linux/ghc-9.10.2/bloodhound-0.23.0.1/t/bloodhound-tests/test/bloodhound-0.23.0.1-bloodhound-tests.log
+0 of 1 test suites (0 of 1 test cases) passed.
+Error: [Cabal-7125]
+Tests failed for test:bloodhound-tests from bloodhound-0.23.0.1.
+

@@ -1,0 +1,84 @@
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - tasty-checklist-1.0.6.0 (test:checklistDocTests) (ephemeral targets)
+Preprocessing test suite 'checklistDocTests' for tasty-checklist-1.0.6.0...
+Building test suite 'checklistDocTests' for tasty-checklist-1.0.6.0...
+Running 1 test suites...
+Test suite checklistDocTests: RUNNING...
+src/Test/Tasty/Checklist.hs:155: failure in expression `:{
+ defaultMain $ testCase "odd numbers" $ withChecklist "odds" $ do
+  let three = 3 :: Int
+  check "three is odd" odd three
+  check "two is odd" odd (2 :: Int)
+  check "7 + 3 is odd" odd $ 7 + three
+  check "7 is odd" odd (7 :: Int)
+:}'
+expected: odd numbers: FAIL
+            Exception: ERROR: odds
+              2 checks failed in this checklist:
+              -Failed check 'two is odd' with: 2
+              -Failed check '7 + 3 is odd' with: 10
+          
+          1 out of 1 tests failed (...s)
+          *** Exception: ExitFailure 1
+ but got: odd numbers: FAIL
+            Exception: ERROR: odds
+              2 checks failed in this checklist:
+              -Failed check 'two is odd' with: 2
+              -Failed check '7 + 3 is odd' with: 10
+            HasCallStack backtrace:
+          ^
+              collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception
+              toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/IO.hs:260:11 in ghc-internal:GHC.Internal.IO
+              throwIO, called at ./Control/Concurrent/Async.hs:110:7 in tasty-1.5.3-f1a0a46ce55b88414ff48786f2e9bff7e8a1997e2f2af353d26d5875559bb827:Control.Concurrent.Async
+          
+          1 out of 1 tests failed (0.00s)
+          *** Exception: ExitFailure 1
+
+src/Test/Tasty/Checklist.hs:279: failure in expression `defaultMain test'
+expected: someFun result: FAIL
+            Exception: ERROR: results for someFun
+              3 checks failed in this checklist:
+              --- Input for below: The answer to the universe is 18?
+              -Failed check: foo
+                    expected:    42
+                    failed with: 18
+              -Failed check: shown
+                    expected:    "The answer to the universe is 42!"
+                    failed with: "The answer to the universe is 18?"
+              -Failed check: double-checking foo
+                    expected:    42
+                    failed with: 18
+          
+          1 out of 1 tests failed (...s)
+          *** Exception: ExitFailure 1
+ but got: someFun result: FAIL
+            Exception: ERROR: results for someFun
+              3 checks failed in this checklist:
+              --- Input for below: The answer to the universe is 18?
+              -Failed check: foo
+                    expected:    42
+                    failed with: 18
+              -Failed check: shown
+                    expected:    "The answer to the universe is 42!"
+                    failed with: "The answer to the universe is 18?"
+              -Failed check: double-checking foo
+                    expected:    42
+                    failed with: 18
+            HasCallStack backtrace:
+          ^
+              collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception
+              toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/IO.hs:260:11 in ghc-internal:GHC.Internal.IO
+              throwIO, called at ./Control/Concurrent/Async.hs:110:7 in tasty-1.5.3-f1a0a46ce55b88414ff48786f2e9bff7e8a1997e2f2af353d26d5875559bb827:Control.Concurrent.Async
+          
+          1 out of 1 tests failed (0.00s)
+          *** Exception: ExitFailure 1
+
+Examples: 14  Tried: 14  Errors: 0  Failures: 2
+Test suite checklistDocTests: FAIL
+Test suite logged to:
+/tmp/workdir-tasty-checklist/tasty-checklist-1.0.6.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/tasty-checklist-1.0.6.0/t/checklistDocTests/test/tasty-checklist-1.0.6.0-checklistDocTests.log
+0 of 1 test suites (0 of 1 test cases) passed.
+Error: [Cabal-7125]
+Tests failed for test:checklistDocTests from tasty-checklist-1.0.6.0.
+

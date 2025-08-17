@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - iconv-0.4.1.3 (lib:iconv) (first run)
 Warning: iconv.cabal:24:32: version operators used. To use version operators
@@ -9,30 +10,32 @@ Configuring iconv-0.4.1.3...
 Preprocessing library for iconv-0.4.1.3...
 Building library for iconv-0.4.1.3...
 [1 of 2] Compiling Codec.Text.IConv.Internal
-
-Codec/Text/IConv/Internal.hs:46:1: warning: [-Wdodgy-imports]
-    Module ‘Foreign’ does not export ‘unsafePerformIO’
+Codec/Text/IConv/Internal.hs:46:24: warning: [GHC-61689] [-Wdodgy-imports]
+    Module ‘Foreign’ does not export ‘unsafePerformIO’.
    |
 46 | import Foreign hiding (unsafePerformIO)
-   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |                        ^^^^^^^^^^^^^^^
 
-Codec/Text/IConv/Internal.hs:217:3: warning: [-Wnoncanonical-monad-instances]
+Codec/Text/IConv/Internal.hs:217:3: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘(>>)’ definition detected
     in the instance declaration for ‘Monad IConv’.
     ‘(>>)’ will eventually be removed in favour of ‘(*>)’
-    Either remove definition for ‘(>>)’ (recommended) or define as ‘(>>) = (*>)’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘(>>)’ (recommended) or define as ‘(>>) = (*>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 217 |   (>>)   = thenI
     |   ^^^^^^^^^^^^^^
 
-Codec/Text/IConv/Internal.hs:218:3: warning: [-Wnoncanonical-monad-instances]
+Codec/Text/IConv/Internal.hs:218:3: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad IConv’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 218 |   return = returnI
     |   ^^^^^^^^^^^^^^^^
+
 [2 of 2] Compiling Codec.Text.IConv

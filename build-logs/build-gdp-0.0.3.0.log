@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - gdp-0.0.3.0 (lib) (first run)
  - gdp-0.0.3.0 (exe:gdp) (first run)
@@ -15,8 +16,23 @@ Building library for gdp-0.0.3.0...
 [ 8 of 12] Compiling Logic.NegClasses
 [ 9 of 12] Compiling Logic.Implicit
 [10 of 12] Compiling Theory.Lists
-[11 of 12] Compiling Data.Refined
+src/Theory/Lists.hs:97:23: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+97 | head (The xs) = defn (Prelude.head xs)
+   |                       ^^^^^^^^^^^^
 
+src/Theory/Lists.hs:101:23: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+101 | tail (The xs) = defn (Prelude.tail xs)
+    |                       ^^^^^^^^^^^^
+
+[11 of 12] Compiling Data.Refined
 src/Data/Refined.hs:106:25: warning: [GHC-39567] [-Wstar-is-type]
     Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
     relies on the StarIsType extension, which will become
@@ -34,9 +50,10 @@ src/Data/Refined.hs:106:30: warning: [GHC-39567] [-Wstar-is-type]
     |
 106 | newtype Satisfies (p :: * -> *) a = Satisfies a
     |                              ^
+
 [12 of 12] Compiling GDP
 Configuring executable 'gdp' for gdp-0.0.3.0...
 Preprocessing executable 'gdp' for gdp-0.0.3.0...
 Building executable 'gdp' for gdp-0.0.3.0...
 [1 of 1] Compiling Main
-[2 of 2] Linking /tmp/workdir-gdp/gdp-0.0.3.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/gdp-0.0.3.0/x/gdp/build/gdp/gdp
+[2 of 2] Linking /tmp/workdir-gdp/gdp-0.0.3.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/gdp-0.0.3.0/x/gdp/build/gdp/gdp

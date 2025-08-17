@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - hgal-2.0.0.3 (lib) (first run)
  - hgal-2.0.0.3 (test:hgal-test) (first run)
@@ -7,6 +8,13 @@ Preprocessing library for hgal-2.0.0.3...
 Building library for hgal-2.0.0.3...
 [1 of 5] Compiling Data.Graph.Construction
 [2 of 5] Compiling Data.Graph.Partition
+src/Data/Graph/Partition.hs:24:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.List’ is redundant
+      except perhaps to import instances from ‘Data.List’
+    To import instances alone, use: import Data.List()
+   |
+24 | import Data.List
+   | ^^^^^^^^^^^^^^^^
 
 src/Data/Graph/Partition.hs:90:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
@@ -15,8 +23,49 @@ src/Data/Graph/Partition.hs:90:9: warning: [GHC-62161] [-Wincomplete-uni-pattern
    |
 90 |   where (before, largest:after) = break hasMaxLength list
    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Data/Graph/Partition.hs:104:11: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+104 | mcr = map head
+    |           ^^^^
+
+src/Data/Graph/Partition.hs:108:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+108 | fixedInOrbits part = map head $ filter isSingleton part
+    |                          ^^^^
+
 [3 of 5] Compiling Data.Graph.Permutation
 [4 of 5] Compiling Data.Graph.Automorphism
+src/Data/Graph/Automorphism.hs:44:52: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+44 |     where simplePermutation = array bnds (zip (map head partition) (range bnds))
+   |                                                    ^^^^
+
+src/Data/Graph/Automorphism.hs:152:61: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+152 |        ;let relabeling p1 p2 = permBetween graphBounds (map head p1) (map head p2)
+    |                                                             ^^^^
+
+src/Data/Graph/Automorphism.hs:152:75: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+152 |        ;let relabeling p1 p2 = permBetween graphBounds (map head p1) (map head p2)
+    |                                                                           ^^^^
+
 [5 of 5] Compiling Paths_hgal
 Configuring test suite 'hgal-test' for hgal-2.0.0.3...
 Preprocessing test suite 'hgal-test' for hgal-2.0.0.3...
@@ -24,7 +73,6 @@ Building test suite 'hgal-test' for hgal-2.0.0.3...
 [1 of 5] Compiling Bench
 [2 of 5] Compiling Paths_hgal
 [3 of 5] Compiling Shuffle
-
 test/Shuffle.hs:39:5: warning: [GHC-62161] [-Wincomplete-patterns]
     Pattern match(es) are non-exhaustive
     In an equation for ‘shuffle1'’:
@@ -43,6 +91,7 @@ test/Shuffle.hs:53:5: warning: [GHC-62161] [-Wincomplete-patterns]
    |
 53 |     extract_tree 0 (Node _ (Leaf e) r) = (e,r)
    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
 [4 of 5] Compiling Sudoku
 [5 of 5] Compiling Main
-[6 of 6] Linking /tmp/workdir-hgal/hgal-2.0.0.3/dist-newstyle/build/x86_64-linux/ghc-9.6.5/hgal-2.0.0.3/t/hgal-test/build/hgal-test/hgal-test
+[6 of 6] Linking /tmp/workdir-hgal/hgal-2.0.0.3/dist-newstyle/build/x86_64-linux/ghc-9.10.2/hgal-2.0.0.3/t/hgal-test/build/hgal-test/hgal-test

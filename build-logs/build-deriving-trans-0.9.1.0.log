@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - deriving-trans-0.9.1.0 (lib) (first run)
 Configuring library for deriving-trans-0.9.1.0...
@@ -7,7 +8,41 @@ Building library for deriving-trans-0.9.1.0...
 [1 of 7] Compiling Control.Monad.Accum.OrphanInstances
 [2 of 7] Compiling Control.Monad.Select.OrphanInstances
 [3 of 7] Compiling Control.Monad.Trans.Elevator
+src/Control/Monad/Trans/Elevator.hs:81:1: warning: [GHC-65490] [-Wmissing-role-annotations]
+    Missing role annotation:
+      type role Elevator representational nominal nominal
+   |
+81 | newtype Elevator t m a = Ascend { descend :: t m a }
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
 [4 of 7] Compiling Control.Monad.Trans.Compose.Transparent
+src/Control/Monad/Trans/Compose/Transparent.hs:23:1: warning: [GHC-38417] [-Wmissing-poly-kind-signatures]
+    Top-level type constructor with no standalone kind signature:
+      type NoT :: forall {k}. (k -> *) -> k -> *
+   |
+23 | newtype NoT m a = MkNoT {unNoT :: IdentityT m a}
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+src/Control/Monad/Trans/Compose/Transparent.hs:23:1: warning: [GHC-65490] [-Wmissing-role-annotations]
+    Missing role annotation: type role NoT representational nominal
+   |
+23 | newtype NoT m a = MkNoT {unNoT :: IdentityT m a}
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
 [5 of 7] Compiling Control.Monad.Trans.Compose
+src/Control/Monad/Trans/Compose.hs:105:1: warning: [GHC-65490] [-Wmissing-role-annotations]
+    Missing role annotation:
+      type role ComposeT representational nominal nominal nominal
+    |
+105 | newtype ComposeT t1 t2 m a = ComposeT { deComposeT :: t1 (t2 m) a }
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
 [6 of 7] Compiling Control.Monad.Trans.Compose.Stack
+src/Control/Monad/Trans/Compose/Stack.hs:56:1: warning: [GHC-65490] [-Wmissing-role-annotations]
+    Missing role annotation:
+      type role RunStackT nominal nominal nominal
+   |
+56 | data RunStackT :: Stack -> (Type -> Type) -> Type -> Type where
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
 [7 of 7] Compiling Control.Monad.Trans.Compose.Infix

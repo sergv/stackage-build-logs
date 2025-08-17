@@ -1,0 +1,54 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - fcf-family-0.2.0.2 (lib) (first run)
+ - fcf-family-0.2.0.2 (test:fcf-family-test) (first run)
+Configuring library for fcf-family-0.2.0.2...
+Preprocessing library for fcf-family-0.2.0.2...
+Building library for fcf-family-0.2.0.2...
+[1 of 3] Compiling Fcf.Family
+[2 of 3] Compiling Fcf.Family.TH
+src/Fcf/Family/TH.hs:28:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+28 | import Control.Applicative (liftA2)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Fcf/Family/TH.hs:34:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Foldable’ is redundant
+      except perhaps to import instances from ‘Data.Foldable’
+    To import instances alone, use: import Data.Foldable()
+   |
+34 | import Data.Foldable (foldl')
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[3 of 3] Compiling Fcf.Family.Meta
+Configuring test suite 'fcf-family-test' for fcf-family-0.2.0.2...
+Preprocessing test suite 'fcf-family-test' for fcf-family-0.2.0.2...
+Building test suite 'fcf-family-test' for fcf-family-0.2.0.2...
+[1 of 1] Compiling Main
+test/Main.hs:58:26: warning: [GHC-18872] [-Wdeferred-type-errors]
+    • Couldn't match type: Eval
+                             (Family_ If_ P1 '(True, '(Any, '(Any, '()))))
+                     with: Any
+        arising from a use of ‘equate’
+      The type variables ‘k3’, ‘k10’, ‘k1’, ‘k2’, ‘k3’ are ambiguous
+    • In the expression:
+        equate @(Eval (Family_ If_ P1 '( 'True, '(Any, '(Any, '()))))) @Any
+      In an equation for ‘err’:
+          err
+            = equate
+                @(Eval (Family_ If_ P1 '( 'True, '(Any, '(Any, '()))))) @Any
+      In the second argument of ‘($)’, namely
+        ‘let
+           err
+             = equate
+                 @(Eval (Family_ If_ P1 '( 'True, '(Any, '(Any, '()))))) @Any
+         in err’
+   |
+58 |   shouldFail $ let err = equate @(Eval (Family_ If_ P1 '( 'True, '(Any, '(Any, '()))))) @Any in err
+   |                          ^^^^^^
+
+[2 of 2] Linking /tmp/workdir-fcf-family/fcf-family-0.2.0.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/fcf-family-0.2.0.2/t/fcf-family-test/build/fcf-family-test/fcf-family-test

@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - yarn-lock-0.6.5 (lib) (first run)
  - yarn-lock-0.6.5 (test:yarn-lock-tests) (first run)
@@ -6,10 +7,26 @@ Configuring library for yarn-lock-0.6.5...
 Preprocessing library for yarn-lock-0.6.5...
 Building library for yarn-lock-0.6.5...
 [1 of 7] Compiling Data.MultiKeyedMap
+src/Data/MultiKeyedMap.hs:30:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Foldable’ is redundant
+      except perhaps to import instances from ‘Data.Foldable’
+    To import instances alone, use: import Data.Foldable()
+   |
+30 | import Data.Foldable (foldl')
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [2 of 7] Compiling Paths_yarn_lock
 [3 of 7] Compiling Yarn.Lock.Types
 [4 of 7] Compiling Yarn.Lock.Parse
 [5 of 7] Compiling Yarn.Lock.Helpers
+src/Yarn/Lock/Helpers.hs:21:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Foldable’ is redundant
+      except perhaps to import instances from ‘Data.Foldable’
+    To import instances alone, use: import Data.Foldable()
+   |
+21 | import Data.Foldable (foldl')
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [6 of 7] Compiling Yarn.Lock.File
 [7 of 7] Compiling Yarn.Lock
 Configuring test suite 'yarn-lock-tests' for yarn-lock-0.6.5...
@@ -18,8 +35,15 @@ Building test suite 'yarn-lock-tests' for yarn-lock-0.6.5...
 [1 of 5] Compiling Paths_yarn_lock
 [2 of 5] Compiling TestFile
 [3 of 5] Compiling TestMultiKeyedMap
-[4 of 5] Compiling TestParse
+tests/TestMultiKeyedMap.hs:14:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Foldable’ is redundant
+      except perhaps to import instances from ‘Data.Foldable’
+    To import instances alone, use: import Data.Foldable()
+   |
+14 | import Data.Foldable (foldl')
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+[4 of 5] Compiling TestParse
 tests/TestParse.hs:30:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a lambda abstraction:
@@ -45,5 +69,6 @@ tests/TestParse.hs:133:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     |
 133 |     >>= \((PackageKey name version) NE.:| []) -> do
     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
 [5 of 5] Compiling Main
-[6 of 6] Linking /tmp/workdir-yarn-lock/yarn-lock-0.6.5/dist-newstyle/build/x86_64-linux/ghc-9.6.5/yarn-lock-0.6.5/t/yarn-lock-tests/build/yarn-lock-tests/yarn-lock-tests
+[6 of 6] Linking /tmp/workdir-yarn-lock/yarn-lock-0.6.5/dist-newstyle/build/x86_64-linux/ghc-9.10.2/yarn-lock-0.6.5/t/yarn-lock-tests/build/yarn-lock-tests/yarn-lock-tests

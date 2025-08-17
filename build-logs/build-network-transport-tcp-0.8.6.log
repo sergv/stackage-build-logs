@@ -1,0 +1,221 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - network-transport-tcp-0.8.6 (lib) (first run)
+ - network-transport-tcp-0.8.6 (test:TestTCP) (first run)
+Configuring library for network-transport-tcp-0.8.6...
+Preprocessing library for network-transport-tcp-0.8.6...
+Building library for network-transport-tcp-0.8.6...
+[1 of 2] Compiling Network.Transport.TCP.Internal
+src/Network/Transport/TCP/Internal.hs:228:21: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘sock’ shadows the existing binding
+      bound at src/Network/Transport/TCP/Internal.hs:221:38
+    |
+228 |           release ((sock, _), socketClosed) =
+    |                     ^^^^
+
+src/Network/Transport/TCP/Internal.hs:232:24: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘sock’ shadows the existing binding
+      bound at src/Network/Transport/TCP/Internal.hs:221:38
+    |
+232 |       let act restore (sock, sockAddr) = do
+    |                        ^^^^
+
+src/Network/Transport/TCP/Internal.hs:247:14: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘sock’ shadows the existing binding
+      bound at src/Network/Transport/TCP/Internal.hs:221:38
+    |
+247 |             (sock, sockAddr) <- N.accept sock
+    |              ^^^^
+
+[2 of 2] Compiling Network.Transport.TCP
+src/Network/Transport/TCP.hs:1021:32: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘sock’ shadows the existing binding
+      bound at src/Network/Transport/TCP.hs:977:49
+     |
+1021 |     handleConnectionRequestV0 (sock, sockAddr) = do
+     |                                ^^^^
+
+src/Network/Transport/TCP.hs:1021:38: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘sockAddr’ shadows the existing binding
+      bound at src/Network/Transport/TCP.hs:977:55
+     |
+1021 |     handleConnectionRequestV0 (sock, sockAddr) = do
+     |                                      ^^^^^^^^
+
+src/Network/Transport/TCP.hs:1345:17: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘act’ shadows the existing binding
+      bound at src/Network/Transport/TCP.hs:1176:5
+     |
+1345 |                 act <- schedule theirEndPoint $ do
+     |                 ^^^
+
+src/Network/Transport/TCP.hs:1376:17: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘act’ shadows the existing binding
+      bound at src/Network/Transport/TCP.hs:1176:5
+     |
+1376 |                 act <- schedule theirEndPoint $ return ()
+     |                 ^^^
+
+src/Network/Transport/TCP.hs:1449:21: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘err’ shadows the existing binding
+      bound at src/Network/Transport/TCP.hs:1416:19
+     |
+1449 |                     err  = TransportError code (show err')
+     |                     ^^^
+
+Configuring test suite 'TestTCP' for network-transport-tcp-0.8.6...
+Preprocessing test suite 'TestTCP' for network-transport-tcp-0.8.6...
+Building test suite 'TestTCP' for network-transport-tcp-0.8.6...
+[1 of 1] Compiling Main
+tests/TestTCP.hs:172:79: warning: [GHC-40910] [-Wunused-matches]
+    Defined but not used: ‘socketFree’
+    |
+172 |       (clientPort, _) <- forkServer "127.0.0.1" "0" 5 True throwIO throwIO $ \socketFree (sock, _) -> do
+    |                                                                               ^^^^^^^^^^
+
+tests/TestTCP.hs:284:79: warning: [GHC-40910] [-Wunused-matches]
+    Defined but not used: ‘socketFree’
+    |
+284 |       (clientPort, _) <- forkServer "127.0.0.1" "0" 5 True throwIO throwIO $ \socketFree (sock, _) -> do
+    |                                                                               ^^^^^^^^^^
+
+tests/TestTCP.hs:381:9: warning: [GHC-40910] [-Wunused-local-binds]
+    Defined but not used: ‘ourAddress’
+    |
+381 |     let ourAddress = address endpoint
+    |         ^^^^^^^^^^
+
+tests/TestTCP.hs:471:9: warning: [GHC-40910] [-Wunused-local-binds]
+    Defined but not used: ‘ourAddress’
+    |
+471 |     let ourAddress = address endpoint
+    |         ^^^^^^^^^^
+
+tests/TestTCP.hs:483:11: warning: [GHC-40910] [-Wunused-matches]
+    Defined but not used: ‘conn’
+    |
+483 |     Right conn <- connect endpoint theirAddress ReliableOrdered defaultConnectHints
+    |           ^^^^
+
+tests/TestTCP.hs:483:11: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘conn’ shadows the existing binding
+      bound at tests/TestTCP.hs:478:11
+    |
+483 |     Right conn <- connect endpoint theirAddress ReliableOrdered defaultConnectHints
+    |           ^^^^
+
+tests/TestTCP.hs:564:9: warning: [GHC-62161] [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In a case alternative:
+        Patterns of type ‘Either
+                            (TransportError ConnectErrorCode)
+                            (MVar (), N.Socket, ConnectionRequestResponse)’ not matched:
+            Right (_, _, ConnectionRequestUnsupportedVersion)
+            Right (_, _, ConnectionRequestHostMismatch)
+    |
+564 |         case response of
+    |         ^^^^^^^^^^^^^^^^...
+
+tests/TestTCP.hs:611:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe
+                            ghc-internal:GHC.Internal.Conc.Sync.ThreadId’ not matched:
+            Nothing
+    |
+611 |   let Just tid = transportThread internals
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/TestTCP.hs:706:5: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘resultConnect’ shadows the existing binding
+      bound at tests/TestTCP.hs:693:5
+    |
+706 |     resultConnect <- connect endpoint theirAddr ReliableOrdered defaultConnectHints
+    |     ^^^^^^^^^^^^^
+
+tests/TestTCP.hs:708:20: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘wait’ shadows the existing binding
+      bound at tests/TestTCP.hs:698:20
+    |
+708 |     WaitSocketFree wait <- takeMVar socketClosed
+    |                    ^^^^
+
+tests/TestTCP.hs:727:5: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘resultConnect’ shadows the existing binding
+      bound at tests/TestTCP.hs:706:5
+    |
+727 |     resultConnect <- connect endpoint theirAddr ReliableOrdered defaultConnectHints
+    |     ^^^^^^^^^^^^^
+
+tests/TestTCP.hs:729:20: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘wait’ shadows the existing binding
+      bound at tests/TestTCP.hs:708:20
+    |
+729 |     WaitSocketFree wait <- takeMVar socketClosed
+    |                    ^^^^
+
+tests/TestTCP.hs:748:20: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘wait’ shadows the existing binding
+      bound at tests/TestTCP.hs:729:20
+    |
+748 |     WaitSocketFree wait <- takeMVar socketClosed
+    |                    ^^^^
+
+tests/TestTCP.hs:764:75: warning: [GHC-40910] [-Wunused-matches]
+    Defined but not used: ‘socketFree’
+    |
+764 |   (serverPort, _) <- forkServer "127.0.0.1" "0" 5 True throwIO throwIO $ \socketFree (sock, _) -> do
+    |                                                                           ^^^^^^^^^^
+
+tests/TestTCP.hs:891:12: warning: [GHC-40910] [-Wunused-matches]
+    Defined but not used: ‘conn1’
+    |
+891 |      Right conn1 <- connect ep2 (address ep1) ReliableOrdered defaultConnectHints
+    |            ^^^^^
+
+tests/TestTCP.hs:932:5: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘address’ shadows the existing binding
+      imported from ‘Network.Transport’ at tests/TestTCP.hs:13:1-24
+    |
+932 |     address <- readMVar serverAddress
+    |     ^^^^^^^
+
+tests/TestTCP.hs:943:5: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘address’ shadows the existing binding
+      imported from ‘Network.Transport’ at tests/TestTCP.hs:13:1-24
+    |
+943 |     address <- readMVar serverAddress
+    |     ^^^^^^^
+
+tests/TestTCP.hs:1067:20: warning: [GHC-40910] [-Wunused-matches]
+    Defined but not used: ‘connid’
+     |
+1067 |   ConnectionOpened connid ReliableOrdered _ <- receive ep
+     |                    ^^^^^^
+
+tests/TestTCP.hs:1069:12: warning: [GHC-40910] [-Wunused-matches]
+    Defined but not used: ‘connid'’
+     |
+1069 |   Received connid' bytes <- receive ep
+     |            ^^^^^^^
+
+tests/TestTCP.hs:1069:20: warning: [GHC-40910] [-Wunused-matches]
+    Defined but not used: ‘bytes’
+     |
+1069 |   Received connid' bytes <- receive ep
+     |                    ^^^^^
+
+tests/TestTCP.hs:1071:20: warning: [GHC-40910] [-Wunused-matches]
+    Defined but not used: ‘connid''’
+     |
+1071 |   ConnectionClosed connid'' <- receive ep
+     |                    ^^^^^^^^
+
+tests/TestTCP.hs:1098:24: warning: [GHC-40910] [-Wunused-matches]
+    Defined but not used: ‘addr'’
+     |
+1098 |   ConnectionOpened _ _ addr' <- receive uep
+     |                        ^^^^^
+
+[2 of 2] Linking /tmp/workdir-network-transport-tcp/network-transport-tcp-0.8.6/dist-newstyle/build/x86_64-linux/ghc-9.10.2/network-transport-tcp-0.8.6/t/TestTCP/build/TestTCP/TestTCP

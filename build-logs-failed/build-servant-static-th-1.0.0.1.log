@@ -1,0 +1,86 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - servant-static-th-1.0.0.1 (lib) (first run)
+ - servant-static-th-1.0.0.1 (test:servant-static-th-test) (first run)
+Configuring library for servant-static-th-1.0.0.1...
+Preprocessing library for servant-static-th-1.0.0.1...
+Building library for servant-static-th-1.0.0.1...
+[1 of 7] Compiling Servant.Static.TH.Internal.FileTree
+[2 of 7] Compiling Servant.Static.TH.Internal.Util
+[3 of 7] Compiling Servant.Static.TH.Internal.Mime
+[4 of 7] Compiling Servant.Static.TH.Internal.Server
+[5 of 7] Compiling Servant.Static.TH.Internal.Api
+[6 of 7] Compiling Servant.Static.TH.Internal
+[7 of 7] Compiling Servant.Static.TH
+Configuring test suite 'servant-static-th-test' for servant-static-th-1.0.0.1...
+Preprocessing test suite 'servant-static-th-test' for servant-static-th-1.0.0.1...
+Building test suite 'servant-static-th-test' for servant-static-th-1.0.0.1...
+[1 of 6] Compiling Spec.TastyHelpers
+[2 of 6] Compiling Spec.TestDirLocation
+[3 of 6] Compiling Spec.ServerSpec
+[4 of 6] Compiling Spec.HelperFuncSpec
+[5 of 6] Compiling Spec.ApiSpec
+test/Spec/ApiSpec.hs:36:24: error: [GHC-83865]
+    • Couldn't match type: ("dir"
+                            :> (("inner-file.html" :> Get '[HTML] Html)
+                                :<|> ("test.js" :> Get '[JS] ByteString)))
+                           :<|> ("hello.html" :> Get '[HTML] Html)
+                     with: "dir"
+                           :> (("inner-file.html" :> Get '[HTML] Html)
+                               :<|> ("test.js" :> Get '[JS] ByteString))
+      Expected: ExpectedFrontEndApi :~: FrontEndApi
+        Actual: ExpectedFrontEndApi :~: ExpectedFrontEndApi
+      Type synonyms expanded:
+      Expected type: ExpectedFrontEndApi
+                     :~: (("dir"
+                           :> (("inner-file.html" :> Get '[HTML] Html)
+                               :<|> ("test.js" :> Get '[JS] ByteString)))
+                          :<|> ("hello.html" :> Get '[HTML] Html))
+        Actual type: ExpectedFrontEndApi
+                     :~: ((("dir"
+                            :> (("inner-file.html" :> Get '[HTML] Html)
+                                :<|> ("test.js" :> Get '[JS] ByteString)))
+                           :<|> ("hello.html" :> Get '[HTML] Html))
+                          :<|> (Get '[HTML] Html :<|> ("index.html" :> Get '[HTML] Html)))
+    • In the expression: Refl
+      In an equation for ‘checkFrontEndApiType’:
+          checkFrontEndApiType = Refl
+   |
+36 | checkFrontEndApiType = Refl
+   |                        ^^^^
+
+test/Spec/ApiSpec.hs:40:59: error: [GHC-83865]
+    • Couldn't match type: ("dir"
+                            :> (("inner-file.html" :> Get '[HTML] Html)
+                                :<|> ("test.js" :> Get '[JS] ByteString)))
+                           :<|> ("hello.html" :> Get '[HTML] Html)
+                     with: "dir"
+                           :> (("inner-file.html" :> Get '[HTML] Html)
+                               :<|> ("test.js" :> Get '[JS] ByteString))
+      Expected: ExpectedFrontEndApi :~: FrontEndApi
+        Actual: ExpectedFrontEndApi :~: ExpectedFrontEndApi
+      Type synonyms expanded:
+      Expected type: ExpectedFrontEndApi
+                     :~: (("dir"
+                           :> (("inner-file.html" :> Get '[HTML] Html)
+                               :<|> ("test.js" :> Get '[JS] ByteString)))
+                          :<|> ("hello.html" :> Get '[HTML] Html))
+        Actual type: ExpectedFrontEndApi
+                     :~: ((("dir"
+                            :> (("inner-file.html" :> Get '[HTML] Html)
+                                :<|> ("test.js" :> Get '[JS] ByteString)))
+                           :<|> ("hello.html" :> Get '[HTML] Html))
+                          :<|> (Get '[HTML] Html :<|> ("index.html" :> Get '[HTML] Html)))
+    • In the second argument of ‘(@?=)’, namely ‘Refl’
+      In the second argument of ‘($)’, namely
+        ‘checkFrontEndApiType @?= Refl’
+      In the expression:
+        testCase "created correctly" $ checkFrontEndApiType @?= Refl
+   |
+40 |   testCase "created correctly" $ checkFrontEndApiType @?= Refl
+   |                                                           ^^^^
+
+Error: [Cabal-7125]
+Failed to build test:servant-static-th-test from servant-static-th-1.0.0.1.
+

@@ -1,0 +1,73 @@
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - validation-selective-0.2.0.0 (test:validation-selective-test) (ephemeral targets)
+Preprocessing test suite 'validation-selective-test' for validation-selective-0.2.0.0...
+Building test suite 'validation-selective-test' for validation-selective-0.2.0.0...
+Running 1 test suites...
+Test suite validation-selective-test: RUNNING...
+
+Validation Property Tests
+  Semigroup instance for Validation
+    Associativity: a <> (b <> c) ≡ (a <> b) <> c [✔]
+      passed 100 tests.
+    Concatenation: sconcat ≡ foldr1 (<>) [✔]
+      passed 100 tests.
+    Times: stimes n a ≡ foldr1 (<>) (replicate n a) [✔]
+      passed 100 tests.
+  Monoid instance for Validation
+    Right Identity: x <> mempty ≡ x [✔]
+      passed 100 tests.
+    Left Identity:  mempty <> x ≡ x [✔]
+      passed 100 tests.
+    Associativity: mappend a (mappend b c) ≡ mappend (mappend a b) c [✔]
+      passed 100 tests.
+    Concatenation: mconcat ≡ foldr mappend mempty [✔]
+      passed 100 tests.
+  Functor instance for Validation
+    Identity: fmap id ≡ id [✔]
+      passed 100 tests.
+    Composition: map f . fmap g ≡ fmap (f . g) [✔]
+      passed 100 tests.
+    Const: fmap (const x) ≡ x <$ [✔]
+      passed 100 tests.
+  Applicative instance for Validation
+    Identity: pure id <*> x ≡ x [✔]
+      passed 100 tests.
+    Composition: pure (.) <*> f <*> g <*> x ≡ f <*> (g <*> x) [✔]
+      passed 100 tests.
+    Homomorphism: pure f <*> pure x ≡ pure (f x) [✔]
+      passed 100 tests.
+    Interchange: f <*> pure x ≡ pure ($ x) <*> f [✔]
+      passed 100 tests.
+    Apply Right: u *> v ≡ (id <$ u) <*> v [✔]
+      passed 100 tests.
+    Apply Left:  u <* v ≡ liftA2 const u v [✔]
+      passed 100 tests.
+    (<*>) via liftA2: (<*>) ≡ liftA2 id [✔]
+      passed 100 tests.
+    liftA2 via (<*>): liftA2 f x y ≡ f <$> x <*> y [✔]
+      passed 100 tests.
+  Alternative instance for Validation
+    Associativity: a <|> (b <|> c) ≡ (a <|> b) <|> c [✔]
+      passed 100 tests.
+    Right Identity: x <|> empty ≡ x [✔]
+      passed 100 tests.
+    Left Identity:  empty <|> x ≡ x [✔]
+      passed 100 tests.
+  Selective instance for Validation
+    Identity: x <*? pure id ≡ either id id <$> x [✔]
+      passed 100 tests.
+    Distributivity: pure x <*? (y *> z) ≡ (pure x <*? y) *> (pure x <*? z) [✔]
+      passed 100 tests.
+    Associativity: x <*? (y <*? z) ≡ (f <$> x) <*? (g <$> y) <*? (h <$> z) [✔]
+      passed 100 tests.
+Validation interface properties
+  partitionValidations x ≡ (failures x, successes x) [✔]
+    passed 100 tests.
+
+Finished in 0.2702 seconds
+25 examples, 0 failures
+Test suite validation-selective-test: PASS
+Test suite logged to:
+/tmp/workdir-validation-selective/validation-selective-0.2.0.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/validation-selective-0.2.0.0/t/validation-selective-test/test/validation-selective-0.2.0.0-validation-selective-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

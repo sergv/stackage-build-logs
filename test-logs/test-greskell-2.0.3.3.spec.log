@@ -1,0 +1,275 @@
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - greskell-2.0.3.3 (test:spec) (ephemeral targets)
+Preprocessing test suite 'spec' for greskell-2.0.3.3...
+Building test suite 'spec' for greskell-2.0.3.3...
+Running 1 test suites...
+Test suite spec: RUNNING...
+
+Data.Greskell.Binder
+  Binder
+    should keep bound values [✔]
+    should compose and produce new variables [✔]
+    should also be able to produce AsLabels [✔]
+Data.Greskell.Extra
+  writePropertyKeyValues
+    empty [✔]
+    one prop [✔]
+    multiple props [✔]
+  writeKeyValues
+    empty [✔]
+    key-values [✔]
+Data.Greskell.Graph
+  AEdge
+    should parse GraphSON v1 [✔]
+    should parse GraphSON v2 [✔]
+    should parse GraphSON v3 [✔]
+  AProperty
+    should parse GraphSON v1 (GValue) [✔]
+    should parse GraphSON v1 (bare Int) [✔]
+    should parse GraphSON v2 (GValue) [✔]
+    should parse GraphSON v2 (bare Int) [✔]
+    should parse GraphSON v3 (GValue) [✔]
+    should parse GraphSON v3 (bare Int) [✔]
+  AVertexProperty
+    should parse GraphSON v1 [✔]
+    should parse GraphSON v2 [✔]
+    should parse GraphSON v3 [✔]
+  AVertex
+    should parse GraphSON v1 [✔]
+    should parse GraphSON v2 [✔]
+    should parse GraphSON v3 [✔]
+  Path
+    should parse GraphSON v1 [✔]
+    should parse GraphSON v2 [✔]
+    should parse GraphSON v3 [✔]
+    pathToPMap
+      empty path [✔]
+      objects without labels [✔]
+      objects with unique single label [✔]
+      object with multiple labels [✔]
+      object with shared labels [✔]
+Data.Greskell.Graph.PropertyMap
+  PropertyMapSingle
+    allProperties [✔]
+    lookupOne existing [✔]
+    lookupOne non-existing [✔]
+    lookupList existing [✔]
+    lookupList non-existing [✔]
+    putProperty overrides [✔]
+    removeProperty [✔]
+    mappend prefers the left [✔]
+  PropertyMapList
+    allProperties [✔]
+    lookupOne existing [✔]
+    lookupOne non-existing [✔]
+    lookupList existing [✔]
+    lookupList non-existing [✔]
+    putProperty appends [✔]
+    removeProperty [✔]
+    mappend appends [✔]
+Data.Greskell.Gremlin
+  P and Predicate
+    P and Predicate methods [✔]
+Data.Greskell.GTraversal
+  GraphTraversalSource
+    g.V() [✔]
+    g.V(1,2,3) [✔]
+  gOrder
+    no arg [✔]
+    empty projection [✔]
+    traversal projection [✔]
+    value projection [✔]
+    T token projection [✔]
+    multiple .by steps of different comparison types [✔]
+    gBy1 [✔]
+    IsString instance of ByComparator [✔]
+    gBy [✔]
+    IsString instance of ByProjection [✔]
+  DSL to compose steps
+    (&) and (&.) [✔]
+    (&) and (&.) and (>>>) [✔]
+    ($) and ($.) [✔]
+    ($) and ($.) and (<<<) [✔]
+  gHas1
+    IsString Key [✔]
+  gHas2
+    simple equality [✔]
+  gHas2P
+    IsString Key and P [✔]
+  gHasLabelP
+    P [✔]
+  gHasIdP
+    P [✔]
+  gHasKeyP, gProperties
+    P [✔]
+  gHasValueP, gProperties
+    P [✔]
+  gRepeat
+    no modulation [✔]
+    gTimes and gEmitHead [✔]
+    gUntilHead and gEmitTail [✔]
+    gUntilTail and gEmitHeadT [✔]
+    gUntilTail and gEmitTailT [✔]
+    gLoops without label [✔]
+    gLoops with label [✔]
+  gWhereP1
+    no modulation [✔]
+    with modulation (by traversal) [✔]
+  gWhereP2
+    no modulation [✔]
+    with modulation [✔]
+  gMatch
+    top-level Leaf [✔]
+    top-level And [✔]
+    top-level Or [✔]
+    top-level Not [✔]
+    heterogeneous patterns, nested And [✔]
+    history labels in pattern [✔]
+Data.Greskell.Logic
+  Functor
+    fmap on tree [✔]
+  Applicative
+    <*> should append the right tree to the left tree [✔]
+  Foldable
+    toList should preserve the look of the structure [✔]
+  Traversable
+    traverse should preserve the structure [✔]
+    traverse should run the action of the applicative [✔]
+  runBool
+    Leaf [✔]
+    Not [✔]
+    And
+      single True [✔]
+      double (True,True) [✔]
+      double (True,False) [✔]
+      single False [✔]
+      double (False,True) [✔]
+      double (False,False) [✔]
+    Or
+      single True [✔]
+      double (True,True) [✔]
+      double (True,False) [✔]
+      single False [✔]
+      double (False,True) [✔]
+      double (False,False) [✔]
+Data.Greskell.PMap
+  PMap Single
+    pMapToList [✔]
+    lookup existing [✔]
+    lookup non-existing [✔]
+    lookupList existing [✔]
+    lookupList non-existing [✔]
+    pMapInsert overrides [✔]
+    pMapFromList prefers the first value [✔]
+    pMapDelete [✔]
+    <> prefers the left [✔]
+  PMap Multi
+    pMapToList [✔]
+    lookup existing [✔]
+    lookup non-existing [✔]
+    lookupList existing [✔]
+    lookupList non-existing [✔]
+    pMapInsert prepends [✔]
+    pMapDelete [✔]
+    <> appends [✔]
+Examples
+  examples
+    Graph
+      "list" [✔]
+      "\"age\"" [✔]
+      "\"created_at\"" [✔]
+      "name" [✔]
+    Gremlin
+      "P.not(P.eq(10))" [✔]
+      "P.eq(\"hoge\")" [✔]
+      "P.inside(10,20)" [✔]
+      "P.within(\"foo\",\"bar\",\"hoge\")" [✔]
+      "Order.desc" [✔]
+      "Order.asc" [✔]
+      "Order.decr" [✔]
+      "Order.incr" [✔]
+    GTraversal
+      "g" [✔]
+      "g.V(1,2,3)" [✔]
+      "g.E(1)" [✔]
+      "g.addV(\"person\")" [✔]
+      "g.V().count()" [✔]
+      "g.V().values(\"age\")" [✔]
+      "g.V().values(\"age\")" [✔]
+      "g.addV(\"person\").property(\"name\",\"marko\").iterate()" [✔]
+      "g.V().valueMap('foo','bar')" [✔]
+      "g.V().path().by('name').by('age')" [✔]
+      "g.V().filter(__.out(\"knows\"))" [✔]
+      "g.V().as(\"a\").out().where(P.eq(\"a\")).by(\"age\")" [✔]
+      "g.V().as(\"a\").out().as(\"b\").values(\"age\").where(\"a\",P.eq(\"b\"))" [✔]
+      "g.V().match(__.as(\"a\").out().as(\"b\"),__.as(\"b\").has(\"age\",25)).select(\"a\",\"b\")" [✔]
+      "g.V().values(\"age\").is(30)" [✔]
+      "g.V().values(\"age\").is(P.lte(30))" [✔]
+      "g.V().has(\"age\")" [✔]
+      "g.V().has(\"age\",31)" [✔]
+      "g.V().has(\"age\",P.between(30,40))" [✔]
+      "g.V().hasLabel(\"person\")" [✔]
+      "g.V().hasLabel(P.eq(\"person\"))" [✔]
+      "g.V().hasId(7)" [✔]
+      "g.V().hasId(P.lte(100))" [✔]
+      "g.V().properties().hasKey(\"age\")" [✔]
+      "g.V().properties(\"age\").hasValue(32)" [✔]
+      "g.V().properties(\"age\").hasValue(P.between(30,40))" [✔]
+      "g.V().and(__.out(\"knows\"),__.has(\"age\"))" [✔]
+      "g.V().or(__.out(\"knows\"),__.has(\"age\"))" [✔]
+      "g.V().not(__.out(\"knows\"))" [✔]
+      "g.V().range(0,100)" [✔]
+      "g.V().times(3).repeat(__.out())" [✔]
+      "g.V().until(__.hasLabel(\"person\")).repeat(__.out())" [✔]
+      "g.V().repeat(__.out()).until(__.hasLabel(\"person\"))" [✔]
+      "g.V().emit().repeat(__.out())" [✔]
+      "g.V().repeat(__.out()).emit()" [✔]
+      "g.V().emit(__.hasLabel(\"person\")).repeat(__.out())" [✔]
+      "g.V().repeat(__.out()).emit(__.hasLabel(\"person\"))" [✔]
+      "g.V().repeat(\"the_loop\",__.out()).until(__.loops(\"the_loop\").is(3))" [✔]
+      "g.V().local(__.out().limit(3))" [✔]
+      "g.V().union(__.values(\"age\"),__.values(\"birth_year\"))" [✔]
+      "g.V().coalesce(__.out(),__.in())" [✔]
+      "g.V().choose(__.has(\"age\",30),__.in(),__.out())" [✔]
+      "g.V().dedup()" [✔]
+      "g.V().dedup().by(\"age\")" [✔]
+      "g.V().as(\"a\").out().as(\"b\").dedup(\"a\",\"b\")" [✔]
+      "g.V().order().by(\"age\")" [✔]
+      "g.V().order().by(\"age\",Order.decr).by(T.id)" [✔]
+      "g.V().order().by(__.out(\"knows\").count(),Order.incr).by(T.id,Order.incr)" [✔]
+      "g.V().order().by(\"age\")" [✔]
+      "g.V().flatMap(__.out(\"knows\").out(\"created\"))" [✔]
+      "g.V().constant(10)" [✔]
+      "g.V().fold().unfold()" [✔]
+      "g.V().values(\"name\",\"age\")" [✔]
+      "g.V().properties(\"age\")" [✔]
+      "g.V().valueMap()" [✔]
+      "g.V().valueMap(\"name\",\"age\")" [✔]
+      "g.V().elementMap()" [✔]
+      "g.V().elementMap(\"name\",\"age\")" [✔]
+      "g.V().project(\"a\",\"b\",\"c\").by(\"name\").by(__.out().count()).by(T.id)" [✔]
+      "g.V().out().path().by(\"name\").by(__.inE().values(\"relation\"))" [✔]
+      "g.V(8).out(\"knows\")" [✔]
+      "g.V().has(\"name\",\"marko\").sideEffect(__.addV(\"toshio\"))" [✔]
+      "g.V().has(\"name\",\"marko\").drop()" [✔]
+      "g.E().properties(\"weight\").drop()" [✔]
+      "g.V().property(\"age\",20)" [✔]
+      "g.V().property(list,\"location\",\"New York\",\"since\",\"2012-09-23\",\"score\",8)" [✔]
+      "g.V().addE(\"knows\").from(__.V().has(\"name\",\"marko\"))" [✔]
+      "g.V().has(\"name\",\"marko\").addE(\"knows\").to(__.V())" [✔]
+    Extra
+      "__.property(\"age\",((__v0))).identity()" [✔]
+      "[(\"__v0\",Number 21.0)]" [✔]
+      "__.property(\"age\",((__v0))).property(\"name\",((__v1))).identity()" [✔]
+      "[(\"__v0\",Number 21.0),(\"__v1\",String \"Josh\")]" [✔]
+      "__.property(\"company\",((__v0))).identity()" [✔]
+      "[(\"__v0\",String \"foobar.com\")]" [✔]
+      "g.V().has(\"name\",\"marko\").fold().coalesce(__.unfold(),__.addV(\"person\").property(\"name\",\"marko\"))" [✔]
+
+Finished in 0.0051 seconds
+211 examples, 0 failures
+Test suite spec: PASS
+Test suite logged to:
+/tmp/workdir-greskell/greskell-2.0.3.3/dist-newstyle/build/x86_64-linux/ghc-9.10.2/greskell-2.0.3.3/t/spec/test/greskell-2.0.3.3-spec.log
+1 of 1 test suites (1 of 1 test cases) passed.

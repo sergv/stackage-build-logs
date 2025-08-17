@@ -1,0 +1,203 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - network-transport-tests-0.3.4 (lib) (first run)
+Configuring library for network-transport-tests-0.3.4...
+Preprocessing library for network-transport-tests-0.3.4...
+Building library for network-transport-tests-0.3.4...
+on the commandline: warning: [GHC-53692] [-Wdeprecated-flags]
+    -XOverlappingInstances is deprecated: instead use per-instance pragmas OVERLAPPING/OVERLAPPABLE/OVERLAPS
+
+[1 of 4] Compiling Network.Transport.Tests.Traced
+[2 of 4] Compiling Network.Transport.Tests.Auxiliary
+[3 of 4] Compiling Network.Transport.Tests.Multicast
+src/Network/Transport/Tests/Multicast.hs:25:12: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+25 |   putMVar (head groups) (multicastAddress myGroup)
+   |            ^^^^
+
+src/Network/Transport/Tests/Multicast.hs:28:27: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+28 |   addrs <- mapM readMVar (tail groups)
+   |                           ^^^^
+
+src/Network/Transport/Tests/Multicast.hs:33:12: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+33 |   putMVar (head ready) ()
+   |            ^^^^
+
+src/Network/Transport/Tests/Multicast.hs:34:19: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+34 |   mapM_ readMVar (tail ready)
+   |                   ^^^^
+
+src/Network/Transport/Tests/Multicast.hs:37:58: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+37 |   forkIO . replicateM_ numPings $ multicastSend myGroup [head msgs]
+   |                                                          ^^^^
+
+src/Network/Transport/Tests/Multicast.hs:60:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[ByteString]’ not matched:
+            []
+            [_]
+            [_, _]
+            (_:_:_:_:_)
+   |
+60 |   let [msgA, msgB, msgC]    = ["A says hi", "B says hi", "C says hi"]
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[4 of 4] Compiling Network.Transport.Tests
+src/Network/Transport/Tests.hs:393:21: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘(ConnectionId, [[ByteString]])’ not matched:
+            (_, [])
+            (_, ([]:_))
+            (_, ((_:_:_):_))
+            (_, [[_]])
+            ...
+    |
+393 |     forM_ eventss $ \(_, [[ping1], [ping2]]) ->
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+src/Network/Transport/Tests.hs:412:15: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘ErrorCall’ not matched:
+            ErrorCall []
+            ErrorCall (p:_) where p is not one of {'b'}
+            ErrorCall ['b']
+            ErrorCall ('b':p:_) where p is not one of {'a'}
+            ...
+    |
+412 |      `catch` (\(ErrorCall "bang!") -> return ())
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Network/Transport/Tests.hs:535:11: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘conn’ shadows the existing binding
+      bound at src/Network/Transport/Tests.hs:498:9
+    |
+535 |     Right conn <- connect endpoint addr ReliableOrdered defaultConnectHints
+    |           ^^^^
+
+src/Network/Transport/Tests.hs:674:13: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘conn’ shadows the existing binding
+      bound at src/Network/Transport/Tests.hs:670:13
+    |
+674 |       Right conn <- connect endpoint theirAddr ReliableOrdered defaultConnectHints
+    |             ^^^^
+
+src/Network/Transport/Tests.hs:718:24: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘cid’ shadows the existing binding
+      bound at src/Network/Transport/Tests.hs:713:24
+    |
+718 |       ConnectionOpened cid ReliableOrdered _addr <- receive endpoint
+    |                        ^^^
+
+src/Network/Transport/Tests.hs:719:16: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘cid'’ shadows the existing binding
+      bound at src/Network/Transport/Tests.hs:714:24
+    |
+719 |       Received cid' ["pong"] <- receive endpoint ; True <- return $ cid == cid'
+    |                ^^^^
+
+src/Network/Transport/Tests.hs:763:11: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘conn’ shadows the existing binding
+      bound at src/Network/Transport/Tests.hs:761:11
+    |
+763 |     Right conn <- connect endpoint addr ReliableOrdered defaultConnectHints
+    |           ^^^^
+
+src/Network/Transport/Tests.hs:775:11: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘conn’ shadows the existing binding
+      bound at src/Network/Transport/Tests.hs:763:11
+    |
+775 |     Right conn <- connect endpoint theirAddr2 ReliableOrdered defaultConnectHints
+    |           ^^^^
+
+src/Network/Transport/Tests.hs:778:11: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘conn’ shadows the existing binding
+      bound at src/Network/Transport/Tests.hs:775:11
+    |
+778 |     Right conn <- connect endpoint addr' ReliableOrdered defaultConnectHints
+    |           ^^^^
+
+src/Network/Transport/Tests.hs:811:22: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘cid’ shadows the existing binding
+      bound at src/Network/Transport/Tests.hs:809:22
+    |
+811 |     ConnectionOpened cid ReliableOrdered _ <- receive endpoint1
+    |                      ^^^
+
+src/Network/Transport/Tests.hs:812:22: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘cid'’ shadows the existing binding
+      bound at src/Network/Transport/Tests.hs:810:22
+    |
+812 |     ConnectionClosed cid' <- receive endpoint1 ; True <- return $ cid == cid'
+    |                      ^^^^
+
+src/Network/Transport/Tests.hs:824:22: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘cid’ shadows the existing binding
+      bound at src/Network/Transport/Tests.hs:811:22
+    |
+824 |     ConnectionOpened cid ReliableOrdered _ <- receive endpoint2
+    |                      ^^^
+
+src/Network/Transport/Tests.hs:825:14: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘cid'’ shadows the existing binding
+      bound at src/Network/Transport/Tests.hs:812:22
+    |
+825 |     Received cid' ["pong"] <- receive endpoint2 ; True <- return $ cid == cid'
+    |              ^^^^
+
+src/Network/Transport/Tests.hs:827:22: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘cid’ shadows the existing binding
+      bound at src/Network/Transport/Tests.hs:824:22
+    |
+827 |     ConnectionOpened cid ReliableOrdered _ <- receive endpoint2
+    |                      ^^^
+
+src/Network/Transport/Tests.hs:828:14: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘cid'’ shadows the existing binding
+      bound at src/Network/Transport/Tests.hs:825:14
+    |
+828 |     Received cid' ["pong"] <- receive endpoint2 ; True <- return $ cid == cid'
+    |              ^^^^
+
+src/Network/Transport/Tests.hs:952:14: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘Either
+                            (TransportError ConnectErrorCode) Connection’ not matched:
+            Left _
+    |
+952 |             (\(Right conn) -> close conn)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Network/Transport/Tests.hs:953:14: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘Either
+                            (TransportError ConnectErrorCode) Connection’ not matched:
+            Left _
+    |
+953 |             (\(Right conn) -> do randomThreadDelay 100
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+

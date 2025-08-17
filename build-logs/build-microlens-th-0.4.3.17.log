@@ -1,0 +1,68 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - microlens-th-0.4.3.17 (lib) (first run)
+ - microlens-th-0.4.3.17 (test:templates) (first run)
+Configuring library for microlens-th-0.4.3.17...
+Preprocessing library for microlens-th-0.4.3.17...
+Building library for microlens-th-0.4.3.17...
+[1 of 2] Compiling Lens.Micro.TH.Internal
+src/Lens/Micro/TH/Internal.hs:88:43: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+88 |     (\n -> GadtC [n] argTys retTy) <$> f (head ns)
+   |                                           ^^^^
+
+src/Lens/Micro/TH/Internal.hs:90:46: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+90 |     (\n -> RecGadtC [n] argTys retTy) <$> f (head ns)
+   |                                              ^^^^
+
+[2 of 2] Compiling Lens.Micro.TH
+src/Lens/Micro/TH.hs:1142:47: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+     |
+1142 |                        (appE (varE 'phantom) (head fxs))
+     |                                               ^^^^
+
+src/Lens/Micro/TH.hs:1143:25: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+     |
+1143 |                        (tail fxs)
+     |                         ^^^^
+
+Configuring test suite 'templates' for microlens-th-0.4.3.17...
+Preprocessing test suite 'templates' for microlens-th-0.4.3.17...
+Building test suite 'templates' for microlens-th-0.4.3.17...
+[1 of 4] Compiling T799
+[2 of 4] Compiling T917
+test/T917.hs:26:33: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+26 | data instance T917DataFam (a :: *) = MkT917DataFam { _unT917DataFam :: Proxy a }
+   |                                 ^
+
+[3 of 4] Compiling T972
+[4 of 4] Compiling Main
+test/templates.hs:468:22: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+    |
+468 |   data TableRow a :: *
+    |                      ^
+
+[5 of 5] Linking /tmp/workdir-microlens-th/microlens-th-0.4.3.17/dist-newstyle/build/x86_64-linux/ghc-9.10.2/microlens-th-0.4.3.17/t/templates/build/templates/templates

@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - algebraic-graphs-0.7 (lib) (first run)
  - algebraic-graphs-0.7 (test:main) (first run)
@@ -16,9 +17,40 @@ Building library for algebraic-graphs-0.7...
 [ 9 of 29] Compiling Algebra.Graph.Label
 [10 of 29] Compiling Algebra.Graph.NonEmpty.AdjacencyMap
 [11 of 29] Compiling Algebra.Graph.AdjacencyMap.Algorithm
+src/Algebra/Graph/AdjacencyMap/Algorithm.hs:384:43: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+384 |     exit v = do newComponent <- (v==).snd.head <$> gets boundaryStack
+    |                                           ^^^^
+
+src/Algebra/Graph/AdjacencyMap/Algorithm.hs:391:21: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+391 |              pth' = tail v_pth' -- Here we know that v_pth' starts with v
+    |                     ^^^^
+
+src/Algebra/Graph/AdjacencyMap/Algorithm.hs:395:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+395 |              p_v = fst $ head bnd
+    |                          ^^^^
+
+src/Algebra/Graph/AdjacencyMap/Algorithm.hs:397:21: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+397 |              bnd' = tail bnd
+    |                     ^^^^
+
 [12 of 29] Compiling Algebra.Graph.Acyclic.AdjacencyMap
 [13 of 29] Compiling Algebra.Graph.ToGraph
-
 src/Algebra/Graph/ToGraph.hs:171:32: warning: [GHC-58520] [-Wtype-equality-requires-operators]
     The use of ‘~’ without TypeOperators
     will become an error in a future GHC release.
@@ -74,6 +106,7 @@ src/Algebra/Graph/ToGraph.hs:471:52: warning: [GHC-58520] [-Wtype-equality-requi
     |
 471 | adjacencyIntMapTranspose :: (ToGraph t, ToVertex t ~ Int) => t -> IntMap IntSet
     |                                                    ^
+
 [14 of 29] Compiling Algebra.Graph.Relation
 [15 of 29] Compiling Algebra.Graph.Relation.Symmetric
 [16 of 29] Compiling Algebra.Graph.NonEmpty
@@ -82,7 +115,6 @@ src/Algebra/Graph/ToGraph.hs:471:52: warning: [GHC-58520] [-Wtype-equality-requi
 [19 of 29] Compiling Algebra.Graph.Labelled.Example.Network
 [20 of 29] Compiling Algebra.Graph.Labelled.Example.Automaton
 [21 of 29] Compiling Algebra.Graph.Export
-
 src/Algebra/Graph/Export.hs:185:41: warning: [GHC-58520] [-Wtype-equality-requires-operators]
     The use of ‘~’ without TypeOperators
     will become an error in a future GHC release.
@@ -90,8 +122,8 @@ src/Algebra/Graph/Export.hs:185:41: warning: [GHC-58520] [-Wtype-equality-requir
     |
 185 | export :: (Ord a, ToGraph g, ToVertex g ~ a) => (a -> Doc s) -> (a -> a -> Doc s) -> g -> Doc s
     |                                         ^
-[22 of 29] Compiling Algebra.Graph.Export.Dot
 
+[22 of 29] Compiling Algebra.Graph.Export.Dot
 src/Algebra/Graph/Export/Dot.hs:121:63: warning: [GHC-58520] [-Wtype-equality-requires-operators]
     The use of ‘~’ without TypeOperators
     will become an error in a future GHC release.
@@ -107,6 +139,7 @@ src/Algebra/Graph/Export/Dot.hs:165:78: warning: [GHC-58520] [-Wtype-equality-re
     |
 165 | exportAsIs :: (IsString s, Monoid s, Ord (ToVertex g), ToGraph g, ToVertex g ~ s) => g -> s
     |                                                                              ^
+
 [23 of 29] Compiling Algebra.Graph.Undirected
 [24 of 29] Compiling Algebra.Graph.Class
 [25 of 29] Compiling Algebra.Graph.Relation.Transitive
@@ -200,4 +233,4 @@ inspection testing successful
 [21 of 23] Compiling Algebra.Graph.Test.Undirected
 [22 of 23] Compiling Data.Graph.Test.Typed
 [23 of 23] Compiling Main
-[24 of 24] Linking /tmp/workdir-algebraic-graphs/algebraic-graphs-0.7/dist-newstyle/build/x86_64-linux/ghc-9.6.5/algebraic-graphs-0.7/t/main/build/main/main
+[24 of 24] Linking /tmp/workdir-algebraic-graphs/algebraic-graphs-0.7/dist-newstyle/build/x86_64-linux/ghc-9.10.2/algebraic-graphs-0.7/t/main/build/main/main

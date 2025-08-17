@@ -1,7 +1,184 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - mathexpr-0.3.1.0 (lib) (first run)
 Configuring library for mathexpr-0.3.1.0...
 Preprocessing library for mathexpr-0.3.1.0...
 Building library for mathexpr-0.3.1.0...
 [1 of 1] Compiling Numeric.MathExpr
+src/Numeric/MathExpr.hs:47:15: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+47 |             | head c == '(' = helper cs (c:os) out
+   |               ^^^^
+
+src/Numeric/MathExpr.hs:48:15: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+48 |             | head c == ')' && head os == "(" = helper cs (tail os) out
+   |               ^^^^
+
+src/Numeric/MathExpr.hs:48:32: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+48 |             | head c == ')' && head os == "(" = helper cs (tail os) out
+   |                                ^^^^
+
+src/Numeric/MathExpr.hs:48:60: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+48 |             | head c == ')' && head os == "(" = helper cs (tail os) out
+   |                                                            ^^^^
+
+src/Numeric/MathExpr.hs:49:15: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+49 |             | head c == ')' = helper (c:cs) (tail os) (out ++ pad (head os))
+   |               ^^^^
+
+src/Numeric/MathExpr.hs:49:46: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+49 |             | head c == ')' = helper (c:cs) (tail os) (out ++ pad (head os))
+   |                                              ^^^^
+
+src/Numeric/MathExpr.hs:49:68: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+49 |             | head c == ')' = helper (c:cs) (tail os) (out ++ pad (head os))
+   |                                                                    ^^^^
+
+src/Numeric/MathExpr.hs:50:70: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+50 |             | isOperator c && (null os || precedence c > precedence (head os)) = helper cs (c:os) out
+   |                                                                      ^^^^
+
+src/Numeric/MathExpr.hs:51:45: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+51 |             | isOperator c = helper (c:cs) (tail os) (out ++ pad (head os))
+   |                                             ^^^^
+
+src/Numeric/MathExpr.hs:51:67: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+51 |             | isOperator c = helper (c:cs) (tail os) (out ++ pad (head os))
+   |                                                                   ^^^^
+
+src/Numeric/MathExpr.hs:55:31: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+55 |           isOp cs = isJust $ (head cs) `triLookup` ops
+   |                               ^^^^
+
+src/Numeric/MathExpr.hs:59:28: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+59 |             | otherwise = (head cs) `triLookup` ops
+   |                            ^^^^
+
+src/Numeric/MathExpr.hs:98:56: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+98 |                 let result :: Double = negate . read . head $ cs
+   |                                                        ^^^^
+
+src/Numeric/MathExpr.hs:99:28: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+99 |                 in helper (tail cs) $ (show result) : os
+   |                            ^^^^
+
+src/Numeric/MathExpr.hs:101:59: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+101 |                 let result = (operatorFunction c) (read . head . tail $ os) (read . head $ os) 
+    |                                                           ^^^^
+
+src/Numeric/MathExpr.hs:101:66: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+101 |                 let result = (operatorFunction c) (read . head . tail $ os) (read . head $ os) 
+    |                                                                  ^^^^
+
+src/Numeric/MathExpr.hs:101:85: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+101 |                 let result = (operatorFunction c) (read . head . tail $ os) (read . head $ os) 
+    |                                                                                     ^^^^
+
+src/Numeric/MathExpr.hs:104:51: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+104 |                 let result = (function c) (read . head $ os)
+    |                                                   ^^^^
+
+src/Numeric/MathExpr.hs:105:48: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+105 |                 in helper cs $ (show result) : tail os
+    |                                                ^^^^
+
+src/Numeric/MathExpr.hs:108:37: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+108 |           isOperator cs = isJust $ (head cs) `triLookup` ops
+    |                                     ^^^^
+
+src/Numeric/MathExpr.hs:112:63: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+112 |           operatorFunction cs = case find (\(a, _, _) -> a == head cs) ops of
+    |                                                               ^^^^
+
+src/Numeric/MathExpr.hs:115:24: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+115 |           isParen cs = head cs `elem` ['(', ')']
+    |                        ^^^^
+

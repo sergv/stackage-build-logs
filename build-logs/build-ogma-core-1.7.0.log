@@ -1,0 +1,312 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - ogma-core-1.7.0 (lib) (first run)
+ - ogma-core-1.7.0 (test:unit-tests) (first run)
+Configuring library for ogma-core-1.7.0...
+Preprocessing library for ogma-core-1.7.0...
+Building library for ogma-core-1.7.0...
+[ 1 of 19] Compiling Data.Location
+[ 2 of 19] Compiling Command.Result
+[ 3 of 19] Compiling Command.Errors
+[ 4 of 19] Compiling Command.VariableDB
+[ 5 of 19] Compiling Language.Trans.CStruct2CopilotStruct
+src/Language/Trans/CStruct2CopilotStruct.hs:57:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘[C.DeclarationSpecifier]’ not matched:
+            []
+            ((C.MkDeclarationSpecifierStorageClass _):_)
+            ((C.MkDeclarationSpecifierTypeQualifier _):_)
+            ((C.MkDeclarationSpecifierTypeSpecifier C.MkTypeSpecifierVoid):_)
+            ...
+   |
+57 |       let [C.MkDeclarationSpecifierTypeSpecifier (C.MkTypeSpecifierStructOrUnion (C.MkStructOrUnionSpecifierWithFields C.MkStructOrUnionStruct _structName u))] = s
+   |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Language/Trans/CStruct2CopilotStruct.hs:58:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘C.InitDeclarationListOpt’ not matched:
+            C.MkInitDeclarationListOptNothing
+            C.MkInitDeclarationListOptJust []
+            C.MkInitDeclarationListOptJust
+            ((C.MkInitDeclaratorInitialized _ _):_)
+            C.MkInitDeclarationListOptJust
+            ((C.MkInitDeclaratorUninitialized
+              (C.MkDeclarator (C.MkPointerOptJust _) _)):
+             _)
+            ...
+   |
+58 |           (C.MkInitDeclarationListOptJust [C.MkInitDeclaratorUninitialized (C.MkDeclarator C.MkPointerOptNothing (C.MkDirectDeclaratorIdentifier (C.Identifier t)))]) = initDecl
+   |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Language/Trans/CStruct2CopilotStruct.hs:70:37: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+70 |     fieldType   = extractFieldType (head field)
+   |                                     ^^^^
+
+src/Language/Trans/CStruct2CopilotStruct.hs:71:37: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+71 |     fieldName   = extractFieldName (head name)
+   |                                     ^^^^
+
+src/Language/Trans/CStruct2CopilotStruct.hs:72:39: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+72 |     fieldLength = extractFieldLength (head name)
+   |                                       ^^^^
+
+src/Language/Trans/CStruct2CopilotStruct.hs:81:1: warning: [GHC-62161] [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In an equation for ‘showTypeSpecifier’:
+        Patterns of type ‘C.TypeSpecifier’ not matched:
+            C.MkTypeSpecifierVoid
+            C.MkTypeSpecifierChar
+            C.MkTypeSpecifierShort
+            C.MkTypeSpecifierLong
+            ...
+   |
+81 | showTypeSpecifier C.MkTypeSpecifierFloat  = "float"
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+[ 6 of 19] Compiling Language.Trans.CStructs2Copilot
+src/Language/Trans/CStructs2Copilot.hs:44:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.List’ is redundant
+      except perhaps to import instances from ‘Data.List’
+    To import instances alone, use: import Data.List()
+   |
+44 | import Data.List ( intercalate )
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[ 7 of 19] Compiling Command.CStructs2Copilot
+[ 8 of 19] Compiling Language.Trans.CStructs2MsgHandlers
+[ 9 of 19] Compiling Command.CStructs2MsgHandlers
+[10 of 19] Compiling Language.Trans.Lustre2Copilot
+[11 of 19] Compiling Language.Trans.SMV2Copilot
+[12 of 19] Compiling Language.Trans.Spec2Copilot
+src/Language/Trans/Spec2Copilot.hs:41:45: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘lookup’ from module ‘Data.List’ is redundant
+   |
+41 | import Data.List  ( intercalate, intersect, lookup, union )
+   |                                             ^^^^^^
+
+src/Language/Trans/Spec2Copilot.hs:154:23: warning: [GHC-40910] [-Wunused-matches]
+    Defined but not used: ‘ty’
+    |
+154 |                 (Just ty, Just ex) -> "[ arg (" ++ showExpr ex ++ " ) ]"
+    |                       ^^
+
+[13 of 19] Compiling Paths_ogma_core
+[14 of 19] Compiling Command.Diagram
+[15 of 19] Compiling Command.Common
+src/Command/Common.hs:115:25: warning: [GHC-40910] [-Wunused-local-binds]
+    Defined but not used: ‘replace’
+    |
+115 |     let ExprPairT parse replace print ids def = exprT
+    |                         ^^^^^^^
+
+src/Command/Common.hs:115:33: warning: [GHC-40910] [-Wunused-local-binds]
+    Defined but not used: ‘print’
+    |
+115 |     let ExprPairT parse replace print ids def = exprT
+    |                                 ^^^^^
+
+src/Command/Common.hs:115:33: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘print’ shadows the existing binding
+      imported from ‘Prelude’ at src/Command/Common.hs:36:8-21
+      (and originally defined in ‘ghc-internal-9.1002.0:GHC.Internal.System.IO’)
+    |
+115 |     let ExprPairT parse replace print ids def = exprT
+    |                                 ^^^^^
+
+src/Command/Common.hs:115:39: warning: [GHC-40910] [-Wunused-local-binds]
+    Defined but not used: ‘ids’
+    |
+115 |     let ExprPairT parse replace print ids def = exprT
+    |                                       ^^^
+
+src/Command/Common.hs:173:16: warning: [GHC-40910] [-Wunused-matches]
+    Defined but not used: ‘e’
+    |
+173 |           Left e  -> return $ Left $ cannotOpenInputFile fp
+    |                ^
+
+[16 of 19] Compiling Command.Standalone
+src/Command/Standalone.hs:142:26: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘reqs’ shadows the existing binding
+      defined at src/Command/Standalone.hs:192:7
+    |
+142 |           let (ext, int, reqs, trigs, specN) = res
+    |                          ^^^^
+
+src/Command/Standalone.hs:150:15: warning: [GHC-40910] [-Wunused-local-binds]
+    Defined but not used: ‘parse’
+    |
+150 |     ExprPairT parse replace print ids def = exprT
+    |               ^^^^^
+
+src/Command/Standalone.hs:150:29: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘print’ shadows the existing binding
+      imported from ‘Prelude’ at src/Command/Standalone.hs:37:8-25
+      (and originally defined in ‘ghc-internal-9.1002.0:GHC.Internal.System.IO’)
+    |
+150 |     ExprPairT parse replace print ids def = exprT
+    |                             ^^^^^
+
+src/Command/Standalone.hs:150:39: warning: [GHC-40910] [-Wunused-local-binds]
+    Defined but not used: ‘def’
+    |
+150 |     ExprPairT parse replace print ids def = exprT
+    |                                       ^^^
+
+[17 of 19] Compiling Command.ROSApp
+src/Command/ROSApp.hs:52:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+52 | import           Control.Applicative  (liftA2)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Command/ROSApp.hs:114:9: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘monitors’ shadows the existing binding
+      defined at src/Command/ROSApp.hs:226:5
+    |
+114 |         monitors = maybe
+    |         ^^^^^^^^
+
+src/Command/ROSApp.hs:120:9: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘variables’ shadows the existing binding
+      defined at src/Command/ROSApp.hs:225:5
+    |
+120 |         variables = mapMaybe (variableMap varDB) varNames
+    |         ^^^^^^^^^
+
+src/Command/ROSApp.hs:194:12: warning: [GHC-40910] [-Wunused-matches]
+    Defined but not used: ‘varDB’
+    |
+194 | monitorMap varDB (monitorName, Nothing) =
+    |            ^^^^^
+
+src/Command/ROSApp.hs:194:19: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘monitorName’ shadows the existing binding
+      defined at src/Command/ROSApp.hs:215:7
+    |
+194 | monitorMap varDB (monitorName, Nothing) =
+    |                   ^^^^^^^^^^^
+
+src/Command/ROSApp.hs:196:19: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘monitorName’ shadows the existing binding
+      defined at src/Command/ROSApp.hs:215:7
+    |
+196 | monitorMap varDB (monitorName, Just ty) = do
+    |                   ^^^^^^^^^^^
+
+[18 of 19] Compiling Command.FPrimeApp
+src/Command/FPrimeApp.hs:48:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+48 | import           Control.Applicative    ( liftA2 )
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Command/FPrimeApp.hs:110:9: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘monitors’ shadows the existing binding
+      defined at src/Command/FPrimeApp.hs:215:5
+    |
+110 |         monitors = maybe
+    |         ^^^^^^^^
+
+src/Command/FPrimeApp.hs:116:9: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘variables’ shadows the existing binding
+      defined at src/Command/FPrimeApp.hs:214:5
+    |
+116 |         variables = mapMaybe (variableMap varDB) varNames
+    |         ^^^^^^^^^
+
+src/Command/FPrimeApp.hs:186:12: warning: [GHC-40910] [-Wunused-matches]
+    Defined but not used: ‘varDB’
+    |
+186 | monitorMap varDB (monitorName, Nothing) =
+    |            ^^^^^
+
+src/Command/FPrimeApp.hs:186:19: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘monitorName’ shadows the existing binding
+      defined at src/Command/FPrimeApp.hs:203:7
+    |
+186 | monitorMap varDB (monitorName, Nothing) =
+    |                   ^^^^^^^^^^^
+
+src/Command/FPrimeApp.hs:188:19: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘monitorName’ shadows the existing binding
+      defined at src/Command/FPrimeApp.hs:203:7
+    |
+188 | monitorMap varDB (monitorName, Just ty) = do
+    |                   ^^^^^^^^^^^
+
+[19 of 19] Compiling Command.CFSApp
+src/Command/CFSApp.hs:53:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+53 | import           Control.Applicative    ( liftA2 )
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Command/CFSApp.hs:158:15: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘vars’ shadows the existing binding
+      bound at src/Command/CFSApp.hs:153:6
+    |
+158 |         Just (vars, ids, infos, datas) ->
+    |               ^^^^
+
+src/Command/CFSApp.hs:158:21: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘ids’ shadows the existing binding
+      bound at src/Command/CFSApp.hs:153:12
+    |
+158 |         Just (vars, ids, infos, datas) ->
+    |                     ^^^
+
+src/Command/CFSApp.hs:158:26: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘infos’ shadows the existing binding
+      bound at src/Command/CFSApp.hs:153:17
+    |
+158 |         Just (vars, ids, infos, datas) ->
+    |                          ^^^^^
+
+src/Command/CFSApp.hs:158:33: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘datas’ shadows the existing binding
+      bound at src/Command/CFSApp.hs:153:24
+    |
+158 |         Just (vars, ids, infos, datas) ->
+    |                                 ^^^^^
+
+src/Command/CFSApp.hs:219:12: warning: [GHC-40910] [-Wunused-matches]
+    Defined but not used: ‘varDB’
+    |
+219 | monitorMap varDB (monitorName, Nothing) =
+    |            ^^^^^
+
+Configuring test suite 'unit-tests' for ogma-core-1.7.0...
+Preprocessing test suite 'unit-tests' for ogma-core-1.7.0...
+Building test suite 'unit-tests' for ogma-core-1.7.0...
+[1 of 1] Compiling Main
+tests/Main.hs:4:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+  |
+4 | import Data.Monoid                    ( mempty )
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[2 of 2] Linking /tmp/workdir-ogma-core/ogma-core-1.7.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/ogma-core-1.7.0/t/unit-tests/build/unit-tests/unit-tests

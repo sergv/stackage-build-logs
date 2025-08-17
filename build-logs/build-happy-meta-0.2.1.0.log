@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - happy-meta-0.2.1.0 (lib) (first run)
 Configuring library for happy-meta-0.2.1.0...
@@ -6,45 +7,151 @@ Preprocessing library for happy-meta-0.2.1.0...
 Building library for happy-meta-0.2.1.0...
 [ 1 of 18] Compiling AbsSyn
 [ 2 of 18] Compiling GenUtils
+src/GenUtils.lhs:163:21: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+163 | > tack x xss = (x : head xss) : tail xss
+    |                     ^^^^
+
+src/GenUtils.lhs:163:33: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+163 | > tack x xss = (x : head xss) : tail xss
+    |                                 ^^^^
+
+src/GenUtils.lhs:193:17: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+193 | >       size = (head obj',last obj')
+    |                 ^^^^
+
 [ 3 of 18] Compiling NameSet
 [ 4 of 18] Compiling ParamRules
 [ 5 of 18] Compiling ParseMonad
-
-src/ParseMonad.lhs:30:9: warning: [-Wnoncanonical-monad-instances]
+src/ParseMonad.lhs:30:9: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad P’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
    |
 30 | >       return m = P $ \ _ _ -> OkP m
    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/ParseMonad.lhs:43:5: warning: [-Wnoncanonical-monad-instances]
+src/ParseMonad.lhs:43:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘pure = return’ definition detected
     in the instance declaration for ‘Applicative P’.
-    Move definition from ‘return’ to ‘pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Move definition from ‘return’ to ‘pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
    |
 43 | >   pure = return
    |     ^^^^^^^^^^^^^
+
 [ 6 of 18] Compiling Lexer
 [ 7 of 18] Compiling AttrGrammar
 [ 8 of 18] Compiling AttrGrammarParser
 [ 9 of 18] Compiling Grammar
+src/Grammar.lhs:533:32: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+533 | >                defaultAttr = head attrNames
+    |                                ^^^^
+
+src/Grammar.lhs:617:54: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+617 | >                                             (fst $ head l,[snd $ head l])
+    |                                                      ^^^^
+
+src/Grammar.lhs:617:68: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+617 | >                                             (fst $ head l,[snd $ head l])
+    |                                                                    ^^^^
+
+src/Grammar.lhs:618:48: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+618 | >                                             (tail l) ) .
+    |                                                ^^^^
+
 [10 of 18] Compiling LALR
+src/LALR.lhs:727:21: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+727 | >       term_lim = (head terms,last terms)
+    |                     ^^^^
+
 [11 of 18] Compiling First
 [12 of 18] Compiling Parser
 [13 of 18] Compiling ProduceGLRCode
+src/ProduceGLRCode.lhs:273:51: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+273 | >   start_prod = token_names g ! (let (_,_,i,_) = head $ starts g in i)
+    |                                                   ^^^^
+
+src/ProduceGLRCode.lhs:401:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+401 | >     mkReds rs = "[" ++ tail (concat [ "," ++ mkRed r | LR'Reduce r _ <- rs ]) ++ "]"
+    |                          ^^^^
+
 [14 of 18] Compiling Target
 [15 of 18] Compiling ProduceCode
-[16 of 18] Compiling Text.Happy
+src/ProduceCode.lhs:880:28: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+880 | >       defaultAttr = fst (head attributes')
+    |                            ^^^^
 
+src/ProduceCode.lhs:1036:56: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+     |
+1036 | >                        else fst (last acts'') - fst (head acts''),
+     |                                                        ^^^^
+
+src/ProduceCode.lhs:1061:59: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+     |
+1061 | >                        else fst (last goto_vals) - fst (head goto_vals),
+     |                                                           ^^^^
+
+[16 of 18] Compiling Text.Happy
 src/Text/Happy.hs:33:15: warning: [GHC-94817] [-Wtabs]
     Tab character found here, and in 91 further locations.
     Suggested fix: Please use spaces instead.
    |
 33 |         items2  = {-# SCC "Merge" #-} (mergeLookaheadInfo la sets)
    |               ^^
+
 [17 of 18] Compiling Text.Happy.HappyTemplate
 [18 of 18] Compiling Text.Happy.Quote

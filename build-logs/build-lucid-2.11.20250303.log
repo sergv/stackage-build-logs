@@ -1,0 +1,75 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - lucid-2.11.20250303 (lib) (first run)
+ - lucid-2.11.20250303 (test:test) (first run)
+Configuring library for lucid-2.11.20250303...
+Preprocessing library for lucid-2.11.20250303...
+Building library for lucid-2.11.20250303...
+[1 of 4] Compiling Lucid.Base
+src/Lucid/Base.hs:62:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Semigroup’ is redundant
+      except perhaps to import instances from ‘Data.Semigroup’
+    To import instances alone, use: import Data.Semigroup()
+   |
+62 | import           Data.Semigroup (Semigroup (..))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Lucid/Base.hs:63:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+63 | import           Data.Monoid (Monoid (..))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Lucid/Base.hs:119:3: warning: [GHC-50928] [-Wnoncanonical-monoid-instances]
+    Noncanonical ‘mappend’ definition detected
+    in the instance declaration for ‘Monoid (HtmlT m a)’.
+    ‘mappend’ will eventually be removed in favour of ‘(<>)’
+    Suggested fix:
+      Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    |
+119 |   mappend = liftA2 mappend
+    |   ^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Lucid/Base.hs:147:3: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad (HtmlT m)’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+147 |   return a = HtmlT (return (mempty,a))
+    |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Lucid/Base.hs:156:3: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
+    Noncanonical ‘(>>)’ definition detected
+    in the instance declaration for ‘Monad (HtmlT m)’.
+    ‘(>>)’ will eventually be removed in favour of ‘(*>)’
+    Suggested fix:
+      Either remove definition for ‘(>>)’ (recommended) or define as ‘(>>) = (*>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    |
+156 |   m >> n = HtmlT $ do
+    |   ^^^^^^^^^^^^^^^^^^^...
+
+[2 of 4] Compiling Lucid.Html5
+src/Lucid/Html5.hs:11:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+   |
+11 | import           Data.Monoid
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[3 of 4] Compiling Lucid.Bootstrap
+[4 of 4] Compiling Lucid
+Configuring test suite 'test' for lucid-2.11.20250303...
+Preprocessing test suite 'test' for lucid-2.11.20250303...
+Building test suite 'test' for lucid-2.11.20250303...
+[1 of 2] Compiling Example1
+[2 of 2] Compiling Main
+[3 of 3] Linking /tmp/workdir-lucid/lucid-2.11.20250303/dist-newstyle/build/x86_64-linux/ghc-9.10.2/lucid-2.11.20250303/t/test/build/test/test

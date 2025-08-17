@@ -1,0 +1,23 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - vector-split-1.0.0.4 (lib) (first run)
+ - vector-split-1.0.0.4 (test:vector-split-test) (first run)
+Configuring library for vector-split-1.0.0.4...
+Preprocessing library for vector-split-1.0.0.4...
+Building library for vector-split-1.0.0.4...
+[1 of 2] Compiling Data.Vector.Split.Internal
+[2 of 2] Compiling Data.Vector.Split
+Configuring test suite 'vector-split-test' for vector-split-1.0.0.4...
+Preprocessing test suite 'vector-split-test' for vector-split-1.0.0.4...
+Building test suite 'vector-split-test' for vector-split-1.0.0.4...
+[1 of 1] Compiling Main
+test/Spec.hs:143:55: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+143 | prop_chopGroup = listVsVec (L.chop (\xs -> L.span (== L.head xs) xs)) (V.chop (\xs -> V.span (== V.head xs) xs))
+    |                                                       ^^^^^^
+
+[2 of 2] Linking /tmp/workdir-vector-split/vector-split-1.0.0.4/dist-newstyle/build/x86_64-linux/ghc-9.10.2/vector-split-1.0.0.4/t/vector-split-test/build/vector-split-test/vector-split-test

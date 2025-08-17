@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - extrapolate-0.4.6 (lib) (first run)
  - extrapolate-0.4.6 (test:utils) (first run)
@@ -9,38 +10,222 @@ Configuring library for extrapolate-0.4.6...
 Preprocessing library for extrapolate-0.4.6...
 Building library for extrapolate-0.4.6...
 [ 1 of 12] Compiling Test.Extrapolate.Expr
+src/Test/Extrapolate/Expr.hs:60:31: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+60 | replaceFun ef e = foldApp (ef:tail es)
+   |                               ^^^^
+
 [ 2 of 12] Compiling Test.Extrapolate.Generalization
 [ 3 of 12] Compiling Test.Extrapolate.TypeBinding
 [ 4 of 12] Compiling Test.Extrapolate.Utils
 [ 5 of 12] Compiling Test.Extrapolate.Speculation
 [ 6 of 12] Compiling Test.Extrapolate.Generalizable
+src/Test/Extrapolate/Generalizable.hs:151:75: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+151 |                  ++ [ value "elem"      (elemBy (*==*) ->:> xs) | hasEq $ head xs ]
+    |                                                                           ^^^^
+
+src/Test/Extrapolate/Generalizable.hs:152:34: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+152 |   subInstances xs  =  instances (head xs)
+    |                                  ^^^^
+
 [ 7 of 12] Compiling Test.Extrapolate.Testable
+src/Test/Extrapolate/Testable.hs:105:24: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+105 | testableMaxTests p  =  head $ [m | MaxTests m <- options p] ++ [500]
+    |                        ^^^^
+
+src/Test/Extrapolate/Testable.hs:108:32: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+108 | testableMaxConditionSize p  =  head $ [m | MaxConditionSize m <- options p] ++ [4]
+    |                                ^^^^
+
 [ 8 of 12] Compiling Test.Extrapolate.Generalizable.Derive
 [ 9 of 12] Compiling Test.Extrapolate.ConditionalGeneralization
 [10 of 12] Compiling Test.Extrapolate.Core
 [11 of 12] Compiling Test.Extrapolate.IO
+src/Test/Extrapolate/IO.hs:149:14: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+149 | showCE = s . tail . unfoldApp
+    |              ^^^^
+
 [12 of 12] Compiling Test.Extrapolate
 Configuring test suite 'utils' for extrapolate-0.4.6...
 Preprocessing test suite 'utils' for extrapolate-0.4.6...
 Building test suite 'utils' for extrapolate-0.4.6...
 [1 of 2] Compiling Test
+test/Test.hs:101:24: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+101 | namesOK x =  name x == head (x `namesIn` x)
+    |                        ^^^^
+
+test/Test.hs:147:44: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+147 |       $ lookupTiers (instances c []) (val (head (head ret)))
+    |                                            ^^^^
+
+test/Test.hs:147:50: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+147 |       $ lookupTiers (instances c []) (val (head (head ret)))
+    |                                                  ^^^^
+
+test/Test.hs:190:25: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+190 |     listLines ss = '[':(tail . unlines $ map (", " ++) ss) ++ "]"
+    |                         ^^^^
+
 [2 of 2] Compiling Main
-[3 of 3] Linking /tmp/workdir-extrapolate/extrapolate-0.4.6/dist-newstyle/build/x86_64-linux/ghc-9.6.5/extrapolate-0.4.6/t/utils/build/utils/utils
+[3 of 3] Linking /tmp/workdir-extrapolate/extrapolate-0.4.6/dist-newstyle/build/x86_64-linux/ghc-9.10.2/extrapolate-0.4.6/t/utils/build/utils/utils
 Configuring test suite 'test' for extrapolate-0.4.6...
 Preprocessing test suite 'test' for extrapolate-0.4.6...
 Building test suite 'test' for extrapolate-0.4.6...
 [1 of 2] Compiling Test
+test/Test.hs:101:24: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+101 | namesOK x =  name x == head (x `namesIn` x)
+    |                        ^^^^
+
+test/Test.hs:147:44: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+147 |       $ lookupTiers (instances c []) (val (head (head ret)))
+    |                                            ^^^^
+
+test/Test.hs:147:50: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+147 |       $ lookupTiers (instances c []) (val (head (head ret)))
+    |                                                  ^^^^
+
+test/Test.hs:190:25: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+190 |     listLines ss = '[':(tail . unlines $ map (", " ++) ss) ++ "]"
+    |                         ^^^^
+
 [2 of 2] Compiling Main
-[3 of 3] Linking /tmp/workdir-extrapolate/extrapolate-0.4.6/dist-newstyle/build/x86_64-linux/ghc-9.6.5/extrapolate-0.4.6/t/test/build/test/test
+test/extrapolate.hs:250:39: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+250 |   extractiers e@(Value "tiers" _)  =  head $ concat (eval undefined e :: [[Expr]])
+    |                                       ^^^^
+
+[3 of 3] Linking /tmp/workdir-extrapolate/extrapolate-0.4.6/dist-newstyle/build/x86_64-linux/ghc-9.10.2/extrapolate-0.4.6/t/test/build/test/test
 Configuring test suite 'step-by-step' for extrapolate-0.4.6...
 Preprocessing test suite 'step-by-step' for extrapolate-0.4.6...
 Building test suite 'step-by-step' for extrapolate-0.4.6...
 [1 of 2] Compiling Test
+test/Test.hs:101:24: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+101 | namesOK x =  name x == head (x `namesIn` x)
+    |                        ^^^^
+
+test/Test.hs:147:44: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+147 |       $ lookupTiers (instances c []) (val (head (head ret)))
+    |                                            ^^^^
+
+test/Test.hs:147:50: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+147 |       $ lookupTiers (instances c []) (val (head (head ret)))
+    |                                                  ^^^^
+
+test/Test.hs:190:25: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+190 |     listLines ss = '[':(tail . unlines $ map (", " ++) ss) ++ "]"
+    |                         ^^^^
+
 [2 of 2] Compiling Main
-[3 of 3] Linking /tmp/workdir-extrapolate/extrapolate-0.4.6/dist-newstyle/build/x86_64-linux/ghc-9.6.5/extrapolate-0.4.6/t/step-by-step/build/step-by-step/step-by-step
+[3 of 3] Linking /tmp/workdir-extrapolate/extrapolate-0.4.6/dist-newstyle/build/x86_64-linux/ghc-9.10.2/extrapolate-0.4.6/t/step-by-step/build/step-by-step/step-by-step
 Configuring test suite 'derive' for extrapolate-0.4.6...
 Preprocessing test suite 'derive' for extrapolate-0.4.6...
 Building test suite 'derive' for extrapolate-0.4.6...
 [1 of 2] Compiling Test
+test/Test.hs:101:24: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+101 | namesOK x =  name x == head (x `namesIn` x)
+    |                        ^^^^
+
+test/Test.hs:147:44: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+147 |       $ lookupTiers (instances c []) (val (head (head ret)))
+    |                                            ^^^^
+
+test/Test.hs:147:50: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+147 |       $ lookupTiers (instances c []) (val (head (head ret)))
+    |                                                  ^^^^
+
+test/Test.hs:190:25: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+190 |     listLines ss = '[':(tail . unlines $ map (", " ++) ss) ++ "]"
+    |                         ^^^^
+
 [2 of 2] Compiling Main
-[3 of 3] Linking /tmp/workdir-extrapolate/extrapolate-0.4.6/dist-newstyle/build/x86_64-linux/ghc-9.6.5/extrapolate-0.4.6/t/derive/build/derive/derive
+[3 of 3] Linking /tmp/workdir-extrapolate/extrapolate-0.4.6/dist-newstyle/build/x86_64-linux/ghc-9.10.2/extrapolate-0.4.6/t/derive/build/derive/derive

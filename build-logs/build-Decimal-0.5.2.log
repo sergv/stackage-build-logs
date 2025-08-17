@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - Decimal-0.5.2 (lib) (first run)
  - Decimal-0.5.2 (test:Main) (first run)
@@ -11,6 +12,14 @@ languages in different modules then list the other ones in the
 Preprocessing library for Decimal-0.5.2...
 Building library for Decimal-0.5.2...
 [1 of 1] Compiling Data.Decimal
+src/Data/Decimal.hs:294:55: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+294 |     | otherwise   = map (Decimal e) $ zipWith (-) ts (tail ts)
+    |                                                       ^^^^
+
 Configuring test suite 'Main' for Decimal-0.5.2...
 Warning: [no-default-language] Packages using 'cabal-version: >= 1.10' and
 before 'cabal-version: 3.4' must specify the 'default-language' field for each
@@ -20,5 +29,13 @@ languages in different modules then list the other ones in the
 Preprocessing test suite 'Main' for Decimal-0.5.2...
 Building test suite 'Main' for Decimal-0.5.2...
 [1 of 2] Compiling Data.Decimal
+src/Data/Decimal.hs:294:55: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+294 |     | otherwise   = map (Decimal e) $ zipWith (-) ts (tail ts)
+    |                                                       ^^^^
+
 [2 of 2] Compiling Main
-[3 of 3] Linking /tmp/workdir-Decimal/Decimal-0.5.2/dist-newstyle/build/x86_64-linux/ghc-9.6.5/Decimal-0.5.2/t/Main/build/Main/Main
+[3 of 3] Linking /tmp/workdir-Decimal/Decimal-0.5.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/Decimal-0.5.2/t/Main/build/Main/Main

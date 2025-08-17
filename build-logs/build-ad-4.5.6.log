@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - ad-4.5.6 (lib) (first run)
  - ad-4.5.6 (test:regression) (first run)
@@ -17,6 +18,22 @@ Building library for ad-4.5.6...
 [10 of 55] Compiling Numeric.AD.Internal.Combinators
 [11 of 55] Compiling Numeric.AD.Internal.Tower.Double
 [12 of 55] Compiling Numeric.AD.Internal.Tower
+src/Numeric/AD/Internal/Tower.hs:179:39: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+179 |         next xs = 1 : zipWith (+) xs (tail xs) ++ [1] -- next row in Pascal's triangle
+    |                                       ^^^^
+
+src/Numeric/AD/Internal/Tower.hs:180:36: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+180 |         next' xs = zipWith (+) xs (tail xs) ++ [1] -- end part of next row in Pascal's triangle
+    |                                    ^^^^
+
 [13 of 55] Compiling Numeric.AD.Internal.Sparse.Double
 [14 of 55] Compiling Numeric.AD.Internal.Sparse
 [15 of 55] Compiling Numeric.AD.Internal.Reverse.Double
@@ -25,7 +42,39 @@ Building library for ad-4.5.6...
 [18 of 55] Compiling Numeric.AD.Internal.Kahn.Double
 [19 of 55] Compiling Numeric.AD.Internal.Kahn
 [20 of 55] Compiling Numeric.AD.Internal.Forward.Double
+src/Numeric/AD/Internal/Forward/Double.hs:140:15: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+140 |   go xss b = (tail <$> xss, f b (head <$> xss))
+    |               ^^^^
+
+src/Numeric/AD/Internal/Forward/Double.hs:140:34: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+140 |   go xss b = (tail <$> xss, f b (head <$> xss))
+    |                                  ^^^^
+
 [21 of 55] Compiling Numeric.AD.Internal.Forward
+src/Numeric/AD/Internal/Forward.hs:203:15: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+203 |   go xss b = (tail <$> xss, f b (head <$> xss))
+    |               ^^^^
+
+src/Numeric/AD/Internal/Forward.hs:203:34: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+203 |   go xss b = (tail <$> xss, f b (head <$> xss))
+    |                                  ^^^^
+
 [22 of 55] Compiling Numeric.AD.Internal.Dense.Representable
 [23 of 55] Compiling Numeric.AD.Internal.Dense
 [24 of 55] Compiling Numeric.AD.Mode.Reverse
@@ -45,6 +94,38 @@ Building library for ad-4.5.6...
 [38 of 55] Compiling Numeric.AD.Rank1.Kahn.Float
 [39 of 55] Compiling Numeric.AD.Rank1.Newton
 [40 of 55] Compiling Numeric.AD.Newton
+src/Numeric/AD/Newton.hs:265:13: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+265 |     dLeft = tail $ cycle d0
+    |             ^^^^
+
+src/Numeric/AD/Newton.hs:266:47: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+266 |     xgx0 = Reverse.gradWith (,) (errorSingle (head d0)) x0
+    |                                               ^^^^
+
+src/Numeric/AD/Newton.hs:269:43: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+269 |       | otherwise     = x1 : go xgx1 eta (tail d)
+    |                                           ^^^^
+
+src/Numeric/AD/Newton.hs:272:57: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+272 |         (_, xgx1) = Reverse.gradWith' (,) (errorSingle (head d)) x1
+    |                                                         ^^^^
+
 [41 of 55] Compiling Numeric.AD.Rank1.Newton.Double
 [42 of 55] Compiling Numeric.AD.Newton.Double
 [43 of 55] Compiling Numeric.AD.Rank1.Sparse
@@ -64,4 +145,4 @@ Configuring test suite 'regression' for ad-4.5.6...
 Preprocessing test suite 'regression' for ad-4.5.6...
 Building test suite 'regression' for ad-4.5.6...
 [1 of 1] Compiling Main
-[2 of 2] Linking /tmp/workdir-ad/ad-4.5.6/dist-newstyle/build/x86_64-linux/ghc-9.6.5/ad-4.5.6/t/regression/build/regression/regression
+[2 of 2] Linking /tmp/workdir-ad/ad-4.5.6/dist-newstyle/build/x86_64-linux/ghc-9.10.2/ad-4.5.6/t/regression/build/regression/regression

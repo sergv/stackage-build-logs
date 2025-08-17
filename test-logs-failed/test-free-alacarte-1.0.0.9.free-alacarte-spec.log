@@ -1,0 +1,52 @@
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - free-alacarte-1.0.0.9 (test:free-alacarte-spec) (ephemeral targets)
+Preprocessing test suite 'free-alacarte-spec' for free-alacarte-1.0.0.9...
+Building test suite 'free-alacarte-spec' for free-alacarte-1.0.0.9...
+Running 1 test suites...
+Test suite free-alacarte-spec: RUNNING...
+
+Free a la Carte
+  using the FileSystem free monad
+    can read from file successfully  [✘]
+    can write to file successfully [✘]
+  using the Logger free monad
+Free a la Carte
+    can log to stdout [✔]
+  using FileSystem :+: Logger monads
+    can read a file's contents to stdout [✘]
+
+Failures:
+
+  test/Free/AlaCarte/Test.hs:39:7: 
+  1) Free a la Carte, using the FileSystem free monad, can read from file successfully 
+       uncaught exception: IOException of type NoSuchThing
+       ./resources/test/file-0.txt: withBinaryFile: does not exist (No such file or directory)
+
+  To rerun use: --match "/Free a la Carte/using the FileSystem free monad/can read from file successfully /" --seed 234825393
+
+  test/Free/AlaCarte/Test.hs:42:7: 
+  2) Free a la Carte, using the FileSystem free monad, can write to file successfully
+       uncaught exception: IOException of type NoSuchThing
+       ./resources/test/some-test-file.txt: withFile: does not exist (No such file or directory)
+
+  To rerun use: --match "/Free a la Carte/using the FileSystem free monad/can write to file successfully/" --seed 234825393
+
+  test/Free/AlaCarte/Test.hs:48:7: 
+  3) Free a la Carte, using FileSystem :+: Logger monads, can read a file's contents to stdout
+       uncaught exception: IOException of type NoSuchThing
+       ./resources/test/file-0.txt: withBinaryFile: does not exist (No such file or directory)
+
+  To rerun use: --match "/Free a la Carte/using FileSystem :+: Logger monads/can read a file's contents to stdout/" --seed 234825393
+
+Randomized with seed 234825393
+
+Finished in 0.0009 seconds
+4 examples, 3 failures
+Test suite free-alacarte-spec: FAIL
+Test suite logged to:
+/tmp/workdir-free-alacarte/free-alacarte-1.0.0.9/dist-newstyle/build/x86_64-linux/ghc-9.10.2/free-alacarte-1.0.0.9/t/free-alacarte-spec/test/free-alacarte-1.0.0.9-free-alacarte-spec.log
+0 of 1 test suites (0 of 1 test cases) passed.
+Error: [Cabal-7125]
+Tests failed for test:free-alacarte-spec from free-alacarte-1.0.0.9.
+

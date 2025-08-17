@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - board-games-0.4 (lib) (first run)
  - board-games-0.4 (test:board-games-test) (first run)
@@ -14,15 +15,14 @@ Building library for board-games-0.4...
 [ 6 of 14] Compiling Game.Utility
 [ 7 of 14] Compiling Game.Mastermind
 [ 8 of 14] Compiling Game.Mastermind.HTML
-
-src/Game/Mastermind/HTML.hs:23:29: warning: [-Wunused-imports]
+src/Game/Mastermind/HTML.hs:23:29: warning: [GHC-38856] [-Wunused-imports]
     The import of ‘foldMap’ from module ‘Data.Foldable’ is redundant
    |
 23 | import Data.Foldable (fold, foldMap)
    |                             ^^^^^^^
-[ 9 of 14] Compiling Game.Labyrinth
 
-src/Game/Labyrinth.hs:18:1: warning: [-Wunused-imports]
+[ 9 of 14] Compiling Game.Labyrinth
+src/Game/Labyrinth.hs:18:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
@@ -30,7 +30,7 @@ src/Game/Labyrinth.hs:18:1: warning: [-Wunused-imports]
 18 | import Control.Applicative (Applicative, pure, (<*>), (<$>))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Game/Labyrinth.hs:40:1: warning: [-Wunused-imports]
+src/Game/Labyrinth.hs:40:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Traversable’ is redundant
       except perhaps to import instances from ‘Data.Traversable’
     To import instances alone, use: import Data.Traversable()
@@ -38,7 +38,7 @@ src/Game/Labyrinth.hs:40:1: warning: [-Wunused-imports]
 40 | import Data.Traversable (Traversable, sequenceA)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Game/Labyrinth.hs:41:1: warning: [-Wunused-imports]
+src/Game/Labyrinth.hs:41:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Foldable’ is redundant
       except perhaps to import instances from ‘Data.Foldable’
     To import instances alone, use: import Data.Foldable()
@@ -46,7 +46,7 @@ src/Game/Labyrinth.hs:41:1: warning: [-Wunused-imports]
 41 | import Data.Foldable (Foldable, foldMap)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Game/Labyrinth.hs:44:1: warning: [-Wunused-imports]
+src/Game/Labyrinth.hs:44:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
@@ -54,7 +54,7 @@ src/Game/Labyrinth.hs:44:1: warning: [-Wunused-imports]
 44 | import Data.Monoid (Monoid, mconcat, mappend, mempty)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Game/Labyrinth.hs:45:1: warning: [-Wunused-imports]
+src/Game/Labyrinth.hs:45:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Semigroup’ is redundant
       except perhaps to import instances from ‘Data.Semigroup’
     To import instances alone, use: import Data.Semigroup()
@@ -62,27 +62,69 @@ src/Game/Labyrinth.hs:45:1: warning: [-Wunused-imports]
 45 | import Data.Semigroup (Semigroup, (<>))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Game/Labyrinth.hs:259:4: warning: [-Wnoncanonical-monoid-instances]
+src/Game/Labyrinth.hs:259:4: warning: [GHC-50928] [-Wnoncanonical-monoid-instances]
     Noncanonical ‘mappend’ definition detected
     in the instance declaration for ‘Monoid (Directions a)’.
     ‘mappend’ will eventually be removed in favour of ‘(<>)’
-    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    Suggested fix:
+      Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
     |
 259 |    mappend = App.lift2 mappend
     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Game/Labyrinth.hs:539:10: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+539 |    snd . head . dropWhile (not . fst) .
+    |          ^^^^
+
 [10 of 14] Compiling Game.VierGewinnt
+src/Game/VierGewinnt.hs:263:35: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+263 |           wkind1=godown newbound (head kinder)
+    |                                   ^^^^
+
+src/Game/VierGewinnt.hs:264:50: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+264 |           werteKinder = scanl (godown1)  wkind1 (tail kinder)
+    |                                                  ^^^^
+
+src/Game/VierGewinnt.hs:304:19: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+304 |                  (head $ snd (search suchTiefeGesamt spielstand))
+    |                   ^^^^
+
 [11 of 14] Compiling Game.VierGewinnt.HTML
 [12 of 14] Compiling Game.VierGewinnt.Text
+src/Game/VierGewinnt/Text.hs:31:30: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+31 |         nline j  = show j ++ tail (line j)
+   |                              ^^^^
 
 src/Game/VierGewinnt/Text.hs:34:1: warning: [GHC-90177] [-Worphans]
-    Orphan instance: instance Show Spielstand
+    Orphan class instance: instance Show Spielstand
     Suggested fix:
       Move the instance declaration to the module of the class or of the type, or
       wrap the type with a newtype and declare the instance on the new type.
    |
 34 | instance Show Spielstand where
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
 [13 of 14] Compiling Game.ZeilenSpalten
 [14 of 14] Compiling Game.ZeilenSpalten.HTML
 Configuring test suite 'board-games-test' for board-games-0.4...
@@ -92,20 +134,20 @@ Building test suite 'board-games-test' for board-games-0.4...
 [2 of 6] Compiling Test.Game.Labyrinth
 [3 of 6] Compiling Test.Game.Utility
 [4 of 6] Compiling Test.Mastermind
-
-test/Test/Mastermind.hs:9:1: warning: [-Wunused-imports]
+test/Test/Mastermind.hs:9:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
   |
 9 | import Control.Applicative (liftA2, (<$>))
   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [5 of 6] Compiling Test.Game.Mastermind
 [6 of 6] Compiling Main
-[7 of 7] Linking /tmp/workdir-board-games/board-games-0.4/dist-newstyle/build/x86_64-linux/ghc-9.6.5/board-games-0.4/t/board-games-test/build/board-games-test/board-games-test
+[7 of 7] Linking /tmp/workdir-board-games/board-games-0.4/dist-newstyle/build/x86_64-linux/ghc-9.10.2/board-games-0.4/t/board-games-test/build/board-games-test/board-games-test
 Configuring executable 'board-games' for board-games-0.4...
 Preprocessing executable 'board-games' for board-games-0.4...
 Building executable 'board-games' for board-games-0.4...
 [1 of 2] Compiling Server.Option
 [2 of 2] Compiling Main
-[3 of 3] Linking /tmp/workdir-board-games/board-games-0.4/dist-newstyle/build/x86_64-linux/ghc-9.6.5/board-games-0.4/x/board-games/build/board-games/board-games
+[3 of 3] Linking /tmp/workdir-board-games/board-games-0.4/dist-newstyle/build/x86_64-linux/ghc-9.10.2/board-games-0.4/x/board-games/build/board-games/board-games

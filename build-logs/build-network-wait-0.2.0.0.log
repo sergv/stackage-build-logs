@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - network-wait-0.2.0.0 (lib) (first run)
  - network-wait-0.2.0.0 (test:network-wait-test) (first run)
@@ -6,10 +7,18 @@ Configuring library for network-wait-0.2.0.0...
 Preprocessing library for network-wait-0.2.0.0...
 Building library for network-wait-0.2.0.0...
 [1 of 2] Compiling Network.Wait
+src/Network/Wait.hs:95:13: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+95 |     addr <- head <$> liftIO (getAddrInfo (Just hints) (Just host) (Just port))
+   |             ^^^^
+
 [2 of 2] Compiling Paths_network_wait
 Configuring test suite 'network-wait-test' for network-wait-0.2.0.0...
 Preprocessing test suite 'network-wait-test' for network-wait-0.2.0.0...
 Building test suite 'network-wait-test' for network-wait-0.2.0.0...
 [1 of 2] Compiling Main
 [2 of 2] Compiling Paths_network_wait
-[3 of 3] Linking /tmp/workdir-network-wait/network-wait-0.2.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/network-wait-0.2.0.0/t/network-wait-test/build/network-wait-test/network-wait-test
+[3 of 3] Linking /tmp/workdir-network-wait/network-wait-0.2.0.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/network-wait-0.2.0.0/t/network-wait-test/build/network-wait-test/network-wait-test

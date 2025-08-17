@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - matplotlib-0.7.7 (lib) (first run)
  - matplotlib-0.7.7 (test:matplotlib-test) (first run)
@@ -6,9 +7,33 @@ Configuring library for matplotlib-0.7.7...
 Preprocessing library for matplotlib-0.7.7...
 Building library for matplotlib-0.7.7...
 [1 of 2] Compiling Graphics.Matplotlib.Internal
+src/Graphics/Matplotlib/Internal.hs:261:43: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+261 |         combine l r | [last l] == "(" && [head r] == "," = l ++ tail r
+    |                                           ^^^^
+
+src/Graphics/Matplotlib/Internal.hs:261:65: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+261 |         combine l r | [last l] == "(" && [head r] == "," = l ++ tail r
+    |                                                                 ^^^^
+
 [2 of 2] Compiling Graphics.Matplotlib
+src/Graphics/Matplotlib.hs:313:32: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+313 |   % axisXTickSpacing (length $ head $ valuesList) (1.0 - barDefaultWidth (length valuesList) / 2.0)
+    |                                ^^^^
+
 Configuring test suite 'matplotlib-test' for matplotlib-0.7.7...
 Preprocessing test suite 'matplotlib-test' for matplotlib-0.7.7...
 Building test suite 'matplotlib-test' for matplotlib-0.7.7...
 [1 of 1] Compiling Main
-[2 of 2] Linking /tmp/workdir-matplotlib/matplotlib-0.7.7/dist-newstyle/build/x86_64-linux/ghc-9.6.5/matplotlib-0.7.7/t/matplotlib-test/build/matplotlib-test/matplotlib-test
+[2 of 2] Linking /tmp/workdir-matplotlib/matplotlib-0.7.7/dist-newstyle/build/x86_64-linux/ghc-9.10.2/matplotlib-0.7.7/t/matplotlib-test/build/matplotlib-test/matplotlib-test

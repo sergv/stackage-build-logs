@@ -1,0 +1,446 @@
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - tomland-1.3.3.3 (test:tomland-test) (ephemeral targets)
+Preprocessing test suite 'tomland-test' for tomland-1.3.3.3...
+Building test suite 'tomland-test' for tomland-1.3.3.3...
+Running 1 test suites...
+Test suite tomland-test: RUNNING...
+
+Toml.Type tests
+  TOML Key
+    Key printing: fromString . prettyKey ≡ id [✔]
+      passed 100 tests.
+    Key difference
+      Equal: Simple [✔]
+      Equal: Complex [✔]
+      NoPrefix: Simple [✔]
+      NoPrefix: Only common suffix [✔]
+      FstIsPref [✔]
+      SndIsPref [✔]
+      Diff: Simple [✔]
+      Diff: Two components [✔]
+      Diff: Two diff components [✔]
+      Diff: Different diff length [✔]
+  PrefixTree unit and property tests
+    Unit tests for basic cases
+      Lookup on empty map returns Nothing [✔]
+      Lookup in single map returns this element [✔]
+      Lookup after insert returns this element [✔]
+      Lookup after multiple non-overlapping inserts [✔]
+      Prefix lookup [✔]
+      Composite key lookup [✔]
+    Laws and behaviour property tests
+      lookup k (insert k v m) ≡ Just v [✔]
+        passed 100 tests.
+      insert x a . insert x b ≡ insert x a [✔]
+        passed 100 tests.
+      Semigroup associativity: x <> (y <> z) ≡ (x <> y) <> z [✔]
+        passed 100 tests.
+      Monoid Right Identity: mempty <> x ≡ x [✔]
+        passed 100 tests.
+      Monoid Right Identity: x <> mempty ≡ x [✔]
+        passed 100 tests.
+  Toml.Type.Printer: Golden tests for pretty-printing
+    Golden pretty_default [✔]
+    Golden pretty_sorted_only [✔]
+    Golden pretty_indented_only [✔]
+    Golden pretty_unformatted [✔]
+    Golden pretty_custom_sorted [✔]
+    Golden pretty_lines [✔]
+  TOML laws
+    Semigroup associativity: x <> (y <> z) ≡ (x <> y) <> z [✔]
+      passed 100 tests.
+    Monoid Right Identity: x <> mempty ≡ x [✔]
+      passed 100 tests.
+    Monoid Right Identity: mempty <> x ≡ x [✔]
+      passed 100 tests.
+Parser for TOML
+  Can parse official TOML examples
+    can parse file example-v0.3.0.toml [✔]
+    can parse file example-v0.4.0.toml [✔]
+    can parse file example.toml [✔]
+    can parse file fruit.toml [✔]
+    can parse file hard_example.toml [✔]
+    can parse file hard_example_unicode.toml [✔]
+  Parsing property tests
+    parse . prettyPrint == id [✔]
+      passed 100 tests.
+  Parser Validation tests
+    Property: validates any generated TOML [✔]
+      passed 100 tests.
+    fail on DuplicateKey ("key" :| []) [✔]
+    fail on DuplicateTable ("table" :| []) [✔]
+    fail on SameNameKeyTable ("keyAndTable" :| []) [✔]
+    fail on SameNameTableArray ("tableArray" :| []) [✔]
+    fail on SameNameTableArray ("tableArray" :| []) [✔]
+    fail on DuplicateTable ("inline" :| []) [✔]
+    fail on SameNameKeyTable ("inline" :| []) [✔]
+    fail on SameNameTableArray ("inlinearray" :| []) [✔]
+    fail on SameNameTableArray ("inlinearray" :| []) [✔]
+    fail on SameNameTableArray ("inlinearray" :| []) [✔]
+  arrayP
+    can parse arrays [✔]
+    can parse multiline arrays [✔]
+    can parse an array of arrays [✔]
+    can parse an array with terminating commas (trailing commas) [✔]
+    allows an arbitrary number of comments and newlines before or after a value [✔]
+    ignores white spaces [✔]
+    fails if the elements are not surrounded by square brackets [✔]
+    fails if the elements are not separated by commas [✔]
+  boolP
+    can parse `true` and `false` [✔]
+    fails if `true` or `false` are not all lowercase [✔]
+  dateTimeP
+    can parse a date-time with an offset [✔]
+    can parse a date-time with an offset when the T delimiter is replaced with a space [✔]
+    can parse a date-time without an offset [✔]
+    can parse a local date [✔]
+    can parse a local time [✔]
+    truncates the additional precision after picoseconds in the fractional seconds [✔]
+    fails if the date is not valid [✔]
+    fails if the date does not have the form: 'yyyy-mm-dd' [✔]
+    fails if the time is not valid [✔]
+    fails if the time does not have the form: 'hh:mm:ss' [✔]
+    fails if the offset does not have any of the forms: 'Z', '+hh:mm', '-hh:mm' [✔]
+  doubleP
+    can parse a number which consists of an integral part, and a fractional part [✔]
+    can parse a number with underscores [✔]
+    can parse sign-prefixed zero [✔]
+    can parse positive and negative special float values (inf and nan) [✔]
+    fails if `inf` or `nan` are not all lowercase [✔]
+  integerP
+    when the integer is in decimal representation
+      can parse positive integer numbers [✔]
+      can parse negative integer numbers [✔]
+      can parse sign-prefixed zero as an unprefixed zero [✔]
+      can parse both the minimum and maximum numbers in the 64 bit range [✔]
+      can parse numbers with underscores between digits [✔]
+      does not parse incorrect underscores [✔]
+      does not parse numbers with leading zeros [✔]
+    when the integer is in binary representation
+      can parse numbers prefixed with `0b` [✔]
+      does not parse numbers prefixed with `0B` [✔]
+      can parse numbers with leading zeros after the prefix [✔]
+      does not parse negative numbers [✔]
+      does not parse numbers with non-valid binary digits [✔]
+    when the integer is in octal representation
+      can parse numbers prefixed with `0o` [✔]
+      does not parse numbers prefixed with `0O` [✔]
+      can parse numbers with leading zeros after the prefix [✔]
+      does not parse negative numbers [✔]
+      does not parse numbers with non-valid octal digits [✔]
+    when the integer is in hexadecimal representation
+      can parse numbers prefixed with `0x` [✔]
+      does not parse numbers prefixed with `0X` [✔]
+      can parse numbers with leading zeros after the prefix [✔]
+      does not parse negative numbers [✔]
+      does not parse numbers with non-valid hexadecimal digits [✔]
+      can parse numbers when hex digits are lowercase [✔]
+      can parse numbers when hex digits are uppercase [✔]
+      can parse numbers when hex digits are in both lowercase and uppercase [✔]
+    when there is underscore in hexadecimal, octal and binary representation
+      can parse numbers with underscore in hexadecimal representation [✔]
+      can't parse when underscore is between hexadecimal prefix and suffix [✔]
+      can parse numbers with underscore in octal representation [✔]
+      can't parse when underscore is between octal prefix and suffix [✔]
+      can parse numbers with underscore in binary representation [✔]
+      can't parse numbers when underscore is between binary prefix and suffix [✔]
+      doesn't parse underscore not followed by any numbers [✔]
+      doesn't parse when number is ending with underscore [✔]
+  keyP
+    when the key is a bare key
+      can parse keys which contain ASCII letters, digits, underscores, and dashes [✔]
+      can parse keys which contain only digits [✔]
+    when the key is a quoted key
+      can parse keys that follow the exact same rules as basic strings [✔]
+      can parse keys that follow the exact same rules as literal strings [✔]
+    when the key is a dotted key
+      can parse a sequence of bare or quoted keys joined with a dot [✔]
+      ignores whitespaces around dot-separated parts [‐]
+        # PENDING: No reason given
+    when the key is symbols only
+      parses Haskell comments [✔]
+      parses Haskell comments with dots [✔]
+      parses underscores [✔]
+      parses quotes [✔]
+  textP
+    when the string is a basic string
+      can parse strings surrounded by double quotes [✔]
+      can parse escaped quotation marks, backslashes, and control characters [✔]
+      fails if the string has an unescaped backslash, or control character [✔]
+      fails if the string has an escape sequence that is not listed in the TOML specification [✔]
+      fails if the string is not on a single line [✔]
+      fails if escape codes are not valid Unicode scalar values [✔]
+    when the string is a multi-line basic string
+      can parse multi-line strings surrounded by three double quotes [✔]
+      can parse single-line strings surrounded by three double quotes [✔]
+      can parse all of the escape sequences that are valid for basic strings [✔]
+      does not ignore whitespaces or newlines [✔]
+      ignores a newline only if it immediately follows the opening delimiter [✔]
+      ignores whitespaces and newlines after line ending backslash [✔]
+      fails if the string has an unescaped backslash, or control character [✔]
+    when the string is a literal string
+      can parse strings surrounded by single quotes [✔]
+      fails if the string is not on a single line [✔]
+    when the string is a multi-line literal string
+      can parse multi-line strings surrounded by three single quotes [✔]
+      can parse single-line strings surrounded by three single quotes [✔]
+      ignores a newline immediately following the opening delimiter [✔]
+      fails if the string has an unescaped control character other than tab [✔]
+  Key/values
+    can parse key/value pairs [✔]
+    ignores white spaces around key names and values [✔]
+    fails if the key, equals sign, and value are not on the same line [‐]
+      # PENDING: No reason given
+    works if the value is broken over multiple lines [✔]
+    fails if the value is not specified [✔]
+  tables
+    can parse a TOML table [✔]
+    can parse an empty TOML table [✔]
+    can parse a table with subarrays [✔]
+    can parse a TOML inline table [✔]
+    can parse an empty inline TOML table [✔]
+    can parse a table followed by an inline table [✔]
+    can parse an empty table followed by an inline table [✔]
+    allows the name of the table to be any valid TOML key [✔]
+  array of tables
+    can parse an empty array [✔]
+    can parse an array of key/values [✔]
+    can parse an array of tables [✔]
+    can parse an array of array [✔]
+    can parse an array of arrays [✔]
+    can parse very large arrays [✔]
+    can parse an inline array of tables [✔]
+  TOML
+    can parse TOML files [✔]
+    can parse mix of tables and arrays [✔]
+Codec: unit and property tests for bidirectional codecs
+  Tagged Partial Bidirectional Isomorphism: tests
+    BiMap Rountrip Property tests
+      Primitive
+        Bool [✔]
+          passed 100 tests.
+        Int [✔]
+          passed 100 tests.
+        Word [✔]
+          passed 100 tests.
+        Word8 [✔]
+          passed 100 tests.
+        Integer [✔]
+          passed 100 tests.
+        Natural [✔]
+          passed 100 tests.
+        Double [✔]
+          passed 100 tests.
+        Float [✔]
+          passed 100 tests.
+        Text [✔]
+          passed 100 tests.
+        LazyText [✔]
+          passed 100 tests.
+        ByteString [✔]
+          passed 100 tests.
+        Lazy ByteString [✔]
+          passed 100 tests.
+        String [✔]
+          passed 100 tests.
+      Time
+        ZonedTime [✔]
+          passed 100 tests.
+        LocalTime [✔]
+          passed 100 tests.
+        Day [✔]
+          passed 100 tests.
+        TimeOfDay [✔]
+          passed 100 tests.
+      Arrays
+        Array (Int) [✔]
+          passed 100 tests.
+        Array (Day) [✔]
+          passed 100 tests.
+        NonEmpty (Int) [✔]
+          passed 100 tests.
+        Set (Int) [✔]
+          passed 100 tests.
+        HashSet (Int) [✔]
+          passed 100 tests.
+        IntSet [✔]
+          passed 100 tests.
+        ByteStringArray [✔]
+          passed 100 tests.
+        LByteStringArray [✔]
+          passed 100 tests.
+      Custom
+        EnumBounded (Ordering) [✔]
+          passed 100 tests.
+        Read (Integer) [✔]
+          passed 100 tests.
+        TextBy (Text) [✔]
+          passed 100 tests.
+        Hardcoded (Text) [✔]
+          passed 100 tests.
+      Key
+        KeyText [✔]
+          passed 100 tests.
+        KeyString [✔]
+          passed 100 tests.
+        KeyInt [✔]
+          passed 100 tests.
+    BiMap Category instance laws
+      Right identity: f . id ≡ f [✔]
+        passed 100 tests.
+      Left identity:  id . f ≡ f [✔]
+        passed 100 tests.
+      Associativity:  f . (g . h) ≡ (f . g) . h [✔]
+        passed 100 tests.
+  Codec.Code decode tests on different TomlDecodeErrors
+    fails parse as unclosed bracket [✔]
+    fails decode text as Toml.int [✔]
+    exact decode [✔]
+    fails to decode exact when there is other field [✔]
+    fails to decode table on missing field [✔]
+    fails to decode table on missing field [✔]
+    exact decode table [✔]
+    fails to decode exact table on missing field [✔]
+    fails to decode arrayOf when field is missing [✔]
+    fails to decode arrayNonEmptyOf when field is missing [✔]
+    fails to decode arrayNonEmptyOf when list is empty [✔]
+    decodes to an empty list when field is missing [✔]
+    decodes to an empty list when empty list [✔]
+    fails to decode list when internal field is missing [✔]
+    fails to decode nonEmpty when field is missing [✔]
+    fails to decode nonEmpty  when empty list [✔]
+    exact decode table array [✔]
+    fails to exact decode table array with redundant field [✔]
+    map: decodes to an empty map when field is missing [✔]
+    map: fails to decode when key and value mismatch type [✔]
+    map: fails to decode when value is missing [✔]
+    tableMap: decodes to an empty map when field is missing [✔]
+    tableMap: throws error on invalid key type [✔]
+    fails to decode via read when non-existing value [✔]
+    fails to decode via enumBounded when non-existing value [✔]
+    fails to validateIf [✔]
+    fails to hardcoded [✔]
+  Combinator spec
+    Combinator.Custom: Roundtrip tests
+      Read (Int)      : decode . encode ≡ id [✔]
+        passed 100 tests.
+      Enum (Ordering) : decode . encode ≡ id [✔]
+        passed 100 tests.
+      Validate (Even) : decode . encode ≡ id [✔]
+        passed 100 tests.
+      TextBy          : decode . encode ≡ id [✔]
+        passed 100 tests.
+      Hardcoded (Text): decode . encode ≡ id [✔]
+        passed 100 tests.
+    Combinator.List: Roundtrip tests
+      [Int] (Array)       : decode . encode ≡ id [✔]
+        passed 100 tests.
+      NonEmpty Int (Array): decode . encode ≡ id [✔]
+        passed 100 tests.
+      [Int] (Table)       : decode . encode ≡ id [✔]
+        passed 100 tests.
+      NonEmpty Int (Table): decode . encode ≡ id [✔]
+        passed 100 tests.
+    Combinator.Map: Roundtrip tests
+      Map Int Text (map)     : decode . encode ≡ id [✔]
+        passed 100 tests.
+      Map Text Int (tableMap): decode . encode ≡ id [✔]
+        passed 100 tests.
+      Map Text [Int] (tableMap): decode . encode ≡ id [✔]
+        passed 100 tests.
+    Combinator.Monoid: Roundtrip tests
+      All        : decode . encode ≡ id [✔]
+        passed 100 tests.
+      Any        : decode . encode ≡ id [✔]
+        passed 100 tests.
+      Sum     Int: decode . encode ≡ id [✔]
+        passed 100 tests.
+      Product Int: decode . encode ≡ id [✔]
+        passed 100 tests.
+      First   Int: decode . encode ≡ id [✔]
+        passed 100 tests.
+      Last    Int: decode . encode ≡ id [✔]
+        passed 100 tests.
+    Combinator.Primitive: Roundtrip tests
+      Bool             : decode . encode ≡ id [✔]
+        passed 100 tests.
+      Integer          : decode . encode ≡ id [✔]
+        passed 100 tests.
+      Int              : decode . encode ≡ id [✔]
+        passed 100 tests.
+      Natural          : decode . encode ≡ id [✔]
+        passed 100 tests.
+      Word             : decode . encode ≡ id [✔]
+        passed 100 tests.
+      Word8            : decode . encode ≡ id [✔]
+        passed 100 tests.
+      Double           : decode . encode ≡ id [✔]
+        passed 100 tests.
+      Float            : decode . encode ≡ id [✔]
+        passed 100 tests.
+      String           : decode . encode ≡ id [✔]
+        passed 100 tests.
+      Text             : decode . encode ≡ id [✔]
+        passed 100 tests.
+      LText            : decode . encode ≡ id [✔]
+        passed 100 tests.
+      ByteString       : decode . encode ≡ id [✔]
+        passed 100 tests.
+      LByteString      : decode . encode ≡ id [✔]
+        passed 100 tests.
+      ByteString Array : decode . encode ≡ id [✔]
+        passed 100 tests.
+      LByteString Array: decode . encode ≡ id [✔]
+        passed 100 tests.
+    Combinator.Set: Roundtrip tests
+      IntSet (Array)      : decode . encode ≡ id [✔]
+        passed 100 tests.
+      IntSet (Table)      : decode . encode ≡ id [✔]
+        passed 100 tests.
+      Set Int (Array)     : decode . encode ≡ id [✔]
+        passed 100 tests.
+      Set Int (Table)     : decode . encode ≡ id [✔]
+        passed 100 tests.
+      HashSet Text (Array): decode . encode ≡ id [✔]
+        passed 100 tests.
+      HashSet Text (Table): decode . encode ≡ id [✔]
+        passed 100 tests.
+    Combinator.Table: Roundtrip tests
+      Table (Int): decode . encode ≡ id [✔]
+        passed 100 tests.
+    Combinator.Time: Roundtrip tests
+      ZonedTime : decode . encode ≡ id [✔]
+        passed 100 tests.
+      LocalTime : decode . encode ≡ id [✔]
+        passed 100 tests.
+      Day       : decode . encode ≡ id [✔]
+        passed 100 tests.
+      TimeOfDay : decode . encode ≡ id [✔]
+        passed 100 tests.
+    Combinator.Tuple: Roundtrip tests
+      (Int, Text)      : decode . encode ≡ id [✔]
+        passed 100 tests.
+      (Int, Text, Bool): decode . encode ≡ id [✔]
+        passed 100 tests.
+  Codec.Di functions tests
+    dimatch
+      SumType: decode . encode ≡ id [✔]
+        passed 100 tests.
+  Generic codecs tests
+    genericDecode . genericEncode ≡ id [✔]
+      passed 100 tests.
+    genericDecode . genericEncode ≡ decode . encode [✔]
+      passed 100 tests.
+  SmallType: tests for custom data type
+    SmallType: decode . encode ≡ id [✔]
+      passed 100 tests.
+    Exact SmallType: decode . encode ≡ id [✔]
+      passed 100 tests.
+
+Finished in 3.6986 seconds
+272 examples, 0 failures, 2 pending
+Test suite tomland-test: PASS
+Test suite logged to:
+/tmp/workdir-tomland/tomland-1.3.3.3/dist-newstyle/build/x86_64-linux/ghc-9.10.2/tomland-1.3.3.3/t/tomland-test/test/tomland-1.3.3.3-tomland-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

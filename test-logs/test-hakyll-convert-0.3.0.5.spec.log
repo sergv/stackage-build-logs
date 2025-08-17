@@ -1,0 +1,134 @@
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - hakyll-convert-0.3.0.5 (test:spec) (ephemeral targets)
+Preprocessing test suite 'spec' for hakyll-convert-0.3.0.5...
+Building test suite 'spec' for hakyll-convert-0.3.0.5...
+Running 1 test suites...
+Test suite spec: RUNNING...
+Spec tests
+  Blogger.distill
+    extracts post's URI
+      https://example.com/testing-post-uris:                           OK
+      http://www.example.com/~joe/posts.atom:                          OK
+    extracts post's body
+      <p>Today was a snowy day, and I decided to...</p>:               OK
+      <h3>My opinion on current affairs</h3><p>So you see, I...</p>:   OK
+    extracts post's title
+      First post:                                                      OK
+      You won't believe what happened to me today:                     OK
+      Trying out <i>things</i>&hellip;:                                OK
+    does not extract comments if first argument is False:              OK
+    extracts comments if first argument is True
+      comments with no "published" date and no author:                 OK
+      comments with a "published" date but no author:                  OK
+      comments with no "published" date but with an author:            OK
+      comments with a "published" date and an author:                  OK
+    enumerates all authors of a multi-author comment:                  OK
+    `error`s if post has non-HTML body:                                FAIL (expected)
+      Exception: Hakyll.Convert.Blogger.distill expecting HTML
+      CallStack (from HasCallStack):
+        error, called at src/Hakyll/Convert/Blogger.hs:175:21 in hakyll-convert-0.3.0.5-inplace:Hakyll.Convert.Blogger
+      HasCallStack backtrace:
+        collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception
+        toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:204:5 in ghc-internal:GHC.Internal.Exception
+        error, called at src/Hakyll/Convert/Blogger.hs:175:21 in hakyll-convert-0.3.0.5-inplace:Hakyll.Convert.Blogger
+      
+       (expected failure)
+    `error`s if comment has non-HTML body:                             FAIL (expected)
+      Exception: Hakyll.Convert.Blogger.distill expecting HTML
+      CallStack (from HasCallStack):
+        error, called at src/Hakyll/Convert/Blogger.hs:175:21 in hakyll-convert-0.3.0.5-inplace:Hakyll.Convert.Blogger
+      HasCallStack backtrace:
+        collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception
+        toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:204:5 in ghc-internal:GHC.Internal.Exception
+        error, called at src/Hakyll/Convert/Blogger.hs:175:21 in hakyll-convert-0.3.0.5-inplace:Hakyll.Convert.Blogger
+      
+       (expected failure)
+    turns incorrect "published" dates into Unix epoch start date
+      First of April:                                                  OK
+      2020.07.30:                                                      OK
+      2020.07.30 00:01:                                                OK
+      2020-07-30 00:01:                                                OK
+      2020-07-30T00:01:                                                OK
+      2020-07-30T00:01Z:                                               OK
+      Sun, 31st July, 2020:                                            OK
+    parses "published" dates
+      2020-07-30T15:50:21Z:                                            OK
+      1015-02-18T01:04:13Z:                                            OK
+      2020-07-30T15:50:21+0000:                                        OK
+      1015-02-18T01:04:13+0000:                                        OK
+      1015-02-18T01:04:13+0001:                                        OK
+      1015-02-18T01:04:13-0001:                                        OK
+      1015-02-18T01:04:13+0100:                                        OK
+      1015-02-18T01:04:13-0100:                                        OK
+    extracts post's tags:                                              OK
+  Wordpress.distill
+    extracts post's item link
+      https://example.com/testing-post-uris:                           OK
+      http://www.example.com/~joe/posts.atom:                          OK
+    extracts post's body
+      <p>Today was a snowy day, and I decided to...</p>:               OK
+      <h3>My opinion on current affairs</h3><p>So you see, I...</p>:   OK
+    combines multiple content:encoded tags into the post body:         OK
+    extracts post's title
+      First post:                                                      OK
+      You won't believe what happened to me today:                     OK
+      Trying out <i>things</i>&hellip;:                                OK
+    does not extract comments if first argument is False:              OK
+    extracts comments if first argument is True
+      comments with no "published" date and no author:                 OK
+      comments with a "published" date but no author:                  OK
+      comments with no "published" date but with an author:            OK
+      comments with a "published" date and an author:                  OK
+    uses the first wp:comment_author tag:                              OK
+    turns incorrect "published" dates into Unix epoch start date
+      First of April:                                                  OK
+      2020.07.30:                                                      OK
+      2020.07.30 00:01:                                                OK
+      2020-07-30 00:01:                                                OK
+      2020-07-30T00:01:                                                OK
+      2020-07-30T00:01Z:                                               OK
+      Sun, 31st July, 2020:                                            OK
+    parses "published" dates
+      Sun, 06 Nov 1994 08:49:37 GMT:                                   OK
+      Fri, 31 Jul 2020 22:21:59 EST:                                   OK
+    extracts post's tags:                                              OK
+    extracts post's categories:                                        OK
+  OutputFormat
+    `validOutputFormat`
+      returns False if format string is empty:                         OK
+      returns False if `formatPath` returns `Nothing`, otherwise True: OK
+        +++ OK, passed 100 tests; 14 discarded.
+    `formatPath`
+      does not change text that has no percent signs in it:            OK
+      %o is replaced by the original filepath
+        works with HTTP schema:                                        OK
+        works with HTTPS schema:                                       OK
+        trailing slashes are removed:                                  OK
+        file extension is removed:                                     OK
+        all file extensions are removed:                               OK
+      %s is replaced by the original slug:                             OK
+      %y is replaced by the two-digit publication year:                OK
+      %Y is replaced by the four-digit publication year:               OK
+      %m is replaced by the two-digit publication month:               OK
+      %d is replaced by the two-digit publication day:                 OK
+      %H is replaced by the two-digit publication hour, 00 to 23:      OK
+      %M is replaced by the two-digit publication minute:              OK
+      %S is replaced by the two-digit publication second:              OK
+      format string can contain multiple formats
+        %H:%M:%S:                                                      OK
+        old/%Y/%m/%d-%H%M%S-%s.html:                                   OK
+        /posts/%y-%m-%d-%H%M%S-%s/:                                    OK
+        /migrated/%o:                                                  OK
+        99.9%% true/%o:                                                OK
+      returns Nothing upon encountering an unsupported format
+        unknown format %x:                                             OK
+        no format specifier after percent sign:                        OK
+  IO.savePost
+    Names the output file according to the given filename format:      OK
+
+All 80 tests passed (0.00s)
+Test suite spec: PASS
+Test suite logged to:
+/tmp/workdir-hakyll-convert/hakyll-convert-0.3.0.5/dist-newstyle/build/x86_64-linux/ghc-9.10.2/hakyll-convert-0.3.0.5/t/spec/test/hakyll-convert-0.3.0.5-spec.log
+1 of 1 test suites (1 of 1 test cases) passed.

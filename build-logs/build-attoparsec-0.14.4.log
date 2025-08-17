@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - attoparsec-0.14.4 (lib:attoparsec-internal) (first run)
  - attoparsec-0.14.4 (lib) (first run)
@@ -7,7 +8,6 @@ Configuring library 'attoparsec-internal' for attoparsec-0.14.4...
 Preprocessing library 'attoparsec-internal' for attoparsec-0.14.4...
 Building library 'attoparsec-internal' for attoparsec-0.14.4...
 [1 of 6] Compiling Data.Attoparsec.ByteString.FastSet
-
 internal/Data/Attoparsec/ByteString/FastSet.hs:97:18: warning: [GHC-68441] [-Wdeprecations]
     In the use of ‘memset’
     (imported from Data.ByteString.Internal, but defined in Data.ByteString.Internal.Type):
@@ -15,11 +15,11 @@ internal/Data/Attoparsec/ByteString/FastSet.hs:97:18: warning: [GHC-68441] [-Wde
    |
 97 |             _ <- I.memset t 0 32
    |                  ^^^^^^^^
+
 [2 of 6] Compiling Data.Attoparsec.Internal.Compat
 [3 of 6] Compiling Data.Attoparsec.Internal.Fhthagn
 [4 of 6] Compiling Data.Attoparsec.ByteString.Buffer
-
-internal/Data/Attoparsec/ByteString/Buffer.hs:62:1: warning: [-Wunused-imports]
+internal/Data/Attoparsec/ByteString/Buffer.hs:62:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Semigroup’ is redundant
       except perhaps to import instances from ‘Data.Semigroup’
     To import instances alone, use: import Data.Semigroup()
@@ -50,57 +50,57 @@ internal/Data/Attoparsec/ByteString/Buffer.hs:133:13: warning: [GHC-68441] [-Wde
     |
 133 |             memcpy (ptr `plusPtr` len0) (ptr1 `plusPtr` off1)
     |             ^^^^^^
-[5 of 6] Compiling Data.Attoparsec.Text.Buffer
 
-internal/Data/Attoparsec/Text/Buffer.hs:44:1: warning: [-Wunused-imports]
+[5 of 6] Compiling Data.Attoparsec.Text.Buffer
+internal/Data/Attoparsec/Text/Buffer.hs:44:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Semigroup’ is redundant
       except perhaps to import instances from ‘Data.Semigroup’
     To import instances alone, use: import Data.Semigroup()
    |
 44 | import Data.Semigroup (Semigroup(..))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [6 of 6] Compiling Data.Attoparsec.Text.FastSet
 Configuring library for attoparsec-0.14.4...
 Preprocessing library for attoparsec-0.14.4...
 Building library for attoparsec-0.14.4...
 [ 1 of 16] Compiling Data.Attoparsec.Internal.Types
-
-Data/Attoparsec/Internal/Types.hs:28:53: warning: [-Wunused-imports]
+Data/Attoparsec/Internal/Types.hs:28:53: warning: [GHC-38856] [-Wunused-imports]
     The import of ‘<$>’ from module ‘Control.Applicative’ is redundant
    |
 28 | import Control.Applicative as App (Applicative(..), (<$>))
    |                                                     ^^^^^
 
-Data/Attoparsec/Internal/Types.hs:34:1: warning: [-Wunused-imports]
+Data/Attoparsec/Internal/Types.hs:34:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Semigroup’ is redundant
       except perhaps to import instances from ‘Data.Semigroup’
     To import instances alone, use: import Data.Semigroup()
    |
 34 | import Data.Semigroup  (Semigroup(..))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [ 2 of 16] Compiling Data.Attoparsec.Internal
 [ 3 of 16] Compiling Data.Attoparsec.Number
 [ 4 of 16] Compiling Data.Attoparsec.Types
 [ 5 of 16] Compiling Data.Attoparsec.Zepto
-
-Data/Attoparsec/Zepto.hs:46:1: warning: [-Wunused-imports]
+Data/Attoparsec/Zepto.hs:46:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Semigroup’ is redundant
       except perhaps to import instances from ‘Data.Semigroup’
     To import instances alone, use: import Data.Semigroup()
    |
 46 | import Data.Semigroup (Semigroup(..))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[ 6 of 16] Compiling Data.Attoparsec.Combinator
 
-Data/Attoparsec/Combinator.hs:46:46: warning: [-Wunused-imports]
+[ 6 of 16] Compiling Data.Attoparsec.Combinator
+Data/Attoparsec/Combinator.hs:46:46: warning: [GHC-38856] [-Wunused-imports]
     The import of ‘liftA2’
     from module ‘Control.Applicative’ is redundant
    |
 46 | import Control.Applicative (Alternative(..), liftA2, many, (<|>))
    |                                              ^^^^^^
-[ 7 of 16] Compiling Data.Attoparsec.Text.Internal
 
-Data/Attoparsec/Text/Internal.hs:68:1: warning: [-Wunused-imports]
+[ 7 of 16] Compiling Data.Attoparsec.Text.Internal
+Data/Attoparsec/Text/Internal.hs:68:1: warning: [GHC-38856] [-Wunused-imports]
     The import of ‘*>, <$>, pure’
     from module ‘Control.Applicative’ is redundant
    |
@@ -114,6 +114,7 @@ Data/Attoparsec/Text/Internal.hs:91:13: warning: [GHC-58520] [-Wtype-equality-re
    |
 91 | instance (a ~ Text) => IsString (Parser a) where
    |             ^
+
 [ 8 of 16] Compiling Data.Attoparsec.Text
 [ 9 of 16] Compiling Data.Attoparsec.Text.Lazy
 [10 of 16] Compiling Data.Attoparsec.ByteString.Internal
@@ -121,7 +122,6 @@ Data/Attoparsec/Text/Internal.hs:91:13: warning: [GHC-58520] [-Wtype-equality-re
 [12 of 16] Compiling Data.Attoparsec.ByteString.Lazy
 [13 of 16] Compiling Data.Attoparsec.Lazy
 [14 of 16] Compiling Data.Attoparsec.ByteString.Char8
-
 Data/Attoparsec/ByteString/Char8.hs:154:13: warning: [GHC-58520] [-Wtype-equality-requires-operators]
     The use of ‘~’ without TypeOperators
     will become an error in a future GHC release.
@@ -129,6 +129,7 @@ Data/Attoparsec/ByteString/Char8.hs:154:13: warning: [GHC-58520] [-Wtype-equalit
     |
 154 | instance (a ~ B.ByteString) => IsString (Parser a) where
     |             ^
+
 [15 of 16] Compiling Data.Attoparsec.Char8
 [16 of 16] Compiling Data.Attoparsec
 Configuring test suite 'attoparsec-tests' for attoparsec-0.14.4...
@@ -140,8 +141,7 @@ Building test suite 'attoparsec-tests' for attoparsec-0.14.4...
 [ 4 of 12] Compiling QC.Buffer
 [ 5 of 12] Compiling QC.IPv6.Types
 [ 6 of 12] Compiling QC.IPv6.Internal
-
-tests/QC/IPv6/Internal.hs:32:1: warning: [-Wunused-imports]
+tests/QC/IPv6/Internal.hs:32:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Monad’ is redundant
       except perhaps to import instances from ‘Control.Monad’
     To import instances alone, use: import Control.Monad()
@@ -149,14 +149,14 @@ tests/QC/IPv6/Internal.hs:32:1: warning: [-Wunused-imports]
 32 | import Control.Monad (replicateM)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-tests/QC/IPv6/Internal.hs:34:1: warning: [-Wunused-imports]
+tests/QC/IPv6/Internal.hs:34:1: warning: [GHC-38856] [-Wunused-imports]
     The import of ‘isHexDigit, toLower’
     from module ‘Data.Char’ is redundant
    |
 34 | import Data.Char (isDigit,isHexDigit,toLower)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-tests/QC/IPv6/Internal.hs:35:1: warning: [-Wunused-imports]
+tests/QC/IPv6/Internal.hs:35:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
@@ -164,13 +164,13 @@ tests/QC/IPv6/Internal.hs:35:1: warning: [-Wunused-imports]
 35 | import Data.Monoid ((<>))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-tests/QC/IPv6/Internal.hs:36:35: warning: [-Wunused-imports]
+tests/QC/IPv6/Internal.hs:36:35: warning: [GHC-38856] [-Wunused-imports]
     The import of ‘<*’ from module ‘Control.Applicative’ is redundant
    |
 36 | import Control.Applicative ((<|>),(<*))
    |                                   ^^^^
 
-tests/QC/IPv6/Internal.hs:38:1: warning: [-Wunused-imports]
+tests/QC/IPv6/Internal.hs:38:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Word’ is redundant
       except perhaps to import instances from ‘Data.Word’
     To import instances alone, use: import Data.Word()
@@ -184,7 +184,7 @@ tests/QC/IPv6/Internal.hs:46:1: warning: [GHC-38417] [-Wmissing-signatures]
 46 | tok0 = "0"
    | ^^^^
 
-tests/QC/IPv6/Internal.hs:68:36: warning: [-Wunused-matches]
+tests/QC/IPv6/Internal.hs:68:36: warning: [GHC-40910] [-Wunused-matches]
     Defined but not used: ‘tok1’
    |
 68 | isIPv6Addr [DoubleColon,SixteenBit tok1] = True
@@ -226,7 +226,7 @@ tests/QC/IPv6/Internal.hs:77:17: warning: [GHC-18042] [-Wtype-defaults]
 77 |                 0 -> case lasttk of
    |                 ^
 
-tests/QC/IPv6/Internal.hs:85:17: warning: [-Wunused-matches]
+tests/QC/IPv6/Internal.hs:85:17: warning: [GHC-40910] [-Wunused-matches]
     Defined but not used: ‘otherwise’
    |
 85 |                 otherwise -> False))
@@ -235,12 +235,28 @@ tests/QC/IPv6/Internal.hs:85:17: warning: [-Wunused-matches]
 tests/QC/IPv6/Internal.hs:85:17: warning: [GHC-63397] [-Wname-shadowing]
     This binding for ‘otherwise’ shadows the existing binding
       imported from ‘Prelude’ at tests/QC/IPv6/Internal.hs:16:8-23
-      (and originally defined in ‘GHC.Base’)
+      (and originally defined in ‘ghc-internal-9.1002.0:GHC.Internal.Base’)
    |
 85 |                 otherwise -> False))
    |                 ^^^^^^^^^
 
-tests/QC/IPv6/Internal.hs:107:17: warning: [-Wunused-local-binds]
+tests/QC/IPv6/Internal.hs:89:29: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+89 |                     let h = head ts
+   |                             ^^^^
+
+tests/QC/IPv6/Internal.hs:101:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+101 |                     case head l of
+    |                          ^^^^
+
+tests/QC/IPv6/Internal.hs:107:17: warning: [GHC-40910] [-Wunused-local-binds]
     Defined but not used: ‘tok1’
     |
 107 |                 tok1 = "1"
@@ -248,7 +264,8 @@ tests/QC/IPv6/Internal.hs:107:17: warning: [-Wunused-local-binds]
 
 tests/QC/IPv6/Internal.hs:107:24: warning: [GHC-18042] [-Wtype-defaults]
     • Defaulting the type variable ‘a0’ to type ‘String’ in the following constraint
-        Data.String.IsString a0 arising from the literal ‘"1"’
+        ghc-internal-9.1002.0:GHC.Internal.Data.String.IsString a0
+          arising from the literal ‘"1"’
     • In the expression: "1"
       In an equation for ‘tok1’: tok1 = "1"
       In an equation for ‘isIPv6Addr’:
@@ -286,7 +303,7 @@ tests/QC/IPv6/Internal.hs:109:1: warning: [GHC-38417] [-Wmissing-signatures]
 109 | countIPv4Addr = foldr oneMoreIPv4Addr 0
     | ^^^^^^^^^^^^^
 
-tests/QC/IPv6/Internal.hs:113:31: warning: [-Wunused-matches]
+tests/QC/IPv6/Internal.hs:113:31: warning: [GHC-40910] [-Wunused-matches]
     Defined but not used: ‘otherwise’
     |
 113 |                               otherwise  -> c
@@ -295,7 +312,7 @@ tests/QC/IPv6/Internal.hs:113:31: warning: [-Wunused-matches]
 tests/QC/IPv6/Internal.hs:113:31: warning: [GHC-63397] [-Wname-shadowing]
     This binding for ‘otherwise’ shadows the existing binding
       imported from ‘Prelude’ at tests/QC/IPv6/Internal.hs:16:8-23
-      (and originally defined in ‘GHC.Base’)
+      (and originally defined in ‘ghc-internal-9.1002.0:GHC.Internal.Base’)
     |
 113 |                               otherwise  -> c
     |                               ^^^^^^^^^
@@ -315,6 +332,14 @@ tests/QC/IPv6/Internal.hs:149:14: warning: [GHC-63397] [-Wname-shadowing]
     |
 149 |     readText s = feed (parse (many1 $ ipv4Addr <|> sixteenBit <|> doubleColon <|> colon) s) T.empty
     |              ^
+
+tests/QC/IPv6/Internal.hs:212:55: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+212 |                 let snds = if not (null (snd s)) then tail(snd s) else []
+    |                                                       ^^^^
 
 tests/QC/IPv6/Internal.hs:219:34: warning: [GHC-63397] [-Wname-shadowing]
     This binding for ‘x’ shadows the existing binding
@@ -336,6 +361,14 @@ tests/QC/IPv6/Internal.hs:242:25: warning: [GHC-63397] [-Wname-shadowing]
     |
 242 |           where longest t = case t of
     |                         ^
+
+tests/QC/IPv6/Internal.hs:247:21: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+247 |         helper h = (head h == AllZeros, lh) where lh = length h
+    |                     ^^^^
 
 tests/QC/IPv6/Internal.hs:298:12: warning: [GHC-18042] [-Wtype-defaults]
     • Defaulting the type variable ‘a0’ to type ‘Integer’ in the following constraints
@@ -378,18 +411,35 @@ tests/QC/IPv6/Internal.hs:309:5: warning: [GHC-81995] [-Wunused-do-bind]
     |
 309 |     string ":"
     |     ^^^^^^^^^^
+
 [ 7 of 12] Compiling QC.Rechunked
 [ 8 of 12] Compiling QC.Simple
+tests/QC/Simple.hs:10:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.List’ is redundant
+      except perhaps to import instances from ‘Data.List’
+    To import instances alone, use: import Data.List()
+   |
+10 | import Data.List (foldl')
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [ 9 of 12] Compiling QC.Text.FastSet
 [10 of 12] Compiling QC.Text.Regressions
+tests/QC/Text/Regressions.hs:9:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.List’ is redundant
+      except perhaps to import instances from ‘Data.List’
+    To import instances alone, use: import Data.List()
+  |
+9 | import Data.List (foldl')
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-tests/QC/Text/Regressions.hs:12:1: warning: [-Wunused-imports]
+tests/QC/Text/Regressions.hs:12:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 12 | import Data.Monoid ((<>))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [11 of 12] Compiling QC.Text
 [12 of 12] Compiling Main
-[13 of 13] Linking /tmp/workdir-attoparsec/attoparsec-0.14.4/dist-newstyle/build/x86_64-linux/ghc-9.6.5/attoparsec-0.14.4/t/attoparsec-tests/build/attoparsec-tests/attoparsec-tests
+[13 of 13] Linking /tmp/workdir-attoparsec/attoparsec-0.14.4/dist-newstyle/build/x86_64-linux/ghc-9.10.2/attoparsec-0.14.4/t/attoparsec-tests/build/attoparsec-tests/attoparsec-tests

@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - protobuf-simple-0.1.1.1 (lib) (first run)
  - protobuf-simple-0.1.1.1 (exe:protobuf-simple-protoc) (first run)
@@ -35,10 +36,46 @@ Building executable 'protobuf-simple-protoc' for protobuf-simple-0.1.1.1...
 [12 of 17] Compiling Parser.ProtoParser
 [13 of 17] Compiling Parser.GeneratorUtils
 [14 of 17] Compiling Parser.MessageGenerator
+src/Parser/MessageGenerator.hs:14:19: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘foldl'’ from module ‘Data.List’ is redundant
+   |
+14 | import Data.List (foldl', intersperse)
+   |                   ^^^^^^
+
 [15 of 17] Compiling Parser.EnumGenerator
+src/Parser/EnumGenerator.hs:14:19: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘foldl'’ from module ‘Data.List’ is redundant
+   |
+14 | import Data.List (foldl', groupBy, intersperse, sortOn)
+   |                   ^^^^^^
+
+src/Parser/EnumGenerator.hs:110:37: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+110 |     first = EnumValueDesc.getName $ head $ EnumDesc.getValueDescs ed
+    |                                     ^^^^
+
+src/Parser/EnumGenerator.hs:136:18: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+136 |     uniqEs = map head . groupBy areEq . sortOn EnumValueDesc.getNumber
+    |                  ^^^^
+
 [16 of 17] Compiling Parser.Generator
+src/Parser/Generator.hs:15:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.List’ is redundant
+      except perhaps to import instances from ‘Data.List’
+    To import instances alone, use: import Data.List()
+   |
+15 | import Data.List (foldl')
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [17 of 17] Compiling Main
-[18 of 18] Linking /tmp/workdir-protobuf-simple/protobuf-simple-0.1.1.1/dist-newstyle/build/x86_64-linux/ghc-9.6.5/protobuf-simple-0.1.1.1/x/protobuf-simple-protoc/build/protobuf-simple-protoc/protobuf-simple-protoc
+[18 of 18] Linking /tmp/workdir-protobuf-simple/protobuf-simple-0.1.1.1/dist-newstyle/build/x86_64-linux/ghc-9.10.2/protobuf-simple-0.1.1.1/x/protobuf-simple-protoc/build/protobuf-simple-protoc/protobuf-simple-protoc
 Configuring test suite 'protobuf-simple-test' for protobuf-simple-0.1.1.1...
 Preprocessing test suite 'protobuf-simple-test' for protobuf-simple-0.1.1.1...
 Building test suite 'protobuf-simple-test' for protobuf-simple-0.1.1.1...
@@ -135,4 +172,4 @@ Building test suite 'protobuf-simple-test' for protobuf-simple-0.1.1.1...
 [91 of 93] Compiling Types.UInt64OptMsg
 [92 of 93] Compiling Data.ProtoBufSpec
 [93 of 93] Compiling Main
-[94 of 94] Linking /tmp/workdir-protobuf-simple/protobuf-simple-0.1.1.1/dist-newstyle/build/x86_64-linux/ghc-9.6.5/protobuf-simple-0.1.1.1/t/protobuf-simple-test/build/protobuf-simple-test/protobuf-simple-test
+[94 of 94] Linking /tmp/workdir-protobuf-simple/protobuf-simple-0.1.1.1/dist-newstyle/build/x86_64-linux/ghc-9.10.2/protobuf-simple-0.1.1.1/t/protobuf-simple-test/build/protobuf-simple-test/protobuf-simple-test

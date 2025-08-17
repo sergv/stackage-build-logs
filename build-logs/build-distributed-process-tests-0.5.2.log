@@ -1,0 +1,172 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - distributed-process-tests-0.5.2 (lib) (first run)
+ - distributed-process-tests-0.5.2 (test:TestTracingInMemory) (first run)
+ - distributed-process-tests-0.5.2 (test:TestStats) (first run)
+ - distributed-process-tests-0.5.2 (test:TestMxInTCP) (first run)
+ - distributed-process-tests-0.5.2 (test:TestMxInMemory) (first run)
+ - distributed-process-tests-0.5.2 (test:TestClosure) (first run)
+ - distributed-process-tests-0.5.2 (test:TestCHInMemory) (first run)
+Configuring library for distributed-process-tests-0.5.2...
+Preprocessing library for distributed-process-tests-0.5.2...
+Building library for distributed-process-tests-0.5.2...
+[1 of 8] Compiling Control.Distributed.Process.Tests.Internal.Utils
+src/Control/Distributed/Process/Tests/Internal/Utils.hs:137:18: warning: [GHC-30606] [-Wredundant-constraints]
+    Redundant constraint: Show a
+    In the type signature for:
+         shouldContain :: forall a. (Show a, Eq a) => [a] -> a -> Process ()
+    |
+137 | shouldContain :: (Show a, Eq a) => [a] -> a -> Process ()
+    |                  ^^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/Tests/Internal/Utils.hs:140:21: warning: [GHC-30606] [-Wredundant-constraints]
+    Redundant constraint: Show a
+    In the type signature for:
+         shouldNotContain :: forall a.
+                             (Show a, Eq a) =>
+                             [a] -> a -> Process ()
+    |
+140 | shouldNotContain :: (Show a, Eq a) => [a] -> a -> Process ()
+    |                     ^^^^^^^^^^^^^^
+
+[2 of 8] Compiling Network.Transport.Test
+[3 of 8] Compiling Control.Distributed.Process.Tests.Tracing
+[4 of 8] Compiling Control.Distributed.Process.Tests.Stats
+src/Control/Distributed/Process/Tests/Stats.hs:92:26: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘(ProcessId, String)’ not matched:
+            (_, [])
+            (_, (p:_)) where p is not one of {'p'}
+            (_, ['p'])
+            (_, ('p':p:_)) where p is not one of {'i'}
+            ...
+   |
+92 |                   match (\(pid, "ping") -> send pid "pong")
+   |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[5 of 8] Compiling Control.Distributed.Process.Tests.Receive
+[6 of 8] Compiling Control.Distributed.Process.Tests.Mx
+[7 of 8] Compiling Control.Distributed.Process.Tests.Closure
+src/Control/Distributed/Process/Tests/Closure.hs:84:1: warning: [GHC-30606] [-Wredundant-constraints]
+    Redundant constraints: (Typeable a, Typeable b, Typeable c,
+                            Typeable d, Typeable e)
+    In the type signature for:
+         quintuple__static :: forall a b c d e.
+                              (Typeable a, Typeable b, Typeable c, Typeable d, Typeable e) =>
+                              Static (a -> b -> c -> d -> e -> (a, b, c, d, e))
+   |
+84 | remotable [ 'factorial
+   | ^^^^^^^^^^^^^^^^^^^^^^...
+
+src/Control/Distributed/Process/Tests/Closure.hs:508:16: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+508 |   forkProcess (head nodes) $ do
+    |                ^^^^
+
+[8 of 8] Compiling Control.Distributed.Process.Tests.CH
+src/Control/Distributed/Process/Tests/CH.hs:92:1: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: ‘syncBreakConnection’
+   |
+92 | syncBreakConnection breakConnection nid0 nid1 = do
+   | ^^^^^^^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/Tests/CH.hs:496:1: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: ‘testMergeChannels’
+    |
+496 | testMergeChannels TestTransport{..} = do
+    | ^^^^^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/Tests/CH.hs:607:16: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘NodeMonitorNotification’ not matched:
+            NodeMonitorNotification _ _ DiedNormal
+            NodeMonitorNotification _ _ (DiedException _)
+            NodeMonitorNotification _ _ DiedNodeDown
+            NodeMonitorNotification _ _ DiedUnknownId
+    |
+607 |         match (\(NodeMonitorNotification ref' nid DiedDisconnect) ->
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+src/Control/Distributed/Process/Tests/CH.hs:661:1: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: ‘testRegistry’
+    |
+661 | testRegistry TestTransport{..} = do
+    | ^^^^^^^^^^^^
+
+src/Control/Distributed/Process/Tests/CH.hs:724:17: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘RegisterReply’ not matched:
+            RegisterReply _ _ Nothing
+    |
+724 |        matchIf (\(RegisterReply label' _ (Just pid)) ->
+    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+src/Control/Distributed/Process/Tests/CH.hs:746:18: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘RegisterReply’ not matched:
+            RegisterReply _ True _
+    |
+746 |         matchIf (\(RegisterReply label' False mPid) ->
+    |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+src/Control/Distributed/Process/Tests/CH.hs:748:18: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘RegisterReply’ not matched:
+            RegisterReply _ _ Nothing
+    |
+748 |                 (\(RegisterReply _ f (Just pid'')) -> return (not f && pid'' == pingServer))
+    |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/Tests/CH.hs:818:1: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: ‘testReconnect’
+    |
+818 | testReconnect TestTransport{..} = do
+    | ^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/Tests/CH.hs:1587:20: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘WhereIsReply’ not matched: WhereIsReply _ Nothing
+     |
+1587 |           matchIf (\(WhereIsReply n (Just p)) -> n == regName && p == us)
+     |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Configuring test suite 'TestTracingInMemory' for distributed-process-tests-0.5.2...
+Preprocessing test suite 'TestTracingInMemory' for distributed-process-tests-0.5.2...
+Building test suite 'TestTracingInMemory' for distributed-process-tests-0.5.2...
+[1 of 1] Compiling Main
+[2 of 2] Linking /tmp/workdir-distributed-process-tests/distributed-process-tests-0.5.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/distributed-process-tests-0.5.2/t/TestTracingInMemory/build/TestTracingInMemory/TestTracingInMemory
+Configuring test suite 'TestStats' for distributed-process-tests-0.5.2...
+Preprocessing test suite 'TestStats' for distributed-process-tests-0.5.2...
+Building test suite 'TestStats' for distributed-process-tests-0.5.2...
+[1 of 1] Compiling Main
+[2 of 2] Linking /tmp/workdir-distributed-process-tests/distributed-process-tests-0.5.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/distributed-process-tests-0.5.2/t/TestStats/build/TestStats/TestStats
+Configuring test suite 'TestMxInTCP' for distributed-process-tests-0.5.2...
+Preprocessing test suite 'TestMxInTCP' for distributed-process-tests-0.5.2...
+Building test suite 'TestMxInTCP' for distributed-process-tests-0.5.2...
+[1 of 1] Compiling Main
+[2 of 2] Linking /tmp/workdir-distributed-process-tests/distributed-process-tests-0.5.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/distributed-process-tests-0.5.2/t/TestMxInTCP/build/TestMxInTCP/TestMxInTCP
+Configuring test suite 'TestMxInMemory' for distributed-process-tests-0.5.2...
+Preprocessing test suite 'TestMxInMemory' for distributed-process-tests-0.5.2...
+Building test suite 'TestMxInMemory' for distributed-process-tests-0.5.2...
+[1 of 1] Compiling Main
+[2 of 2] Linking /tmp/workdir-distributed-process-tests/distributed-process-tests-0.5.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/distributed-process-tests-0.5.2/t/TestMxInMemory/build/TestMxInMemory/TestMxInMemory
+Configuring test suite 'TestClosure' for distributed-process-tests-0.5.2...
+Preprocessing test suite 'TestClosure' for distributed-process-tests-0.5.2...
+Building test suite 'TestClosure' for distributed-process-tests-0.5.2...
+[1 of 1] Compiling Main
+[2 of 2] Linking /tmp/workdir-distributed-process-tests/distributed-process-tests-0.5.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/distributed-process-tests-0.5.2/t/TestClosure/build/TestClosure/TestClosure
+Configuring test suite 'TestCHInMemory' for distributed-process-tests-0.5.2...
+Preprocessing test suite 'TestCHInMemory' for distributed-process-tests-0.5.2...
+Building test suite 'TestCHInMemory' for distributed-process-tests-0.5.2...
+[1 of 1] Compiling Main
+[2 of 2] Linking /tmp/workdir-distributed-process-tests/distributed-process-tests-0.5.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/distributed-process-tests-0.5.2/t/TestCHInMemory/build/TestCHInMemory/TestCHInMemory

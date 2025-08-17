@@ -1,0 +1,67 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - ghc-events-0.20.0.0 (lib) (first run)
+ - ghc-events-0.20.0.0 (test:test-versions) (first run)
+ - ghc-events-0.20.0.0 (exe:ghc-events) (first run)
+Configuring library for ghc-events-0.20.0.0...
+Preprocessing library for ghc-events-0.20.0.0...
+Building library for ghc-events-0.20.0.0...
+[ 1 of 11] Compiling GHC.RTS.EventTypes
+[ 2 of 11] Compiling GHC.RTS.EventParserUtils
+[ 3 of 11] Compiling GHC.RTS.Events.Binary
+[ 4 of 11] Compiling GHC.RTS.Events.Incremental
+[ 5 of 11] Compiling GHC.RTS.Events
+[ 6 of 11] Compiling GHC.RTS.Events.Analysis
+[ 7 of 11] Compiling GHC.RTS.Events.Analysis.Thread
+[ 8 of 11] Compiling GHC.RTS.Events.Analysis.SparkThread
+src/GHC/RTS/Events/Analysis/SparkThread.hs:94:5: warning: [GHC-40910] [-Wunused-local-binds]
+    Defined but not used: ‘stopThread’
+   |
+94 |     stopThread threadId = Just (M.filter (/= threadId) m, S.delete threadId s)
+   |     ^^^^^^^^^^
+
+[ 9 of 11] Compiling GHC.RTS.Events.Analysis.Capability
+[10 of 11] Compiling GHC.RTS.Events.Merge
+src/GHC/RTS/Events/Merge.hs:6:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.List’ is redundant
+      except perhaps to import instances from ‘Data.List’
+    To import instances alone, use: import Data.List()
+  |
+6 | import Data.List (foldl')
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/GHC/RTS/Events/Merge.hs:54:5: warning: [GHC-50928] [-Wnoncanonical-monoid-instances]
+    Noncanonical ‘(<>) = mappend’ definition detected
+    in the instance declaration for ‘Semigroup MaxVars’.
+    Suggested fix:
+      Move definition from ‘mappend’ to ‘(<>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+   |
+54 |     (<>) = mappend
+   |     ^^^^^^^^^^^^^^
+
+src/GHC/RTS/Events/Merge.hs:59:5: warning: [GHC-50928] [-Wnoncanonical-monoid-instances]
+    Noncanonical ‘mappend’ definition detected
+    in the instance declaration for ‘Monoid MaxVars’.
+    ‘mappend’ will eventually be removed in favour of ‘(<>)’
+    Suggested fix:
+      Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+   |
+59 |     mappend (MaxVars a b c) (MaxVars x y z) =
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+[11 of 11] Compiling Paths_ghc_events
+Configuring test suite 'test-versions' for ghc-events-0.20.0.0...
+Preprocessing test suite 'test-versions' for ghc-events-0.20.0.0...
+Building test suite 'test-versions' for ghc-events-0.20.0.0...
+[1 of 2] Compiling Utils
+[2 of 2] Compiling Main
+[3 of 3] Linking /tmp/workdir-ghc-events/ghc-events-0.20.0.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/ghc-events-0.20.0.0/t/test-versions/build/test-versions/test-versions
+Configuring executable 'ghc-events' for ghc-events-0.20.0.0...
+Preprocessing executable 'ghc-events' for ghc-events-0.20.0.0...
+Building executable 'ghc-events' for ghc-events-0.20.0.0...
+[1 of 2] Compiling Paths_ghc_events
+[2 of 2] Compiling Main
+[3 of 3] Linking /tmp/workdir-ghc-events/ghc-events-0.20.0.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/ghc-events-0.20.0.0/x/ghc-events/build/ghc-events/ghc-events

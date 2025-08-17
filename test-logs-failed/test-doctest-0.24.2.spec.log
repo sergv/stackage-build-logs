@@ -1,0 +1,434 @@
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - doctest-0.24.2 (test:spec) (ephemeral targets)
+Preprocessing test suite 'spec' for doctest-0.24.2...
+Building test suite 'spec' for doctest-0.24.2...
+Running 1 test suites...
+Test suite spec: RUNNING...
+
+Cabal.Options
+  replOnlyOptions
+    is the set of options that are unique to 'cabal repl' [✔]
+  rejectUnsupportedOptions
+    produces error messages that are consistent with 'cabal repl' [✔]
+    with --list-options
+      lists supported command-line options [✘]
+  discardReplOptions
+    discards 'cabal repl'-only options [✔]
+Cabal.Paths
+  paths
+    returns the path to 'ghc' [✔]
+    returns the path to 'ghc-pkg' [✔]
+    returns the path to Cabal's cache directory [✔]
+Cabal.ReplOptions
+  options
+    is the list of documented 'repl' options [✘]
+    is consistent with 'cabal repl --list-options' [✘]
+Extract
+  extract
+    extracts documentation for a top-level declaration [✔]
+    extracts documentation from argument list [✔]
+    extracts documentation for a type class function [✔]
+    extracts documentation from the argument list of a type class function [✔]
+    extracts documentation from the module header [✔]
+    extracts documentation from imported modules [✔]
+    extracts documentation from export list [✔]
+    extracts documentation from named chunks [✔]
+    returns docstrings in the same order they appear in the source [✔]
+    extracts $setup code [✔]
+    fails on invalid flags [✔]
+  extract (regression tests)
+    works with infix operators [✔]
+    works with parallel list comprehensions [✔]
+    works with list comprehensions in instance definitions [✔]
+    works with foreign imports [✔]
+    works for rewrite rules [✔]
+    works for rewrite rules with type signatures [✔]
+    strips CR from dos line endings [✔]
+    works with a module that splices in an expression from an other module [✔]
+    works for type families and GHC 7.6.1 [✔]
+Info
+  formatInfo
+    formats --info output [✔]
+Interpreter
+  interpreterSupported
+    indicates whether GHCi is supported on current platform [✔]
+  ghcInfo
+    includes "Have interpreter" [✔]
+  safeEval
+    evaluates an expression [✔]
+    returns Left on unterminated multiline command [✔]
+  filterExpression
+    removes :set -XTemplateHaskell [✔]
+    filters -XTemplateHaskell [✔]
+    leaves :set-statement that do not set -XTemplateHaskell alone  [✔]
+Language.Haskell.GhciWrapper
+  evalEcho
+    prints result to stdout [✔]
+  evalWith
+    with PreserveIt
+      preserves it [✔]
+  eval
+    shows literals [✔]
+    shows string literals containing Unicode [✔]
+    evaluates simple expressions [✔]
+    supports let bindings [✔]
+    allows import statements [✔]
+    captures stdout [✔]
+    captures stdout (Unicode) [✔]
+    captures stdout (empty line) [✔]
+    captures stdout (multiple lines) [✔]
+    captures stderr [✔]
+    captures stderr (Unicode) [✔]
+    shows exceptions [✔]
+    shows exceptions (ExitCode) [✔]
+    gives an error message for identifiers that are not in scope [✔]
+    when configVerbose is True
+      prints prompt [✔]
+    with -XOverloadedStrings, -Wall and -Werror
+      does not fail on marker expression (bug fix) [✔]
+    with NoImplicitPrelude
+      works [✔]
+    with a strange String type
+      works [✔]
+Location
+  toLocation
+    works for a regular SrcSpan [✔]
+    works for a single-line SrcSpan [✔]
+    works for a SrcSpan that corresponds to single point [✔]
+    works for a bad SrcSpan [✔]
+    works for a SrcLoc with bad locations [✔]
+  enumerate
+    replicates UnhelpfulLocation [✔]
+    enumerates Location [✔]
+Main
+  doctest
+    testSimple [✔]
+    it-variable [✔]
+    it-variable in $setup [✔]
+    failing [✔]
+    skips subsequent examples from the same group if an example fails [✔]
+    without --fail-fast
+      continuous even if some tests fail [✔]
+    with --fail-fast
+      stops after the first failure [✔]
+      stops after failures in $setup [✔]
+    testImport [✔]
+    testCommentLocation [✔]
+    testPutStr [✔]
+    fails on multi-line expressions, introduced with :{ [✔]
+    testBlankline [✔]
+    examples from the same Haddock comment share the same scope [✔]
+    testDocumentationForArguments [✔]
+    template-haskell [✔]
+    handles source files with CRLF line endings [✔]
+    runs $setup before each test group [✔]
+    skips subsequent tests from a module, if $setup fails [✔]
+    ignores trailing whitespace when matching test output [✔]
+  doctest as a runner for QuickCheck properties
+    runs a boolean property [✔]
+    runs an explicitly quantified property [✔]
+    runs an implicitly quantified property [✔]
+    reports a failing property [✔]
+    runs a boolean property with an explicit type signature [✔]
+    runs $setup before each property [✔]
+  doctest (regression tests)
+    bugfixWorkingDirectory [✔]
+    bugfixOutputToStdErr [✔]
+    bugfixImportHierarchical [✔]
+    bugfixMultipleModules [✔]
+    testCPP [✔]
+    template-haskell-bugfix [✔]
+    doesn't clash with user bindings of stdout/stderr [✔]
+    doesn't get confused by doctests using System.IO imports [✔]
+Options
+  parseOptions
+    strips --optghc [✔]
+    strips --optghc= [✔]
+    with ghc options that are not valid with --interactive
+      returns ProxyToGhc [✔]
+        +++ OK, passed 100 tests.
+    with --interactive
+      disables magic mode [✔]
+      filters out --interactive [✔]
+      accepts --fast [✔]
+    --no-magic
+      without --no-magic
+        enables magic mode [✔]
+      with --no-magic
+        disables magic mode [✔]
+    --fast
+      without --fast
+        disables fast mode [✔]
+      with --fast
+        enables fast mode [✔]
+    --preserve-it
+      without --preserve-it
+        does not preserve the `it` variable [✔]
+      with --preserve-it
+        preserves the `it` variable [✔]
+    --fail-fast
+      without --fail-fast
+        disables fail-fast mode [✔]
+      with --fail-fast
+        enables fail-fast mode [✔]
+    with --help
+      outputs usage information [✔]
+    with --version
+      outputs version information [✔]
+    with --info
+      outputs machine readable version information [✔]
+    --verbose
+      without --verbose
+        is not verbose by default [✔]
+      with --verbose
+        parses verbose option [✔]
+PackageDBs
+  getPackageDBsFromEnv
+    uses global and user when no env used [✔]
+    respects GHC_PACKAGE_PATH [✔]
+Parse
+  extractDocTests
+    extracts properties from a module [✔]
+    extracts examples from a module [✔]
+    extracts examples from documentation for non-exported names [✔]
+    extracts multiple examples from a module [✔]
+    returns an empty list, if documentation contains no examples [✔]
+    sets setup code to Nothing, if it does not contain any tests [✔]
+    keeps modules that only contain setup code [✔]
+  parseInteractions (an internal function)
+    parses an interaction [✔]
+    drops whitespace as appropriate [✔]
+    parses an interaction without a result [✔]
+    works with a complex example [✔]
+    attaches location information to parsed interactions [✔]
+    basic multiline [✔]
+    multiline align output [✔]
+    multiline align output with >>> [✔]
+    parses wild cards lines [✔]
+    parses wild card chunks [✔]
+   parseProperties (an internal function)
+    parses a property [✔]
+  mkLineChunks (an internal function)
+    replaces ellipsis with WildCardChunks [✔]
+    doesn't replace fewer than 3 consecutive dots [✔]
+    handles leading and trailing dots [✔]
+    handles leading and trailing ellipsis [✔]
+Property
+  runProperty
+    reports a failing property [✔]
+    runs a Bool property [✔]
+    runs a Bool property with an explicit type signature [✔]
+    runs an implicitly quantified property [✔]
+    runs an implicitly quantified property even with GHC 7.4 [✔]
+    runs an explicitly quantified property [✔]
+    allows to mix implicit and explicit quantification [✔]
+    reports the value for which a property fails [✔]
+    reports the values for which a property that takes multiple arguments fails [✔]
+    defaults ambiguous type variables to Integer [✔]
+  freeVariables
+    finds a free variables in a term [✔]
+    ignores duplicates [✔]
+    works for terms with multiple names [✔]
+    works for names that contain a prime [✔]
+    works for names that are similar to other names that are in scope [✔]
+  parseNotInScope
+    when error message was produced by GHC 7.4.1
+      extracts a variable name of variable that is not in scope from an error message [✔]
+      ignores duplicates [✔]
+      works for variable names that contain a prime [✔]
+      works for error messages with suggestions [✔]
+    when error message was produced by GHC 8.0.1
+      extracts a variable name of variable that is not in scope from an error message [✔]
+      ignores duplicates [✔]
+      works for variable names that contain a prime [✔]
+      works for error messages with suggestions [✔]
+Run
+  doctest
+    exits with ExitFailure if at least one test case fails [✔]
+    prints help on --help [✔]
+    prints version on --version [✔]
+    accepts arbitrary GHC options [✔]
+    accepts GHC options with --optghc [✔]
+    prints a deprecation message for --optghc [✔]
+    prints error message on invalid option [✔]
+    interprets GHC response files [✔]
+    prints verbose description of a specification [✔]
+    prints verbose description of a property [✔]
+    prints verbose error [✔]
+    can deal with potentially problematic GHC options [✔]
+  doctestWithResult
+    on parse error
+      aborts with (ExitFailure 1) [✔]
+      prints a useful error message [✔]
+  expandDirs
+    expands a directory [✔]
+    ignores files [✔]
+    ignores random things [✔]
+Runner
+  report
+    when mode is interactive
+      writes to stderr [✔]
+    when mode is non-interactive
+      writes to stderr [✔]
+  report_
+    when mode is interactive
+      writes transient output to stderr [✔]
+    when mode is non-interactive
+      is ignored [✔]
+Runner.Example
+  mkResult
+    returns Equal when output matches [✔]
+      +++ OK, passed 100 tests.
+    ignores trailing whitespace [✔]
+    with WildCardLine
+      matches zero lines [✔]
+      matches first zero line [✔]
+      matches final zero line [✔]
+      matches an arbitrary number of lines [✔]
+      matches an arbitrary number of lines (quickcheck) [✔]
+        +++ OK, passed 100 tests.
+    with WildCardChunk
+      matches an arbitrary line chunk [✔]
+      matches an arbitrary line chunk at end [✔]
+      does not match at end [✔]
+      does not match at start [✔]
+    when output does not match
+      constructs failure message [✔]
+      constructs failure message for multi-line output [✔]
+      when any output line contains "unsafe" characters
+        uses show to format output lines [✔]
+      insert caret after last matching character on different lengths [✔]
+      insert caret after mismatching line for multi-line output [✔]
+      insert caret after mismatching line with the longest match for multi-line wildcard pattern [✔]
+      insert caret after longest match for wildcard [✔]
+      show expanded pattern for long matches [✔]
+Util
+  convertDosLineEndings
+    converts CRLF to LF [✔]
+    strips a trailing CR [✔]
+  takeWhileEnd
+    returns the longest suffix of elements that satisfy a given predicate [✔]
+
+Failures:
+
+  test/Cabal/OptionsSpec.hs:44:38: 
+  1) Cabal.Options.rejectUnsupportedOptions, with --list-options, lists supported command-line options
+       Actual list is not a permutation of expected list!
+         expected elements: []
+         actual elements:   ["--disable-profiling-shared", "--enable-profiling-shared", "--haddock-resources-dir", "--haddock-use-unicode", "--ignore-build-tools"]
+         extra elements:    ["--disable-profiling-shared", "--enable-profiling-shared", "--haddock-resources-dir", "--haddock-use-unicode", "--ignore-build-tools"]
+
+  To rerun use: --match "/Cabal.Options/rejectUnsupportedOptions/with --list-options/lists supported command-line options/" --seed 1267287923
+
+  test/Cabal/ReplOptionsSpec.hs:39:15: 
+  2) Cabal.ReplOptions.options is the list of documented 'repl' options
+       expected: @@ 188 lines omitted @@
+                   optionArgument = NoArgument,
+                   optionHelp = "Disable Executable and library profiling"
+                 }, Option {
+                   optionName = "enable-executable-profiling",
+                   optionShortName = Nothing,
+                   optionArgument = NoArgument,
+                   optionHelp = "Enable Executable profiling (DEPRECATED)"
+                 @@ 233 lines omitted @@
+                   optionArgument = Argument "UNITID",
+                   optionHelp = "A list of unit-ids of libraries to include in the Haskell Program Coverage report."
+                 }, Option {
+                   optionName = "cabal-lib-version",
+                   optionShortName = Nothing,
+                   optionArgument = Argument "VERSION",
+                   optionHelp = "Select which version of the Cabal lib to use to build packages (useful for testing)."
+                 @@ 298 lines omitted @@
+                   optionArgument = Argument "URL",
+                   optionHelp = "Base URL for static files."
+                 }, Option {
+                   optionName = "haddock-lib",
+                   optionShortName = Nothing,
+                   optionArgument = Argument "DIR",
+                   optionHelp = "location of Haddocks static / auxiliary files"
+                 @@ 3 lines omitted @@
+                   optionArgument = Argument "DIR",
+                   optionHelp = "Generate haddock documentation into this directory. This flag is provided as a technology preview and is subject to change in the next releases."
+                 }, Option {
+                   optionName = "test-log",
+                   optionShortName = Nothing,
+                   optionArgument = Argument "TEMPLATE",
+                   optionHelp = "Log all test suite results to file (name template can use $pkgid, $compiler, $os, $arch, $test-suite, $result)"
+                 @@ 101 lines omitted @@
+                 
+        but got: @@ 188 lines omitted @@
+                   optionArgument = NoArgument,
+                   optionHelp = "Disable Executable and library profiling"
+                 }, Option {
+                   optionName = "enable-profiling-shared",
+                   optionShortName = Nothing,
+                   optionArgument = NoArgument,
+                   optionHelp = "Enable Build profiling shared libraries"
+                 }, Option {
+                   optionName = "disable-profiling-shared",
+                   optionShortName = Nothing,
+                   optionArgument = NoArgument,
+                   optionHelp = "Disable Build profiling shared libraries"
+                 }, Option {
+                   optionName = "enable-executable-profiling",
+                   optionShortName = Nothing,
+                   optionArgument = NoArgument,
+                   optionHelp = "Enable Executable profiling (DEPRECATED)"
+                 @@ 233 lines omitted @@
+                   optionArgument = Argument "UNITID",
+                   optionHelp = "A list of unit-ids of libraries to include in the Haskell Program Coverage report."
+                 }, Option {
+                   optionName = "ignore-build-tools",
+                   optionShortName = Nothing,
+                   optionArgument = NoArgument,
+                   optionHelp = "Ignore build tool dependencies. If set, declared build tools needn't be found for compilation to proceed."
+                 }, Option {
+                   optionName = "cabal-lib-version",
+                   optionShortName = Nothing,
+                   optionArgument = Argument "VERSION",
+                   optionHelp = "Select which version of the Cabal lib to use to build packages (useful for testing)."
+                 @@ 298 lines omitted @@
+                   optionArgument = Argument "URL",
+                   optionHelp = "Base URL for static files."
+                 }, Option {
+                   optionName = "haddock-resources-dir",
+                   optionShortName = Nothing,
+                   optionArgument = Argument "DIR",
+                   optionHelp = "location of Haddocks static / auxiliary files"
+                 @@ 3 lines omitted @@
+                   optionArgument = Argument "DIR",
+                   optionHelp = "Generate haddock documentation into this directory. This flag is provided as a technology preview and is subject to change in the next releases."
+                 }, Option {
+                   optionName = "haddock-use-unicode",
+                   optionShortName = Nothing,
+                   optionArgument = NoArgument,
+                   optionHelp = "Pass --use-unicode option to haddock"
+                 }, Option {
+                   optionName = "test-log",
+                   optionShortName = Nothing,
+                   optionArgument = Argument "TEMPLATE",
+                   optionHelp = "Log all test suite results to file (name template can use $pkgid, $compiler, $os, $arch, $test-suite, $result)"
+                 @@ 101 lines omitted @@
+                 
+
+  To rerun use: --match "/Cabal.ReplOptions/options/is the list of documented 'repl' options/" --seed 1267287923
+
+  test/Cabal/ReplOptionsSpec.hs:49:37: 
+  3) Cabal.ReplOptions.options is consistent with 'cabal repl --list-options'
+       expected: ["-h", "--help", "-v", "--verbose", "--builddir", "-g", "--ghc", "--ghcjs", "--uhc", "--haskell-suite", "-w", "--with-compiler", "--with-hc-pkg", "--prefix", "--bindir", "--libdir", "--libsubdir", "--dynlibdir", "--libexecdir", "--libexecsubdir", "--datadir", "--datasubdir", "--docdir", "--htmldir", "--haddockdir", "--sysconfdir", "--program-prefix", "--program-suffix", "--enable-library-vanilla", "--disable-library-vanilla", "-p", "--enable-library-profiling", "--disable-library-profiling", "--enable-shared", "--disable-shared", "--enable-static", "--disable-static", "--enable-executable-dynamic", "--disable-executable-dynamic", "--enable-executable-static", "--disable-executable-static", "--enable-profiling", "--disable-profiling", "--enable-executable-profiling", "--disable-executable-profiling", "--profiling-detail", "--library-profiling-detail", "-O", "--enable-optimization", "--disable-optimization", "--enable-debug-info", "--disable-debug-info", "--enable-build-info", "--disable-build-info", "--enable-library-for-ghci", "--disable-library-for-ghci", "--enable-split-sections", "--disable-split-sections", "--enable-split-objs", "--disable-split-objs", "--enable-executable-stripping", "--disable-executable-stripping", "--enable-library-stripping", "--disable-library-stripping", "--configure-option", "--user", "--global", "--package-db", "-f", "--flags", "--extra-include-dirs", "--enable-deterministic", "--disable-deterministic", "--ipid", "--cid", "--extra-lib-dirs", "--extra-lib-dirs-static", "--extra-framework-dirs", "--extra-prog-path", "--instantiate-with", "--enable-tests", "--disable-tests", "--enable-coverage", "--disable-coverage", "--enable-library-coverage", "--disable-library-coverage", "--enable-benchmarks", "--disable-benchmarks", "--enable-relocatable", "--disable-relocatable", "--disable-response-files", "--allow-depending-on-private-libs", "--coverage-for", "--cabal-lib-version", "--enable-append", "--disable-append", "--enable-backup", "--disable-backup", "-c", "--constraint", "--preference", "--solver", "--allow-older", "--allow-newer", "--write-ghc-environment-files", "--enable-documentation", "--disable-documentation", "--doc-index-file", "--dry-run", "--only-download", "--max-backjumps", "--reorder-goals", "--count-conflicts", "--fine-grained-conflicts", "--minimize-conflict-set", "--independent-goals", "--prefer-oldest", "--shadow-installed-packages", "--strong-flags", "--allow-boot-library-installs", "--reject-unconstrained-dependencies", "--reinstall", "--avoid-reinstalls", "--force-reinstalls", "--upgrade-dependencies", "--only-dependencies", "--dependencies-only", "--index-state", "--root-cmd", "--build-summary", "--build-log", "--remote-build-reporting", "--report-planning-failure", "--enable-per-component", "--disable-per-component", "--run-tests", "--semaphore", "-j", "--jobs", "--keep-going", "--offline", "--haddock-hoogle", "--haddock-html", "--haddock-html-location", "--haddock-for-hackage", "--haddock-executables", "--haddock-tests", "--haddock-benchmarks", "--haddock-all", "--haddock-internal", "--haddock-css", "--haddock-hyperlink-source", "--haddock-quickjump", "--haddock-hscolour-css", "--haddock-contents-location", "--haddock-base-url", "--haddock-lib", "--haddock-output-dir", "--test-log", "--test-machine-log", "--test-show-details", "--test-keep-tix-files", "--test-wrapper", "--test-fail-when-no-test-suites", "--test-options", "--test-option", "--benchmark-options", "--benchmark-option", "--project-dir", "--project-file", "-z", "--ignore-project", "--repl-no-load", "--repl-options", "--repl-multi-file", "-b", "--build-depends", "--no-transitive-deps", "--enable-multi-repl", "--disable-multi-repl", "--keep-temp-files"]
+        but got: ["-h", "--help", "-v", "--verbose", "--builddir", "-g", "--ghc", "--ghcjs", "--uhc", "--haskell-suite", "-w", "--with-compiler", "--with-hc-pkg", "--prefix", "--bindir", "--libdir", "--libsubdir", "--dynlibdir", "--libexecdir", "--libexecsubdir", "--datadir", "--datasubdir", "--docdir", "--htmldir", "--haddockdir", "--sysconfdir", "--program-prefix", "--program-suffix", "--enable-library-vanilla", "--disable-library-vanilla", "-p", "--enable-library-profiling", "--disable-library-profiling", "--enable-shared", "--disable-shared", "--enable-static", "--disable-static", "--enable-executable-dynamic", "--disable-executable-dynamic", "--enable-executable-static", "--disable-executable-static", "--enable-profiling", "--disable-profiling", "--enable-profiling-shared", "--disable-profiling-shared", "--enable-executable-profiling", "--disable-executable-profiling", "--profiling-detail", "--library-profiling-detail", "-O", "--enable-optimization", "--disable-optimization", "--enable-debug-info", "--disable-debug-info", "--enable-build-info", "--disable-build-info", "--enable-library-for-ghci", "--disable-library-for-ghci", "--enable-split-sections", "--disable-split-sections", "--enable-split-objs", "--disable-split-objs", "--enable-executable-stripping", "--disable-executable-stripping", "--enable-library-stripping", "--disable-library-stripping", "--configure-option", "--user", "--global", "--package-db", "-f", "--flags", "--extra-include-dirs", "--enable-deterministic", "--disable-deterministic", "--ipid", "--cid", "--extra-lib-dirs", "--extra-lib-dirs-static", "--extra-framework-dirs", "--extra-prog-path", "--instantiate-with", "--enable-tests", "--disable-tests", "--enable-coverage", "--disable-coverage", "--enable-library-coverage", "--disable-library-coverage", "--enable-benchmarks", "--disable-benchmarks", "--enable-relocatable", "--disable-relocatable", "--disable-response-files", "--allow-depending-on-private-libs", "--coverage-for", "--ignore-build-tools", "--cabal-lib-version", "--enable-append", "--disable-append", "--enable-backup", "--disable-backup", "-c", "--constraint", "--preference", "--solver", "--allow-older", "--allow-newer", "--write-ghc-environment-files", "--enable-documentation", "--disable-documentation", "--doc-index-file", "--dry-run", "--only-download", "--max-backjumps", "--reorder-goals", "--count-conflicts", "--fine-grained-conflicts", "--minimize-conflict-set", "--independent-goals", "--prefer-oldest", "--shadow-installed-packages", "--strong-flags", "--allow-boot-library-installs", "--reject-unconstrained-dependencies", "--reinstall", "--avoid-reinstalls", "--force-reinstalls", "--upgrade-dependencies", "--only-dependencies", "--dependencies-only", "--index-state", "--root-cmd", "--build-summary", "--build-log", "--remote-build-reporting", "--report-planning-failure", "--enable-per-component", "--disable-per-component", "--run-tests", "--semaphore", "-j", "--jobs", "--keep-going", "--offline", "--haddock-hoogle", "--haddock-html", "--haddock-html-location", "--haddock-for-hackage", "--haddock-executables", "--haddock-tests", "--haddock-benchmarks", "--haddock-all", "--haddock-internal", "--haddock-css", "--haddock-hyperlink-source", "--haddock-quickjump", "--haddock-hscolour-css", "--haddock-contents-location", "--haddock-base-url", "--haddock-resources-dir", "--haddock-output-dir", "--haddock-use-unicode", "--test-log", "--test-machine-log", "--test-show-details", "--test-keep-tix-files", "--test-wrapper", "--test-fail-when-no-test-suites", "--test-options", "--test-option", "--benchmark-options", "--benchmark-option", "--project-dir", "--project-file", "-z", "--ignore-project", "--repl-no-load", "--repl-options", "--repl-multi-file", "-b", "--build-depends", "--no-transitive-deps", "--enable-multi-repl", "--disable-multi-repl", "--keep-temp-files"]
+
+  To rerun use: --match "/Cabal.ReplOptions/options/is consistent with 'cabal repl --list-options'/" --seed 1267287923
+
+Randomized with seed 1267287923
+
+Finished in 45.5892 seconds
+207 examples, 3 failures
+Test suite spec: FAIL
+Test suite logged to:
+/tmp/workdir-doctest/doctest-0.24.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/doctest-0.24.2/t/spec/test/doctest-0.24.2-spec.log
+0 of 1 test suites (0 of 1 test cases) passed.
+Error: [Cabal-7125]
+Tests failed for test:spec from doctest-0.24.2.
+

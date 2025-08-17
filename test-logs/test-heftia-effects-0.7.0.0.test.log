@@ -1,0 +1,50 @@
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - heftia-effects-0.7.0.0 (test:test) (ephemeral targets)
+Preprocessing test suite 'test' for heftia-effects-0.7.0.0...
+Building test suite 'test' for heftia-effects-0.7.0.0...
+Running 1 test suites...
+Test suite test: RUNNING...
+test/Driver.hs
+  Concurrent
+    Parallel:                                                                                                               OK
+    Sequential:                                                                                                             OK
+    Race:                                                                                                                   OK
+    Cancel:                                                                                                                 OK
+    Poll:                                                                                                                   OK
+  Coroutine
+    Generator & Reply:                                                                                                      OK
+  Pyth
+    Non-Deterministic Search for Pythagorean triangle numbers
+      n = 16:                                                                                                               OK (0.02s)
+  State Except
+    State & Except semantics
+      evalState . runThrow  $ (put True *> throw) `catch` ()  ==>  Right True:                                              OK
+      runThrow  . evalState $ (put True *> throw) `catch` ()  ==>  Right True:                                              OK
+  NonDet Except
+    NonDet & Except semantics
+      runNonDet . runThrow  $ (True <|> throw) `catch` False  ==>  [Right True, Right False]:                               OK
+      runThrow  . runNonDet $ (True <|> throw) `catch` False  ==>  Right [True, False]:                                     OK
+      runNonDet . runThrow  $ (throw <|> True) `catch` False  ==>  [Right False, Right False]:                              OK
+      runThrow  . runNonDet $ (throw <|> True) `catch` False  ==>  Right [False, True]:                                     OK
+  NonDet Writer
+    NonDet & Writer semantics
+      runNonDet . runTell   $ listen $ add 1 *> (add 2 $> True <|> add 3 $> False)  ==>  [(3, (3, True)), (4, (4, False))]: OK
+      runTell   . runNonDet $ listen $ add 1 *> (add 2 $> True <|> add 3 $> False)  ==>  (6, [(3, True), (4, False)]):      OK
+  The issue 12
+    hasura/eff#12 semantics
+      runCatch . interpret (\SomeAction -> throw "not caught") $ someAction `catch` "caught"  ==>  Right "caught":          OK
+      interpret (\SomeAction -> throw "not caught") . runCatch $ someAction `catch` "caught"  ==>  Left "not caught":       OK
+  UnliftIO
+    MonadUnliftIO safety
+      with evalState:                                                                                                       OK
+  Writer Elaboration
+    Elaboration for Writer
+      Pre-applying Cencor:                                                                                                  OK
+      Post-applying Cencor:                                                                                                 OK
+
+All 20 tests passed (0.03s)
+Test suite test: PASS
+Test suite logged to:
+/tmp/workdir-heftia-effects/heftia-effects-0.7.0.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/heftia-effects-0.7.0.0/t/test/test/heftia-effects-0.7.0.0-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

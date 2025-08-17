@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - IntervalMap-0.6.2.1 (lib) (first run)
  - IntervalMap-0.6.2.1 (test:TestGenericInterval) (first run)
@@ -11,8 +12,7 @@ Building library for IntervalMap-0.6.2.1...
 [1 of 9] Compiling Data.IntervalMap.Interval
 [2 of 9] Compiling Data.IntervalMap.Generic.Interval
 [3 of 9] Compiling Data.IntervalMap.Generic.Base
-
-Data/IntervalMap/Generic/Base.hs:207:1: warning: [-Wunused-imports]
+Data/IntervalMap/Generic/Base.hs:207:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
@@ -20,45 +20,61 @@ Data/IntervalMap/Generic/Base.hs:207:1: warning: [-Wunused-imports]
 207 | import Data.Monoid (Monoid(..))
     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Data/IntervalMap/Generic/Base.hs:208:1: warning: [-Wunused-imports]
+Data/IntervalMap/Generic/Base.hs:208:1: warning: [GHC-38856] [-Wunused-imports]
     The import of ‘<$>, Applicative’
     from module ‘Control.Applicative’ is redundant
     |
 208 | import Control.Applicative (Applicative(..), (<$>), (<|>))
     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Data/IntervalMap/Generic/Base.hs:209:1: warning: [-Wunused-imports]
+Data/IntervalMap/Generic/Base.hs:209:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Traversable’ is redundant
       except perhaps to import instances from ‘Data.Traversable’
     To import instances alone, use: import Data.Traversable()
     |
 209 | import Data.Traversable (Traversable(traverse))
     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Data/IntervalMap/Generic/Base.hs:952:40: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+952 | unionsWith f ms = fromDistinctAscList (head (go (L.map toAscList ms)))
+    |                                        ^^^^
+
 [4 of 9] Compiling Data.IntervalMap.Generic.Strict
 [5 of 9] Compiling Data.IntervalMap.Generic.Lazy
 [6 of 9] Compiling Data.IntervalMap.Lazy
 [7 of 9] Compiling Data.IntervalMap.Strict
 [8 of 9] Compiling Data.IntervalMap
 [9 of 9] Compiling Data.IntervalSet
-
-Data/IntervalSet.hs:137:1: warning: [-Wunused-imports]
+Data/IntervalSet.hs:137:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
     |
 137 | import Data.Monoid (Monoid(..))
     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Data/IntervalSet.hs:599:35: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+599 | unions iss = fromDistinctAscList (head (go (L.map toAscList iss)))
+    |                                   ^^^^
+
 Configuring test suite 'TestGenericInterval' for IntervalMap-0.6.2.1...
 Preprocessing test suite 'TestGenericInterval' for IntervalMap-0.6.2.1...
 Building test suite 'TestGenericInterval' for IntervalMap-0.6.2.1...
-
 <no location info>: warning: [GHC-32850] [-Wmissing-home-modules]
     These modules are needed for compilation but not listed in your .cabal file's other-modules for ‘IntervalMap-0.6.2.1-inplace-TestGenericInterval’ :
         Data.IntervalMap.Generic.Interval Data.IntervalMap.Interval
+
 [1 of 3] Compiling Data.IntervalMap.Interval
 [2 of 3] Compiling Data.IntervalMap.Generic.Interval
 [3 of 3] Compiling Main
-
 test/GenericIntervalTests.hs:86:1: warning: [GHC-94817] [-Wtabs]
     Tab character found here, and in 68 further locations.
     Suggested fix: Please use spaces instead.
@@ -69,17 +85,17 @@ test/GenericIntervalTests.hs:86:1: warning: [GHC-94817] [-Wtabs]
 <no location info>: warning: [GHC-32850] [-Wmissing-home-modules]
     These modules are needed for compilation but not listed in your .cabal file's other-modules for ‘IntervalMap-0.6.2.1-inplace-TestGenericInterval’ :
         Data.IntervalMap.Generic.Interval Data.IntervalMap.Interval
-[4 of 4] Linking /tmp/workdir-IntervalMap/IntervalMap-0.6.2.1/dist-newstyle/build/x86_64-linux/ghc-9.6.5/IntervalMap-0.6.2.1/t/TestGenericInterval/build/TestGenericInterval/TestGenericInterval
+
+[4 of 4] Linking /tmp/workdir-IntervalMap/IntervalMap-0.6.2.1/dist-newstyle/build/x86_64-linux/ghc-9.10.2/IntervalMap-0.6.2.1/t/TestGenericInterval/build/TestGenericInterval/TestGenericInterval
 Configuring test suite 'TestInterval' for IntervalMap-0.6.2.1...
 Preprocessing test suite 'TestInterval' for IntervalMap-0.6.2.1...
 Building test suite 'TestInterval' for IntervalMap-0.6.2.1...
-
 <no location info>: warning: [GHC-32850] [-Wmissing-home-modules]
     These modules are needed for compilation but not listed in your .cabal file's other-modules for ‘IntervalMap-0.6.2.1-inplace-TestInterval’ :
         Data.IntervalMap.Interval
+
 [1 of 2] Compiling Data.IntervalMap.Interval
 [2 of 2] Compiling Main
-
 test/IntervalTests.hs:210:1: warning: [GHC-94817] [-Wtabs]
     Tab character found here, and in 15 further locations.
     Suggested fix: Please use spaces instead.
@@ -90,11 +106,11 @@ test/IntervalTests.hs:210:1: warning: [GHC-94817] [-Wtabs]
 <no location info>: warning: [GHC-32850] [-Wmissing-home-modules]
     These modules are needed for compilation but not listed in your .cabal file's other-modules for ‘IntervalMap-0.6.2.1-inplace-TestInterval’ :
         Data.IntervalMap.Interval
-[3 of 3] Linking /tmp/workdir-IntervalMap/IntervalMap-0.6.2.1/dist-newstyle/build/x86_64-linux/ghc-9.6.5/IntervalMap-0.6.2.1/t/TestInterval/build/TestInterval/TestInterval
+
+[3 of 3] Linking /tmp/workdir-IntervalMap/IntervalMap-0.6.2.1/dist-newstyle/build/x86_64-linux/ghc-9.10.2/IntervalMap-0.6.2.1/t/TestInterval/build/TestInterval/TestInterval
 Configuring test suite 'TestIntervalMap' for IntervalMap-0.6.2.1...
 Preprocessing test suite 'TestIntervalMap' for IntervalMap-0.6.2.1...
 Building test suite 'TestIntervalMap' for IntervalMap-0.6.2.1...
-
 <no location info>: warning: [GHC-32850] [-Wmissing-home-modules]
     These modules are needed for compilation but not listed in your .cabal file's other-modules for ‘IntervalMap-0.6.2.1-inplace-TestIntervalMap’ :
         Data.IntervalMap
@@ -105,16 +121,24 @@ Building test suite 'TestIntervalMap' for IntervalMap-0.6.2.1...
         Data.IntervalMap.Interval
         Data.IntervalMap.Lazy
         Data.IntervalMap.Strict
+
 [1 of 9] Compiling Data.IntervalMap.Interval
 [2 of 9] Compiling Data.IntervalMap.Generic.Interval
 [3 of 9] Compiling Data.IntervalMap.Generic.Base
+Data/IntervalMap/Generic/Base.hs:952:40: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+952 | unionsWith f ms = fromDistinctAscList (head (go (L.map toAscList ms)))
+    |                                        ^^^^
+
 [4 of 9] Compiling Data.IntervalMap.Generic.Strict
 [5 of 9] Compiling Data.IntervalMap.Generic.Lazy
 [6 of 9] Compiling Data.IntervalMap.Lazy
 [7 of 9] Compiling Data.IntervalMap.Strict
 [8 of 9] Compiling Data.IntervalMap
 [9 of 9] Compiling Main
-
 <no location info>: warning: [GHC-32850] [-Wmissing-home-modules]
     These modules are needed for compilation but not listed in your .cabal file's other-modules for ‘IntervalMap-0.6.2.1-inplace-TestIntervalMap’ :
         Data.IntervalMap
@@ -125,24 +149,33 @@ Building test suite 'TestIntervalMap' for IntervalMap-0.6.2.1...
         Data.IntervalMap.Interval
         Data.IntervalMap.Lazy
         Data.IntervalMap.Strict
-[10 of 10] Linking /tmp/workdir-IntervalMap/IntervalMap-0.6.2.1/dist-newstyle/build/x86_64-linux/ghc-9.6.5/IntervalMap-0.6.2.1/t/TestIntervalMap/build/TestIntervalMap/TestIntervalMap
+
+[10 of 10] Linking /tmp/workdir-IntervalMap/IntervalMap-0.6.2.1/dist-newstyle/build/x86_64-linux/ghc-9.10.2/IntervalMap-0.6.2.1/t/TestIntervalMap/build/TestIntervalMap/TestIntervalMap
 Configuring test suite 'TestIntervalSet' for IntervalMap-0.6.2.1...
 Preprocessing test suite 'TestIntervalSet' for IntervalMap-0.6.2.1...
 Building test suite 'TestIntervalSet' for IntervalMap-0.6.2.1...
-
 <no location info>: warning: [GHC-32850] [-Wmissing-home-modules]
     These modules are needed for compilation but not listed in your .cabal file's other-modules for ‘IntervalMap-0.6.2.1-inplace-TestIntervalSet’ :
         Data.IntervalMap.Generic.Interval
         Data.IntervalMap.Interval
         Data.IntervalSet
+
 [1 of 4] Compiling Data.IntervalMap.Interval
 [2 of 4] Compiling Data.IntervalMap.Generic.Interval
 [3 of 4] Compiling Data.IntervalSet
-[4 of 4] Compiling Main
+Data/IntervalSet.hs:599:35: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+599 | unions iss = fromDistinctAscList (head (go (L.map toAscList iss)))
+    |                                   ^^^^
 
+[4 of 4] Compiling Main
 <no location info>: warning: [GHC-32850] [-Wmissing-home-modules]
     These modules are needed for compilation but not listed in your .cabal file's other-modules for ‘IntervalMap-0.6.2.1-inplace-TestIntervalSet’ :
         Data.IntervalMap.Generic.Interval
         Data.IntervalMap.Interval
         Data.IntervalSet
-[5 of 5] Linking /tmp/workdir-IntervalMap/IntervalMap-0.6.2.1/dist-newstyle/build/x86_64-linux/ghc-9.6.5/IntervalMap-0.6.2.1/t/TestIntervalSet/build/TestIntervalSet/TestIntervalSet
+
+[5 of 5] Linking /tmp/workdir-IntervalMap/IntervalMap-0.6.2.1/dist-newstyle/build/x86_64-linux/ghc-9.10.2/IntervalMap-0.6.2.1/t/TestIntervalSet/build/TestIntervalSet/TestIntervalSet

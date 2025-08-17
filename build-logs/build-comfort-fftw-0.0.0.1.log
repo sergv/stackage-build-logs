@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - comfort-fftw-0.0.0.1 (lib) (first run)
  - comfort-fftw-0.0.0.1 (test:fftw-test) (first run)
@@ -8,64 +9,63 @@ Building library for comfort-fftw-0.0.0.1...
 [1 of 7] Compiling Numeric.FFTW.Private
 [2 of 7] Compiling Numeric.FFTW.Shape
 [3 of 7] Compiling Numeric.FFTW.RankN
-
-src/Numeric/FFTW/RankN.hs:22:1: warning: [-Wunused-imports]
+src/Numeric/FFTW/RankN.hs:22:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 22 | import Data.Monoid ((<>))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [4 of 7] Compiling Numeric.FFTW.Rank3
-
-src/Numeric/FFTW/Rank3.hs:20:1: warning: [-Wunused-imports]
+src/Numeric/FFTW/Rank3.hs:20:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 20 | import Data.Monoid ((<>))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [5 of 7] Compiling Numeric.FFTW.Rank2
-
-src/Numeric/FFTW/Rank2.hs:20:1: warning: [-Wunused-imports]
+src/Numeric/FFTW/Rank2.hs:20:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 20 | import Data.Monoid ((<>))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^
-[6 of 7] Compiling Numeric.FFTW.Rank1
 
-src/Numeric/FFTW/Rank1.hs:24:1: warning: [-Wunused-imports]
+[6 of 7] Compiling Numeric.FFTW.Rank1
+src/Numeric/FFTW/Rank1.hs:24:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 24 | import Data.Monoid ((<>))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^
-[7 of 7] Compiling Numeric.FFTW.Batch
 
-src/Numeric/FFTW/Batch.hs:23:1: warning: [-Wunused-imports]
+[7 of 7] Compiling Numeric.FFTW.Batch
+src/Numeric/FFTW/Batch.hs:23:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 23 | import Data.Monoid ((<>))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Configuring test suite 'fftw-test' for comfort-fftw-0.0.0.1...
 Preprocessing test suite 'fftw-test' for comfort-fftw-0.0.0.1...
 Building test suite 'fftw-test' for comfort-fftw-0.0.0.1...
 [1 of 9] Compiling Test.Numeric.FFTW.Common
-
-test/Test/Numeric/FFTW/Common.hs:17:1: warning: [-Wunused-imports]
+test/Test/Numeric/FFTW/Common.hs:17:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
    |
 17 | import Control.Applicative ((<*>))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[2 of 9] Compiling Test.Numeric.FFTW.Batch
 
+[2 of 9] Compiling Test.Numeric.FFTW.Batch
 src/Numeric/FFTW/Batch.hs:90:74: warning: [GHC-68441] [-Wdeprecations]
     In the use of ‘toRowArray’
     (imported from Data.Array.Comfort.Storable):
@@ -257,8 +257,8 @@ src/Numeric/FFTW/Batch.hs:160:165: warning: [GHC-68441] [-Wdeprecations]
     |
 160 | prop> QC.forAll (fmap Trafo3.fourierRC genCyclicArray3) $ \xs -> allApproxReal doubleTol (Array.toRowArray $ array2s $ Batch.fourierCR xs) (fmap Trafo2.fourierCR $ Array.toRowArray $ array2s xs)
     |                                                                                                                                                                     ^^^^^^^^^^^^^^^^
-[3 of 9] Compiling Test.Numeric.FFTW.Rank1
 
+[3 of 9] Compiling Test.Numeric.FFTW.Rank1
 src/Numeric/FFTW/Rank1.hs:58:65: warning: [GHC-58520] [-Wtype-equality-requires-operators]
     The use of ‘~’ without TypeOperators
     will become an error in a future GHC release.
@@ -274,18 +274,19 @@ src/Numeric/FFTW/Rank1.hs:73:65: warning: [GHC-58520] [-Wtype-equality-requires-
    |
 73 | >>>    (Spectrum.Symmetric symmetry shiftTime shiftSpectrum Int ~ sh) =>
    |                                                                 ^
+
 [4 of 9] Compiling Test.Numeric.FFTW.Rank2
 [5 of 9] Compiling Test.Numeric.FFTW.Rank3
 [6 of 9] Compiling Test.Numeric.FFTW.RankN
 [7 of 9] Compiling Test.Main
 [8 of 9] Compiling Test.Numeric.FFTW.Shape
-
-test/Test/Numeric/FFTW/Shape.hs:12:1: warning: [-Wunused-imports]
+test/Test/Numeric/FFTW/Shape.hs:12:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
    |
 12 | import Control.Applicative ((<$>))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [9 of 9] Compiling Main
-[10 of 10] Linking /tmp/workdir-comfort-fftw/comfort-fftw-0.0.0.1/dist-newstyle/build/x86_64-linux/ghc-9.6.5/comfort-fftw-0.0.0.1/t/fftw-test/build/fftw-test/fftw-test
+[10 of 10] Linking /tmp/workdir-comfort-fftw/comfort-fftw-0.0.0.1/dist-newstyle/build/x86_64-linux/ghc-9.10.2/comfort-fftw-0.0.0.1/t/fftw-test/build/fftw-test/fftw-test

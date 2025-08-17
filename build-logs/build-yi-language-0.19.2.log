@@ -1,0 +1,62 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - yi-language-0.19.2 (lib) (first run)
+ - yi-language-0.19.2 (test:tasty) (first run)
+Configuring library for yi-language-0.19.2...
+Preprocessing library for yi-language-0.19.2...
+Building library for yi-language-0.19.2...
+[ 1 of 10] Compiling Paths_yi_language
+[ 2 of 10] Compiling Yi.Style
+[ 3 of 10] Compiling Yi.Style.Library
+[ 4 of 10] Compiling Yi.Utils
+src/Yi/Utils.hs:101:20-23: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+101 |           prefix = head heads
+    |                    ^^^^
+
+[ 5 of 10] Compiling Yi.Buffer.Basic
+[ 6 of 10] Compiling Yi.Region
+[ 7 of 10] Compiling Yi.Syntax
+src/Yi/Syntax.hs:126:76-79: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+126 |                   newResult = if null recomputed then oldResult else snd $ head recomputed
+    |                                                                            ^^^^
+
+[ 8 of 10] Compiling Yi.Lexer.Alex
+src/Yi/Lexer/Alex.hs:26:1-35: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.List’ is redundant
+      except perhaps to import instances from ‘Data.List’
+    To import instances alone, use: import Data.List()
+   |
+26 | import           Data.List (foldl')
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[ 9 of 10] Compiling Yi.Regex
+src/Yi/Regex.hs:84:38-39: warning: [GHC-83475] [-Wunused-record-wildcards]
+    No variables bound in the record wildcard match are used
+    Suggested fix: Omit the ‘..’
+   |
+84 |                    seOptions = opts, .. }) = do put re
+   |                                      ^^
+
+src/Yi/Regex.hs:144:1-76: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Maybe Regex’ not matched: Nothing
+    |
+144 | Just emptyRegex = makeRegexOptsM defaultCompOpt defaultExecOpt "[[:empty:]]"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[10 of 10] Compiling Yi.Lexer.Compilation
+Configuring test suite 'tasty' for yi-language-0.19.2...
+Preprocessing test suite 'tasty' for yi-language-0.19.2...
+Building test suite 'tasty' for yi-language-0.19.2...
+[1 of 1] Compiling Main
+[2 of 2] Linking /tmp/workdir-yi-language/yi-language-0.19.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/yi-language-0.19.2/t/tasty/build/tasty/tasty

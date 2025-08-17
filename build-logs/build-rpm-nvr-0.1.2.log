@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - rpm-nvr-0.1.2 (lib) (first run)
  - rpm-nvr-0.1.2 (test:tests) (first run)
@@ -9,6 +10,86 @@ Preprocessing library for rpm-nvr-0.1.2...
 Building library for rpm-nvr-0.1.2...
 [1 of 6] Compiling Data.RPM.NV
 [2 of 6] Compiling Data.RPM.VerCmp
+src/Data/RPM/VerCmp.hs:35:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+35 |         fn = if isDigit (head a') then isDigit else isAsciiAlpha
+   |                          ^^^^
+
+src/Data/RPM/VerCmp.hs:43:75: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+43 |        | ("~" `isPrefixOf` a') && ("~" `isPrefixOf` b') -> rpmVerCompare (tail a') (tail b')
+   |                                                                           ^^^^
+
+src/Data/RPM/VerCmp.hs:43:85: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+43 |        | ("~" `isPrefixOf` a') && ("~" `isPrefixOf` b') -> rpmVerCompare (tail a') (tail b')
+   |                                                                                     ^^^^
+
+src/Data/RPM/VerCmp.hs:47:75: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+47 |        | ("^" `isPrefixOf` a') && ("^" `isPrefixOf` b') -> rpmVerCompare (tail a') (tail b')
+   |                                                                           ^^^^
+
+src/Data/RPM/VerCmp.hs:47:85: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+47 |        | ("^" `isPrefixOf` a') && ("^" `isPrefixOf` b') -> rpmVerCompare (tail a') (tail b')
+   |                                                                                     ^^^^
+
+src/Data/RPM/VerCmp.hs:59:19: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+59 |        | isDigit (head a') && (not . isDigit) (head b') -> GT
+   |                   ^^^^
+
+src/Data/RPM/VerCmp.hs:59:48: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+59 |        | isDigit (head a') && (not . isDigit) (head b') -> GT
+   |                                                ^^^^
+
+src/Data/RPM/VerCmp.hs:60:27: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+60 |        | (not . isDigit) (head a') && isDigit (head b') -> LT
+   |                           ^^^^
+
+src/Data/RPM/VerCmp.hs:60:48: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+60 |        | (not . isDigit) (head a') && isDigit (head b') -> LT
+   |                                                ^^^^
+
+src/Data/RPM/VerCmp.hs:61:19: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+61 |        | isDigit (head a')                                -> (prefixA `compareAsInts` prefixB) <> (suffixA `rpmVerCompare` suffixB)
+   |                   ^^^^
+
 [3 of 6] Compiling Data.RPM.VerRel
 [4 of 6] Compiling Data.RPM.NVR
 [5 of 6] Compiling Data.RPM.NVRA
@@ -21,4 +102,4 @@ Building test suite 'tests' for rpm-nvr-0.1.2...
 [1 of 3] Compiling RPM.PackageSpec
 [2 of 3] Compiling RPM.VersionSpec
 [3 of 3] Compiling Main
-[4 of 4] Linking /tmp/workdir-rpm-nvr/rpm-nvr-0.1.2/dist-newstyle/build/x86_64-linux/ghc-9.6.5/rpm-nvr-0.1.2/t/tests/build/tests/tests
+[4 of 4] Linking /tmp/workdir-rpm-nvr/rpm-nvr-0.1.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/rpm-nvr-0.1.2/t/tests/build/tests/tests

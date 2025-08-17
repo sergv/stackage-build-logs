@@ -1,0 +1,62 @@
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - yi-core-0.19.4 (test:tasty) (ephemeral targets)
+Preprocessing test suite 'tasty' for yi-core-0.19.4...
+Building test suite 'tasty' for yi-core-0.19.4...
+Running 1 test suites...
+Test suite tasty: RUNNING...
+all
+  Completion
+    properties
+      infixUptoEndMatch needle (pre <> needle <> post) == Just (needle <> post) if needle and post not empty and needle not in pre: OK (0.02s)
+        +++ OK, passed 100 tests; 22 discarded.
+      infixUptoEndMatch "" x == Just x:                                                                                             OK
+        +++ OK, passed 100 tests.
+      isJust (infixUptoEndMatch needle haystack) == needle `Data.Text.isInfixOf` haystack:                                          OK
+        +++ OK, passed 100 tests.
+  CompletionTree
+    properties
+      CT.toList . CT.fromList == nub . sort:                                                                                        OK (0.10s)
+        +++ OK, passed 100 tests.
+      update (fromList [a]) a == fromList [mempty] (a is a non-empty string):                                                       OK
+        +++ OK, passed 100 tests.
+      "" `elem` update (fromList [a,...]) a:                                                                                        OK (0.11s)
+        +++ OK, passed 100 tests.
+      complete (fromList [a]) == (a, fromList [""]):                                                                                OK
+        +++ OK, passed 100 tests.
+    unit tests
+      fromList
+        returns an empty CompletionTree when given an empty list:                                                                   OK
+        returns a map with one key when given a list with one item:                                                                 OK
+        groups elements with the same prefix:                                                                                       OK
+      update
+        strips its argument from a matching key:                                                                                    OK
+        descends the tree if a substring of its input is found in the CompletionTree:                                               OK
+        returns an empty list if it can't find a matching key:                                                                      OK
+      complete
+        Returns the common prefix:                                                                                                  OK
+        Returns an empty string if there's no common prefix:                                                                        OK
+  Tag
+    unit tests
+      lookupTag
+        finds a tag in a taglist:                                                                                                   OK
+        returns an empty list if no tag is found:                                                                                   OK
+      hintTags
+        completes the input with all possible tags:                                                                                 OK
+        returns an empty list if the input is not a prefix of any tag:                                                              OK
+      completeTag
+        extends the input to the longest certain length:                                                                            OK
+        returns the input when there are no completions possible:                                                                   OK
+  Mode.Common
+    unit tests
+      shebangParser
+        matches a simple shebang:                                                                                                   OK
+        matches a complex shebang:                                                                                                  OK
+        ignores noise and spaces:                                                                                                   OK
+        parser fails correctly:                                                                                                     OK
+
+All 25 tests passed (0.24s)
+Test suite tasty: PASS
+Test suite logged to:
+/tmp/workdir-yi-core/yi-core-0.19.4/dist-newstyle/build/x86_64-linux/ghc-9.10.2/yi-core-0.19.4/t/tasty/test/yi-core-0.19.4-tasty.log
+1 of 1 test suites (1 of 1 test cases) passed.

@@ -1,0 +1,63 @@
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - shellwords-0.1.4.3 (test:hspec) (ephemeral targets)
+Preprocessing test suite 'hspec' for shellwords-0.1.4.3...
+Building test suite 'hspec' for shellwords-0.1.4.3...
+Running 1 test suites...
+Test suite hspec: RUNNING...
+
+ShellWords.Parse
+  parser
+    parses |var --bar=baz| correctly [✔]
+    parses |var --bar="baz"| correctly [✔]
+    parses |var "--bar=baz"| correctly [✔]
+    parses |var "--bar='baz'"| correctly [✔]
+    parses |var --bar=`baz`| correctly [✔]
+    parses |var "--bar=\"baz'"| correctly [✔]
+    parses |var "--bar=\'baz\'"| correctly [✔]
+    parses |var "--bar baz"| correctly [✔]
+    parses |var --"bar baz"| correctly [✔]
+    parses |var --"bar baz"| correctly [✔]
+    parses |var --bar=baz | correctly [✔]
+    parses | var --bar=baz | correctly [✔]
+    parses | var   --bar=baz | correctly [✔]
+    parses |var --bar\ baz| correctly [✔]
+    parses |var --bar=baz\ bat| correctly [✔]
+    parses |var --bar baz\ bat| correctly [✔]
+    parses |var --bar 'baz\ bat'| correctly [✔]
+    parses |var  --bar "baz\ bat"| correctly [✔]
+    parses |var "--bar=\\'baz\\'"| correctly [✔]
+    parses |var --bar='\\'| correctly [✔]
+    errors on |foo '| [✔]
+    errors on |foo "| [✔]
+    Issue #3
+      parses |-LC:/Users/Vitor\ Coimbra/AppData/Local/Programs/s...| correctly [✔]
+    Issue #7
+      parses |foo=123 bar| correctly [✔]
+      parses |foo bar=123 cow| correctly [✔]
+      parses |foo bar'();='bar cow| correctly [✔]
+      parses |foo 'ba'"r" cow| correctly [✔]
+    As part of a larger Parser
+      parses within delimiters [✔]
+      handles quoted delimiter [✔]
+      works with white space [✔]
+      works with newlines [✔]
+      works with final newline [✔]
+ShellWords.Quote
+  quote
+    single-quotes the empty string [✔]
+    escapes a single quote [✔]
+    leaves un-special characters alone [✔]
+    quotes newlines [✔]
+    quotes newlines and escapes single-quotes [✔]
+    quotes tildes correctly [✔]
+  join
+    joins arguments [✔]
+    quotes arguments [✔]
+
+Finished in 0.0021 seconds
+40 examples, 0 failures
+Test suite hspec: PASS
+Test suite logged to:
+/tmp/workdir-shellwords/shellwords-0.1.4.3/dist-newstyle/build/x86_64-linux/ghc-9.10.2/shellwords-0.1.4.3/t/hspec/test/shellwords-0.1.4.3-hspec.log
+1 of 1 test suites (1 of 1 test cases) passed.

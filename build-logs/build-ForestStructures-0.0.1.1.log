@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - ForestStructures-0.0.1.1 (lib) (first run)
  - ForestStructures-0.0.1.1 (test:properties) (first run)
@@ -6,9 +7,33 @@ Configuring library for ForestStructures-0.0.1.1...
 Preprocessing library for ForestStructures-0.0.1.1...
 Building library for ForestStructures-0.0.1.1...
 [1 of 2] Compiling Data.Forest.Static
+Data/Forest/Static.hs:153:77: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+153 |         splt (k,_,sbl) = let (ls,rs) = span (/=k) sbl in (k,(last $ (-1):ls,head $ tail rs ++ [-1]))
+    |                                                                             ^^^^
+
+Data/Forest/Static.hs:153:84: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+153 |         splt (k,_,sbl) = let (ls,rs) = span (/=k) sbl in (k,(last $ (-1):ls,head $ tail rs ++ [-1]))
+    |                                                                                    ^^^^
+
+Data/Forest/Static.hs:209:21: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+209 |   . map (concatMap (L.tail . L.subsequences))
+    |                     ^^^^^^
+
 [2 of 2] Compiling Data.Forest.StructuredPaired
 Configuring test suite 'properties' for ForestStructures-0.0.1.1...
 Preprocessing test suite 'properties' for ForestStructures-0.0.1.1...
 Building test suite 'properties' for ForestStructures-0.0.1.1...
 [1 of 1] Compiling Main
-[2 of 2] Linking /tmp/workdir-ForestStructures/ForestStructures-0.0.1.1/dist-newstyle/build/x86_64-linux/ghc-9.6.5/ForestStructures-0.0.1.1/t/properties/build/properties/properties
+[2 of 2] Linking /tmp/workdir-ForestStructures/ForestStructures-0.0.1.1/dist-newstyle/build/x86_64-linux/ghc-9.10.2/ForestStructures-0.0.1.1/t/properties/build/properties/properties

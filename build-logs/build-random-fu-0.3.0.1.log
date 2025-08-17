@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - random-fu-0.3.0.1 (lib) (first run)
 Configuring library for random-fu-0.3.0.1...
@@ -11,6 +12,14 @@ Building library for random-fu-0.3.0.1...
 [ 5 of 29] Compiling Data.Random.Distribution
 [ 6 of 29] Compiling Data.Random.Distribution.Uniform
 [ 7 of 29] Compiling Data.Random.List
+src/Data/Random/List.hs:30:44: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+30 |     is <- zipWithM (\_ i -> uniformT 0 i) (tail xs) [1..]
+   |                                            ^^^^
+
 [ 8 of 29] Compiling Data.Random.Distribution.Ziggurat
 [ 9 of 29] Compiling Data.Random.Distribution.Weibull
 [10 of 29] Compiling Data.Random.Distribution.Triangular
@@ -24,25 +33,43 @@ Building library for random-fu-0.3.0.1...
 [18 of 29] Compiling Data.Random.Distribution.ChiSquare
 [19 of 29] Compiling Data.Random.Distribution.T
 [20 of 29] Compiling Data.Random.Distribution.Categorical
+src/Data/Random/Distribution/Categorical.hs:84:62: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+84 | fromObservations = fromWeightedList . map (genericLength &&& head) . group . sort
+   |                                                              ^^^^
 
-src/Data/Random/Distribution/Categorical.hs:156:5: warning: [-Wnoncanonical-monad-instances]
+src/Data/Random/Distribution/Categorical.hs:156:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad (Categorical p)’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 156 |     return x = Categorical (V.singleton (1, x))
     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Data/Random/Distribution/Categorical.hs:185:5: warning: [-Wnoncanonical-monad-instances]
+src/Data/Random/Distribution/Categorical.hs:185:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘pure = return’ definition detected
     in the instance declaration for ‘Applicative (Categorical p)’.
-    Move definition from ‘return’ to ‘pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Move definition from ‘return’ to ‘pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 185 |     pure = return
     |     ^^^^^^^^^^^^^
+
+src/Data/Random/Distribution/Categorical.hs:242:51: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+242 | collectEvents = collectEventsBy compare ((sum *** head) . unzip)
+    |                                                   ^^^^
+
 [21 of 29] Compiling Data.Random.Distribution.Beta
 [22 of 29] Compiling Data.Random.Distribution.Binomial
 [23 of 29] Compiling Data.Random.Distribution.Poisson

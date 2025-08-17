@@ -1,0 +1,49 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - ogma-extra-1.7.0 (lib) (first run)
+ - ogma-extra-1.7.0 (test:unit-tests) (first run)
+Configuring library for ogma-extra-1.7.0...
+Preprocessing library for ogma-extra-1.7.0...
+Building library for ogma-extra-1.7.0...
+[1 of 4] Compiling Data.ByteString.Extra
+[2 of 4] Compiling Data.List.Extra
+[3 of 4] Compiling Data.String.Extra
+[4 of 4] Compiling System.Directory.Extra
+Configuring test suite 'unit-tests' for ogma-extra-1.7.0...
+Preprocessing test suite 'unit-tests' for ogma-extra-1.7.0...
+Building test suite 'unit-tests' for ogma-extra-1.7.0...
+[1 of 1] Compiling Main
+tests/Main.hs:67:48: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+67 | propToHead xs (Fun _ f) = not (null xs) ==> f (head xs) == head (toHead f xs)
+   |                                                ^^^^
+
+tests/Main.hs:67:60: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+67 | propToHead xs (Fun _ f) = not (null xs) ==> f (head xs) == head (toHead f xs)
+   |                                                            ^^^^
+
+tests/Main.hs:83:53: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+83 | propToTail xs (Fun _ f) = not (null xs) ==> fmap f (tail xs) == tail (toTail f xs)
+   |                                                     ^^^^
+
+tests/Main.hs:83:65: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+83 | propToTail xs (Fun _ f) = not (null xs) ==> fmap f (tail xs) == tail (toTail f xs)
+   |                                                                 ^^^^
+
+[2 of 2] Linking /tmp/workdir-ogma-extra/ogma-extra-1.7.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/ogma-extra-1.7.0/t/unit-tests/build/unit-tests/unit-tests

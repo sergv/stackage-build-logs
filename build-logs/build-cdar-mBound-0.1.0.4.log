@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - cdar-mBound-0.1.0.4 (lib) (first run)
  - cdar-mBound-0.1.0.4 (test:test) (first run)
@@ -11,8 +12,15 @@ Building library for cdar-mBound-0.1.0.4...
 [2 of 6] Compiling Data.CDAR.Extended
 [3 of 6] Compiling Data.CDAR.IntegerLog
 [4 of 6] Compiling Data.CDAR.Dyadic
-[5 of 6] Compiling Data.CDAR.Approx
+src/Data/CDAR/Dyadic.hs:167:24: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+167 |                    d = head . dropWhile (\(_,y,_) -> y /= 0) $ iterate (f t') (6-4*s,s-1,1 :: Int)
+    |                        ^^^^
 
+[5 of 6] Compiling Data.CDAR.Approx
 src/Data/CDAR/Approx.hs:826:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -20,6 +28,14 @@ src/Data/CDAR/Approx.hs:826:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     |
 826 |         (Just c) = centre x
     |         ^^^^^^^^^^^^^^^^^^^
+
+src/Data/CDAR/Approx.hs:828:27: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+828 |         ds = zipWith (*) (tail as) (map fromIntegral ([1,2..] :: [Int]))
+    |                           ^^^^
 
 src/Data/CDAR/Approx.hs:829:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
@@ -41,6 +57,14 @@ src/Data/CDAR/Approx.hs:830:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
 830 |         (Finite (e':^_)) = fmap (b*) $ radius x
     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+src/Data/CDAR/Approx.hs:841:36: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+841 |     let f ss = 1 : zipWith (+) ss (tail ss) ++ [1]
+    |                                    ^^^^
+
 src/Data/CDAR/Approx.hs:875:23: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -60,6 +84,22 @@ src/Data/CDAR/Approx.hs:916:21: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     |
 916 |   | otherwise = let (Finite p) = significance a
     |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Data/CDAR/Approx.hs:958:87: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+958 | findStartingValues f = map (fromRational . toRational . (/2)) . (\l -> zipWith (+) l (tail l)) . map f
+    |                                                                                       ^^^^
+
+src/Data/CDAR/Approx.hs:995:39: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+995 |                    qs'' = scanr1 (*) (tail qs' ++ [1])
+    |                                       ^^^^
 
 src/Data/CDAR/Approx.hs:1032:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
@@ -111,6 +151,14 @@ src/Data/CDAR/Approx.hs:1371:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
 1371 |   let (Finite r) = min (pure res) (significance a)
      |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+src/Data/CDAR/Approx.hs:1463:31: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+     |
+1463 | piA res = limitAndBound res . head $ dropWhile ((< pure res) . precision) piRaw
+     |                               ^^^^
+
 src/Data/CDAR/Approx.hs:1575:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -145,20 +193,61 @@ src/Data/CDAR/Approx.hs:1597:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
      |
 1597 |     let (Finite t') = min (significance x) (Finite (-t))
      |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Data/CDAR/Approx.hs:1733:24: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+     |
+1733 |     in if null rest || head rest /= '.'
+     |                        ^^^^
+
+src/Data/CDAR/Approx.hs:1735:51: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+     |
+1735 |        else let (fracPart, rest') = span isDigit (tail rest)
+     |                                                   ^^^^
+
+src/Data/CDAR/Approx.hs:1747:20: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+     |
+1747 | require d (CR x) = head . dropWhile (== Bottom) . getZipList $ ok d <$> x
+     |                    ^^^^
+
 [6 of 6] Compiling Data.CDAR
 Configuring test suite 'test' for cdar-mBound-0.1.0.4...
 Preprocessing test suite 'test' for cdar-mBound-0.1.0.4...
 Building test suite 'test' for cdar-mBound-0.1.0.4...
 [1 of 1] Compiling Main
-[2 of 2] Linking /tmp/workdir-cdar-mBound/cdar-mBound-0.1.0.4/dist-newstyle/build/x86_64-linux/ghc-9.6.5/cdar-mBound-0.1.0.4/t/test/build/test/test
+test/Test.hs:230:25: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+230 |   show (CR x) = showA . head . getZipList $ x
+    |                         ^^^^
+
+[2 of 2] Linking /tmp/workdir-cdar-mBound/cdar-mBound-0.1.0.4/dist-newstyle/build/x86_64-linux/ghc-9.10.2/cdar-mBound-0.1.0.4/t/test/build/test/test
 Configuring executable 'logistic' for cdar-mBound-0.1.0.4...
 Preprocessing executable 'logistic' for cdar-mBound-0.1.0.4...
 Building executable 'logistic' for cdar-mBound-0.1.0.4...
 [1 of 1] Compiling Main
-[2 of 2] Linking /tmp/workdir-cdar-mBound/cdar-mBound-0.1.0.4/dist-newstyle/build/x86_64-linux/ghc-9.6.5/cdar-mBound-0.1.0.4/x/logistic/build/logistic/logistic
+examples/Logistic.hs:16:22: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+16 |                 f' = tail f
+   |                      ^^^^
+
+[2 of 2] Linking /tmp/workdir-cdar-mBound/cdar-mBound-0.1.0.4/dist-newstyle/build/x86_64-linux/ghc-9.10.2/cdar-mBound-0.1.0.4/x/logistic/build/logistic/logistic
 Configuring executable 'examples' for cdar-mBound-0.1.0.4...
 Preprocessing executable 'examples' for cdar-mBound-0.1.0.4...
 Building executable 'examples' for cdar-mBound-0.1.0.4...
 [1 of 2] Compiling ExamplesRump
 [2 of 2] Compiling Main
-[3 of 3] Linking /tmp/workdir-cdar-mBound/cdar-mBound-0.1.0.4/dist-newstyle/build/x86_64-linux/ghc-9.6.5/cdar-mBound-0.1.0.4/x/examples/build/examples/examples
+[3 of 3] Linking /tmp/workdir-cdar-mBound/cdar-mBound-0.1.0.4/dist-newstyle/build/x86_64-linux/ghc-9.10.2/cdar-mBound-0.1.0.4/x/examples/build/examples/examples

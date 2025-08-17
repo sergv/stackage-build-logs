@@ -1,0 +1,112 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - distributed-process-async-0.2.11 (lib) (first run)
+ - distributed-process-async-0.2.11 (test:AsyncTests) (first run)
+Configuring library for distributed-process-async-0.2.11...
+Preprocessing library for distributed-process-async-0.2.11...
+Building library for distributed-process-async-0.2.11...
+[1 of 2] Compiling Control.Distributed.Process.Async.Internal.Types
+src/Control/Distributed/Process/Async/Internal/Types.hs:55:9: warning: [GHC-82712] [-Wpartial-fields]
+    Use of partial record field selector: ‘asyncTask’
+   |
+55 |         asyncTask :: Process a -- ^ the task to be performed
+   |         ^^^^^^^^^
+
+src/Control/Distributed/Process/Async/Internal/Types.hs:58:9: warning: [GHC-82712] [-Wpartial-fields]
+    Use of partial record field selector: ‘asyncTaskDict’
+   |
+58 |         asyncTaskDict :: Static (SerializableDict a)
+   |         ^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/Async/Internal/Types.hs:60:9: warning: [GHC-82712] [-Wpartial-fields]
+    Use of partial record field selector: ‘asyncTaskNode’
+   |
+60 |       , asyncTaskNode :: NodeId
+   |         ^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/Async/Internal/Types.hs:62:9: warning: [GHC-82712] [-Wpartial-fields]
+    Use of partial record field selector: ‘asyncTaskProc’
+   |
+62 |       , asyncTaskProc :: Closure (Process a)
+   |         ^^^^^^^^^^^^^
+
+[2 of 2] Compiling Control.Distributed.Process.Async
+src/Control/Distributed/Process/Async.hs:151:22: warning: [GHC-30606] [-Wredundant-constraints]
+    • Redundant constraint: Serializable a
+      In the type signature for:
+           pollUntilExit :: forall a1.
+                            Serializable a1 =>
+                            ProcessId -> TMVar (AsyncResult a1) -> Process ()
+    • In an equation for ‘asyncDo’:
+          asyncDo shouldLink (AsyncTask proc)
+            = do root <- getSelfPid
+                 result <- liftIO newEmptyTMVarIO
+                 sigStart <- liftIO newEmptyTMVarIO
+                 ....
+            where
+                pollUntilExit ::
+                  (Serializable a) =>
+                  ProcessId -> TMVar (AsyncResult a) -> Process ()
+                pollUntilExit wpid result'
+                  = do r <- receiveWait ...
+                       ....
+    |
+151 |     pollUntilExit :: (Serializable a)
+    |                      ^^^^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/Async.hs:180:9: warning: [GHC-30606] [-Wredundant-constraints]
+    Redundant constraint: Serializable a
+    In the type signature for:
+         poll :: forall a.
+                 Serializable a =>
+                 Async a -> Process (AsyncResult a)
+    |
+180 | poll :: (Serializable a) => Async a -> Process (AsyncResult a)
+    |         ^^^^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/Async.hs:208:16: warning: [GHC-30606] [-Wredundant-constraints]
+    Redundant constraint: Serializable a
+    In the type signature for:
+         waitTimeout :: forall a.
+                        Serializable a =>
+                        Int -> Async a -> Process (Maybe (AsyncResult a))
+    |
+208 | waitTimeout :: (Serializable a) =>
+    |                ^^^^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/Async.hs:235:12: warning: [GHC-30606] [-Wredundant-constraints]
+    Redundant constraint: Serializable a
+    In the type signature for:
+         waitAny :: forall a.
+                    Serializable a =>
+                    [Async a] -> Process (Async a, AsyncResult a)
+    |
+235 | waitAny :: (Serializable a)
+    |            ^^^^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/Async.hs:282:19: warning: [GHC-30606] [-Wredundant-constraints]
+    Redundant constraint: Serializable a
+    In the type signature for:
+         waitAnyTimeout :: forall a.
+                           Serializable a =>
+                           Int -> [Async a] -> Process (Maybe (AsyncResult a))
+    |
+282 | waitAnyTimeout :: (Serializable a)
+    |                   ^^^^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/Async.hs:296:15: warning: [GHC-30606] [-Wredundant-constraints]
+    Redundant constraint: Serializable a
+    In the type signature for:
+         cancelWait :: forall a.
+                       Serializable a =>
+                       Async a -> Process (AsyncResult a)
+    |
+296 | cancelWait :: (Serializable a) => Async a -> Process (AsyncResult a)
+    |               ^^^^^^^^^^^^^^^^
+
+Configuring test suite 'AsyncTests' for distributed-process-async-0.2.11...
+Preprocessing test suite 'AsyncTests' for distributed-process-async-0.2.11...
+Building test suite 'AsyncTests' for distributed-process-async-0.2.11...
+[1 of 1] Compiling Main
+[2 of 2] Linking /tmp/workdir-distributed-process-async/distributed-process-async-0.2.11/dist-newstyle/build/x86_64-linux/ghc-9.10.2/distributed-process-async-0.2.11/t/AsyncTests/build/AsyncTests/AsyncTests

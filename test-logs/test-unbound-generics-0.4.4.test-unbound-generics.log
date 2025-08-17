@@ -1,0 +1,79 @@
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - unbound-generics-0.4.4 (test:test-unbound-generics) (ephemeral targets)
+Preprocessing test suite 'test-unbound-generics' for unbound-generics-0.4.4...
+Building test suite 'test-unbound-generics' for unbound-generics-0.4.4...
+Running 1 test suites...
+Test suite test-unbound-generics: RUNNING...
+unboundGenerics
+  calc
+    example 1:                                                                 OK
+    example 2 (open):                                                          OK
+    example 2 (closed):                                                        OK
+    example 3:                                                                 OK
+    example 4 (let scoping):                                                   OK
+    example 5 (let* scoping):                                                  OK
+    example 6 (free variables):                                                OK
+    example 7 (sorted free variables):                                         OK
+  parallel reduction
+    simple substitution:                                                       OK
+    parallel reduction:                                                        OK
+  QuickCheck properties
+    reflexivity:                                                               OK
+      +++ OK, passed 100 tests.
+    fv specification:                                                          OK
+      +++ OK, passed 100 tests.
+    open idempotency:                                                          OK
+      +++ OK, passed 100 tests.
+    closing binds variables:                                                   OK
+      +++ OK, passed 100 tests; 57 discarded.
+  subst ?1 x <a/?1>?0 = <a/x>?0:                                               OK
+  <-(0,0) (0,1)-> x = <-(1,0) (1,10)-> x:                                      OK
+  tinyLam
+    eval (fact 0) = 1:                                                         OK
+    eval (fact 5) = 120:                                                       OK
+  acompare
+    obvious
+      ac1 (a < b):                                                             OK
+      ac2 (b = b):                                                             OK
+      ac3 (b > a):                                                             OK
+    lexicographically
+      ac4 (a + a = a + a):                                                     OK
+      ac5 (a + a < a + b):                                                     OK
+      ac6 (a + b > a + a):                                                     OK
+      ac7 (a + a < b + a):                                                     OK
+      ac8 (b + a > a + a):                                                     OK
+      ac9 (b + a > a + b):                                                     OK
+    binders
+      ac10 (\a.a+a = \b.b+b):                                                  OK
+      ac11 (\a.a+a > \a.a+b):                                                  OK
+      ac12 (\c.c+a < \a.a+b):                                                  OK
+    non-matching binders
+      ac13 ((\a.a `ac` \a b.a) = (\c.c `ac` \a b.a)):                          OK
+      ac14 ((\a b.a `ac` \a.a) = (\c b.c `ac` \a.a)):                          OK
+    non-binding stuff
+      ac15 (<a> < <b>):                                                        OK
+      ac16 (\c<a>.c+c < \c<b>.c+c):                                            OK
+      ac17 (\c<a>.b+b < \c<b>.a+a):                                            OK
+  Embedded and Shifted terms
+    Embed
+      (pi x:x . x) = (pi y:x . y):                                             OK
+      (letrec x : x = x in x) = (letrec y : x = y in y):                       OK
+      pi x : z . (letrec x : x = x in x) = pi y : z . (letrec x : y = x in x): OK
+  TH makeClosedAlpha splice
+    TH aeq:                                                                    OK
+    TH acompare:                                                               OK
+    TH fvAny kG:                                                               OK
+    TH close:                                                                  OK
+    TH open:                                                                   OK
+    TH isTerm:                                                                 OK
+    TH isPat:                                                                  OK
+  substBind
+    substBind matches unbind subst:                                            OK
+      +++ OK, passed 100 tests.
+
+All 46 tests passed (0.00s)
+Test suite test-unbound-generics: PASS
+Test suite logged to:
+/tmp/workdir-unbound-generics/unbound-generics-0.4.4/dist-newstyle/build/x86_64-linux/ghc-9.10.2/unbound-generics-0.4.4/t/test-unbound-generics/test/unbound-generics-0.4.4-test-unbound-generics.log
+1 of 1 test suites (1 of 1 test cases) passed.

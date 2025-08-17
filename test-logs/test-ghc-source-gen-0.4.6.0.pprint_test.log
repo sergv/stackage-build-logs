@@ -1,0 +1,221 @@
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - ghc-source-gen-0.4.6.0 (test:pprint_test) (ephemeral targets)
+Preprocessing test suite 'pprint_test' for ghc-source-gen-0.4.6.0...
+Building test suite 'pprint_test' for ghc-source-gen-0.4.6.0...
+Running 1 test suites...
+Test suite pprint_test: RUNNING...
+Tests
+  Type
+    var
+      A:                                                     OK
+      x:                                                     OK
+      A.x:                                                   OK
+      x:                                                     OK
+      A.x:                                                   OK
+    app
+      A x:                                                   OK
+      (+) x:                                                 OK
+      A (B x):                                               OK
+      A (B x):                                               OK
+      A ((B x)):                                             OK
+      A x (B y z):                                           OK
+      A w (B x y) Z:                                         OK
+    op
+      x + y:                                                 OK
+      x `add` y:                                             OK
+      x * (y + z):                                           OK
+      (x * y) + z:                                           OK
+      x `mult` (y `add` z):                                  OK
+      A x * (B y + C z):                                     OK
+      (f . g) x:                                             OK
+    function
+      a -> b:                                                OK
+      a -> b -> c:                                           OK
+      a -> b -> c:                                           OK
+      (a -> b) -> c:                                         OK
+      A a => a -> b:                                         OK
+      (A a, B b) => a -> b:                                  OK
+      (A => b) -> A => c:                                    OK
+      (A => b) -> A => c:                                    OK
+    literals
+      "abc":                                                 OK
+      123:                                                   OK
+    unit
+      ():                                                    OK
+      (# #):                                                 OK
+    list
+      [x]:                                                   OK
+      '[]:                                                   OK
+      '[x]:                                                  OK
+      '[y, z]:                                               OK
+    tuple
+      (a, b):                                                OK
+      (# a, b #):                                            OK
+      '(a, b):                                               OK
+    tyPromotedVar
+      'Abc:                                                  OK
+      T 'Abc:                                                OK
+  Expr
+    var
+      A:                                                     OK
+      x:                                                     OK
+      A.x:                                                   OK
+      x:                                                     OK
+      A.x:                                                   OK
+    app
+      A x:                                                   OK
+      (+) x:                                                 OK
+      (Prelude.+) x:                                         OK
+      A (B x):                                               OK
+      A (B x):                                               OK
+      A ((B x)):                                             OK
+      A x (B y z):                                           OK
+      A w (B x y) Z:                                         OK
+      A 3:                                                   OK
+      A (-3):                                                OK
+      A 3.0:                                                 OK
+      A (-3.0):                                              OK
+      A 'x':                                                 OK
+      A "xyz":                                               OK
+      (\ x -> x) (\ x -> x):                                 OK
+      f x @t:                                                OK
+      f (x @t):                                              OK
+    op
+      x + y:                                                 OK
+      x Prelude.+ y:                                         OK
+      x `add` y:                                             OK
+      x * (y + z):                                           OK
+      (x * y) + z:                                           OK
+      x `mult` (y `add` z):                                  OK
+      A x * (B y + C z):                                     OK
+      (f . g) x:                                             OK
+      (\ x -> x) . (\ x -> x):                               OK
+      x @s + y @t:                                           OK
+    period-op
+      (Prelude..) x:                                         OK
+      x Prelude.. y:                                         OK
+    :@@:
+        e :: t:                                              OK
+    unit
+      ():                                                    OK
+    list
+      []:                                                    OK
+      []:                                                    OK
+      [x]:                                                   OK
+      [y, z]:                                                OK
+      (:):                                                   OK
+      (:) x y:                                               OK
+    tyApp
+      x @a:                                                  OK
+      x @a @b:                                               OK
+      x @a b:                                                OK
+      x @(a b):                                              OK
+      x @(a + b):                                            OK
+      f x @t:                                                OK
+      f (x @t):                                              OK
+    recordConE
+      A {}:                                                  OK
+      A {x = 1, y = 2}:                                      OK
+    recordUpd
+      r {b = x, c = y}:                                      OK
+      (f x) {b = x}:                                         OK
+      f x {b = x}:                                           OK
+      (x + y) {b = x}:                                       OK
+      x + y {b = x}:                                         OK
+    let
+      let x = 1 in x:                                        OK
+      let f x = 1 in f:                                      OK
+      let f (A x) = 1 in f:                                  OK
+    do
+      do (let x = 1 in x):                                   OK
+    arithSeq
+      [a .. ]:                                               OK
+      [a, b .. ]:                                            OK
+      [a .. b]:                                              OK
+      [a, b .. c]:                                           OK
+    list comprehension
+      [x | x <- [1 .. 10]]:                                  OK
+      [x + y | x <- [1 .. 10], y <- [11 .. 20], even y]:     OK
+  Decls
+    patBind
+      x = x:                                                 OK
+      (x, y) = (y, x):                                       OK
+      (x, y):                                                OK
+      z | Just y <- x, y = ():                               OK
+    valBind
+      x = y:                                                 OK
+      x = y:                                                 OK
+      x | test = 1:                                          OK
+      x = (+):                                               OK
+    funBind
+      not True = False:                                      OK
+      True && True = True:                                   OK
+      not x:                                                 OK
+      f (A x) = 1:                                           OK
+    tyFamInst
+      type instance Elt String = Char:                       OK
+      instance Container String where:                       OK
+    patSynSigs
+      pattern F, G :: T:                                     OK
+      pattern F :: T:                                        OK
+    patSynBind
+      pattern F a b = G b a:                                 OK
+    dataDecl
+      data Either a b:                                       OK
+      data Either a (b :: Type):                             OK
+    newtypeDecl
+      newtype Const a b:                                     OK
+      newtype Const a (b :: Type):                           OK
+    standaloneDeriving
+      deriving instance Show Int:                            OK
+      deriving instance Show a => Show (Maybe a):            OK
+      deriving stock instance Show Int:                      OK
+      deriving newtype instance Show a => Show (Identity a): OK
+      deriving anyclass instance Show Person:                OK
+  Pats
+    app
+      A x y:                                                 OK
+      (:) x y:                                               OK
+      (Prelude.:) x:                                         OK
+      A (B x):                                               OK
+      A (B x):                                               OK
+      A ((B x)):                                             OK
+      A x (B y z):                                           OK
+      A w (B x y) Z:                                         OK
+      A 3:                                                   OK
+      A (-3):                                                OK
+      A 3.0:                                                 OK
+      A (-3.0):                                              OK
+      A 'x':                                                 OK
+      A "xyz":                                               OK
+      A B {x = C}:                                           OK
+    asP
+      x@B:                                                   OK
+      x@(B y):                                               OK
+      x@_:                                                   OK
+    strictP
+      !x:                                                    OK
+      !B:                                                    OK
+      !(B y):                                                OK
+      !_:                                                    OK
+    lazyP
+      ~x:                                                    OK
+      ~B:                                                    OK
+      ~(B y):                                                OK
+      ~_:                                                    OK
+    sigPat
+      x :: A:                                                OK
+      A x :: A x:                                            OK
+    recordConP
+      A {x = Y}:                                             OK
+  Modules
+    import
+      import M:                                              OK
+      import {-# SOURCE #-} M:                               OK
+
+All 163 tests passed (0.00s)
+Test suite pprint_test: PASS
+Test suite logged to:
+/tmp/workdir-ghc-source-gen/ghc-source-gen-0.4.6.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/ghc-source-gen-0.4.6.0/t/pprint_test/test/ghc-source-gen-0.4.6.0-pprint_test.log
+1 of 1 test suites (1 of 1 test cases) passed.

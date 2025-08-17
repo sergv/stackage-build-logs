@@ -1,0 +1,162 @@
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - alfred-margaret-2.1.0.2 (test:test-suite) (ephemeral targets)
+Preprocessing test suite 'test-suite' for alfred-margaret-2.1.0.2...
+Building test suite 'test-suite' for alfred-margaret-2.1.0.2...
+Running 1 test suites...
+Test suite test-suite: RUNNING...
+
+Data.Text.AhoCorasick
+  IsString ByteArray
+    encodes the dollar sign [✔]
+    encodes the euro sign [✔]
+    encodes the pound sign [✔]
+    encodes Hwair [✔]
+    encodes all of the above [✔]
+  runText
+    countMatches
+      counts the right number of matches in a basic example [✔]
+      counts the right number of matches in an example with 1-, 2-, 3- and 4-code unit code points [✔]
+  runLower
+    countMatches
+      counts the right number of matches in a basic example [✔]
+      does not work with uppercase needles [✔]
+      works with characters that are not in ASCII [✔]
+  Replacer
+    run
+      replaces all occurrences [✔]
+      replaces only non-overlapping matches [✔]
+      replaces all occurrences in priority order [✔]
+      replaces needles that contain a surrogate pair [✔]
+      replaces all occurrences case-insensitively [✔]
+      matches replacements case-insensitively [✔]
+      matches replacements case-insensitively for non-ascii characters [✔]
+      matches surrogate pairs case-insensitively [✔]
+      satisfies (run . compose a b) == (run b (run a)) [✔]
+        +++ OK, passed 100 tests.
+      is identity for empty needles [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to sequential Text.replace calls [✔]
+        +++ OK, passed 100 tests.
+  Searcher
+    containsAny
+      gives the right values for the examples in the README [✔]
+      works with the the first line of the illiad [✔]
+      works with the the first line of the illiad (ignore case) [✔]
+    containsAll
+      never reports true for empty needles [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to sequential Text.isInfixOf calls for non-empty needles [✔]
+        +++ OK, passed 100 tests.
+      is equivalent to sequential Text.isInfixOf calls for case-insensitive matching for non-empty needles [✔]
+        +++ OK, passed 100 tests.
+  Splitter
+    split
+      passes an example [✔]
+      neatly splits the first line of the illiad [✔]
+      splits on case insensitive needles [✔]
+Data.Text.BoyerMoore
+  build
+    does not throw exceptions [✔]
+      +++ OK, passed 200 tests.
+  runText
+    when given a needle equal to the haystack
+      reports a single match for a repeated character [✔]
+      reports a single match for non-BMP data [✔]
+      reports a single match for random needles [✔]
+        +++ OK, passed 200 tests; 28 discarded.
+    when given a sliced text (with nonzero internal offset)
+      still reports offset relative to the text start [✔]
+    when given non-ascii inputs
+      reports a match if the haystack contains a character > U+7f [✔]
+      reports the correct code unit index for complex characters [✔]
+    when given empty needle
+      does not report a match [✔]
+    kitchen sink
+      kitchen sinks [✔]
+    when given random needles and haystacks
+      reports only infixes of the haystack [✔]
+        +++ OK, passed 200 tests.
+      reports all infixes of the haystack [✔]
+        +++ OK, passed 200 tests.
+  replaceSingleLimited
+    is equivalent to Aho-Corasick replacer with a single needle [✔]
+      +++ OK, passed 200 tests.
+  Searcher
+    containsAny
+      is equivalent to disjunction of Text.isInfixOf calls* [✔]
+        +++ OK, passed 200 tests.
+    containsAll
+      is equivalent to conjunction of Text.isInfixOf calls* [✔]
+        +++ OK, passed 200 tests.
+Data.Text.BoyerMooreCI
+  automaton
+    works for some basic examples [✔]
+    does not yield overlapping matches [✔]
+    does not work with uppercase needles [✔]
+    works with cyrillic characters [✔]
+    works with mixed byte lengths [✔]
+    works with ⱥ and ⱦ [✔]
+    with a needle equal to the haystack
+      reports a single match for a repeated character [✔]
+      reports a single match for any arbitrary text fragment [✔]
+        +++ OK, passed 200 tests.
+    with sliced text (using nonzero internal offset)
+      still reports offset relative to the text start [✔]
+    matches ß and ẞ [✔]
+  minimumSkipForCodePoint
+    should match the reference implementation [✔]
+  Searcher
+    containsAny
+      is equivalent to disjunction of Text.isInfixOf calls* [✔]
+        +++ OK, passed 200 tests.
+    containsAll
+      is equivalent to conjunction of Text.isInfixOf calls* [✔]
+        +++ OK, passed 200 tests.
+  Replacer
+    replaceSingleLimited
+      is equivalent to Aho-Corasick replacer with a single needle [✔]
+        +++ OK, passed 200 tests.
+Data.Text.Utf8
+  Properties of the BMP in UTF-8
+    Char.toLower
+      is idempotent [✔]
+  toLowerAscii
+    is equivalent to Char.toLower on ASCII [✔]
+  lowerCodePoint
+    is equivalent to Char.toLower on all of Unicode [✔]
+      +++ OK, passed 100 tests.
+  unlowerCodePoint
+    should return nothing if it's not a lower case of anything [✔]
+    should return itself if it doesn't have any casings [✔]
+    can return multiple values [✔]
+  isCaseInvariant
+    holds vacuously for empty texts [✔]
+    should be true for characters without upper/lower cases [✔]
+    should be false if there are characters with upper/lower cases [✔]
+  dropWhile
+    handles a simple example well [✔]
+  slicing functions
+    satisfies the example in Data.Text.Utf8 [✔]
+    unsafeSliceUtf8 and unsafeCutUtf8 are complementary [✔]
+      +++ OK, passed 100 tests.
+  Basic Text instances
+    Show Text behaves like Show String [✔]
+      +++ OK, passed 100 tests.
+    Eq Text behaves like Eq String [✔]
+      +++ OK, passed 100 tests.
+    Ord Text behaves like Ord String [✔]
+      +++ OK, passed 100 tests.
+  skipCodePointsBackwards
+    works with ascii [✔]
+    moves to start of codepoint if you skip 0 [✔]
+    can skip 1 multi-byte codepoint [✔]
+    can skip multiple multi-byte codepoint [✔]
+    throws errors when you read out of bounds [✔]
+
+Finished in 2.8776 seconds
+78 examples, 0 failures
+Test suite test-suite: PASS
+Test suite logged to:
+/tmp/workdir-alfred-margaret/alfred-margaret-2.1.0.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/alfred-margaret-2.1.0.2/t/test-suite/test/alfred-margaret-2.1.0.2-test-suite.log
+1 of 1 test suites (1 of 1 test cases) passed.

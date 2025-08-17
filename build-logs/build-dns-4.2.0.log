@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - dns-4.2.0 (lib:dns-internal) (first run)
  - dns-4.2.0 (lib) (first run)
@@ -12,11 +13,26 @@ Building library 'dns-internal' for dns-4.2.0...
 [ 3 of 11] Compiling Network.DNS.Resolver.Internal
 [ 4 of 11] Compiling Network.DNS.Types.Internal
 [ 5 of 11] Compiling Network.DNS.StateBinary
+internal/Network/DNS/StateBinary.hs:296:57: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Network.DNS.Imports, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+296 |     toResult (A.Fail _ ctx msg)  = Left $ DecodeError $ head $ ctx ++ [msg]
+    |                                                         ^^^^
+
+internal/Network/DNS/StateBinary.hs:312:54: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Network.DNS.Imports, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+312 |     toResult (A.Fail _ ctx e) = Left $ DecodeError $ head $ ctx ++ [e]
+    |                                                      ^^^^
+
 [ 6 of 11] Compiling Network.DNS.Memo
 [ 7 of 11] Compiling Network.DNS.Encode.Builders
 [ 8 of 11] Compiling Network.DNS.Encode.Internal
 [ 9 of 11] Compiling Network.DNS.Decode.Parsers
-
 internal/Network/DNS/Decode/Parsers.hs:287:5: warning: [GHC-63397] [-Wname-shadowing]
     This binding for ‘flags’ shadows the existing binding
       imported from ‘Network.DNS.Types.Internal’ at internal/Network/DNS/Decode/Parsers.hs:21:1-33
@@ -25,6 +41,7 @@ internal/Network/DNS/Decode/Parsers.hs:287:5: warning: [GHC-63397] [-Wname-shado
     |
 287 |     flags <- get8
     |     ^^^^^
+
 [10 of 11] Compiling Network.DNS.Decode.Internal
 [11 of 11] Compiling Network.DNS.Types.Resolver
 Configuring library for dns-4.2.0...
@@ -34,7 +51,30 @@ Building library for dns-4.2.0...
 [ 2 of 10] Compiling Network.DNS.Encode
 [ 3 of 10] Compiling Network.DNS.IO
 [ 4 of 10] Compiling Network.DNS.Transport
+Network/DNS/Transport.hs:85:40: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Network.DNS.Imports, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+85 |   | onlyOne       = resolveOne        (head nss) (head gens) q tm retry ctls rcv
+   |                                        ^^^^
+
+Network/DNS/Transport.hs:85:51: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Network.DNS.Imports, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+85 |   | onlyOne       = resolveOne        (head nss) (head gens) q tm retry ctls rcv
+   |                                                   ^^^^
+
 [ 5 of 10] Compiling Network.DNS.Resolver
+Network/DNS/Resolver.hs:76:5: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Network.DNS.Imports, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+76 |     head <$> getAddrInfo (Just hints) (Just addr) (Just serv)
+   |     ^^^^
 
 Network/DNS/Resolver.hs:106:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
@@ -46,8 +86,8 @@ Network/DNS/Resolver.hs:106:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     |
 106 |       [u,l] = map fromIntegral $ BS.unpack bs
     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[ 6 of 10] Compiling Network.DNS.LookupRaw
 
+[ 6 of 10] Compiling Network.DNS.LookupRaw
 Network/DNS/LookupRaw.hs:127:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -55,6 +95,7 @@ Network/DNS/LookupRaw.hs:127:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     |
 127 |     Just c = cache rlv
     |     ^^^^^^^^^^^^^^^^^^
+
 [ 7 of 10] Compiling Network.DNS.Lookup
 [ 8 of 10] Compiling Network.DNS.Types
 [ 9 of 10] Compiling Network.DNS.Utils
@@ -64,7 +105,6 @@ Preprocessing test suite 'spec-tests' for dns-4.2.0...
 Building test suite 'spec-tests' for dns-4.2.0...
 [1 of 4] Compiling DecodeSpec
 [2 of 4] Compiling EncodeSpec
-
 test/EncodeSpec.hs:36:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -72,8 +112,8 @@ test/EncodeSpec.hs:36:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
    |
 36 |     Right out = decode bs
    |     ^^^^^^^^^^^^^^^^^^^^^
-[3 of 4] Compiling RoundTripSpec
 
+[3 of 4] Compiling RoundTripSpec
 test/RoundTripSpec.hs:65:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -81,26 +121,27 @@ test/RoundTripSpec.hs:65:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
    |
 65 |             Right m = decode. encode $ DNSMessage hdr eh [] [] [] []
    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [4 of 4] Compiling Main
-[5 of 5] Linking /tmp/workdir-dns/dns-4.2.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/dns-4.2.0/t/spec-tests/build/spec-tests/spec-tests
+[5 of 5] Linking /tmp/workdir-dns/dns-4.2.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/dns-4.2.0/t/spec-tests/build/spec-tests/spec-tests
 Configuring test suite 'network-tests' for dns-4.2.0...
 Preprocessing test suite 'network-tests' for dns-4.2.0...
 Building test suite 'network-tests' for dns-4.2.0...
 [1 of 3] Compiling IOSpec
-
-test2/IOSpec.hs:5:1: warning: [-Wdodgy-imports]
-    Module ‘Network.Socket’ does not export ‘send’
+test2/IOSpec.hs:5:31: warning: [GHC-61689] [-Wdodgy-imports]
+    Module ‘Network.Socket’ does not export ‘send’.
   |
 5 | import Network.Socket hiding (send)
-  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |                               ^^^^
 
-test2/IOSpec.hs:9:1: warning: [-Wunused-imports]
+test2/IOSpec.hs:9:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Network.DNS.Imports’ is redundant
       except perhaps to import instances from ‘Network.DNS.Imports’
     To import instances alone, use: import Network.DNS.Imports()
   |
 9 | import Network.DNS.Imports
   | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [2 of 3] Compiling LookupSpec
 [3 of 3] Compiling Main
-[4 of 4] Linking /tmp/workdir-dns/dns-4.2.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/dns-4.2.0/t/network-tests/build/network-tests/network-tests
+[4 of 4] Linking /tmp/workdir-dns/dns-4.2.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/dns-4.2.0/t/network-tests/build/network-tests/network-tests

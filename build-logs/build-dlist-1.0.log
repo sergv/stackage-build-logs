@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - dlist-1.0 (lib) (first run)
  - dlist-1.0 (test:test) (first run)
@@ -6,7 +7,6 @@ Configuring library for dlist-1.0...
 Preprocessing library for dlist-1.0...
 Building library for dlist-1.0...
 [1 of 5] Compiling Data.DList.Internal
-
 Data/DList/Internal.hs:642:12: warning: [GHC-58520] [-Wtype-equality-requires-operators]
     The use of ‘~’ without TypeOperators
     will become an error in a future GHC release.
@@ -14,9 +14,9 @@ Data/DList/Internal.hs:642:12: warning: [GHC-58520] [-Wtype-equality-requires-op
     |
 642 | instance a ~ Char => IsString (DList a) where
     |            ^
+
 [2 of 5] Compiling Data.DList
 [3 of 5] Compiling Data.DList.DNonEmpty.Internal
-
 Data/DList/DNonEmpty/Internal.hs:459:12: warning: [GHC-58520] [-Wtype-equality-requires-operators]
     The use of ‘~’ without TypeOperators
     will become an error in a future GHC release.
@@ -24,6 +24,7 @@ Data/DList/DNonEmpty/Internal.hs:459:12: warning: [GHC-58520] [-Wtype-equality-r
     |
 459 | instance a ~ Char => IsString (DNonEmpty a) where
     |            ^
+
 [4 of 5] Compiling Data.DList.DNonEmpty
 [5 of 5] Compiling Data.DList.Unsafe
 Configuring test suite 'test' for dlist-1.0...
@@ -31,15 +32,31 @@ Preprocessing test suite 'test' for dlist-1.0...
 Building test suite 'test' for dlist-1.0...
 [1 of 5] Compiling OverloadedStrings
 [2 of 5] Compiling QuickCheckUtil
-
-tests/QuickCheckUtil.hs:24:1: warning: [-Wunused-imports]
+tests/QuickCheckUtil.hs:24:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
    |
 24 | import Control.Applicative (liftA2)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [3 of 5] Compiling DNonEmptyProperties
 [4 of 5] Compiling DListProperties
+tests/DListProperties.hs:70:31: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+70 | prop_head = eqOn (not . null) List.head (head . fromList)
+   |                               ^^^^^^^^^
+
+tests/DListProperties.hs:73:31: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+73 | prop_tail = eqOn (not . null) List.tail (tail . fromList)
+   |                               ^^^^^^^^^
+
 [5 of 5] Compiling Main
-[6 of 6] Linking /tmp/workdir-dlist/dlist-1.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/dlist-1.0/t/test/build/test/test
+[6 of 6] Linking /tmp/workdir-dlist/dlist-1.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/dlist-1.0/t/test/build/test/test

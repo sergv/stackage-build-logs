@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - numeric-prelude-0.4.4 (lib) (first run)
  - numeric-prelude-0.4.4 (test:numeric-prelude-test) (first run)
@@ -12,33 +13,41 @@ Building library for numeric-prelude-0.4.4...
 [ 5 of 97] Compiling MathObj.Permutation
 [ 6 of 97] Compiling NumericPrelude.Base
 [ 7 of 97] Compiling MathObj.Permutation.Table
-[ 8 of 97] Compiling NumericPrelude.Elementwise
+src/MathObj/Permutation/Table.hs:58:40: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+58 |    p // zipWith (\i j -> (j,p!i)) cyc (tail (cyc++cyc))
+   |                                        ^^^^
 
-src/NumericPrelude/Elementwise.hs:3:1: warning: [-Wunused-imports]
+[ 8 of 97] Compiling NumericPrelude.Elementwise
+src/NumericPrelude/Elementwise.hs:3:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
   |
 3 | import Control.Applicative (Applicative(pure, (<*>)), )
   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[ 9 of 97] Compiling Algebra.EqualityDecision
 
-src/Algebra/EqualityDecision.hs:25:1: warning: [-Wunused-imports]
+[ 9 of 97] Compiling Algebra.EqualityDecision
+src/Algebra/EqualityDecision.hs:25:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
    |
 25 | import Control.Applicative (Applicative(pure, (<*>)), )
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[10 of 97] Compiling Algebra.OrderDecision
 
-src/Algebra/OrderDecision.hs:28:1: warning: [-Wunused-imports]
+[10 of 97] Compiling Algebra.OrderDecision
+src/Algebra/OrderDecision.hs:28:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
    |
 28 | import Control.Applicative (Applicative(pure, (<*>)), )
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [11 of 97] Compiling Algebra.Additive
 [12 of 97] Compiling Algebra.ZeroTestable
 [13 of 97] Compiling NumericPrelude.List
@@ -66,7 +75,6 @@ src/Algebra/OrderDecision.hs:28:1: warning: [-Wunused-imports]
 [35 of 97] Compiling Algebra.Algebraic
 [36 of 97] Compiling Algebra.Transcendental
 [37 of 97] Compiling Algebra.RealRing
-
 src/Algebra/RealRing.hs:639:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a lambda abstraction:
@@ -74,6 +82,7 @@ src/Algebra/RealRing.hs:639:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     |
 639 |    (\(ps,u:_) ->
     |     ^^^^^^^^^^^^...
+
 [38 of 97] Compiling Algebra.RealField
 [39 of 97] Compiling Algebra.RealTranscendental
 [40 of 97] Compiling Algebra.FloatingPoint
@@ -88,7 +97,6 @@ src/Algebra/RealRing.hs:639:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
 [49 of 97] Compiling Number.ResidueClass.Check
 [50 of 97] Compiling Number.Peano
 [51 of 97] Compiling Number.PartiallyTranscendental
-
 src/Number/PartiallyTranscendental.hs:62:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a lambda abstraction:
@@ -152,11 +160,11 @@ src/Number/PartiallyTranscendental.hs:72:12: warning: [GHC-62161] [-Wincomplete-
    |
 72 |     atan = \0 -> 0
    |            ^^^^^^^
+
 [52 of 97] Compiling Number.NonNegativeChunky
 [53 of 97] Compiling Number.NonNegative
 [54 of 97] Compiling Number.GaloisField2p32m5
 [55 of 97] Compiling MathObj.Polynomial.Core
-
 src/MathObj/Polynomial/Core.hs:156:30: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding: Patterns of type ‘[a]’ not matched: []
@@ -170,14 +178,182 @@ src/MathObj/Polynomial/Core.hs:201:25: warning: [GHC-62161] [-Wincomplete-uni-pa
     |
 201 |                     let (x0:xs) = xs'
     |                         ^^^^^^^^^^^^^
+
 [56 of 97] Compiling MathObj.PowerSeries.Core
+src/MathObj/PowerSeries/Core.hs:167:30: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+167 |    in  if null y0 || isZero (head y0)
+    |                              ^^^^
+
+src/MathObj/PowerSeries/Core.hs:224:28: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+224 |    let y  = integrate (f0 (head x)) y'
+    |                            ^^^^
+
+src/MathObj/PowerSeries/Core.hs:244:28: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+244 |        y  = integrate (f0 (head x)) (mul y x')
+    |                            ^^^^
+
+src/MathObj/PowerSeries/Core.hs:249:29: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+249 |    let (y0Sin, y0Cos) = f0 (head x)
+    |                             ^^^^
+
+src/MathObj/PowerSeries/Core.hs:294:27: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+294 | log f0 x = integrate (f0 (head x)) (derivedLog x)
+    |                           ^^^^
+
+src/MathObj/PowerSeries/Core.hs:310:23: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+310 |    in  integrate (f0 (head x)) (divide x' ([1] + mul x x))
+    |                       ^^^^
+
+src/MathObj/PowerSeries/Core.hs:320:23: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+320 |    in  integrate (f0 (head x))
+    |                       ^^^^
+
+src/MathObj/PowerSeries/Core.hs:403:52: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+403 |    let y' = divide [1] (compose (differentiate x) (tail y))
+    |                                                    ^^^^
+
+src/MathObj/PowerSeries/Core.hs:406:9: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+406 |    in  (head x, y)
+    |         ^^^^
+
 [57 of 97] Compiling MathObj.PowerSeries.Example
+src/MathObj/PowerSeries/Example.hs:71:38: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+71 | sinExpl = zero : PS.holes2alternate (tail expExpl)
+   |                                      ^^^^
+
+src/MathObj/PowerSeries/Example.hs:85:28: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+85 |       (PS.divide (sieve 2 (tail sin)) (sieve 2 cos))
+   |                            ^^^^
+
+src/MathObj/PowerSeries/Example.hs:96:31: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+96 | sinhExpl  = zero : PS.holes2 (tail expExpl)
+   |                               ^^^^
+
+src/MathObj/PowerSeries/Example.hs:153:19: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+153 |    let tan2 = map head (iterate (drop 2) (tail tanODESieve))
+    |                   ^^^^
+
+src/MathObj/PowerSeries/Example.hs:153:43: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+153 |    let tan2 = map head (iterate (drop 2) (tail tanODESieve))
+    |                                           ^^^^
+
 [58 of 97] Compiling Number.FixedPoint
+src/Number/FixedPoint.hs:135:24: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+135 |        initial  = fst (head (dropWhile ((<= xden) . snd)
+    |                        ^^^^
+
+src/Number/FixedPoint.hs:136:50: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+136 |                                 (zip magnitudes (tail (tail magnitudes)))))
+    |                                                  ^^^^
+
+src/Number/FixedPoint.hs:136:56: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+136 |                                 (zip magnitudes (tail (tail magnitudes)))))
+    |                                                        ^^^^
+
+src/Number/FixedPoint.hs:139:8: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+139 |    in  head (dropWhile (not . isRoot) approxs)
+    |        ^^^^
+
+src/Number/FixedPoint.hs:146:24: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+146 |        initial  = fst (head (dropWhile ((\y -> y^n <= xden) . snd)
+    |                        ^^^^
+
+src/Number/FixedPoint.hs:147:50: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+147 |                                 (zip magnitudes (tail magnitudes))))
+    |                                                  ^^^^
+
+src/Number/FixedPoint.hs:150:8: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+150 |    in  head (dropWhile (not . isRoot) approxs)
+    |        ^^^^
+
 [59 of 97] Compiling Number.FixedPoint.Check
 [60 of 97] Compiling MathObj.PowerSeries.DifferentialEquation
 [61 of 97] Compiling MathObj.PowerSeries
 [62 of 97] Compiling MathObj.PowerSeries2.Core
-
 src/MathObj/PowerSeries2/Core.hs:59:29: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a lambda abstraction:
@@ -197,8 +373,48 @@ src/MathObj/PowerSeries2/Core.hs:65:28: warning: [GHC-62161] [-Wincomplete-uni-p
    |
 65 |    PSCore.pow (PS.const . (\[x] -> fPow x) . PS.coeffs) (PS.const expon)
    |                            ^^^^^^^^^^^^^^
+
 [63 of 97] Compiling MathObj.PowerSeries2
 [64 of 97] Compiling MathObj.PowerSeries.Mean
+src/MathObj/PowerSeries/Mean.hs:78:29: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+78 |    map sum (shearTranspose (tail (zipWith PSCore.scale ys
+   |                             ^^^^
+
+src/MathObj/PowerSeries/Mean.hs:79:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+79 |                     (map tail (iterate (PSCore.mul x) [1])))))
+   |                          ^^^^
+
+src/MathObj/PowerSeries/Mean.hs:93:24: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+93 |                       (tail (zipWith (*) (iterate (2*) 1) PSE.log))
+   |                        ^^^^
+
+src/MathObj/PowerSeries/Mean.hs:94:34: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+94 |        fDiffFracLn = diffComp f (tail fracLn)
+   |                                  ^^^^
+
+src/MathObj/PowerSeries/Mean.hs:103:32: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+103 |        fDiffRoot = diffComp f (tail root)
+    |                                ^^^^
 
 src/MathObj/PowerSeries/Mean.hs:123:26: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
@@ -207,6 +423,14 @@ src/MathObj/PowerSeries/Mean.hs:123:26: warning: [GHC-62161] [-Wincomplete-uni-p
     |
 123 | quadratic = PSCore.sqrt (\1 -> 1) [1,1,1/2]
     |                          ^^^^^^^
+
+src/MathObj/PowerSeries/Mean.hs:143:20: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+143 |    let divDiffPS = tail quadraticMVF -- (f(1+t)-f(1))/((1+t)-1)
+    |                    ^^^^
 
 src/MathObj/PowerSeries/Mean.hs:144:8: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
@@ -240,15 +464,87 @@ src/MathObj/PowerSeries/Mean.hs:217:18: warning: [GHC-62161] [-Wincomplete-uni-p
     |
 217 |    PS2Core.sqrt (\1 -> 1) [[1],[1,1],[0,1,0]]
     |                  ^^^^^^^
+
+src/MathObj/PowerSeries/Mean.hs:231:37: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+231 |           zipWith replicate [1..] $ tail curve
+    |                                     ^^^^
+
+src/MathObj/PowerSeries/Mean.hs:233:57: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+233 |           PS2Core.compose (PSCore.differentiate curve) (tail mean2)
+    |                                                         ^^^^
+
 [65 of 97] Compiling MathObj.Polynomial
 [66 of 97] Compiling MathObj.RefinementMask2
+src/MathObj/RefinementMask2.hs:188:8: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+188 |    in  head (Poly.coeffs refined) / (1 - sum (coeffs mask))
+    |        ^^^^
+
+src/MathObj/RefinementMask2.hs:201:28: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+201 |                        c = head (Poly.coeffs (refinePolynomial mask ip))
+    |                            ^^^^
+
 [67 of 97] Compiling MathObj.PowerSum
+src/MathObj/PowerSum.hs:111:47: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+111 |    let s' = PolyCore.mul (PolyCore.alternate (tail p)) s
+    |                                               ^^^^
+
+src/MathObj/PowerSum.hs:117:47: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+117 |    let s' = PolyCore.mul (PolyCore.alternate (tail p)) s
+    |                                               ^^^^
+
 [68 of 97] Compiling MathObj.RootSet
+src/MathObj/RootSet.hs:93:40: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+93 |    Match.take (undefined : liftM2 (,) (tail x) (tail y))
+   |                                        ^^^^
+
+src/MathObj/RootSet.hs:93:49: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+93 |    Match.take (undefined : liftM2 (,) (tail x) (tail y))
+   |                                                 ^^^^
+
 [69 of 97] Compiling Number.Root
 [70 of 97] Compiling MathObj.Permutation.CycleList
+src/MathObj/Permutation/CycleList.hs:53:34: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+53 |    case dropWhile (x/=) (cyc ++ [head cyc]) of
+   |                                  ^^^^
+
 [71 of 97] Compiling MathObj.Permutation.CycleList.Check
 [72 of 97] Compiling MathObj.PartialFraction
-
 src/MathObj/PartialFraction.hs:207:8: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding: Patterns of type ‘[a]’ not matched: []
@@ -275,6 +571,7 @@ src/MathObj/PartialFraction.hs:378:8: warning: [GHC-62161] [-Wincomplete-uni-pat
     |
 378 |        [a,b,c] =
     |        ^^^^^^^^^...
+
 [73 of 97] Compiling MathObj.Matrix
 [74 of 97] Compiling Algebra.OccasionallyScalar
 [75 of 97] Compiling Number.OccasionallyScalarExpression
@@ -284,7 +581,6 @@ src/MathObj/PartialFraction.hs:378:8: warning: [GHC-62161] [-Wincomplete-uni-pat
 [79 of 97] Compiling Algebra.NormedSpace.Euclidean
 [80 of 97] Compiling Number.Complex
 [81 of 97] Compiling Number.Quaternion
-
 src/Number/Quaternion.hs:217:8: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -310,9 +606,25 @@ src/Number/Quaternion.hs:218:8: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     |
 218 |        [ai,bi,ci,di] = map Complex.imag xs
     |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[82 of 97] Compiling MathObj.LaurentPolynomial
-[83 of 97] Compiling Number.Positional
 
+[82 of 97] Compiling MathObj.LaurentPolynomial
+src/MathObj/LaurentPolynomial.hs:52:11: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+52 |      else head (drop (n-xt) x ++ [zero])
+   |           ^^^^
+
+src/MathObj/LaurentPolynomial.hs:116:14: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+116 |    in  Cons (head es) (addShiftedMany ds xs)
+    |              ^^^^
+
+[83 of 97] Compiling Number.Positional
 src/Number/Positional.hs:118:8: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -320,6 +632,14 @@ src/Number/Positional.hs:118:8: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     |
 118 |    let (hi:his,los) = unzip (map (moveToZero b) xm)
     |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Number/Positional.hs:171:31: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+171 |               not (null xm || head xm == 0)) trimOnce
+    |                               ^^^^
 
 src/Number/Positional.hs:429:15: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
@@ -337,6 +657,78 @@ src/Number/Positional.hs:666:8: warning: [GHC-62161] [-Wincomplete-uni-patterns]
 666 |    let (es,m:ms) = unzip (map (uncurry (align b)) summands)
     |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+src/Number/Positional.hs:686:20: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+686 |    in  compress b (head es, concat chunks ++ trailingDigits)
+    |                    ^^^^
+
+src/Number/Positional.hs:716:40: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+716 |    let (ys, zs) = splitAtMatchPadZero (tail n) xs
+    |                                        ^^^^
+
+src/Number/Positional.hs:748:55: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+748 |        zs  = zipWith (\xd e -> scale b xd (e,ym)) xm (tail zes)
+    |                                                       ^^^^
+
+src/Number/Positional.hs:772:39: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+772 |    let (ye,ym) = until ((>=b) . abs . head . snd)
+    |                                       ^^^^
+
+src/Number/Positional.hs:785:21: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+785 |        let z = div (head xm) (head ym)
+    |                     ^^^^
+
+src/Number/Positional.hs:785:31: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+785 |        let z = div (head xm) (head ym)
+    |                               ^^^^
+
+src/Number/Positional.hs:802:21: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+802 |        let z = div (head xm) (head ym)
+    |                     ^^^^
+
+src/Number/Positional.hs:802:31: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+802 |        let z = div (head xm) (head ym)
+    |                               ^^^^
+
+src/Number/Positional.hs:830:14: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+830 |    map fst . tail .
+    |              ^^^^
+
 src/Number/Positional.hs:855:8: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -345,13 +737,38 @@ src/Number/Positional.hs:855:8: warning: [GHC-62161] [-Wincomplete-uni-patterns]
 855 |    let (exe,ex0:exm) = if odd (fst x) then decreaseExp b x else x
     |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Number/Positional.hs:985:1: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+src/Number/Positional.hs:901:25: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+901 |           let yj = div (head dif + y0) (2*y0)
+    |                         ^^^^
+
+src/Number/Positional.hs:962:47: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+962 |                          y0 (zip basisPowers (tail truncXs))
+    |                                               ^^^^
+
+src/Number/Positional.hs:985:12: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
-    In a pattern binding: Patterns of type ‘[a]’ not matched: []
+    In an irrefutable pattern: Patterns of type ‘[a]’ not matched: []
     |
 985 | lazyInits ~(x:xs)  =  [] : map (x:) (lazyInits xs)
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |            ^^^^^^
+
 [84 of 97] Compiling Number.Positional.Check
+src/Number/Positional/Check.hs:72:27: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+72 |    in  prependDigit (fst (head ys)) (Cons b ex digits)
+   |                           ^^^^
+
 [85 of 97] Compiling MathObj.Wrapper.NumericPrelude
 [86 of 97] Compiling MathObj.DiscreteMap
 [87 of 97] Compiling Number.Physical.Unit
@@ -371,16 +788,24 @@ Building test suite 'numeric-prelude-test' for numeric-prelude-0.4.4...
 [ 1 of 25] Compiling MathObj.Gaussian.Bell
 [ 2 of 25] Compiling MathObj.Gaussian.ExponentTuple
 [ 3 of 25] Compiling MathObj.Gaussian.Polynomial
+gaussian/MathObj/Gaussian/Polynomial.hs:229:10: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from NumericPrelude.Base, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+229 |    fst . head . dropWhile (uncurry (/=)) . mapAdjacent (,) $
+    |          ^^^^
 
-gaussian/MathObj/Gaussian/Polynomial.hs:356:8: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+gaussian/MathObj/Gaussian/Polynomial.hs:356:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
-    In a pattern binding:
+    In an irrefutable pattern:
         Patterns of type ‘[Complex.T a]’ not matched:
             []
             (_:_:_)
     |
 356 |        (ys,~[r]) =
-    |        ^^^^^^^^^^^...
+    |             ^^^
+
 [ 4 of 25] Compiling MathObj.Gaussian.Variance
 [ 5 of 25] Compiling Number.ComplexSquareRoot
 [ 6 of 25] Compiling Test.Algebra.Additive
@@ -398,7 +823,6 @@ gaussian/MathObj/Gaussian/Polynomial.hs:356:8: warning: [GHC-62161] [-Wincomplet
 [18 of 25] Compiling Test.MathObj.RefinementMask2
 [19 of 25] Compiling Test.MathObj.PowerSeries.Example
 [20 of 25] Compiling Test.MathObj.PowerSeries.Core
-
 src/MathObj/PowerSeries/Core.hs:190:44: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a lambda abstraction:
@@ -668,9 +1092,10 @@ src/MathObj/PowerSeries/Core.hs:315:41: warning: [GHC-62161] [-Wincomplete-uni-p
     |
 315 | prop> checkHoles 30 (PS.asin (\1 -> 1) (\0 -> 0)) 0
     |                                         ^^^^^^^
+
 [21 of 25] Compiling Test.MathObj.PowerSeries
 [22 of 25] Compiling Test.MathObj.PartialFraction
 [23 of 25] Compiling Test.MathObj.Matrix
 [24 of 25] Compiling Test.Algebra.PrincipalIdealDomain
 [25 of 25] Compiling Main
-[26 of 26] Linking /tmp/workdir-numeric-prelude/numeric-prelude-0.4.4/dist-newstyle/build/x86_64-linux/ghc-9.6.5/numeric-prelude-0.4.4/t/numeric-prelude-test/build/numeric-prelude-test/numeric-prelude-test
+[26 of 26] Linking /tmp/workdir-numeric-prelude/numeric-prelude-0.4.4/dist-newstyle/build/x86_64-linux/ghc-9.10.2/numeric-prelude-0.4.4/t/numeric-prelude-test/build/numeric-prelude-test/numeric-prelude-test

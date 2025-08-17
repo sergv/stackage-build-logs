@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - data-dword-0.3.2.1 (lib) (first run)
  - data-dword-0.3.2.1 (test:tests) (first run)
@@ -7,10 +8,9 @@ Preprocessing library for data-dword-0.3.2.1...
 Building library for data-dword-0.3.2.1...
 [1 of 3] Compiling Data.DoubleWord.Base
 [2 of 3] Compiling Data.DoubleWord.TH
-
 src/Data/DoubleWord/TH.hs:899:16: warning: [GHC-68441] [-Wdeprecations]
     In the use of ‘bitSize’
-    (imported from Data.Bits, but defined in GHC.Bits):
+    (imported from Data.Bits, but defined in GHC.Internal.Bits):
     Deprecated: "Use 'bitSizeMaybe' or 'finiteBitSize' instead"
     |
 899 |         [ fun_ 'bitSize $ appV '(+) [hiSizeE, loSizeE]
@@ -18,7 +18,7 @@ src/Data/DoubleWord/TH.hs:899:16: warning: [GHC-68441] [-Wdeprecations]
 
 src/Data/DoubleWord/TH.hs:900:18: warning: [GHC-68441] [-Wdeprecations]
     In the use of ‘bitSize’
-    (imported from Data.Bits, but defined in GHC.Bits):
+    (imported from Data.Bits, but defined in GHC.Internal.Bits):
     Deprecated: "Use 'bitSizeMaybe' or 'finiteBitSize' instead"
     |
 900 |         , inline 'bitSize
@@ -26,15 +26,15 @@ src/Data/DoubleWord/TH.hs:900:18: warning: [GHC-68441] [-Wdeprecations]
 
 src/Data/DoubleWord/TH.hs:1047:33: warning: [GHC-68441] [-Wdeprecations]
     In the use of ‘bitSize’
-    (imported from Data.Bits, but defined in GHC.Bits):
+    (imported from Data.Bits, but defined in GHC.Internal.Bits):
     Deprecated: "Use 'bitSizeMaybe' or 'finiteBitSize' instead"
      |
 1047 |                          , appV 'bitSize [SigE (VarE 'undefined) loT] ]]
      |                                 ^^^^^^^^
+
 [3 of 3] Compiling Data.DoubleWord
-
 src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word96->GHC.Word.Word64" may never fire
+    Rule "fromIntegral/Word96->GHC.Internal.Word.Word64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -43,7 +43,7 @@ src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word64->Word96" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word64->Word96" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -52,7 +52,7 @@ src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word96->GHC.Int.Int64" may never fire
+    Rule "fromIntegral/Word96->GHC.Internal.Int.Int64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -61,7 +61,7 @@ src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int64->Word96" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int64->Word96" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -88,7 +88,7 @@ src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word96->GHC.Word.Word32" may never fire
+    Rule "fromIntegral/Word96->GHC.Internal.Word.Word32" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -97,7 +97,7 @@ src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word32->Word96" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word32->Word96" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -106,7 +106,7 @@ src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word96->GHC.Int.Int32" may never fire
+    Rule "fromIntegral/Word96->GHC.Internal.Int.Int32" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -115,7 +115,7 @@ src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int32->Word96" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int32->Word96" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -124,7 +124,7 @@ src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word96->GHC.Word.Word16" may never fire
+    Rule "fromIntegral/Word96->GHC.Internal.Word.Word16" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -133,7 +133,7 @@ src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word16->Word96" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word16->Word96" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -142,7 +142,7 @@ src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word96->GHC.Int.Int16" may never fire
+    Rule "fromIntegral/Word96->GHC.Internal.Int.Int16" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -151,7 +151,7 @@ src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int16->Word96" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int16->Word96" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -160,7 +160,7 @@ src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word96->GHC.Word.Word8" may never fire
+    Rule "fromIntegral/Word96->GHC.Internal.Word.Word8" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -169,7 +169,7 @@ src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word8->Word96" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word8->Word96" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -178,7 +178,7 @@ src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word96->GHC.Int.Int8" may never fire
+    Rule "fromIntegral/Word96->GHC.Internal.Int.Int8" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -187,7 +187,7 @@ src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int8->Word96" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int8->Word96" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -196,7 +196,7 @@ src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int96->GHC.Word.Word64" may never fire
+    Rule "fromIntegral/Int96->GHC.Internal.Word.Word64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -205,7 +205,7 @@ src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word64->Int96" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word64->Int96" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -214,7 +214,7 @@ src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int96->GHC.Int.Int64" may never fire
+    Rule "fromIntegral/Int96->GHC.Internal.Int.Int64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -223,7 +223,7 @@ src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int64->Int96" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int64->Int96" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -250,7 +250,7 @@ src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int96->GHC.Word.Word32" may never fire
+    Rule "fromIntegral/Int96->GHC.Internal.Word.Word32" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -259,7 +259,7 @@ src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word32->Int96" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word32->Int96" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -268,7 +268,7 @@ src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int96->GHC.Int.Int32" may never fire
+    Rule "fromIntegral/Int96->GHC.Internal.Int.Int32" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -277,7 +277,7 @@ src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int32->Int96" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int32->Int96" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -286,7 +286,7 @@ src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int96->GHC.Word.Word16" may never fire
+    Rule "fromIntegral/Int96->GHC.Internal.Word.Word16" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -295,7 +295,7 @@ src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word16->Int96" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word16->Int96" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -304,7 +304,7 @@ src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int96->GHC.Int.Int16" may never fire
+    Rule "fromIntegral/Int96->GHC.Internal.Int.Int16" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -313,7 +313,7 @@ src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int16->Int96" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int16->Int96" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -322,7 +322,7 @@ src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int96->GHC.Word.Word8" may never fire
+    Rule "fromIntegral/Int96->GHC.Internal.Word.Word8" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -331,7 +331,7 @@ src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word8->Int96" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word8->Int96" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -340,7 +340,7 @@ src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int96->GHC.Int.Int8" may never fire
+    Rule "fromIntegral/Int96->GHC.Internal.Int.Int8" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -349,7 +349,7 @@ src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int8->Int96" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int8->Int96" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -358,7 +358,7 @@ src/Data/DoubleWord.hs:35:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word128->GHC.Word.Word64" may never fire
+    Rule "fromIntegral/Word128->GHC.Internal.Word.Word64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -367,7 +367,7 @@ src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word64->Word128" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word64->Word128" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -376,7 +376,7 @@ src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word128->GHC.Int.Int64" may never fire
+    Rule "fromIntegral/Word128->GHC.Internal.Int.Int64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -385,7 +385,7 @@ src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int64->Word128" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int64->Word128" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -412,7 +412,7 @@ src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word128->GHC.Word.Word32" may never fire
+    Rule "fromIntegral/Word128->GHC.Internal.Word.Word32" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -421,7 +421,7 @@ src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word32->Word128" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word32->Word128" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -430,7 +430,7 @@ src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word128->GHC.Int.Int32" may never fire
+    Rule "fromIntegral/Word128->GHC.Internal.Int.Int32" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -439,7 +439,7 @@ src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int32->Word128" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int32->Word128" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -448,7 +448,7 @@ src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word128->GHC.Word.Word16" may never fire
+    Rule "fromIntegral/Word128->GHC.Internal.Word.Word16" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -457,7 +457,7 @@ src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word16->Word128" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word16->Word128" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -466,7 +466,7 @@ src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word128->GHC.Int.Int16" may never fire
+    Rule "fromIntegral/Word128->GHC.Internal.Int.Int16" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -475,7 +475,7 @@ src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int16->Word128" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int16->Word128" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -484,7 +484,7 @@ src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word128->GHC.Word.Word8" may never fire
+    Rule "fromIntegral/Word128->GHC.Internal.Word.Word8" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -493,7 +493,7 @@ src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word8->Word128" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word8->Word128" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -502,7 +502,7 @@ src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word128->GHC.Int.Int8" may never fire
+    Rule "fromIntegral/Word128->GHC.Internal.Int.Int8" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -511,7 +511,7 @@ src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int8->Word128" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int8->Word128" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -520,7 +520,7 @@ src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int128->GHC.Word.Word64" may never fire
+    Rule "fromIntegral/Int128->GHC.Internal.Word.Word64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -529,7 +529,7 @@ src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word64->Int128" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word64->Int128" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -538,7 +538,7 @@ src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int128->GHC.Int.Int64" may never fire
+    Rule "fromIntegral/Int128->GHC.Internal.Int.Int64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -547,7 +547,7 @@ src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int64->Int128" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int64->Int128" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -574,7 +574,7 @@ src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int128->GHC.Word.Word32" may never fire
+    Rule "fromIntegral/Int128->GHC.Internal.Word.Word32" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -583,7 +583,7 @@ src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word32->Int128" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word32->Int128" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -592,7 +592,7 @@ src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int128->GHC.Int.Int32" may never fire
+    Rule "fromIntegral/Int128->GHC.Internal.Int.Int32" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -601,7 +601,7 @@ src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int32->Int128" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int32->Int128" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -610,7 +610,7 @@ src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int128->GHC.Word.Word16" may never fire
+    Rule "fromIntegral/Int128->GHC.Internal.Word.Word16" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -619,7 +619,7 @@ src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word16->Int128" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word16->Int128" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -628,7 +628,7 @@ src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int128->GHC.Int.Int16" may never fire
+    Rule "fromIntegral/Int128->GHC.Internal.Int.Int16" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -637,7 +637,7 @@ src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int16->Int128" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int16->Int128" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -646,7 +646,7 @@ src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int128->GHC.Word.Word8" may never fire
+    Rule "fromIntegral/Int128->GHC.Internal.Word.Word8" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -655,7 +655,7 @@ src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word8->Int128" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word8->Int128" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -664,7 +664,7 @@ src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int128->GHC.Int.Int8" may never fire
+    Rule "fromIntegral/Int128->GHC.Internal.Int.Int8" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -673,7 +673,7 @@ src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int8->Int128" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int8->Int128" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -682,7 +682,7 @@ src/Data/DoubleWord.hs:37:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word160->GHC.Word.Word64" may never fire
+    Rule "fromIntegral/Word160->GHC.Internal.Word.Word64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -691,7 +691,7 @@ src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word64->Word160" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word64->Word160" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -700,7 +700,7 @@ src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word160->GHC.Int.Int64" may never fire
+    Rule "fromIntegral/Word160->GHC.Internal.Int.Int64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -709,7 +709,7 @@ src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int64->Word160" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int64->Word160" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -772,7 +772,7 @@ src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word160->GHC.Word.Word32" may never fire
+    Rule "fromIntegral/Word160->GHC.Internal.Word.Word32" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -781,7 +781,7 @@ src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word32->Word160" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word32->Word160" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -790,7 +790,7 @@ src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word160->GHC.Int.Int32" may never fire
+    Rule "fromIntegral/Word160->GHC.Internal.Int.Int32" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -799,7 +799,7 @@ src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int32->Word160" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int32->Word160" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -808,7 +808,7 @@ src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word160->GHC.Word.Word16" may never fire
+    Rule "fromIntegral/Word160->GHC.Internal.Word.Word16" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -817,7 +817,7 @@ src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word16->Word160" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word16->Word160" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -826,7 +826,7 @@ src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word160->GHC.Int.Int16" may never fire
+    Rule "fromIntegral/Word160->GHC.Internal.Int.Int16" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -835,7 +835,7 @@ src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int16->Word160" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int16->Word160" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -844,7 +844,7 @@ src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word160->GHC.Word.Word8" may never fire
+    Rule "fromIntegral/Word160->GHC.Internal.Word.Word8" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -853,7 +853,7 @@ src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word8->Word160" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word8->Word160" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -862,7 +862,7 @@ src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word160->GHC.Int.Int8" may never fire
+    Rule "fromIntegral/Word160->GHC.Internal.Int.Int8" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -871,7 +871,7 @@ src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int8->Word160" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int8->Word160" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -880,7 +880,7 @@ src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int160->GHC.Word.Word64" may never fire
+    Rule "fromIntegral/Int160->GHC.Internal.Word.Word64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -889,7 +889,7 @@ src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word64->Int160" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word64->Int160" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -898,7 +898,7 @@ src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int160->GHC.Int.Int64" may never fire
+    Rule "fromIntegral/Int160->GHC.Internal.Int.Int64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -907,7 +907,7 @@ src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int64->Int160" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int64->Int160" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -970,7 +970,7 @@ src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int160->GHC.Word.Word32" may never fire
+    Rule "fromIntegral/Int160->GHC.Internal.Word.Word32" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -979,7 +979,7 @@ src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word32->Int160" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word32->Int160" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -988,7 +988,7 @@ src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int160->GHC.Int.Int32" may never fire
+    Rule "fromIntegral/Int160->GHC.Internal.Int.Int32" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -997,7 +997,7 @@ src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int32->Int160" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int32->Int160" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1006,7 +1006,7 @@ src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int160->GHC.Word.Word16" may never fire
+    Rule "fromIntegral/Int160->GHC.Internal.Word.Word16" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1015,7 +1015,7 @@ src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word16->Int160" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word16->Int160" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1024,7 +1024,7 @@ src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int160->GHC.Int.Int16" may never fire
+    Rule "fromIntegral/Int160->GHC.Internal.Int.Int16" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1033,7 +1033,7 @@ src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int16->Int160" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int16->Int160" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1042,7 +1042,7 @@ src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int160->GHC.Word.Word8" may never fire
+    Rule "fromIntegral/Int160->GHC.Internal.Word.Word8" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1051,7 +1051,7 @@ src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word8->Int160" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word8->Int160" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1060,7 +1060,7 @@ src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int160->GHC.Int.Int8" may never fire
+    Rule "fromIntegral/Int160->GHC.Internal.Int.Int8" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1069,7 +1069,7 @@ src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int8->Int160" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int8->Int160" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1078,7 +1078,7 @@ src/Data/DoubleWord.hs:39:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word192->GHC.Word.Word64" may never fire
+    Rule "fromIntegral/Word192->GHC.Internal.Word.Word64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1087,7 +1087,7 @@ src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word64->Word192" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word64->Word192" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1096,7 +1096,7 @@ src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word192->GHC.Int.Int64" may never fire
+    Rule "fromIntegral/Word192->GHC.Internal.Int.Int64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1105,7 +1105,7 @@ src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int64->Word192" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int64->Word192" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1168,7 +1168,7 @@ src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word192->GHC.Word.Word32" may never fire
+    Rule "fromIntegral/Word192->GHC.Internal.Word.Word32" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1177,7 +1177,7 @@ src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word32->Word192" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word32->Word192" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1186,7 +1186,7 @@ src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word192->GHC.Int.Int32" may never fire
+    Rule "fromIntegral/Word192->GHC.Internal.Int.Int32" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1195,7 +1195,7 @@ src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int32->Word192" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int32->Word192" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1204,7 +1204,7 @@ src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word192->GHC.Word.Word16" may never fire
+    Rule "fromIntegral/Word192->GHC.Internal.Word.Word16" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1213,7 +1213,7 @@ src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word16->Word192" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word16->Word192" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1222,7 +1222,7 @@ src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word192->GHC.Int.Int16" may never fire
+    Rule "fromIntegral/Word192->GHC.Internal.Int.Int16" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1231,7 +1231,7 @@ src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int16->Word192" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int16->Word192" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1240,7 +1240,7 @@ src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word192->GHC.Word.Word8" may never fire
+    Rule "fromIntegral/Word192->GHC.Internal.Word.Word8" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1249,7 +1249,7 @@ src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word8->Word192" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word8->Word192" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1258,7 +1258,7 @@ src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word192->GHC.Int.Int8" may never fire
+    Rule "fromIntegral/Word192->GHC.Internal.Int.Int8" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1267,7 +1267,7 @@ src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int8->Word192" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int8->Word192" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1276,7 +1276,7 @@ src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int192->GHC.Word.Word64" may never fire
+    Rule "fromIntegral/Int192->GHC.Internal.Word.Word64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1285,7 +1285,7 @@ src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word64->Int192" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word64->Int192" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1294,7 +1294,7 @@ src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int192->GHC.Int.Int64" may never fire
+    Rule "fromIntegral/Int192->GHC.Internal.Int.Int64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1303,7 +1303,7 @@ src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int64->Int192" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int64->Int192" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1366,7 +1366,7 @@ src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int192->GHC.Word.Word32" may never fire
+    Rule "fromIntegral/Int192->GHC.Internal.Word.Word32" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1375,7 +1375,7 @@ src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word32->Int192" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word32->Int192" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1384,7 +1384,7 @@ src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int192->GHC.Int.Int32" may never fire
+    Rule "fromIntegral/Int192->GHC.Internal.Int.Int32" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1393,7 +1393,7 @@ src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int32->Int192" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int32->Int192" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1402,7 +1402,7 @@ src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int192->GHC.Word.Word16" may never fire
+    Rule "fromIntegral/Int192->GHC.Internal.Word.Word16" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1411,7 +1411,7 @@ src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word16->Int192" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word16->Int192" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1420,7 +1420,7 @@ src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int192->GHC.Int.Int16" may never fire
+    Rule "fromIntegral/Int192->GHC.Internal.Int.Int16" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1429,7 +1429,7 @@ src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int16->Int192" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int16->Int192" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1438,7 +1438,7 @@ src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int192->GHC.Word.Word8" may never fire
+    Rule "fromIntegral/Int192->GHC.Internal.Word.Word8" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1447,7 +1447,7 @@ src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word8->Int192" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word8->Int192" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1456,7 +1456,7 @@ src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int192->GHC.Int.Int8" may never fire
+    Rule "fromIntegral/Int192->GHC.Internal.Int.Int8" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1465,7 +1465,7 @@ src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int8->Int192" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int8->Int192" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1474,7 +1474,7 @@ src/Data/DoubleWord.hs:41:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word224->GHC.Word.Word64" may never fire
+    Rule "fromIntegral/Word224->GHC.Internal.Word.Word64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1483,7 +1483,7 @@ src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word64->Word224" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word64->Word224" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1492,7 +1492,7 @@ src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word224->GHC.Int.Int64" may never fire
+    Rule "fromIntegral/Word224->GHC.Internal.Int.Int64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1501,7 +1501,7 @@ src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int64->Word224" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int64->Word224" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1564,7 +1564,7 @@ src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word224->GHC.Word.Word32" may never fire
+    Rule "fromIntegral/Word224->GHC.Internal.Word.Word32" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1573,7 +1573,7 @@ src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word32->Word224" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word32->Word224" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1582,7 +1582,7 @@ src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word224->GHC.Int.Int32" may never fire
+    Rule "fromIntegral/Word224->GHC.Internal.Int.Int32" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1591,7 +1591,7 @@ src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int32->Word224" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int32->Word224" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1600,7 +1600,7 @@ src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word224->GHC.Word.Word16" may never fire
+    Rule "fromIntegral/Word224->GHC.Internal.Word.Word16" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1609,7 +1609,7 @@ src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word16->Word224" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word16->Word224" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1618,7 +1618,7 @@ src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word224->GHC.Int.Int16" may never fire
+    Rule "fromIntegral/Word224->GHC.Internal.Int.Int16" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1627,7 +1627,7 @@ src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int16->Word224" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int16->Word224" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1636,7 +1636,7 @@ src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word224->GHC.Word.Word8" may never fire
+    Rule "fromIntegral/Word224->GHC.Internal.Word.Word8" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1645,7 +1645,7 @@ src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word8->Word224" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word8->Word224" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1654,7 +1654,7 @@ src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word224->GHC.Int.Int8" may never fire
+    Rule "fromIntegral/Word224->GHC.Internal.Int.Int8" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1663,7 +1663,7 @@ src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int8->Word224" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int8->Word224" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1672,7 +1672,7 @@ src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int224->GHC.Word.Word64" may never fire
+    Rule "fromIntegral/Int224->GHC.Internal.Word.Word64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1681,7 +1681,7 @@ src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word64->Int224" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word64->Int224" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1690,7 +1690,7 @@ src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int224->GHC.Int.Int64" may never fire
+    Rule "fromIntegral/Int224->GHC.Internal.Int.Int64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1699,7 +1699,7 @@ src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int64->Int224" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int64->Int224" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1762,7 +1762,7 @@ src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int224->GHC.Word.Word32" may never fire
+    Rule "fromIntegral/Int224->GHC.Internal.Word.Word32" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1771,7 +1771,7 @@ src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word32->Int224" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word32->Int224" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1780,7 +1780,7 @@ src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int224->GHC.Int.Int32" may never fire
+    Rule "fromIntegral/Int224->GHC.Internal.Int.Int32" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1789,7 +1789,7 @@ src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int32->Int224" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int32->Int224" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1798,7 +1798,7 @@ src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int224->GHC.Word.Word16" may never fire
+    Rule "fromIntegral/Int224->GHC.Internal.Word.Word16" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1807,7 +1807,7 @@ src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word16->Int224" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word16->Int224" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1816,7 +1816,7 @@ src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int224->GHC.Int.Int16" may never fire
+    Rule "fromIntegral/Int224->GHC.Internal.Int.Int16" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1825,7 +1825,7 @@ src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int16->Int224" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int16->Int224" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1834,7 +1834,7 @@ src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int224->GHC.Word.Word8" may never fire
+    Rule "fromIntegral/Int224->GHC.Internal.Word.Word8" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1843,7 +1843,7 @@ src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word8->Int224" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word8->Int224" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1852,7 +1852,7 @@ src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int224->GHC.Int.Int8" may never fire
+    Rule "fromIntegral/Int224->GHC.Internal.Int.Int8" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1861,7 +1861,7 @@ src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int8->Int224" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int8->Int224" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1870,7 +1870,7 @@ src/Data/DoubleWord.hs:43:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word256->GHC.Word.Word64" may never fire
+    Rule "fromIntegral/Word256->GHC.Internal.Word.Word64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1879,7 +1879,7 @@ src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word64->Word256" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word64->Word256" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1888,7 +1888,7 @@ src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word256->GHC.Int.Int64" may never fire
+    Rule "fromIntegral/Word256->GHC.Internal.Int.Int64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1897,7 +1897,7 @@ src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int64->Word256" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int64->Word256" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1960,7 +1960,7 @@ src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word256->GHC.Word.Word32" may never fire
+    Rule "fromIntegral/Word256->GHC.Internal.Word.Word32" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1969,7 +1969,7 @@ src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word32->Word256" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word32->Word256" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1978,7 +1978,7 @@ src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word256->GHC.Int.Int32" may never fire
+    Rule "fromIntegral/Word256->GHC.Internal.Int.Int32" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1987,7 +1987,7 @@ src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int32->Word256" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int32->Word256" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -1996,7 +1996,7 @@ src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word256->GHC.Word.Word16" may never fire
+    Rule "fromIntegral/Word256->GHC.Internal.Word.Word16" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2005,7 +2005,7 @@ src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word16->Word256" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word16->Word256" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2014,7 +2014,7 @@ src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word256->GHC.Int.Int16" may never fire
+    Rule "fromIntegral/Word256->GHC.Internal.Int.Int16" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2023,7 +2023,7 @@ src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int16->Word256" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int16->Word256" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2032,7 +2032,7 @@ src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word256->GHC.Word.Word8" may never fire
+    Rule "fromIntegral/Word256->GHC.Internal.Word.Word8" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2041,7 +2041,7 @@ src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word8->Word256" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word8->Word256" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2050,7 +2050,7 @@ src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Word256->GHC.Int.Int8" may never fire
+    Rule "fromIntegral/Word256->GHC.Internal.Int.Int8" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2059,7 +2059,7 @@ src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int8->Word256" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int8->Word256" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2068,7 +2068,7 @@ src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int256->GHC.Word.Word64" may never fire
+    Rule "fromIntegral/Int256->GHC.Internal.Word.Word64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2077,7 +2077,7 @@ src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word64->Int256" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word64->Int256" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2086,7 +2086,7 @@ src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int256->GHC.Int.Int64" may never fire
+    Rule "fromIntegral/Int256->GHC.Internal.Int.Int64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2095,7 +2095,7 @@ src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int64->Int256" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int64->Int256" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2158,7 +2158,7 @@ src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int256->GHC.Word.Word32" may never fire
+    Rule "fromIntegral/Int256->GHC.Internal.Word.Word32" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2167,7 +2167,7 @@ src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word32->Int256" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word32->Int256" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2176,7 +2176,7 @@ src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int256->GHC.Int.Int32" may never fire
+    Rule "fromIntegral/Int256->GHC.Internal.Int.Int32" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2185,7 +2185,7 @@ src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int32->Int256" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int32->Int256" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2194,7 +2194,7 @@ src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int256->GHC.Word.Word16" may never fire
+    Rule "fromIntegral/Int256->GHC.Internal.Word.Word16" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2203,7 +2203,7 @@ src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word16->Int256" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word16->Int256" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2212,7 +2212,7 @@ src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int256->GHC.Int.Int16" may never fire
+    Rule "fromIntegral/Int256->GHC.Internal.Int.Int16" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2221,7 +2221,7 @@ src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int16->Int256" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int16->Int256" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2230,7 +2230,7 @@ src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int256->GHC.Word.Word8" may never fire
+    Rule "fromIntegral/Int256->GHC.Internal.Word.Word8" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2239,7 +2239,7 @@ src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word8->Int256" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word8->Int256" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2248,7 +2248,7 @@ src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/Int256->GHC.Int.Int8" may never fire
+    Rule "fromIntegral/Int256->GHC.Internal.Int.Int8" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2257,20 +2257,20 @@ src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Data/DoubleWord.hs:45:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int8->Int256" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int8->Int256" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
    |
 45 | mkUnpackedDoubleWord "Word256" ''Word128 "Int256" ''Int128 ''Word128
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
 Configuring test suite 'tests' for data-dword-0.3.2.1...
 Preprocessing test suite 'tests' for data-dword-0.3.2.1...
 Building test suite 'tests' for data-dword-0.3.2.1...
 [1 of 2] Compiling Types
-
 tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/U64->GHC.Word.Word32" may never fire
+    Rule "fromIntegral/U64->GHC.Internal.Word.Word32" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2279,7 +2279,7 @@ tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word32->U64" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word32->U64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2288,7 +2288,7 @@ tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/U64->GHC.Int.Int32" may never fire
+    Rule "fromIntegral/U64->GHC.Internal.Int.Int32" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2297,7 +2297,7 @@ tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int32->U64" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int32->U64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2324,7 +2324,7 @@ tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/U64->GHC.Word.Word16" may never fire
+    Rule "fromIntegral/U64->GHC.Internal.Word.Word16" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2333,7 +2333,7 @@ tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word16->U64" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word16->U64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2342,7 +2342,7 @@ tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/U64->GHC.Int.Int16" may never fire
+    Rule "fromIntegral/U64->GHC.Internal.Int.Int16" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2351,7 +2351,7 @@ tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int16->U64" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int16->U64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2360,7 +2360,7 @@ tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/U64->GHC.Word.Word8" may never fire
+    Rule "fromIntegral/U64->GHC.Internal.Word.Word8" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2369,7 +2369,7 @@ tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word8->U64" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word8->U64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2378,7 +2378,7 @@ tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/U64->GHC.Int.Int8" may never fire
+    Rule "fromIntegral/U64->GHC.Internal.Int.Int8" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2387,7 +2387,7 @@ tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int8->U64" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int8->U64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2396,7 +2396,7 @@ tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/I64->GHC.Word.Word32" may never fire
+    Rule "fromIntegral/I64->GHC.Internal.Word.Word32" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2405,7 +2405,7 @@ tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word32->I64" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word32->I64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2414,7 +2414,7 @@ tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/I64->GHC.Int.Int32" may never fire
+    Rule "fromIntegral/I64->GHC.Internal.Int.Int32" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2423,7 +2423,7 @@ tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int32->I64" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int32->I64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2450,7 +2450,7 @@ tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/I64->GHC.Word.Word16" may never fire
+    Rule "fromIntegral/I64->GHC.Internal.Word.Word16" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2459,7 +2459,7 @@ tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word16->I64" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word16->I64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2468,7 +2468,7 @@ tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/I64->GHC.Int.Int16" may never fire
+    Rule "fromIntegral/I64->GHC.Internal.Int.Int16" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2477,7 +2477,7 @@ tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int16->I64" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int16->I64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2486,7 +2486,7 @@ tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/I64->GHC.Word.Word8" may never fire
+    Rule "fromIntegral/I64->GHC.Internal.Word.Word8" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2495,7 +2495,7 @@ tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word8->I64" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word8->I64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2504,7 +2504,7 @@ tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/I64->GHC.Int.Int8" may never fire
+    Rule "fromIntegral/I64->GHC.Internal.Int.Int8" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2513,7 +2513,7 @@ tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int8->I64" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int8->I64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2522,7 +2522,7 @@ tests/Types.hs:10:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/U48->GHC.Word.Word32" may never fire
+    Rule "fromIntegral/U48->GHC.Internal.Word.Word32" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2531,7 +2531,7 @@ tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word32->U48" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word32->U48" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2540,7 +2540,7 @@ tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/U48->GHC.Int.Int32" may never fire
+    Rule "fromIntegral/U48->GHC.Internal.Int.Int32" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2549,7 +2549,7 @@ tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int32->U48" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int32->U48" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2576,7 +2576,7 @@ tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/U48->GHC.Word.Word16" may never fire
+    Rule "fromIntegral/U48->GHC.Internal.Word.Word16" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2585,7 +2585,7 @@ tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word16->U48" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word16->U48" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2594,7 +2594,7 @@ tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/U48->GHC.Int.Int16" may never fire
+    Rule "fromIntegral/U48->GHC.Internal.Int.Int16" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2603,7 +2603,7 @@ tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int16->U48" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int16->U48" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2612,7 +2612,7 @@ tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/U48->GHC.Word.Word8" may never fire
+    Rule "fromIntegral/U48->GHC.Internal.Word.Word8" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2621,7 +2621,7 @@ tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word8->U48" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word8->U48" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2630,7 +2630,7 @@ tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/U48->GHC.Int.Int8" may never fire
+    Rule "fromIntegral/U48->GHC.Internal.Int.Int8" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2639,7 +2639,7 @@ tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int8->U48" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int8->U48" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2648,7 +2648,7 @@ tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/I48->GHC.Word.Word32" may never fire
+    Rule "fromIntegral/I48->GHC.Internal.Word.Word32" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2657,7 +2657,7 @@ tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word32->I48" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word32->I48" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2666,7 +2666,7 @@ tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/I48->GHC.Int.Int32" may never fire
+    Rule "fromIntegral/I48->GHC.Internal.Int.Int32" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2675,7 +2675,7 @@ tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int32->I48" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int32->I48" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2702,7 +2702,7 @@ tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/I48->GHC.Word.Word16" may never fire
+    Rule "fromIntegral/I48->GHC.Internal.Word.Word16" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2711,7 +2711,7 @@ tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word16->I48" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word16->I48" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2720,7 +2720,7 @@ tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/I48->GHC.Int.Int16" may never fire
+    Rule "fromIntegral/I48->GHC.Internal.Int.Int16" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2729,7 +2729,7 @@ tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int16->I48" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int16->I48" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2738,7 +2738,7 @@ tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/I48->GHC.Word.Word8" may never fire
+    Rule "fromIntegral/I48->GHC.Internal.Word.Word8" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2747,7 +2747,7 @@ tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word8->I48" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word8->I48" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2756,7 +2756,7 @@ tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/I48->GHC.Int.Int8" may never fire
+    Rule "fromIntegral/I48->GHC.Internal.Int.Int8" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2765,7 +2765,7 @@ tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int8->I48" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int8->I48" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2774,7 +2774,7 @@ tests/Types.hs:11:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/UU64->GHC.Word.Word32" may never fire
+    Rule "fromIntegral/UU64->GHC.Internal.Word.Word32" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2783,7 +2783,7 @@ tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word32->UU64" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word32->UU64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2792,7 +2792,7 @@ tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/UU64->GHC.Int.Int32" may never fire
+    Rule "fromIntegral/UU64->GHC.Internal.Int.Int32" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2801,7 +2801,7 @@ tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int32->UU64" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int32->UU64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2864,7 +2864,7 @@ tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/UU64->GHC.Word.Word16" may never fire
+    Rule "fromIntegral/UU64->GHC.Internal.Word.Word16" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2873,7 +2873,7 @@ tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word16->UU64" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word16->UU64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2882,7 +2882,7 @@ tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/UU64->GHC.Int.Int16" may never fire
+    Rule "fromIntegral/UU64->GHC.Internal.Int.Int16" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2891,7 +2891,7 @@ tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int16->UU64" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int16->UU64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2900,7 +2900,7 @@ tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/UU64->GHC.Word.Word8" may never fire
+    Rule "fromIntegral/UU64->GHC.Internal.Word.Word8" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2909,7 +2909,7 @@ tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word8->UU64" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word8->UU64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2918,7 +2918,7 @@ tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/UU64->GHC.Int.Int8" may never fire
+    Rule "fromIntegral/UU64->GHC.Internal.Int.Int8" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2927,7 +2927,7 @@ tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int8->UU64" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int8->UU64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2936,7 +2936,7 @@ tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/II64->GHC.Word.Word32" may never fire
+    Rule "fromIntegral/II64->GHC.Internal.Word.Word32" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2945,7 +2945,7 @@ tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word32->II64" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word32->II64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2954,7 +2954,7 @@ tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/II64->GHC.Int.Int32" may never fire
+    Rule "fromIntegral/II64->GHC.Internal.Int.Int32" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -2963,7 +2963,7 @@ tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int32->II64" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int32->II64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -3026,7 +3026,7 @@ tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/II64->GHC.Word.Word16" may never fire
+    Rule "fromIntegral/II64->GHC.Internal.Word.Word16" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -3035,7 +3035,7 @@ tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word16->II64" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word16->II64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -3044,7 +3044,7 @@ tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/II64->GHC.Int.Int16" may never fire
+    Rule "fromIntegral/II64->GHC.Internal.Int.Int16" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -3053,7 +3053,7 @@ tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int16->II64" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int16->II64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -3062,7 +3062,7 @@ tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/II64->GHC.Word.Word8" may never fire
+    Rule "fromIntegral/II64->GHC.Internal.Word.Word8" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -3071,7 +3071,7 @@ tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Word.Word8->II64" may never fire
+    Rule "fromIntegral/GHC.Internal.Word.Word8->II64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -3080,7 +3080,7 @@ tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/II64->GHC.Int.Int8" may never fire
+    Rule "fromIntegral/II64->GHC.Internal.Int.Int8" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
@@ -3089,12 +3089,13 @@ tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/Types.hs:12:1: warning: [GHC-95396] [-Winline-rule-shadowing]
-    Rule "fromIntegral/GHC.Int.Int8->II64" may never fire
+    Rule "fromIntegral/GHC.Internal.Int.Int8->II64" may never fire
       because ‘fromIntegral’ might inline first
     Suggested fix:
       Add an INLINE[n] or NOINLINE[n] pragma for ‘fromIntegral’
    |
 12 | mkUnpackedDoubleWord "UU64" ''Word16 "II64" ''Int16 ''U48 []
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [2 of 2] Compiling Main
-[3 of 3] Linking /tmp/workdir-data-dword/data-dword-0.3.2.1/dist-newstyle/build/x86_64-linux/ghc-9.6.5/data-dword-0.3.2.1/t/tests/build/tests/tests
+[3 of 3] Linking /tmp/workdir-data-dword/data-dword-0.3.2.1/dist-newstyle/build/x86_64-linux/ghc-9.10.2/data-dword-0.3.2.1/t/tests/build/tests/tests

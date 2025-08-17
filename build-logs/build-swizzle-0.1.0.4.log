@@ -1,0 +1,70 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - swizzle-0.1.0.4 (lib) (first run)
+ - swizzle-0.1.0.4 (test:swizzle-test) (first run)
+Configuring library for swizzle-0.1.0.4...
+Preprocessing library for swizzle-0.1.0.4...
+Building library for swizzle-0.1.0.4...
+[ 1 of 16] Compiling Data.Curry.TH
+[ 2 of 16] Compiling Data.Curry
+src/Data/Curry.hs:1:1: warning: [GHC-85401] [-Wmissing-export-lists]
+    The export item ‘module Data.Curry’ is missing an export list
+  |
+1 | {-# LANGUAGE TemplateHaskell #-}
+  | ^
+
+[ 3 of 16] Compiling Data.Swizzle.Class.TH.Internal
+[ 4 of 16] Compiling Data.Swizzle.Class.TH
+[ 5 of 16] Compiling Data.Swizzle.Class.Base
+src/Data/Swizzle/Class/Base.hs:1:1: warning: [GHC-85401] [-Wmissing-export-lists]
+    The export item ‘module Data.Swizzle.Class.Base’ is missing an export list
+  |
+1 | {-# LANGUAGE TemplateHaskell #-}
+  | ^
+
+[ 6 of 16] Compiling Data.Swizzle.Class.Pkg
+src/Data/Swizzle/Class/Pkg.hs:1:1: warning: [GHC-85401] [-Wmissing-export-lists]
+    The export item ‘module Data.Swizzle.Class.Pkg’ is missing an export list
+  |
+1 | {-# LANGUAGE TemplateHaskell #-}
+  | ^
+
+src/Data/Swizzle/Class/Pkg.hs:12:75: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+12 | swizzleClassPkg = $(litE =<< stringL . (\(Module (PkgName pn) _) -> pn) . head
+   |                                                                           ^^^^
+
+[ 7 of 16] Compiling Data.Swizzle.Instance.Tuple58OrMore
+[ 8 of 16] Compiling Data.Swizzle.Instance.TupleBetween27And30
+[ 9 of 16] Compiling Data.Swizzle.Instance.TupleBetween31And40
+[10 of 16] Compiling Data.Swizzle.Instance.TupleBetween41And46
+[11 of 16] Compiling Data.Swizzle.Instance.TupleBetween47And52
+[12 of 16] Compiling Data.Swizzle.Instance.TupleBetween53And57
+[13 of 16] Compiling Data.Swizzle.Class
+[14 of 16] Compiling Data.Swizzle.TH
+src/Data/Swizzle/TH.hs:21:1: warning: [GHC-62161] [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In an equation for ‘mkFunName’:
+        Patterns of type ‘String’, ‘[Char]’ not matched: _ []
+   |
+21 | mkFunName pfx (c : cs) = mkName $ pfx ++ bool toUpper id (null pfx) c : cs
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[15 of 16] Compiling Data.Swizzle
+src/Data/Swizzle.hs:1:1: warning: [GHC-85401] [-Wmissing-export-lists]
+    The export item ‘module Data.Swizzle’ is missing an export list
+  |
+1 | {-# LANGUAGE TemplateHaskell #-}
+  | ^
+
+[16 of 16] Compiling Paths_swizzle
+Configuring test suite 'swizzle-test' for swizzle-0.1.0.4...
+Preprocessing test suite 'swizzle-test' for swizzle-0.1.0.4...
+Building test suite 'swizzle-test' for swizzle-0.1.0.4...
+[1 of 2] Compiling Main
+[2 of 2] Compiling Paths_swizzle
+[3 of 3] Linking /tmp/workdir-swizzle/swizzle-0.1.0.4/dist-newstyle/build/x86_64-linux/ghc-9.10.2/swizzle-0.1.0.4/t/swizzle-test/build/swizzle-test/swizzle-test

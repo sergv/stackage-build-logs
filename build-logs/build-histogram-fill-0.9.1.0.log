@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - histogram-fill-0.9.1.0 (lib) (first run)
 Configuring library for histogram-fill-0.9.1.0...
@@ -8,7 +9,6 @@ Building library for histogram-fill-0.9.1.0...
 [ 2 of 17] Compiling Data.Histogram.Bin.Read
 [ 3 of 17] Compiling Data.Histogram.Bin.LogBinD
 [ 4 of 17] Compiling Data.Histogram.Bin.BinVar
-
 Data/Histogram/Bin/BinVar.hs:150:14: warning: [GHC-58520] [-Wtype-equality-requires-operators]
     The use of ‘~’ without TypeOperators
     will become an error in a future GHC release.
@@ -16,6 +16,7 @@ Data/Histogram/Bin/BinVar.hs:150:14: warning: [GHC-58520] [-Wtype-equality-requi
     |
 150 |          , a ~ (BinValue b)
     |              ^
+
 [ 5 of 17] Compiling Data.Histogram.Bin.BinInt
 [ 6 of 17] Compiling Data.Histogram.Bin.BinI
 [ 7 of 17] Compiling Data.Histogram.Bin.BinF
@@ -23,29 +24,52 @@ Data/Histogram/Bin/BinVar.hs:150:14: warning: [GHC-58520] [-Wtype-equality-requi
 [ 9 of 17] Compiling Data.Histogram.Bin.Bin2D
 [10 of 17] Compiling Data.Histogram.Bin
 [11 of 17] Compiling Data.Histogram.Bin.Extra
-
-Data/Histogram/Bin/Extra.hs:24:1: warning: [-Wunused-imports]
+Data/Histogram/Bin/Extra.hs:24:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
    |
 24 | import Control.Applicative ((<$>), Applicative(..))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[12 of 17] Compiling Data.Histogram.Generic
 
-Data/Histogram/Generic.hs:87:1: warning: [-Wunused-imports]
+[12 of 17] Compiling Data.Histogram.Generic
+Data/Histogram/Generic.hs:87:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
    |
 87 | import Control.Applicative ((<$>),Applicative(..),liftA2)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Data/Histogram/Generic.hs:250:30: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+250 |         xs = fmap (unwords . tail) . filter (not . null) . fmap words . lines $ rest
+    |                              ^^^^
+
+Data/Histogram/Generic.hs:610:25: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+610 |           (Bin2D (bins (head hs)) by)
+    |                         ^^^^
+
+Data/Histogram/Generic.hs:627:23: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+627 |        by'    = bins (head hs)
+    |                       ^^^^
+
 [13 of 17] Compiling Data.Histogram.Bin.MaybeBin
 [14 of 17] Compiling Data.Histogram
 [15 of 17] Compiling Data.Histogram.ST
 [16 of 17] Compiling Data.Histogram.Fill
-
-Data/Histogram/Fill.hs:64:1: warning: [-Wunused-imports]
+Data/Histogram/Fill.hs:64:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
@@ -53,7 +77,7 @@ Data/Histogram/Fill.hs:64:1: warning: [-Wunused-imports]
 64 | import Control.Applicative
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Data/Histogram/Fill.hs:69:1: warning: [-Wunused-imports]
+Data/Histogram/Fill.hs:69:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
@@ -61,7 +85,7 @@ Data/Histogram/Fill.hs:69:1: warning: [-Wunused-imports]
 69 | import Data.Monoid            (Monoid(..))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Data/Histogram/Fill.hs:70:1: warning: [-Wunused-imports]
+Data/Histogram/Fill.hs:70:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Semigroup’ is redundant
       except perhaps to import instances from ‘Data.Semigroup’
     To import instances alone, use: import Data.Semigroup()
@@ -69,28 +93,30 @@ Data/Histogram/Fill.hs:70:1: warning: [-Wunused-imports]
 70 | import Data.Semigroup         (Semigroup(..))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Data/Histogram/Fill.hs:244:5: warning: [-Wnoncanonical-monoid-instances]
+Data/Histogram/Fill.hs:244:5: warning: [GHC-50928] [-Wnoncanonical-monoid-instances]
     Noncanonical ‘mappend’ definition detected
     in the instance declaration for ‘Monoid (HBuilderM m a b)’.
     ‘mappend’ will eventually be removed in favour of ‘(<>)’
-    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    Suggested fix:
+      Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
     |
 244 |     mappend = liftA2 mappend
     |     ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Data/Histogram/Fill.hs:303:5: warning: [-Wnoncanonical-monoid-instances]
+Data/Histogram/Fill.hs:303:5: warning: [GHC-50928] [-Wnoncanonical-monoid-instances]
     Noncanonical ‘mappend’ definition detected
     in the instance declaration for ‘Monoid (HBuilder a b)’.
     ‘mappend’ will eventually be removed in favour of ‘(<>)’
-    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    Suggested fix:
+      Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
     |
 303 |     mappend = liftA2 mappend
     |     ^^^^^^^^^^^^^^^^^^^^^^^^
-[17 of 17] Compiling Data.Histogram.Tutorial
 
-Data/Histogram/Tutorial.hs:68:1: warning: [-Wunused-imports]
+[17 of 17] Compiling Data.Histogram.Tutorial
+Data/Histogram/Tutorial.hs:68:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Histogram’ is redundant
       except perhaps to import instances from ‘Data.Histogram’
     To import instances alone, use: import Data.Histogram()
@@ -98,7 +124,7 @@ Data/Histogram/Tutorial.hs:68:1: warning: [-Wunused-imports]
 68 | import Data.Histogram 
    | ^^^^^^^^^^^^^^^^^^^^^
 
-Data/Histogram/Tutorial.hs:69:1: warning: [-Wunused-imports]
+Data/Histogram/Tutorial.hs:69:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Histogram.Bin’ is redundant
       except perhaps to import instances from ‘Data.Histogram.Bin’
     To import instances alone, use: import Data.Histogram.Bin()
@@ -106,7 +132,7 @@ Data/Histogram/Tutorial.hs:69:1: warning: [-Wunused-imports]
 69 | import Data.Histogram.Bin
    | ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Data/Histogram/Tutorial.hs:70:1: warning: [-Wunused-imports]
+Data/Histogram/Tutorial.hs:70:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Histogram.Fill’ is redundant
       except perhaps to import instances from ‘Data.Histogram.Fill’
     To import instances alone, use: import Data.Histogram.Fill()
@@ -114,7 +140,7 @@ Data/Histogram/Tutorial.hs:70:1: warning: [-Wunused-imports]
 70 | import Data.Histogram.Fill (mkSimple, fillBuilder)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Data/Histogram/Tutorial.hs:71:1: warning: [-Wunused-imports]
+Data/Histogram/Tutorial.hs:71:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Vector.Unboxed’ is redundant
       except perhaps to import instances from ‘Data.Vector.Unboxed’
     To import instances alone, use: import Data.Vector.Unboxed()
@@ -122,10 +148,11 @@ Data/Histogram/Tutorial.hs:71:1: warning: [-Wunused-imports]
 71 | import Data.Vector.Unboxed (Unbox(..))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Data/Histogram/Tutorial.hs:71:1: warning: [GHC-99623] [-Wdodgy-imports]
-    The import item ‘Unbox(..)’ suggests that
-    ‘Unbox’ has (in-scope) constructors or class methods,
-    but it has none
+Data/Histogram/Tutorial.hs:71:29: warning: [GHC-99623] [-Wdodgy-imports]
+    The import item ‘Data.Vector.Unboxed.Base.Unbox(..)’ suggests that
+    ‘Data.Vector.Unboxed.Base.Unbox’ has (in-scope) class methods or associated types,
+                                         but it has none
    |
 71 | import Data.Vector.Unboxed (Unbox(..))
-   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |                             ^^^^^^^^^
+

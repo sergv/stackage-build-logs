@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - hxt-9.3.1.22 (lib) (first run)
 Configuring library for hxt-9.3.1.22...
@@ -8,6 +9,22 @@ Building library for hxt-9.3.1.22...
 [ 2 of 82] Compiling Control.Arrow.ArrowExc
 [ 3 of 82] Compiling Control.Arrow.ArrowList
 [ 4 of 82] Compiling Control.Arrow.ArrowIf
+src/Control/Arrow/ArrowIf.hs:142:33: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+142 |                           ( arr head &&& (arr tail >>> spanA p)
+    |                                 ^^^^
+
+src/Control/Arrow/ArrowIf.hs:142:47: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+142 |                           ( arr head &&& (arr tail >>> spanA p)
+    |                                               ^^^^
+
 [ 5 of 82] Compiling Control.Arrow.ArrowState
 [ 6 of 82] Compiling Control.FlatSeq
 [ 7 of 82] Compiling Control.Arrow.ArrowNF
@@ -20,8 +37,15 @@ Building library for hxt-9.3.1.22...
 [14 of 82] Compiling Data.Tree.NTree.Edit
 [15 of 82] Compiling Data.Tree.NavigatableTree.Class
 [16 of 82] Compiling Data.Tree.NavigatableTree.XPathAxis
-[17 of 82] Compiling Data.Tree.NTree.Zipper.TypeDefs
+src/Data/Tree/NavigatableTree/XPathAxis.hs:73:52: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+73 | descendantAxis          = descendantOrSelfAxis >>> tail
+   |                                                    ^^^^
 
+[17 of 82] Compiling Data.Tree.NTree.Zipper.TypeDefs
 src/Data/Tree/NTree/Zipper/TypeDefs.hs:92:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -29,6 +53,22 @@ src/Data/Tree/NTree/Zipper/TypeDefs.hs:92:5: warning: [GHC-62161] [-Wincomplete-
    |
 92 |     NTZ t (bc : bcs)    = z
    |     ^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Data/Tree/NTree/Zipper/TypeDefs.hs:99:39: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+99 |           | otherwise   = Just $ NTZ (head cs) (NTC [] n (tail cs) : bcs)
+   |                                       ^^^^
+
+src/Data/Tree/NTree/Zipper/TypeDefs.hs:99:59: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+99 |           | otherwise   = Just $ NTZ (head cs) (NTC [] n (tail cs) : bcs)
+   |                                                           ^^^^
 
 src/Data/Tree/NTree/Zipper/TypeDefs.hs:110:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
@@ -38,6 +78,22 @@ src/Data/Tree/NTree/Zipper/TypeDefs.hs:110:5: warning: [GHC-62161] [-Wincomplete
 110 |     (NTZ t (bc : bcs))  = z
     |     ^^^^^^^^^^^^^^^^^^^^^^^
 
+src/Data/Tree/NTree/Zipper/TypeDefs.hs:112:27: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+112 |     t'                  = head rs
+    |                           ^^^^
+
+src/Data/Tree/NTree/Zipper/TypeDefs.hs:113:43: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+113 |     bc'                 = NTC (t : ls) n (tail rs)
+    |                                           ^^^^
+
 src/Data/Tree/NTree/Zipper/TypeDefs.hs:124:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -45,6 +101,22 @@ src/Data/Tree/NTree/Zipper/TypeDefs.hs:124:5: warning: [GHC-62161] [-Wincomplete
     |
 124 |     (NTZ t (bc : bcs))  = z
     |     ^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Data/Tree/NTree/Zipper/TypeDefs.hs:126:27: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+126 |     t'                  = head ls
+    |                           ^^^^
+
+src/Data/Tree/NTree/Zipper/TypeDefs.hs:127:32: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+127 |     bc'                 = NTC (tail ls) n (t : rs)
+    |                                ^^^^
 
 src/Data/Tree/NTree/Zipper/TypeDefs.hs:136:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
@@ -62,6 +134,14 @@ src/Data/Tree/NTree/Zipper/TypeDefs.hs:145:5: warning: [GHC-62161] [-Wincomplete
 145 |     (NTZ t' (bc : bcs)) = z
     |     ^^^^^^^^^^^^^^^^^^^^^^^
 
+src/Data/Tree/NTree/Zipper/TypeDefs.hs:153:47: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+153 |     | otherwise         = Just $ NTZ t' (NTC (tail ls) n rs : bcs)
+    |                                               ^^^^
+
 src/Data/Tree/NTree/Zipper/TypeDefs.hs:155:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -70,6 +150,14 @@ src/Data/Tree/NTree/Zipper/TypeDefs.hs:155:5: warning: [GHC-62161] [-Wincomplete
 155 |     (NTZ t' (bc : bcs)) = z
     |     ^^^^^^^^^^^^^^^^^^^^^^^
 
+src/Data/Tree/NTree/Zipper/TypeDefs.hs:163:52: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+163 |     | otherwise         = Just $ NTZ t' (NTC ls n (tail rs) : bcs)
+    |                                                    ^^^^
+
 src/Data/Tree/NTree/Zipper/TypeDefs.hs:165:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -77,6 +165,7 @@ src/Data/Tree/NTree/Zipper/TypeDefs.hs:165:5: warning: [GHC-62161] [-Wincomplete
     |
 165 |     (NTZ t' (bc : bcs)) = z
     |     ^^^^^^^^^^^^^^^^^^^^^^^
+
 [18 of 82] Compiling Control.Arrow.ArrowNavigatableTree
 [19 of 82] Compiling Control.Arrow.StateListArrow
 [20 of 82] Compiling Control.Arrow.ListArrow
@@ -89,7 +178,6 @@ src/Data/Tree/NTree/Zipper/TypeDefs.hs:165:5: warning: [GHC-62161] [-Wincomplete
 [27 of 82] Compiling Text.XML.HXT.DOM.Util
 [28 of 82] Compiling Text.XML.HXT.DOM.XmlKeywords
 [29 of 82] Compiling Text.XML.HXT.DOM.QualifiedName
-
 src/Text/XML/HXT/DOM/QualifiedName.hs:328:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -97,6 +185,14 @@ src/Text/XML/HXT/DOM/QualifiedName.hs:328:5: warning: [GHC-62161] [-Wincomplete-
     |
 328 |     (px, (_ : lp)) = span (/= ':') n
     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Text/XML/HXT/DOM/QualifiedName.hs:436:60: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+436 |     | otherwise                 = isNCName px && isNCName (tail lp)
+    |                                                            ^^^^
 
 src/Text/XML/HXT/DOM/QualifiedName.hs:533:1: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
@@ -120,12 +216,28 @@ src/Text/XML/HXT/DOM/QualifiedName.hs:551:1: warning: [GHC-62161] [-Wincomplete-
     |
 551 | initialQNames@[xmlnsQN] = [QN xmlnsXName nullXName xmlnsNamespaceXName]
     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [30 of 82] Compiling Text.XML.HXT.DOM.TypeDefs
 [31 of 82] Compiling Text.XML.HXT.DOM.Interface
 [32 of 82] Compiling Text.XML.HXT.Arrow.XmlState.TypeDefs
 [33 of 82] Compiling Text.XML.HXT.Arrow.XmlState.MimeTypeTable
 [34 of 82] Compiling Text.XML.HXT.DOM.XmlNode
 [35 of 82] Compiling Text.XML.HXT.DOM.ShowXml
+src/Text/XML/HXT/DOM/ShowXml.hs:202:58: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+202 |                                                        . head
+    |                                                          ^^^^
+
+src/Text/XML/HXT/DOM/ShowXml.hs:339:48: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+339 |             (not . null) cs     = showContent (head cs)
+    |                                                ^^^^
 
 src/Text/XML/HXT/DOM/ShowXml.hs:346:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
@@ -139,6 +251,7 @@ src/Text/XML/HXT/DOM/ShowXml.hs:346:11: warning: [GHC-62161] [-Wincomplete-uni-p
     |
 346 |           [(NTree (XDTD CONTENT al1) cs1)] = cs
     |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [36 of 82] Compiling Text.XML.HXT.Arrow.XmlRegex
 [37 of 82] Compiling Text.XML.HXT.DOM.FormatXmlTree
 [38 of 82] Compiling Text.XML.HXT.Arrow.XmlArrow
@@ -147,7 +260,23 @@ src/Text/XML/HXT/DOM/ShowXml.hs:346:11: warning: [GHC-62161] [-Wincomplete-uni-p
 [41 of 82] Compiling Text.XML.HXT.Arrow.XmlOptions
 [42 of 82] Compiling Text.XML.HXT.Arrow.Binary
 [43 of 82] Compiling Text.XML.HXT.Arrow.Namespace
+src/Text/XML/HXT/Arrow/Namespace.hs:195:19: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+195 |                 = head (filter notAlreadyUsed $ preferedPrefixes ++ genPrefixes)
+    |                   ^^^^
+
 [44 of 82] Compiling Text.XML.HXT.DTDValidation.RE
+src/Text/XML/HXT/DTDValidation/RE.hs:51:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.List’ is redundant
+      except perhaps to import instances from ‘Data.List’
+    To import instances alone, use: import Data.List()
+   |
+51 | import           Data.List (foldl')
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [45 of 82] Compiling Text.XML.HXT.DTDValidation.TypeDefs
 [46 of 82] Compiling Text.XML.HXT.IO.GetFILE
 [47 of 82] Compiling Text.XML.HXT.Parser.ProtocolHandlerUtil
@@ -160,9 +289,16 @@ src/Text/XML/HXT/DOM/ShowXml.hs:346:11: warning: [GHC-62161] [-Wincomplete-uni-p
 [54 of 82] Compiling Text.XML.HXT.DTDValidation.AttributeValueValidation
 [55 of 82] Compiling Text.XML.HXT.DTDValidation.IdValidation
 [56 of 82] Compiling Text.XML.HXT.DTDValidation.DocTransformation
+src/Text/XML/HXT/DTDValidation/DocTransformation.hs:165:43: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+165 |                                else Just (head attDescr)
+    |                                           ^^^^
+
 [57 of 82] Compiling Text.XML.HXT.DTDValidation.DTDValidation
 [58 of 82] Compiling Text.XML.HXT.Parser.XmlDTDParser
-
 src/Text/XML/HXT/Parser/XmlDTDParser.hs:98:23: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -180,19 +316,84 @@ src/Text/XML/HXT/Parser/XmlDTDParser.hs:104:23: warning: [GHC-62161] [-Wincomple
     |
 104 |                   let (_i, (_top, _n, p) : _s) = xps_userState s
     |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [59 of 82] Compiling Text.XML.HXT.Parser.HtmlParsec
 [60 of 82] Compiling Text.XML.HXT.Arrow.ParserInterface
 [61 of 82] Compiling Text.XML.HXT.Arrow.Edit
 [62 of 82] Compiling Text.XML.HXT.DTDValidation.XmlRE
+src/Text/XML/HXT/DTDValidation/XmlRE.hs:41:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.List’ is redundant
+      except perhaps to import instances from ‘Data.List’
+    To import instances alone, use: import Data.List()
+   |
+41 | import           Data.List                           (foldl')
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [63 of 82] Compiling Text.XML.HXT.DTDValidation.DocValidation
+src/Text/XML/HXT/DTDValidation/DocValidation.hs:242:28: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+242 |             re = createRE (head cm)
+    |                            ^^^^
+
+src/Text/XML/HXT/DTDValidation/DocValidation.hs:257:62: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+257 |             re = re_rep (re_alt (re_sym k_pcdata) (createRE (head cm)))
+    |                                                              ^^^^
+
 [64 of 82] Compiling Text.XML.HXT.DTDValidation.Validation
+src/Text/XML/HXT/DTDValidation/Validation.hs:108:72: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+108 |                   transformDoc dtd      = DocTransformation.transform (head dtd)
+    |                                                                        ^^^^
+
 [65 of 82] Compiling Text.XML.HXT.Arrow.XmlState.TraceHandling
 [66 of 82] Compiling Text.XML.HXT.Arrow.XmlState.URIHandling
 [67 of 82] Compiling Text.XML.HXT.Arrow.XmlState.RunIOStateArrow
 [68 of 82] Compiling Text.XML.HXT.Arrow.XmlState
 [69 of 82] Compiling Text.XML.HXT.Arrow.DocumentInput
+src/Text/XML/HXT/Arrow/DocumentInput.hs:327:11: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+327 |       >. (head . filter (not . null))           -- make the filter deterministic: take 1. entry from list of guesses
+    |           ^^^^
+
+src/Text/XML/HXT/Arrow/DocumentInput.hs:336:11: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+336 |       >. (head . filter (not . null))           -- make the filter deterministic: take 1. entry from list of guesses
+    |           ^^^^
+
 [70 of 82] Compiling Text.XML.HXT.Arrow.GeneralEntitySubstitution
 [71 of 82] Compiling Text.XML.HXT.Arrow.DocumentOutput
+src/Text/XML/HXT/Arrow/DocumentOutput.hs:157:11: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+157 |       >. (head . filter (not . null))
+    |           ^^^^
+
+src/Text/XML/HXT/Arrow/DocumentOutput.hs:206:11: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+206 |       >. (head . filter (not . null))           -- make the filter deterministic: take 1. entry from list of guesses
+    |           ^^^^
+
 [72 of 82] Compiling Text.XML.HXT.Arrow.WriteDocument
 [73 of 82] Compiling Text.XML.HXT.Arrow.DTDProcessing
 [74 of 82] Compiling Text.XML.HXT.Arrow.ProcessDocument
@@ -201,6 +402,45 @@ src/Text/XML/HXT/Parser/XmlDTDParser.hs:104:23: warning: [GHC-62161] [-Wincomple
 [77 of 82] Compiling Text.XML.HXT.XMLSchema.DataTypeLibW3CNames
 [78 of 82] Compiling Text.XML.HXT.Arrow.Pickle.Schema
 [79 of 82] Compiling Text.XML.HXT.Arrow.Pickle.Xml
+src/Text/XML/HXT/Arrow/Pickle/Xml.hs:72:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.List’ is redundant
+      except perhaps to import instances from ‘Data.List’
+    To import instances alone, use: import Data.List()
+   |
+72 | import           Data.List                        (foldl')
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Text/XML/HXT/Arrow/Pickle/Xml.hs:887:25: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+887 |       pc        = xpSeq head  pa         (\ x  ->
+    |                         ^^^^
+
+src/Text/XML/HXT/Arrow/Pickle/Xml.hs:888:25: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+888 |                   xpSeq tail (xpList pa) (\ xs ->
+    |                         ^^^^
+
+src/Text/XML/HXT/Arrow/Pickle/Xml.hs:898:37: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+898 |                            ,\ x -> (head x, tail x)
+    |                                     ^^^^
+
+src/Text/XML/HXT/Arrow/Pickle/Xml.hs:898:45: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+898 |                            ,\ x -> (head x, tail x)
+    |                                             ^^^^
 
 src/Text/XML/HXT/Arrow/Pickle/Xml.hs:1246:26: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
@@ -217,8 +457,8 @@ src/Text/XML/HXT/Arrow/Pickle/Xml.hs:1249:26: warning: [GHC-62161] [-Wincomplete
      |
 1249 |                        , \ (Right r) -> r  -- Deconstruct.
      |                          ^^^^^^^^^^^^^^^^
-[80 of 82] Compiling Text.XML.HXT.Arrow.Pickle.DTD
 
+[80 of 82] Compiling Text.XML.HXT.Arrow.Pickle.DTD
 src/Text/XML/HXT/Arrow/Pickle/DTD.hs:61:47: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a lambda abstraction:
@@ -231,5 +471,6 @@ src/Text/XML/HXT/Arrow/Pickle/DTD.hs:61:47: warning: [GHC-62161] [-Wincomplete-u
    |
 61 |       concatMap (uncurry checkContentModell . \ (Element n sc) -> (n,sc)) es1
    |                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [81 of 82] Compiling Text.XML.HXT.Arrow.Pickle
 [82 of 82] Compiling Text.XML.HXT.Core

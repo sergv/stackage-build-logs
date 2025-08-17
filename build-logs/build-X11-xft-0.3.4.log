@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - X11-xft-0.3.4 (lib) (first run)
 Configuring library for X11-xft-0.3.4...
@@ -6,3 +7,17 @@ Preprocessing library for X11-xft-0.3.4...
 Building library for X11-xft-0.3.4...
 [1 of 2] Compiling Graphics.X11.Xrender
 [2 of 2] Compiling Graphics.X11.Xft
+Graphics/X11/Xft.hsc:62:28: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘foldl'’ from module ‘Data.List’ is redundant
+   |
+62 | import Data.List (groupBy, foldl')
+   |                            ^^^^^^
+
+Graphics/X11/Xft.hsc:294:33: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+294 |         let splits = map (fst . head &&& map snd)
+    |                                 ^^^^
+

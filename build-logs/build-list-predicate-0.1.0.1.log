@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - list-predicate-0.1.0.1 (lib) (first run)
  - list-predicate-0.1.0.1 (test:spec) (first run)
@@ -6,10 +7,42 @@ Configuring library for list-predicate-0.1.0.1...
 Preprocessing library for list-predicate-0.1.0.1...
 Building library for list-predicate-0.1.0.1...
 [1 of 2] Compiling Data.List.Predicate
+src/Data/List/Predicate.hs:88:62: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+88 | sortedBy cmp xs  = and $ zipWith (\a b -> cmp a b <= EQ) xs (tail xs)
+   |                                                              ^^^^
+
+src/Data/List/Predicate.hs:139:52: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+139 | allAdjUniqueBy eq xs = (not . or) $ zipWith eq xs (tail xs)
+    |                                                    ^^^^
+
+src/Data/List/Predicate.hs:155:45: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+155 | ascSequential xs  = and $ zipWith (==) xs' [head xs' ..]
+    |                                             ^^^^
+
+src/Data/List/Predicate.hs:176:11: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+176 |     x   = head xs'
+    |           ^^^^
+
 [2 of 2] Compiling Paths_list_predicate
 Configuring test suite 'spec' for list-predicate-0.1.0.1...
 Preprocessing test suite 'spec' for list-predicate-0.1.0.1...
 Building test suite 'spec' for list-predicate-0.1.0.1...
 [1 of 2] Compiling Data.List.PredicateSpec
 [2 of 2] Compiling Main
-[3 of 3] Linking /tmp/workdir-list-predicate/list-predicate-0.1.0.1/dist-newstyle/build/x86_64-linux/ghc-9.6.5/list-predicate-0.1.0.1/t/spec/build/spec/spec
+[3 of 3] Linking /tmp/workdir-list-predicate/list-predicate-0.1.0.1/dist-newstyle/build/x86_64-linux/ghc-9.10.2/list-predicate-0.1.0.1/t/spec/build/spec/spec

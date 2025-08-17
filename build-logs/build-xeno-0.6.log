@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - xeno-0.6 (lib) (first run)
  - xeno-0.6 (test:xeno-test) (first run)
@@ -8,31 +9,30 @@ Building library for xeno-0.6...
 [1 of 7] Compiling Control.Spork
 [2 of 7] Compiling Xeno.DOM.Internal
 [3 of 7] Compiling Xeno.Types
-
-src/Xeno/Types.hs:18:1: warning: [-Wunused-imports]
+src/Xeno/Types.hs:18:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Monad.Fail’ is redundant
       except perhaps to import instances from ‘Control.Monad.Fail’
     To import instances alone, use: import Control.Monad.Fail()
    |
 18 | import Control.Monad.Fail
    | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [4 of 7] Compiling Xeno.SAX
 [5 of 7] Compiling Xeno.Errors
-
-src/Xeno/Errors.hs:12:1: warning: [-Wunused-imports]
+src/Xeno/Errors.hs:12:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Semigroup’ is redundant
       except perhaps to import instances from ‘Data.Semigroup’
     To import instances alone, use: import Data.Semigroup()
    |
 12 | import           Data.Semigroup((<>))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [6 of 7] Compiling Xeno.DOM.Robust
 [7 of 7] Compiling Xeno.DOM
 Configuring test suite 'xeno-test' for xeno-0.6...
 Preprocessing test suite 'xeno-test' for xeno-0.6...
 Building test suite 'xeno-test' for xeno-0.6...
 [1 of 1] Compiling Main
-
 test/Main.hs:28:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -40,4 +40,21 @@ test/Main.hs:28:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
    |
 28 |       let (Right dom) = parse xml
    |           ^^^^^^^^^^^^^^^^^^^^^^^
-[2 of 2] Linking /tmp/workdir-xeno/xeno-0.6/dist-newstyle/build/x86_64-linux/ghc-9.6.5/xeno-0.6/t/xeno-test/build/xeno-test/xeno-test
+
+test/Main.hs:58:19: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+58 |       attributes (head (children $ fromRightE doc)) `shouldBe` [("id", "1"), ("extra", "2")]
+   |                   ^^^^
+
+test/Main.hs:102:19: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+102 |       attributes (head (children $ fromRightE doc)) `shouldBe` [("id", "1"), ("extra", "2")]
+    |                   ^^^^
+
+[2 of 2] Linking /tmp/workdir-xeno/xeno-0.6/dist-newstyle/build/x86_64-linux/ghc-9.10.2/xeno-0.6/t/xeno-test/build/xeno-test/xeno-test

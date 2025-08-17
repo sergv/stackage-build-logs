@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - hasktags-0.73.0 (lib) (first run)
  - hasktags-0.73.0 (test:testsuite) (first run)
@@ -9,6 +10,29 @@ Building library for hasktags-0.73.0...
 [1 of 3] Compiling DebugShow
 [2 of 3] Compiling Tags
 [3 of 3] Compiling Hasktags
+src/Hasktags.hs:261:28: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+261 |         let sections = map tail -- strip leading NL (no longer needed)
+    |                            ^^^^
+
+src/Hasktags.hs:268:42: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+268 |         let filterAdjacentFuncImpl = map head . groupBy (\(FoundThing t1 n1 (Pos f1 _ _ _))
+    |                                          ^^^^
+
+src/Hasktags.hs:276:23: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+276 |         let iCI = map head . groupBy (\(FoundThing t1 n1 (Pos f1 l1 _ _))
+    |                       ^^^^
 
 src/Hasktags.hs:416:16: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
@@ -47,6 +71,14 @@ src/Hasktags.hs:501:36: warning: [GHC-62161] [-Wincomplete-uni-patterns]
 501 |                           then let (NewLine i) = nl in i
     |                                    ^^^^^^^^^^^^^^^^
 
+src/Hasktags.hs:545:42: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+545 |           contents <- filter ((/=) '.' . head) `fmap` getDirectoryContents p
+    |                                          ^^^^
+
 src/Hasktags.hs:551:36: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a lambda abstraction:
@@ -54,12 +86,44 @@ src/Hasktags.hs:551:36: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     |
 551 | concatTokens = smartUnwords . map (\(Token name _) -> name) .  filter (not . isNewLine Nothing)
     |                                    ^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Hasktags.hs:553:69: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+553 |         smartUnwords a = foldr (\v -> (glueNext v ++)) "" $ a `zip` tail (a ++ [""])
+    |                                                                     ^^^^
+
 Configuring test suite 'testsuite' for hasktags-0.73.0...
 Preprocessing test suite 'testsuite' for hasktags-0.73.0...
 Building test suite 'testsuite' for hasktags-0.73.0...
 [1 of 4] Compiling DebugShow
 [2 of 4] Compiling Tags
 [3 of 4] Compiling Hasktags
+src/Hasktags.hs:261:28: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+261 |         let sections = map tail -- strip leading NL (no longer needed)
+    |                            ^^^^
+
+src/Hasktags.hs:268:42: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+268 |         let filterAdjacentFuncImpl = map head . groupBy (\(FoundThing t1 n1 (Pos f1 _ _ _))
+    |                                          ^^^^
+
+src/Hasktags.hs:276:23: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+276 |         let iCI = map head . groupBy (\(FoundThing t1 n1 (Pos f1 l1 _ _))
+    |                       ^^^^
 
 src/Hasktags.hs:416:16: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
@@ -98,6 +162,14 @@ src/Hasktags.hs:501:36: warning: [GHC-62161] [-Wincomplete-uni-patterns]
 501 |                           then let (NewLine i) = nl in i
     |                                    ^^^^^^^^^^^^^^^^
 
+src/Hasktags.hs:545:42: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+545 |           contents <- filter ((/=) '.' . head) `fmap` getDirectoryContents p
+    |                                          ^^^^
+
 src/Hasktags.hs:551:36: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a lambda abstraction:
@@ -105,27 +177,36 @@ src/Hasktags.hs:551:36: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     |
 551 | concatTokens = smartUnwords . map (\(Token name _) -> name) .  filter (not . isNewLine Nothing)
     |                                    ^^^^^^^^^^^^^^^^^^^^^^^
-[4 of 4] Compiling Main
 
-tests/Test.hs:7:18: warning: [-Wcompat-unqualified-imports]
+src/Hasktags.hs:553:69: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+553 |         smartUnwords a = foldr (\v -> (glueNext v ++)) "" $ a `zip` tail (a ++ [""])
+    |                                                                     ^^^^
+
+[4 of 4] Compiling Main
+tests/Test.hs:7:18: warning: [GHC-82347] [-Wcompat-unqualified-imports]
     To ensure compatibility with future core libraries changes
     imports to Data.List should be
     either qualified or have an explicit import list.
   |
 7 | import           Data.List
   |                  ^^^^^^^^^
-[5 of 5] Linking /tmp/workdir-hasktags/hasktags-0.73.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/hasktags-0.73.0/t/testsuite/build/testsuite/testsuite
+
+[5 of 5] Linking /tmp/workdir-hasktags/hasktags-0.73.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/hasktags-0.73.0/t/testsuite/build/testsuite/testsuite
 Configuring executable 'hasktags' for hasktags-0.73.0...
 Preprocessing executable 'hasktags' for hasktags-0.73.0...
 Building executable 'hasktags' for hasktags-0.73.0...
 [1 of 2] Compiling Paths_hasktags
 [2 of 2] Compiling Main
-
-src/Main.hs:8:1: warning: [-Wunused-imports]
+src/Main.hs:8:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
   |
 8 | import Data.Monoid
   | ^^^^^^^^^^^^^^^^^^
-[3 of 3] Linking /tmp/workdir-hasktags/hasktags-0.73.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/hasktags-0.73.0/x/hasktags/build/hasktags/hasktags
+
+[3 of 3] Linking /tmp/workdir-hasktags/hasktags-0.73.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/hasktags-0.73.0/x/hasktags/build/hasktags/hasktags

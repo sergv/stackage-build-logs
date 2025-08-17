@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - markov-chain-usage-model-0.0.0 (lib) (first run)
  - markov-chain-usage-model-0.0.0 (test:markov-chain-usage-model-test) (first run)
@@ -6,7 +7,6 @@ Configuring library for markov-chain-usage-model-0.0.0...
 Preprocessing library for markov-chain-usage-model-0.0.0...
 Building library for markov-chain-usage-model-0.0.0...
 [1 of 2] Compiling MarkovChain
-
 src/MarkovChain.hs:1:1: warning: [GHC-29747] [-Wmissing-safe-haskell-mode]
     markov-chain-usage-model-0.0.0-inplace:MarkovChain is missing Safe Haskell mode
   |
@@ -52,18 +52,34 @@ src/MarkovChain.hs:68:38: warning: [GHC-40798] [-Woperator-whitespace]
    |
 68 | norm_F = sqrt . sum . toList . fmap (^(2 :: Int))
    |                                      ^
+
+src/MarkovChain.hs:311:10: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+311 |   bimap (head . toList) (head . toList) $ transientReliability q mprior obs
+    |          ^^^^
+
+src/MarkovChain.hs:311:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+311 |   bimap (head . toList) (head . toList) $ transientReliability q mprior obs
+    |                          ^^^^
+
 [2 of 2] Compiling Paths_markov_chain_usage_model
 Configuring test suite 'markov-chain-usage-model-test' for markov-chain-usage-model-0.0.0...
 Preprocessing test suite 'markov-chain-usage-model-test' for markov-chain-usage-model-0.0.0...
 Building test suite 'markov-chain-usage-model-test' for markov-chain-usage-model-0.0.0...
-
 <no location info>: warning: [GHC-42258] [-Wunused-packages]
     The following packages were specified via -package or -package-id flags,
     but were not needed for compilation:
-      - tasty-discover-5.0.0 (exposed by flag -package-id tasty-discover-5.0.0-c681d53ad4b3ecfc94b2dafcdb4459b2662043dc937d2148e29116301eaa01e9)
+      - tasty-discover-5.0.2 (exposed by flag -package-id tasty-discover-5.0.2-b33c2c0fca91b989e3fa3f5fe6f32c8cd098e5d8fd7d600f3c50ae4bad270473)
+
 [1 of 3] Compiling Paths_markov_chain_usage_model
 [2 of 3] Compiling Unit
-
 test/Unit.hs:1:1: warning: [GHC-29747] [-Wmissing-safe-haskell-mode]
     markov-chain-usage-model-0.0.0-inplace-markov-chain-usage-model-test:Unit is missing Safe Haskell mode
   |
@@ -214,8 +230,8 @@ test/Unit.hs:73:10: warning: [GHC-40798] [-Woperator-whitespace]
    |
 73 |       , c/d
    |          ^
-[3 of 3] Compiling Main
 
+[3 of 3] Compiling Main
 test/Spec.hs:1:1: warning: [GHC-29747] [-Wmissing-safe-haskell-mode]
     markov-chain-usage-model-0.0.0-inplace-markov-chain-usage-model-test:Main is missing Safe Haskell mode
   |
@@ -252,12 +268,13 @@ test/Spec.hs:12:8: warning: [GHC-07924] [-Wprepositive-qualified-module]
       • Place ‘qualified’ after the module name.
       • Perhaps you intended to use ImportQualifiedPost
 
-test/Spec.hs:16:1: warning: [GHC-38417] [-Wmissing-kind-signatures]
+test/Spec.hs:17:1: warning: [GHC-38417] [-Wmissing-kind-signatures]
     Top-level type constructor with no standalone kind signature or CUSK:
       type TestCase :: * -> Constraint
 
 <no location info>: warning: [GHC-42258] [-Wunused-packages]
     The following packages were specified via -package or -package-id flags,
     but were not needed for compilation:
-      - tasty-discover-5.0.0 (exposed by flag -package-id tasty-discover-5.0.0-c681d53ad4b3ecfc94b2dafcdb4459b2662043dc937d2148e29116301eaa01e9)
-[4 of 4] Linking /tmp/workdir-markov-chain-usage-model/markov-chain-usage-model-0.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/markov-chain-usage-model-0.0.0/t/markov-chain-usage-model-test/build/markov-chain-usage-model-test/markov-chain-usage-model-test
+      - tasty-discover-5.0.2 (exposed by flag -package-id tasty-discover-5.0.2-b33c2c0fca91b989e3fa3f5fe6f32c8cd098e5d8fd7d600f3c50ae4bad270473)
+
+[4 of 4] Linking /tmp/workdir-markov-chain-usage-model/markov-chain-usage-model-0.0.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/markov-chain-usage-model-0.0.0/t/markov-chain-usage-model-test/build/markov-chain-usage-model-test/markov-chain-usage-model-test

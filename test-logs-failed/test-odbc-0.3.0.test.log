@@ -1,0 +1,771 @@
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - odbc-0.3.0 (test:test) (ephemeral targets)
+Preprocessing test suite 'test' for odbc-0.3.0...
+Building test suite 'test' for odbc-0.3.0...
+Running 1 test suites...
+Test suite test: RUNNING...
+Using connection string: Nothing
+
+Database.ODBC.Internal
+  Connectivity
+    Connect, no close [✘]
+    Connect, explicit close [✘]
+    Double close fails [✘]
+    Connect/disconnect loop [✘]
+  Regression tests
+    Internal.exec can return SQL_NO_DATA [✘]
+    Internal.exec multiple statements (https://github.com/fpco/odbc/issues/9) [✘]
+    Internal.exec error in multiple statements (https://github.com/fpco/odbc/issues/9) [✘]
+  Data retrieval
+    Basic sanity check [✘]
+    Querying commands with no results [✘]
+    QuickCheck roundtrip: HS=Int, SQL=bigint [✘]
+    QuickCheck roundtrip: HS=Double, SQL=float [✘]
+    QuickCheck roundtrip: HS=Float, SQL=float [✘]
+    QuickCheck roundtrip: HS=Float, SQL=real [✘]
+    QuickCheck roundtrip: HS=Text, SQL=ntext [✘]
+    QuickCheck roundtrip: HS=Text, SQL=nvarchar(1024) [✘]
+    QuickCheck roundtrip: HS=Bool, SQL=bit [✘]
+  Big data
+    Roundtrip 2MB text: HS=Text, SQL=ntext [✘]
+    Roundtrip 2MB binary: HS=ByteString, SQL=text [✘]
+    Roundtrip 2MB binary: HS=Binary, SQL=varbinary(max) [✘]
+Database.ODBC.SQLServer
+  Conversion to SQL
+    maxBound
+      Roundtrip maxBound(Int64): HS=Int, SQL=bigint [✘]
+      Roundtrip maxBound(Int32): HS=Int, SQL=int [✘]
+      Roundtrip maxBound(Int16): HS=Int, SQL=smallint [✘]
+      Roundtrip maxBound(Word8): HS=Word8, SQL=tinyint [✘]
+    minBound
+      Roundtrip minBound(Int64): HS=Int, SQL=bigint [✘]
+      Roundtrip minBound(Int32): HS=Int, SQL=int [✘]
+      Roundtrip minBound(Int16): HS=Int, SQL=smallint [✘]
+      Roundtrip minBound(Word8): HS=Word8, SQL=tinyint [✘]
+    QuickCheck roundtrip: HS=Day, SQL=date [✘]
+    QuickCheck roundtrip: HS=Maybe Day, SQL=date [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=Maybe Day, SQL=date (NULL) [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=Datetime2, SQL=datetime2 [✘]
+    QuickCheck roundtrip: HS=Maybe Datetime2, SQL=datetime2 [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=Maybe Datetime2, SQL=datetime2 (NULL) [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=Smalldatetime, SQL=smalldatetime [✘]
+    QuickCheck roundtrip: HS=Maybe Smalldatetime, SQL=smalldatetime [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=Maybe Smalldatetime, SQL=smalldatetime (NULL) [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=TestDateTime, SQL=datetime [✘]
+    QuickCheck roundtrip: HS=Maybe TestDateTime, SQL=datetime [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=Maybe TestDateTime, SQL=datetime (NULL) [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=Datetimeoffset, SQL=datetimeoffset [✘]
+    QuickCheck roundtrip: HS=Maybe Datetimeoffset, SQL=datetimeoffset [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=Maybe Datetimeoffset, SQL=datetimeoffset (NULL) [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck one-way: HS=TimeOfDay, SQL=time [✘]
+    QuickCheck roundtrip: HS=TimeOfDay, SQL=time [✘]
+    QuickCheck roundtrip: HS=Maybe TimeOfDay, SQL=time [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=Maybe TimeOfDay, SQL=time (NULL) [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=Float, SQL=real [✘]
+    QuickCheck roundtrip: HS=Maybe Float, SQL=real [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=Maybe Float, SQL=real (NULL) [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=Double, SQL=float [✘]
+    QuickCheck roundtrip: HS=Maybe Double, SQL=float [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=Maybe Double, SQL=float (NULL) [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=Double, SQL=decimal(20, 10) [✘]
+    QuickCheck roundtrip: HS=Maybe Double, SQL=decimal(20, 10) [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=Maybe Double, SQL=decimal(20, 10) (NULL) [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=Double, SQL=numeric(20, 10) [✘]
+    QuickCheck roundtrip: HS=Maybe Double, SQL=numeric(20, 10) [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=Maybe Double, SQL=numeric(20, 10) (NULL) [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=Float, SQL=float [✘]
+    QuickCheck roundtrip: HS=Maybe Float, SQL=float [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=Maybe Float, SQL=float (NULL) [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=Word8, SQL=tinyint [✘]
+    QuickCheck roundtrip: HS=Maybe Word8, SQL=tinyint [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=Maybe Word8, SQL=tinyint (NULL) [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=Int, SQL=bigint [✘]
+    QuickCheck roundtrip: HS=Maybe Int, SQL=bigint [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=Maybe Int, SQL=bigint (NULL) [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=Bool, SQL=bit [✘]
+    QuickCheck roundtrip: HS=Maybe Bool, SQL=bit [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=Maybe Bool, SQL=bit (NULL) [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=Text, SQL=ntext [✘]
+    QuickCheck roundtrip: HS=Maybe Text, SQL=ntext [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=Maybe Text, SQL=ntext (NULL) [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=Text, SQL=nvarchar(1024) [✘]
+    QuickCheck roundtrip: HS=Maybe Text, SQL=nvarchar(1024) [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=Maybe Text, SQL=nvarchar(1024) (NULL) [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=ByteString, SQL=text [✘]
+    QuickCheck roundtrip: HS=Maybe ByteString, SQL=text [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=Maybe ByteString, SQL=text (NULL) [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=ByteString, SQL=char(1024) [✘]
+    QuickCheck roundtrip: HS=Maybe ByteString, SQL=char(1024) [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=Maybe ByteString, SQL=char(1024) (NULL) [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=ByteString, SQL=varchar(1024) [✘]
+    QuickCheck roundtrip: HS=Maybe ByteString, SQL=varchar(1024) [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=Maybe ByteString, SQL=varchar(1024) (NULL) [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=ByteString, SQL=binary(1024) [✘]
+    QuickCheck roundtrip: HS=Maybe ByteString, SQL=binary(1024) [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=Maybe ByteString, SQL=binary(1024) (NULL) [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=ByteString, SQL=varbinary(1024) [✘]
+    QuickCheck roundtrip: HS=Maybe ByteString, SQL=varbinary(1024) [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=Maybe ByteString, SQL=varbinary(1024) (NULL) [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=GUID, SQL=uniqueidentifier [✘]
+    QuickCheck roundtrip: HS=Maybe GUID, SQL=uniqueidentifier [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+    QuickCheck roundtrip: HS=Maybe GUID, SQL=uniqueidentifier (NULL) [‐]
+      # PENDING: exception in beforeAll-hook (see previous failure)
+  Parametrized
+    splitQueryParametrized [✔]
+    joinQueryParametrized [✔]
+    Multiple params [✘]
+Database.ODBC.TH
+  Parser
+    Basic range of syntax [✔]
+    Incomplete parameter [✔]
+    Invalid parameter character [✔]
+
+Failures:
+
+  test/Main.hs:528:7: 
+  1) Database.ODBC.Internal.Connectivity Connect, no close
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+
+  To rerun use: --match "/Database.ODBC.Internal/Connectivity/Connect, no close/" --seed 1105269685
+
+  test/Main.hs:528:7: 
+  2) Database.ODBC.Internal.Connectivity Connect, explicit close
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+
+  To rerun use: --match "/Database.ODBC.Internal/Connectivity/Connect, explicit close/" --seed 1105269685
+
+  test/Main.hs:528:7: 
+  3) Database.ODBC.Internal.Connectivity Double close fails
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+
+  To rerun use: --match "/Database.ODBC.Internal/Connectivity/Double close fails/" --seed 1105269685
+
+  test/Main.hs:528:7: 
+  4) Database.ODBC.Internal.Connectivity Connect/disconnect loop
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+
+  To rerun use: --match "/Database.ODBC.Internal/Connectivity/Connect/disconnect loop/" --seed 1105269685
+
+  test/Main.hs:528:7: 
+  5) Database.ODBC.Internal, Regression tests, Internal.exec can return SQL_NO_DATA
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+
+  To rerun use: --match "/Database.ODBC.Internal/Regression tests/Internal.exec can return SQL_NO_DATA/" --seed 1105269685
+
+  test/Main.hs:528:7: 
+  6) Database.ODBC.Internal, Regression tests, Internal.exec multiple statements (https://github.com/fpco/odbc/issues/9)
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+
+  To rerun use: --match "/Database.ODBC.Internal/Regression tests/Internal.exec multiple statements (https://github.com/fpco/odbc/issues/9)/" --seed 1105269685
+
+  test/Main.hs:528:7: 
+  7) Database.ODBC.Internal, Regression tests, Internal.exec error in multiple statements (https://github.com/fpco/odbc/issues/9)
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+
+  To rerun use: --match "/Database.ODBC.Internal/Regression tests/Internal.exec error in multiple statements (https://github.com/fpco/odbc/issues/9)/" --seed 1105269685
+
+  test/Main.hs:528:7: 
+  8) Database.ODBC.Internal, Data retrieval, Basic sanity check
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+
+  To rerun use: --match "/Database.ODBC.Internal/Data retrieval/Basic sanity check/" --seed 1105269685
+
+  test/Main.hs:528:7: 
+  9) Database.ODBC.Internal, Data retrieval, Querying commands with no results
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+
+  To rerun use: --match "/Database.ODBC.Internal/Data retrieval/Querying commands with no results/" --seed 1105269685
+
+  test/Main.hs:451:9: 
+  10) Database.ODBC.Internal, Data retrieval, QuickCheck roundtrip: HS=Int, SQL=bigint
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+       (after 1 test)
+
+  To rerun use: --match "/Database.ODBC.Internal/Data retrieval/QuickCheck roundtrip: HS=Int, SQL=bigint/" --seed 1105269685
+
+  test/Main.hs:451:9: 
+  11) Database.ODBC.Internal, Data retrieval, QuickCheck roundtrip: HS=Double, SQL=float
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+       (after 1 test)
+
+  To rerun use: --match "/Database.ODBC.Internal/Data retrieval/QuickCheck roundtrip: HS=Double, SQL=float/" --seed 1105269685
+
+  test/Main.hs:451:9: 
+  12) Database.ODBC.Internal, Data retrieval, QuickCheck roundtrip: HS=Float, SQL=float
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+       (after 1 test)
+
+  To rerun use: --match "/Database.ODBC.Internal/Data retrieval/QuickCheck roundtrip: HS=Float, SQL=float/" --seed 1105269685
+
+  test/Main.hs:451:9: 
+  13) Database.ODBC.Internal, Data retrieval, QuickCheck roundtrip: HS=Float, SQL=real
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+       (after 1 test)
+
+  To rerun use: --match "/Database.ODBC.Internal/Data retrieval/QuickCheck roundtrip: HS=Float, SQL=real/" --seed 1105269685
+
+  test/Main.hs:451:9: 
+  14) Database.ODBC.Internal, Data retrieval, QuickCheck roundtrip: HS=Text, SQL=ntext
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+       (after 1 test)
+
+  To rerun use: --match "/Database.ODBC.Internal/Data retrieval/QuickCheck roundtrip: HS=Text, SQL=ntext/" --seed 1105269685
+
+  test/Main.hs:451:9: 
+  15) Database.ODBC.Internal, Data retrieval, QuickCheck roundtrip: HS=Text, SQL=nvarchar(1024)
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+       (after 1 test)
+
+  To rerun use: --match "/Database.ODBC.Internal/Data retrieval/QuickCheck roundtrip: HS=Text, SQL=nvarchar(1024)/" --seed 1105269685
+
+  test/Main.hs:451:9: 
+  16) Database.ODBC.Internal, Data retrieval, QuickCheck roundtrip: HS=Bool, SQL=bit
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+       (after 1 test)
+
+  To rerun use: --match "/Database.ODBC.Internal/Data retrieval/QuickCheck roundtrip: HS=Bool, SQL=bit/" --seed 1105269685
+
+  test/Main.hs:528:7: 
+  17) Database.ODBC.Internal, Big data, Roundtrip 2MB text: HS=Text, SQL=ntext
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+
+  To rerun use: --match "/Database.ODBC.Internal/Big data/Roundtrip 2MB text: HS=Text, SQL=ntext/" --seed 1105269685
+
+  test/Main.hs:528:7: 
+  18) Database.ODBC.Internal, Big data, Roundtrip 2MB binary: HS=ByteString, SQL=text
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+
+  To rerun use: --match "/Database.ODBC.Internal/Big data/Roundtrip 2MB binary: HS=ByteString, SQL=text/" --seed 1105269685
+
+  test/Main.hs:528:7: 
+  19) Database.ODBC.Internal, Big data, Roundtrip 2MB binary: HS=Binary, SQL=varbinary(max)
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+
+  To rerun use: --match "/Database.ODBC.Internal/Big data/Roundtrip 2MB binary: HS=Binary, SQL=varbinary(max)/" --seed 1105269685
+
+  test/Main.hs:528:7: 
+  20) Database.ODBC.SQLServer, Conversion to SQL, maxBound, Roundtrip maxBound(Int64): HS=Int, SQL=bigint
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+
+  To rerun use: --match "/Database.ODBC.SQLServer/Conversion to SQL/maxBound/Roundtrip maxBound(Int64): HS=Int, SQL=bigint/" --seed 1105269685
+
+  test/Main.hs:528:7: 
+  21) Database.ODBC.SQLServer, Conversion to SQL, maxBound, Roundtrip maxBound(Int32): HS=Int, SQL=int
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+
+  To rerun use: --match "/Database.ODBC.SQLServer/Conversion to SQL/maxBound/Roundtrip maxBound(Int32): HS=Int, SQL=int/" --seed 1105269685
+
+  test/Main.hs:528:7: 
+  22) Database.ODBC.SQLServer, Conversion to SQL, maxBound, Roundtrip maxBound(Int16): HS=Int, SQL=smallint
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+
+  To rerun use: --match "/Database.ODBC.SQLServer/Conversion to SQL/maxBound/Roundtrip maxBound(Int16): HS=Int, SQL=smallint/" --seed 1105269685
+
+  test/Main.hs:528:7: 
+  23) Database.ODBC.SQLServer, Conversion to SQL, maxBound, Roundtrip maxBound(Word8): HS=Word8, SQL=tinyint
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+
+  To rerun use: --match "/Database.ODBC.SQLServer/Conversion to SQL/maxBound/Roundtrip maxBound(Word8): HS=Word8, SQL=tinyint/" --seed 1105269685
+
+  test/Main.hs:528:7: 
+  24) Database.ODBC.SQLServer, Conversion to SQL, minBound, Roundtrip minBound(Int64): HS=Int, SQL=bigint
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+
+  To rerun use: --match "/Database.ODBC.SQLServer/Conversion to SQL/minBound/Roundtrip minBound(Int64): HS=Int, SQL=bigint/" --seed 1105269685
+
+  test/Main.hs:528:7: 
+  25) Database.ODBC.SQLServer, Conversion to SQL, minBound, Roundtrip minBound(Int32): HS=Int, SQL=int
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+
+  To rerun use: --match "/Database.ODBC.SQLServer/Conversion to SQL/minBound/Roundtrip minBound(Int32): HS=Int, SQL=int/" --seed 1105269685
+
+  test/Main.hs:528:7: 
+  26) Database.ODBC.SQLServer, Conversion to SQL, minBound, Roundtrip minBound(Int16): HS=Int, SQL=smallint
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+
+  To rerun use: --match "/Database.ODBC.SQLServer/Conversion to SQL/minBound/Roundtrip minBound(Int16): HS=Int, SQL=smallint/" --seed 1105269685
+
+  test/Main.hs:528:7: 
+  27) Database.ODBC.SQLServer, Conversion to SQL, minBound, Roundtrip minBound(Word8): HS=Word8, SQL=tinyint
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+
+  To rerun use: --match "/Database.ODBC.SQLServer/Conversion to SQL/minBound/Roundtrip minBound(Word8): HS=Word8, SQL=tinyint/" --seed 1105269685
+
+  test/Main.hs:346:15: 
+  28) Database.ODBC.SQLServer, Conversion to SQL, QuickCheck roundtrip: HS=Day, SQL=date
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+       (after 1 test)
+
+  To rerun use: --match "/Database.ODBC.SQLServer/Conversion to SQL/QuickCheck roundtrip: HS=Day, SQL=date/" --seed 1105269685
+
+  test/Main.hs:346:15: 
+  29) Database.ODBC.SQLServer, Conversion to SQL, QuickCheck roundtrip: HS=Datetime2, SQL=datetime2
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+       (after 1 test)
+
+  To rerun use: --match "/Database.ODBC.SQLServer/Conversion to SQL/QuickCheck roundtrip: HS=Datetime2, SQL=datetime2/" --seed 1105269685
+
+  test/Main.hs:346:15: 
+  30) Database.ODBC.SQLServer, Conversion to SQL, QuickCheck roundtrip: HS=Smalldatetime, SQL=smalldatetime
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+       (after 1 test)
+
+  To rerun use: --match "/Database.ODBC.SQLServer/Conversion to SQL/QuickCheck roundtrip: HS=Smalldatetime, SQL=smalldatetime/" --seed 1105269685
+
+  test/Main.hs:346:15: 
+  31) Database.ODBC.SQLServer, Conversion to SQL, QuickCheck roundtrip: HS=TestDateTime, SQL=datetime
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+       (after 1 test)
+
+  To rerun use: --match "/Database.ODBC.SQLServer/Conversion to SQL/QuickCheck roundtrip: HS=TestDateTime, SQL=datetime/" --seed 1105269685
+
+  test/Main.hs:346:15: 
+  32) Database.ODBC.SQLServer, Conversion to SQL, QuickCheck roundtrip: HS=Datetimeoffset, SQL=datetimeoffset
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+       (after 1 test)
+
+  To rerun use: --match "/Database.ODBC.SQLServer/Conversion to SQL/QuickCheck roundtrip: HS=Datetimeoffset, SQL=datetimeoffset/" --seed 1105269685
+
+  test/Main.hs:406:9: 
+  33) Database.ODBC.SQLServer, Conversion to SQL, QuickCheck one-way: HS=TimeOfDay, SQL=time
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+       (after 1 test)
+
+  To rerun use: --match "/Database.ODBC.SQLServer/Conversion to SQL/QuickCheck one-way: HS=TimeOfDay, SQL=time/" --seed 1105269685
+
+  test/Main.hs:346:15: 
+  34) Database.ODBC.SQLServer, Conversion to SQL, QuickCheck roundtrip: HS=TimeOfDay, SQL=time
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+       (after 1 test)
+
+  To rerun use: --match "/Database.ODBC.SQLServer/Conversion to SQL/QuickCheck roundtrip: HS=TimeOfDay, SQL=time/" --seed 1105269685
+
+  test/Main.hs:346:15: 
+  35) Database.ODBC.SQLServer, Conversion to SQL, QuickCheck roundtrip: HS=Float, SQL=real
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+       (after 1 test)
+
+  To rerun use: --match "/Database.ODBC.SQLServer/Conversion to SQL/QuickCheck roundtrip: HS=Float, SQL=real/" --seed 1105269685
+
+  test/Main.hs:346:15: 
+  36) Database.ODBC.SQLServer, Conversion to SQL, QuickCheck roundtrip: HS=Double, SQL=float
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+       (after 1 test)
+
+  To rerun use: --match "/Database.ODBC.SQLServer/Conversion to SQL/QuickCheck roundtrip: HS=Double, SQL=float/" --seed 1105269685
+
+  test/Main.hs:346:15: 
+  37) Database.ODBC.SQLServer, Conversion to SQL, QuickCheck roundtrip: HS=Double, SQL=decimal(20, 10)
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+       (after 1 test)
+
+  To rerun use: --match "/Database.ODBC.SQLServer/Conversion to SQL/QuickCheck roundtrip: HS=Double, SQL=decimal(20, 10)/" --seed 1105269685
+
+  test/Main.hs:346:15: 
+  38) Database.ODBC.SQLServer, Conversion to SQL, QuickCheck roundtrip: HS=Double, SQL=numeric(20, 10)
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+       (after 1 test)
+
+  To rerun use: --match "/Database.ODBC.SQLServer/Conversion to SQL/QuickCheck roundtrip: HS=Double, SQL=numeric(20, 10)/" --seed 1105269685
+
+  test/Main.hs:346:15: 
+  39) Database.ODBC.SQLServer, Conversion to SQL, QuickCheck roundtrip: HS=Float, SQL=float
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+       (after 1 test)
+
+  To rerun use: --match "/Database.ODBC.SQLServer/Conversion to SQL/QuickCheck roundtrip: HS=Float, SQL=float/" --seed 1105269685
+
+  test/Main.hs:346:15: 
+  40) Database.ODBC.SQLServer, Conversion to SQL, QuickCheck roundtrip: HS=Word8, SQL=tinyint
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+       (after 1 test)
+
+  To rerun use: --match "/Database.ODBC.SQLServer/Conversion to SQL/QuickCheck roundtrip: HS=Word8, SQL=tinyint/" --seed 1105269685
+
+  test/Main.hs:346:15: 
+  41) Database.ODBC.SQLServer, Conversion to SQL, QuickCheck roundtrip: HS=Int, SQL=bigint
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+       (after 1 test)
+
+  To rerun use: --match "/Database.ODBC.SQLServer/Conversion to SQL/QuickCheck roundtrip: HS=Int, SQL=bigint/" --seed 1105269685
+
+  test/Main.hs:346:15: 
+  42) Database.ODBC.SQLServer, Conversion to SQL, QuickCheck roundtrip: HS=Bool, SQL=bit
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+       (after 1 test)
+
+  To rerun use: --match "/Database.ODBC.SQLServer/Conversion to SQL/QuickCheck roundtrip: HS=Bool, SQL=bit/" --seed 1105269685
+
+  test/Main.hs:346:15: 
+  43) Database.ODBC.SQLServer, Conversion to SQL, QuickCheck roundtrip: HS=Text, SQL=ntext
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+       (after 1 test)
+
+  To rerun use: --match "/Database.ODBC.SQLServer/Conversion to SQL/QuickCheck roundtrip: HS=Text, SQL=ntext/" --seed 1105269685
+
+  test/Main.hs:346:15: 
+  44) Database.ODBC.SQLServer, Conversion to SQL, QuickCheck roundtrip: HS=Text, SQL=nvarchar(1024)
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+       (after 1 test)
+
+  To rerun use: --match "/Database.ODBC.SQLServer/Conversion to SQL/QuickCheck roundtrip: HS=Text, SQL=nvarchar(1024)/" --seed 1105269685
+
+  test/Main.hs:346:15: 
+  45) Database.ODBC.SQLServer, Conversion to SQL, QuickCheck roundtrip: HS=ByteString, SQL=text
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+       (after 1 test)
+
+  To rerun use: --match "/Database.ODBC.SQLServer/Conversion to SQL/QuickCheck roundtrip: HS=ByteString, SQL=text/" --seed 1105269685
+
+  test/Main.hs:346:15: 
+  46) Database.ODBC.SQLServer, Conversion to SQL, QuickCheck roundtrip: HS=ByteString, SQL=char(1024)
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+       (after 1 test)
+
+  To rerun use: --match "/Database.ODBC.SQLServer/Conversion to SQL/QuickCheck roundtrip: HS=ByteString, SQL=char(1024)/" --seed 1105269685
+
+  test/Main.hs:346:15: 
+  47) Database.ODBC.SQLServer, Conversion to SQL, QuickCheck roundtrip: HS=ByteString, SQL=varchar(1024)
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+       (after 1 test)
+
+  To rerun use: --match "/Database.ODBC.SQLServer/Conversion to SQL/QuickCheck roundtrip: HS=ByteString, SQL=varchar(1024)/" --seed 1105269685
+
+  test/Main.hs:346:15: 
+  48) Database.ODBC.SQLServer, Conversion to SQL, QuickCheck roundtrip: HS=ByteString, SQL=binary(1024)
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+       (after 1 test)
+
+  To rerun use: --match "/Database.ODBC.SQLServer/Conversion to SQL/QuickCheck roundtrip: HS=ByteString, SQL=binary(1024)/" --seed 1105269685
+
+  test/Main.hs:346:15: 
+  49) Database.ODBC.SQLServer, Conversion to SQL, QuickCheck roundtrip: HS=ByteString, SQL=varbinary(1024)
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+       (after 1 test)
+
+  To rerun use: --match "/Database.ODBC.SQLServer/Conversion to SQL/QuickCheck roundtrip: HS=ByteString, SQL=varbinary(1024)/" --seed 1105269685
+
+  test/Main.hs:346:15: 
+  50) Database.ODBC.SQLServer, Conversion to SQL, QuickCheck roundtrip: HS=GUID, SQL=uniqueidentifier
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+       (after 1 test)
+
+  To rerun use: --match "/Database.ODBC.SQLServer/Conversion to SQL/QuickCheck roundtrip: HS=GUID, SQL=uniqueidentifier/" --seed 1105269685
+
+  test/Main.hs:584:9: 
+  51) Database.ODBC.SQLServer.Parametrized Multiple params
+       uncaught exception: ErrorCall
+       Need ODBC_TEST_CONNECTION_STRING environment variable.
+       Example:
+       ODBC_TEST_CONNECTION_STRING='DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;Uid=SA;Pwd=Passw0rd;Encrypt=no'
+       CallStack (from HasCallStack):
+         error, called at test/Main.hs:528:7 in odbc-0.3.0-inplace-test:Main
+       (after 1 test)
+
+  To rerun use: --match "/Database.ODBC.SQLServer/Parametrized/Multiple params/" --seed 1105269685
+
+Randomized with seed 1105269685
+
+Finished in 0.0113 seconds
+100 examples, 51 failures, 44 pending
+Test suite test: FAIL
+Test suite logged to:
+/tmp/workdir-odbc/odbc-0.3.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/odbc-0.3.0/t/test/test/odbc-0.3.0-test.log
+0 of 1 test suites (0 of 1 test cases) passed.
+Error: [Cabal-7125]
+Tests failed for test:test from odbc-0.3.0.
+

@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - text-zipper-0.13 (lib) (first run)
  - text-zipper-0.13 (test:text-zipper-tests) (first run)
@@ -7,8 +8,7 @@ Preprocessing library for text-zipper-0.13...
 Building library for text-zipper-0.13...
 [1 of 4] Compiling Data.Text.Zipper.Vector
 [2 of 4] Compiling Data.Text.Zipper
-
-src/Data/Text/Zipper.hs:59:1: warning: [-Wunused-imports]
+src/Data/Text/Zipper.hs:59:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
@@ -16,7 +16,15 @@ src/Data/Text/Zipper.hs:59:1: warning: [-Wunused-imports]
 59 | import Control.Applicative ((<$>))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Data/Text/Zipper.hs:63:1: warning: [-Wunused-imports]
+src/Data/Text/Zipper.hs:62:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.List’ is redundant
+      except perhaps to import instances from ‘Data.List’
+    To import instances alone, use: import Data.List()
+   |
+62 | import Data.List (foldl')
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Data/Text/Zipper.hs:63:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
@@ -24,24 +32,121 @@ src/Data/Text/Zipper.hs:63:1: warning: [-Wunused-imports]
 63 | import Data.Monoid
    | ^^^^^^^^^^^^^^^^^^
 
-src/Data/Text/Zipper.hs:80:10: warning: [-Wunused-top-binds]
-    Defined but not used: ‘lines_’
+src/Data/Text/Zipper.hs:80:10: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: record field of TZ ‘lines_’
    |
 80 |        , lines_ :: a -> [a]
    |          ^^^^^^
-[3 of 4] Compiling Data.Text.Zipper.Generic
 
-src/Data/Text/Zipper/Generic.hs:14:1: warning: [-Wunused-imports]
+src/Data/Text/Zipper.hs:149:31: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+149 |                         else (head limitedLs, tail limitedLs)
+    |                               ^^^^
+
+src/Data/Text/Zipper.hs:149:47: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+149 |                         else (head limitedLs, tail limitedLs)
+    |                                               ^^^^
+
+src/Data/Text/Zipper.hs:216:12: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+216 | nextLine = head . below
+    |            ^^^^
+
+src/Data/Text/Zipper.hs:283:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+283 |           tz { toRight = head $ below tz
+    |                          ^^^^
+
+src/Data/Text/Zipper.hs:284:24: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+284 |              , below = tail $ below tz
+    |                        ^^^^
+
+src/Data/Text/Zipper.hs:330:24: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+330 |         tz { toRight = head $ below tz
+    |                        ^^^^
+
+src/Data/Text/Zipper.hs:331:22: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+331 |            , below = tail $ below tz
+    |                      ^^^^
+
+src/Data/Text/Zipper.hs:378:31: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+378 |                         else (head tx, tail tx)
+    |                               ^^^^
+
+src/Data/Text/Zipper.hs:378:40: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+378 |                         else (head tx, tail tx)
+    |                                        ^^^^
+
+src/Data/Text/Zipper.hs:395:22: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+395 |            , below = tail $ below tz
+    |                      ^^^^
+
+src/Data/Text/Zipper.hs:453:22: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+453 |         tz { below = tail $ below tz
+    |                      ^^^^
+
+src/Data/Text/Zipper.hs:461:22: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+461 |            , below = tail $ below tz
+    |                      ^^^^
+
+[3 of 4] Compiling Data.Text.Zipper.Generic
+src/Data/Text/Zipper/Generic.hs:14:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 14 | import           Data.Monoid
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [4 of 4] Compiling Data.Text.Zipper.Generic.Words
 Configuring test suite 'text-zipper-tests' for text-zipper-0.13...
 Preprocessing test suite 'text-zipper-tests' for text-zipper-0.13...
 Building test suite 'text-zipper-tests' for text-zipper-0.13...
 [1 of 2] Compiling WordsSpec
 [2 of 2] Compiling Main
-[3 of 3] Linking /tmp/workdir-text-zipper/text-zipper-0.13/dist-newstyle/build/x86_64-linux/ghc-9.6.5/text-zipper-0.13/t/text-zipper-tests/build/text-zipper-tests/text-zipper-tests
+[3 of 3] Linking /tmp/workdir-text-zipper/text-zipper-0.13/dist-newstyle/build/x86_64-linux/ghc-9.10.2/text-zipper-0.13/t/text-zipper-tests/build/text-zipper-tests/text-zipper-tests

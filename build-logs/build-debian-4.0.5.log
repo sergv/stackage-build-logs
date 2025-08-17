@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - debian-4.0.5 (lib) (first run)
  - debian-4.0.5 (exe:fakechanges) (first run)
@@ -10,39 +11,38 @@ Configuring library for debian-4.0.5...
 Preprocessing library for debian-4.0.5...
 Building library for debian-4.0.5...
 [ 1 of 39] Compiling Debian.Arch
-
-src/Debian/Arch.hs:11:1: warning: [-Wunused-imports]
+src/Debian/Arch.hs:11:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 11 | import Data.Monoid ((<>))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [ 2 of 39] Compiling Debian.Extra.Files
 [ 3 of 39] Compiling Debian.Loc
-
-src/Debian/Loc.hs:7:1: warning: [-Wunused-imports]
+src/Debian/Loc.hs:7:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
   |
 7 | import Control.Applicative ((<$>), (<*>), pure)
   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [ 4 of 39] Compiling Debian.Pretty
 [ 5 of 39] Compiling Debian.Control.Common
-
-src/Debian/Control/Common.hs:27:1: warning: [-Wunused-imports]
+src/Debian/Control/Common.hs:27:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 27 | import Data.Monoid ((<>))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [ 6 of 39] Compiling Debian.Deb
 [ 7 of 39] Compiling Debian.Control.String
 [ 8 of 39] Compiling Debian.Control.ByteString
-
-src/Debian/Control/ByteString.hs:29:1: warning: [-Wunused-imports]
+src/Debian/Control/ByteString.hs:29:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Monad.State’ is redundant
       except perhaps to import instances from ‘Control.Monad.State’
     To import instances alone, use: import Control.Monad.State()
@@ -50,12 +50,28 @@ src/Debian/Control/ByteString.hs:29:1: warning: [-Wunused-imports]
 29 | import "mtl" Control.Monad.State
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Debian/Control/ByteString.hs:33:1: warning: [-Wunused-imports]
+src/Debian/Control/ByteString.hs:33:1: warning: [GHC-38856] [-Wunused-imports]
     The import of ‘liftM, unless’
     from module ‘Control.Monad’ is redundant
    |
 33 | import Control.Monad (MonadPlus(..), ap, liftM, unless)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Debian/Control/ByteString.hs:70:34: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+70 |         (text, bs') = C.splitAt (head rest) bs
+   |                                  ^^^^
+
+src/Debian/Control/ByteString.hs:88:34: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+88 |         (text, bs') = C.splitAt (head rest) bs
+   |                                  ^^^^
 
 src/Debian/Control/ByteString.hs:123:15: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
@@ -65,32 +81,42 @@ src/Debian/Control/ByteString.hs:123:15: warning: [GHC-62161] [-Wincomplete-uni-
 123 |         find (\ (Field (fieldName',_)) -> C.map toLower fieldName' == pFieldName) fields
     |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Debian/Control/ByteString.hs:180:5: warning: [-Wnoncanonical-monad-instances]
+src/Debian/Control/ByteString.hs:180:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘pure = return’ definition detected
     in the instance declaration for ‘Applicative (Parser state)’.
-    Move definition from ‘return’ to ‘pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Move definition from ‘return’ to ‘pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 180 |     pure = return
     |     ^^^^^^^^^^^^^
 
-src/Debian/Control/ByteString.hs:190:5: warning: [-Wnoncanonical-monad-instances]
+src/Debian/Control/ByteString.hs:190:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad (Parser state)’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 190 |     return a = Parser (\s -> Ok (a,s))
     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [ 9 of 39] Compiling Debian.Control.TextLazy
 [10 of 39] Compiling Debian.Control.Text
 [11 of 39] Compiling Debian.Control.Builder
 [12 of 39] Compiling Debian.Release
-[13 of 39] Compiling Debian.TH
+src/Debian/Release.hs:44:41: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+44 |       (x, y) -> SubSection (Section x) (tail y)
+   |                                         ^^^^
 
+[13 of 39] Compiling Debian.TH
 src/Debian/TH.hs:23:1: warning: [GHC-90177] [-Worphans]
-    Orphan instance: instance Pretty Loc
+    Orphan class instance: instance Pretty Loc
     Suggested fix:
       Move the instance declaration to the module of the class or of the type, or
       wrap the type with a newtype and declare the instance on the new type.
@@ -99,29 +125,302 @@ src/Debian/TH.hs:23:1: warning: [GHC-90177] [-Worphans]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 src/Debian/TH.hs:29:1: warning: [GHC-90177] [-Worphans]
-    Orphan instance: instance Pretty [Loc]
+    Orphan class instance: instance Pretty [Loc]
     Suggested fix:
       Move the instance declaration to the module of the class or of the type, or
       wrap the type with a newtype and declare the instance on the new type.
    |
 29 | instance Pretty [Loc] where
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
 [14 of 39] Compiling Debian.Codename
 [15 of 39] Compiling Debian.Time
 [16 of 39] Compiling Debian.URI
 [17 of 39] Compiling Debian.Apt.Methods
-
-src/Debian/Apt/Methods.hs:29:1: warning: [-Wunused-imports]
+src/Debian/Apt/Methods.hs:29:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Monad.Except’ is redundant
       except perhaps to import instances from ‘Control.Monad.Except’
     To import instances alone, use: import Control.Monad.Except()
    |
 29 | import Control.Monad.Except
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Debian/Apt/Methods.hs:136:52: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘Status’ not matched:
+            LogMsg _
+            Status _ _
+            URIStart _ _ _ _
+            URIDone _ _ _ _ _ _ _
+            ...
+    |
+136 |                         | a == "Version"         = c { version = v }
+    |                                                    ^^^^^^^^^^^^^^^^^
+
+src/Debian/Apt/Methods.hs:137:52: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘Status’ not matched:
+            LogMsg _
+            Status _ _
+            URIStart _ _ _ _
+            URIDone _ _ _ _ _ _ _
+            ...
+    |
+137 |                         | a == "Single-Instance" = c { singleInstance = parseTrueFalse v }
+    |                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Debian/Apt/Methods.hs:138:52: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘Status’ not matched:
+            LogMsg _
+            Status _ _
+            URIStart _ _ _ _
+            URIDone _ _ _ _ _ _ _
+            ...
+    |
+138 |                         | a == "Pre-Scan"        = c { preScan = parseTrueFalse v }
+    |                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Debian/Apt/Methods.hs:139:52: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘Status’ not matched:
+            LogMsg _
+            Status _ _
+            URIStart _ _ _ _
+            URIDone _ _ _ _ _ _ _
+            ...
+    |
+139 |                         | a == "Pipeline"        = c { pipeline = parseTrueFalse v }
+    |                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Debian/Apt/Methods.hs:140:52: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘Status’ not matched:
+            LogMsg _
+            Status _ _
+            URIStart _ _ _ _
+            URIDone _ _ _ _ _ _ _
+            ...
+    |
+140 |                         | a == "Send-Config"     = c { sendConfig = parseTrueFalse v }
+    |                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Debian/Apt/Methods.hs:141:52: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘Status’ not matched:
+            LogMsg _
+            Status _ _
+            URIStart _ _ _ _
+            URIDone _ _ _ _ _ _ _
+            ...
+    |
+141 |                         | a == "Needs-Cleanup"   = c { needsCleanup = parseTrueFalse v }
+    |                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Debian/Apt/Methods.hs:142:52: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘Status’ not matched:
+            LogMsg _
+            Status _ _
+            URIStart _ _ _ _
+            URIDone _ _ _ _ _ _ _
+            ...
+    |
+142 |                         | a == "Local-Only"      = c { localOnly = parseTrueFalse v }
+    |                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Debian/Apt/Methods.hs:164:40: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘Status’ not matched:
+            Capabilities _ _ _ _ _ _ _
+            LogMsg _
+            Status _ _
+            GeneralFailure _
+            ...
+    |
+164 |                         | a == "URI" = u { uri = fromJust $ parseURI v }
+    |                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Debian/Apt/Methods.hs:165:41: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘Status’ not matched:
+            Capabilities _ _ _ _ _ _ _
+            LogMsg _
+            Status _ _
+            URIFailure _ _
+            ...
+    |
+165 |                         | a == "Size" = u { size = Just (read v) }
+    |                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Debian/Apt/Methods.hs:166:50: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘Status’ not matched:
+            Capabilities _ _ _ _ _ _ _
+            LogMsg _
+            Status _ _
+            URIFailure _ _
+            ...
+    |
+166 |                         | a == "Last-Modified" = u { lastModified = parseTimeRFC822 v } -- if the date is unparseable, we silently truncate. Is that bad ?
+    |                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Debian/Apt/Methods.hs:167:49: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘Status’ not matched:
+            Capabilities _ _ _ _ _ _ _
+            LogMsg _
+            Status _ _
+            URIFailure _ _
+            ...
+    |
+167 |                         | a == "Resume-Point" = u { resumePoint = Just (read v) }
+    |                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Debian/Apt/Methods.hs:174:40: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘Status’ not matched:
+            Capabilities _ _ _ _ _ _ _
+            LogMsg _
+            Status _ _
+            GeneralFailure _
+            ...
+    |
+174 |                         | a == "URI" = u { uri = fromJust $ parseURI v }
+    |                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Debian/Apt/Methods.hs:175:41: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘Status’ not matched:
+            Capabilities _ _ _ _ _ _ _
+            LogMsg _
+            Status _ _
+            URIFailure _ _
+            ...
+    |
+175 |                         | a == "Size" = u { size = Just (read v) }
+    |                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Debian/Apt/Methods.hs:176:50: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘Status’ not matched:
+            Capabilities _ _ _ _ _ _ _
+            LogMsg _
+            Status _ _
+            URIFailure _ _
+            ...
+    |
+176 |                         | a == "Last-Modified" = u { lastModified = parseTimeRFC822 v } -- if the date is unparseable, we silently truncate. Is that bad ?
+    |                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Debian/Apt/Methods.hs:177:45: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘Status’ not matched:
+            Capabilities _ _ _ _ _ _ _
+            LogMsg _
+            Status _ _
+            URIStart _ _ _ _
+            ...
+    |
+177 |                         | a == "Filename" = u { filename = Just v }
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Debian/Apt/Methods.hs:178:48: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘Status’ not matched:
+            Capabilities _ _ _ _ _ _ _
+            LogMsg _
+            Status _ _
+            URIStart _ _ _ _
+            ...
+    |
+178 |                         | a == "MD5Sum-Hash" = u { hashes = (hashes u) { md5    = Just v } }
+    |                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Debian/Apt/Methods.hs:179:45: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘Status’ not matched:
+            Capabilities _ _ _ _ _ _ _
+            LogMsg _
+            Status _ _
+            URIStart _ _ _ _
+            ...
+    |
+179 |                         | a == "MD5-Hash" = u { hashes = (hashes u) { md5    = Just v } }
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Debian/Apt/Methods.hs:180:48: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘Status’ not matched:
+            Capabilities _ _ _ _ _ _ _
+            LogMsg _
+            Status _ _
+            URIStart _ _ _ _
+            ...
+    |
+180 |                         | a == "SHA1-Hash"   = u { hashes = (hashes u) { sha1   = Just v } }
+    |                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Debian/Apt/Methods.hs:181:48: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘Status’ not matched:
+            Capabilities _ _ _ _ _ _ _
+            LogMsg _
+            Status _ _
+            URIStart _ _ _ _
+            ...
+    |
+181 |                         | a == "SHA256-Hash" = u { hashes = (hashes u) { sha256 = Just v } }
+    |                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Debian/Apt/Methods.hs:182:49: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘Status’ not matched:
+            Capabilities _ _ _ _ _ _ _
+            LogMsg _
+            Status _ _
+            URIFailure _ _
+            ...
+    |
+182 |                         | a == "Resume-Point" = u { resumePoint = Just (read v) }
+    |                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Debian/Apt/Methods.hs:183:59: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘Status’ not matched:
+            Capabilities _ _ _ _ _ _ _
+            LogMsg _
+            Status _ _
+            URIStart _ _ _ _
+            ...
+    |
+183 |                         | a == "IMS-Hit" && v == "true" = u { imsHit = True }
+    |                                                           ^^^^^^^^^^^^^^^^^^^
+
 [18 of 39] Compiling Debian.UTF8
 [19 of 39] Compiling Debian.VendorURI
-
-src/Debian/VendorURI.hs:10:1: warning: [-Wunused-imports]
+src/Debian/VendorURI.hs:10:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Debian.TH’ is redundant
       except perhaps to import instances from ‘Debian.TH’
     To import instances alone, use: import Debian.TH()
@@ -129,13 +428,13 @@ src/Debian/VendorURI.hs:10:1: warning: [-Wunused-imports]
 10 | import Debian.TH (here)
    | ^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Debian/VendorURI.hs:11:1: warning: [-Wunused-imports]
+src/Debian/VendorURI.hs:11:1: warning: [GHC-38856] [-Wunused-imports]
     The import of ‘URI(uriPath)’ from module ‘Debian.URI’ is redundant
    |
 11 | import Debian.URI (parseURI, URI(uriPath))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Debian/VendorURI.hs:12:1: warning: [-Wunused-imports]
+src/Debian/VendorURI.hs:12:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Distribution.Pretty’ is redundant
       except perhaps to import instances from ‘Distribution.Pretty’
     To import instances alone, use: import Distribution.Pretty()
@@ -143,7 +442,7 @@ src/Debian/VendorURI.hs:12:1: warning: [-Wunused-imports]
 12 | import Distribution.Pretty (prettyShow)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Debian/VendorURI.hs:14:1: warning: [-Wunused-imports]
+src/Debian/VendorURI.hs:14:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘System.FilePath’ is redundant
       except perhaps to import instances from ‘System.FilePath’
     To import instances alone, use: import System.FilePath()
@@ -151,48 +450,88 @@ src/Debian/VendorURI.hs:14:1: warning: [-Wunused-imports]
 14 | import System.FilePath (splitDirectories)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Debian/VendorURI.hs:24:16: warning: [-Wunused-matches]
+src/Debian/VendorURI.hs:24:16: warning: [GHC-40910] [-Wunused-matches]
     Defined but not used: ‘locs’
    |
 24 | parseVendorURI locs s = fmap (review vendorURI) (parseURI s)
    |                ^^^^
-[20 of 39] Compiling Debian.Sources
 
-src/Debian/Sources.hs:15:1: warning: [-Wunused-imports]
+[20 of 39] Compiling Debian.Sources
+src/Debian/Sources.hs:15:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 15 | import Data.Monoid ((<>))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [21 of 39] Compiling Debian.Version.Internal
 [22 of 39] Compiling Debian.Version.Common
 [23 of 39] Compiling Debian.Version.ByteString
 [24 of 39] Compiling Debian.Version.String
 [25 of 39] Compiling Debian.Version
 [26 of 39] Compiling Debian.Relation.Common
-
-src/Debian/Relation/Common.hs:8:1: warning: [-Wunused-imports]
+src/Debian/Relation/Common.hs:8:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
   |
 8 | import Data.Monoid (mconcat, (<>))
   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [27 of 39] Compiling Debian.Relation.String
 [28 of 39] Compiling Debian.Relation.Text
 [29 of 39] Compiling Debian.Relation.ByteString
 [30 of 39] Compiling Debian.Relation
 [31 of 39] Compiling Debian.Control.Policy
-
-src/Debian/Control/Policy.hs:87:5: warning: [-Wunused-top-binds]
+src/Debian/Control/Policy.hs:87:5: warning: [GHC-40910] [-Wunused-top-binds]
     Defined but not used: ‘control’
    |
 87 |     control :: a -> Control' Text
    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [32 of 39] Compiling Debian.Control
 [33 of 39] Compiling Debian.Util.FakeChanges
+src/Debian/Util/FakeChanges.hs:95:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+95 |           then fromJust (head versions)
+   |                          ^^^^
+
+src/Debian/Util/FakeChanges.hs:116:16: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+116 |          then (head srcs)
+    |                ^^^^
+
+src/Debian/Util/FakeChanges.hs:142:19: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+142 |              then head maintainer
+    |                   ^^^^
+
+src/Debian/Util/FakeChanges.hs:159:15: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+159 |          then head binArch
+    |               ^^^^
+
 [34 of 39] Compiling Debian.GenBuildDeps
+src/Debian/GenBuildDeps.hs:147:58: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+147 |       ([], _) -> CycleInfo {depPairs = List.map ofEdge $ head $ (allCycles hasDep)}
+    |                                                          ^^^^
 
 src/Debian/GenBuildDeps.hs:155:25: warning: [GHC-63397] [-Wname-shadowing]
     This binding for ‘ready’ shadows the existing binding
@@ -208,27 +547,35 @@ src/Debian/GenBuildDeps.hs:221:7: warning: [GHC-62161] [-Wincomplete-patterns]
     |
 221 |       addBackEdge path@(root : _) =
     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
-[35 of 39] Compiling Debian.Apt.Index
 
-src/Debian/Apt/Index.hs:30:1: warning: [-Wunused-imports]
+[35 of 39] Compiling Debian.Apt.Index
+src/Debian/Apt/Index.hs:30:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 30 | import Data.Monoid ((<>))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^
-[36 of 39] Compiling Debian.Changes
 
-src/Debian/Changes.hs:18:1: warning: [-Wunused-imports]
+src/Debian/Apt/Index.hs:250:24: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+250 |          return $ map (head . snd) (filter (not . List.null . snd) indexes')
+    |                        ^^^^
+
+[36 of 39] Compiling Debian.Changes
+src/Debian/Changes.hs:18:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 18 | import Data.Monoid ((<>))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [37 of 39] Compiling Debian.Apt.Package
 [38 of 39] Compiling Debian.Apt.Dependencies
-
 src/Debian/Apt/Dependencies.hs:283:19: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -236,6 +583,7 @@ src/Debian/Apt/Dependencies.hs:283:19: warning: [GHC-62161] [-Wincomplete-uni-pa
     |
 283 |               let (_,(p:_)) = s in (packageVersion csp) p
     |                   ^^^^^^^^^^^^^
+
 [39 of 39] Compiling Debian.Version.Text
 Warning: debian.cabal:129:2: Inconsistent indentation. Indentation jumps at
 lines 129
@@ -243,7 +591,7 @@ Configuring executable 'fakechanges' for debian-4.0.5...
 Preprocessing executable 'fakechanges' for debian-4.0.5...
 Building executable 'fakechanges' for debian-4.0.5...
 [1 of 1] Compiling Main
-[2 of 2] Linking /tmp/workdir-debian/debian-4.0.5/dist-newstyle/build/x86_64-linux/ghc-9.6.5/debian-4.0.5/x/fakechanges/build/fakechanges/fakechanges
+[2 of 2] Linking /tmp/workdir-debian/debian-4.0.5/dist-newstyle/build/x86_64-linux/ghc-9.10.2/debian-4.0.5/x/fakechanges/build/fakechanges/fakechanges
 Warning: debian.cabal:129:2: Inconsistent indentation. Indentation jumps at
 lines 129
 Configuring test suite 'debian-tests' for debian-4.0.5...
@@ -254,13 +602,45 @@ Building test suite 'debian-tests' for debian-4.0.5...
 [3 of 7] Compiling Dependencies
 [4 of 7] Compiling Paths_debian
 [5 of 7] Compiling Control
+Test/Control.hs:44:46: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+44 |     , TestCase (assertEqual "pretty3" (text (head paragraphs <> "\n")) (pretty (head (unControl control))))
+   |                                              ^^^^
+
+Test/Control.hs:44:81: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+44 |     , TestCase (assertEqual "pretty3" (text (head paragraphs <> "\n")) (pretty (head (unControl control))))
+   |                                                                                 ^^^^
+
+Test/Control.hs:49:46: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+49 |     , TestCase (assertEqual "pretty5" (text (head paragraphs <> "\n")) (pretty (head (unControl control))))
+   |                                              ^^^^
+
+Test/Control.hs:49:81: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+49 |     , TestCase (assertEqual "pretty5" (text (head paragraphs <> "\n")) (pretty (head (unControl control))))
+   |                                                                                 ^^^^
+
 [6 of 7] Compiling Versions
 [7 of 7] Compiling Main
-[8 of 8] Linking /tmp/workdir-debian/debian-4.0.5/dist-newstyle/build/x86_64-linux/ghc-9.6.5/debian-4.0.5/t/debian-tests/build/debian-tests/debian-tests
+[8 of 8] Linking /tmp/workdir-debian/debian-4.0.5/dist-newstyle/build/x86_64-linux/ghc-9.10.2/debian-4.0.5/t/debian-tests/build/debian-tests/debian-tests
 Warning: debian.cabal:129:2: Inconsistent indentation. Indentation jumps at
 lines 129
 Configuring executable 'apt-get-build-depends' for debian-4.0.5...
 Preprocessing executable 'apt-get-build-depends' for debian-4.0.5...
 Building executable 'apt-get-build-depends' for debian-4.0.5...
 [1 of 1] Compiling Main
-[2 of 2] Linking /tmp/workdir-debian/debian-4.0.5/dist-newstyle/build/x86_64-linux/ghc-9.6.5/debian-4.0.5/x/apt-get-build-depends/build/apt-get-build-depends/apt-get-build-depends
+[2 of 2] Linking /tmp/workdir-debian/debian-4.0.5/dist-newstyle/build/x86_64-linux/ghc-9.10.2/debian-4.0.5/x/apt-get-build-depends/build/apt-get-build-depends/apt-get-build-depends

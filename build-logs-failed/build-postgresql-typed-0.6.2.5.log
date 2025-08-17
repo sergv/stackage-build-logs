@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - postgresql-typed-0.6.2.5 (lib) (first run)
  - postgresql-typed-0.6.2.5 (test:test) (first run)
@@ -9,8 +10,7 @@ Building library for postgresql-typed-0.6.2.5...
 [ 1 of 17] Compiling Database.PostgreSQL.Typed.ErrCodes
 [ 2 of 17] Compiling Database.PostgreSQL.Typed.SQLToken
 [ 3 of 17] Compiling Database.PostgreSQL.Typed.Types
-
-Database/PostgreSQL/Typed/Types.hs:69:1: warning: [-Wunused-imports]
+Database/PostgreSQL/Typed/Types.hs:69:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
@@ -26,9 +26,9 @@ Database/PostgreSQL/Typed/Types.hs:167:19: warning: [GHC-39567] [-Wstar-is-type]
     |
 167 |   type PGVal t :: *
     |                   ^
-[ 4 of 17] Compiling Database.PostgreSQL.Typed.Range
 
-Database/PostgreSQL/Typed/Range.hs:24:1: warning: [-Wunused-imports]
+[ 4 of 17] Compiling Database.PostgreSQL.Typed.Range
+Database/PostgreSQL/Typed/Range.hs:24:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Semigroup’ is redundant
       except perhaps to import instances from ‘Data.Semigroup’
     To import instances alone, use: import Data.Semigroup()
@@ -36,28 +36,29 @@ Database/PostgreSQL/Typed/Range.hs:24:1: warning: [-Wunused-imports]
 24 | import           Data.Semigroup (Semigroup(..))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Database/PostgreSQL/Typed/Range.hs:230:3: warning: [-Wnoncanonical-monoid-instances]
+Database/PostgreSQL/Typed/Range.hs:230:3: warning: [GHC-50928] [-Wnoncanonical-monoid-instances]
     Noncanonical ‘mappend’ definition detected
     in the instance declaration for ‘Monoid (Range a)’.
     ‘mappend’ will eventually be removed in favour of ‘(<>)’
-    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    Suggested fix:
+      Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
     |
 230 |   mappend = union
     |   ^^^^^^^^^^^^^^^
+
 [ 5 of 17] Compiling Database.PostgreSQL.Typed.Inet
 [ 6 of 17] Compiling Database.PostgreSQL.Typed.Dynamic
-
-Database/PostgreSQL/Typed/Dynamic.hs:36:1: warning: [-Wunused-imports]
+Database/PostgreSQL/Typed/Dynamic.hs:36:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 36 | import Data.Monoid ((<>))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^
-[ 7 of 17] Compiling Database.PostgreSQL.Typed.Protocol
 
-Database/PostgreSQL/Typed/Protocol.hs:96:1: warning: [-Wunused-imports]
+[ 7 of 17] Compiling Database.PostgreSQL.Typed.Protocol
+Database/PostgreSQL/Typed/Protocol.hs:96:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
@@ -65,12 +66,20 @@ Database/PostgreSQL/Typed/Protocol.hs:96:1: warning: [-Wunused-imports]
 96 | import           Data.Monoid ((<>))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Database/PostgreSQL/Typed/Protocol.hs:127:1: warning: [-Wunused-imports]
+Database/PostgreSQL/Typed/Protocol.hs:127:1: warning: [GHC-38856] [-Wunused-imports]
     The import of ‘IOError, ioError’
     from module ‘System.IO.Error’ is redundant
     |
 127 | import           System.IO.Error (IOError, mkIOError, eofErrorType, ioError, ioeSetErrorString)
     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Database/PostgreSQL/Typed/Protocol.hs:677:16: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+677 |     (\(h,p) -> head <$> Net.getAddrInfo (Just defai) (Just h) (Just p))
+    |                ^^^^
 
 Database/PostgreSQL/Typed/Protocol.hs:682:7: warning: [GHC-53633] [-Woverlapping-patterns]
     Pattern match is redundant
@@ -78,8 +87,8 @@ Database/PostgreSQL/Typed/Protocol.hs:682:7: warning: [GHC-53633] [-Woverlapping
     |
 682 |       _ -> Net.AF_UNSPEC })
     |       ^^^^^^^^^^^^^^^^^^
-[ 8 of 17] Compiling Database.PostgreSQL.Typed.TypeCache
 
+[ 8 of 17] Compiling Database.PostgreSQL.Typed.TypeCache
 Database/PostgreSQL/Typed/TypeCache.hs:44:29: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a lambda abstraction:
@@ -90,9 +99,9 @@ Database/PostgreSQL/Typed/TypeCache.hs:44:29: warning: [GHC-62161] [-Wincomplete
    |
 44 |   IntMap.fromAscList . map (\[to, tn] -> (fromIntegral (pgDecodeRep to :: OID), pgDecodeRep tn)) .
    |                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [ 9 of 17] Compiling Database.PostgreSQL.Typed.TH
 [10 of 17] Compiling Database.PostgreSQL.Typed.Relation
-
 Database/PostgreSQL/Typed/Relation.hs:63:17: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a lambda abstraction:
@@ -105,18 +114,18 @@ Database/PostgreSQL/Typed/Relation.hs:63:17: warning: [GHC-62161] [-Wincomplete-
    |
 63 |     cl <- mapM (\[to, cn, ct, cnn] -> do
    |                 ^^^^^^^^^^^^^^^^^^^^^^^^...
-[11 of 17] Compiling Database.PostgreSQL.Typed.Query
 
+[11 of 17] Compiling Database.PostgreSQL.Typed.Query
 Database/PostgreSQL/Typed/Query.hs:160:29: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding: Patterns of type ‘[[Char]]’ not matched: []
     |
 160 |   spl (c:s) = (c:h):t where h:t = spl s
     |                             ^^^^^^^^^^^
+
 [12 of 17] Compiling Database.PostgreSQL.Typed.TemplatePG
 [13 of 17] Compiling Database.PostgreSQL.Typed
 [14 of 17] Compiling Database.PostgreSQL.Typed.Enum
-
 Database/PostgreSQL/Typed/Enum.hs:64:18: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a lambda abstraction:
@@ -127,17 +136,25 @@ Database/PostgreSQL/Typed/Enum.hs:64:18: warning: [GHC-62161] [-Wincomplete-uni-
    |
 64 |     vals <- map (\([eo, v]) -> (pgDecodeRep eo, pgDecodeRep v)) . snd
    |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[15 of 17] Compiling Database.PostgreSQL.Typed.Array
 
-Database/PostgreSQL/Typed/Array.hs:27:1: warning: [-Wunused-imports]
+[15 of 17] Compiling Database.PostgreSQL.Typed.Array
+Database/PostgreSQL/Typed/Array.hs:27:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 27 | import Data.Monoid ((<>))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [16 of 17] Compiling Paths_postgresql_typed
 [17 of 17] Compiling Database.PostgreSQL.Typed.HDBC
+Database/PostgreSQL/Typed/HDBC.hs:225:24: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+225 |     map (pgDecodeRep . head) . snd <$> pgSimpleQuery pg (BSLC.fromChunks
+    |                        ^^^^
 
 Database/PostgreSQL/Typed/HDBC.hs:233:10: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
@@ -151,20 +168,21 @@ Database/PostgreSQL/Typed/HDBC.hs:233:10: warning: [GHC-62161] [-Wincomplete-uni
     |
 233 |     map (\[attname, attrelid, attnum, atttypid, attlen, atttypmod, attnotnull] ->
     |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
 Configuring test suite 'test' for postgresql-typed-0.6.2.5...
 Preprocessing test suite 'test' for postgresql-typed-0.6.2.5...
 Building test suite 'test' for postgresql-typed-0.6.2.5...
 [1 of 2] Compiling Connect
 [2 of 2] Compiling Main
-
 test/Main.hs:1:1: error: [GHC-87897]
     Exception when trying to run compile-time code:
       Network.Socket.connect: <socket: 28>: does not exist (No such file or directory)
-    Code: template-haskell-2.20.0.0:Language.Haskell.TH.Quote.quoteDec
+    Code: template-haskell-2.22.0.0:Language.Haskell.TH.Quote.quoteDec
             pgSQL "!CREATE TYPE myenum AS enum ('abc', 'DEF', 'XX_ye')"
   |
 1 | {-# LANGUAGE OverloadedStrings, FlexibleInstances, MultiParamTypeClasses, DataKinds, DeriveDataTypeable, TypeFamilies, PatternGuards, StandaloneDeriving #-}
   | ^
+
 Error: [Cabal-7125]
 Failed to build test:test from postgresql-typed-0.6.2.5.
 

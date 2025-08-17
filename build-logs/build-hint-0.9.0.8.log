@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - hint-0.9.0.8 (lib) (first run)
  - hint-0.9.0.8 (test:unit-tests) (first run)
@@ -6,8 +7,7 @@ Configuring library for hint-0.9.0.8...
 Preprocessing library for hint-0.9.0.8...
 Building library for hint-0.9.0.8...
 [ 1 of 19] Compiling Control.Monad.Ghc
-
-src/Control/Monad/Ghc.hs:22:1: warning: [-Wunused-imports]
+src/Control/Monad/Ghc.hs:22:1: warning: [GHC-66111] [-Wunused-imports]
     The qualified import of ‘GHC.Utils.Exception’ is redundant
       except perhaps to import instances from ‘GHC.Utils.Exception’
     To import instances alone, use: import GHC.Utils.Exception()
@@ -15,16 +15,26 @@ src/Control/Monad/Ghc.hs:22:1: warning: [-Wunused-imports]
 22 | import qualified GHC.Utils.Exception as GHC
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Control/Monad/Ghc.hs:38:3: warning: [-Wnoncanonical-monad-instances]
+src/Control/Monad/Ghc.hs:38:3: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘pure = return’ definition detected
     in the instance declaration for ‘Applicative (GhcT m)’.
-    Move definition from ‘return’ to ‘pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Move definition from ‘return’ to ‘pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
    |
 38 |   pure  = return
    |   ^^^^^^^^^^^^^^
+
 [ 2 of 19] Compiling Hint.CompatPlatform
 [ 3 of 19] Compiling Hint.GHC
+src/Hint/GHC.hs:190:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘GHC.Driver.CmdLine’ is redundant
+      except perhaps to import instances from ‘GHC.Driver.CmdLine’
+    To import instances alone, use: import GHC.Driver.CmdLine()
+    |
+190 | import GHC.Driver.CmdLine (Warn)
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [ 4 of 19] Compiling Hint.Extension
 [ 5 of 19] Compiling Hint.Base
 [ 6 of 19] Compiling Hint.Conversions
@@ -35,18 +45,17 @@ src/Control/Monad/Ghc.hs:38:3: warning: [-Wnoncanonical-monad-instances]
 [11 of 19] Compiling Hint.Internal
 [12 of 19] Compiling Hint.Util
 [13 of 19] Compiling Hint.Configuration
-
-src/Hint/Configuration.hs:20:1: warning: [-Wunused-imports]
+src/Hint/Configuration.hs:20:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Maybe’ is redundant
       except perhaps to import instances from ‘Data.Maybe’
     To import instances alone, use: import Data.Maybe()
    |
 20 | import Data.Maybe (maybe)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [14 of 19] Compiling Hint.Context
 [15 of 19] Compiling Hint.InterpreterT
-
-src/Hint/InterpreterT.hs:22:1: warning: [-Wunused-imports]
+src/Hint/InterpreterT.hs:22:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Concurrent.MVar’ is redundant
       except perhaps to import instances from ‘Control.Concurrent.MVar’
     To import instances alone, use: import Control.Concurrent.MVar()
@@ -54,7 +63,7 @@ src/Hint/InterpreterT.hs:22:1: warning: [-Wunused-imports]
 22 | import Control.Concurrent.MVar
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Hint/InterpreterT.hs:23:1: warning: [-Wunused-imports]
+src/Hint/InterpreterT.hs:23:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘System.IO.Unsafe’ is redundant
       except perhaps to import instances from ‘System.IO.Unsafe’
     To import instances alone, use: import System.IO.Unsafe()
@@ -62,14 +71,16 @@ src/Hint/InterpreterT.hs:23:1: warning: [-Wunused-imports]
 23 | import System.IO.Unsafe (unsafePerformIO)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Hint/InterpreterT.hs:199:5: warning: [-Wnoncanonical-monad-instances]
+src/Hint/InterpreterT.hs:199:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘pure = return’ definition detected
     in the instance declaration for ‘Applicative (InterpreterT m)’.
-    Move definition from ‘return’ to ‘pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Move definition from ‘return’ to ‘pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 199 |     pure  = return
     |     ^^^^^^^^^^^^^^
+
 [16 of 19] Compiling Hint.Eval
 [17 of 19] Compiling Language.Haskell.Interpreter
 [18 of 19] Compiling Language.Haskell.Interpreter.Extension
@@ -78,4 +89,4 @@ Configuring test suite 'unit-tests' for hint-0.9.0.8...
 Preprocessing test suite 'unit-tests' for hint-0.9.0.8...
 Building test suite 'unit-tests' for hint-0.9.0.8...
 [1 of 1] Compiling Main
-[2 of 2] Linking /tmp/workdir-hint/hint-0.9.0.8/dist-newstyle/build/x86_64-linux/ghc-9.6.5/hint-0.9.0.8/t/unit-tests/build/unit-tests/unit-tests
+[2 of 2] Linking /tmp/workdir-hint/hint-0.9.0.8/dist-newstyle/build/x86_64-linux/ghc-9.10.2/hint-0.9.0.8/t/unit-tests/build/unit-tests/unit-tests

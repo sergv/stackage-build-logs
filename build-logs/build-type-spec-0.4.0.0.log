@@ -1,15 +1,66 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - type-spec-0.4.0.0 (lib) (first run)
  - type-spec-0.4.0.0 (test:examples) (first run)
 Configuring library for type-spec-0.4.0.0...
 Preprocessing library for type-spec-0.4.0.0...
 Building library for type-spec-0.4.0.0...
-
-on the commandline: warning: [-Wdeprecated-flags]
+on the commandline: warning: [GHC-53692] [-Wdeprecated-flags]
     -XTypeInType is deprecated: use -XDataKinds and -XPolyKinds instead
+
 [ 1 of 10] Compiling Test.TypeSpec.Internal.Apply
 [ 2 of 10] Compiling Test.TypeSpec.Internal.Either
+src/Test/TypeSpec/Internal/Either.hs:8:1: warning: [GHC-90177] [-Worphans]
+    Orphan family instance:
+      type instance forall {a1} {a2} {b} {a3 :: a1}
+                           {f :: a1 ~> Either a2 b}.
+                      Right a3 >>= f = Apply f a3
+                        -- Defined at src/Test/TypeSpec/Internal/Either.hs:8:15
+    Suggested fix:
+      Move the instance declaration to the module of the type family or of the type, or
+      wrap the type with a newtype and declare the instance on the new type.
+  |
+8 | type instance (>>=) ('Right a) f = Apply f a
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Test/TypeSpec/Internal/Either.hs:9:1: warning: [GHC-90177] [-Worphans]
+    Orphan family instance:
+      type instance forall {a1} {a2} {b1} {b2 :: a1}
+                           {f :: a2 ~> Either a1 b1}.
+                      Left b2 >>= f = Left b2
+                        -- Defined at src/Test/TypeSpec/Internal/Either.hs:9:15
+    Suggested fix:
+      Move the instance declaration to the module of the type family or of the type, or
+      wrap the type with a newtype and declare the instance on the new type.
+  |
+9 | type instance (>>=) ('Left b)  f = 'Left b
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Test/TypeSpec/Internal/Either.hs:13:1: warning: [GHC-90177] [-Worphans]
+    Orphan family instance:
+      type instance forall {a1} {b} {a2} {f :: a1 ~> b} {a3 :: a1}.
+                      f <$> Right a3 = Right (Apply f a3)
+                        -- Defined at src/Test/TypeSpec/Internal/Either.hs:13:15
+    Suggested fix:
+      Move the instance declaration to the module of the type family or of the type, or
+      wrap the type with a newtype and declare the instance on the new type.
+   |
+13 | type instance (<$>) f ('Right a) = 'Right (Apply f a)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Test/TypeSpec/Internal/Either.hs:14:1: warning: [GHC-90177] [-Worphans]
+    Orphan family instance:
+      type instance forall {a1} {b} {a2} {f :: a1 ~> b} {a3 :: a2}.
+                      f <$> Left a3 = Left a3
+                        -- Defined at src/Test/TypeSpec/Internal/Either.hs:14:15
+    Suggested fix:
+      Move the instance declaration to the module of the type family or of the type, or
+      wrap the type with a newtype and declare the instance on the new type.
+   |
+14 | type instance (<$>) f ('Left a) = 'Left a
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [ 3 of 10] Compiling Test.TypeSpec.Internal.Equality
 [ 4 of 10] Compiling Test.TypeSpec.Internal.Result
 [ 5 of 10] Compiling Test.TypeSpec.Core
@@ -21,11 +72,11 @@ on the commandline: warning: [-Wdeprecated-flags]
 Configuring test suite 'examples' for type-spec-0.4.0.0...
 Preprocessing test suite 'examples' for type-spec-0.4.0.0...
 Building test suite 'examples' for type-spec-0.4.0.0...
-
-on the commandline: warning: [-Wdeprecated-flags]
+on the commandline: warning: [GHC-53692] [-Wdeprecated-flags]
     -XTypeInType is deprecated: use -XDataKinds and -XPolyKinds instead
+
 [1 of 1] Compiling Main
-
-on the commandline: warning: [-Wdeprecated-flags]
+on the commandline: warning: [GHC-53692] [-Wdeprecated-flags]
     -XTypeInType is deprecated: use -XDataKinds and -XPolyKinds instead
-[2 of 2] Linking /tmp/workdir-type-spec/type-spec-0.4.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/type-spec-0.4.0.0/t/examples/build/examples/examples
+
+[2 of 2] Linking /tmp/workdir-type-spec/type-spec-0.4.0.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/type-spec-0.4.0.0/t/examples/build/examples/examples

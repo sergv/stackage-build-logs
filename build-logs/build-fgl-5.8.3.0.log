@@ -1,0 +1,256 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - fgl-5.8.3.0 (lib) (first run)
+ - fgl-5.8.3.0 (test:fgl-tests) (first run)
+Configuring library for fgl-5.8.3.0...
+Preprocessing library for fgl-5.8.3.0...
+Building library for fgl-5.8.3.0...
+[ 1 of 29] Compiling Data.Graph.Inductive.Graph
+Data/Graph/Inductive/Graph.hs:70:41: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘foldl'’ from module ‘Data.List’ is redundant
+   |
+70 | import           Data.List     (delete, foldl', groupBy, sort, sortBy, (\\))
+   |                                         ^^^^^^
+
+Data/Graph/Inductive/Graph.hs:522:40: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+522 |     groupLabels les = toLEdge (toEdge (head les)) (map edgeLabel les)
+    |                                        ^^^^
+
+[ 2 of 29] Compiling Data.Graph.Inductive.Internal.Heap
+[ 3 of 29] Compiling Data.Graph.Inductive.Internal.Queue
+Data/Graph/Inductive/Internal/Queue.hs:8:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.List’ is redundant
+      except perhaps to import instances from ‘Data.List’
+    To import instances alone, use: import Data.List()
+  |
+8 | import Data.List (foldl')
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[ 4 of 29] Compiling Data.Graph.Inductive.Internal.RootPath
+Data/Graph/Inductive/Internal/RootPath.hs:32:38: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+32 | getPath v = reverse . first ((==v) . head)
+   |                                      ^^^^
+
+[ 5 of 29] Compiling Data.Graph.Inductive.Internal.Thread
+[ 6 of 29] Compiling Data.Graph.Inductive.Basic
+[ 7 of 29] Compiling Data.Graph.Inductive.Monad
+[ 8 of 29] Compiling Data.Graph.Inductive.Monad.IOArray
+[ 9 of 29] Compiling Data.Graph.Inductive.Monad.STArray
+[10 of 29] Compiling Data.Graph.Inductive.NodeMap
+[11 of 29] Compiling Data.Graph.Inductive.PatriciaTree
+Data/Graph/Inductive/PatriciaTree.hs:30:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+30 | import           Control.Applicative (liftA2)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Data/Graph/Inductive/PatriciaTree.hs:33:39: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘foldl'’ from module ‘Data.List’ is redundant
+   |
+33 | import           Data.List           (foldl', sort)
+   |                                       ^^^^^^
+
+[12 of 29] Compiling Data.Graph.Inductive.Example
+[13 of 29] Compiling Data.Graph.Inductive.Query.ArtPoint
+Data/Graph/Inductive/Query/ArtPoint.hs:30:27: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+30 | getBackEdges v ls   = map head (filter (elem (v,0)) (tail ls))
+   |                           ^^^^
+
+Data/Graph/Inductive/Query/ArtPoint.hs:30:54: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+30 | getBackEdges v ls   = map head (filter (elem (v,0)) (tail ls))
+   |                                                      ^^^^
+
+Data/Graph/Inductive/Query/ArtPoint.hs:81:27: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+81 | getLowTree g v = lowTree (head dfsf)
+   |                           ^^^^
+
+[14 of 29] Compiling Data.Graph.Inductive.Query.BFS
+[15 of 29] Compiling Data.Graph.Inductive.Query.DFS
+[16 of 29] Compiling Data.Graph.Inductive.Query.BCC
+[17 of 29] Compiling Data.Graph.Inductive.Query.Dominators
+Data/Graph/Inductive/Query/Dominators.hs:64:31: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+64 |         iD0 = array (1, s-1) (tail $ treeEdges (-1) ntree)
+   |                               ^^^^
+
+[18 of 29] Compiling Data.Graph.Inductive.Query.Indep
+[19 of 29] Compiling Data.Graph.Inductive.Query.MST
+Data/Graph/Inductive/Query/MST.hs:40:23: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+40 | joinPaths p = joinAt (head p) p
+   |                       ^^^^
+
+[20 of 29] Compiling Data.Graph.Inductive.Query.MaxFlow
+Data/Graph/Inductive/Query/MaxFlow.hs:105:52: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+105 |     minC        = minimum (map ((\(_,_,z)->z).snd)(tail augLPath))
+    |                                                    ^^^^
+
+[21 of 29] Compiling Data.Graph.Inductive.Query.MaxFlow2
+Data/Graph/Inductive/Query/MaxFlow2.hs:80:27: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+80 |     filter ((==t) . fst . head) tree
+   |                           ^^^^
+
+Data/Graph/Inductive/Query/MaxFlow2.hs:152:61: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+152 | augPath g s t = listToMaybe $ map reverse $ filter ((==t) . head) tree
+    |                                                             ^^^^
+
+Data/Graph/Inductive/Query/MaxFlow2.hs:255:42: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+255 |               (S.fromList (zip justPath (tail justPath)))
+    |                                          ^^^^
+
+[22 of 29] Compiling Data.Graph.Inductive.Query.Monad
+[23 of 29] Compiling Data.Graph.Inductive.Query.SP
+[24 of 29] Compiling Data.Graph.Inductive.Query.GVD
+Data/Graph/Inductive/Query/GVD.hs:49:51: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+49 | maybePath v = listToMaybe . filter ((v==) . fst . head . unLPath)
+   |                                                   ^^^^
+
+Data/Graph/Inductive/Query/GVD.hs:59:29: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+59 | nearestDist v = fmap (snd . head . unLPath) . maybePath v
+   |                             ^^^^
+
+[25 of 29] Compiling Data.Graph.Inductive.Query.TransClos
+[26 of 29] Compiling Data.Graph.Inductive.Query
+[27 of 29] Compiling Data.Graph.Inductive.Tree
+Data/Graph/Inductive/Tree.hs:16:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+16 | import           Control.Applicative (liftA2)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Data/Graph/Inductive/Tree.hs:17:39: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘foldl'’ from module ‘Data.List’ is redundant
+   |
+17 | import           Data.List           (foldl', sort)
+   |                                       ^^^^^^
+
+[28 of 29] Compiling Paths_fgl
+[29 of 29] Compiling Data.Graph.Inductive
+Configuring test suite 'fgl-tests' for fgl-5.8.3.0...
+Preprocessing test suite 'fgl-tests' for fgl-5.8.3.0...
+Building test suite 'fgl-tests' for fgl-5.8.3.0...
+[1 of 5] Compiling Data.Graph.Inductive.Arbitrary
+fgl-arbitrary/Data/Graph/Inductive/Arbitrary.hs:197:16: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+197 | uniqBy f = map head . groupBy ((==) `on` f) . sortBy (compare `on` f)
+    |                ^^^^
+
+[2 of 5] Compiling Data.Graph.Inductive.Proxy
+[3 of 5] Compiling Data.Graph.Inductive.Graph.Properties
+test/Data/Graph/Inductive/Graph/Properties.hs:21:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+21 | import           Control.Applicative (liftA2)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/Data/Graph/Inductive/Graph/Properties.hs:394:16: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+394 | uniqBy f = map head . groupBy ((==) `on` f) . sortOn f
+    |                ^^^^
+
+[4 of 5] Compiling Data.Graph.Inductive.Query.Properties
+test/Data/Graph/Inductive/Query/Properties.hs:331:58: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+331 |     mstEs = S.unions (map (S.fromList . (zipWith toE <*> tail)) mst)
+    |                                                          ^^^^
+
+test/Data/Graph/Inductive/Query/Properties.hs:354:18: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+354 |         v = fst (head p)
+    |                  ^^^^
+
+test/Data/Graph/Inductive/Query/Properties.hs:372:11: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+372 |           head path == u &&
+    |           ^^^^
+
+test/Data/Graph/Inductive/Query/Properties.hs:404:34: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+404 |       sort (suc gTrans n) == map head (group (sort (n:[ v | u <- suc g n, v <- reachable u g ])))
+    |                                  ^^^^
+
+test/Data/Graph/Inductive/Query/Properties.hs:418:34: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+418 |       sort (suc gTrans n) == map head (group (sort [ v | u <- suc g n, v <- reachable u g ]))
+    |                                  ^^^^
+
+[5 of 5] Compiling Main
+[6 of 6] Linking /tmp/workdir-fgl/fgl-5.8.3.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/fgl-5.8.3.0/t/fgl-tests/build/fgl-tests/fgl-tests

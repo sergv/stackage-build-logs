@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - bimap-0.5.0 (lib) (first run)
  - bimap-0.5.0 (test:tests) (first run)
@@ -9,22 +10,68 @@ Preprocessing library for bimap-0.5.0...
 Building library for bimap-0.5.0...
 [1 of 2] Compiling Data.BimapExt
 [2 of 2] Compiling Data.Bimap
+Data/Bimap.hs:102:39: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘foldl'’ from module ‘Data.List’ is redundant
+    |
+102 | import           Data.List           (foldl', sort)
+    |                                       ^^^^^^
+
+Data/Bimap.hs:448:50: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+448 |     allAdjacent f xs = all (uncurry f) $ zip xs (tail xs)
+    |                                                  ^^^^
+
 Warning: bimap.cabal:53:3: Inconsistent indentation. Indentation jumps at
 lines 53
 Configuring test suite 'tests' for bimap-0.5.0...
 Preprocessing test suite 'tests' for bimap-0.5.0...
 Building test suite 'tests' for bimap-0.5.0...
-
 <no location info>: warning: [GHC-32850] [-Wmissing-home-modules]
     These modules are needed for compilation but not listed in your .cabal file's other-modules for ‘bimap-0.5.0-inplace-tests’ :
         Data.Bimap Data.BimapExt
+
 [1 of 5] Compiling Data.BimapExt
 [2 of 5] Compiling Data.Bimap
-[3 of 5] Compiling Test.Tests
-[4 of 5] Compiling Test.Util
-[5 of 5] Compiling Main
+Data/Bimap.hs:448:50: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+448 |     allAdjacent f xs = all (uncurry f) $ zip xs (tail xs)
+    |                                                  ^^^^
 
+[3 of 5] Compiling Test.Tests
+Test/Tests.hs:114:14: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+114 |     (a, b) = head . toList $ bi :: (Int, Integer)
+    |              ^^^^
+
+Test/Tests.hs:121:14: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+121 |     (a, b) = head . toList $ bi :: (Int, Integer)
+    |              ^^^^
+
+[4 of 5] Compiling Test.Util
+Test/Util.hs:30:24: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+30 |     firstToken = fst . head . lex
+   |                        ^^^^
+
+[5 of 5] Compiling Main
 <no location info>: warning: [GHC-32850] [-Wmissing-home-modules]
     These modules are needed for compilation but not listed in your .cabal file's other-modules for ‘bimap-0.5.0-inplace-tests’ :
         Data.Bimap Data.BimapExt
-[6 of 6] Linking /tmp/workdir-bimap/bimap-0.5.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/bimap-0.5.0/t/tests/build/tests/tests
+
+[6 of 6] Linking /tmp/workdir-bimap/bimap-0.5.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/bimap-0.5.0/t/tests/build/tests/tests

@@ -1,0 +1,197 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - bluefin-internal-0.1.0.0 (lib) (first run)
+ - bluefin-internal-0.1.0.0 (test:bluefin-test) (first run)
+Configuring library for bluefin-internal-0.1.0.0...
+Preprocessing library for bluefin-internal-0.1.0.0...
+Building library for bluefin-internal-0.1.0.0...
+[1 of 6] Compiling Bluefin.Internal.Key
+[2 of 6] Compiling Bluefin.Internal.Exception.Scoped
+[3 of 6] Compiling Bluefin.Internal
+[4 of 6] Compiling Bluefin.Internal.Pipes
+[5 of 6] Compiling Bluefin.Internal.Examples
+src/Bluefin/Internal/Examples.hs:75:11: warning: [GHC-18042] [-Wtype-defaults]
+    • Defaulting the type variable ‘a0’ to type ‘Integer’ in the following constraint
+        Num a0 arising from the literal ‘1’
+    • In the second argument of ‘yield’, namely ‘1’
+      In a stmt of a 'do' block: yield y 1
+      In the expression:
+        do yield y 1
+           yield y 2
+           yield y 100
+           pure length
+   |
+75 |   yield y 1
+   |           ^
+
+src/Bluefin/Internal/Examples.hs:99:9: warning: [GHC-18042] [-Wtype-defaults]
+    • Defaulting the type variable ‘a0’ to type ‘Integer’ in the following constraints
+        (Num a0)
+          arising from the literal ‘0’
+          at src/Bluefin/Internal/Examples.hs:99:9
+        (Enum a0)
+          arising from the arithmetic sequence ‘0 .. 4’
+          at src/Bluefin/Internal/Examples.hs:99:8-15
+    • In the expression: 0
+      In the first argument of ‘for_’, namely ‘[0 .. 4]’
+      In the first argument of ‘($)’, namely ‘for_ [0 .. 4]’
+   |
+99 |   for_ [0 .. 4] $ \i -> do
+   |         ^
+
+src/Bluefin/Internal/Examples.hs:447:9: warning: [GHC-18042] [-Wtype-defaults]
+    • Defaulting the type variable ‘a0’ to type ‘Integer’ in the following constraints
+        (Num a0)
+          arising from the literal ‘1’
+          at src/Bluefin/Internal/Examples.hs:447:9
+        (Enum a0)
+          arising from the arithmetic sequence ‘1 .. 10’
+          at src/Bluefin/Internal/Examples.hs:447:8-16
+    • In the expression: 1
+      In the first argument of ‘for_’, namely ‘[1 .. 10]’
+      In the first argument of ‘($)’, namely ‘for_ [1 .. 10]’
+    |
+447 |   for_ [1 .. 10] $ \_ -> tell w (Any True)
+    |         ^
+
+src/Bluefin/Internal/Examples.hs:966:28: warning: [GHC-40910] [-Wunused-matches]
+    Defined but not used: ‘b’
+    |
+966 |     (\_ -> modify st (\(c, b) -> (c, True)))
+    |                            ^
+
+src/Bluefin/Internal/Examples.hs:981:91: warning: [GHC-18042] [-Wtype-defaults]
+    • Defaulting the type variable ‘exn0’ to type ‘Integer’ in the following constraint
+        Num exn0 arising from the literal ‘42’
+    • In the second argument of ‘throw’, namely ‘42’
+      In the second argument of ‘polymorphicBracket’, namely
+        ‘(throw e 42)’
+      In the expression: polymorphicBracket st (throw e 42)
+    |
+981 |     (_res, st) <- runState (0, False) $ \st -> try $ \e -> polymorphicBracket st (throw e 42)
+    |                                                                                           ^^
+
+[6 of 6] Compiling Bluefin.Internal.System.IO
+Configuring test suite 'bluefin-test' for bluefin-internal-0.1.0.0...
+Preprocessing test suite 'bluefin-test' for bluefin-internal-0.1.0.0...
+Building test suite 'bluefin-test' for bluefin-internal-0.1.0.0...
+[1 of 1] Compiling Main
+test/Main.hs:19:5: warning: [GHC-18042] [-Wtype-defaults]
+    • Defaulting the type variable ‘a0’ to type ‘Integer’ in the following constraints
+        (Eq a0)
+          arising from a use of ‘assertEqual'’ at test/Main.hs:19:5-16
+        (Show a0)
+          arising from a use of ‘assertEqual'’ at test/Main.hs:19:5-16
+        (Num a0) arising from the literal ‘0’ at test/Main.hs:19:30
+    • In a stmt of a 'do' block:
+        assertEqual' "index 1" ([0, 1, 2, 3] !? 2) (Just 2)
+      In the expression:
+        do let assertEqual' = assertEqual y
+           assertEqual'
+             "oddsUntilFirstGreaterThan5" oddsUntilFirstGreaterThan5
+             [1, 3, ....]
+           assertEqual' "index 1" ([0, 1, ....] !? 2) (Just 2)
+           assertEqual' "index 2" ([0, 1, ....] !? 4) Nothing
+           ....
+      In the second argument of ‘($)’, namely
+        ‘\ y
+           -> do let ...
+                 assertEqual'
+                   "oddsUntilFirstGreaterThan5" oddsUntilFirstGreaterThan5 [...]
+                 ....’
+   |
+19 |     assertEqual' "index 1" ([0, 1, 2, 3] !? 2) (Just 2)
+   |     ^^^^^^^^^^^^
+
+test/Main.hs:20:5: warning: [GHC-18042] [-Wtype-defaults]
+    • Defaulting the type variable ‘a0’ to type ‘Integer’ in the following constraints
+        (Eq a0)
+          arising from a use of ‘assertEqual'’ at test/Main.hs:20:5-16
+        (Show a0)
+          arising from a use of ‘assertEqual'’ at test/Main.hs:20:5-16
+        (Num a0) arising from the literal ‘0’ at test/Main.hs:20:30
+    • In a stmt of a 'do' block:
+        assertEqual' "index 2" ([0, 1, 2, 3] !? 4) Nothing
+      In the expression:
+        do let assertEqual' = assertEqual y
+           assertEqual'
+             "oddsUntilFirstGreaterThan5" oddsUntilFirstGreaterThan5
+             [1, 3, ....]
+           assertEqual' "index 1" ([0, 1, ....] !? 2) (Just 2)
+           assertEqual' "index 2" ([0, 1, ....] !? 4) Nothing
+           ....
+      In the second argument of ‘($)’, namely
+        ‘\ y
+           -> do let ...
+                 assertEqual'
+                   "oddsUntilFirstGreaterThan5" oddsUntilFirstGreaterThan5 [...]
+                 ....’
+   |
+20 |     assertEqual' "index 2" ([0, 1, 2, 3] !? 4) Nothing
+   |     ^^^^^^^^^^^^
+
+test/Main.hs:29:5: warning: [GHC-18042] [-Wtype-defaults]
+    • Defaulting the type variable ‘b0’ to type ‘Integer’ in the following constraints
+        (Eq b0)
+          arising from a use of ‘assertEqual'’ at test/Main.hs:29:5-16
+        (Show b0)
+          arising from a use of ‘assertEqual'’ at test/Main.hs:29:5-16
+        (Num b0) arising from the literal ‘20’ at test/Main.hs:32:14-15
+        (Num b0) arising from the literal ‘10’ at test/Main.hs:31:29-30
+        (Show b0) arising from a use of ‘show’ at test/Main.hs:31:50-53
+        (Num b0) arising from a use of ‘*’ at test/Main.hs:31:60
+    • In a stmt of a 'do' block:
+        assertEqual'
+          "State"
+          (runPureEff (runState 10 (stateEff (\ n -> (show n, n * 2)))))
+          ("10", 20)
+      In the expression:
+        do let assertEqual' = assertEqual y
+           assertEqual'
+             "oddsUntilFirstGreaterThan5" oddsUntilFirstGreaterThan5
+             [1, 3, ....]
+           assertEqual' "index 1" ([0, 1, ....] !? 2) (Just 2)
+           assertEqual' "index 2" ([0, 1, ....] !? 4) Nothing
+           ....
+      In the second argument of ‘($)’, namely
+        ‘\ y
+           -> do let ...
+                 assertEqual'
+                   "oddsUntilFirstGreaterThan5" oddsUntilFirstGreaterThan5 [...]
+                 ....’
+   |
+29 |     assertEqual'
+   |     ^^^^^^^^^^^^
+
+test/Main.hs:33:5: warning: [GHC-18042] [-Wtype-defaults]
+    • Defaulting the type variable ‘a0’ to type ‘Integer’ in the following constraints
+        (Eq a0)
+          arising from a use of ‘assertEqual'’ at test/Main.hs:33:5-16
+        (Show a0)
+          arising from a use of ‘assertEqual'’ at test/Main.hs:33:5-16
+        (Num a0) arising from the literal ‘20’ at test/Main.hs:36:9-10
+        (Num a0) arising from the literal ‘20’ at test/Main.hs:35:43-44
+    • In a stmt of a 'do' block:
+        assertEqual'
+          "List" (runPureEff (yieldToList (listEff ([20, 30, 40], "Hello"))))
+          ([20, 30, 40], "Hello")
+      In the expression:
+        do let assertEqual' = assertEqual y
+           assertEqual'
+             "oddsUntilFirstGreaterThan5" oddsUntilFirstGreaterThan5
+             [1, 3, ....]
+           assertEqual' "index 1" ([0, 1, ....] !? 2) (Just 2)
+           assertEqual' "index 2" ([0, 1, ....] !? 4) Nothing
+           ....
+      In the second argument of ‘($)’, namely
+        ‘\ y
+           -> do let ...
+                 assertEqual'
+                   "oddsUntilFirstGreaterThan5" oddsUntilFirstGreaterThan5 [...]
+                 ....’
+   |
+33 |     assertEqual'
+   |     ^^^^^^^^^^^^
+
+[2 of 2] Linking /tmp/workdir-bluefin-internal/bluefin-internal-0.1.0.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/bluefin-internal-0.1.0.0/t/bluefin-test/build/bluefin-test/bluefin-test

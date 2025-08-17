@@ -1,11 +1,11 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - MemoTrie-0.6.11 (lib) (first run)
 Configuring library for MemoTrie-0.6.11...
 Preprocessing library for MemoTrie-0.6.11...
 Building library for MemoTrie-0.6.11...
 [1 of 1] Compiling Data.MemoTrie
-
 src/Data/MemoTrie.hs:91:22: warning: [GHC-39567] [-Wstar-is-type]
     Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
     relies on the StarIsType extension, which will become
@@ -24,12 +24,14 @@ src/Data/MemoTrie.hs:91:27: warning: [GHC-39567] [-Wstar-is-type]
 91 |     data (:->:) a :: * -> *
    |                           ^
 
-src/Data/MemoTrie.hs:604:3: warning: [-Wnoncanonical-monad-instances]
+src/Data/MemoTrie.hs:604:3: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad ((:->:) a)’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 604 |   return a = trie (return a)
     |   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+

@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - BNFC-2.9.5 (lib) (first run)
  - BNFC-2.9.5 (test:unit-tests) (first run)
@@ -20,8 +21,48 @@ Building library for BNFC-2.9.5...
 [12 of 82] Compiling BNFC.Regex
 [13 of 82] Compiling BNFC.Utils
 [14 of 82] Compiling BNFC.CF
+src/BNFC/CF.hs:740:17: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+740 |   (x,sep,xs) = (head ts, init (tail ts), last ts)
+    |                 ^^^^
+
+src/BNFC/CF.hs:740:32: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+740 |   (x,sep,xs) = (head ts, init (tail ts), last ts)
+    |                                ^^^^
+
 [15 of 82] Compiling BNFC.TypeChecker
+src/BNFC/TypeChecker.hs:100:27: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+100 |     do  unless (isLower $ head f) $ throwError $
+    |                           ^^^^
+
 [16 of 82] Compiling BNFC.Lexing
+src/BNFC/Lexing.hs:263:29: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+263 |       conds = zipWith (==) (tail $ reverse $ inits ys) (tail $ tails ys)
+    |                             ^^^^
+
+src/BNFC/Lexing.hs:263:57: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+263 |       conds = zipWith (==) (tail $ reverse $ inits ys) (tail $ tails ys)
+    |                                                         ^^^^
+
 [17 of 82] Compiling BNFC.Check.EmptyTypes
 [18 of 82] Compiling BNFC.Backend.Common.OOAbstract
 [19 of 82] Compiling BNFC.Backend.Common.NamedVariables
@@ -41,6 +82,30 @@ Building library for BNFC-2.9.5...
 [33 of 82] Compiling Paths_BNFC
 [34 of 82] Compiling BNFC.Options
 [35 of 82] Compiling BNFC.GetCF
+src/BNFC/GetCF.hs:289:48: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+289 |     notIdent s       = null s || not (isAlpha (head s)) || any (not . isIdentRest) s
+    |                                                ^^^^
+
+src/BNFC/GetCF.hs:627:38: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+627 |      isBadCatName s = not $ isUpper (head s) || (head s == '@')
+    |                                      ^^^^
+
+src/BNFC/GetCF.hs:627:50: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+627 |      isBadCatName s = not $ isUpper (head s) || (head s == '@')
+    |                                                  ^^^^
+
 [36 of 82] Compiling BNFC.Backend.OCaml.OCamlUtil
 [37 of 82] Compiling BNFC.Backend.OCaml.CFtoOCamlTemplate
 [38 of 82] Compiling BNFC.Backend.OCaml.CFtoOCamlShow
@@ -49,6 +114,14 @@ Building library for BNFC-2.9.5...
 [41 of 82] Compiling BNFC.Backend.OCaml.CFtoOCamlLex
 [42 of 82] Compiling BNFC.Backend.Java.RegToJLex
 [43 of 82] Compiling BNFC.Backend.Java.CFtoJavaAbs15
+src/BNFC/Backend/Java/CFtoJavaAbs15.hs:119:25: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+119 |              | isUpper (head x) -> callQ x es
+    |                         ^^^^
+
 [44 of 82] Compiling BNFC.Backend.Java.CFtoVisitSkel15
 [45 of 82] Compiling BNFC.Backend.Java.CFtoJavaPrinter15
 [46 of 82] Compiling BNFC.Backend.Java.CFtoFoldVisitor
@@ -57,10 +130,34 @@ Building library for BNFC-2.9.5...
 [49 of 82] Compiling BNFC.Backend.Java.CFtoAntlr4Parser
 [50 of 82] Compiling BNFC.Backend.Haskell.Utils
 [51 of 82] Compiling BNFC.Backend.HaskellGADT.HaskellGADTCommon
+src/BNFC/Backend/HaskellGADT/HaskellGADTCommon.hs:40:16: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+40 | ruleFun cf f = head $ filter ((f ==) . funName . funRule) $ cfgRules cf
+   |                ^^^^
+
 [52 of 82] Compiling BNFC.Backend.HaskellGADT.CFtoTemplateGADT
+src/BNFC/Backend/HaskellGADT/CFtoTemplateGADT.hs:62:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+62 | catCons cf = [ (consCat (head cs),cs) | cs <- groupBy catEq $ cf2cons cf]
+   |                          ^^^^
+
 [53 of 82] Compiling BNFC.Backend.Haskell.CFtoTemplate
 [54 of 82] Compiling BNFC.Backend.Haskell.HsOpts
 [55 of 82] Compiling BNFC.Backend.Haskell.CFtoPrinter
+src/BNFC/Backend/Haskell/CFtoPrinter.hs:360:36: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+360 |       | isOneFun  f = text "[" <+> head variables <+> "]"
+    |                                    ^^^^
+
 [56 of 82] Compiling BNFC.Backend.OCaml.CFtoOCamlPrinter
 [57 of 82] Compiling BNFC.Backend.OCaml.CFtoOCamlTest
 [58 of 82] Compiling BNFC.Backend.Haskell.CFtoHappy
@@ -70,22 +167,94 @@ Building library for BNFC-2.9.5...
 [62 of 82] Compiling BNFC.Backend.C.CFtoFlexC
 [63 of 82] Compiling BNFC.Backend.Java.CFtoJLex15
 [64 of 82] Compiling BNFC.Backend.C.CFtoCAbs
+src/BNFC/Backend/C/CFtoCAbs.hs:270:42: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+270 |     prInstVarsOneType ivars = text (fst (head ivars))
+    |                                          ^^^^
+
 [65 of 82] Compiling BNFC.Backend.C.CFtoBisonC
+src/BNFC/Backend/C/CFtoBisonC.hs:452:40: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+452 |       | otherwise = \ s -> if isUpper (head s) then "new " ++ s else sanitizeCpp s
+    |                                        ^^^^
+
+src/BNFC/Backend/C/CFtoBisonC.hs:458:85: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+458 |      | isOneFun f      -> concat ["$$ = ", "new ", scope, nt, "(); $$->push_back(", head ms, ");"]
+    |                                                                                     ^^^^
+
 [66 of 82] Compiling BNFC.Backend.Base
 [67 of 82] Compiling BNFC.Backend.XML
 [68 of 82] Compiling BNFC.Backend.Pygments
 [69 of 82] Compiling BNFC.Backend.Common.Makefile
 [70 of 82] Compiling BNFC.Backend.Latex
 [71 of 82] Compiling BNFC.Backend.Java
+src/BNFC/Backend/Java.hs:91:18: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+91 |                 (head $ results lexmake) -- lexer class
+   |                  ^^^^
+
+src/BNFC/Backend/Java.hs:92:18: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+92 |                 (head $ results parmake) -- parser class
+   |                  ^^^^
+
+src/BNFC/Backend/Java.hs:649:24: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+649 |       def            = head eps
+    |                        ^^^^
+
 [72 of 82] Compiling BNFC.Backend.CPP.Makefile
 [73 of 82] Compiling BNFC.Backend.C
 [74 of 82] Compiling BNFC.Backend.OCaml
 [75 of 82] Compiling BNFC.Backend.CPP.Common
+src/BNFC/Backend/CPP/Common.hs:66:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+66 |               | isUpper (head x) -> call ("new " ++ x) es
+   |                          ^^^^
+
 [76 of 82] Compiling BNFC.Backend.CPP.STL.CFtoSTLAbs
 [77 of 82] Compiling BNFC.Backend.CPP.STL
 [78 of 82] Compiling BNFC.Backend.CPP.NoSTL.CFtoCPPAbs
 [79 of 82] Compiling BNFC.Backend.CPP.NoSTL
 [80 of 82] Compiling BNFC.Backend.Agda
+src/BNFC/Backend/Agda.hs:535:22: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+535 |   , pragmaData amod (head $ words d) haskellDataName cs
+    |                      ^^^^
+
+src/BNFC/Backend/Agda.hs:673:25: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+673 | nameFor d = [ toLower $ head $ dropWhile (== '#') d ]
+    |                         ^^^^
+
 [81 of 82] Compiling BNFC.Backend.Haskell
 [82 of 82] Compiling BNFC.Backend.HaskellGADT
 Configuring test suite 'unit-tests' for BNFC-2.9.5...
@@ -107,7 +276,6 @@ Building test suite 'unit-tests' for BNFC-2.9.5...
 [14 of 18] Compiling BNFC.Backend.CPP.STLSpec
 [15 of 18] Compiling BNFC.Backend.CPP.NoSTLSpec
 [16 of 18] Compiling BNFC.OptionsSpec
-
 test/BNFC/OptionsSpec.hs:17:1: warning: [GHC-62161] [-Wincomplete-patterns]
     Pattern match(es) are non-exhaustive
     In an equation for ‘shouldSet’:
@@ -119,12 +287,13 @@ test/BNFC/OptionsSpec.hs:17:1: warning: [GHC-62161] [-Wincomplete-patterns]
    |
 17 | shouldSet (Target opts _) (option, value) = option opts `shouldBe` value
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [17 of 18] Compiling Main
 [18 of 18] Compiling Paths_BNFC
-[19 of 19] Linking /tmp/workdir-BNFC/BNFC-2.9.5/dist-newstyle/build/x86_64-linux/ghc-9.6.5/BNFC-2.9.5/t/unit-tests/build/unit-tests/unit-tests
+[19 of 19] Linking /tmp/workdir-BNFC/BNFC-2.9.5/dist-newstyle/build/x86_64-linux/ghc-9.10.2/BNFC-2.9.5/t/unit-tests/build/unit-tests/unit-tests
 Configuring executable 'bnfc' for BNFC-2.9.5...
 Preprocessing executable 'bnfc' for BNFC-2.9.5...
 Building executable 'bnfc' for BNFC-2.9.5...
 [1 of 2] Compiling Paths_BNFC
 [2 of 2] Compiling Main
-[3 of 3] Linking /tmp/workdir-BNFC/BNFC-2.9.5/dist-newstyle/build/x86_64-linux/ghc-9.6.5/BNFC-2.9.5/x/bnfc/build/bnfc/bnfc
+[3 of 3] Linking /tmp/workdir-BNFC/BNFC-2.9.5/dist-newstyle/build/x86_64-linux/ghc-9.10.2/BNFC-2.9.5/x/bnfc/build/bnfc/bnfc

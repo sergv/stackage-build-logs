@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - reactive-midyim-0.4.1.1 (lib:reactive-midyim) (first run)
 Warning: reactive-midyim.cabal:52:35: version operators used. To use version
@@ -30,8 +31,7 @@ Preprocessing library for reactive-midyim-0.4.1.1...
 Building library for reactive-midyim-0.4.1.1...
 [ 1 of 14] Compiling Reactive.Banana.MIDI.Program
 [ 2 of 14] Compiling Reactive.Banana.MIDI.Time
-
-src/Reactive/Banana/MIDI/Time.hs:8:1: warning: [-Wunused-imports]
+src/Reactive/Banana/MIDI/Time.hs:8:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
@@ -39,7 +39,7 @@ src/Reactive/Banana/MIDI/Time.hs:8:1: warning: [-Wunused-imports]
 8 | import Data.Monoid (Monoid, mempty, mappend, )
   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Reactive/Banana/MIDI/Time.hs:9:1: warning: [-Wunused-imports]
+src/Reactive/Banana/MIDI/Time.hs:9:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Semigroup’ is redundant
       except perhaps to import instances from ‘Data.Semigroup’
     To import instances alone, use: import Data.Semigroup()
@@ -47,52 +47,85 @@ src/Reactive/Banana/MIDI/Time.hs:9:1: warning: [-Wunused-imports]
 9 | import Data.Semigroup (Semigroup, (<>), )
   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Reactive/Banana/MIDI/Time.hs:80:4: warning: [-Wnoncanonical-monoid-instances]
+src/Reactive/Banana/MIDI/Time.hs:80:4: warning: [GHC-50928] [-Wnoncanonical-monoid-instances]
     Noncanonical ‘mappend’ definition detected
     in the instance declaration for ‘Monoid (T m t a)’.
     ‘mappend’ will eventually be removed in favour of ‘(<>)’
-    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    Suggested fix:
+      Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
    |
 80 |    mappend x y = cons $ mappend (decons x) (decons y)
    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[ 3 of 14] Compiling Reactive.Banana.MIDI.Controller
 
-src/Reactive/Banana/MIDI/Controller.hs:14:1: warning: [-Wunused-imports]
+[ 3 of 14] Compiling Reactive.Banana.MIDI.Controller
+src/Reactive/Banana/MIDI/Controller.hs:14:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 14 | import Data.Monoid (mappend, )
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[ 4 of 14] Compiling Reactive.Banana.MIDI.Common
 
-src/Reactive/Banana/MIDI/Common.hs:14:1: warning: [-Wunused-imports]
+[ 4 of 14] Compiling Reactive.Banana.MIDI.Common
+src/Reactive/Banana/MIDI/Common.hs:14:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 14 | import Data.Monoid (mempty, )
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [ 5 of 14] Compiling Reactive.Banana.MIDI.Pitch
 [ 6 of 14] Compiling Reactive.Banana.MIDI.Guitar
 [ 7 of 14] Compiling Reactive.Banana.MIDI.Note
-
-src/Reactive/Banana/MIDI/Note.hs:15:1: warning: [-Wunused-imports]
+src/Reactive/Banana/MIDI/Note.hs:15:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 15 | import Data.Monoid (mappend, )
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [ 8 of 14] Compiling Reactive.Banana.MIDI.KeySet
 [ 9 of 14] Compiling Reactive.Banana.MIDI.Training
 [10 of 14] Compiling Reactive.Banana.MIDI.Trie
 [11 of 14] Compiling Reactive.Banana.MIDI.DeBruijn
+src/Reactive/Banana/MIDI/DeBruijn.hs:54:24: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+54 |           let newStr = tail str ++ [d]
+   |                        ^^^^
+
+src/Reactive/Banana/MIDI/DeBruijn.hs:80:18: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+80 |        delete 0 (tail start) $
+   |                  ^^^^
+
+src/Reactive/Banana/MIDI/DeBruijn.hs:101:23: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+101 |        Trie.delete 0 (tail start) $
+    |                       ^^^^
+
+src/Reactive/Banana/MIDI/DeBruijn.hs:128:20: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+128 |    lexLeast n k == head (allMap n k)
+    |                    ^^^^
+
 [12 of 14] Compiling Reactive.Banana.MIDI.Utility
 [13 of 14] Compiling Reactive.Banana.MIDI.Process
-
-src/Reactive/Banana/MIDI/Process.hs:67:1: warning: [-Wunused-imports]
+src/Reactive/Banana/MIDI/Process.hs:67:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
@@ -100,7 +133,7 @@ src/Reactive/Banana/MIDI/Process.hs:67:1: warning: [-Wunused-imports]
 67 | import Control.Applicative (pure, liftA2, (<*>), (<$>), )
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Reactive/Banana/MIDI/Process.hs:68:1: warning: [-Wunused-imports]
+src/Reactive/Banana/MIDI/Process.hs:68:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
@@ -115,12 +148,13 @@ src/Reactive/Banana/MIDI/Process.hs:546:69: warning: [GHC-47082] [-Woperator-whi
     |
 546 |    zipWith Common.Future (iterate (mappend stepTime) mempty) . map ($on)
     |                                                                     ^
-[14 of 14] Compiling Reactive.Banana.MIDI.Pattern
 
-src/Reactive/Banana/MIDI/Pattern.hs:34:1: warning: [-Wunused-imports]
+[14 of 14] Compiling Reactive.Banana.MIDI.Pattern
+src/Reactive/Banana/MIDI/Pattern.hs:34:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
    |
 34 | import Control.Applicative (pure, (<*>), )
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

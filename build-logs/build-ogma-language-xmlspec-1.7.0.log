@@ -1,0 +1,38 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - ogma-language-xmlspec-1.7.0 (lib) (first run)
+Configuring library for ogma-language-xmlspec-1.7.0...
+Preprocessing library for ogma-language-xmlspec-1.7.0...
+Building library for ogma-language-xmlspec-1.7.0...
+[1 of 2] Compiling Language.XMLSpec.PrintTrees
+src/Language/XMLSpec/PrintTrees.hs:224:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘XmlTrees’ not matched:
+            []
+            ((NTree (XText _) _):_)
+            ((NTree (XBlob _) _):_)
+            ((NTree (XCharRef _) _):_)
+            ...
+    |
+224 |     , let [NTree (XDTD CONTENT attributeList') children'] = children
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Language/XMLSpec/PrintTrees.hs:238:22: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+238 |     = prettyContent (head children)
+    |                      ^^^^
+
+src/Language/XMLSpec/PrintTrees.hs:294:51: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+294 |     = prettyPEAttr $ fromMaybe [] $ getDTDAttrl $ head children
+    |                                                   ^^^^
+
+[2 of 2] Compiling Language.XMLSpec.Parser

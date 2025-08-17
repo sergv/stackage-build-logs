@@ -1,0 +1,170 @@
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - greskell-core-1.0.0.6 (test:spec) (ephemeral targets)
+Preprocessing test suite 'spec' for greskell-core-1.0.0.6...
+Building test suite 'spec' for greskell-core-1.0.0.6...
+Running 1 test suites...
+Test suite spec: RUNNING...
+
+Data.Greskell.GMap
+  FlattenedMap
+    decode an array with odd number of elements [✔]
+  GraphSON GMap
+    non-flat
+      FromJSON [✔]
+      ToJSON [✔]
+      FromJSON empty [✔]
+    flat
+      FromJSON [✔]
+      ToJSON [✔]
+      FromJSON empty [✔]
+  GMapEntry
+    zero entry [✔]
+    two entries [✔]
+Data.Greskell.GraphSON
+  GrpahSON
+    FromJSON (recursive)
+      bare map (one entry) [✔]
+      bare map (two entries) [✔]
+      wrapped string [✔]
+      wrapped object [✔]
+      wrong @type type [✔]
+      null @type [✔]
+      no @value field [✔]
+      confusing bare map (three entries) [✔]
+    parseTypedGraphSON
+      Int32
+        invalid bare value [✔]
+        valid bare value [✔]
+        typed JSON with invalid @type field [✔]
+        typed JSON with valid @type field and invalid @value [✔]
+        typed JSON with valid @type and @value [✔]
+      HashMap
+        invalid bare value [✔]
+        valid bare value [✔]
+        typed JSON with invalid @type field [✔]
+        typed JSON with valid @type field and invalid @value field [✔]
+        typed JSON with valid @type and @value [✔]
+  GValue
+    FromJSON and ToJSON
+      bare null [✔]
+      wrapped null [✔]
+      bare number [✔]
+      wrapped number [✔]
+      bare bool [✔]
+      wrapped bool [✔]
+      bare str [✔]
+      wrapped str [✔]
+      bare array [✔]
+      wrapped array [✔]
+      bare object [✔]
+      wrapped object [✔]
+      mixed nested [✔]
+      double wrapped [✔]
+      wrong @type type [✔]
+      null @type [✔]
+    unwrapAll [✔]
+    unwrapOne [✔]
+    FromGraphSON
+      bare Int [✔]
+      wrapped Int [✔]
+      bare list [✔]
+      wrapped list [✔]
+      bare map [✔]
+      wrapped flattened map [✔]
+      wrapped flattend map (both keys and values are wrapped) [✔]
+      bare GMapEntry [✔]
+      wrapped GMapEntry [✔]
+      bare key-value object for GMapEntry [✔]
+      bare Maybe [✔]
+      wrapped Maybe [✔]
+      bare nested [✔]
+      wrapped nested [✔]
+Data.Greskell.Greskell
+  string and fromString
+    empty [✔]
+    words [✔]
+    escaped [✔]
+  list
+    empty [✔]
+    num [✔]
+    list of lists [✔]
+  boolean
+    true [✔]
+    false [✔]
+  number
+    zero [✔]
+    positive integer [✔]
+    negative integer [✔]
+    positive floating [✔]
+    negative floating [✔]
+    big positive integer [✔]
+  value
+    null [✔]
+    bool [✔]
+    integer [✔]
+    floating-point number [✔]
+    String [✔]
+    empty Array [✔]
+    non-empty Array [✔]
+    empty Object [✔]
+  unsafeGreskell
+    should be just a raw script text [✔]
+      +++ OK, passed 100 tests.
+  Num
+    integer [✔]
+    negative integer [✔]
+    operations [✔]
+    abs, signum [✔]
+  Fractional
+    floating point literal [✔]
+    operations [✔]
+  Monoid
+    mempty [✔]
+    mappend [✔]
+  unsafeFunCall
+    should make function call [✔]
+Examples
+  examples
+    GraphSON
+      "Just (GraphSON {gsonType = Nothing, gsonValue = 1000})" [✔]
+      "Just (GraphSON {gsonType = Just \"g:Int32\", gsonValue = 1000})" [✔]
+      "GraphSON {gsonType = Nothing, gsonValue = 10}" [✔]
+      "GraphSON {gsonType = Just \"g:Int32\", gsonValue = 10}" [✔]
+      "GraphSON {gsonType = Just \"g:Int32\", gsonValue = 10}" [✔]
+    Greskell
+      "x + 100" [✔]
+      "\"foo bar\"" [✔]
+      "\"escape newline\\n escape dollar \\$\"" [✔]
+      "true" [✔]
+      "false" [✔]
+      "[100,200,300]" [✔]
+      "[\"hoge\"]" [✔]
+      "1.23e10" [✔]
+      "null" [✔]
+      "[10.0,20.0,30.0]" [✔]
+      "[:]" [✔]
+      "100" [✔]
+      "256" [✔]
+      "add(10,20)" [✔]
+      "(\"foobar\").length()" [✔]
+    GMap
+      "Right [(10,\"ten\"),(11,\"eleven\")]" [✔]
+      "Right []" [✔]
+      "[10,\"ten\"]" [✔]
+      "Right (GMap {gmapFlat = False, gmapValue = fromList [(\"ten\",10)]})" [✔]
+      "Right (GMap {gmapFlat = True, gmapValue = fromList [(\"ten\",10)]})" [✔]
+      "{\"9\":\"nine\"}" [✔]
+      "[9,\"nine\"]" [✔]
+      "Right (GMapEntry {gmapEntryFlat = False, gmapEntryKey = 1, gmapEntryValue = \"one\"})" [✔]
+      "Right (GMapEntry {gmapEntryFlat = True, gmapEntryKey = 1, gmapEntryValue = \"one\"})" [✔]
+      "{\"one\":1}" [✔]
+      "[\"one\",1]" [✔]
+      "Right (GMapEntry {gmapEntryFlat = False, gmapEntryKey = 1, gmapEntryValue = \"one\"})" [✔]
+
+Finished in 0.0049 seconds
+123 examples, 0 failures
+Test suite spec: PASS
+Test suite logged to:
+/tmp/workdir-greskell-core/greskell-core-1.0.0.6/dist-newstyle/build/x86_64-linux/ghc-9.10.2/greskell-core-1.0.0.6/t/spec/test/greskell-core-1.0.0.6-spec.log
+1 of 1 test suites (1 of 1 test cases) passed.

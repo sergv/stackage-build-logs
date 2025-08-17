@@ -1,4 +1,4 @@
-Build profile: -w ghc-9.6.5 -O1
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - convertible-1.1.1.1 (test:runtests) (ephemeral targets)
 Preprocessing test suite 'runtests' for convertible-1.1.1.1...
@@ -12,15 +12,15 @@ Integer -> Int (safe bounds)
 Integer -> Word8 (general)
 +++ OK, passed 100 tests.
 Integer -> Word8 (safe bounds)
-+++ OK, passed 100 tests; 90 discarded.
++++ OK, passed 100 tests; 99 discarded.
 Integer -> Word8 (unsafe bounds)
-+++ OK, passed 100 tests; 129 discarded.
++++ OK, passed 100 tests; 101 discarded.
 Double -> Word8 (general)
 +++ OK, passed 100 tests.
 Double -> Word8 (safe bounds)
-+++ OK, passed 100 tests; 48 discarded.
++++ OK, passed 100 tests; 83 discarded.
 Double -> Word8 (unsafe bounds)
-+++ OK, passed 100 tests; 214 discarded.
++++ OK, passed 100 tests; 234 discarded.
 Int -> Double
 +++ OK, passed 100 tests.
 Int -> Char
@@ -38,7 +38,7 @@ Map -> [(Int, Int)]
 ClockTime -> CalendarTime
 +++ OK, passed 100 tests.
 ClockTime -> CalendarTime -> ClockTime
-*** Failed! Exception: 'user error (Time.toClockTime: invalid input)' (after 25 tests):
+*** Failed! Exception: 'user error (Time.toClockTime: invalid input)' (after 7 tests):
 Wed Dec 31 23:59:59 UTC 1969
 Exception thrown while showing test case: 'user error (Time.toClockTime: invalid input)'
 ClockTime -> POSIXTime
@@ -46,7 +46,9 @@ ClockTime -> POSIXTime
 POSIXTime -> ClockTime
 +++ OK, passed 100 tests.
 CalendarTime -> POSIXTime
-+++ OK, passed 100 tests.
+*** Failed! Exception: 'user error (Time.toClockTime: invalid input)' (after 11 tests):
+CalendarTime {ctYear = 1969, ctMonth = December, ctDay = 31, ctHour = 23, ctMin = 59, ctSec = 59, ctPicosec = 568702030002, ctWDay = Wednesday, ctYDay = 364, ctTZName = "UTC", ctTZ = 0, ctIsDST = False}
+Exception thrown while showing test case: 'user error (Time.toClockTime: invalid input)'
 identity ClockTime -> POSIXTime -> ClockTime
 +++ OK, passed 100 tests.
 identity POSIXTime -> ClockTime -> POSIXTime
@@ -54,12 +56,12 @@ identity POSIXTime -> ClockTime -> POSIXTime
 identity POSIXTime -> ZonedTime -> POSIXTime
 +++ OK, passed 100 tests.
 identity POSIXTime -> CalendarTime -> POSIXTime
-*** Failed! Exception: 'user error (Time.toClockTime: invalid input)' (after 3 tests):
--0.775838965608s
+*** Failed! Exception: 'user error (Time.toClockTime: invalid input)' (after 8 tests):
+-0.228763519626s
 Exception thrown while showing test case: 'user error (Time.toClockTime: invalid input)'
 identity UTCTime -> CalendarTime -> UTCTime
-*** Failed! Exception: 'user error (Time.toClockTime: invalid input)' (after 11 tests):
-1969-12-31 23:59:59.073641271274 UTC
+*** Failed! Exception: 'user error (Time.toClockTime: invalid input)' (after 2 tests):
+1969-12-31 23:59:59.182050024118 UTC
 Exception thrown while showing test case: 'user error (Time.toClockTime: invalid input)'
 POSIXTime -> UTCTime
 +++ OK, passed 100 tests.
@@ -70,7 +72,7 @@ ClockTime -> UTCTime
 ZonedTime -> ClockTime == ZonedTime -> CalendarTime -> ClockTime
 +++ OK, passed 100 tests.
 identity CalendarTime -> ZonedTime -> CalendarTime
-*** Failed! Exception: 'user error (Time.toClockTime: invalid input)' (after 3 tests):
+*** Failed! Exception: 'user error (Time.toClockTime: invalid input)' (after 5 tests):
 Wed Dec 31 23:59:59 UTC 1969
 Exception thrown while showing test case: 'user error (Time.toClockTime: invalid input)'
 identity CalendarTime -> ZonedTime -> CalenderTime, test 2
@@ -78,24 +80,26 @@ identity CalendarTime -> ZonedTime -> CalenderTime, test 2
 identity ZonedTime -> CalendarTime -> ZonedTime
 +++ OK, passed 100 tests.
 ZonedTime -> CalendarTime -> ClockTime -> ZonedTime
-*** Failed! Exception: 'user error (Time.toClockTime: invalid input)' (after 2 tests):
-1969-12-31 23:59:59.745248246341 UTC
+*** Failed! Exception: 'user error (Time.toClockTime: invalid input)' (after 3 tests):
+1969-12-31 23:59:59.334591566799 UTC
 Exception thrown while showing test case: 'user error (Time.toClockTime: invalid input)'
 ZonedTime -> ClockTime -> CalendarTime -> ZonedTime
 +++ OK, passed 100 tests.
 ZonedTime -> ColckTime -> CalendarTime -> ClockTime -> ZonedTime
-+++ OK, passed 100 tests.
+*** Failed! Exception: 'user error (Time.toClockTime: invalid input)' (after 2 tests):
+1969-12-31 23:59:59.723399762618 UTC
+Exception thrown while showing test case: 'user error (Time.toClockTime: invalid input)'
 UTCTime -> ZonedTime
 +++ OK, passed 100 tests.
 UTCTime -> ZonedTime -> UTCTime
 +++ OK, passed 100 tests.
 identity NominalDiffTime -> TimeDiff -> NominalDiffTime
-*** Failed! Exception: 'user error (Time.toClockTime: invalid input)' (after 34 tests):
--0.022710292677s
+*** Failed! Exception: 'user error (Time.toClockTime: invalid input)' (after 80 tests):
+-0.760190084877s
 Exception thrown while showing test case: 'user error (Time.toClockTime: invalid input)'
 identity POSIXTime -> CTime -> POSIXTime
 +++ OK, passed 100 tests.
 Test suite runtests: PASS
 Test suite logged to:
-/tmp/workdir-convertible/convertible-1.1.1.1/dist-newstyle/build/x86_64-linux/ghc-9.6.5/convertible-1.1.1.1/t/runtests/test/convertible-1.1.1.1-runtests.log
+/tmp/workdir-convertible/convertible-1.1.1.1/dist-newstyle/build/x86_64-linux/ghc-9.10.2/convertible-1.1.1.1/t/runtests/test/convertible-1.1.1.1-runtests.log
 1 of 1 test suites (1 of 1 test cases) passed.

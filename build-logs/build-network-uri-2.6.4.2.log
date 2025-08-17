@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - network-uri-2.6.4.2 (lib) (first run)
  - network-uri-2.6.4.2 (test:uri) (first run)
@@ -6,13 +7,36 @@ Configuring library for network-uri-2.6.4.2...
 Preprocessing library for network-uri-2.6.4.2...
 Building library for network-uri-2.6.4.2...
 [1 of 3] Compiling Network.URI
+Network/URI.hs:1131:12: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+     |
+1131 |         if head (uriPath ref) == '/' then
+     |            ^^^^
+
+Network/URI.hs:1437:16: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+     |
+1437 | query = orNull tail . uriQuery
+     |                ^^^^
+
+Network/URI.hs:1441:19: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+     |
+1441 | fragment = orNull tail . uriFragment
+     |                   ^^^^
+
 [2 of 3] Compiling Network.URI.Lens
 [3 of 3] Compiling Network.URI.Static
 Configuring test suite 'uri' for network-uri-2.6.4.2...
 Preprocessing test suite 'uri' for network-uri-2.6.4.2...
 Building test suite 'uri' for network-uri-2.6.4.2...
 [1 of 1] Compiling Main
-
 tests/uri001.hs:1279:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -52,4 +76,5 @@ tests/uri001.hs:1407:1: warning: [GHC-62161] [-Wincomplete-uni-patterns]
      |
 1407 | (Just ru02) = parseURIReference "http://example/x/abc"
      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[2 of 2] Linking /tmp/workdir-network-uri/network-uri-2.6.4.2/dist-newstyle/build/x86_64-linux/ghc-9.6.5/network-uri-2.6.4.2/t/uri/build/uri/uri
+
+[2 of 2] Linking /tmp/workdir-network-uri/network-uri-2.6.4.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/network-uri-2.6.4.2/t/uri/build/uri/uri

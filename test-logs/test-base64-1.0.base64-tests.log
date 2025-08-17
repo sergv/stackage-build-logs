@@ -1,0 +1,1058 @@
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - base64-1.0 (test:base64-tests) (ephemeral targets)
+Preprocessing test suite 'base64-tests' for base64-1.0...
+Building test suite 'base64-tests' for base64-1.0...
+Running 1 test suites...
+Test suite base64-tests: RUNNING...
+Base64 Tests
+  ByteString
+    Property Tests
+      prop_roundtrip
+        prop_std_roundtrip:                                   OK
+          +++ OK, passed 100 tests.
+        prop_url_roundtrip:                                   OK
+          +++ OK, passed 100 tests.
+        prop_url_roundtrip_nopad:                             OK
+          +++ OK, passed 100 tests.
+        prop_std_lenient_roundtrip:                           OK
+          +++ OK, passed 100 tests.
+        prop_url_lenient_roundtrip:                           OK
+          +++ OK, passed 100 tests.
+      prop_validity
+        prop_std_valid:                                       OK
+          +++ OK, passed 100 tests.
+        prop_url_valid:                                       OK
+          +++ OK, passed 100 tests.
+        prop_std_correct:                                     OK
+          +++ OK, passed 100 tests.
+        prop_url_correct:                                     OK
+          +++ OK, passed 100 tests.
+      prop_url_padding
+        prop_url_nopad_roundtrip_untyped:                     OK
+          +++ OK, passed 100 tests.
+        prop_url_nopad_roundtrip_typed:                       OK
+          +++ OK, passed 100 tests.
+        prop_url_pad_roundtrip_untyped:                       OK
+          +++ OK, passed 100 tests.
+        prop_url_pad_roundtrip_typed:                         OK
+          +++ OK, passed 100 tests.
+        prop_url_decode_invariant_untyped:                    OK
+          +++ OK, passed 100 tests.
+        prop_url_decode_invariant_typed:                      OK
+          +++ OK, passed 100 tests.
+        prop_url_padding_coherence:                           OK
+          +++ OK, passed 100 tests.
+        prop_url_nopadding_coherence:                         OK
+          +++ OK, passed 100 tests.
+      prop_bos_coherence
+        prop_std_bos_coherence:                               OK
+          +++ OK, passed 100 tests.
+        prop_url_bos_coherence:                               OK
+          +++ OK, passed 100 tests.
+    Unit tests
+      Padding tests
+        URL decodePadding coherence
+          "PA==":                                             OK
+            Padding required: no padding fails
+            Padding required: padding succeeds
+          "PDw=":                                             OK
+            Padding required: no padding fails
+            Padding required: padding succeeds
+          "PDw_":                                             OK
+            String has no padding: decodes should coincide
+          "PDw_Pw==":                                         OK
+            Padding required: no padding fails
+            Padding required: padding succeeds
+          "PDw_Pz4=":                                         OK
+            Padding required: no padding fails
+            Padding required: padding succeeds
+          "PDw_Pz4-":                                         OK
+            String has no padding: decodes should coincide
+        URL decodeUnpadded coherence
+          "PA":                                               OK
+            Unpadded required: padding fails
+            Unpadded required: unpadding succeeds
+          "PDw":                                              OK
+            Unpadded required: padding fails
+            Unpadded required: unpadding succeeds
+          "PDw_":                                             OK
+            String has no padding: decodes should coincide
+          "PDw_Pw":                                           OK
+            Unpadded required: padding fails
+            Unpadded required: unpadding succeeds
+          "PDw_Pz4":                                          OK
+            Unpadded required: padding fails
+            Unpadded required: unpadding succeeds
+          "PDw_Pz4-":                                         OK
+            String has no padding: decodes should coincide
+        url-safe padding case unit tests
+          stress arbitarily padded URL strings:               OK
+          stress padded URL strings:                          OK
+          stress unpadded URL strings:                        OK
+      RFC 4648 Test Vectors
+        std alphabet
+          "empty":                                            OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "f":                                                OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "f":                                                OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "fo":                                               OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "foo":                                              OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "foob":                                             OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "fooba":                                            OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "foobar":                                           OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+        url-safe alphabet
+          "empty":                                            OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "<":                                                OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "<<":                                               OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "<<?":                                              OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "<<??":                                             OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "<<??>":                                            OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "<<??>>":                                           OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+      Offset tests
+        Invalid padding
+          Invalid staggered padding:                          OK
+          Invalid character coverage - final chunk:           OK
+          Invalid character coverage - decode chunk:          OK
+          Invalid padding in body:                            OK
+          Padding fails everywhere but end:                   OK
+      Validity and correctness unit tests
+        Validity unit tests
+          Padding tests:                                      OK
+          Canonicity tests:                                   OK
+        Correctness unit tests
+          Padding tests:                                      OK
+          Canonicity tests:                                   OK
+      Canonicity unit tests
+        roundtrip for d ~ ZA==:                               OK
+        roundtrip for f` ~ ZmA=:                              OK
+        roundtrip for foo` ~ Zm9vYA==:                        OK
+        roundtrip for foob` ~ Zm9vYmA=:                       OK
+  Lazy ByteString
+    Property Tests
+      prop_roundtrip
+        prop_std_roundtrip:                                   OK
+          +++ OK, passed 100 tests.
+        prop_url_roundtrip:                                   OK
+          +++ OK, passed 100 tests.
+        prop_url_roundtrip_nopad:                             OK
+          +++ OK, passed 100 tests.
+        prop_std_lenient_roundtrip:                           OK
+          +++ OK, passed 100 tests.
+        prop_url_lenient_roundtrip:                           OK
+          +++ OK, passed 100 tests.
+      prop_validity
+        prop_std_valid:                                       OK
+          +++ OK, passed 100 tests.
+        prop_url_valid:                                       OK (0.01s)
+          +++ OK, passed 100 tests.
+        prop_std_correct:                                     OK
+          +++ OK, passed 100 tests.
+        prop_url_correct:                                     OK
+          +++ OK, passed 100 tests.
+      prop_url_padding
+        prop_url_nopad_roundtrip_untyped:                     OK
+          +++ OK, passed 100 tests.
+        prop_url_nopad_roundtrip_typed:                       OK
+          +++ OK, passed 100 tests.
+        prop_url_pad_roundtrip_untyped:                       OK
+          +++ OK, passed 100 tests.
+        prop_url_pad_roundtrip_typed:                         OK
+          +++ OK, passed 100 tests.
+        prop_url_decode_invariant_untyped:                    OK
+          +++ OK, passed 100 tests.
+        prop_url_decode_invariant_typed:                      OK
+          +++ OK, passed 100 tests.
+        prop_url_padding_coherence:                           OK
+          +++ OK, passed 100 tests.
+        prop_url_nopadding_coherence:                         OK
+          +++ OK, passed 100 tests.
+      prop_bos_coherence
+        prop_std_bos_coherence:                               OK
+          +++ OK, passed 100 tests.
+        prop_url_bos_coherence:                               OK
+          +++ OK, passed 100 tests.
+    Unit tests
+      Padding tests
+        URL decodePadding coherence
+          "PA==":                                             OK
+            Padding required: no padding fails
+            Padding required: padding succeeds
+          "PDw=":                                             OK
+            Padding required: no padding fails
+            Padding required: padding succeeds
+          "PDw_":                                             OK
+            String has no padding: decodes should coincide
+          "PDw_Pw==":                                         OK
+            Padding required: no padding fails
+            Padding required: padding succeeds
+          "PDw_Pz4=":                                         OK
+            Padding required: no padding fails
+            Padding required: padding succeeds
+          "PDw_Pz4-":                                         OK
+            String has no padding: decodes should coincide
+        URL decodeUnpadded coherence
+          "PA":                                               OK
+            Unpadded required: padding fails
+            Unpadded required: unpadding succeeds
+          "PDw":                                              OK
+            Unpadded required: padding fails
+            Unpadded required: unpadding succeeds
+          "PDw_":                                             OK
+            String has no padding: decodes should coincide
+          "PDw_Pw":                                           OK
+            Unpadded required: padding fails
+            Unpadded required: unpadding succeeds
+          "PDw_Pz4":                                          OK
+            Unpadded required: padding fails
+            Unpadded required: unpadding succeeds
+          "PDw_Pz4-":                                         OK
+            String has no padding: decodes should coincide
+        url-safe padding case unit tests
+          stress arbitarily padded URL strings:               OK
+          stress padded URL strings:                          OK
+          stress unpadded URL strings:                        OK
+      RFC 4648 Test Vectors
+        std alphabet
+          "empty":                                            OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "f":                                                OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "f":                                                OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "fo":                                               OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "foo":                                              OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "foob":                                             OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "fooba":                                            OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "foobar":                                           OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+        url-safe alphabet
+          "empty":                                            OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "<":                                                OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "<<":                                               OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "<<?":                                              OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "<<??":                                             OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "<<??>":                                            OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "<<??>>":                                           OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+      Offset tests
+        Invalid padding
+          Invalid staggered padding:                          OK
+          Invalid character coverage - final chunk:           OK
+          Invalid character coverage - decode chunk:          OK
+          Invalid padding in body:                            OK
+          Padding fails everywhere but end:                   OK
+      Validity and correctness unit tests
+        Validity unit tests
+          Padding tests:                                      OK
+          Canonicity tests:                                   OK
+        Correctness unit tests
+          Padding tests:                                      OK
+          Canonicity tests:                                   OK
+      Canonicity unit tests
+        roundtrip for d ~ ZA==:                               OK
+        roundtrip for f` ~ ZmA=:                              OK
+        roundtrip for foo` ~ Zm9vYA==:                        OK
+        roundtrip for foob` ~ Zm9vYmA=:                       OK
+  Short ByteString
+    Property Tests
+      prop_roundtrip
+        prop_std_roundtrip:                                   OK
+          +++ OK, passed 100 tests.
+        prop_url_roundtrip:                                   OK
+          +++ OK, passed 100 tests.
+        prop_url_roundtrip_nopad:                             OK
+          +++ OK, passed 100 tests.
+        prop_std_lenient_roundtrip:                           OK
+          +++ OK, passed 100 tests.
+        prop_url_lenient_roundtrip:                           OK
+          +++ OK, passed 100 tests.
+      prop_validity
+        prop_std_valid:                                       OK
+          +++ OK, passed 100 tests.
+        prop_url_valid:                                       OK
+          +++ OK, passed 100 tests.
+        prop_std_correct:                                     OK
+          +++ OK, passed 100 tests.
+        prop_url_correct:                                     OK
+          +++ OK, passed 100 tests.
+      prop_url_padding
+        prop_url_nopad_roundtrip_untyped:                     OK
+          +++ OK, passed 100 tests.
+        prop_url_nopad_roundtrip_typed:                       OK
+          +++ OK, passed 100 tests.
+        prop_url_pad_roundtrip_untyped:                       OK
+          +++ OK, passed 100 tests.
+        prop_url_pad_roundtrip_typed:                         OK
+          +++ OK, passed 100 tests.
+        prop_url_decode_invariant_untyped:                    OK
+          +++ OK, passed 100 tests.
+        prop_url_decode_invariant_typed:                      OK
+          +++ OK, passed 100 tests.
+        prop_url_padding_coherence:                           OK
+          +++ OK, passed 100 tests.
+        prop_url_nopadding_coherence:                         OK
+          +++ OK, passed 100 tests.
+      prop_bos_coherence
+        prop_std_bos_coherence:                               OK
+          +++ OK, passed 100 tests.
+        prop_url_bos_coherence:                               OK
+          +++ OK, passed 100 tests.
+    Unit tests
+      Padding tests
+        URL decodePadding coherence
+          "PA==":                                             OK
+            Padding required: no padding fails
+            Padding required: padding succeeds
+          "PDw=":                                             OK
+            Padding required: no padding fails
+            Padding required: padding succeeds
+          "PDw_":                                             OK
+            String has no padding: decodes should coincide
+          "PDw_Pw==":                                         OK
+            Padding required: no padding fails
+            Padding required: padding succeeds
+          "PDw_Pz4=":                                         OK
+            Padding required: no padding fails
+            Padding required: padding succeeds
+          "PDw_Pz4-":                                         OK
+            String has no padding: decodes should coincide
+        URL decodeUnpadded coherence
+          "PA":                                               OK
+            Unpadded required: padding fails
+            Unpadded required: unpadding succeeds
+          "PDw":                                              OK
+            Unpadded required: padding fails
+            Unpadded required: unpadding succeeds
+          "PDw_":                                             OK
+            String has no padding: decodes should coincide
+          "PDw_Pw":                                           OK
+            Unpadded required: padding fails
+            Unpadded required: unpadding succeeds
+          "PDw_Pz4":                                          OK
+            Unpadded required: padding fails
+            Unpadded required: unpadding succeeds
+          "PDw_Pz4-":                                         OK
+            String has no padding: decodes should coincide
+        url-safe padding case unit tests
+          stress arbitarily padded URL strings:               OK
+          stress padded URL strings:                          OK
+          stress unpadded URL strings:                        OK
+      RFC 4648 Test Vectors
+        std alphabet
+          "empty":                                            OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "f":                                                OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "f":                                                OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "fo":                                               OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "foo":                                              OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "foob":                                             OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "fooba":                                            OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "foobar":                                           OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+        url-safe alphabet
+          "empty":                                            OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "<":                                                OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "<<":                                               OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "<<?":                                              OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "<<??":                                             OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "<<??>":                                            OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "<<??>>":                                           OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+      Offset tests
+        Invalid padding
+          Invalid staggered padding:                          OK
+          Invalid character coverage - final chunk:           OK
+          Invalid character coverage - decode chunk:          OK
+          Invalid padding in body:                            OK
+          Padding fails everywhere but end:                   OK
+      Validity and correctness unit tests
+        Validity unit tests
+          Padding tests:                                      OK
+          Canonicity tests:                                   OK
+        Correctness unit tests
+          Padding tests:                                      OK
+          Canonicity tests:                                   OK
+      Canonicity unit tests
+        roundtrip for d ~ ZA==:                               OK
+        roundtrip for f` ~ ZmA=:                              OK
+        roundtrip for foo` ~ Zm9vYA==:                        OK
+        roundtrip for foob` ~ Zm9vYmA=:                       OK
+  Text
+    Property Tests
+      prop_roundtrip
+        prop_std_roundtrip:                                   OK
+          +++ OK, passed 100 tests.
+        prop_url_roundtrip:                                   OK
+          +++ OK, passed 100 tests.
+        prop_url_roundtrip_nopad:                             OK
+          +++ OK, passed 100 tests.
+        prop_std_lenient_roundtrip:                           OK
+          +++ OK, passed 100 tests.
+        prop_url_lenient_roundtrip:                           OK
+          +++ OK, passed 100 tests.
+      prop_validity
+        prop_std_valid:                                       OK
+          +++ OK, passed 100 tests.
+        prop_url_valid:                                       OK
+          +++ OK, passed 100 tests.
+        prop_std_correct:                                     OK
+          +++ OK, passed 100 tests.
+        prop_url_correct:                                     OK
+          +++ OK, passed 100 tests.
+      prop_url_padding
+        prop_url_nopad_roundtrip_untyped:                     OK
+          +++ OK, passed 100 tests.
+        prop_url_nopad_roundtrip_typed:                       OK
+          +++ OK, passed 100 tests.
+        prop_url_pad_roundtrip_untyped:                       OK
+          +++ OK, passed 100 tests.
+        prop_url_pad_roundtrip_typed:                         OK
+          +++ OK, passed 100 tests.
+        prop_url_decode_invariant_untyped:                    OK
+          +++ OK, passed 100 tests.
+        prop_url_decode_invariant_typed:                      OK
+          +++ OK, passed 100 tests.
+        prop_url_padding_coherence:                           OK
+          +++ OK, passed 100 tests.
+        prop_url_nopadding_coherence:                         OK
+          +++ OK, passed 100 tests.
+      prop_bos_coherence
+        prop_std_bos_coherence:                               OK
+          +++ OK, passed 100 tests.
+        prop_url_bos_coherence:                               OK
+          +++ OK, passed 100 tests.
+    Unit tests
+      Padding tests
+        URL decodePadding coherence
+          "PA==":                                             OK
+            Padding required: no padding fails
+            Padding required: padding succeeds
+          "PDw=":                                             OK
+            Padding required: no padding fails
+            Padding required: padding succeeds
+          "PDw_":                                             OK
+            String has no padding: decodes should coincide
+          "PDw_Pw==":                                         OK
+            Padding required: no padding fails
+            Padding required: padding succeeds
+          "PDw_Pz4=":                                         OK
+            Padding required: no padding fails
+            Padding required: padding succeeds
+          "PDw_Pz4-":                                         OK
+            String has no padding: decodes should coincide
+        URL decodeUnpadded coherence
+          "PA":                                               OK
+            Unpadded required: padding fails
+            Unpadded required: unpadding succeeds
+          "PDw":                                              OK
+            Unpadded required: padding fails
+            Unpadded required: unpadding succeeds
+          "PDw_":                                             OK
+            String has no padding: decodes should coincide
+          "PDw_Pw":                                           OK
+            Unpadded required: padding fails
+            Unpadded required: unpadding succeeds
+          "PDw_Pz4":                                          OK
+            Unpadded required: padding fails
+            Unpadded required: unpadding succeeds
+          "PDw_Pz4-":                                         OK
+            String has no padding: decodes should coincide
+        url-safe padding case unit tests
+          stress arbitarily padded URL strings:               OK
+          stress padded URL strings:                          OK
+          stress unpadded URL strings:                        OK
+      RFC 4648 Test Vectors
+        std alphabet
+          "empty":                                            OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "f":                                                OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "f":                                                OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "fo":                                               OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "foo":                                              OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "foob":                                             OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "fooba":                                            OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "foobar":                                           OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+        url-safe alphabet
+          "empty":                                            OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "<":                                                OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "<<":                                               OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "<<?":                                              OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "<<??":                                             OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "<<??>":                                            OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "<<??>>":                                           OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+      Offset tests
+        Invalid padding
+          Invalid staggered padding:                          OK
+          Invalid character coverage - final chunk:           OK
+          Invalid character coverage - decode chunk:          OK
+          Invalid padding in body:                            OK
+          Padding fails everywhere but end:                   OK
+      Validity and correctness unit tests
+        Validity unit tests
+          Padding tests:                                      OK
+          Canonicity tests:                                   OK
+        Correctness unit tests
+          Padding tests:                                      OK
+          Canonicity tests:                                   OK
+      Canonicity unit tests
+        roundtrip for d ~ ZA==:                               OK
+        roundtrip for f` ~ ZmA=:                              OK
+        roundtrip for foo` ~ Zm9vYA==:                        OK
+        roundtrip for foob` ~ Zm9vYmA=:                       OK
+    Decoding tests
+      DecodeWith* unit tests
+        decodeWith negative tests
+          decodeWith non-utf8 inputs on decodeUtf8:           OK
+          decodeWith valid utf8 inputs on decodeUtf8:         OK
+          decodeUrlWith non-utf8 inputs on decodeUtf8:        OK
+          decodeUrlWith valid utf8 inputs on decodeUtf8:      OK
+          decodeUrlPaddedWith non-utf8 inputs on decodeUtf8:  OK
+          decodePaddedWith valid utf8 inputs on decodeUtf8:   OK
+          decodeUnpaddedWith non-utf8 inputs on decodeUtf8:   OK
+          decodeUnpaddedWith valid utf8 inputs on decodeUtf8: OK
+        decodeWith positive tests
+          decodeWith utf8 inputs on decodeUtf8:               OK
+          decodeUrlWith utf8 inputs on decodeUtf8:            OK
+          decodeUrlPaddedWith utf8 inputs on decodeUtf8:      OK
+          decodeUrlUnpaddedWith utf8 inputs on decodeUtf8:    OK
+  Lazy Text
+    Property Tests
+      prop_roundtrip
+        prop_std_roundtrip:                                   OK
+          +++ OK, passed 100 tests.
+        prop_url_roundtrip:                                   OK
+          +++ OK, passed 100 tests.
+        prop_url_roundtrip_nopad:                             OK
+          +++ OK, passed 100 tests.
+        prop_std_lenient_roundtrip:                           OK
+          +++ OK, passed 100 tests.
+        prop_url_lenient_roundtrip:                           OK
+          +++ OK, passed 100 tests.
+      prop_validity
+        prop_std_valid:                                       OK
+          +++ OK, passed 100 tests.
+        prop_url_valid:                                       OK
+          +++ OK, passed 100 tests.
+        prop_std_correct:                                     OK
+          +++ OK, passed 100 tests.
+        prop_url_correct:                                     OK
+          +++ OK, passed 100 tests.
+      prop_url_padding
+        prop_url_nopad_roundtrip_untyped:                     OK
+          +++ OK, passed 100 tests.
+        prop_url_nopad_roundtrip_typed:                       OK
+          +++ OK, passed 100 tests.
+        prop_url_pad_roundtrip_untyped:                       OK
+          +++ OK, passed 100 tests.
+        prop_url_pad_roundtrip_typed:                         OK
+          +++ OK, passed 100 tests.
+        prop_url_decode_invariant_untyped:                    OK
+          +++ OK, passed 100 tests.
+        prop_url_decode_invariant_typed:                      OK
+          +++ OK, passed 100 tests.
+        prop_url_padding_coherence:                           OK
+          +++ OK, passed 100 tests.
+        prop_url_nopadding_coherence:                         OK
+          +++ OK, passed 100 tests.
+      prop_bos_coherence
+        prop_std_bos_coherence:                               OK
+          +++ OK, passed 100 tests.
+        prop_url_bos_coherence:                               OK
+          +++ OK, passed 100 tests.
+    Unit tests
+      Padding tests
+        URL decodePadding coherence
+          "PA==":                                             OK
+            Padding required: no padding fails
+            Padding required: padding succeeds
+          "PDw=":                                             OK
+            Padding required: no padding fails
+            Padding required: padding succeeds
+          "PDw_":                                             OK
+            String has no padding: decodes should coincide
+          "PDw_Pw==":                                         OK
+            Padding required: no padding fails
+            Padding required: padding succeeds
+          "PDw_Pz4=":                                         OK
+            Padding required: no padding fails
+            Padding required: padding succeeds
+          "PDw_Pz4-":                                         OK
+            String has no padding: decodes should coincide
+        URL decodeUnpadded coherence
+          "PA":                                               OK
+            Unpadded required: padding fails
+            Unpadded required: unpadding succeeds
+          "PDw":                                              OK
+            Unpadded required: padding fails
+            Unpadded required: unpadding succeeds
+          "PDw_":                                             OK
+            String has no padding: decodes should coincide
+          "PDw_Pw":                                           OK
+            Unpadded required: padding fails
+            Unpadded required: unpadding succeeds
+          "PDw_Pz4":                                          OK
+            Unpadded required: padding fails
+            Unpadded required: unpadding succeeds
+          "PDw_Pz4-":                                         OK
+            String has no padding: decodes should coincide
+        url-safe padding case unit tests
+          stress arbitarily padded URL strings:               OK
+          stress padded URL strings:                          OK
+          stress unpadded URL strings:                        OK
+      RFC 4648 Test Vectors
+        std alphabet
+          "empty":                                            OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "f":                                                OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "f":                                                OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "fo":                                               OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "foo":                                              OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "foob":                                             OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "fooba":                                            OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "foobar":                                           OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+        url-safe alphabet
+          "empty":                                            OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "<":                                                OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "<<":                                               OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "<<?":                                              OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "<<??":                                             OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "<<??>":                                            OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "<<??>>":                                           OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+      Offset tests
+        Invalid padding
+          Invalid staggered padding:                          OK
+          Invalid character coverage - final chunk:           OK
+          Invalid character coverage - decode chunk:          OK
+          Invalid padding in body:                            OK
+          Padding fails everywhere but end:                   OK
+      Validity and correctness unit tests
+        Validity unit tests
+          Padding tests:                                      OK
+          Canonicity tests:                                   OK
+        Correctness unit tests
+          Padding tests:                                      OK
+          Canonicity tests:                                   OK
+      Canonicity unit tests
+        roundtrip for d ~ ZA==:                               OK
+        roundtrip for f` ~ ZmA=:                              OK
+        roundtrip for foo` ~ Zm9vYA==:                        OK
+        roundtrip for foob` ~ Zm9vYmA=:                       OK
+    Decoding tests
+      DecodeWith* unit tests
+        decodeWith negative tests
+          decodeWith non-utf8 inputs on decodeUtf8:           OK
+          decodeWith valid utf8 inputs on decodeUtf8:         OK
+          decodeUrlWith non-utf8 inputs on decodeUtf8:        OK
+          decodeUrlWith valid utf8 inputs on decodeUtf8:      OK
+          decodeUrlPaddedWith non-utf8 inputs on decodeUtf8:  OK
+          decodePaddedWith valid utf8 inputs on decodeUtf8:   OK
+          decodeUnpaddedWith non-utf8 inputs on decodeUtf8:   OK
+          decodeUnpaddedWith valid utf8 inputs on decodeUtf8: OK
+        decodeWith positive tests
+          decodeWith utf8 inputs on decodeUtf8:               OK
+          decodeUrlWith utf8 inputs on decodeUtf8:            OK
+          decodeUrlPaddedWith utf8 inputs on decodeUtf8:      OK
+          decodeUrlUnpaddedWith utf8 inputs on decodeUtf8:    OK
+  Short Text
+    Property Tests
+      prop_roundtrip
+        prop_std_roundtrip:                                   OK
+          +++ OK, passed 100 tests.
+        prop_url_roundtrip:                                   OK
+          +++ OK, passed 100 tests.
+        prop_url_roundtrip_nopad:                             OK
+          +++ OK, passed 100 tests.
+        prop_std_lenient_roundtrip:                           OK
+          +++ OK, passed 100 tests.
+        prop_url_lenient_roundtrip:                           OK
+          +++ OK, passed 100 tests.
+      prop_validity
+        prop_std_valid:                                       OK
+          +++ OK, passed 100 tests.
+        prop_url_valid:                                       OK
+          +++ OK, passed 100 tests.
+        prop_std_correct:                                     OK
+          +++ OK, passed 100 tests.
+        prop_url_correct:                                     OK
+          +++ OK, passed 100 tests.
+      prop_url_padding
+        prop_url_nopad_roundtrip_untyped:                     OK
+          +++ OK, passed 100 tests.
+        prop_url_nopad_roundtrip_typed:                       OK
+          +++ OK, passed 100 tests.
+        prop_url_pad_roundtrip_untyped:                       OK
+          +++ OK, passed 100 tests.
+        prop_url_pad_roundtrip_typed:                         OK
+          +++ OK, passed 100 tests.
+        prop_url_decode_invariant_untyped:                    OK
+          +++ OK, passed 100 tests.
+        prop_url_decode_invariant_typed:                      OK
+          +++ OK, passed 100 tests.
+        prop_url_padding_coherence:                           OK
+          +++ OK, passed 100 tests.
+        prop_url_nopadding_coherence:                         OK
+          +++ OK, passed 100 tests.
+      prop_bos_coherence
+        prop_std_bos_coherence:                               OK
+          +++ OK, passed 100 tests.
+        prop_url_bos_coherence:                               OK
+          +++ OK, passed 100 tests.
+    Unit tests
+      Padding tests
+        URL decodePadding coherence
+          "PA==":                                             OK
+            Padding required: no padding fails
+            Padding required: padding succeeds
+          "PDw=":                                             OK
+            Padding required: no padding fails
+            Padding required: padding succeeds
+          "PDw_":                                             OK
+            String has no padding: decodes should coincide
+          "PDw_Pw==":                                         OK
+            Padding required: no padding fails
+            Padding required: padding succeeds
+          "PDw_Pz4=":                                         OK
+            Padding required: no padding fails
+            Padding required: padding succeeds
+          "PDw_Pz4-":                                         OK
+            String has no padding: decodes should coincide
+        URL decodeUnpadded coherence
+          "PA":                                               OK
+            Unpadded required: padding fails
+            Unpadded required: unpadding succeeds
+          "PDw":                                              OK
+            Unpadded required: padding fails
+            Unpadded required: unpadding succeeds
+          "PDw_":                                             OK
+            String has no padding: decodes should coincide
+          "PDw_Pw":                                           OK
+            Unpadded required: padding fails
+            Unpadded required: unpadding succeeds
+          "PDw_Pz4":                                          OK
+            Unpadded required: padding fails
+            Unpadded required: unpadding succeeds
+          "PDw_Pz4-":                                         OK
+            String has no padding: decodes should coincide
+        url-safe padding case unit tests
+          stress arbitarily padded URL strings:               OK
+          stress padded URL strings:                          OK
+          stress unpadded URL strings:                        OK
+      RFC 4648 Test Vectors
+        std alphabet
+          "empty":                                            OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "f":                                                OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "f":                                                OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "fo":                                               OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "foo":                                              OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "foob":                                             OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "fooba":                                            OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "foobar":                                           OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+        url-safe alphabet
+          "empty":                                            OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "<":                                                OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "<<":                                               OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "<<?":                                              OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "<<??":                                             OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "<<??>":                                            OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+          "<<??>>":                                           OK
+            encode is sound
+            decode is sound - untyped
+            decode is sound - typed
+      Offset tests
+        Invalid padding
+          Invalid staggered padding:                          OK
+          Invalid character coverage - final chunk:           OK
+          Invalid character coverage - decode chunk:          OK
+          Invalid padding in body:                            OK
+          Padding fails everywhere but end:                   OK
+      Validity and correctness unit tests
+        Validity unit tests
+          Padding tests:                                      OK
+          Canonicity tests:                                   OK
+        Correctness unit tests
+          Padding tests:                                      OK
+          Canonicity tests:                                   OK
+      Canonicity unit tests
+        roundtrip for d ~ ZA==:                               OK
+        roundtrip for f` ~ ZmA=:                              OK
+        roundtrip for foo` ~ Zm9vYA==:                        OK
+        roundtrip for foob` ~ Zm9vYmA=:                       OK
+    Decoding tests
+      DecodeWith* unit tests
+        decodeWith negative tests
+          decodeWith non-utf8 inputs on decodeUtf8:           OK
+          decodeWith valid utf8 inputs on decodeUtf8:         OK
+          decodeUrlWith non-utf8 inputs on decodeUtf8:        OK
+          decodeUrlWith valid utf8 inputs on decodeUtf8:      OK
+          decodeUrlPaddedWith non-utf8 inputs on decodeUtf8:  OK
+          decodePaddedWith valid utf8 inputs on decodeUtf8:   OK
+          decodeUnpaddedWith non-utf8 inputs on decodeUtf8:   OK
+          decodeUnpaddedWith valid utf8 inputs on decodeUtf8: OK
+        decodeWith positive tests
+          decodeWith utf8 inputs on decodeUtf8:               OK
+          decodeUrlWith utf8 inputs on decodeUtf8:            OK
+          decodeUrlPaddedWith utf8 inputs on decodeUtf8:      OK
+          decodeUrlUnpaddedWith utf8 inputs on decodeUtf8:    OK
+
+All 408 tests passed (0.02s)
+Test suite base64-tests: PASS
+Test suite logged to:
+/tmp/workdir-base64/base64-1.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/base64-1.0/t/base64-tests/test/base64-1.0-base64-tests.log
+1 of 1 test suites (1 of 1 test cases) passed.

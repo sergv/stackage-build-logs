@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - ghc-typelits-natnormalise-0.7.10 (lib) (first run)
  - ghc-typelits-natnormalise-0.7.10 (test:unit-tests) (first run)
@@ -12,13 +13,12 @@ Configuring test suite 'unit-tests' for ghc-typelits-natnormalise-0.7.10...
 Preprocessing test suite 'unit-tests' for ghc-typelits-natnormalise-0.7.10...
 Building test suite 'unit-tests' for ghc-typelits-natnormalise-0.7.10...
 [1 of 2] Compiling ErrorTests
-
 tests/ErrorTests.hs:32:14: warning: [GHC-83865] [-Wdeferred-type-errors]
     • Couldn't match type: x + 1
                      with: 2 + x
       Expected: Proxy (x + 1) -> Proxy (2 + x)
         Actual: Proxy (x + 1) -> Proxy (x + 1)
-        NB: ‘+’ is a non-injective type family
+      NB: ‘+’ is a non-injective type family
     • In the expression: id
       In an equation for ‘testProxy1’: testProxy1 = id
     • Relevant bindings include
@@ -33,7 +33,7 @@ tests/ErrorTests.hs:50:14: warning: [GHC-83865] [-Wdeferred-type-errors]
                      with: x + 3
       Expected: Proxy (GCD 6 8 + x) -> Proxy (x + GCD 9 6)
         Actual: Proxy (2 + x) -> Proxy (2 + x)
-        NB: ‘+’ is a non-injective type family
+      NB: ‘+’ is a non-injective type family
     • In the expression: id
       In an equation for ‘testProxy2’: testProxy2 = id
     • Relevant bindings include
@@ -47,7 +47,7 @@ tests/ErrorTests.hs:67:14: warning: [GHC-83865] [-Wdeferred-type-errors]
     • Couldn't match type ‘(x0 + x0) + x0’ with ‘8’
       Expected: Proxy 8 -> ()
         Actual: Proxy ((x0 + x0) + x0) -> ()
-        The type variable ‘x0’ is ambiguous
+      The type variable ‘x0’ is ambiguous
     • In the expression: proxyFun3
       In an equation for ‘testProxy3’: testProxy3 = proxyFun3
    |
@@ -58,7 +58,7 @@ tests/ErrorTests.hs:84:14: warning: [GHC-83865] [-Wdeferred-type-errors]
     • Couldn't match type ‘(2 * y0) + 4’ with ‘2’
       Expected: Proxy 2 -> ()
         Actual: Proxy ((2 * y0) + 4) -> ()
-        The type variable ‘y0’ is ambiguous
+      The type variable ‘y0’ is ambiguous
     • In the expression: proxyFun4
       In an equation for ‘testProxy4’: testProxy4 = proxyFun4
    |
@@ -69,7 +69,7 @@ tests/ErrorTests.hs:98:14: warning: [GHC-83865] [-Wdeferred-type-errors]
     • Couldn't match type ‘2 * y1’ with ‘3’
       Expected: Proxy 7 -> ()
         Actual: Proxy ((2 * y1) + 4) -> ()
-        The type variable ‘y1’ is ambiguous
+      The type variable ‘y1’ is ambiguous
     • In the expression: proxyFun4
       In an equation for ‘testProxy5’: testProxy5 = proxyFun4
    |
@@ -80,7 +80,7 @@ tests/ErrorTests.hs:115:14: warning: [GHC-83865] [-Wdeferred-type-errors]
     • Couldn't match type ‘2 ^ k0’ with ‘7’
       Expected: Proxy 7
         Actual: Proxy (2 ^ k0)
-        The type variable ‘k0’ is ambiguous
+      The type variable ‘k0’ is ambiguous
     • In the expression: proxyFun6 (Proxy :: Proxy 7)
       In an equation for ‘testProxy6’:
           testProxy6 = proxyFun6 (Proxy :: Proxy 7)
@@ -115,7 +115,7 @@ tests/ErrorTests.hs:160:14: warning: [GHC-64725] [-Wdeferred-type-errors]
     |              ^^^^^^^^^
 
 tests/ErrorTests.hs:191:15: warning: [GHC-18872] [-Wdeferred-type-errors]
-    • Couldn't match type ‘Data.Type.Ord.OrdCond
+    • Couldn't match type ‘ghc-internal-9.1002.0:GHC.Internal.Data.Type.Ord.OrdCond
                              (CmpNat a (a + 2)) True True False’
                      with ‘False’
         arising from a use of ‘proxyInEq'’
@@ -142,8 +142,8 @@ tests/ErrorTests.hs:271:16: warning: [GHC-83865] [-Wdeferred-type-errors]
                      with: a + b
       Expected: Proxy (a + b) -> Proxy (a + c) -> ()
         Actual: Proxy (a0 + b0) -> Proxy (a0 + c0) -> ()
-        NB: ‘+’ is a non-injective type family
-        The type variables ‘a0’, ‘b0’ are ambiguous
+      NB: ‘+’ is a non-injective type family
+      The type variables ‘a0’, ‘b0’ are ambiguous
     • In the ambiguity check for ‘testProxy12’
       To defer the ambiguity check to use sites, enable AllowAmbiguousTypes
       In the type signature:
@@ -169,7 +169,7 @@ tests/ErrorTests.hs:303:15: warning: [GHC-64725] [-Wdeferred-type-errors]
     |               ^^^^^^^^^
 
 tests/ErrorTests.hs:334:15: warning: [GHC-18872] [-Wdeferred-type-errors]
-    • Couldn't match type ‘Data.Type.Ord.OrdCond
+    • Couldn't match type ‘ghc-internal-9.1002.0:GHC.Internal.Data.Type.Ord.OrdCond
                              (CmpNat (2 * a) (4 * a)) True True False’
                      with ‘False’
         arising from a use of ‘proxyInEq'’
@@ -243,5 +243,6 @@ tests/ErrorTests.hs:491:15: warning: [GHC-64725] [-Wdeferred-type-errors]
     |
 491 | testProxy20 = proxyInEq
     |               ^^^^^^^^^
+
 [2 of 2] Compiling Main
-[3 of 3] Linking /tmp/workdir-ghc-typelits-natnormalise/ghc-typelits-natnormalise-0.7.10/dist-newstyle/build/x86_64-linux/ghc-9.6.5/ghc-typelits-natnormalise-0.7.10/t/unit-tests/build/unit-tests/unit-tests
+[3 of 3] Linking /tmp/workdir-ghc-typelits-natnormalise/ghc-typelits-natnormalise-0.7.10/dist-newstyle/build/x86_64-linux/ghc-9.10.2/ghc-typelits-natnormalise-0.7.10/t/unit-tests/build/unit-tests/unit-tests

@@ -1,10 +1,42 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - filemanip-0.3.6.3 (lib:filemanip) (first run)
 Configuring filemanip-0.3.6.3...
 Preprocessing library for filemanip-0.3.6.3...
 Building library for filemanip-0.3.6.3...
 [1 of 4] Compiling System.FilePath.GlobPattern
+System/FilePath/GlobPattern.hs:130:49: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+130 |                      | otherwise = let hs = map head ss
+    |                                                 ^^^^
+
+System/FilePath/GlobPattern.hs:131:44: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+131 |                                        h = head hs
+    |                                            ^^^^
+
+System/FilePath/GlobPattern.hs:132:54: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+132 |                                    in if all (h==) $ tail hs
+    |                                                      ^^^^
+
+System/FilePath/GlobPattern.hs:133:62: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+133 |                                       then pfx (h:acc) $ map tail ss
+    |                                                              ^^^^
 
 System/FilePath/GlobPattern.hs:149:22: warning: [GHC-63397] [-Wname-shadowing]
     This binding for ‘g’ shadows the existing binding
@@ -12,9 +44,25 @@ System/FilePath/GlobPattern.hs:149:22: warning: [GHC-63397] [-Wname-shadowing]
     |
 149 |     where matchGroup g = matchTerms (MatchLiteral g : ts) cs
     |                      ^
+
+System/FilePath/GlobPattern.hs:154:48: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+154 |                           Nothing -> matchAny (tail cs')
+    |                                                ^^^^
+
+System/FilePath/GlobPattern.hs:162:48: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+162 |                          Nothing -> matchDir $ tail cs'
+    |                                                ^^^^
+
 [2 of 4] Compiling System.FilePath.Glob
 [3 of 4] Compiling System.FilePath.Find
-
 System/FilePath/Find.hs:227:20: warning: [GHC-63397] [-Wname-shadowing]
     This binding for ‘depth’ shadows the existing binding
       defined at System/FilePath/Find.hs:195:1
@@ -25,7 +73,7 @@ System/FilePath/Find.hs:227:20: warning: [GHC-63397] [-Wname-shadowing]
 System/FilePath/Find.hs:231:9: warning: [GHC-63397] [-Wname-shadowing]
     This binding for ‘traverse’ shadows the existing binding
       imported from ‘Prelude’ at System/FilePath/Find.hs:39:8-27
-      (and originally defined in ‘Data.Traversable’)
+      (and originally defined in ‘ghc-internal-9.1002.0:GHC.Internal.Data.Traversable’)
     |
 231 |         traverse dir depth dirSt = do
     |         ^^^^^^^^
@@ -68,7 +116,7 @@ System/FilePath/Find.hs:274:26: warning: [GHC-63397] [-Wname-shadowing]
 System/FilePath/Find.hs:279:9: warning: [GHC-63397] [-Wname-shadowing]
     This binding for ‘traverse’ shadows the existing binding
       imported from ‘Prelude’ at System/FilePath/Find.hs:39:8-27
-      (and originally defined in ‘Data.Traversable’)
+      (and originally defined in ‘ghc-internal-9.1002.0:GHC.Internal.Data.Traversable’)
     |
 279 |         traverse state dir depth dirSt = handle (errHandler dir state) $
     |         ^^^^^^^^
@@ -100,4 +148,5 @@ System/FilePath/Find.hs:284:25: warning: [GHC-63397] [-Wname-shadowing]
     |
 284 |                     let path = dir </> name
     |                         ^^^^
+
 [4 of 4] Compiling System.FilePath.Manip

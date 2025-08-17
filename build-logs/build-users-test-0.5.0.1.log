@@ -1,10 +1,19 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - users-test-0.5.0.1 (lib) (first run)
 Configuring library for users-test-0.5.0.1...
 Preprocessing library for users-test-0.5.0.1...
 Building library for users-test-0.5.0.1...
-
-on the commandline: warning: [-Wdeprecated-flags]
+on the commandline: warning: [GHC-53692] [-Wdeprecated-flags]
     -auto-all is deprecated: Use -fprof-auto instead
+
 [1 of 1] Compiling Web.Users.TestSpec
+src/Web/Users/TestSpec.hs:77:21: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+77 |                     head allUsers `shouldBe` (userId3, hidePassword userC)
+   |                     ^^^^
+

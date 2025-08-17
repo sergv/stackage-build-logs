@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - ramus-0.1.2 (lib) (first run)
  - ramus-0.1.2 (test:ramus-test-suite) (first run)
@@ -6,17 +7,16 @@ Configuring library for ramus-0.1.2...
 Preprocessing library for ramus-0.1.2...
 Building library for ramus-0.1.2...
 [1 of 5] Compiling Ramus.Internal
-
-library/Ramus/Internal.hs:6:1: warning: [-Wunused-imports]
+library/Ramus/Internal.hs:6:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
   |
 6 | import Data.Monoid
   | ^^^^^^^^^^^^^^^^^^
-[2 of 5] Compiling Ramus.Signal
 
-library/Ramus/Signal.hs:30:1: warning: [-Wunused-imports]
+[2 of 5] Compiling Ramus.Signal
+library/Ramus/Signal.hs:30:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Semigroup’ is redundant
       except perhaps to import instances from ‘Data.Semigroup’
     To import instances alone, use: import Data.Semigroup()
@@ -24,7 +24,7 @@ library/Ramus/Signal.hs:30:1: warning: [-Wunused-imports]
 30 | import Data.Semigroup
    | ^^^^^^^^^^^^^^^^^^^^^
 
-library/Ramus/Signal.hs:31:1: warning: [-Wunused-imports]
+library/Ramus/Signal.hs:31:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Foldable’ is redundant
       except perhaps to import instances from ‘Data.Foldable’
     To import instances alone, use: import Data.Foldable()
@@ -32,14 +32,14 @@ library/Ramus/Signal.hs:31:1: warning: [-Wunused-imports]
 31 | import Data.Foldable
    | ^^^^^^^^^^^^^^^^^^^^
 
-library/Ramus/Signal.hs:100:1: warning: [-Wunused-top-binds]
+library/Ramus/Signal.hs:100:1: warning: [GHC-40910] [-Wunused-top-binds]
     Defined but not used: ‘unwrap’
     |
 100 | unwrap = undefined
     | ^^^^^^
 
 library/Ramus/Signal.hs:169:1: warning: [GHC-90177] [-Worphans]
-    Orphan instance: instance Functor Signal
+    Orphan class instance: instance Functor Signal
     Suggested fix:
       Move the instance declaration to the module of the class or of the type, or
       wrap the type with a newtype and declare the instance on the new type.
@@ -48,7 +48,7 @@ library/Ramus/Signal.hs:169:1: warning: [GHC-90177] [-Worphans]
     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 library/Ramus/Signal.hs:175:1: warning: [GHC-90177] [-Worphans]
-    Orphan instance: instance Applicative Signal
+    Orphan class instance: instance Applicative Signal
     Suggested fix:
       Move the instance declaration to the module of the class or of the type, or
       wrap the type with a newtype and declare the instance on the new type.
@@ -57,185 +57,185 @@ library/Ramus/Signal.hs:175:1: warning: [GHC-90177] [-Worphans]
     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 library/Ramus/Signal.hs:185:1: warning: [GHC-90177] [-Worphans]
-    Orphan instance: instance Semigroup (Signal a)
+    Orphan class instance: instance Semigroup (Signal a)
     Suggested fix:
       Move the instance declaration to the module of the class or of the type, or
       wrap the type with a newtype and declare the instance on the new type.
     |
 185 | instance Semigroup (Signal a) where
     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
 [3 of 5] Compiling Ramus.Channel
 [4 of 5] Compiling Ramus.Time
-
-library/Ramus/Time.hs:56:20: warning: [-Wunused-matches]
+library/Ramus/Time.hs:56:20: warning: [GHC-40910] [-Wunused-matches]
     Defined but not used: ‘val’
    |
 56 |   sig `subscribe` \val -> do
    |                    ^^^
-[5 of 5] Compiling Ramus.DOM
 
-library/Ramus/DOM.hs:6:23: warning: [-Wunused-top-binds]
+[5 of 5] Compiling Ramus.DOM
+library/Ramus/DOM.hs:6:23: warning: [GHC-40910] [-Wunused-top-binds]
     Defined but not used: data constructor ‘CoordinatePair’
   |
 6 | data CoordinatePair = CoordinatePair { x :: Int, y :: Int }
   |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-library/Ramus/DOM.hs:6:40: warning: [-Wunused-top-binds]
-    Defined but not used: ‘x’
+library/Ramus/DOM.hs:6:40: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: record field of CoordinatePair ‘x’
   |
 6 | data CoordinatePair = CoordinatePair { x :: Int, y :: Int }
   |                                        ^
 
-library/Ramus/DOM.hs:6:50: warning: [-Wunused-top-binds]
-    Defined but not used: ‘y’
+library/Ramus/DOM.hs:6:50: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: record field of CoordinatePair ‘y’
   |
 6 | data CoordinatePair = CoordinatePair { x :: Int, y :: Int }
   |                                                  ^
 
-library/Ramus/DOM.hs:7:23: warning: [-Wunused-top-binds]
+library/Ramus/DOM.hs:7:23: warning: [GHC-40910] [-Wunused-top-binds]
     Defined but not used: data constructor ‘DimensionPair’
   |
 7 | data DimensionPair  = DimensionPair { w :: Int, h :: Int }
   |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-library/Ramus/DOM.hs:7:39: warning: [-Wunused-top-binds]
-    Defined but not used: ‘w’
+library/Ramus/DOM.hs:7:39: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: record field of DimensionPair ‘w’
   |
 7 | data DimensionPair  = DimensionPair { w :: Int, h :: Int }
   |                                       ^
 
-library/Ramus/DOM.hs:7:49: warning: [-Wunused-top-binds]
-    Defined but not used: ‘h’
+library/Ramus/DOM.hs:7:49: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: record field of DimensionPair ‘h’
   |
 7 | data DimensionPair  = DimensionPair { w :: Int, h :: Int }
   |                                                 ^
 
-library/Ramus/DOM.hs:12:1: warning: [-Wunused-top-binds]
+library/Ramus/DOM.hs:12:1: warning: [GHC-40910] [-Wunused-top-binds]
     Defined but not used: ‘keyPressed’
    |
 12 | keyPressed = undefined
    | ^^^^^^^^^^
 
-library/Ramus/DOM.hs:17:1: warning: [-Wunused-top-binds]
+library/Ramus/DOM.hs:17:1: warning: [GHC-40910] [-Wunused-top-binds]
     Defined but not used: ‘mouseButton’
    |
 17 | mouseButton = undefined
    | ^^^^^^^^^^^
 
-library/Ramus/DOM.hs:19:14: warning: [-Wunused-top-binds]
+library/Ramus/DOM.hs:19:14: warning: [GHC-40910] [-Wunused-top-binds]
     Defined but not used: data constructor ‘Touch’
    |
 19 | data Touch = Touch
    |              ^^^^^^...
 
-library/Ramus/DOM.hs:20:5: warning: [-Wunused-top-binds]
-    Defined but not used: ‘id’
+library/Ramus/DOM.hs:20:5: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: record field of Touch ‘id’
    |
 20 |   { id :: String
    |     ^^
 
-library/Ramus/DOM.hs:21:5: warning: [-Wunused-top-binds]
-    Defined but not used: ‘screenX’
+library/Ramus/DOM.hs:21:5: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: record field of Touch ‘screenX’
    |
 21 |   , screenX :: Int
    |     ^^^^^^^
 
-library/Ramus/DOM.hs:22:5: warning: [-Wunused-top-binds]
-    Defined but not used: ‘screenY’
+library/Ramus/DOM.hs:22:5: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: record field of Touch ‘screenY’
    |
 22 |   , screenY :: Int
    |     ^^^^^^^
 
-library/Ramus/DOM.hs:24:5: warning: [-Wunused-top-binds]
-    Defined but not used: ‘clientX’
+library/Ramus/DOM.hs:24:5: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: record field of Touch ‘clientX’
    |
 24 |   , clientX :: Int
    |     ^^^^^^^
 
-library/Ramus/DOM.hs:25:5: warning: [-Wunused-top-binds]
-    Defined but not used: ‘clientY’
+library/Ramus/DOM.hs:25:5: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: record field of Touch ‘clientY’
    |
 25 |   , clientY :: Int
    |     ^^^^^^^
 
-library/Ramus/DOM.hs:27:5: warning: [-Wunused-top-binds]
-    Defined but not used: ‘pageX’
+library/Ramus/DOM.hs:27:5: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: record field of Touch ‘pageX’
    |
 27 |   , pageX :: Int
    |     ^^^^^
 
-library/Ramus/DOM.hs:28:5: warning: [-Wunused-top-binds]
-    Defined but not used: ‘pageY’
+library/Ramus/DOM.hs:28:5: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: record field of Touch ‘pageY’
    |
 28 |   , pageY :: Int
    |     ^^^^^
 
-library/Ramus/DOM.hs:30:5: warning: [-Wunused-top-binds]
-    Defined but not used: ‘radiusX’
+library/Ramus/DOM.hs:30:5: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: record field of Touch ‘radiusX’
    |
 30 |   , radiusX :: Int
    |     ^^^^^^^
 
-library/Ramus/DOM.hs:31:5: warning: [-Wunused-top-binds]
-    Defined but not used: ‘radiusY’
+library/Ramus/DOM.hs:31:5: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: record field of Touch ‘radiusY’
    |
 31 |   , radiusY :: Int
    |     ^^^^^^^
 
-library/Ramus/DOM.hs:33:5: warning: [-Wunused-top-binds]
-    Defined but not used: ‘rotationAngle’
+library/Ramus/DOM.hs:33:5: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: record field of Touch ‘rotationAngle’
    |
 33 |   , rotationAngle :: Float
    |     ^^^^^^^^^^^^^
 
-library/Ramus/DOM.hs:34:5: warning: [-Wunused-top-binds]
-    Defined but not used: ‘force’
+library/Ramus/DOM.hs:34:5: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: record field of Touch ‘force’
    |
 34 |   , force :: Float
    |     ^^^^^
 
-library/Ramus/DOM.hs:40:1: warning: [-Wunused-top-binds]
+library/Ramus/DOM.hs:40:1: warning: [GHC-40910] [-Wunused-top-binds]
     Defined but not used: ‘touch’
    |
 40 | touch = undefined
    | ^^^^^
 
-library/Ramus/DOM.hs:45:1: warning: [-Wunused-top-binds]
+library/Ramus/DOM.hs:45:1: warning: [GHC-40910] [-Wunused-top-binds]
     Defined but not used: ‘tap’
    |
 45 | tap = undefined
    | ^^^
 
-library/Ramus/DOM.hs:49:1: warning: [-Wunused-top-binds]
+library/Ramus/DOM.hs:49:1: warning: [GHC-40910] [-Wunused-top-binds]
     Defined but not used: ‘mousePos’
    |
 49 | mousePos = undefined
    | ^^^^^^^^
 
-library/Ramus/DOM.hs:54:1: warning: [-Wunused-top-binds]
+library/Ramus/DOM.hs:54:1: warning: [GHC-40910] [-Wunused-top-binds]
     Defined but not used: ‘animationFrame’
    |
 54 | animationFrame = undefined
    | ^^^^^^^^^^^^^^
 
-library/Ramus/DOM.hs:58:1: warning: [-Wunused-top-binds]
+library/Ramus/DOM.hs:58:1: warning: [GHC-40910] [-Wunused-top-binds]
     Defined but not used: ‘windowDimensions’
    |
 58 | windowDimensions = undefined constant
    | ^^^^^^^^^^^^^^^^
+
 Configuring test suite 'ramus-test-suite' for ramus-0.1.2...
 Preprocessing test suite 'ramus-test-suite' for ramus-0.1.2...
 Building test suite 'ramus-test-suite' for ramus-0.1.2...
 [1 of 2] Compiling SignalTester
-
-test-suite/SignalTester.hs:42:13: warning: [-Wunused-matches]
+test-suite/SignalTester.hs:42:13: warning: [GHC-40910] [-Wunused-matches]
     Defined but not used: ‘shifted’
    |
 42 |             shifted <- shift vals
    |             ^^^^^^^
-[2 of 2] Compiling Main
 
-test-suite/Main.hs:9:1: warning: [-Wunused-imports]
+[2 of 2] Compiling Main
+test-suite/Main.hs:9:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Semigroup’ is redundant
       except perhaps to import instances from ‘Data.Semigroup’
     To import instances alone, use: import Data.Semigroup()
@@ -243,7 +243,7 @@ test-suite/Main.hs:9:1: warning: [-Wunused-imports]
 9 | import Data.Semigroup
   | ^^^^^^^^^^^^^^^^^^^^^
 
-test-suite/Main.hs:14:1: warning: [-Wunused-imports]
+test-suite/Main.hs:14:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Ramus.Internal’ is redundant
       except perhaps to import instances from ‘Ramus.Internal’
     To import instances alone, use: import Ramus.Internal()
@@ -356,8 +356,9 @@ test-suite/Main.hs:99:37: warning: [GHC-18042] [-Wtype-defaults]
       In the second argument of ‘($)’, namely
         ‘do chan <- channel 1
             runSignal $ tick 1 1 [2, 3, ....] ~> send chan
-            Channel.subscribe chan `shouldYield` [2, 3, ....]’
+            subscribe chan `shouldYield` [2, 3, ....]’
    |
 99 |             chan <- Channel.channel 1
    |                                     ^
-[3 of 3] Linking /tmp/workdir-ramus/ramus-0.1.2/dist-newstyle/build/x86_64-linux/ghc-9.6.5/ramus-0.1.2/t/ramus-test-suite/build/ramus-test-suite/ramus-test-suite
+
+[3 of 3] Linking /tmp/workdir-ramus/ramus-0.1.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/ramus-0.1.2/t/ramus-test-suite/build/ramus-test-suite/ramus-test-suite

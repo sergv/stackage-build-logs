@@ -1,0 +1,808 @@
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - aeson-typescript-0.6.4.0 (test:aeson-typescript-tests) (ephemeral targets)
+Preprocessing test suite 'aeson-typescript-tests' for aeson-typescript-0.6.4.0...
+Building test suite 'aeson-typescript-tests' for aeson-typescript-0.6.4.0...
+src/Data/Aeson/TypeScript/Instances.hs:4:14: warning: [GHC-53692] [-Wdeprecated-flags]
+    -XOverlappingInstances is deprecated: instead use per-instance pragmas OVERLAPPING/OVERLAPPABLE/OVERLAPS
+  |
+4 | {-# LANGUAGE OverlappingInstances #-}
+  |              ^^^^^^^^^^^^^^^^^^^^
+
+src/Data/Aeson/TypeScript/Instances.hs:4:14: warning: [GHC-53692] [-Wdeprecated-flags]
+    -XOverlappingInstances is deprecated: instead use per-instance pragmas OVERLAPPING/OVERLAPPABLE/OVERLAPS
+  |
+4 | {-# LANGUAGE OverlappingInstances #-}
+  |              ^^^^^^^^^^^^^^^^^^^^
+
+Running 1 test suites...
+Test suite aeson-typescript-tests: RUNNING...
+
+Basic tests
+  tagSingleConstructors and constructorTagModifier
+    Works with a normal unit [✔]
+    Works with a unit with constructorTagModifier [✔]
+Closed type families
+  simple newtype
+    makes the declaration and types correctly [✔]
+  Complicated Beam-like user type
+    makes the declaration and types correctly [✔]
+    get the declarations recursively [✔]
+Formatting
+  when given a Sum Type
+    and the TypeAlias format option is set
+      should generate a TS string literal type [✔]
+    and the Enum format option is set
+      should generate a TS Enum [✔]
+      should generate a TS Enum with multiple [✔]
+      should generate a normal type from Unit, singe tagSingleConstructors=False by default [✔]
+      should generate a suitable enum from UnitTagSingle [✔]
+    and the EnumWithType format option is set
+      should generate a TS Enum with a type declaration [✔]
+      should also work for UnitTagSingle [✔]
+  when the name has an apostrophe
+    in the type
+      throws an error [✔]
+    in the constructor
+      throws an error [✔]
+  when @no-emit-typescript is present
+    works on records and constructors of record types [✔]
+    works on normal constructors [✔]
+Generic instances
+  Complex makes the declaration and types correctly [✔]
+  Complex2 makes the declaration and types correctly [✔]
+  Complex3 makes the declaration and types correctly [✔]
+  Complex4 makes the declaration and types correctly [✔]
+getDoc tests
+  Works with a simple record type [✔]
+Higher kinds
+  Kind * -> *
+    makes the declaration and types correctly [✔]
+    works when referenced in another type [✔]
+    works with an interface inside [✔]
+  Kind * -> * -> *
+    makes the declaration and type correctly [✔]
+  TSC compiler checks
+Invoking yarn to install tsc compiler (make sure yarn is installed). CWD is /tmp/workdir-aeson-typescript/aeson-typescript-0.6.4.0
+Invoking yarn to install tsc compiler (make sure yarn is installed). CWD is /tmp/workdir-aeson-typescript/aeson-typescript-0.6.4.0
+Invoking yarn to install tsc compiler (make sure yarn is installed). CWD is /tmp/workdir-aeson-typescript/aeson-typescript-0.6.4.0
+Invoking yarn to install tsc compiler (make sure yarn is installed). CWD is /tmp/workdir-aeson-typescript/aeson-typescript-0.6.4.0
+Invoking yarn to install tsc compiler (make sure yarn is installed). CWD is /tmp/workdir-aeson-typescript/aeson-typescript-0.6.4.0
+Invoking yarn to install tsc compiler (make sure yarn is installed). CWD is /tmp/workdir-aeson-typescript/aeson-typescript-0.6.4.0
+Invoking yarn to install tsc compiler (make sure yarn is installed). CWD is /tmp/workdir-aeson-typescript/aeson-typescript-0.6.4.0
+Invoking yarn to install tsc compiler (make sure yarn is installed). CWD is /tmp/workdir-aeson-typescript/aeson-typescript-0.6.4.0
+Invoking yarn to install tsc compiler (make sure yarn is installed). CWD is /tmp/workdir-aeson-typescript/aeson-typescript-0.6.4.0
+Invoking yarn to install tsc compiler (make sure yarn is installed). CWD is /tmp/workdir-aeson-typescript/aeson-typescript-0.6.4.0
+Invoking yarn to install tsc compiler (make sure yarn is installed). CWD is /tmp/workdir-aeson-typescript/aeson-typescript-0.6.4.0
+Invoking yarn to install tsc compiler (make sure yarn is installed). CWD is /tmp/workdir-aeson-typescript/aeson-typescript-0.6.4.0
+    type checks everything with tsc [✔]
+Data.Aeson.TypeScript.LegalName
+  checkIllegalNameChars
+    legal Haskell names
+      allows an uppercase letter [✔]
+      allows an underscore [✔]
+      reports that ' is illegal [✔]
+    illegal Haskell names
+      allows a $ [✔]
+NoOmitNothingFields
+  encodes as expected [✔]
+  NoOmitNothingFields
+    type checks everything with tsc [✔]
+ObjectWithSingleField with tagSingleConstructors=False
+  type checks everything with tsc [✘]
+ObjectWithSingleField with tagSingleConstructors=True
+  type checks everything with tsc [✘]
+OmitNothingFields
+  type checks everything with tsc [✔]
+TaggedObject with tagSingleConstructors=False
+  type checks everything with tsc [✔]
+TaggedObject with tagSingleConstructors=True
+  type checks everything with tsc [✔]
+TwoElemArray with tagSingleConstructors=False
+  type checks everything with tsc [✘]
+TwoElemArray with tagSingleConstructors=True
+  type checks everything with tsc [✔]
+UntaggedNoTagSingleConstructors
+  type checks everything with tsc [✘]
+UntaggedTagSingleConstructors
+  type checks everything with tsc [✘]
+UnwrapUnaryRecords
+  encodes as expected [✔]
+  UnwrapUnaryRecords
+    type checks everything with tsc [✔]
+
+Failures:
+
+  test/Util.hs:76:5: 
+  1) ObjectWithSingleField with tagSingleConstructors=False type checks everything with tsc
+       uncaught exception: ErrorCall
+       TSC check failed.
+       File contents:
+       
+       type Unit = IUnit;
+       
+       type IUnit = void[];
+       
+       type OneFieldRecordless = IOneFieldRecordless;
+       
+       type IOneFieldRecordless = number;
+       
+       type OneField = IOneField;
+       
+       interface IOneField {
+         simpleString: string;
+       }
+       
+       type TwoFieldRecordless = ITwoFieldRecordless;
+       
+       type ITwoFieldRecordless = [number, string];
+       
+       type TwoField = ITwoField;
+       
+       interface ITwoField {
+         doubleInt: number;
+         doubleString: string;
+       }
+       
+       type Hybrid = {"HybridSimple": IHybridSimple} | {"HybridRecord": IHybridRecord};
+       
+       type IHybridSimple = number;
+       
+       interface IHybridRecord {
+         hybridString: string;
+       }
+       
+       type TwoConstructor = {"Con1": ICon1} | {"Con2": ICon2};
+       
+       interface ICon1 {
+         con1String: string;
+       }
+       
+       interface ICon2 {
+         con2String: string;
+         con2Int: number;
+       }
+       
+       type Complex<T> = {"Nullary": INullary<T>} | {"Unary": IUnary<T>} | {"Product": IProduct<T>} | {"Record": IRecord<T>};
+       
+       type INullary<T> = void[];
+       
+       type IUnary<T> = number;
+       
+       type IProduct<T> = [string, string, T];
+       
+       interface IRecord<T> {
+         testOne: number;
+         testTwo: boolean;
+         testThree: Complex<T>;
+       }
+       
+       type Optional = IOptional;
+       
+       interface IOptional {
+         optionalInt: number | null;
+       }
+       
+       type AesonTypes = IAesonTypes;
+       
+       interface IAesonTypes {
+         aesonValue: any;
+         aesonObject: {[k: string]: any};
+       }
+       
+       type Numbers = INumbers;
+       
+       interface INumbers {
+         natural: number;
+         word: number;
+         word16: number;
+         word32: number;
+         word64: number;
+       }
+       
+       type FancyFunctors = IFancyFunctors;
+       
+       interface IFancyFunctors {
+         nonEmpty: number[];
+         const: number;
+         product: [number, number];
+         compose: number;
+       }
+       
+       let x1: Unit = [];
+       let x2: OneFieldRecordless = 42;
+       let x3: OneField = {"simpleString":"asdf"};
+       let x4: TwoFieldRecordless = [42,"asdf"];
+       let x5: TwoField = {"doubleInt":42,"doubleString":"asdf"};
+       let x6: TwoConstructor = {"Con1":{"con1String":"asdf"}};
+       let x7: TwoConstructor = {"Con2":{"con2String":"asdf","con2Int":42}};
+       let x8: Hybrid = {"HybridSimple":42};
+       let x9: Hybrid = {"HybridRecord":{"hybridString":"asdf"}};
+       let x10: Complex<number> = {"Nullary":[]};
+       let x11: Complex<number> = {"Unary":42};
+       let x12: Complex<number> = {"Product":["asdf","g",42]};
+       let x13: Complex<number> = {"Record":{"testOne":3,"testTwo":true,"testThree":{"Product":["test","A",123]}}};
+       let x14: Optional = {"optionalInt":null};
+       let x15: Optional = {"optionalInt":1};
+       let x16: AesonTypes = {"aesonValue":{"foo":42},"aesonObject":{"foo":42}};
+       let x17: Numbers = {"natural":42,"word":42,"word16":42,"word32":42,"word64":42};
+       let x18: FancyFunctors = {"nonEmpty":[42],"const":42,"product":[42,42],"compose":42};
+       
+       
+       
+       Stdout:
+       
+       
+       Stderr:
+       node:internal/modules/cjs/loader:1137
+         throw err;
+         ^
+       
+       Error: Cannot find module '/tmp/workdir-aeson-typescript/aeson-typescript-0.6.4.0/test/assets/node_modules/.bin/tsc'
+           at Module._resolveFilename (node:internal/modules/cjs/loader:1134:15)
+           at Module._load (node:internal/modules/cjs/loader:975:27)
+           at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:128:12)
+           at node:internal/main/run_main_module:28:49 {
+         code: 'MODULE_NOT_FOUND',
+         requireStack: []
+       }
+       
+       Node.js v18.19.1
+       
+       CallStack (from HasCallStack):
+         error, called at test/Util.hs:76:5 in aeson-typescript-0.6.4.0-inplace-aeson-typescript-tests:Util
+
+  To rerun use: --match "/ObjectWithSingleField with tagSingleConstructors=False/type checks everything with tsc/" --seed 734770871
+
+  test/Util.hs:76:5: 
+  2) ObjectWithSingleField with tagSingleConstructors=True type checks everything with tsc
+       uncaught exception: ErrorCall
+       TSC check failed.
+       File contents:
+       
+       type Unit = "Unit";
+       
+       type OneFieldRecordless = {"OneFieldRecordless": IOneFieldRecordless};
+       
+       type IOneFieldRecordless = number;
+       
+       type OneField = {"OneField": IOneField};
+       
+       interface IOneField {
+         simpleString: string;
+       }
+       
+       type TwoFieldRecordless = {"TwoFieldRecordless": ITwoFieldRecordless};
+       
+       type ITwoFieldRecordless = [number, string];
+       
+       type TwoField = {"TwoField": ITwoField};
+       
+       interface ITwoField {
+         doubleInt: number;
+         doubleString: string;
+       }
+       
+       type Hybrid = {"HybridSimple": IHybridSimple} | {"HybridRecord": IHybridRecord};
+       
+       type IHybridSimple = number;
+       
+       interface IHybridRecord {
+         hybridString: string;
+       }
+       
+       type TwoConstructor = {"Con1": ICon1} | {"Con2": ICon2};
+       
+       interface ICon1 {
+         con1String: string;
+       }
+       
+       interface ICon2 {
+         con2String: string;
+         con2Int: number;
+       }
+       
+       type Complex<T> = {"Nullary": INullary<T>} | {"Unary": IUnary<T>} | {"Product": IProduct<T>} | {"Record": IRecord<T>};
+       
+       type INullary<T> = void[];
+       
+       type IUnary<T> = number;
+       
+       type IProduct<T> = [string, string, T];
+       
+       interface IRecord<T> {
+         testOne: number;
+         testTwo: boolean;
+         testThree: Complex<T>;
+       }
+       
+       type Optional = {"Optional": IOptional};
+       
+       interface IOptional {
+         optionalInt: number | null;
+       }
+       
+       type AesonTypes = {"AesonTypes": IAesonTypes};
+       
+       interface IAesonTypes {
+         aesonValue: any;
+         aesonObject: {[k: string]: any};
+       }
+       
+       type Numbers = {"Numbers": INumbers};
+       
+       interface INumbers {
+         natural: number;
+         word: number;
+         word16: number;
+         word32: number;
+         word64: number;
+       }
+       
+       type FancyFunctors = {"FancyFunctors": IFancyFunctors};
+       
+       interface IFancyFunctors {
+         nonEmpty: number[];
+         const: number;
+         product: [number, number];
+         compose: number;
+       }
+       
+       let x1: Unit = "Unit";
+       let x2: OneFieldRecordless = {"OneFieldRecordless":42};
+       let x3: OneField = {"OneField":{"simpleString":"asdf"}};
+       let x4: TwoFieldRecordless = {"TwoFieldRecordless":[42,"asdf"]};
+       let x5: TwoField = {"TwoField":{"doubleInt":42,"doubleString":"asdf"}};
+       let x6: TwoConstructor = {"Con1":{"con1String":"asdf"}};
+       let x7: TwoConstructor = {"Con2":{"con2String":"asdf","con2Int":42}};
+       let x8: Hybrid = {"HybridSimple":42};
+       let x9: Hybrid = {"HybridRecord":{"hybridString":"asdf"}};
+       let x10: Complex<number> = {"Nullary":[]};
+       let x11: Complex<number> = {"Unary":42};
+       let x12: Complex<number> = {"Product":["asdf","g",42]};
+       let x13: Complex<number> = {"Record":{"testOne":3,"testTwo":true,"testThree":{"Product":["test","A",123]}}};
+       let x14: Optional = {"Optional":{"optionalInt":null}};
+       let x15: Optional = {"Optional":{"optionalInt":1}};
+       let x16: AesonTypes = {"AesonTypes":{"aesonValue":{"foo":42},"aesonObject":{"foo":42}}};
+       let x17: Numbers = {"Numbers":{"natural":42,"word":42,"word16":42,"word32":42,"word64":42}};
+       let x18: FancyFunctors = {"FancyFunctors":{"nonEmpty":[42],"const":42,"product":[42,42],"compose":42}};
+       
+       
+       
+       Stdout:
+       test/assets/node_modules/typescript/lib/lib.d.ts(14762,60): error TS1005: '{' expected.
+       
+       
+       Stderr:
+       
+       CallStack (from HasCallStack):
+         error, called at test/Util.hs:76:5 in aeson-typescript-0.6.4.0-inplace-aeson-typescript-tests:Util
+
+  To rerun use: --match "/ObjectWithSingleField with tagSingleConstructors=True/type checks everything with tsc/" --seed 734770871
+
+  test/Util.hs:76:5: 
+  3) TwoElemArray with tagSingleConstructors=False type checks everything with tsc
+       uncaught exception: ErrorCall
+       TSC check failed.
+       File contents:
+       
+       type Unit = IUnit;
+       
+       type IUnit = void[];
+       
+       type OneFieldRecordless = IOneFieldRecordless;
+       
+       type IOneFieldRecordless = number;
+       
+       type OneField = IOneField;
+       
+       interface IOneField {
+         simpleString: string;
+       }
+       
+       type TwoFieldRecordless = ITwoFieldRecordless;
+       
+       type ITwoFieldRecordless = [number, string];
+       
+       type TwoField = ITwoField;
+       
+       interface ITwoField {
+         doubleInt: number;
+         doubleString: string;
+       }
+       
+       type Hybrid = ["HybridSimple", IHybridSimple] | ["HybridRecord", IHybridRecord];
+       
+       type IHybridSimple = number;
+       
+       interface IHybridRecord {
+         hybridString: string;
+       }
+       
+       type TwoConstructor = ["Con1", ICon1] | ["Con2", ICon2];
+       
+       interface ICon1 {
+         con1String: string;
+       }
+       
+       interface ICon2 {
+         con2String: string;
+         con2Int: number;
+       }
+       
+       type Complex<T> = ["Nullary", INullary<T>] | ["Unary", IUnary<T>] | ["Product", IProduct<T>] | ["Record", IRecord<T>];
+       
+       type INullary<T> = void[];
+       
+       type IUnary<T> = number;
+       
+       type IProduct<T> = [string, string, T];
+       
+       interface IRecord<T> {
+         testOne: number;
+         testTwo: boolean;
+         testThree: Complex<T>;
+       }
+       
+       type Optional = IOptional;
+       
+       interface IOptional {
+         optionalInt: number | null;
+       }
+       
+       type AesonTypes = IAesonTypes;
+       
+       interface IAesonTypes {
+         aesonValue: any;
+         aesonObject: {[k: string]: any};
+       }
+       
+       type Numbers = INumbers;
+       
+       interface INumbers {
+         natural: number;
+         word: number;
+         word16: number;
+         word32: number;
+         word64: number;
+       }
+       
+       type FancyFunctors = IFancyFunctors;
+       
+       interface IFancyFunctors {
+         nonEmpty: number[];
+         const: number;
+         product: [number, number];
+         compose: number;
+       }
+       
+       let x1: Unit = [];
+       let x2: OneFieldRecordless = 42;
+       let x3: OneField = {"simpleString":"asdf"};
+       let x4: TwoFieldRecordless = [42,"asdf"];
+       let x5: TwoField = {"doubleInt":42,"doubleString":"asdf"};
+       let x6: TwoConstructor = ["Con1",{"con1String":"asdf"}];
+       let x7: TwoConstructor = ["Con2",{"con2String":"asdf","con2Int":42}];
+       let x8: Hybrid = ["HybridSimple",42];
+       let x9: Hybrid = ["HybridRecord",{"hybridString":"asdf"}];
+       let x10: Complex<number> = ["Nullary",[]];
+       let x11: Complex<number> = ["Unary",42];
+       let x12: Complex<number> = ["Product",["asdf","g",42]];
+       let x13: Complex<number> = ["Record",{"testOne":3,"testTwo":true,"testThree":["Product",["test","A",123]]}];
+       let x14: Optional = {"optionalInt":null};
+       let x15: Optional = {"optionalInt":1};
+       let x16: AesonTypes = {"aesonValue":{"foo":42},"aesonObject":{"foo":42}};
+       let x17: Numbers = {"natural":42,"word":42,"word16":42,"word32":42,"word64":42};
+       let x18: FancyFunctors = {"nonEmpty":[42],"const":42,"product":[42,42],"compose":42};
+       
+       
+       
+       Stdout:
+       
+       
+       Stderr:
+       node:internal/modules/cjs/loader:1137
+         throw err;
+         ^
+       
+       Error: Cannot find module '/tmp/workdir-aeson-typescript/aeson-typescript-0.6.4.0/test/assets/node_modules/.bin/tsc'
+           at Module._resolveFilename (node:internal/modules/cjs/loader:1134:15)
+           at Module._load (node:internal/modules/cjs/loader:975:27)
+           at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:128:12)
+           at node:internal/main/run_main_module:28:49 {
+         code: 'MODULE_NOT_FOUND',
+         requireStack: []
+       }
+       
+       Node.js v18.19.1
+       
+       CallStack (from HasCallStack):
+         error, called at test/Util.hs:76:5 in aeson-typescript-0.6.4.0-inplace-aeson-typescript-tests:Util
+
+  To rerun use: --match "/TwoElemArray with tagSingleConstructors=False/type checks everything with tsc/" --seed 734770871
+
+  test/Util.hs:76:5: 
+  4) UntaggedNoTagSingleConstructors type checks everything with tsc
+       uncaught exception: ErrorCall
+       TSC check failed.
+       File contents:
+       
+       type Unit = IUnit;
+       
+       type IUnit = void[];
+       
+       type OneFieldRecordless = IOneFieldRecordless;
+       
+       type IOneFieldRecordless = number;
+       
+       type OneField = IOneField;
+       
+       interface IOneField {
+         simpleString: string;
+       }
+       
+       type TwoFieldRecordless = ITwoFieldRecordless;
+       
+       type ITwoFieldRecordless = [number, string];
+       
+       type TwoField = ITwoField;
+       
+       interface ITwoField {
+         doubleInt: number;
+         doubleString: string;
+       }
+       
+       type Hybrid = IHybridSimple | IHybridRecord;
+       
+       type IHybridSimple = number;
+       
+       interface IHybridRecord {
+         hybridString: string;
+       }
+       
+       type TwoConstructor = ICon1 | ICon2;
+       
+       interface ICon1 {
+         con1String: string;
+       }
+       
+       interface ICon2 {
+         con2String: string;
+         con2Int: number;
+       }
+       
+       type Complex<T> = "Nullary" | IUnary<T> | IProduct<T> | IRecord<T>;
+       
+       type IUnary<T> = number;
+       
+       type IProduct<T> = [string, string, T];
+       
+       interface IRecord<T> {
+         testOne: number;
+         testTwo: boolean;
+         testThree: Complex<T>;
+       }
+       
+       type Optional = IOptional;
+       
+       interface IOptional {
+         optionalInt: number | null;
+       }
+       
+       type AesonTypes = IAesonTypes;
+       
+       interface IAesonTypes {
+         aesonValue: any;
+         aesonObject: {[k: string]: any};
+       }
+       
+       type Numbers = INumbers;
+       
+       interface INumbers {
+         natural: number;
+         word: number;
+         word16: number;
+         word32: number;
+         word64: number;
+       }
+       
+       type FancyFunctors = IFancyFunctors;
+       
+       interface IFancyFunctors {
+         nonEmpty: number[];
+         const: number;
+         product: [number, number];
+         compose: number;
+       }
+       
+       let x1: Unit = [];
+       let x2: OneFieldRecordless = 42;
+       let x3: OneField = {"simpleString":"asdf"};
+       let x4: TwoFieldRecordless = [42,"asdf"];
+       let x5: TwoField = {"doubleInt":42,"doubleString":"asdf"};
+       let x6: TwoConstructor = {"con1String":"asdf"};
+       let x7: TwoConstructor = {"con2String":"asdf","con2Int":42};
+       let x8: Hybrid = 42;
+       let x9: Hybrid = {"hybridString":"asdf"};
+       let x10: Complex<number> = "Nullary";
+       let x11: Complex<number> = 42;
+       let x12: Complex<number> = ["asdf","g",42];
+       let x13: Complex<number> = {"testOne":3,"testTwo":true,"testThree":["test","A",123]};
+       let x14: Optional = {"optionalInt":null};
+       let x15: Optional = {"optionalInt":1};
+       let x16: AesonTypes = {"aesonValue":{"foo":42},"aesonObject":{"foo":42}};
+       let x17: Numbers = {"natural":42,"word":42,"word16":42,"word32":42,"word64":42};
+       let x18: FancyFunctors = {"nonEmpty":[42],"const":42,"product":[42,42],"compose":42};
+       
+       
+       
+       Stdout:
+       
+       
+       Stderr:
+       /tmp/workdir-aeson-typescript/aeson-typescript-0.6.4.0/test/assets/node_modules/typescript/lib/tsc.js:14260
+                       function parseAugmentsTag(atToken, tagName)
+                                                                  
+       
+       SyntaxError: Unexpected end of input
+           at internalCompileFunction (node:internal/vm:73:18)
+           at wrapSafe (node:internal/modules/cjs/loader:1274:20)
+           at Module._compile (node:internal/modules/cjs/loader:1320:27)
+           at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+           at Module.load (node:internal/modules/cjs/loader:1197:32)
+           at Module._load (node:internal/modules/cjs/loader:1013:12)
+           at Module.require (node:internal/modules/cjs/loader:1225:19)
+           at require (node:internal/modules/helpers:177:18)
+           at Object.<anonymous> (/tmp/workdir-aeson-typescript/aeson-typescript-0.6.4.0/test/assets/node_modules/typescript/bin/tsc:2:1)
+           at Module._compile (node:internal/modules/cjs/loader:1356:14)
+       
+       Node.js v18.19.1
+       
+       CallStack (from HasCallStack):
+         error, called at test/Util.hs:76:5 in aeson-typescript-0.6.4.0-inplace-aeson-typescript-tests:Util
+
+  To rerun use: --match "/UntaggedNoTagSingleConstructors/type checks everything with tsc/" --seed 734770871
+
+  test/Util.hs:76:5: 
+  5) UntaggedTagSingleConstructors type checks everything with tsc
+       uncaught exception: ErrorCall
+       TSC check failed.
+       File contents:
+       
+       type Unit = "Unit";
+       
+       type OneFieldRecordless = IOneFieldRecordless;
+       
+       type IOneFieldRecordless = number;
+       
+       type OneField = IOneField;
+       
+       interface IOneField {
+         simpleString: string;
+       }
+       
+       type TwoFieldRecordless = ITwoFieldRecordless;
+       
+       type ITwoFieldRecordless = [number, string];
+       
+       type TwoField = ITwoField;
+       
+       interface ITwoField {
+         doubleInt: number;
+         doubleString: string;
+       }
+       
+       type Hybrid = IHybridSimple | IHybridRecord;
+       
+       type IHybridSimple = number;
+       
+       interface IHybridRecord {
+         hybridString: string;
+       }
+       
+       type TwoConstructor = ICon1 | ICon2;
+       
+       interface ICon1 {
+         con1String: string;
+       }
+       
+       interface ICon2 {
+         con2String: string;
+         con2Int: number;
+       }
+       
+       type Complex<T> = "Nullary" | IUnary<T> | IProduct<T> | IRecord<T>;
+       
+       type IUnary<T> = number;
+       
+       type IProduct<T> = [string, string, T];
+       
+       interface IRecord<T> {
+         testOne: number;
+         testTwo: boolean;
+         testThree: Complex<T>;
+       }
+       
+       type Optional = IOptional;
+       
+       interface IOptional {
+         optionalInt: number | null;
+       }
+       
+       type AesonTypes = IAesonTypes;
+       
+       interface IAesonTypes {
+         aesonValue: any;
+         aesonObject: {[k: string]: any};
+       }
+       
+       type Numbers = INumbers;
+       
+       interface INumbers {
+         natural: number;
+         word: number;
+         word16: number;
+         word32: number;
+         word64: number;
+       }
+       
+       type FancyFunctors = IFancyFunctors;
+       
+       interface IFancyFunctors {
+         nonEmpty: number[];
+         const: number;
+         product: [number, number];
+         compose: number;
+       }
+       
+       let x1: Unit = "Unit";
+       let x2: OneFieldRecordless = 42;
+       let x3: OneField = {"simpleString":"asdf"};
+       let x4: TwoFieldRecordless = [42,"asdf"];
+       let x5: TwoField = {"doubleInt":42,"doubleString":"asdf"};
+       let x6: TwoConstructor = {"con1String":"asdf"};
+       let x7: TwoConstructor = {"con2String":"asdf","con2Int":42};
+       let x8: Hybrid = 42;
+       let x9: Hybrid = {"hybridString":"asdf"};
+       let x10: Complex<number> = "Nullary";
+       let x11: Complex<number> = 42;
+       let x12: Complex<number> = ["asdf","g",42];
+       let x13: Complex<number> = {"testOne":3,"testTwo":true,"testThree":["test","A",123]};
+       let x14: Optional = {"optionalInt":null};
+       let x15: Optional = {"optionalInt":1};
+       let x16: AesonTypes = {"aesonValue":{"foo":42},"aesonObject":{"foo":42}};
+       let x17: Numbers = {"natural":42,"word":42,"word16":42,"word32":42,"word64":42};
+       let x18: FancyFunctors = {"nonEmpty":[42],"const":42,"product":[42,42],"compose":42};
+       
+       
+       
+       Stdout:
+       error TS2318: Cannot find global type 'Array'.
+       error TS2318: Cannot find global type 'Boolean'.
+       error TS2318: Cannot find global type 'Function'.
+       error TS2318: Cannot find global type 'IArguments'.
+       error TS2318: Cannot find global type 'Number'.
+       error TS2318: Cannot find global type 'Object'.
+       error TS2318: Cannot find global type 'RegExp'.
+       error TS2318: Cannot find global type 'String'.
+       error TS6053: File '/tmp/workdir-aeson-typescript/aeson-typescript-0.6.4.0/test/assets/node_modules/typescript/lib/lib.d.ts' not found.
+       
+       
+       Stderr:
+       
+       CallStack (from HasCallStack):
+         error, called at test/Util.hs:76:5 in aeson-typescript-0.6.4.0-inplace-aeson-typescript-tests:Util
+
+  To rerun use: --match "/UntaggedTagSingleConstructors/type checks everything with tsc/" --seed 734770871
+
+Randomized with seed 734770871
+
+Finished in 16.8118 seconds
+43 examples, 5 failures
+Test suite aeson-typescript-tests: FAIL
+Test suite logged to:
+/tmp/workdir-aeson-typescript/aeson-typescript-0.6.4.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/aeson-typescript-0.6.4.0/t/aeson-typescript-tests/test/aeson-typescript-0.6.4.0-aeson-typescript-tests.log
+0 of 1 test suites (0 of 1 test cases) passed.
+Error: [Cabal-7125]
+Tests failed for test:aeson-typescript-tests from aeson-typescript-0.6.4.0.
+

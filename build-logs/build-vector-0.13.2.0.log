@@ -1,0 +1,237 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - vector-0.13.2.0 (lib) (first run)
+ - vector-0.13.2.0 (test:vector-tests-O2) (first run)
+ - vector-0.13.2.0 (test:vector-tests-O0) (first run)
+ - vector-0.13.2.0 (test:vector-inspection) (first run)
+ - vector-0.13.2.0 (test:vector-doctest) (first run)
+ - vector-0.13.2.0 (lib:benchmarks-O2) (first run)
+Configuring library for vector-0.13.2.0...
+Preprocessing library for vector-0.13.2.0...
+Building library for vector-0.13.2.0...
+[ 1 of 23] Compiling Data.Vector.Fusion.Stream.Monadic
+[ 2 of 23] Compiling Data.Vector.Fusion.Util
+[ 3 of 23] Compiling Data.Vector.Fusion.Bundle.Size
+[ 4 of 23] Compiling Data.Vector.Generic.Mutable.Base
+[ 5 of 23] Compiling Data.Vector.Generic.Base
+[ 6 of 23] Compiling Data.Vector.Internal.Check
+[ 7 of 23] Compiling Data.Vector.Fusion.Bundle.Monadic
+[ 8 of 23] Compiling Data.Vector.Fusion.Bundle
+[ 9 of 23] Compiling Data.Vector.Generic.Mutable
+[10 of 23] Compiling Data.Vector.Generic.New
+[11 of 23] Compiling Data.Vector.Generic
+[12 of 23] Compiling Data.Vector.Mutable
+[13 of 23] Compiling Data.Vector
+[14 of 23] Compiling Data.Vector.Primitive.Mutable
+[15 of 23] Compiling Data.Vector.Primitive
+[16 of 23] Compiling Data.Vector.Storable.Internal
+[17 of 23] Compiling Data.Vector.Storable.Mutable
+[18 of 23] Compiling Data.Vector.Storable
+[19 of 23] Compiling Data.Vector.Strict.Mutable
+[20 of 23] Compiling Data.Vector.Strict
+[21 of 23] Compiling Data.Vector.Unboxed.Base
+[22 of 23] Compiling Data.Vector.Unboxed
+[23 of 23] Compiling Data.Vector.Unboxed.Mutable
+Configuring test suite 'vector-tests-O2' for vector-0.13.2.0...
+Preprocessing test suite 'vector-tests-O2' for vector-0.13.2.0...
+Building test suite 'vector-tests-O2' for vector-0.13.2.0...
+[ 1 of 12] Compiling Boilerplater
+[ 2 of 12] Compiling Tests.Vector.UnitTests
+[ 3 of 12] Compiling Utilities
+tests/Utilities.hs:244:17: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+244 | postscanl f z = tail . scanl f z
+    |                 ^^^^
+
+tests/Utilities.hs:245:16: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+245 | prescanr f z = tail . scanr f z
+    |                ^^^^
+
+[ 4 of 12] Compiling Tests.Vector.Property
+tests/Tests/Vector/Property.hs:243:68: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+243 |     prop_head      :: P (v a -> a) = not . V.null ===> V.head `eq` head
+    |                                                                    ^^^^
+
+tests/Tests/Vector/Property.hs:256:76: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+256 |     prop_unsafeHead  :: P (v a -> a) = not . V.null ===> V.unsafeHead `eq` head
+    |                                                                            ^^^^
+
+tests/Tests/Vector/Property.hs:272:65: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+272 |     prop_tail :: P (v a -> v a) = not . V.null ===> V.tail `eq` tail
+    |                                                                 ^^^^
+
+tests/Tests/Vector/Property.hs:439:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+439 |       = V.uniq `eq` (map head . group)
+    |                          ^^^^
+
+[ 5 of 12] Compiling Tests.Vector.Unboxed
+[ 6 of 12] Compiling Tests.Vector.Strict
+[ 7 of 12] Compiling Tests.Vector.Storable
+[ 8 of 12] Compiling Tests.Vector.Primitive
+[ 9 of 12] Compiling Tests.Vector.Boxed
+[10 of 12] Compiling Tests.Move
+[11 of 12] Compiling Tests.Bundle
+tests/Tests/Bundle.hs:16:29: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘foldl'’ from module ‘Data.List’ is redundant
+   |
+16 | import Data.List           (foldl', foldl1', unfoldr, find, findIndex)
+   |                             ^^^^^^
+
+tests/Tests/Bundle.hs:76:77: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+76 |     prop_head      :: P (S.Bundle v a -> a) = not . S.null ===> S.head `eq` head
+   |                                                                             ^^^^
+
+tests/Tests/Bundle.hs:92:83: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+92 |     prop_tail :: P (S.Bundle v a -> S.Bundle v a) = not . S.null ===> S.tail `eq` tail
+   |                                                                                   ^^^^
+
+[12 of 12] Compiling Main
+[13 of 13] Linking /tmp/workdir-vector/vector-0.13.2.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/vector-0.13.2.0/t/vector-tests-O2/build/vector-tests-O2/vector-tests-O2
+Configuring test suite 'vector-tests-O0' for vector-0.13.2.0...
+Preprocessing test suite 'vector-tests-O0' for vector-0.13.2.0...
+Building test suite 'vector-tests-O0' for vector-0.13.2.0...
+[ 1 of 12] Compiling Boilerplater
+[ 2 of 12] Compiling Tests.Vector.UnitTests
+[ 3 of 12] Compiling Utilities
+tests/Utilities.hs:244:17: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+244 | postscanl f z = tail . scanl f z
+    |                 ^^^^
+
+tests/Utilities.hs:245:16: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+245 | prescanr f z = tail . scanr f z
+    |                ^^^^
+
+[ 4 of 12] Compiling Tests.Vector.Property
+tests/Tests/Vector/Property.hs:243:68: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+243 |     prop_head      :: P (v a -> a) = not . V.null ===> V.head `eq` head
+    |                                                                    ^^^^
+
+tests/Tests/Vector/Property.hs:256:76: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+256 |     prop_unsafeHead  :: P (v a -> a) = not . V.null ===> V.unsafeHead `eq` head
+    |                                                                            ^^^^
+
+tests/Tests/Vector/Property.hs:272:65: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+272 |     prop_tail :: P (v a -> v a) = not . V.null ===> V.tail `eq` tail
+    |                                                                 ^^^^
+
+tests/Tests/Vector/Property.hs:439:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+439 |       = V.uniq `eq` (map head . group)
+    |                          ^^^^
+
+[ 5 of 12] Compiling Tests.Vector.Unboxed
+[ 6 of 12] Compiling Tests.Vector.Strict
+[ 7 of 12] Compiling Tests.Vector.Storable
+[ 8 of 12] Compiling Tests.Vector.Primitive
+[ 9 of 12] Compiling Tests.Vector.Boxed
+[10 of 12] Compiling Tests.Move
+[11 of 12] Compiling Tests.Bundle
+tests/Tests/Bundle.hs:16:29: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘foldl'’ from module ‘Data.List’ is redundant
+   |
+16 | import Data.List           (foldl', foldl1', unfoldr, find, findIndex)
+   |                             ^^^^^^
+
+tests/Tests/Bundle.hs:76:77: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+76 |     prop_head      :: P (S.Bundle v a -> a) = not . S.null ===> S.head `eq` head
+   |                                                                             ^^^^
+
+tests/Tests/Bundle.hs:92:83: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+92 |     prop_tail :: P (S.Bundle v a -> S.Bundle v a) = not . S.null ===> S.tail `eq` tail
+   |                                                                                   ^^^^
+
+[12 of 12] Compiling Main
+[13 of 13] Linking /tmp/workdir-vector/vector-0.13.2.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/vector-0.13.2.0/t/vector-tests-O0/build/vector-tests-O0/vector-tests-O0
+Configuring test suite 'vector-inspection' for vector-0.13.2.0...
+Preprocessing test suite 'vector-inspection' for vector-0.13.2.0...
+Building test suite 'vector-inspection' for vector-0.13.2.0...
+[1 of 4] Compiling Inspect
+[2 of 4] Compiling Inspect.DerivingVia.OtherFoo
+[3 of 4] Compiling Inspect.DerivingVia
+[4 of 4] Compiling Main
+[5 of 5] Linking /tmp/workdir-vector/vector-0.13.2.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/vector-0.13.2.0/t/vector-inspection/build/vector-inspection/vector-inspection
+Configuring test suite 'vector-doctest' for vector-0.13.2.0...
+Preprocessing test suite 'vector-doctest' for vector-0.13.2.0...
+Building test suite 'vector-doctest' for vector-0.13.2.0...
+[1 of 1] Compiling Main
+[2 of 2] Linking /tmp/workdir-vector/vector-0.13.2.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/vector-0.13.2.0/t/vector-doctest/build/vector-doctest/vector-doctest
+Configuring library 'benchmarks-O2' for vector-0.13.2.0...
+Preprocessing library 'benchmarks-O2' for vector-0.13.2.0...
+Building library 'benchmarks-O2' for vector-0.13.2.0...
+[ 1 of 14] Compiling Bench.Vector.Algo.AwShCC
+[ 2 of 14] Compiling Bench.Vector.Algo.FindIndexR
+[ 3 of 14] Compiling Bench.Vector.Algo.HybCC
+[ 4 of 14] Compiling Bench.Vector.Algo.Leaffix
+[ 5 of 14] Compiling Bench.Vector.Algo.ListRank
+[ 6 of 14] Compiling Bench.Vector.Algo.MutableSet
+[ 7 of 14] Compiling Bench.Vector.Algo.NextPermutation
+[ 8 of 14] Compiling Bench.Vector.Algo.Quickhull
+[ 9 of 14] Compiling Bench.Vector.Algo.Rootfix
+[10 of 14] Compiling Bench.Vector.Algo.Spectral
+[11 of 14] Compiling Bench.Vector.Algo.Tridiag
+[12 of 14] Compiling Bench.Vector.Tasty
+[13 of 14] Compiling Bench.Vector.TestData.Graph
+[14 of 14] Compiling Bench.Vector.TestData.ParenTree

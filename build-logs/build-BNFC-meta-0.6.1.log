@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - BNFC-meta-0.6.1 (lib:BNFC-meta) (first run)
 Warning: BNFC-meta.cabal:49:16: version operators used. To use version
@@ -22,27 +23,36 @@ Preprocessing library for BNFC-meta-0.6.1...
 Building library for BNFC-meta-0.6.1...
 [ 1 of 15] Compiling Language.Haskell.TH.Hide
 [ 2 of 15] Compiling Language.LBNF.Runtime
-
-Language/LBNF/Runtime.hs:45:3: warning: [-Wnoncanonical-monad-instances]
+Language/LBNF/Runtime.hs:45:3: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad ParseMonad’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
    |
 45 |   return      = Ok
    |   ^^^^^^^^^^^^^^^^
 
-Language/LBNF/Runtime.hs:57:3: warning: [-Wnoncanonical-monad-instances]
+Language/LBNF/Runtime.hs:57:3: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘pure = return’ definition detected
     in the instance declaration for ‘Applicative ParseMonad’.
-    Move definition from ‘return’ to ‘pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Move definition from ‘return’ to ‘pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
    |
 57 |   pure = return
    |   ^^^^^^^^^^^^^
+
 [ 3 of 15] Compiling Language.LBNF.Compiletime
 [ 4 of 15] Compiling Language.LBNF.Grammar
+Language/LBNF/Grammar.hs:502:28: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+502 | unescapeInitTail = unesc . tail where
+    |                            ^^^^
 
 Language/LBNF/Grammar.hs:553:1: warning: [GHC-94817] [-Wtabs]
     Tab character found here, and in 1148 further locations.
@@ -50,31 +60,119 @@ Language/LBNF/Grammar.hs:553:1: warning: [GHC-94817] [-Wtabs]
     |
 553 |         (AlexNone, input') ->
     | ^^^^^^^^
-[ 5 of 15] Compiling Language.LBNF.Utils
 
+[ 5 of 15] Compiling Language.LBNF.Utils
 Language/LBNF/Utils.hs:74:1: warning: [GHC-94817] [-Wtabs]
     Tab character found here, and in 16 further locations.
     Suggested fix: Please use spaces instead.
    |
 74 |            a -- ^ Value to replace 
    | ^^^^^^^^
-[ 6 of 15] Compiling Language.LBNF.CF
 
+[ 6 of 15] Compiling Language.LBNF.CF
 Language/LBNF/CF.hs:22:1: warning: [GHC-94817] [-Wtabs]
     Tab character found here, and in 128 further locations.
     Suggested fix: Please use spaces instead.
    |
 22 |             -- Types.
    | ^^^^^^^^
-[ 7 of 15] Compiling Language.LBNF.TypeChecker
 
+Language/LBNF/CF.hs:333:21: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+333 | firstCat = valCat . head . rulesOfCF
+    |                     ^^^^
+
+Language/LBNF/CF.hs:345:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+345 |                     in [ head xs | xs <- xss, length xs > 1]
+    |                          ^^^^
+
+Language/LBNF/CF.hs:542:12: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+542 | isList c = head c == '[' 
+    |            ^^^^
+
+Language/LBNF/CF.hs:549:20: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+549 |   '[':_:_ -> init (tail c)
+    |                    ^^^^
+
+Language/LBNF/CF.hs:570:17: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+570 |   (x,sep,xs) = (head ts, init (tail ts), last ts) 
+    |                 ^^^^
+
+Language/LBNF/CF.hs:570:32: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+570 |   (x,sep,xs) = (head ts, init (tail ts), last ts) 
+    |                                ^^^^
+
+Language/LBNF/CF.hs:609:43: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+609 |   list   cat = let (rc,n) = noList (init (tail cat)) in ("[" ++ rc ++ "]",n)
+    |                                           ^^^^
+
+Language/LBNF/CF.hs:650:32: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+650 |    isBadType c = not (isUpper (head c) || isList c || c == "#")
+    |                                ^^^^
+
+[ 7 of 15] Compiling Language.LBNF.TypeChecker
 Language/LBNF/TypeChecker.hs:12:1: warning: [GHC-94817] [-Wtabs]
     Tab character found here, and in 90 further locations.
     Suggested fix: Please use spaces instead.
    |
 12 |           | ListT Base
    | ^^^^^^^^
+
+Language/LBNF/TypeChecker.hs:80:25: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+80 |             map ((fst . head) /\ map snd)
+   |                         ^^^^
+
+Language/LBNF/TypeChecker.hs:109:27: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+109 |     do  unless (isLower $ head f) $ fail "Defined functions must start with a lowercase letter."
+    |                           ^^^^
+
 [ 8 of 15] Compiling Language.LBNF.GetCF
+Language/LBNF/GetCF.hs:63:58: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+63 |        notIdent s         = null s || not (isIdentAlpha (head s)) || any (not . isIdentRest) s
+   |                                                          ^^^^
 
 Language/LBNF/GetCF.hs:69:1: warning: [GHC-94817] [-Wtabs]
     Tab character found here, and in four further locations.
@@ -82,34 +180,74 @@ Language/LBNF/GetCF.hs:69:1: warning: [GHC-94817] [-Wtabs]
    |
 69 |             in (((pragma,(literals,symbols,keywords,cats)),rules),errors)
    | ^^^^^^^^
+
 [ 9 of 15] Compiling Language.LBNF.CFtoQQ
 [10 of 15] Compiling Language.LBNF.CFtoPrinter
-
 Language/LBNF/CFtoPrinter.hs:89:1: warning: [GHC-94817] [-Wtabs]
     Tab character found here, and in four further locations.
     Suggested fix: Please use spaces instead.
    |
 89 |         | otherwise              = s
    | ^^^^^^^^
-[11 of 15] Compiling Language.LBNF.CFtoLayout
-[12 of 15] Compiling Language.LBNF.CFtoHappy
 
+[11 of 15] Compiling Language.LBNF.CFtoLayout
+Language/LBNF/CFtoLayout.hs:102:69: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+102 |               _ -> let col = if null ts then column t0 else column (head ts)
+    |                                                                     ^^^^
+
+[12 of 15] Compiling Language.LBNF.CFtoHappy
 Language/LBNF/CFtoHappy.hs:90:11: warning: [GHC-94817] [-Wtabs]
     Tab character found here, and in 24 further locations.
     Suggested fix: Please use spaces instead.
    |
 90 |                   case mode of 
    |           ^^^^^^
-[13 of 15] Compiling Language.LBNF.CFtoAlex2
 
+Language/LBNF/CFtoHappy.hs:193:48: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+193 |     prAction (MkAction fun ms) = maybe (thrd $ head ms) pf fun where
+    |                                                ^^^^
+
+Language/LBNF/CFtoHappy.hs:213:54: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+213 |     prActionQ rulz (MkAction fun ms) = maybe (thrd $ head ms) pf fun where
+    |                                                      ^^^^
+
+Language/LBNF/CFtoHappy.hs:222:28: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+222 |                 fun = case tail f of
+    |                            ^^^^
+
+Language/LBNF/CFtoHappy.hs:267:25: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+267 |             | isLower $ head x  = App (x ++ "_") $ map underscore es
+    |                         ^^^^
+
+[13 of 15] Compiling Language.LBNF.CFtoAlex2
 Language/LBNF/CFtoAlex2.hs:191:1: warning: [GHC-94817] [-Wtabs]
     Tab character found here, and in 76 further locations.
     Suggested fix: Please use spaces instead.
     |
 191 |                                         [
     | ^^^^^^^^
-[14 of 15] Compiling Language.LBNF.CFtoAbstract
 
+[14 of 15] Compiling Language.LBNF.CFtoAbstract
 Language/LBNF/CFtoAbstract.hs:53:11: warning: [GHC-68441] [-Wdeprecations]
     In the use of ‘strictType’
     (imported from Language.Haskell.TH, but defined in Language.Haskell.TH.Lib.Internal):
@@ -143,4 +281,5 @@ Language/LBNF/CFtoAbstract.hs:61:24: warning: [GHC-68441] [-Wdeprecations]
    |
 61 |       typ = strictType notStrict $ contentSpec cf cat
    |                        ^^^^^^^^^
+
 [15 of 15] Compiling Language.LBNF

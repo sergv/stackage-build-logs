@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - scientist-0.0.0.0 (lib) (first run)
  - scientist-0.0.0.0 (test:spec) (first run)
@@ -8,23 +9,34 @@ Preprocessing library for scientist-0.0.0.0...
 Building library for scientist-0.0.0.0...
 [ 1 of 10] Compiling Paths_scientist
 [ 2 of 10] Compiling Scientist.Candidate
-
 library/Scientist/Candidate.hs:5:1: warning: [GHC-38417] [-Wmissing-kind-signatures]
     Top-level type constructor with no standalone kind signature or CUSK:
       type Candidate :: * -> *
   |
 5 | newtype Candidate a = Candidate
   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
-[ 3 of 10] Compiling Scientist.Control
 
+library/Scientist/Candidate.hs:5:1: warning: [GHC-65490] [-Wmissing-role-annotations]
+    Missing role annotation: type role Candidate representational
+  |
+5 | newtype Candidate a = Candidate
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+[ 3 of 10] Compiling Scientist.Control
 library/Scientist/Control.hs:5:1: warning: [GHC-38417] [-Wmissing-kind-signatures]
     Top-level type constructor with no standalone kind signature or CUSK:
       type Control :: * -> *
   |
 5 | newtype Control a = Control
   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^...
-[ 4 of 10] Compiling Scientist.Duration
 
+library/Scientist/Control.hs:5:1: warning: [GHC-65490] [-Wmissing-role-annotations]
+    Missing role annotation: type role Control representational
+  |
+5 | newtype Control a = Control
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+[ 4 of 10] Compiling Scientist.Duration
 library/Scientist/Duration.hs:20:1: warning: [GHC-38417] [-Wmissing-kind-signatures]
     Top-level type constructor with no standalone kind signature or CUSK:
       type Duration :: *
@@ -37,20 +49,20 @@ library/Scientist/Duration.hs: warning: [-Wall-missed-specialisations]
     Probable fix: add INLINABLE pragma on ‘realToFrac’
 
 library/Scientist/Duration.hs: warning: [-Wall-missed-specialisations]
-    Could not specialise imported function ‘GHC.Real.C:RealFrac’
-    Probable fix: add INLINABLE pragma on ‘GHC.Real.C:RealFrac’
+    Could not specialise imported function ‘ghc-internal:GHC.Internal.Real.C:RealFrac’
+    Probable fix: add INLINABLE pragma on ‘ghc-internal:GHC.Internal.Real.C:RealFrac’
 
 library/Scientist/Duration.hs: warning: [-Wall-missed-specialisations]
-    Could not specialise imported function ‘GHC.Real.C:Real’
-    Probable fix: add INLINABLE pragma on ‘GHC.Real.C:Real’
+    Could not specialise imported function ‘ghc-internal:GHC.Internal.Real.C:Real’
+    Probable fix: add INLINABLE pragma on ‘ghc-internal:GHC.Internal.Real.C:Real’
 
 library/Scientist/Duration.hs: warning: [-Wall-missed-specialisations]
     Could not specialise imported function ‘ghc-prim:GHC.Classes.C:Ord’
     Probable fix: add INLINABLE pragma on ‘ghc-prim:GHC.Classes.C:Ord’
 
 library/Scientist/Duration.hs: warning: [-Wall-missed-specialisations]
-    Could not specialise imported function ‘GHC.Real.C:Fractional’
-    Probable fix: add INLINABLE pragma on ‘GHC.Real.C:Fractional’
+    Could not specialise imported function ‘ghc-internal:GHC.Internal.Real.C:Fractional’
+    Probable fix: add INLINABLE pragma on ‘ghc-internal:GHC.Internal.Real.C:Fractional’
 
 library/Scientist/Duration.hs: warning: [-Wall-missed-specialisations]
     Could not specialise imported function ‘Data.Fixed.$fNumFixed_$c*’
@@ -59,6 +71,10 @@ library/Scientist/Duration.hs: warning: [-Wall-missed-specialisations]
 library/Scientist/Duration.hs: warning: [-Wall-missed-specialisations]
     Could not specialise imported function ‘Data.Fixed.$fRealFixed_$ctoRational’
     Probable fix: add INLINABLE pragma on ‘Data.Fixed.$fRealFixed_$ctoRational’
+
+library/Scientist/Duration.hs: warning: [-Wall-missed-specialisations]
+    Could not specialise imported function ‘Data.Fixed.$fFractionalFixed2’
+    Probable fix: add INLINABLE pragma on ‘Data.Fixed.$fFractionalFixed2’
 
 library/Scientist/Duration.hs: warning: [-Wall-missed-specialisations]
     Could not specialise imported function ‘Data.Fixed.$fFractionalFixed_$crecip’
@@ -73,21 +89,39 @@ library/Scientist/Duration.hs: warning: [-Wall-missed-specialisations]
     Probable fix: add INLINABLE pragma on ‘Data.Fixed.$fRealFracFixed_$cproperFraction’
 
 library/Scientist/Duration.hs: warning: [-Wall-missed-specialisations]
+    Could not specialise imported function ‘Data.Fixed.$w$ctoRational’
+    Probable fix: add INLINABLE pragma on ‘Data.Fixed.$w$ctoRational’
+
+library/Scientist/Duration.hs: warning: [-Wall-missed-specialisations]
     Could not specialise imported function ‘showFixed’
     Probable fix: add INLINABLE pragma on ‘showFixed’
-[ 5 of 10] Compiling Scientist.NamedCandidate
 
+[ 5 of 10] Compiling Scientist.NamedCandidate
 library/Scientist/NamedCandidate.hs:15:1: warning: [GHC-38417] [-Wmissing-kind-signatures]
     Top-level type constructor with no standalone kind signature or CUSK:
       type NamedCandidate :: (* -> *) -> * -> *
    |
 15 | data NamedCandidate m a = NamedCandidate Text (m (Candidate a))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[ 6 of 10] Compiling Scientist.Result
 
+library/Scientist/NamedCandidate.hs:15:1: warning: [GHC-65490] [-Wmissing-role-annotations]
+    Missing role annotation:
+      type role NamedCandidate representational nominal
+   |
+15 | data NamedCandidate m a = NamedCandidate Text (m (Candidate a))
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[ 6 of 10] Compiling Scientist.Result
 library/Scientist/Result.hs:23:1: warning: [GHC-38417] [-Wmissing-kind-signatures]
     Top-level type constructor with no standalone kind signature or CUSK:
       type Result :: * -> * -> * -> *
+   |
+23 | data Result c a b
+   | ^^^^^^^^^^^^^^^^^...
+
+library/Scientist/Result.hs:23:1: warning: [GHC-65490] [-Wmissing-role-annotations]
+    Missing role annotation:
+      type role Result representational representational representational
    |
 23 | data Result c a b
    | ^^^^^^^^^^^^^^^^^...
@@ -99,9 +133,22 @@ library/Scientist/Result.hs:43:1: warning: [GHC-38417] [-Wmissing-kind-signature
 43 | data ResultDetails c a b = ResultDetails
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
+library/Scientist/Result.hs:43:1: warning: [GHC-65490] [-Wmissing-role-annotations]
+    Missing role annotation:
+      type role ResultDetails representational representational representational
+   |
+43 | data ResultDetails c a b = ResultDetails
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
 library/Scientist/Result.hs:57:1: warning: [GHC-38417] [-Wmissing-kind-signatures]
     Top-level type constructor with no standalone kind signature or CUSK:
       type ResultControl :: * -> *
+   |
+57 | data ResultControl a = ResultControl
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+library/Scientist/Result.hs:57:1: warning: [GHC-65490] [-Wmissing-role-annotations]
+    Missing role annotation: type role ResultControl representational
    |
 57 | data ResultControl a = ResultControl
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
@@ -112,8 +159,14 @@ library/Scientist/Result.hs:63:1: warning: [GHC-38417] [-Wmissing-kind-signature
    |
 63 | data ResultCandidate a = ResultCandidate
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
-[ 7 of 10] Compiling Scientist.Experiment
 
+library/Scientist/Result.hs:63:1: warning: [GHC-65490] [-Wmissing-role-annotations]
+    Missing role annotation: type role ResultCandidate representational
+   |
+63 | data ResultCandidate a = ResultCandidate
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+[ 7 of 10] Compiling Scientist.Experiment
 library/Scientist/Experiment.hs:54:1: warning: [GHC-38417] [-Wmissing-kind-signatures]
     Top-level type constructor with no standalone kind signature or CUSK:
       type Experiment :: (* -> *) -> * -> * -> * -> *
@@ -121,40 +174,51 @@ library/Scientist/Experiment.hs:54:1: warning: [GHC-38417] [-Wmissing-kind-signa
 54 | data Experiment m c a b = Experiment
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
+library/Scientist/Experiment.hs:54:1: warning: [GHC-65490] [-Wmissing-role-annotations]
+    Missing role annotation:
+      type role Experiment representational representational nominal nominal
+   |
+54 | data Experiment m c a b = Experiment
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
 library/Scientist/Experiment.hs: warning: [-Wall-missed-specialisations]
-    Could not specialise imported function ‘safe-exceptions-0.1.7.4-2fb4593974518ba19255dc6520ceacb68674b5e52c9128f64103bf4ce9dbee27:Control.Exception.Safe.toSyncException’
-    Probable fix: add INLINABLE pragma on ‘safe-exceptions-0.1.7.4-2fb4593974518ba19255dc6520ceacb68674b5e52c9128f64103bf4ce9dbee27:Control.Exception.Safe.toSyncException’
+    Could not specialise imported function ‘UnliftIO.Exception.catchJust1’
+    Probable fix: add INLINABLE pragma on ‘UnliftIO.Exception.catchJust1’
+
 [ 8 of 10] Compiling Scientist.Result.Evaluate
 [ 9 of 10] Compiling Scientist.Experiment.Run
+library/Scientist/Experiment/Run.hs: warning: [-Wall-missed-specialisations]
+    Could not specialise imported function ‘UnliftIO.Exception.catchJust1’
+    Probable fix: add INLINABLE pragma on ‘UnliftIO.Exception.catchJust1’
 
 library/Scientist/Experiment/Run.hs: warning: [-Wall-missed-specialisations]
     Could not specialise imported function ‘shuffleM’
     Probable fix: add INLINABLE pragma on ‘shuffleM’
+
 [10 of 10] Compiling Scientist
 Configuring test suite 'spec' for scientist-0.0.0.0...
 Preprocessing test suite 'spec' for scientist-0.0.0.0...
 Building test suite 'spec' for scientist-0.0.0.0...
 [1 of 5] Compiling Paths_scientist
 [2 of 5] Compiling Scientist.Test
-
 tests/Scientist/Test.hs: warning: [-Wall-missed-specialisations]
-    Could not specialise imported function ‘hspec-expectations-0.8.4-b9e5e938c0995ddb53dd14abd70258f684d97857e0fcbe50db90cbae3cf30f81:Test.Hspec.Expectations.shouldThrow1’
-    Probable fix: add INLINABLE pragma on ‘hspec-expectations-0.8.4-b9e5e938c0995ddb53dd14abd70258f684d97857e0fcbe50db90cbae3cf30f81:Test.Hspec.Expectations.shouldThrow1’
-[3 of 5] Compiling Scientist.ExperimentSpec
+    Could not specialise imported function ‘hspec-expectations-0.8.4-d61c0bfd75df774e5461d1f133959bfb72e19b75f0394b4f640a6d64d6b5edfd:Test.Hspec.Expectations.shouldThrow1’
+    Probable fix: add INLINABLE pragma on ‘hspec-expectations-0.8.4-d61c0bfd75df774e5461d1f133959bfb72e19b75f0394b4f640a6d64d6b5edfd:Test.Hspec.Expectations.shouldThrow1’
 
+[3 of 5] Compiling Scientist.ExperimentSpec
 tests/Scientist/ExperimentSpec.hs: warning: [-Wall-missed-specialisations]
-    Could not specialise imported function ‘hspec-expectations-0.8.4-b9e5e938c0995ddb53dd14abd70258f684d97857e0fcbe50db90cbae3cf30f81:Test.Hspec.Expectations.shouldSatisfy1’
-    Probable fix: add INLINABLE pragma on ‘hspec-expectations-0.8.4-b9e5e938c0995ddb53dd14abd70258f684d97857e0fcbe50db90cbae3cf30f81:Test.Hspec.Expectations.shouldSatisfy1’
+    Could not specialise imported function ‘hspec-expectations-0.8.4-d61c0bfd75df774e5461d1f133959bfb72e19b75f0394b4f640a6d64d6b5edfd:Test.Hspec.Expectations.shouldSatisfy1’
+    Probable fix: add INLINABLE pragma on ‘hspec-expectations-0.8.4-d61c0bfd75df774e5461d1f133959bfb72e19b75f0394b4f640a6d64d6b5edfd:Test.Hspec.Expectations.shouldSatisfy1’
 
 tests/Scientist/ExperimentSpec.hs: warning: [-Wall-missed-specialisations]
     Could not specialise imported function ‘experimentEnabledPercent’
     Probable fix: add INLINABLE pragma on ‘experimentEnabledPercent’
 
 tests/Scientist/ExperimentSpec.hs: warning: [-Wall-missed-specialisations]
-    Could not specialise imported function ‘hspec-core-2.11.8-1bf5d44329e021b6ba315e22f7b562423cb21a1e2c6e8fe94ac1180f4871f8f4:Test.Hspec.Core.Tree.$wspecItem’
-    Probable fix: add INLINABLE pragma on ‘hspec-core-2.11.8-1bf5d44329e021b6ba315e22f7b562423cb21a1e2c6e8fe94ac1180f4871f8f4:Test.Hspec.Core.Tree.$wspecItem’
-[4 of 5] Compiling Scientist.Experiment.RunSpec
+    Could not specialise imported function ‘hspec-core-2.11.12-1e887df701287ac8670f45c1e90741dce1ecc3093893678f6cc0d7d9b4a316e4:Test.Hspec.Core.Tree.$wspecItem’
+    Probable fix: add INLINABLE pragma on ‘hspec-core-2.11.12-1e887df701287ac8670f45c1e90741dce1ecc3093893678f6cc0d7d9b4a316e4:Test.Hspec.Core.Tree.$wspecItem’
 
+[4 of 5] Compiling Scientist.Experiment.RunSpec
 tests/Scientist/Experiment/RunSpec.hs:22:1: warning: [GHC-38417] [-Wmissing-kind-signatures]
     Top-level type constructor with no standalone kind signature or CUSK:
       type ExampleResult :: *
@@ -171,31 +235,35 @@ tests/Scientist/Experiment/RunSpec.hs: warning: [-Wall-missed-specialisations]
     Probable fix: add INLINABLE pragma on ‘experimentRunInternal’
 
 tests/Scientist/Experiment/RunSpec.hs: warning: [-Wall-missed-specialisations]
-    Could not specialise imported function ‘hspec-expectations-0.8.4-b9e5e938c0995ddb53dd14abd70258f684d97857e0fcbe50db90cbae3cf30f81:Test.Hspec.Expectations.Matcher.matchList’
-    Probable fix: add INLINABLE pragma on ‘hspec-expectations-0.8.4-b9e5e938c0995ddb53dd14abd70258f684d97857e0fcbe50db90cbae3cf30f81:Test.Hspec.Expectations.Matcher.matchList’
+    Could not specialise imported function ‘hspec-expectations-0.8.4-d61c0bfd75df774e5461d1f133959bfb72e19b75f0394b4f640a6d64d6b5edfd:Test.Hspec.Expectations.Matcher.matchList’
+    Probable fix: add INLINABLE pragma on ‘hspec-expectations-0.8.4-d61c0bfd75df774e5461d1f133959bfb72e19b75f0394b4f640a6d64d6b5edfd:Test.Hspec.Expectations.Matcher.matchList’
 
 tests/Scientist/Experiment/RunSpec.hs: warning: [-Wall-missed-specialisations]
-    Could not specialise imported function ‘HUnit-1.6.2.0-3fd2f7e8625663d2beea77ea078aa8837781ba24ee7c86eefa23242dce5b4f2d:Test.HUnit.Lang.$wassertEqual’
-    Probable fix: add INLINABLE pragma on ‘HUnit-1.6.2.0-3fd2f7e8625663d2beea77ea078aa8837781ba24ee7c86eefa23242dce5b4f2d:Test.HUnit.Lang.$wassertEqual’
+    Could not specialise imported function ‘HUnit-1.6.2.0-acb4cf5e98fc79d7a58259942744f1100d8d50f74616930c8502c4c07d4c7357:Test.HUnit.Lang.$wassertEqual’
+    Probable fix: add INLINABLE pragma on ‘HUnit-1.6.2.0-acb4cf5e98fc79d7a58259942744f1100d8d50f74616930c8502c4c07d4c7357:Test.HUnit.Lang.$wassertEqual’
 
 tests/Scientist/Experiment/RunSpec.hs: warning: [-Wall-missed-specialisations]
-    Could not specialise imported function ‘hspec-core-2.11.8-1bf5d44329e021b6ba315e22f7b562423cb21a1e2c6e8fe94ac1180f4871f8f4:Test.Hspec.Core.Tree.$wspecItem’
-    Probable fix: add INLINABLE pragma on ‘hspec-core-2.11.8-1bf5d44329e021b6ba315e22f7b562423cb21a1e2c6e8fe94ac1180f4871f8f4:Test.Hspec.Core.Tree.$wspecItem’
+    Could not specialise imported function ‘hspec-core-2.11.12-1e887df701287ac8670f45c1e90741dce1ecc3093893678f6cc0d7d9b4a316e4:Test.Hspec.Core.Tree.$wspecItem’
+    Probable fix: add INLINABLE pragma on ‘hspec-core-2.11.12-1e887df701287ac8670f45c1e90741dce1ecc3093893678f6cc0d7d9b4a316e4:Test.Hspec.Core.Tree.$wspecItem’
+
+tests/Scientist/Experiment/RunSpec.hs: warning: [-Wall-missed-specialisations]
+    Could not specialise imported function ‘UnliftIO.Exception.catchJust1’
+    Probable fix: add INLINABLE pragma on ‘UnliftIO.Exception.catchJust1’
 
 tests/Scientist/Experiment/RunSpec.hs: warning: [-Wall-missed-specialisations]
     Could not specialise imported function ‘shouldSatisfyMaybe’
     Probable fix: add INLINABLE pragma on ‘shouldSatisfyMaybe’
 
 tests/Scientist/Experiment/RunSpec.hs: warning: [-Wall-missed-specialisations]
-    Could not specialise imported function ‘hspec-expectations-0.8.4-b9e5e938c0995ddb53dd14abd70258f684d97857e0fcbe50db90cbae3cf30f81:Test.Hspec.Expectations.shouldSatisfy1’
-    Probable fix: add INLINABLE pragma on ‘hspec-expectations-0.8.4-b9e5e938c0995ddb53dd14abd70258f684d97857e0fcbe50db90cbae3cf30f81:Test.Hspec.Expectations.shouldSatisfy1’
+    Could not specialise imported function ‘hspec-expectations-0.8.4-d61c0bfd75df774e5461d1f133959bfb72e19b75f0394b4f640a6d64d6b5edfd:Test.Hspec.Expectations.shouldSatisfy1’
+    Probable fix: add INLINABLE pragma on ‘hspec-expectations-0.8.4-d61c0bfd75df774e5461d1f133959bfb72e19b75f0394b4f640a6d64d6b5edfd:Test.Hspec.Expectations.shouldSatisfy1’
+
 [5 of 5] Compiling Main
-[6 of 6] Linking /tmp/workdir-scientist/scientist-0.0.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/scientist-0.0.0.0/t/spec/build/spec/spec
+[6 of 6] Linking /tmp/workdir-scientist/scientist-0.0.0.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/scientist-0.0.0.0/t/spec/build/spec/spec
 Configuring test suite 'readme' for scientist-0.0.0.0...
 Preprocessing test suite 'readme' for scientist-0.0.0.0...
 Building test suite 'readme' for scientist-0.0.0.0...
 [1 of 2] Compiling Main
-
 README.lhs:108:1: warning: [GHC-38417] [-Wmissing-kind-signatures]
     Top-level type constructor with no standalone kind signature or CUSK:
       type Model :: *
@@ -250,7 +318,8 @@ README.lhs: warning: [-Wall-missed-specialisations]
     Probable fix: add INLINABLE pragma on ‘ghc-prim:GHC.Classes.$fEqList_$c==’
 
 README.lhs: warning: [-Wall-missed-specialisations]
-    Could not specialise imported function ‘safe-exceptions-0.1.7.4-2fb4593974518ba19255dc6520ceacb68674b5e52c9128f64103bf4ce9dbee27:Control.Exception.Safe.toSyncException’
-    Probable fix: add INLINABLE pragma on ‘safe-exceptions-0.1.7.4-2fb4593974518ba19255dc6520ceacb68674b5e52c9128f64103bf4ce9dbee27:Control.Exception.Safe.toSyncException’
+    Could not specialise imported function ‘UnliftIO.Exception.catchJust1’
+    Probable fix: add INLINABLE pragma on ‘UnliftIO.Exception.catchJust1’
+
 [2 of 2] Compiling Paths_scientist
-[3 of 3] Linking /tmp/workdir-scientist/scientist-0.0.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/scientist-0.0.0.0/t/readme/build/readme/readme
+[3 of 3] Linking /tmp/workdir-scientist/scientist-0.0.0.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/scientist-0.0.0.0/t/readme/build/readme/readme

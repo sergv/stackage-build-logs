@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - HTF-0.15.0.2 (lib) (first run)
  - HTF-0.15.0.2 (exe:htfpp) (first run)
@@ -18,21 +19,30 @@ Building library for HTF-0.15.0.2...
 [ 8 of 24] Compiling Test.Framework.TestInterface
 [ 9 of 24] Compiling Test.Framework.History
 [10 of 24] Compiling Test.Framework.AssertM
-
-Test/Framework/AssertM.hs:64:5: warning: [-Wnoncanonical-monad-instances]
+Test/Framework/AssertM.hs:64:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad AssertBool’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
    |
 64 |     return = AssertOk
    |     ^^^^^^^^^^^^^^^^^
+
 [11 of 24] Compiling Test.Framework.TestTypes
 [12 of 24] Compiling Test.Framework.JsonOutput
 [13 of 24] Compiling Test.Framework.ThreadPool
 [14 of 24] Compiling Test.Framework.Tutorial
 [15 of 24] Compiling Test.Framework.Utils
+Test/Framework/Utils.hs:62:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+62 | dropSuffix f = reverse . tail . dropWhile (/= '.') $ reverse f
+   |                          ^^^^
+
 [16 of 24] Compiling Test.Framework.QuickCheckWrapper
 [17 of 24] Compiling Test.Framework.PrettyHaskell
 [18 of 24] Compiling Test.Framework.HUnitWrapper
@@ -49,16 +59,15 @@ Building executable 'htfpp' for HTF-0.15.0.2...
 [2 of 4] Compiling Test.Framework.Location
 [3 of 4] Compiling Test.Framework.Preprocessor
 [4 of 4] Compiling Main
-[5 of 5] Linking /tmp/workdir-HTF/HTF-0.15.0.2/dist-newstyle/build/x86_64-linux/ghc-9.6.5/HTF-0.15.0.2/x/htfpp/build/htfpp/htfpp
+[5 of 5] Linking /tmp/workdir-HTF/HTF-0.15.0.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/HTF-0.15.0.2/x/htfpp/build/htfpp/htfpp
 Configuring test suite 'TestThreadPools' for HTF-0.15.0.2...
 Preprocessing test suite 'TestThreadPools' for HTF-0.15.0.2...
 Building test suite 'TestThreadPools' for HTF-0.15.0.2...
 [1 of 1] Compiling Main
-[2 of 2] Linking /tmp/workdir-HTF/HTF-0.15.0.2/dist-newstyle/build/x86_64-linux/ghc-9.6.5/HTF-0.15.0.2/t/TestThreadPools/build/TestThreadPools/TestThreadPools
+[2 of 2] Linking /tmp/workdir-HTF/HTF-0.15.0.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/HTF-0.15.0.2/t/TestThreadPools/build/TestThreadPools/TestThreadPools
 Configuring test suite 'TestHTF' for HTF-0.15.0.2...
 Preprocessing test suite 'TestHTF' for HTF-0.15.0.2...
 Building test suite 'TestHTF' for HTF-0.15.0.2...
-
 tests/Foo/A.hs:1:1: error:
     ./scripts/local-htfpp: builderMainLoop: posix_spawnp: permission denied (Permission denied)
   |
@@ -130,6 +139,7 @@ tests/real-bbt/UniqTests2.hs:1:1: error:
   |
 1 | {-# LANGUAGE LambdaCase #-}
   | ^
+
 Error: [Cabal-7125]
 Failed to build test:TestHTF from HTF-0.15.0.2.
 

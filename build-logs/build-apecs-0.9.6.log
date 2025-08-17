@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - apecs-0.9.6 (lib) (first run)
  - apecs-0.9.6 (test:apecs-test) (first run)
@@ -9,25 +10,81 @@ Building library for apecs-0.9.6...
 [ 2 of 13] Compiling Apecs.Experimental.Children
 [ 3 of 13] Compiling Apecs.Experimental.Components
 [ 4 of 13] Compiling Apecs.Experimental.Util
-
-src/Apecs/Experimental/Util.hs:12:1: warning: [-Wunused-imports]
+src/Apecs/Experimental/Util.hs:12:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
    |
 12 | import Control.Applicative  (liftA2)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [ 5 of 13] Compiling Apecs.Stores
+src/Apecs/Stores.hs:161:16: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+161 |         size = head . dropWhile (<n) $ iterate (`shiftL` 1) 1
+    |                ^^^^
+
 [ 6 of 13] Compiling Apecs.THTuples
+src/Apecs/THTuples.hs:171:47: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+171 |       membersI = InstanceD Nothing (membersT (head vars) : (getT <$> tail vars)) (membersT varTuple)
+    |                                               ^^^^
+
+src/Apecs/THTuples.hs:171:70: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+171 |       membersI = InstanceD Nothing (membersT (head vars) : (getT <$> tail vars)) (membersT varTuple)
+    |                                                                      ^^^^
+
+src/Apecs/THTuples.hs:173:60: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+173 |             (NormalB$ foldl explMembersFold (explMembersF (head sEs)) (explExistsF <$> tail sEs)) [] ]
+    |                                                            ^^^^
+
+src/Apecs/THTuples.hs:173:88: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+173 |             (NormalB$ foldl explMembersFold (explMembersF (head sEs)) (explExistsF <$> tail sEs)) [] ]
+    |                                                                                        ^^^^
+
 [ 7 of 13] Compiling Apecs.Components
 [ 8 of 13] Compiling Apecs.System
 [ 9 of 13] Compiling Apecs.Experimental.Stores
+src/Apecs/Experimental/Stores.hs:54:32: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+54 |     explGet (Pushdown s) ety = head . getStack <$> explGet s ety
+   |                                ^^^^
+
 [10 of 13] Compiling Apecs.Experimental.Reactive
 [11 of 13] Compiling Apecs.Util
 [12 of 13] Compiling Apecs.TH
+src/Apecs/TH.hs:69:3: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+69 |   head <$> [d| instance Component $ct where type Storage $ct = $st $ct |]
+   |   ^^^^
+
 [13 of 13] Compiling Apecs
 Configuring test suite 'apecs-test' for apecs-0.9.6...
 Preprocessing test suite 'apecs-test' for apecs-0.9.6...
 Building test suite 'apecs-test' for apecs-0.9.6...
 [1 of 1] Compiling Main
-[2 of 2] Linking /tmp/workdir-apecs/apecs-0.9.6/dist-newstyle/build/x86_64-linux/ghc-9.6.5/apecs-0.9.6/t/apecs-test/build/apecs-test/apecs-test
+[2 of 2] Linking /tmp/workdir-apecs/apecs-0.9.6/dist-newstyle/build/x86_64-linux/ghc-9.10.2/apecs-0.9.6/t/apecs-test/build/apecs-test/apecs-test

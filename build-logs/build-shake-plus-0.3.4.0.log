@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - shake-plus-0.3.4.0 (lib) (first run)
 Configuring library for shake-plus-0.3.4.0...
@@ -8,7 +9,6 @@ Building library for shake-plus-0.3.4.0...
 [ 2 of 14] Compiling Development.Shake.Plus.Config
 [ 3 of 14] Compiling Development.Shake.Plus.Command
 [ 4 of 14] Compiling Development.Shake.Plus.Cache
-
 src/Development/Shake/Plus/Cache.hs:18:13: warning: [GHC-30606] [-Wredundant-constraints]
     Redundant constraint: Eq k
     In the type signature for:
@@ -28,13 +28,13 @@ src/Development/Shake/Plus/Cache.hs:24:15: warning: [GHC-30606] [-Wredundant-con
    |
 24 | newCacheIO :: (MonadIO m, MonadReader r m, Eq k, Hashable k) => (k -> RAction r v) -> m (k -> RAction r v)
    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [ 5 of 14] Compiling Development.Shake.Plus.Database
 [ 6 of 14] Compiling Development.Shake.Plus.Directory
 [ 7 of 14] Compiling Development.Shake.Plus.File
 [ 8 of 14] Compiling Development.Shake.Plus.FileRules
 [ 9 of 14] Compiling Development.Shake.Plus.Forward
 [10 of 14] Compiling Development.Shake.Plus.Oracle
-
 src/Development/Shake/Plus/Oracle.hs:23:59: warning: [GHC-58520] [-Wtype-equality-requires-operators]
     The use of ‘~’ without TypeOperators
     will become an error in a future GHC release.
@@ -129,6 +129,7 @@ src/Development/Shake/Plus/Oracle.hs:45:44: warning: [GHC-12003] [-Wtype-equalit
    |
 45 | askOracles :: (MonadAction m, RuleResult q ~ a, ShakeValue q, ShakeValue a) => [q]-> m [a]
    |                                            ^
+
 [11 of 14] Compiling Development.Shake.Plus.Temp
 [12 of 14] Compiling Development.Shake.Plus
 [13 of 14] Compiling Development.Shake.Plus.Env

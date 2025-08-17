@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - tasty-th-0.1.7 (lib) (first run)
  - tasty-th-0.1.7 (test:tasty-th-tests) (first run)
@@ -10,6 +11,14 @@ Configuring library for tasty-th-0.1.7...
 Preprocessing library for tasty-th-0.1.7...
 Building library for tasty-th-0.1.7...
 [1 of 1] Compiling Test.Tasty.TH
+src/Test/Tasty/TH.hs:149:29: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+149 | fixName = replace '_' ' ' . tail . dropWhile (/= '_')
+    |                             ^^^^
+
 Warning: tasty-th.cabal:34:3: The field "default-language" is available only
 since the Cabal specification version 1.10. This field will be ignored.
 Warning: tasty-th.cabal:24:3: The field "other-extensions" is available only
@@ -18,4 +27,4 @@ Configuring test suite 'tasty-th-tests' for tasty-th-0.1.7...
 Preprocessing test suite 'tasty-th-tests' for tasty-th-0.1.7...
 Building test suite 'tasty-th-tests' for tasty-th-0.1.7...
 [1 of 1] Compiling Main
-[2 of 2] Linking /tmp/workdir-tasty-th/tasty-th-0.1.7/dist-newstyle/build/x86_64-linux/ghc-9.6.5/tasty-th-0.1.7/t/tasty-th-tests/build/tasty-th-tests/tasty-th-tests
+[2 of 2] Linking /tmp/workdir-tasty-th/tasty-th-0.1.7/dist-newstyle/build/x86_64-linux/ghc-9.10.2/tasty-th-0.1.7/t/tasty-th-tests/build/tasty-th-tests/tasty-th-tests

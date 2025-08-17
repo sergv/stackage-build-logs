@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - http-media-0.8.1.1 (lib) (first run)
  - http-media-0.8.1.1 (test:test-http-media) (first run)
@@ -18,6 +19,12 @@ Building library for http-media-0.8.1.1...
 [11 of 13] Compiling Network.HTTP.Media.Charset.Internal
 [12 of 13] Compiling Network.HTTP.Media.Charset
 [13 of 13] Compiling Network.HTTP.Media
+src/Network/HTTP/Media.hs:64:29: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘foldl'’ from module ‘Data.Foldable’ is redundant
+   |
+64 | import Data.Foldable (find, foldl', maximumBy)
+   |                             ^^^^^^
+
 Configuring test suite 'test-http-media' for http-media-0.8.1.1...
 Preprocessing test suite 'test-http-media' for http-media-0.8.1.1...
 Building test suite 'test-http-media' for http-media-0.8.1.1...
@@ -44,6 +51,60 @@ Building test suite 'test-http-media' for http-media-0.8.1.1...
 [21 of 25] Compiling Network.HTTP.Media.Charset
 [22 of 25] Compiling Network.HTTP.Media.Charset.Tests
 [23 of 25] Compiling Network.HTTP.Media
+src/Network/HTTP/Media.hs:64:29: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘foldl'’ from module ‘Data.Foldable’ is redundant
+   |
+64 | import Data.Foldable (find, foldl', maximumBy)
+   |                             ^^^^^^
+
 [24 of 25] Compiling Network.HTTP.Media.Tests
+test/Network/HTTP/Media/Tests.hs:56:49: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+56 |     padConcat f l = flip (foldlM (padComma f)) (tail l) =<< f (head l)
+   |                                                 ^^^^
+
+test/Network/HTTP/Media/Tests.hs:56:64: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+56 |     padConcat f l = flip (foldlM (padComma f)) (tail l) =<< f (head l)
+   |                                                                ^^^^
+
+test/Network/HTTP/Media/Tests.hs:142:48: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+142 |         return $ match server client === Just (head server),
+    |                                                ^^^^
+
+test/Network/HTTP/Media/Tests.hs:148:23: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+148 |             === Just (head server),
+    |                       ^^^^
+
+test/Network/HTTP/Media/Tests.hs:151:52: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+151 |         let client = qToI [maxQuality (subStarOf $ head server)]
+    |                                                    ^^^^
+
+test/Network/HTTP/Media/Tests.hs:152:48: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+152 |         return $ match server client === Just (head server),
+    |                                                ^^^^
+
 [25 of 25] Compiling Main
-[26 of 26] Linking /tmp/workdir-http-media/http-media-0.8.1.1/dist-newstyle/build/x86_64-linux/ghc-9.6.5/http-media-0.8.1.1/t/test-http-media/build/test-http-media/test-http-media
+[26 of 26] Linking /tmp/workdir-http-media/http-media-0.8.1.1/dist-newstyle/build/x86_64-linux/ghc-9.10.2/http-media-0.8.1.1/t/test-http-media/build/test-http-media/test-http-media

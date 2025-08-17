@@ -1,4 +1,4 @@
-Build profile: -w ghc-9.6.5 -O1
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - valida-base-0.2.0 (test:valida-test) (ephemeral targets)
 Preprocessing test suite 'valida-test' for valida-base-0.2.0...
@@ -23,14 +23,14 @@ Test suite
     Test relationship between primitive NonEmpty and Unit combinators
       (QC) failureIf p err = label (const (neSingleton err)) (failureIf' p):                  OK
         +++ OK, passed 100 tests:
-        57% Significant
-        43% Trivial
+        54% Trivial
+        46% Significant
       (SC) failureIf p err = label (const (neSingleton err)) (failureIf' p):                  OK
         88 tests completed
       (QC) failureUnless p err = label (const (neSingleton err)) (failureUnless' p):          OK
         +++ OK, passed 100 tests:
-        53% Significant
-        47% Trivial
+        54% Significant
+        46% Trivial
       (SC) failureUnless p err = label (const (neSingleton err)) (failureUnless' p):          OK
         88 tests completed
     Test relationship between primitive 'if' and 'unless' combinators
@@ -42,7 +42,7 @@ Test suite
         +++ OK, passed 100 tests.
       (SC) failureIf p err = negateRule (neSingleton err) (failureUnless' p):                 OK
         40 tests completed
-      (QC) failureIf' p = negateRule' (failureUnless' p):                                     OK (0.01s)
+      (QC) failureIf' p = negateRule' (failureUnless' p):                                     OK
         +++ OK, passed 100 tests.
       (SC) failureIf' p = negateRule' (failureUnless' p):                                     OK
         8 tests completed
@@ -57,9 +57,9 @@ Test suite
         +++ OK, passed 100 tests.
       (SC) falseRule always fails:                                                            OK
         6 tests completed
-      (QC) Associativity: rule1 </> (rule2 </> rule3) = (rule1 </> rule2) </> rule3:          OK (0.01s)
+      (QC) Associativity: rule1 </> (rule2 </> rule3) = (rule1 </> rule2) </> rule3:          OK
         +++ OK, passed 100 tests.
-      (SC) Associativity: rule1 </> (rule2 </> rule3) = (rule1 </> rule2) </> rule3:          OK (0.04s)
+      (SC) Associativity: rule1 </> (rule2 </> rule3) = (rule1 </> rule2) </> rule3:          OK (0.05s)
         8192 tests completed
       (QC) Identity: rule </> falseRule = falseRule </> rule = rule:                          OK
         +++ OK, passed 100 tests.
@@ -71,7 +71,7 @@ Test suite
         120 tests completed
       (QC) Complement: rule </> (negateRule e rule) = (negateRule e rule) </> rule = Success: OK
         +++ OK, passed 100 tests.
-      (SC) Complement: rule </> (negateRule e rule) = (negateRule e rule) </> rule = Success: OK (0.05s)
+      (SC) Complement: rule </> (negateRule e rule) = (negateRule e rule) </> rule = Success: OK (0.06s)
         1800 tests completed
     Test `andAlso` function
       (QC) mempty always succeeds:                                                            OK
@@ -80,7 +80,7 @@ Test suite
         6 tests completed
       (QC) Associativity: rule1 <> (rule2 <> rule3) = (rule1 <> rule2) <> rule3:              OK
         +++ OK, passed 100 tests.
-      (SC) Associativity: rule1 <> (rule2 <> rule3) = (rule1 <> rule2) <> rule3:              OK (0.05s)
+      (SC) Associativity: rule1 <> (rule2 <> rule3) = (rule1 <> rule2) <> rule3:              OK (0.04s)
         8192 tests completed
       (QC) Identity: rule <> mempty = mempty <> rule = rule:                                  OK
         +++ OK, passed 100 tests.
@@ -92,7 +92,7 @@ Test suite
         120 tests completed
       (QC) Complement: rule <> (negateRule e rule) = (negateRule e rule) <> rule = Failure:   OK
         +++ OK, passed 100 tests.
-      (SC) Complement: rule <> (negateRule e rule) = (negateRule e rule) <> rule = Failure:   OK (0.04s)
+      (SC) Complement: rule <> (negateRule e rule) = (negateRule e rule) <> rule = Failure:   OK (0.05s)
         1800 tests completed
       (QC) Idempotence: rule <> rule = rule:                                                  OK
         +++ OK, passed 100 tests.
@@ -105,7 +105,7 @@ Test suite
         80 tests completed
       satisfyAny = foldr1 orElse:                                                             OK
         +++ OK, passed 100 tests.
-      satisfyAny = foldr1 orElse:                                                             OK (0.01s)
+      satisfyAny = foldr1 orElse:                                                             OK
         80 tests completed
       satisfyAny = foldl orElse falseRule:                                                    OK
         +++ OK, passed 100 tests.
@@ -154,15 +154,15 @@ Test suite
       +++ OK, passed 100 tests.
     (QC) either (const f) (const g) (toEither v) == validationConst f g v:                    OK
       +++ OK, passed 100 tests.
-    (SC) either (const f) (const g) (toEither v) == validationConst f g v:                    OK (2.83s)
+    (SC) either (const f) (const g) (toEither v) == validationConst f g v:                    OK (4.02s)
       297052 tests completed
     (QC) validationConst f g (fromEither e) == either (const f) (const g) e:                  OK
       +++ OK, passed 100 tests.
-    (SC) validationConst f g (fromEither e) == either (const f) (const g) e:                  OK (2.77s)
+    (SC) validationConst f g (fromEither e) == either (const f) (const g) e:                  OK (3.60s)
       297052 tests completed
     (QC) validationConst f g v == validation (const f) (const g) v:                           OK
       +++ OK, passed 100 tests.
-    (SC) validationConst f g v == validation (const f) (const g) v:                           OK (2.80s)
+    (SC) validationConst f g v == validation (const f) (const g) v:                           OK (3.64s)
       297052 tests completed
     (QC) partitionValidations xs = (failures xs, successes xs):                               OK
       +++ OK, passed 100 tests.
@@ -175,14 +175,14 @@ Test suite
       15996 tests completed
     (QC) Validator should yield relabeled Bool error upon failure:                            OK
       +++ OK, passed 100 tests.
-    (SC) Validator should yield relabeled Bool error upon failure:                            OK (0.11s)
+    (SC) Validator should yield relabeled Bool error upon failure:                            OK (0.12s)
       15996 tests completed
   Test Validator error grouping
-    (SC) All errors from all validators should be combined upon failure:                      OK (0.06s)
+    (SC) All errors from all validators should be combined upon failure:                      OK (0.07s)
       1500 tests completed
 
-All 83 tests passed (2.83s)
+All 83 tests passed (4.02s)
 Test suite valida-test: PASS
 Test suite logged to:
-/tmp/workdir-valida-base/valida-base-0.2.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/valida-base-0.2.0/t/valida-test/test/valida-base-0.2.0-valida-test.log
+/tmp/workdir-valida-base/valida-base-0.2.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/valida-base-0.2.0/t/valida-test/test/valida-base-0.2.0-valida-test.log
 1 of 1 test suites (1 of 1 test cases) passed.

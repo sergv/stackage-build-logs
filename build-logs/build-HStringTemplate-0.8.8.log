@@ -1,28 +1,28 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - HStringTemplate-0.8.8 (lib) (first run)
  - HStringTemplate-0.8.8 (test:test) (first run)
 Configuring library for HStringTemplate-0.8.8...
 Preprocessing library for HStringTemplate-0.8.8...
 Building library for HStringTemplate-0.8.8...
-
-Text/StringTemplate/GenericStandard.hs:1:33: warning: [-Wdeprecated-flags]
+Text/StringTemplate/GenericStandard.hs:1:33: warning: [GHC-53692] [-Wdeprecated-flags]
     -XOverlappingInstances is deprecated: instead use per-instance pragmas OVERLAPPING/OVERLAPPABLE/OVERLAPS
   |
 1 | {-# LANGUAGE FlexibleInstances, OverlappingInstances, UndecidableInstances, Rank2Types, ScopedTypeVariables #-}
   |                                 ^^^^^^^^^^^^^^^^^^^^
 
-Text/StringTemplate/Instances.hs:1:38: warning: [-Wdeprecated-flags]
+Text/StringTemplate/Instances.hs:1:38: warning: [GHC-53692] [-Wdeprecated-flags]
     -XOverlappingInstances is deprecated: instead use per-instance pragmas OVERLAPPING/OVERLAPPABLE/OVERLAPS
   |
 1 | {-# LANGUAGE CPP, FlexibleInstances, OverlappingInstances #-}
   |                                      ^^^^^^^^^^^^^^^^^^^^
+
 [1 of 8] Compiling Text.StringTemplate.Classes
 [2 of 8] Compiling Text.StringTemplate.Instances
 [3 of 8] Compiling Text.StringTemplate.GenericStandard
 [4 of 8] Compiling Text.StringTemplate.Base
-
-Text/StringTemplate/Base.hs:17:1: warning: [-Wunused-imports]
+Text/StringTemplate/Base.hs:17:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
@@ -30,16 +30,48 @@ Text/StringTemplate/Base.hs:17:1: warning: [-Wunused-imports]
 17 | import Control.Applicative hiding ((<|>),many,optional)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Text/StringTemplate/Base.hs:23:1: warning: [-Wunused-imports]
+Text/StringTemplate/Base.hs:21:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.List’ is redundant
+      except perhaps to import instances from ‘Data.List’
+    To import instances alone, use: import Data.List()
+   |
+21 | import Data.List
+   | ^^^^^^^^^^^^^^^^
+
+Text/StringTemplate/Base.hs:23:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 23 | import Data.Monoid
    | ^^^^^^^^^^^^^^^^^^
-[5 of 8] Compiling Text.StringTemplate.Group
 
-Text/StringTemplate/Group.hs:12:1: warning: [-Wunused-imports]
+Text/StringTemplate/Base.hs:468:34: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+468 |   return $ fromMany (showVal <*> head exprs)
+    |                                  ^^^^
+
+Text/StringTemplate/Base.hs:529:64: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+529 |                 | str == "first"  = if null xs then SNull else head xs
+    |                                                                ^^^^
+
+Text/StringTemplate/Base.hs:531:70: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+531 |                 | str == "rest"   = if null xs then SNull else (LI . tail) xs
+    |                                                                      ^^^^
+
+[5 of 8] Compiling Text.StringTemplate.Group
+Text/StringTemplate/Group.hs:12:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
@@ -47,15 +79,15 @@ Text/StringTemplate/Group.hs:12:1: warning: [-Wunused-imports]
 12 | import Control.Applicative
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Text/StringTemplate/Group.hs:16:1: warning: [-Wunused-imports]
+Text/StringTemplate/Group.hs:16:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 16 | import Data.Monoid
    | ^^^^^^^^^^^^^^^^^^
-[6 of 8] Compiling Text.StringTemplate.QQ
 
+[6 of 8] Compiling Text.StringTemplate.QQ
 Text/StringTemplate/QQ.hs:28:8: warning: [GHC-20125] [-Wmissing-fields]
     • Fields of ‘QuasiQuoter’ not initialised:
         quoteType :: String -> TH.Q TH.Type
@@ -68,36 +100,53 @@ Text/StringTemplate/QQ.hs:28:8: warning: [GHC-20125] [-Wmissing-fields]
    |
 28 | stmp = QuasiQuoter {quoteExp = quoteTmplExp, quotePat = quoteTmplPat}
    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [7 of 8] Compiling Text.StringTemplate.Renderf
 [8 of 8] Compiling Text.StringTemplate
 Configuring test suite 'test' for HStringTemplate-0.8.8...
 Preprocessing test suite 'test' for HStringTemplate-0.8.8...
 Building test suite 'test' for HStringTemplate-0.8.8...
-
-tests/Properties.hs:1:17: warning: [-Wdeprecated-flags]
+tests/Properties.hs:1:17: warning: [GHC-53692] [-Wdeprecated-flags]
     -fglasgow-exts is deprecated: Use individual extensions instead
   |
 1 | {-# OPTIONS -O2 -fglasgow-exts #-}
   |                 ^^^^^^^^^^^^^^
 
-tests/Units.hs:1:17: warning: [-Wdeprecated-flags]
+tests/Units.hs:1:17: warning: [GHC-53692] [-Wdeprecated-flags]
     -fglasgow-exts is deprecated: Use individual extensions instead
   |
 1 | {-# OPTIONS -O2 -fglasgow-exts #-}
   |                 ^^^^^^^^^^^^^^
+
 [1 of 3] Compiling Properties
+tests/Properties.hs:25:46: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+25 |     let n = if null args then 100 else read (head args)
+   |                                              ^^^^
+
+tests/Properties.hs:101:128: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+101 |     toString (setManyAttrib alist . newSTMP $ "$if(a)$a$elseif(b)$b$elseif(c)$c$else$$if(d)$d$else$e$endif$$endif$") == (fst . head . filter snd) alist
+    |                                                                                                                                ^^^^
+
 [2 of 3] Compiling Units
 [3 of 3] Compiling Main
-
-tests/Properties.hs:1:17: warning: [-Wdeprecated-flags]
+tests/Properties.hs:1:17: warning: [GHC-53692] [-Wdeprecated-flags]
     -fglasgow-exts is deprecated: Use individual extensions instead
   |
 1 | {-# OPTIONS -O2 -fglasgow-exts #-}
   |                 ^^^^^^^^^^^^^^
 
-tests/Units.hs:1:17: warning: [-Wdeprecated-flags]
+tests/Units.hs:1:17: warning: [GHC-53692] [-Wdeprecated-flags]
     -fglasgow-exts is deprecated: Use individual extensions instead
   |
 1 | {-# OPTIONS -O2 -fglasgow-exts #-}
   |                 ^^^^^^^^^^^^^^
-[4 of 4] Linking /tmp/workdir-HStringTemplate/HStringTemplate-0.8.8/dist-newstyle/build/x86_64-linux/ghc-9.6.5/HStringTemplate-0.8.8/t/test/build/test/test
+
+[4 of 4] Linking /tmp/workdir-HStringTemplate/HStringTemplate-0.8.8/dist-newstyle/build/x86_64-linux/ghc-9.10.2/HStringTemplate-0.8.8/t/test/build/test/test

@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - resolv-0.2.0.2 (lib:resolv, test:resolv.) (first run)
 Configuring resolv-0.2.0.2...
@@ -41,8 +42,24 @@ Building library for resolv-0.2.0.2...
 [1 of 4] Compiling Compat
 [2 of 4] Compiling Network.DNS.FFI
 [3 of 4] Compiling Network.DNS.Message
+src/Network/DNS/Message.hs:765:54: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+765 | splitToBlocks js = Map.fromList $ map (\xs -> (fst $ head xs, Set.fromList (map snd xs))) js'
+    |                                                      ^^^^
+
 [4 of 4] Compiling Network.DNS
 Preprocessing test suite 'resolv.' for resolv-0.2.0.2...
 Building test suite 'resolv.' for resolv-0.2.0.2...
 [1 of 1] Compiling Main
-[2 of 2] Linking /tmp/workdir-resolv/resolv-0.2.0.2/dist-newstyle/build/x86_64-linux/ghc-9.6.5/resolv-0.2.0.2/build/resolv./resolv.
+src-test/Tests1.hs:78:27: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+78 |   assertEqShow (pure ()) (head (DNS.msgQD msg)) (DNS.MsgQuestion (DNS.Name "www.google.com.") (DNS.Type 1) (DNS.Class 1))
+   |                           ^^^^
+
+[2 of 2] Linking /tmp/workdir-resolv/resolv-0.2.0.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/resolv-0.2.0.2/build/resolv./resolv.

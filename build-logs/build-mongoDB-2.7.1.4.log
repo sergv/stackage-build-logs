@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - mongoDB-2.7.1.4 (lib) (first run)
  - mongoDB-2.7.1.4 (test:test) (first run)
@@ -9,9 +10,56 @@ Building library for mongoDB-2.7.1.4...
 [ 2 of 10] Compiling Database.MongoDB.Internal.Util
 [ 3 of 10] Compiling Database.MongoDB.Transport
 [ 4 of 10] Compiling Database.MongoDB.Internal.Protocol
-[ 5 of 10] Compiling Database.MongoDB.Query
+Database/MongoDB/Internal/Protocol.hs:304:48: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+304 |                     let (section, section') = (head sec, head sec')
+    |                                                ^^^^
 
-Database/MongoDB/Query.hs:136:1: warning: [-Wunused-imports]
+Database/MongoDB/Internal/Protocol.hs:304:58: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+304 |                     let (section, section') = (head sec, head sec')
+    |                                                          ^^^^
+
+Database/MongoDB/Internal/Protocol.hs:572:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+572 |                     db = head n
+    |                          ^^^^
+
+Database/MongoDB/Internal/Protocol.hs:579:35: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+579 |                     (db, coll) = (head n, last n)
+    |                                   ^^^^
+
+Database/MongoDB/Internal/Protocol.hs:591:35: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+591 |                     (db, coll) = (head n, last n)
+    |                                   ^^^^
+
+Database/MongoDB/Internal/Protocol.hs:605:25: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+605 |           (db, coll) = (head n, last n)
+    |                         ^^^^
+
+[ 5 of 10] Compiling Database.MongoDB.Query
+Database/MongoDB/Query.hs:136:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Monad.Trans.Except’ is redundant
       except perhaps to import instances from ‘Control.Monad.Trans.Except’
     To import instances alone, use: import Control.Monad.Trans.Except()
@@ -19,12 +67,77 @@ Database/MongoDB/Query.hs:136:1: warning: [-Wunused-imports]
 136 | import Control.Monad.Trans.Except
     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Database/MongoDB/Query.hs:138:69: warning: [-Wunused-imports]
+Database/MongoDB/Query.hs:138:69: warning: [GHC-38856] [-Wunused-imports]
     The import of ‘splitDot’
     from module ‘Database.MongoDB.Internal.Util’ is redundant
     |
 138 | import Database.MongoDB.Internal.Util (liftIOE, loop, true1, (<.>), splitDot)
     |                                                                     ^^^^^^^^
+
+Database/MongoDB/Query.hs:276:35: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+276 |     mmv <- readMaybe . T.unpack . head . T.splitOn "." <$> serverVersion
+    |                                   ^^^^
+
+Database/MongoDB/Query.hs:497:25: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+497 |     Right r -> return $ head r
+    |                         ^^^^
+
+Database/MongoDB/Query.hs:569:24: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+569 |     liftIO $ throwIO $ head lchunks
+    |                        ^^^^
+
+Database/MongoDB/Query.hs:572:51: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+572 |   when (not $ null lresults) $ liftIO $ throwIO $ head lresults
+    |                                                   ^^^^
+
+Database/MongoDB/Query.hs:1476:70: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+     |
+1476 |     return $ if null docs then error ("no explain: " ++ show q) else head docs
+     |                                                                      ^^^^
+
+Database/MongoDB/Query.hs:1577:59: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+     |
+1577 |         QueryError -> throwIO $ QueryFailure (at "code" $ head rDocuments) (at "$err" $ head rDocuments)
+     |                                                           ^^^^
+
+Database/MongoDB/Query.hs:1577:89: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+     |
+1577 |         QueryError -> throwIO $ QueryFailure (at "code" $ head rDocuments) (at "$err" $ head rDocuments)
+     |                                                                                         ^^^^
+
+Database/MongoDB/Query.hs:1579:19: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+     |
+1579 |     let section = head sections
+     |                   ^^^^
+
 [ 6 of 10] Compiling Database.MongoDB.Transport.Tls
 [ 7 of 10] Compiling Database.MongoDB.Connection
 [ 8 of 10] Compiling Database.MongoDB.Admin
@@ -34,7 +147,6 @@ Configuring test suite 'test' for mongoDB-2.7.1.4...
 Preprocessing test suite 'test' for mongoDB-2.7.1.4...
 Building test suite 'test' for mongoDB-2.7.1.4...
 [1 of 4] Compiling TestImport
-
 test/TestImport.hs:34:24: warning: [GHC-68441] [-Wdeprecations]
     In the use of ‘iso8601DateFormat’
     (imported from Data.Time.Format, but defined in Data.Time.Format.Locale):
@@ -72,15 +184,16 @@ test/TestImport.hs:52:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
    |
 52 |       [p, h] = T.splitOn "@" s'
    |       ^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [2 of 4] Compiling QuerySpec
 [3 of 4] Compiling Spec
 [4 of 4] Compiling Main
-
-test/Main.hs:9:1: warning: [-Wunused-imports]
+test/Main.hs:9:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘TestImport’ is redundant
       except perhaps to import instances from ‘TestImport’
     To import instances alone, use: import TestImport()
   |
 9 | import TestImport
   | ^^^^^^^^^^^^^^^^^
-[5 of 5] Linking /tmp/workdir-mongoDB/mongoDB-2.7.1.4/dist-newstyle/build/x86_64-linux/ghc-9.6.5/mongoDB-2.7.1.4/t/test/build/test/test
+
+[5 of 5] Linking /tmp/workdir-mongoDB/mongoDB-2.7.1.4/dist-newstyle/build/x86_64-linux/ghc-9.10.2/mongoDB-2.7.1.4/t/test/build/test/test

@@ -1,0 +1,190 @@
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - persistent-mtl-0.5.2 (test:persistent-mtl-test) (ephemeral targets)
+Preprocessing test suite 'persistent-mtl-test' for persistent-mtl-0.5.2...
+Building test suite 'persistent-mtl-test' for persistent-mtl-0.5.2...
+Running 1 test suites...
+Test suite persistent-mtl-test: RUNNING...
+Migrating: CREATE TEMP TABLE "person_backup"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL,"age" INTEGER NOT NULL,CONSTRAINT "unique_name" UNIQUE ("name"))
+Migrating: INSERT INTO "person_backup"("id","name","age") SELECT "id","name","age" FROM "person"
+Migrating: DROP TABLE "person"
+Migrating: CREATE TABLE "person"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL,"age" INTEGER NOT NULL,CONSTRAINT "unique_name" UNIQUE ("name"))
+Migrating: INSERT INTO "person" SELECT "id","name","age" FROM "person_backup"
+Migrating: DROP TABLE "person_backup"
+Migrating: CREATE TEMP TABLE "person_backup"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL,"age" INTEGER NOT NULL,CONSTRAINT "unique_name" UNIQUE ("name"))
+Migrating: INSERT INTO "person_backup"("id","name","age") SELECT "id","name","age" FROM "person"
+Migrating: DROP TABLE "person"
+Migrating: CREATE TABLE "person"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL,"age" INTEGER NOT NULL,CONSTRAINT "unique_name" UNIQUE ("name"))
+Migrating: INSERT INTO "person" SELECT "id","name","age" FROM "person_backup"
+Migrating: DROP TABLE "person_backup"
+Integration
+    Sqlite
+        withTransaction
+            uses the same transaction: [92mOK[0m
+            retries transactions: [92mOK[0m
+            throws error when retry hits limit: [92mOK[0m
+            runs retryCallback: [92mOK[0m
+        catchSqlTransaction
+            catches errors: [92mOK[0m
+            does not catch retry errors: [92mOK[0m
+        can compose operations: [92mOK[0m
+        Persistent API
+            get: [92mOK[0m
+            getMany: [92mOK[0m
+            getJust: [92mOK[0m
+            getJustEntity: [92mOK[0m
+            getEntity: [92mOK[0m
+            belongsTo: [92mOK[0m
+            belongsToJust: [92mOK[0m
+            insert: [92mOK[0m
+            insert_: [92mOK[0m
+            insertMany: [92mOK[0m
+            insertMany_: [92mOK[0m
+            insertEntityMany: [92mOK[0m
+            insertKey: [92mOK[0m
+            repsert: [92mOK[0m
+            repsertMany: [92mOK[0m
+            replace: [92mOK[0m
+            delete: [92mOK[0m
+            update: [92mOK[0m
+            updateGet: [92mOK[0m
+            insertEntity: [92mOK[0m
+            insertRecord: [92mOK[0m
+            getBy: [92mOK[0m
+            getByValue: [92mOK[0m
+            checkUnique: [92mOK[0m
+            checkUniqueUpdateable: [92mOK[0m
+            deleteBy: [92mOK[0m
+            insertUnique: [92mOK[0m
+            upsert: [92mOK[0m
+            upsertBy: [92mOK[0m
+            putMany: [92mOK[0m
+            insertBy: [92mOK[0m
+            insertUniqueEntity: [92mOK[0m
+            replaceUnique: [92mOK[0m
+            onlyUnique: [92mOK[0m
+            selectSourceRes: [92mOK[0m
+            selectFirst: [92mOK[0m
+            selectKeysRes: [92mOK[0m
+            count: [92mOK[0m
+            exists: [92mOK[0m
+            selectSource: [92mOK[0m
+            selectKeys: [92mOK[0m
+            selectList: [92mOK[0m
+            selectKeysList: [92mOK[0m
+            updateWhere: [92mOK[0m
+            deleteWhere: [92mOK[0m
+            updateWhereCount: [92mOK[0m
+            deleteWhereCount: [92mOK[0m
+            parseMigration: [92mOK[0m
+            parseMigration': [92mOK[0m
+            printMigration: CREATE TEMP TABLE "person_backup"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL,"age" INTEGER NOT NULL,CONSTRAINT "unique_name" UNIQUE ("name"));
+INSERT INTO "person_backup"("id","name","age") SELECT "id","name","age" FROM "person";
+DROP TABLE "person";
+CREATE TABLE "person"("id" INTEGER PRIMARY KEY,"name" VARCHAR NOT NULL,"age" INTEGER NOT NULL,CONSTRAINT "unique_name" UNIQUE ("name"));
+INSERT INTO "person" SELECT "id","name","age" FROM "person_backup";
+DROP TABLE "person_backup";
+[92mOK[0m
+            showMigration: [92mOK[0m
+            getMigration: [92mOK[0m
+            runMigration: [92mOK[0m
+            runMigrationQuiet: [92mOK[0m
+            runMigrationSilent: [92mOK[0m
+            runMigrationUnsafe: [92mOK[0m
+            runMigrationUnsafeQuiet: [92mOK[0m
+            getFieldName: [92mOK[0m
+            getTableName: [92mOK[0m
+            withRawQuery: [92mOK[0m
+            rawQueryRes: [92mOK[0m
+            rawQuery: [92mOK[0m
+            rawExecute: [92mOK[0m
+            rawExecuteCount: [92mOK[0m
+            rawSql: [92mOK[0m
+            transactionSave: [92mOK[0m
+            transactionSaveWithIsolation: [92mOK[0m
+            transactionUndo: [92mOK[0m
+            transactionUndoWithIsolation: [92mOK[0m
+        Interop with third-party Persistent libraries
+            unsafeLiftSql: [92mOK[0m
+Mocked
+    withTransaction
+        doesn't error with MockSqlQueryT: [92mOK[0m
+    MockSqlQueryT
+        errors if it could not find a mock: [92mOK[0m
+        continues after a mock doesn't match: [92mOK[0m
+    Persistent API
+        get: [92mOK[0m
+        getMany: [92mOK[0m
+        getJust: [92mOK[0m
+        getJustEntity: [92mOK[0m
+        getEntity: [92mOK[0m
+        belongsTo: [92mOK[0m
+        belongsToJust: [92mOK[0m
+        insert: [92mOK[0m
+        insert_: [92mOK[0m
+        insertMany: [92mOK[0m
+        insertMany_: [92mOK[0m
+        insertEntityMany: [92mOK[0m
+        insertKey: [92mOK[0m
+        repsert: [92mOK[0m
+        repsertMany: [92mOK[0m
+        replace: [92mOK[0m
+        delete: [92mOK[0m
+        update: [92mOK[0m
+        updateGet: [92mOK[0m
+        insertEntity: [92mOK[0m
+        insertRecord: [92mOK[0m
+        getBy: [92mOK[0m
+        getByValue: [92mOK[0m
+        checkUnique: [92mOK[0m
+        checkUniqueUpdateable: [92mOK[0m
+        deleteBy: [92mOK[0m
+        insertUnique: [92mOK[0m
+        upsert: [92mOK[0m
+        upsertBy: [92mOK[0m
+        putMany: [92mOK[0m
+        insertBy: [92mOK[0m
+        insertUniqueEntity: [92mOK[0m
+        replaceUnique: [92mOK[0m
+        onlyUnique: [92mOK[0m
+        selectSourceRes: [92mOK[0m
+        selectFirst: [92mOK[0m
+        selectKeysRes: [92mOK[0m
+        count: [92mOK[0m
+        exists: [92mOK[0m
+        selectSource: [92mOK[0m
+        selectKeys: [92mOK[0m
+        selectList: [92mOK[0m
+        selectKeysList: [92mOK[0m
+        updateWhere: [92mOK[0m
+        deleteWhere: [92mOK[0m
+        updateWhereCount: [92mOK[0m
+        deleteWhereCount: [92mOK[0m
+        getFieldName: [92mOK[0m
+        getTableName: [92mOK[0m
+        withRawQuery: [92mOK[0m
+        rawQueryRes: [92mOK[0m
+        rawQuery: [92mOK[0m
+        rawExecute: [92mOK[0m
+        rawExecuteCount: [92mOK[0m
+        rawSql: [92mOK[0m
+README
+    withTransaction example works: [92mOK[0m
+SqlQueryRep
+    SqlQueryRep
+persistent-mtl-test: Running tests against persistent > 2.14 is not supported
+CallStack (from HasCallStack):
+  error, called at test/SqlQueryRepSpec.hs:12:21 in persistent-mtl-0.5.2-inplace-persistent-mtl-test:SqlQueryRepSpec
+HasCallStack backtrace:
+  collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception
+  toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/IO.hs:260:11 in ghc-internal:GHC.Internal.IO
+  throwIO, called at src/UnliftIO/Exception.hs:408:7 in unliftio-0.2.25.1-6aa9e9a544256ece8c147e66386372fe0e424cb7ebdc3bd0d61d6110657de04f:UnliftIO.Exception
+
+
+Test suite persistent-mtl-test: FAIL
+Test suite logged to:
+/tmp/workdir-persistent-mtl/persistent-mtl-0.5.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/persistent-mtl-0.5.2/t/persistent-mtl-test/test/persistent-mtl-0.5.2-persistent-mtl-test.log
+0 of 1 test suites (0 of 1 test cases) passed.
+Error: [Cabal-7125]
+Tests failed for test:persistent-mtl-test from persistent-mtl-0.5.2.
+

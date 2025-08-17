@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - lambdabot-core-5.3.1.2 (lib) (first run)
 Configuring library for lambdabot-core-5.3.1.2...
@@ -6,20 +7,51 @@ Preprocessing library for lambdabot-core-5.3.1.2...
 Building library for lambdabot-core-5.3.1.2...
 [ 1 of 32] Compiling Lambdabot.Compat.AltTime
 [ 2 of 32] Compiling Lambdabot.Config
-
-src/Lambdabot/Config.hs:20:1: warning: [-Wunused-imports]
+src/Lambdabot/Config.hs:20:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
    |
 20 | import Control.Applicative
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Lambdabot/Config.hs:111:22: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+111 |         , deriveGEq (head decs)
+    |                      ^^^^
+
+src/Lambdabot/Config.hs:112:27: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+112 |         , deriveGCompare (head decs)
+    |                           ^^^^
+
 [ 3 of 32] Compiling Lambdabot.Logging
 [ 4 of 32] Compiling Lambdabot.Config.Core
 [ 5 of 32] Compiling Lambdabot.Util
+src/Lambdabot/Util.hs:91:43: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+91 | showClean = intercalate " " . map (init . tail . show)
+   |                                           ^^^^
+
 [ 6 of 32] Compiling Lambdabot.Nick
 [ 7 of 32] Compiling Lambdabot.Message
 [ 8 of 32] Compiling Lambdabot.IRC
+src/Lambdabot/IRC.hs:46:18: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+46 |       let cstr = head $ ircMsgParams msg
+   |                  ^^^^
 
 src/Lambdabot/IRC.hs:48:17: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
@@ -34,10 +66,26 @@ src/Lambdabot/IRC.hs:95:14: warning: [GHC-63397] [-Wname-shadowing]
    |
 95 | codepage svr codepage = mkMessage svr "CODEPAGE" [' ':codepage]
    |              ^^^^^^^^
-[ 9 of 32] Compiling Lambdabot.Compat.PackedNick
-[10 of 32] Compiling Lambdabot.Command
 
-src/Lambdabot/Command.hs:30:1: warning: [-Wunused-imports]
+src/Lambdabot/IRC.hs:108:24: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+108 |     , ircMsgParams  = [head (ircMsgParams msg)
+    |                        ^^^^
+
+[ 9 of 32] Compiling Lambdabot.Compat.PackedNick
+src/Lambdabot/Compat/PackedNick.hs:16:40: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+16 |                 | otherwise = Nick bc (tail ac)
+   |                                        ^^^^
+
+[10 of 32] Compiling Lambdabot.Command
+src/Lambdabot/Command.hs:30:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
@@ -45,7 +93,7 @@ src/Lambdabot/Command.hs:30:1: warning: [-Wunused-imports]
 30 | import Control.Applicative
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Lambdabot/Command.hs:31:1: warning: [-Wunused-imports]
+src/Lambdabot/Command.hs:31:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Monad.Fail’ is redundant
       except perhaps to import instances from ‘Control.Monad.Fail’
     To import instances alone, use: import Control.Monad.Fail()
@@ -53,7 +101,7 @@ src/Lambdabot/Command.hs:31:1: warning: [-Wunused-imports]
 31 | import Control.Monad.Fail (MonadFail)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Lambdabot/Command.hs:32:1: warning: [-Wunused-imports]
+src/Lambdabot/Command.hs:32:1: warning: [GHC-66111] [-Wunused-imports]
     The qualified import of ‘Control.Monad.Fail’ is redundant
       except perhaps to import instances from ‘Control.Monad.Fail’
     To import instances alone, use: import Control.Monad.Fail()
@@ -61,52 +109,53 @@ src/Lambdabot/Command.hs:32:1: warning: [-Wunused-imports]
 32 | import qualified Control.Monad.Fail
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Lambdabot/Command.hs:52:5: warning: [-Wnoncanonical-monad-instances]
+src/Lambdabot/Command.hs:52:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad (Cmd m)’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
    |
 52 |     return = Cmd . return
    |     ^^^^^^^^^^^^^^^^^^^^^
-[11 of 32] Compiling Lambdabot.ChanName
 
-src/Lambdabot/ChanName.hs:9:1: warning: [-Wunused-imports]
+[11 of 32] Compiling Lambdabot.ChanName
+src/Lambdabot/ChanName.hs:9:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
   |
 9 | import Control.Applicative
   | ^^^^^^^^^^^^^^^^^^^^^^^^^^
-[12 of 32] Compiling Lambdabot.Util.Network
 
-src/Lambdabot/Util/Network.hs:38:12: warning: [-Wunused-matches]
+[12 of 32] Compiling Lambdabot.Util.Network
+src/Lambdabot/Util/Network.hs:38:12: warning: [GHC-40910] [-Wunused-matches]
     Defined but not used: ‘l’
    |
 38 |         go l@(_:_) [] = ioError . userError $ "could not connect to host `" ++
    |            ^
-[13 of 32] Compiling Lambdabot.Util.Serial
 
-src/Lambdabot/Util/Serial.hs:34:1: warning: [-Wunused-imports]
+[13 of 32] Compiling Lambdabot.Util.Serial
+src/Lambdabot/Util/Serial.hs:34:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Monad.Fail’ is redundant
       except perhaps to import instances from ‘Control.Monad.Fail’
     To import instances alone, use: import Control.Monad.Fail()
    |
 34 | import Control.Monad.Fail (MonadFail)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[14 of 32] Compiling Lambdabot.Monad[boot]
 
-src/Lambdabot/Monad.hs-boot:5:1: warning: [-Wunused-imports]
+[14 of 32] Compiling Lambdabot.Monad[boot]
+src/Lambdabot/Monad.hs-boot:5:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
   |
 5 | import Control.Applicative
   | ^^^^^^^^^^^^^^^^^^^^^^^^^^
-[15 of 32] Compiling Lambdabot.Module
 
-src/Lambdabot/Module.hs:25:1: warning: [-Wunused-imports]
+[15 of 32] Compiling Lambdabot.Module
+src/Lambdabot/Module.hs:25:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
@@ -114,7 +163,7 @@ src/Lambdabot/Module.hs:25:1: warning: [-Wunused-imports]
 25 | import Control.Applicative
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Lambdabot/Module.hs:27:1: warning: [-Wunused-imports]
+src/Lambdabot/Module.hs:27:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Monad’ is redundant
       except perhaps to import instances from ‘Control.Monad’
     To import instances alone, use: import Control.Monad()
@@ -122,7 +171,7 @@ src/Lambdabot/Module.hs:27:1: warning: [-Wunused-imports]
 27 | import Control.Monad
    | ^^^^^^^^^^^^^^^^^^^^
 
-src/Lambdabot/Module.hs:28:1: warning: [-Wunused-imports]
+src/Lambdabot/Module.hs:28:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Monad.Fail’ is redundant
       except perhaps to import instances from ‘Control.Monad.Fail’
     To import instances alone, use: import Control.Monad.Fail()
@@ -130,16 +179,16 @@ src/Lambdabot/Module.hs:28:1: warning: [-Wunused-imports]
 28 | import Control.Monad.Fail (MonadFail)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Lambdabot/Module.hs:29:1: warning: [-Wunused-imports]
+src/Lambdabot/Module.hs:29:1: warning: [GHC-66111] [-Wunused-imports]
     The qualified import of ‘Control.Monad.Fail’ is redundant
       except perhaps to import instances from ‘Control.Monad.Fail’
     To import instances alone, use: import Control.Monad.Fail()
    |
 29 | import qualified Control.Monad.Fail
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[16 of 32] Compiling Lambdabot.Monad
 
-src/Lambdabot/Monad.hs:61:1: warning: [-Wunused-imports]
+[16 of 32] Compiling Lambdabot.Monad
+src/Lambdabot/Monad.hs:61:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
@@ -147,7 +196,7 @@ src/Lambdabot/Monad.hs:61:1: warning: [-Wunused-imports]
 61 | import Control.Applicative
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Lambdabot/Monad.hs:64:1: warning: [-Wunused-imports]
+src/Lambdabot/Monad.hs:64:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Monad.Fail’ is redundant
       except perhaps to import instances from ‘Control.Monad.Fail’
     To import instances alone, use: import Control.Monad.Fail()
@@ -155,16 +204,16 @@ src/Lambdabot/Monad.hs:64:1: warning: [-Wunused-imports]
 64 | import Control.Monad.Fail (MonadFail)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Lambdabot/Monad.hs:65:1: warning: [-Wunused-imports]
+src/Lambdabot/Monad.hs:65:1: warning: [GHC-66111] [-Wunused-imports]
     The qualified import of ‘Control.Monad.Fail’ is redundant
       except perhaps to import instances from ‘Control.Monad.Fail’
     To import instances alone, use: import Control.Monad.Fail()
    |
 65 | import qualified Control.Monad.Fail
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[17 of 32] Compiling Lambdabot.File
 
-src/Lambdabot/File.hs:25:1: warning: [-Wunused-imports]
+[17 of 32] Compiling Lambdabot.File
+src/Lambdabot/File.hs:25:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
@@ -178,30 +227,110 @@ src/Lambdabot/File.hs:95:9: warning: [GHC-63397] [-Wname-shadowing]
    |
 95 |         b <- findLBFileForReading f
    |         ^
+
 [18 of 32] Compiling Lambdabot.State
 [19 of 32] Compiling Lambdabot.Bot
 [20 of 32] Compiling Lambdabot.Plugin
 [21 of 32] Compiling Lambdabot.Plugin.Core.Version
 [22 of 32] Compiling Lambdabot.Plugin.Core.OfflineRC
+src/Lambdabot/Plugin/Core/OfflineRC.hs:71:23: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+71 |     cmdPrefix <- fmap head (getConfig commandPrefixes)
+   |                       ^^^^
+
+src/Lambdabot/Plugin/Core/OfflineRC.hs:86:21: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+86 |     let str = case (tail . ircMsgParams) msg of
+   |                     ^^^^
+
+src/Lambdabot/Plugin/Core/OfflineRC.hs:88:22: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+88 |             (x:_) -> tail x
+   |                      ^^^^
+
 [23 of 32] Compiling Lambdabot.Plugin.Core.More
 [24 of 32] Compiling Lambdabot.Plugin.Core.Help
-
 src/Lambdabot/Plugin/Core/Help.hs:50:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding: Patterns of type ‘[String]’ not matched: []
    |
 50 |     where (arg:_) = words rest
    |           ^^^^^^^^^^^^^^^^^^^^
+
 [25 of 32] Compiling Lambdabot.Plugin.Core.Compose
 [26 of 32] Compiling Lambdabot.Plugin.Core.Base
-
-src/Lambdabot/Plugin/Core/Base.hs:17:1: warning: [-Wunused-imports]
+src/Lambdabot/Plugin/Core/Base.hs:17:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
    |
 17 | import Control.Applicative
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Lambdabot/Plugin/Core/Base.hs:116:38: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+116 |             loc = Nick (server msg) (head body)
+    |                                      ^^^^
+
+src/Lambdabot/Plugin/Core/Base.hs:141:42: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+141 |     { ircChannels = M.insert (mkCN loc) (tail $ head $ tail $ ircMsgParams msg) (ircChannels s) }
+    |                                          ^^^^
+
+src/Lambdabot/Plugin/Core/Base.hs:141:49: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+141 |     { ircChannels = M.insert (mkCN loc) (tail $ head $ tail $ ircMsgParams msg) (ircChannels s) }
+    |                                                 ^^^^
+
+src/Lambdabot/Plugin/Core/Base.hs:141:56: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+141 |     { ircChannels = M.insert (mkCN loc) (tail $ head $ tail $ ircMsgParams msg) (ircChannels s) }
+    |                                                        ^^^^
+
+src/Lambdabot/Plugin/Core/Base.hs:142:36: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+142 |     where loc = Nick (server msg) (head (ircMsgParams msg))
+    |                                    ^^^^
+
+src/Lambdabot/Plugin/Core/Base.hs:169:50: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+169 |             { ircChannels = M.insert (mkCN loc) (tail $ last body) (ircChannels s) }
+    |                                                  ^^^^
+
+src/Lambdabot/Plugin/Core/Base.hs:180:22: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+180 |         alltargets = head (ircMsgParams msg)
+    |                      ^^^^
 
 src/Lambdabot/Plugin/Core/Base.hs:193:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
@@ -210,7 +339,56 @@ src/Lambdabot/Plugin/Core/Base.hs:193:11: warning: [GHC-62161] [-Wincomplete-uni
     |
 193 |     = let Just wholeCmd = maybeCommand (fmtNick (ircMsgServer msg) myname) text
     |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Lambdabot/Plugin/Core/Base.hs:208:16: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+208 |         text = tail (head (tail (ircMsgParams msg)))
+    |                ^^^^
+
+src/Lambdabot/Plugin/Core/Base.hs:208:22: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+208 |         text = tail (head (tail (ircMsgParams msg)))
+    |                      ^^^^
+
+src/Lambdabot/Plugin/Core/Base.hs:208:28: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+208 |         text = tail (head (tail (ircMsgParams msg)))
+    |                            ^^^^
+
+src/Lambdabot/Plugin/Core/Base.hs:212:48: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+212 |     | commands `arePrefixesOf` s  = doMsg msg (tail s) r who
+    |                                                ^^^^
+
+src/Lambdabot/Plugin/Core/Base.hs:219:48: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+219 |     | commands `arePrefixesOf` s  = doMsg msg (tail s) r target
+    |                                                ^^^^
+
 [27 of 32] Compiling Lambdabot.Compat.FreenodeNick
+src/Lambdabot/Compat/FreenodeNick.hs:29:28: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+29 |     | otherwise = Nick bc (tail ac)
+   |                            ^^^^
+
 [28 of 32] Compiling Lambdabot.Plugin.Core.System
 [29 of 32] Compiling Lambdabot.Plugin.Core
 [30 of 32] Compiling Lambdabot.Util.Signals

@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - reactive-banana-1.3.2.0 (lib) (first run)
  - reactive-banana-1.3.2.0 (test:unit) (first run)
@@ -8,7 +9,6 @@ Building library for reactive-banana-1.3.2.0...
 [ 1 of 23] Compiling Control.Event.Handler
 [ 2 of 23] Compiling Control.Monad.Trans.RWSIO
 [ 3 of 23] Compiling Control.Monad.Trans.ReaderWriterIO
-
 src/Control/Monad/Trans/ReaderWriterIO.hs:34:22: warning: [GHC-58520] [-Wtype-equality-requires-operators]
     The use of ‘~’ without TypeOperators
     will become an error in a future GHC release.
@@ -24,11 +24,26 @@ src/Control/Monad/Trans/ReaderWriterIO.hs:37:22: warning: [GHC-58520] [-Wtype-eq
    |
 37 | instance (Monad m, a ~ ()) => Monoid (ReaderWriterIOT r w m a) where
    |                      ^
+
 [ 4 of 23] Compiling Reactive.Banana.Model
+src/Reactive/Banana/Model.hs:175:48: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+175 |     switch (x: _) (Just xs : ys) = x : switch (tail xs) ys
+    |                                                ^^^^
+
 [ 5 of 23] Compiling Reactive.Banana.Prim.High.Cached
 [ 6 of 23] Compiling Reactive.Banana.Prim.Low.GraphTraversal
 [ 7 of 23] Compiling Reactive.Banana.Prim.Low.Graph
 [ 8 of 23] Compiling Reactive.Banana.Prim.Low.OrderedBag
+src/Reactive/Banana/Prim/Low/OrderedBag.hs:11:30: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘foldl'’ from module ‘Data.List’ is redundant
+   |
+11 | import           Data.List ( foldl', sortBy )
+   |                              ^^^^^^
+
 [ 9 of 23] Compiling Reactive.Banana.Prim.Low.Ref
 [10 of 23] Compiling Reactive.Banana.Prim.Low.GraphGC
 [11 of 23] Compiling Reactive.Banana.Prim.Mid.Types
@@ -55,4 +70,4 @@ Building test suite 'unit' for reactive-banana-1.3.2.0...
 [6 of 8] Compiling Reactive.Banana.Test.Low.GraphGC
 [7 of 8] Compiling Reactive.Banana.Test.Mid.Space
 [8 of 8] Compiling Main
-[9 of 9] Linking /tmp/workdir-reactive-banana/reactive-banana-1.3.2.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/reactive-banana-1.3.2.0/t/unit/build/unit/unit
+[9 of 9] Linking /tmp/workdir-reactive-banana/reactive-banana-1.3.2.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/reactive-banana-1.3.2.0/t/unit/build/unit/unit

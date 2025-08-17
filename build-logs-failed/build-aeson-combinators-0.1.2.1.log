@@ -1,0 +1,43 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - aeson-combinators-0.1.2.1 (lib) (first run)
+ - aeson-combinators-0.1.2.1 (test:spec) (first run)
+Configuring library for aeson-combinators-0.1.2.1...
+Preprocessing library for aeson-combinators-0.1.2.1...
+Building library for aeson-combinators-0.1.2.1...
+[1 of 3] Compiling Data.Aeson.Combinators.Compat
+[2 of 3] Compiling Data.Aeson.Combinators.Decode
+[3 of 3] Compiling Data.Aeson.Combinators.Encode
+Configuring test suite 'spec' for aeson-combinators-0.1.2.1...
+Preprocessing test suite 'spec' for aeson-combinators-0.1.2.1...
+Building test suite 'spec' for aeson-combinators-0.1.2.1...
+[1 of 3] Compiling JSONDecodeSpec
+test/JSONDecodeSpec.hs:62:55: error: [GHC-87543]
+    Ambiguous occurrence ‘show’.
+    It could refer to
+       either ‘Prelude.show’,
+              imported from ‘Prelude’ at test/JSONDecodeSpec.hs:6:8-21
+              (and originally defined in ‘ghc-internal-9.1002.0:GHC.Internal.Show’),
+           or ‘Data.Text.show’,
+              imported from ‘Data.Text’ at test/JSONDecodeSpec.hs:13:1-26.
+   |
+62 |             nest' (n - 1) ("{\"level-" <> fromString (show n) <> "\":" <> inner <> "}")
+   |                                                       ^^^^
+
+test/JSONDecodeSpec.hs:135:48: error: [GHC-87543]
+    Ambiguous occurrence ‘show’.
+    It could refer to
+       either ‘Prelude.show’,
+              imported from ‘Prelude’ at test/JSONDecodeSpec.hs:6:8-21
+              (and originally defined in ‘ghc-internal-9.1002.0:GHC.Internal.Show’),
+           or ‘Data.Text.show’,
+              imported from ‘Data.Text’ at test/JSONDecodeSpec.hs:13:1-26.
+    |
+135 |             _     -> fail $ "Unknown value" <> show txt
+    |                                                ^^^^
+
+[2 of 3] Compiling JSONEncodeSpec
+Error: [Cabal-7125]
+Failed to build test:spec from aeson-combinators-0.1.2.1.
+

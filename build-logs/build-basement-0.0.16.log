@@ -1,15 +1,16 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - basement-0.0.16 (lib) (first run)
 Configuring library for basement-0.0.16...
 Preprocessing library for basement-0.0.16...
 Building library for basement-0.0.16...
-
-Basement/Error.hs:7:14: warning: [-Wdeprecated-flags]
+Basement/Error.hs:7:14: warning: [GHC-53692] [-Wdeprecated-flags]
     -XTypeInType is deprecated: use -XDataKinds and -XPolyKinds instead
   |
 7 | {-# LANGUAGE TypeInType #-}
   |              ^^^^^^^^^^
+
 [ 1 of 84] Compiling Basement.Compat.Bifunctor
 [ 2 of 84] Compiling Basement.Compat.C.Types
 [ 3 of 84] Compiling Basement.Compat.CallStack
@@ -27,7 +28,6 @@ Basement/Error.hs:7:14: warning: [-Wdeprecated-flags]
 [15 of 84] Compiling Basement.Endianness
 [16 of 84] Compiling Basement.Floating
 [17 of 84] Compiling Basement.Monad
-
 Basement/Monad.hs:47:23: warning: [GHC-39567] [-Wstar-is-type]
     Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
     relies on the StarIsType extension, which will become
@@ -45,6 +45,7 @@ Basement/Monad.hs:47:28: warning: [GHC-39567] [-Wstar-is-type]
    |
 47 |     type PrimVar m :: * -> *
    |                            ^
+
 [18 of 84] Compiling Basement.FinalPtr
 [19 of 84] Compiling Basement.Numerical.Conversion
 [20 of 84] Compiling Basement.Numerical.Number
@@ -54,7 +55,40 @@ Basement/Monad.hs:47:28: warning: [GHC-39567] [-Wstar-is-type]
 [24 of 84] Compiling Basement.Types.Word128
 [25 of 84] Compiling Basement.Types.Word256
 [26 of 84] Compiling Basement.Nat
+Basement/Nat.hs:123:13: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+123 |         (() ~ ())
+    |             ^
+
 [27 of 84] Compiling Basement.Bounded
+Basement/Bounded.hs:65:111: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+   |
+65 | zn64Nat :: forall m n . (KnownNat m, KnownNat n, NatWithinBound Word64 m, NatWithinBound Word64 n, CmpNat m n ~ 'LT)
+   |                                                                                                               ^
+
+Basement/Bounded.hs:112:59: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+112 | znNat :: forall m n . (KnownNat m, KnownNat n, CmpNat m n ~ 'LT) => Proxy m -> Zn n
+    |                                                           ^
+
 [28 of 84] Compiling Basement.Numerical.Subtractive
 [29 of 84] Compiling Basement.Numerical.Additive
 [30 of 84] Compiling Basement.Numerical.Multiplicative
@@ -76,16 +110,247 @@ Basement/Monad.hs:47:28: warning: [GHC-39567] [-Wstar-is-type]
 [46 of 84] Compiling Basement.NormalForm
 [47 of 84] Compiling Basement.These
 [48 of 84] Compiling Basement.Sized.List
+Basement/Sized/List.hs:227:87: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+227 | drop :: forall a d (m :: Nat) (n :: Nat) . (KnownNat d, NatWithinBound Int d, (n - m) ~ d, m <= n) => ListN n a -> ListN m a
+    |                                                                                       ^
+
+Basement/Sized/List.hs:232:90: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+232 | splitAt :: forall a d (m :: Nat) (n :: Nat) . (KnownNat d, NatWithinBound Int d, (n - m) ~ d, m <= n) => ListN n a -> (ListN m a, ListN (n-m) a)
+    |                                                                                          ^
+
+Basement/Sized/List.hs:241:55: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+241 | indexStatic :: forall i n a . (KnownNat i, CmpNat i n ~ 'LT, Offsetable a i) => ListN n a -> a
+    |                                                       ^
+
 [49 of 84] Compiling Basement.Block.Base
 [50 of 84] Compiling Basement.Cast
 [51 of 84] Compiling Basement.Block.Mutable
 [52 of 84] Compiling Basement.Block
 [53 of 84] Compiling Basement.Sized.Block
+Basement/Sized/Block.hs:101:30: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+101 |         , ((PrimSize b) * m) ~ ((PrimSize a) * n)
+    |                              ^
+
+Basement/Sized/Block.hs:110:35: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+110 |              , ((PrimSize b) * m) ~ ((PrimSize a) * n)
+    |                                   ^
+
+Basement/Sized/Block.hs:143:56: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+143 | indexStatic :: forall i n ty . (KnownNat i, CmpNat i n ~ 'LT, PrimType ty, Offsetable ty i) => BlockN n ty -> ty
+    |                                                        ^
+
+Basement/Sized/Block.hs:165:20: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+165 |      . ( (i <=? n) ~ 'True
+    |                    ^
+
+Basement/Sized/Block.hs:166:20: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+166 |        , (j <=? n) ~ 'True
+    |                    ^
+
+Basement/Sized/Block.hs:167:20: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+167 |        , (i <=? j) ~ 'True
+    |                    ^
+
+Basement/Sized/Block.hs:177:37: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+177 | uncons :: forall n ty . (CmpNat 0 n ~ 'LT, PrimType ty, KnownNat n, Offsetable ty n)
+    |                                     ^
+
+Basement/Sized/Block.hs:182:37: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+182 | unsnoc :: forall n ty . (CmpNat 0 n ~ 'LT, KnownNat n, PrimType ty, Offsetable ty n)
+    |                                     ^
+
+Basement/Sized/Block.hs:189:40: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+189 | splitAt :: forall i n ty . (CmpNat i n ~ 'LT, PrimType ty, KnownNat i, Countable ty i) => BlockN n ty -> (BlockN i ty, BlockN (n-i) ty)
+    |                                        ^
+
+Basement/Sized/Block.hs:212:28: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+212 | intersperse :: (CmpNat n 1 ~ 'GT, PrimType ty) => ty -> BlockN n ty -> BlockN (n+n-1) ty
+    |                            ^
+
 [54 of 84] Compiling Basement.BlockN
 [55 of 84] Compiling Basement.Bits
 [56 of 84] Compiling Basement.UArray.Base
 [57 of 84] Compiling Basement.BoxedArray
 [58 of 84] Compiling Basement.Sized.Vect
+Basement/Sized/Vect.hs:86:56: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+   |
+86 | indexStatic :: forall i n ty . (KnownNat i, CmpNat i n ~ 'LT, Offsetable ty i) => Vect n ty -> ty
+   |                                                        ^
+
+Basement/Sized/Vect.hs:108:20: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+108 |      . ( (i <=? n) ~ 'True
+    |                    ^
+
+Basement/Sized/Vect.hs:109:20: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+109 |        , (j <=? n) ~ 'True
+    |                    ^
+
+Basement/Sized/Vect.hs:110:20: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+110 |        , (i <=? j) ~ 'True
+    |                    ^
+
+Basement/Sized/Vect.hs:119:37: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+119 | uncons :: forall n ty . (CmpNat 0 n ~ 'LT, KnownNat n, Offsetable ty n)
+    |                                     ^
+
+Basement/Sized/Vect.hs:124:37: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+124 | unsnoc :: forall n ty . (CmpNat 0 n ~ 'LT, KnownNat n, Offsetable ty n)
+    |                                     ^
+
+Basement/Sized/Vect.hs:131:40: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+131 | splitAt :: forall i n ty . (CmpNat i n ~ 'LT, KnownNat i, Countable ty i) => Vect n ty -> (Vect i ty, Vect (n-i) ty)
+    |                                        ^
+
+Basement/Sized/Vect.hs:154:28: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+154 | intersperse :: (CmpNat n 1 ~ 'GT) => ty -> Vect n ty -> Vect (n+n-1) ty
+    |                            ^
+
 [59 of 84] Compiling Basement.UArray.Mutable
 [60 of 84] Compiling Basement.UArray
 [61 of 84] Compiling Basement.Types.AsciiString
@@ -95,6 +360,94 @@ Basement/Monad.hs:47:28: warning: [GHC-39567] [-Wstar-is-type]
 [65 of 84] Compiling Basement.String.Encoding.ISO_8859_1
 [66 of 84] Compiling Basement.String.Encoding.ASCII7
 [67 of 84] Compiling Basement.Sized.UVect
+Basement/Sized/UVect.hs:83:56: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+   |
+83 | indexStatic :: forall i n ty . (KnownNat i, CmpNat i n ~ 'LT, PrimType ty, Offsetable ty i) => UVect n ty -> ty
+   |                                                        ^
+
+Basement/Sized/UVect.hs:105:20: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+105 |      . ( (i <=? n) ~ 'True
+    |                    ^
+
+Basement/Sized/UVect.hs:106:20: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+106 |        , (j <=? n) ~ 'True
+    |                    ^
+
+Basement/Sized/UVect.hs:107:20: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+107 |        , (i <=? j) ~ 'True
+    |                    ^
+
+Basement/Sized/UVect.hs:117:37: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+117 | uncons :: forall n ty . (CmpNat 0 n ~ 'LT, PrimType ty, KnownNat n, Offsetable ty n)
+    |                                     ^
+
+Basement/Sized/UVect.hs:122:37: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+122 | unsnoc :: forall n ty . (CmpNat 0 n ~ 'LT, KnownNat n, PrimType ty, Offsetable ty n)
+    |                                     ^
+
+Basement/Sized/UVect.hs:129:40: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+129 | splitAt :: forall i n ty . (CmpNat i n ~ 'LT, PrimType ty, KnownNat i, Countable ty i) => UVect n ty -> (UVect i ty, UVect (n-i) ty)
+    |                                        ^
+
+Basement/Sized/UVect.hs:152:28: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+152 | intersperse :: (CmpNat n 1 ~ 'GT, PrimType ty) => ty -> UVect n ty -> UVect (n+n-1) ty
+    |                            ^
+
 [68 of 84] Compiling Basement.UTF8.Types
 [69 of 84] Compiling Basement.UTF8.Table
 [70 of 84] Compiling Basement.UTF8.Helper
@@ -111,4 +464,15 @@ Basement/Monad.hs:47:28: warning: [GHC-39567] [-Wstar-is-type]
 [81 of 84] Compiling Basement.Terminal.ANSI
 [82 of 84] Compiling Basement.From
 [83 of 84] Compiling Basement.Block.Builder
+Basement/Block/Builder.hs:118:30: warning: [GHC-12003] [-Wtype-equality-out-of-scope]
+    • The ‘~’ operator is out of scope.
+      Assuming it to stand for an equality constraint.
+    • NB: ‘~’ used to be built-in syntax but now is a regular type operator
+          exported from Data.Type.Equality and Prelude.
+      If you are using a custom Prelude, consider re-exporting it.
+    • This will become an error in a future GHC release.
+    |
+118 | emitPrim :: (PrimType ty, ty ~ Word8) => ty -> Builder
+    |                              ^
+
 [84 of 84] Compiling Basement.String.Builder

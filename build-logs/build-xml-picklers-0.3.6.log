@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - xml-picklers-0.3.6 (lib) (first run)
  - xml-picklers-0.3.6 (test:tests) (first run)
@@ -8,8 +9,7 @@ Configuring library for xml-picklers-0.3.6...
 Preprocessing library for xml-picklers-0.3.6...
 Building library for xml-picklers-0.3.6...
 [1 of 3] Compiling Data.XML.Pickle.Basic
-
-src/Data/XML/Pickle/Basic.hs:7:1: warning: [-Wunused-imports]
+src/Data/XML/Pickle/Basic.hs:7:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
@@ -17,21 +17,23 @@ src/Data/XML/Pickle/Basic.hs:7:1: warning: [-Wunused-imports]
 7 | import           Control.Applicative
   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Data/XML/Pickle/Basic.hs:37:5: warning: [-Wnoncanonical-monad-instances]
+src/Data/XML/Pickle/Basic.hs:37:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘pure = return’ definition detected
     in the instance declaration for ‘Applicative (UnpickleResult t)’.
-    Move definition from ‘return’ to ‘pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Move definition from ‘return’ to ‘pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
    |
 37 |     pure = return
    |     ^^^^^^^^^^^^^
 
-src/Data/XML/Pickle/Basic.hs:41:5: warning: [-Wnoncanonical-monad-instances]
+src/Data/XML/Pickle/Basic.hs:41:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad (UnpickleResult t)’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
    |
 41 |     return x = Result x Nothing
    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -70,10 +72,10 @@ src/Data/XML/Pickle/Basic.hs:96:20: warning: [GHC-63397] [-Wname-shadowing]
    |
 96 |     collapsSteps _ es = (0, es)
    |                    ^^
+
 [2 of 3] Compiling Data.XML.Pickle.Tuples
 [3 of 3] Compiling Data.XML.Pickle
-
-src/Data/XML/Pickle.hs:225:1: warning: [-Wunused-imports]
+src/Data/XML/Pickle.hs:225:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
@@ -81,17 +83,18 @@ src/Data/XML/Pickle.hs:225:1: warning: [-Wunused-imports]
 225 | import Control.Applicative ((<$>))
     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Data/XML/Pickle.hs:234:1: warning: [-Wunused-imports]
+src/Data/XML/Pickle.hs:234:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
     |
 234 | import Data.Monoid (Monoid, mempty)
     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Warning: xml-picklers.cabal:1:1: The field "cabal-version" is specified more
 than once at positions 1:1, 24:1
 Configuring test suite 'tests' for xml-picklers-0.3.6...
 Preprocessing test suite 'tests' for xml-picklers-0.3.6...
 Building test suite 'tests' for xml-picklers-0.3.6...
 [1 of 1] Compiling Main
-[2 of 2] Linking /tmp/workdir-xml-picklers/xml-picklers-0.3.6/dist-newstyle/build/x86_64-linux/ghc-9.6.5/xml-picklers-0.3.6/t/tests/build/tests/tests
+[2 of 2] Linking /tmp/workdir-xml-picklers/xml-picklers-0.3.6/dist-newstyle/build/x86_64-linux/ghc-9.10.2/xml-picklers-0.3.6/t/tests/build/tests/tests

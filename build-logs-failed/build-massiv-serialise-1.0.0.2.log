@@ -1,0 +1,70 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - massiv-serialise-1.0.0.2 (lib) (first run)
+ - massiv-serialise-1.0.0.2 (test:doctests) (first run)
+ - massiv-serialise-1.0.0.2 (test:tests) (first run)
+Configuring library for massiv-serialise-1.0.0.2...
+Preprocessing library for massiv-serialise-1.0.0.2...
+Building library for massiv-serialise-1.0.0.2...
+[1 of 1] Compiling Massiv.Serialise
+src/Massiv/Serialise.hs:141:8: warning: [GHC-68441] [-Wdeprecations]
+    In the use of type constructor or class ‘Mutable’
+    (imported from Data.Massiv.Array, but defined in Data.Massiv.Core.Common):
+    Deprecated: "In favor of `Manifest`"
+    |
+141 |      , Mutable (ARepr v) e
+    |        ^^^^^^^
+
+src/Massiv/Serialise.hs:143:24: warning: [GHC-58520] [-Wtype-equality-requires-operators]
+    The use of ‘~’ without TypeOperators
+    will become an error in a future GHC release.
+    Suggested fix: Perhaps you intended to use TypeOperators
+    |
+143 |      , VRepr (ARepr v) ~ v
+    |                        ^
+
+src/Massiv/Serialise.hs:160:8: warning: [GHC-68441] [-Wdeprecations]
+    In the use of type constructor or class ‘Mutable’
+    (imported from Data.Massiv.Array, but defined in Data.Massiv.Core.Common):
+    Deprecated: "In favor of `Manifest`"
+    |
+160 |      , Mutable r e
+    |        ^^^^^^^
+
+Configuring test suite 'doctests' for massiv-serialise-1.0.0.2...
+Preprocessing test suite 'doctests' for massiv-serialise-1.0.0.2...
+Building test suite 'doctests' for massiv-serialise-1.0.0.2...
+[1 of 1] Compiling Main
+[2 of 2] Linking /tmp/workdir-massiv-serialise/massiv-serialise-1.0.0.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/massiv-serialise-1.0.0.2/t/doctests/build/doctests/doctests
+Configuring test suite 'tests' for massiv-serialise-1.0.0.2...
+Preprocessing test suite 'tests' for massiv-serialise-1.0.0.2...
+Building test suite 'tests' for massiv-serialise-1.0.0.2...
+[1 of 7] Compiling Common
+tests/Common.hs:50:3: error: [GHC-39999]
+    • Could not deduce ‘Arbitrary (Array r ix e)’
+        arising from a use of ‘prop’
+      from the context: (Eq (Array r ix e), Show (Array r ix e),
+                         Typeable e, Arbitrary ix, Load r ix e, Arbitrary e,
+                         Serialise (Array r ix e))
+        bound by the type signature for:
+                   roundtripArraySpec :: forall r ix e.
+                                         (Eq (Array r ix e), Show (Array r ix e), Typeable e,
+                                          Arbitrary ix, Load r ix e, Arbitrary e,
+                                          Serialise (Array r ix e)) =>
+                                         Spec
+        at tests/Common.hs:(38,1)-(48,9)
+    • In the first argument of ‘($)’, namely
+        ‘prop (showsType @(Array r ix e) "")’
+      In the expression:
+        prop (showsType @(Array r ix e) "") $ roundtripArray @r @ix @e
+      In an equation for ‘roundtripArraySpec’:
+          roundtripArraySpec
+            = prop (showsType @(Array r ix e) "") $ roundtripArray @r @ix @e
+   |
+50 |   prop (showsType @(Array r ix e) "") $ roundtripArray @r @ix @e
+   |   ^^^^
+
+Error: [Cabal-7125]
+Failed to build test:tests from massiv-serialise-1.0.0.2.
+

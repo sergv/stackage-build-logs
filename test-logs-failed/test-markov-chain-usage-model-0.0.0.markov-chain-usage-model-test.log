@@ -1,18 +1,18 @@
-Build profile: -w ghc-9.6.5 -O1
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - markov-chain-usage-model-0.0.0 (test:markov-chain-usage-model-test) (ephemeral targets)
 Preprocessing test suite 'markov-chain-usage-model-test' for markov-chain-usage-model-0.0.0...
 Building test suite 'markov-chain-usage-model-test' for markov-chain-usage-model-0.0.0...
+<no location info>: warning: [GHC-42258] [-Wunused-packages]
+    The following packages were specified via -package or -package-id flags,
+    but were not needed for compilation:
+      - tasty-discover-5.0.2 (exposed by flag -package-id tasty-discover-5.0.2-b33c2c0fca91b989e3fa3f5fe6f32c8cd098e5d8fd7d600f3c50ae4bad270473)
 
 <no location info>: warning: [GHC-42258] [-Wunused-packages]
     The following packages were specified via -package or -package-id flags,
     but were not needed for compilation:
-      - tasty-discover-5.0.0 (exposed by flag -package-id tasty-discover-5.0.0-c681d53ad4b3ecfc94b2dafcdb4459b2662043dc937d2148e29116301eaa01e9)
+      - tasty-discover-5.0.2 (exposed by flag -package-id tasty-discover-5.0.2-b33c2c0fca91b989e3fa3f5fe6f32c8cd098e5d8fd7d600f3c50ae4bad270473)
 
-<no location info>: warning: [GHC-42258] [-Wunused-packages]
-    The following packages were specified via -package or -package-id flags,
-    but were not needed for compilation:
-      - tasty-discover-5.0.0 (exposed by flag -package-id tasty-discover-5.0.0-c681d53ad4b3ecfc94b2dafcdb4459b2662043dc937d2148e29116301eaa01e9)
 Running 1 test suites...
 Test suite markov-chain-usage-model-test: RUNNING...
 test/Spec.hs
@@ -21,7 +21,17 @@ test/Spec.hs
     expectTransientReliability:   OK
     occurenceMean:                OK
     occurenceVar:                 OK
-    docTest:                      src/MarkovChain.hs:94: failure in expression `fundamental (minorMatrix 5 5 p :: M)'
+    docTest:                      src/MarkovChain.hs:311:10: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+
+src/MarkovChain.hs:311:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+
+src/MarkovChain.hs:94: failure in expression `fundamental (minorMatrix 5 5 p :: M)'
 expected: ┌                                                                                 ┐
           │                 1.0  1.2307692307692306  1.2307692307692308  0.9230769230769231 │
           │                 0.0  1.2307692307692306  1.2307692307692308  0.9230769230769231 │
@@ -73,12 +83,18 @@ expected: [0.2807017543859649,0.2807017543859649,0.21052631578947367,0.175438596
 Examples: 11  Tried: 11  Errors: 0  Failures: 4
 FAIL
       Exception: ExitFailure 1
+      HasCallStack backtrace:
+        collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception
+        toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/IO.hs:260:11 in ghc-internal:GHC.Internal.IO
+        throwIO, called at ./Control/Concurrent/Async.hs:110:7 in tasty-1.5.3-f1a0a46ce55b88414ff48786f2e9bff7e8a1997e2f2af353d26d5875559bb827:Control.Concurrent.Async
+      
+      
       Use -p '/docTest/' to rerun this test only.
 
-1 out of 5 tests failed (0.73s)
+1 out of 5 tests failed (0.86s)
 Test suite markov-chain-usage-model-test: FAIL
 Test suite logged to:
-/tmp/workdir-markov-chain-usage-model/markov-chain-usage-model-0.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/markov-chain-usage-model-0.0.0/t/markov-chain-usage-model-test/test/markov-chain-usage-model-0.0.0-markov-chain-usage-model-test.log
+/tmp/workdir-markov-chain-usage-model/markov-chain-usage-model-0.0.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/markov-chain-usage-model-0.0.0/t/markov-chain-usage-model-test/test/markov-chain-usage-model-0.0.0-markov-chain-usage-model-test.log
 0 of 1 test suites (0 of 1 test cases) passed.
 Error: [Cabal-7125]
 Tests failed for test:markov-chain-usage-model-test from markov-chain-usage-model-0.0.0.

@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - simple-2.0.0 (lib) (first run)
  - simple-2.0.0 (exe:smpl) (first run)
@@ -8,6 +9,46 @@ Preprocessing library for simple-2.0.0...
 Building library for simple-2.0.0...
 [ 1 of 10] Compiling Web.Simple.Responses
 [ 2 of 10] Compiling Web.Simple.Controller.Trans
+src/Web/Simple/Controller/Trans.hs:163:43: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+163 |                               (T.length . head $ pathInfo req) == 0
+    |                                           ^^^^
+
+src/Web/Simple/Controller/Trans.hs:197:46: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+197 |   if (length $ pathInfo req) > 0 && name == (head . pathInfo) req
+    |                                              ^^^^
+
+src/Web/Simple/Controller/Trans.hs:200:40: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+200 |   where popHdr req = req { pathInfo = (tail . pathInfo $ req) }
+    |                                        ^^^^
+
+src/Web/Simple/Controller/Trans.hs:213:27: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+213 |               pathInfo = (tail . pathInfo $ req)
+    |                           ^^^^
+
+src/Web/Simple/Controller/Trans.hs:215:37: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+215 |         varVal req = T.encodeUtf8 . head . pathInfo $ req
+    |                                     ^^^^
+
 [ 3 of 10] Compiling Web.Frank
 [ 4 of 10] Compiling Web.Simple.Controller
 [ 5 of 10] Compiling Web.Simple.Controller.Exception
@@ -21,11 +62,51 @@ Preprocessing executable 'smpl' for simple-2.0.0...
 Building executable 'smpl' for simple-2.0.0...
 [1 of 2] Compiling Paths_simple
 [2 of 2] Compiling Main
-[3 of 3] Linking /tmp/workdir-simple/simple-2.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/simple-2.0.0/x/smpl/build/smpl/smpl
+[3 of 3] Linking /tmp/workdir-simple/simple-2.0.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/simple-2.0.0/x/smpl/build/smpl/smpl
 Configuring test suite 'test-simple' for simple-2.0.0...
 Preprocessing test suite 'test-simple' for simple-2.0.0...
 Building test suite 'test-simple' for simple-2.0.0...
 [1 of 3] Compiling Web.Simple.Responses
 [2 of 3] Compiling Web.Simple.Controller.Trans
+src/Web/Simple/Controller/Trans.hs:163:43: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+163 |                               (T.length . head $ pathInfo req) == 0
+    |                                           ^^^^
+
+src/Web/Simple/Controller/Trans.hs:197:46: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+197 |   if (length $ pathInfo req) > 0 && name == (head . pathInfo) req
+    |                                              ^^^^
+
+src/Web/Simple/Controller/Trans.hs:200:40: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+200 |   where popHdr req = req { pathInfo = (tail . pathInfo $ req) }
+    |                                        ^^^^
+
+src/Web/Simple/Controller/Trans.hs:213:27: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+213 |               pathInfo = (tail . pathInfo $ req)
+    |                           ^^^^
+
+src/Web/Simple/Controller/Trans.hs:215:37: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+215 |         varVal req = T.encodeUtf8 . head . pathInfo $ req
+    |                                     ^^^^
+
 [3 of 3] Compiling Main
-[4 of 4] Linking /tmp/workdir-simple/simple-2.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/simple-2.0.0/t/test-simple/build/test-simple/test-simple
+[4 of 4] Linking /tmp/workdir-simple/simple-2.0.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/simple-2.0.0/t/test-simple/build/test-simple/test-simple

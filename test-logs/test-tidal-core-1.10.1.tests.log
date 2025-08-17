@@ -1,0 +1,639 @@
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - tidal-core-1.10.1 (test:tests) (ephemeral targets)
+Preprocessing test suite 'tests' for tidal-core-1.10.1...
+Building test suite 'tests' for tidal-core-1.10.1...
+Running 1 test suites...
+Test suite tests: RUNNING...
+
+Sound.Tidal.Core
+  Elemental patterns
+    are in range [0, 1]
+      sine [✔]
+        +++ OK, passed 100 tests.
+      cosine [✔]
+        +++ OK, passed 100 tests.
+      saw [✔]
+        +++ OK, passed 100 tests.
+      isaw [✔]
+        +++ OK, passed 100 tests.
+      tri [✔]
+        +++ OK, passed 100 tests.
+      square [✔]
+        +++ OK, passed 100 tests.
+    have correctly-scaled bipolar variants
+      sine [✔]
+        +++ OK, passed 100 tests.
+      cosine [✔]
+        +++ OK, passed 100 tests.
+      saw [✔]
+        +++ OK, passed 100 tests.
+      isaw [✔]
+        +++ OK, passed 100 tests.
+      tri [✔]
+        +++ OK, passed 100 tests.
+      square [✔]
+        +++ OK, passed 100 tests.
+  append
+    can switch between the cycles from two pures [✔]
+  cat
+    can switch between the cycles from three pures [✔]
+    can extract nested revs [✔]
+  fastCat
+    can switch between the cycles from three pures inside one cycle (1) [✔]
+    can switch between the cycles from three pures inside one cycle (5/3) [✔]
+    works with zero-length queries (0) [✔]
+    works with zero-length queries (1/3) [✔]
+  rev
+    mirrors events [✔]
+    returns the original if you reverse it twice [✔]
+  |>|
+    creates silence when first argument silent [✔]
+    creates silence when second argument silent [✔]
+    creates the same pattern when left argument has the same structure [✔]
+    can extract rev from first argument [✔]
+    is assiociative [✔]
+    is commutative in all arguments except the rightmost [✔]
+  stack
+    is neutral with silence [✔]
+    can create silence [✔]
+    follows commutative laws [✔]
+    follows assiociative laws [✔]
+    can extract nested revs [✔]
+  fast
+    is neutral with speedup 1 [✔]
+    it mutes, when there is silence in first argument [✔]
+    it mute, when there is silence in second argument [✔]
+    it mute, when there is speedup by 0 [✔]
+    is reciprocal to slow [✔]
+    can be reversed by reciprocal speedup [✔]
+    preserves structure [✔]
+  slow
+    is neutral with slowdown 1 [✔]
+    mutes, when there is silence in first argument [✔]
+    mutes, when there is silence in second argument [✔]
+    mutes, when it is speedup by 0 [✔]
+    is reciprocal to fast [✔]
+    can be reversed by reciprocal slowdown [✔]
+    preserves structure [✔]
+  compress
+    squashes cycles to the start of a cycle [✔]
+    squashes cycles to the end of a cycle [✔]
+    squashes cycles to the middle of a cycle [✔]
+  saw goes from 0 up to 1 every cycle
+    0 [✔]
+    0.25 [✔]
+    0.5 [✔]
+    0.75 [✔]
+  saw
+    can be added to [✔]
+    works on the left of <*> [✔]
+    works on the right of <*> [✔]
+    works with whole cycles [✔]
+    works with half cycles [✔]
+    works with inset points [✔]
+  tri
+    goes from 0 up to 1 and back every cycle [✔]
+    can be added to [✔]
+  every
+    `every n id` doesn't change the pattern's structure [✔]
+Sound.Tidal.Parse
+  parseBP_E
+    can parse strings [✔]
+    can parse ints [✔]
+    can parse pattern groups [✔]
+    can parse pattern groups shorthand  [✔]
+    can alternate with <> [✔]
+    can slow with / [✔]
+    can speed up with * [✔]
+    can elongate with _ [✔]
+    can replicate with ! [✔]
+    can replicate with ! inside {} [✔]
+    can replicate with ! and number [✔]
+    can degrade with ? [✔]
+    can degrade with ? and number [✔]
+    can degrade with ? for double patterns [✔]
+    can handle ? on replicated value [✔]
+    can handle ? on streched value [✔]
+    can stretch with @ [✔]
+    can do polymeter with {} [✔]
+    can parse .. with ints [✔]
+    can parse .. with rationals [✔]
+    can parse .. with doubles [✔]
+    can parse .. with doubles, without spaces [✔]
+    can parse .. with notes [✔]
+    can parse .. with notes, without spaces [✔]
+    can handle repeats (!) and durations (@) with <> [✔]
+    can handle repeats (!) and durations (@) with <> (with ints) [✔]
+    can handle fractional durations [✔]
+    can handle fractional durations (with rationals) [✔]
+    can handle ratio shortands on a fraction [✔]
+    can handle ratio shortands on a floating point number [✔]
+    cannot handle fractional with floating point numerator or denominator [✔]
+    can parse a chord [✔]
+    can parse two chords [✔]
+    can parse c chords [✔]
+    can parse various chords [✔]
+    can parse note chords [✔]
+    can invert chords [✔]
+    can invert chords using a number [✔]
+    spread chords over a range [✔]
+    can open chords [✔]
+    can drop notes in a chord [✔]
+    can apply multiple modifiers [✔]
+    can pattern modifiers [✔]
+    can pattern chord names [✔]
+    can pattern chord notes [✔]
+    handle trailing and leading whitespaces [✔]
+    can parse negative ratio shorthands [✔]
+    can parse multiplied ratio shorthands [✔]
+    can parse exponential notation value for pattern double [✔]
+    can parse negative exponential notation value for pattern double [✔]
+    can parse ratio shortand on exponential notation value [✔]
+    can parse euclid pattern [✔]
+    can parse euclid bool pattern [✔]
+    doesn't crash on zeroes (1) [✔]
+    doesn't crash on zeroes (2) [✔]
+    doesn't crash on zeroes (3) [✔]
+    can't parse a floating point number as int [✔]
+    can correctly parse multiplied boolean patterns 1 [✔]
+    can correctly parse multiplied boolean patterns 2 [✔]
+    does the same for '-' and '~' in simple patterns [✔]
+    does the same for '-' and '~' in complex patterns parsed as Rational [✔]
+    does the same for '-' and '~' in complex patterns [✔]
+    does the same for '-' and '~' using rational numbers [✔]
+    does the same for '-' and '~' in list patterns [✔]
+    does the same for '-' and '~' alternating patterns [✔]
+    toplevel '|' is the same as in list [✔]
+    '|' in list first [✔]
+    '|' in list last [✔]
+    list is same as stack [✔]
+    simple toplevel ',' is the same as in list [✔]
+    toplevel ','. single leading pattern with elongate [✔]
+Sound.Tidal.Params
+  VF params
+    should parse fractional ratio [✔]
+    should parse correctly floating point number [✔]
+  VN params
+    should parse note value [✔]
+    should parse n value [✔]
+    should parse correctly floating point number [✔]
+Sound.Tidal.Pattern
+  Arc
+    Arc is a Functor: Apply a given function to the start and end values of an Arc [✔]
+  whole
+    returns the whole Arc in an Event [✔]
+  part
+    returns the part Arc in an Event [✔]
+  value
+    returns the event value in an Event [✔]
+  wholeStart
+    retrieve the onset of an event: the start of the whole Arc [✔]
+  eventHasOnset
+    return True when the start values of the two arcs in an event are equal [✔]
+    return False when the start values of the two arcs in an event are not equal [✔]
+  pure
+    fills a whole cycle [✔]
+    returns the part of an pure that you ask for, preserving the whole [✔]
+    gives correct fragments when you go over cycle boundaries [✔]
+    works with zero-length queries [✔]
+  _fastGap
+    copes with cross-cycle queries [✔]
+    does not return events outside of the query [✔]
+  <*>
+    can apply a pattern of values to a pattern of values [✔]
+    can take structure from the left [✔]
+    can take structure from the right [✔]
+    can take structure from the both sides [✔]
+    obeys pure id <*> v = v [✔]
+    obeys pure f <*> pure x = pure (f x) [✔]
+    obeys u <*> pure y = pure ($ y) <*> u [✔]
+    obeys pure (.) <*> u <*> v <*> w = u <*> (v <*> w) [✔]
+  <*
+    can apply a pattern of values to a pattern of functions [✔]
+    doesn't take structure from the right [✔]
+  *> can apply a pattern of values to a pattern of functions
+    works within cycles [✔]
+    works across cycles [✔]
+    doesn't take structure from the left [✔]
+  arcCycles
+    leaves a unit cycle intact [✔]
+    splits a cycle at cycle boundaries [✔]
+  unwrap
+    preserves inner structure [✔]
+    preserves outer structure [✔]
+    gives events whole/part timespans that are an intersection of that of inner and outer events [✔]
+  squeezeJoin
+    compresses cycles to fit outer 'whole' timearc of event [✔]
+    preserves cycle number of inner patterns [✔]
+  >>=
+    can apply functions to patterns [✔]
+    can add two patterns together [✔]
+    conforms to (return v) >>= f = f v [✔]
+    conforms to m >>= return ≡ m [✔]
+  rotR
+    works over two cycles [✔]
+    works over one cycle [✔]
+    works with zero width queries [✔]
+  comparePD
+    allows split events to be compared [✔]
+  controlI
+    can retrieve values from state [✔]
+  wholeStart
+    retrieve first element of a tuple, inside first element of a tuple, inside the first of another [✔]
+  wholeStop
+    retrieve the end time from the first Arc in an Event [✔]
+  eventPartStart
+    retrieve the start time of the second Arc in an Event [✔]
+  eventPartStop
+    retrieve the end time of the second Arc in an Event [✔]
+  eventPart
+    retrieve the second Arc in an Event [✔]
+  eventValue
+    retrieve the second value from a tuple [✔]
+  eventHasOnset
+    return True when the start values of the two arcs in an event are equal [✔]
+    return False when the start values of the two arcs in an event are not equal [✔]
+  sam
+    start of a cycle, round down time value [✔]
+  nextSam
+    the end point of the current cycle, and start of the next [✔]
+  arcCycles
+    if start time is greater than end time return empty list [✔]
+    if start time is equal to end time return empty list [✔]
+    if start and end time round down to same value return list of (start, end) [✔]
+    if start time is less than end time and start time does not round down to same value as end time [✔]
+  arcCyclesZW
+    if start and end time are equal return list of (start, end) [✔]
+    if start and end time are not equal call arcCycles (start, end) with same rules as above [✔]
+    if start time is less than end time [✔]
+    if start time is greater than end time [✔]
+  mapCycle
+    Apply a function to the Arc values minus the start value rounded down (sam'), adding both results to sam' to obtain the new Arc value [✔]
+  toTime
+    Convert a number of type Real to a Time value of type Rational, Int test [✔]
+    Convert a number of type Double to a Time value of type Rational [✔]
+  cyclePos
+    Subtract a Time value from its value rounded down (the start of the cycle) [✔]
+    If no difference between a given Time and the start of the cycle [✔]
+  isIn
+    Check given Time is inside a given Arc value, Time is greater than start and less than end Arc values [✔]
+    Given Time is equal to the Arc start value [✔]
+    Given Time is less than the Arc start value [✔]
+    Given Time is greater than the Arc end value [✔]
+  onsetIn
+    If the beginning of an Event is within a given Arc, same rules as 'isIn' [✔]
+    Beginning of Event is equal to beggining of given Arc [✔]
+    Beginning of an Event is less than the start of the Arc [✔]
+    Start of Event is greater than the start of the given Arc [✔]
+  subArc
+    Checks if an Arc is within another, returns Just (max $ (fst a1) (fst a2), min $ (snd a1) (snd a2)) if so, otherwise Nothing [✔]
+    if max (fst arc1) (fst arc2) <= min (snd arc1) (snd arc2) return Just (max (fst arc1) (fst arc2), min...) [✔]
+  timeToCycleArc
+    given a Time value return the Arc in which it resides [✔]
+  cyclesInArc
+    Return a list of cycles in a given arc, if start is greater than end return empty list [✔]
+    If start value of Arc is equal to end value return list with start value rounded down [✔]
+    if start of Arc is less than end return list of start rounded down to end rounded up minus one [✔]
+  cycleArcsInArc
+    generates a list of Arcs based on the cycles found within a given a Arc [✔]
+  isAdjacent
+    if the given Events are adjacent parts of the same whole [✔]
+    if first Arc of of first Event is not equal to first Arc of second Event [✔]
+    if the value of the first Event does not equal the value of the second Event [✔]
+    second value of second Arc of first Event not equal to first value of second Arc in second Event... [✔]
+  defragParts
+    if empty list with no events return empty list [✔]
+    if list consists of only one Event return it as is [✔]
+    if list contains adjacent Events return list with Parts combined [✔]
+    if list contains more than one Event none of which are adjacent, return List as is [✔]
+  sect
+    take two Arcs and return - Arc (max of two starts) (min of two ends) [✔]
+  hull
+    take two Arcs anre return - Arc (min of two starts) (max of two ends) [✔]
+  withResultArc
+    apply given function to the Arcs [✔]
+  applyFIS
+    apply Float function when value of type VF [✔]
+    apply Int function when value of type VI [✔]
+    apply String function when value of type VS [✔]
+  fNum2
+    apply Int function for two Int values [✔]
+    apply float function when given two float values [✔]
+    apply float function when one float and one int value given [✔]
+  getI
+    get Just value when Int value is supplied [✔]
+    get floored value when float value is supplied [✔]
+    get if String value is supplied [✔]
+  getF
+    get Just value when Float value is supplied [✔]
+    get converted value if Int value is supplied [✔]
+  getS
+    get Just value when String value is supplied [✔]
+    get Nothing if Int value is not supplied [✔]
+  filterValues
+    remove Events above given threshold [✔]
+    remove Events below given threshold [✔]
+  filterWhen
+    filter below given threshold [✔]
+    filter above given threshold [✔]
+  compressArc
+    return empty if start time is greater than end time [✔]
+    return empty if start time or end time are greater than 1 [✔]
+    return empty if start or end are less than zero [✔]
+    otherwise compress difference between start and end values of Arc [✔]
+Sound.Tidal.Control
+  echo
+    should echo the event by the specified time and multiply the gain factor [✔]
+  echoWith
+    should echo the event by the specified time and apply the specified function [✔]
+  stutWith
+    can mimic stut [✔]
+  splice
+    can beatslice [✔]
+  slice
+    can slice samples [✔]
+    can slice by 1 [✔]
+Sound.Tidal.Scales
+  scale
+    5 note scales
+      can transform notes correctly over 2 octaves - minPent [✔]
+      can transform notes correctly over 2 octaves - majPent [✔]
+      can transform notes correctly over 2 octaves - ritusen [✔]
+      can transform notes correctly over 2 octaves - egyptian [✔]
+      can transform notes correctly over 2 octaves - kumai [✔]
+      can transform notes correctly over 2 octaves - hirajoshi [✔]
+      can transform notes correctly over 2 octaves - iwato [✔]
+      can transform notes correctly over 2 octaves - chinese [✔]
+      can transform notes correctly over 2 octaves - indian [✔]
+      can transform notes correctly over 2 octaves - pelog [✔]
+      can transform notes correctly over 2 octaves - prometheus [✔]
+      can transform notes correctly over 2 octaves - scriabin [✔]
+      can transform notes correctly over 2 octaves - gong [✔]
+      can transform notes correctly over 2 octaves - shang [✔]
+      can transform notes correctly over 2 octaves - jiao [✔]
+      can transform notes correctly over 2 octaves - zhi [✔]
+      can transform notes correctly over 2 octaves - yu [✔]
+    6 note scales
+      can transform notes correctly over 2 octaves - whole [✔]
+      can transform notes correctly over 2 octaves - wholetone [✔]
+      can transform notes correctly over 2 octaves - augmented [✔]
+      can transform notes correctly over 2 octaves - augmented2 [✔]
+      can transform notes correctly over 2 octaves - hexMajor7 [✔]
+      can transform notes correctly over 2 octaves - hexPhrygian [✔]
+      can transform notes correctly over 2 octaves - hexDorian [✔]
+      can transform notes correctly over 2 octaves - hexSus [✔]
+      can transform notes correctly over 2 octaves - hexMajor6 [✔]
+      can transform notes correctly over 2 octaves - hexAeolian [✔]
+    7 note scales
+      can transform notes correctly over 2 octaves - major [✔]
+      can transform notes correctly over 2 octaves - ionian [✔]
+      can transform notes correctly over 2 octaves - dorian [✔]
+      can transform notes correctly over 2 octaves - aeolian [✔]
+      can transform notes correctly over 2 octaves - aeolian [✔]
+      can transform notes correctly over 2 octaves - minor [✔]
+      can transform notes correctly over 2 octaves - locrian [✔]
+      can transform notes correctly over 2 octaves - harmonicMinor [✔]
+      can transform notes correctly over 2 octaves - harmonicMajor [✔]
+      can transform notes correctly over 2 octaves - melodicMinor [✔]
+      can transform notes correctly over 2 octaves - melodicMinorDesc [✔]
+      can transform notes correctly over 2 octaves - melodicMajor [✔]
+      can transform notes correctly over 2 octaves - bartok [✔]
+      can transform notes correctly over 2 octaves - hindu [✔]
+      can transform notes correctly over 2 octaves - todi [✔]
+      can transform notes correctly over 2 octaves - purvi [✔]
+      can transform notes correctly over 2 octaves - marva [✔]
+      can transform notes correctly over 2 octaves - bhairav [✔]
+      can transform notes correctly over 2 octaves - ahirbhairav [✔]
+      can transform notes correctly over 2 octaves - superLocrian [✔]
+      can transform notes correctly over 2 octaves - romanianMinor [✔]
+      can transform notes correctly over 2 octaves - hungarianMinor [✔]
+      can transform notes correctly over 2 octaves - neapolitanMinor [✔]
+      can transform notes correctly over 2 octaves - enigmatic [✔]
+      can transform notes correctly over 2 octaves - spanish [✔]
+      can transform notes correctly over 2 octaves - leadingWhole [✔]
+      can transform notes correctly over 2 octaves - lydianMinor [✔]
+      can transform notes correctly over 2 octaves - neapolitanMajor [✔]
+      can transform notes correctly over 2 octaves - locrianMajor [✔]
+    8 note scales
+      can transform notes correctly over 2 octaves - diminished [✔]
+      can transform notes correctly over 2 octaves - octatonic [✔]
+      can transform notes correctly over 2 octaves - diminished2 [✔]
+      can transform notes correctly over 2 octaves - octatonic2 [✔]
+    modes of limited transposition
+      can transform notes correctly over 2 octaves - messiaen1 [✔]
+      can transform notes correctly over 2 octaves - messiaen2 [✔]
+      can transform notes correctly over 2 octaves - messiaen3 [✔]
+      can transform notes correctly over 2 octaves - messiaen4 [✔]
+      can transform notes correctly over 2 octaves - messiaen5 [✔]
+      can transform notes correctly over 2 octaves - messiaen6 [✔]
+      can transform notes correctly over 2 octaves - messiaen7 [✔]
+    12 note scales
+      can transform notes correctly over 2 octaves - chromatic [✔]
+    edge cases
+      responds to unknown scales by mapping to octaves [✔]
+      correctly maps negative numbers [✔]
+Sound.Tidal.Chords
+  chord
+    chord length adjustments
+      can remove notes from the end of the list when length given is less than the standard chord length [✔]
+      can do nothing when the length given is the same as the standard chord length [✔]
+      can append chord notes at higher octaves to the list when length given is greater than the standard chord length [✔]
+    open voiced chords
+      can subtract 12 from the first and third element of a list, and sort them in ascending numerical order [✔]
+      not crash if chord length is < 3 [✔]
+    chord inversions
+      can add 12 to the first element of a list, and sort in ascending numeric order (1st inversion) [✔]
+      can add 12 to the first two elements of a list, and sort in ascending numeric order (2nd inversion) [✔]
+      can add 12 to the first three elements of a list, and sort in ascending numeric order (3rd inversion) [✔]
+    edge cases
+      gracefully handle an inversion when there are more inversions than notes in the chord (4th inversion of a 3 note chord) [✔]
+Sound.Tidal.Stepwise
+  stepcat
+    can stepwise cat [✔]
+  expand
+    can pattern expands [✔]
+  steptake
+    can pattern steptakes [✔]
+    can pattern reverse steptakes [✔]
+  stepdrop
+    can pattern stepdrops [✔]
+    can pattern reverse stepdrops [✔]
+  step count is correctly preserved/calculated through transformations
+    linger [✔]
+    iter [✔]
+    fast [✔]
+    hurry [✔]
+    rev [✔]
+    segment [✔]
+    invert [✔]
+    chop [✔]
+    chop [✔]
+Sound.Tidal.UI
+  _chop
+    can chop in two bits [✔]
+    can be slowed [✔]
+    can chop a chop [✔]
+  segment
+    can turn a single event into multiple events [✔]
+    can turn a continuous pattern into multiple discrete events [✔]
+    can hold a value over multiple cycles [✔]
+  rolledBy
+    shifts each start of events in a list correctly [✔]
+    shifts each start of events in a list correctly in reverse order [✔]
+    trims the result pattern if it becomes larger than the original pattern [✔]
+    does nothing for continous functions [✔]
+    does nothing when passing zero as time value [✔]
+  sometimesBy
+    does nothing when set at 0% probability [✔]
+    applies the 'rev' function when set at 100% probability [✔]
+  sometimesBy'
+    does nothing when set at 0% probability -- using const [✔]
+  rand
+    it generates a (pseudo-)random number between 0 and 1 at the start of a cycle [✔]
+    it generates a (pseudo-)random number between 0 and 1 at 1/4 of a cycle [✔]
+    it generates a (pseudo-)random number between 0 and 1 at 3/4 of a cycle [✔]
+  irand
+    at the start of a cycle [✔]
+    at 1/4 of a cycle [✔]
+    is patternable [✔]
+  normal
+    produces values within [0,1] in a bell curve at different parts of a cycle [✔]
+  range
+    scales a pattern to the supplied range
+      from 3 to 4
+        at the start of a cycle [✔]
+        at 1/4 of a cycle [✔]
+        at 3/4 of a cycle [✔]
+      from -1 to 1
+        at 1/2 of a cycle [✔]
+      from 4 to 2
+        at the start of a cycle [✔]
+        at 1/4 of a cycle [✔]
+        at 3/4 of a cycle [✔]
+      from 10 to 10
+        at 1/2 of a cycle [✔]
+  rot
+    rotates values in a pattern irrespective of structure [✔]
+    works with negative values [✔]
+    works with complex patterns [✔]
+  ply
+    can ply chords [✔]
+    can pattern the ply factor [✔]
+  press
+    can syncopate a pattern [✔]
+  pressBy
+    can syncopate a pattern by a given amount [✔]
+  fix
+    can apply functions conditionally [✔]
+    works with complex matches [✔]
+    leaves unmatched controls in place [✔]
+    ignores silence [✔]
+    treats polyphony as 'or' [✔]
+  unfix
+    does the opposite of fix [✔]
+  contrast
+    does both fix and unfix [✔]
+  contrastRange
+    matches using a pattern of ranges [✔]
+  euclidFull
+    can match against silence [✔]
+  snowball
+    acummulates a transform version of a pattern and appends the result - addition [✔]
+  soak
+    applies a transform and then appends the result -- addition [✔]
+    applies a transform and then appends the result -- slow [✔]
+    applies a transform and then appends the result -- addition patterns [✔]
+  euclid
+    matches examples in Toussaint's paper
+      x ~ [✔]
+      x ~ ~ [✔]
+      x ~ ~ ~ [✔]
+      x ~ ~ x ~ ~ x ~ ~ x ~ ~ [✔]
+      x ~ x ~ ~ [✔]
+      x x x ~ [✔]
+      x ~ x ~ x [✔]
+      x ~ x ~ x ~ ~ [✔]
+      x ~ ~ x ~ ~ x ~ [✔]
+      x ~ x ~ x ~ x [✔]
+      x ~ x ~ x ~ x ~ ~ [✔]
+      x ~ ~ x ~ ~ x ~ ~ x ~ [✔]
+      x x x x x ~ [✔]
+      x ~ x x ~ x x [✔]
+      x ~ x x ~ x x ~ [✔]
+      x ~ x ~ x ~ x ~ x [✔]
+      x ~ x ~ x ~ x ~ x ~ ~ [✔]
+      x ~ ~ x ~ x ~ ~ x ~ x ~ [✔]
+      x ~ ~ x ~ ~ x ~ ~ x ~ ~ x ~ ~ ~ [✔]
+      x x x x x x x ~ [✔]
+      x ~ x x ~ x ~ x x ~ x ~ [✔]
+      x ~ ~ x ~ x ~ x ~ ~ x ~ x ~ x ~ [✔]
+      x ~ x x ~ x ~ x ~ x x ~ x ~ x ~ [✔]
+      x ~ ~ x ~ x ~ x ~ x ~ x ~ ~ x ~ x ~ x ~ x ~ x ~ [✔]
+      x ~ x x ~ x ~ x ~ x ~ x ~ x x ~ x ~ x ~ x ~ x ~ [✔]
+    can be called with a negative first value to give the inverse [✔]
+    can be called with a negative first value to give the inverse (patternable) [✔]
+  wedge
+    should not freeze tidal amount is 1 [✔]
+    should not freeze tidal amount is 0 [✔]
+  bite
+    can slice a pattern into bits [✔]
+    can slice a pattern into patternable bits number [✔]
+  chooseBy
+    chooses from elements based on closest scaled double value [✔]
+    never gets an index out of bounds [✔]
+  arpeggiate
+    can arpeggiate [✔]
+    can arpeggiate [✔]
+    can arpeggiate a 'sped up' pattern [✔]
+  chunk
+    can chunk a rev pattern [✔]
+    can chunk a fast pattern [✔]
+    should chunk backward with a negative number [✔]
+  binary
+    converts a number to a pattern of boolean [✔]
+  binaryN
+    converts a number to a pattern of boolean of specified length [✔]
+    converts a number to a pattern of boolean of specified patternable length [✔]
+  off
+    superimposes and shifts pattern [✔]
+  loopFirst
+    plays the first cycle [✔]
+  loopCycles
+    plays the first n cycles [✔]
+  timeLoop
+    can loop time [✔]
+  timeLoop
+    can pattern time [✔]
+  necklace
+    can specify rhythm by IOI [✔]
+  quantise
+    can quantise notes [✔]
+  unjoin
+    can unjoin and join as a no-op [✔]
+  into
+    can transform a looped part of a pattern [✔]
+  ribbon
+    can loop subcycles [✔]
+Sound.Tidal.Utils
+  subtracts the second element of a tuple from the first [✔]
+  applies function to both elements of tuple [✔]
+  apply function to first element of tuple [✔]
+  apply function to second element of tuple [✔]
+  return midpoint between first and second tuple value [✔]
+  return of two lists, with unique values to each list [✔]
+  wrap around indexing [✔]
+  safe list indexing [✔]
+  list accumulation with given list elements [✔]
+  index elements in list [✔]
+  split list by given pred [✔]
+NFData, forcing and catching exceptions
+  instance NFData (Pattern a)
+    rnf forces argument [✔]
+
+Finished in 0.0434 seconds
+463 examples, 0 failures
+Test suite tests: PASS
+Test suite logged to:
+/tmp/workdir-tidal-core/tidal-core-1.10.1/dist-newstyle/build/x86_64-linux/ghc-9.10.2/tidal-core-1.10.1/t/tests/test/tidal-core-1.10.1-tests.log
+1 of 1 test suites (1 of 1 test cases) passed.

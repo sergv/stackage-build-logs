@@ -1,16 +1,57 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - stack-clean-old-0.5.1 (exe:stack-clean-old) (first run)
 Configuring executable 'stack-clean-old' for stack-clean-old-0.5.1...
 Preprocessing executable 'stack-clean-old' for stack-clean-old-0.5.1...
 Building executable 'stack-clean-old' for stack-clean-old-0.5.1...
 [1 of 9] Compiling Directories
+src/Directories.hs:86:68: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List.Extra, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+86 |   listDirectory "." >>= filterM doesDirectoryExist . filter (\d -> head d /= '.')
+   |                                                                    ^^^^
+
 [2 of 9] Compiling Paths_stack_clean_old
 [3 of 9] Compiling Types
 [4 of 9] Compiling Remove
 [5 of 9] Compiling Versions
 [6 of 9] Compiling Snapshots
+src/Snapshots.hs:60:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List.Extra, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+60 |       let ver = snapGHC (head versnaps) in
+   |                          ^^^^
+
+src/Snapshots.hs:145:53: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List.Extra, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+145 |     let ghcs = sortOn (readVersion . takeFileName . head) $
+    |                                                     ^^^^
+
+src/Snapshots.hs:151:36: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List.Extra, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+151 |       let ghcver = (takeFileName . head) dirs
+    |                                    ^^^^
+
+src/Snapshots.hs:178:12: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List.Extra, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+178 |   total <- head . words . last <$> cmdLines "du" ("-shc":snapsHashes versnaps)
+    |            ^^^^
+
 [7 of 9] Compiling GHCTarball
 [8 of 9] Compiling GHC
 [9 of 9] Compiling Main
-[10 of 10] Linking /tmp/workdir-stack-clean-old/stack-clean-old-0.5.1/dist-newstyle/build/x86_64-linux/ghc-9.6.5/stack-clean-old-0.5.1/x/stack-clean-old/build/stack-clean-old/stack-clean-old
+[10 of 10] Linking /tmp/workdir-stack-clean-old/stack-clean-old-0.5.1/dist-newstyle/build/x86_64-linux/ghc-9.10.2/stack-clean-old-0.5.1/x/stack-clean-old/build/stack-clean-old/stack-clean-old

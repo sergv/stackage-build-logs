@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - snap-core-1.0.5.1 (lib) (first run)
  - snap-core-1.0.5.1 (test:testsuite) (first run)
@@ -12,14 +13,14 @@ Building library for snap-core-1.0.5.1...
 [ 5 of 18] Compiling Snap.Internal.Parsing
 [ 6 of 18] Compiling Snap.Internal.Core
 [ 7 of 18] Compiling Snap.Internal.Routing
-
-src/Snap/Internal/Routing.hs:28:1: warning: [-Wunused-imports]
+src/Snap/Internal/Routing.hs:28:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Semigroup’ is redundant
       except perhaps to import instances from ‘Data.Semigroup’
     To import instances alone, use: import Data.Semigroup()
    |
 28 | import           Data.Semigroup           (Semigroup (..))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [ 8 of 18] Compiling Snap.Internal.Instances
 [ 9 of 18] Compiling Snap.Core
 [10 of 18] Compiling Snap.Internal.Util.FileUploads
@@ -41,7 +42,6 @@ Building test suite 'testsuite' for snap-core-1.0.5.1...
 [ 5 of 31] Compiling Snap.Internal.Test.Assertions
 [ 6 of 31] Compiling Snap.Internal.Parsing
 [ 7 of 31] Compiling Snap.Internal.Parsing.Tests
-
 test/Snap/Internal/Parsing/Tests.hs:53:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -58,7 +58,7 @@ test/Snap/Internal/Parsing/Tests.hs:156:9: warning: [GHC-62161] [-Wincomplete-un
     In a pattern binding:
         Patterns of type ‘Either
                             String
-                            bytestring-0.11.5.3:Data.ByteString.Internal.Type.ByteString’ not matched:
+                            bytestring-0.12.2.0-dae2:Data.ByteString.Internal.Type.ByteString’ not matched:
             Right _
     |
 156 |     let (Left a) = fullyParse "foo" ((string "bar" <?> "foo") <?> "bar")
@@ -68,7 +68,7 @@ test/Snap/Internal/Parsing/Tests.hs:157:9: warning: [GHC-62161] [-Wincomplete-un
     Pattern match(es) are non-exhaustive
     In a pattern binding:
         Patterns of type ‘Either
-                            String ghc-prim:GHC.Types.Any’ not matched:
+                            String (ghc-prim:GHC.Types.ZonkAny 0)’ not matched:
             Right _
     |
 157 |     let (Left b) = fullyParse "foo" (fail "bar")
@@ -79,7 +79,7 @@ test/Snap/Internal/Parsing/Tests.hs:158:9: warning: [GHC-62161] [-Wincomplete-un
     In a pattern binding:
         Patterns of type ‘Either
                             String
-                            bytestring-0.11.5.3:Data.ByteString.Internal.Type.ByteString’ not matched:
+                            bytestring-0.12.2.0-dae2:Data.ByteString.Internal.Type.ByteString’ not matched:
             Right _
     |
 158 |     let (Left c) = fullyParse "aaaaa" (many (char 'a') >> string "b")
@@ -90,7 +90,7 @@ test/Snap/Internal/Parsing/Tests.hs:160:9: warning: [GHC-62161] [-Wincomplete-un
     In a pattern binding:
         Patterns of type ‘Either
                             String
-                            bytestring-0.11.5.3:Data.ByteString.Internal.Type.ByteString’ not matched:
+                            bytestring-0.12.2.0-dae2:Data.ByteString.Internal.Type.ByteString’ not matched:
             Right _
     |
 160 |     let (Left d) = fullyParse' (const f) (const f) "aaaaa" (string "b")
@@ -114,7 +114,7 @@ test/Snap/Internal/Parsing/Tests.hs:162:9: warning: [GHC-62161] [-Wincomplete-un
     In a pattern binding:
         Patterns of type ‘Either
                             String
-                            bytestring-0.11.5.3:Data.ByteString.Internal.Type.ByteString’ not matched:
+                            bytestring-0.12.2.0-dae2:Data.ByteString.Internal.Type.ByteString’ not matched:
             Right _
     |
 162 |     let (Left g) = fullyParse "\x09" crlf
@@ -124,7 +124,7 @@ test/Snap/Internal/Parsing/Tests.hs:163:9: warning: [GHC-62161] [-Wincomplete-un
     Pattern match(es) are non-exhaustive
     In a pattern binding:
         Patterns of type ‘IResult
-                            bytestring-0.11.5.3:Data.ByteString.Internal.Type.ByteString
+                            bytestring-0.12.2.0-dae2:Data.ByteString.Internal.Type.ByteString
                             Int’ not matched:
             Fail _ _ _
             Partial _
@@ -132,16 +132,17 @@ test/Snap/Internal/Parsing/Tests.hs:163:9: warning: [GHC-62161] [-Wincomplete-un
     |
 163 |     let (Done z (0::Int)) = finish $! Partial $! \s ->
     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
 [ 8 of 31] Compiling Snap.Internal.Core
 [ 9 of 31] Compiling Snap.Internal.Routing
-
-src/Snap/Internal/Routing.hs:28:1: warning: [-Wunused-imports]
+src/Snap/Internal/Routing.hs:28:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Semigroup’ is redundant
       except perhaps to import instances from ‘Data.Semigroup’
     To import instances alone, use: import Data.Semigroup()
    |
 28 | import           Data.Semigroup           (Semigroup (..))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [10 of 31] Compiling Snap.Internal.Instances
 [11 of 31] Compiling Snap.Core
 [12 of 31] Compiling Snap.Internal.Util.FileUploads
@@ -149,12 +150,35 @@ src/Snap/Internal/Routing.hs:28:1: warning: [-Wunused-imports]
 [14 of 31] Compiling Snap.Internal.Test.RequestBuilder
 [15 of 31] Compiling Snap.Test
 [16 of 31] Compiling Snap.Internal.Routing.Tests
+test/Snap/Internal/Routing/Tests.hs:180:27: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+180 | fooCapture       = liftM (head . fromJust . rqParam "id") getRequest
+    |                           ^^^^
+
+test/Snap/Internal/Routing/Tests.hs:181:27: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+181 | fooCapture2      = liftM (head . fromJust . rqParam "id2") getRequest
+    |                           ^^^^
+
 [17 of 31] Compiling Snap.Internal.Http.Types.Tests
+test/Snap/Internal/Http/Types/Tests.hs:48:58: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+48 |     mapM_ (\m -> assertEqual "ord" (compare GET m) LT) $ tail methods
+   |                                                          ^^^^
 
 test/Snap/Internal/Http/Types/Tests.hs:155:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
-        Patterns of type ‘[bytestring-0.11.5.3:Data.ByteString.Internal.Type.ByteString]’ not matched:
+        Patterns of type ‘[bytestring-0.12.2.0-dae2:Data.ByteString.Internal.Type.ByteString]’ not matched:
             []
             [_]
             [_, _]
@@ -162,13 +186,13 @@ test/Snap/Internal/Http/Types/Tests.hs:155:9: warning: [GHC-62161] [-Wincomplete
     |
 155 |     let [b0, b1, b2] = map cookieToBS [cookie0, cookie1, cookie2]
     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[18 of 31] Compiling Snap.Core.Tests
 
+[18 of 31] Compiling Snap.Core.Tests
 test/Snap/Core/Tests.hs:435:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
         Patterns of type ‘Either
-                            Response ghc-prim:GHC.Types.Any’ not matched:
+                            Response (ghc-prim:GHC.Types.ZonkAny 10)’ not matched:
             Right _
     |
 435 |     let (Left resp) = x
@@ -181,6 +205,7 @@ test/Snap/Core/Tests.hs:441:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     |
 441 |     let (Right val) = y
     |         ^^^^^^^^^^^^^^^
+
 [19 of 31] Compiling Snap.Types.Headers.Tests
 [20 of 31] Compiling Snap.Util.CORS
 [21 of 31] Compiling Snap.Util.CORS.Tests
@@ -188,8 +213,7 @@ test/Snap/Core/Tests.hs:441:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
 [23 of 31] Compiling Snap.Util.FileServe.Tests
 [24 of 31] Compiling Snap.Util.FileUploads
 [25 of 31] Compiling Snap.Test.Tests
-
-test/Snap/Test/Tests.hs:21:1: warning: [-Wunused-imports]
+test/Snap/Test/Tests.hs:21:1: warning: [GHC-38856] [-Wunused-imports]
     The import of ‘Request(rqContentLength), Request(rqContextPath),
                    Request(rqIsSecure), Request(rqMethod), Request(rqParams),
                    Request(rqPathInfo), Request(rqPostParams), Request(rqQueryParams),
@@ -198,8 +222,8 @@ test/Snap/Test/Tests.hs:21:1: warning: [-Wunused-imports]
    |
 21 | import           Snap.Core                         (Cookie (Cookie, cookieExpires), Method (DELETE, GET, HEAD, Method, PATCH, POST, PUT), Request (rqContentLength, rqContextPath, rqIsSecure, rqMethod, rqParams, rqPathInfo, rqPostParams, rqQueryParams, rqQueryString, rqURI, rqVersion), Snap, expireCookie, extendTimeout, getCookie, getHeader, getParam, logError, readCookie, redirect, runSnap, terminateConnection, writeBS)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[26 of 31] Compiling Snap.Util.FileUploads.Tests
 
+[26 of 31] Compiling Snap.Util.FileUploads.Tests
 test/Snap/Util/FileUploads/Tests.hs:93:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -309,9 +333,10 @@ test/Snap/Util/FileUploads/Tests.hs:698:13: warning: [GHC-62161] [-Wincomplete-u
     |
 698 |         let (TerminateConnection se) = e
     |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [27 of 31] Compiling Snap.Util.GZip
 [28 of 31] Compiling Snap.Util.GZip.Tests
 [29 of 31] Compiling Snap.Util.Proxy
 [30 of 31] Compiling Snap.Util.Proxy.Tests
 [31 of 31] Compiling Main
-[32 of 32] Linking /tmp/workdir-snap-core/snap-core-1.0.5.1/dist-newstyle/build/x86_64-linux/ghc-9.6.5/snap-core-1.0.5.1/t/testsuite/build/testsuite/testsuite
+[32 of 32] Linking /tmp/workdir-snap-core/snap-core-1.0.5.1/dist-newstyle/build/x86_64-linux/ghc-9.10.2/snap-core-1.0.5.1/t/testsuite/build/testsuite/testsuite

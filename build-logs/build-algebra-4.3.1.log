@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - algebra-4.3.1 (lib) (first run)
 Warning: algebra.cabal:35:3: The field "other-extensions" is available only
@@ -16,8 +17,7 @@ Building library for algebra-4.3.1...
 [ 8 of 72] Compiling Numeric.Algebra.Division
 [ 9 of 72] Compiling Numeric.Algebra.Commutative
 [10 of 72] Compiling Numeric.Algebra.Involutive
-
-src/Numeric/Algebra/Involutive.hs:352:1: warning: [-Wsimplifiable-class-constraints]
+src/Numeric/Algebra/Involutive.hs:352:1: warning: [GHC-62412] [-Wsimplifiable-class-constraints]
     • The constraint ‘InvolutiveBialgebra r h’ matches
         instance (Bialgebra r h, InvolutiveAlgebra r h,
                   InvolutiveCoalgebra r h) =>
@@ -33,7 +33,7 @@ src/Numeric/Algebra/Involutive.hs:352:1: warning: [-Wsimplifiable-class-constrai
 352 | class ( InvolutiveBialgebra r h
     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
-src/Numeric/Algebra/Involutive.hs:357:10: warning: [-Wsimplifiable-class-constraints]
+src/Numeric/Algebra/Involutive.hs:357:10: warning: [GHC-62412] [-Wsimplifiable-class-constraints]
     • The constraint ‘InvolutiveBialgebra r h’ matches
         instance (Bialgebra r h, InvolutiveAlgebra r h,
                   InvolutiveCoalgebra r h) =>
@@ -46,6 +46,7 @@ src/Numeric/Algebra/Involutive.hs:357:10: warning: [-Wsimplifiable-class-constra
     |
 357 | instance ( InvolutiveBialgebra r h
     |          ^^^^^^^^^^^^^^^^^^^^^^^^^...
+
 [11 of 72] Compiling Numeric.Band.Class
 [12 of 72] Compiling Numeric.Band.Rectangular
 [13 of 72] Compiling Numeric.Decidable.Associates
@@ -65,8 +66,7 @@ src/Numeric/Algebra/Involutive.hs:357:10: warning: [-Wsimplifiable-class-constra
 [27 of 72] Compiling Numeric.Rig.Ordered
 [28 of 72] Compiling Numeric.Rng.Class
 [29 of 72] Compiling Numeric.Ring.Class
-
-src/Numeric/Ring/Class.hs:15:1: warning: [-Wsimplifiable-class-constraints]
+src/Numeric/Ring/Class.hs:15:1: warning: [GHC-62412] [-Wsimplifiable-class-constraints]
     • The constraint ‘Rng r’ matches
         instance (Group r, Numeric.Algebra.Class.Semiring r) => Rng r
           -- Defined at src/Numeric/Rng/Class.hs:12:10
@@ -78,21 +78,23 @@ src/Numeric/Ring/Class.hs:15:1: warning: [-Wsimplifiable-class-constraints]
    |
 15 | class (Rig r, Rng r) => Ring r where
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
 [30 of 72] Compiling Numeric.Ring.Local
 [31 of 72] Compiling Numeric.Ring.Division
 [32 of 72] Compiling Numeric.Order.LocallyFinite
 [33 of 72] Compiling Numeric.Module.Representable
 [34 of 72] Compiling Numeric.Covector
-
-src/Numeric/Covector.hs:54:3: warning: [-Wnoncanonical-monad-instances]
+src/Numeric/Covector.hs:54:3: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad (Covector r)’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
    |
 54 |   return a = Covector $ \k -> k a
    |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [35 of 72] Compiling Numeric.Coalgebra.Trigonometric.Class
 [36 of 72] Compiling Numeric.Coalgebra.Hyperbolic.Class
 [37 of 72] Compiling Numeric.Algebra.Distinguished.Class
@@ -105,8 +107,7 @@ src/Numeric/Covector.hs:54:3: warning: [-Wnoncanonical-monad-instances]
 [44 of 72] Compiling Numeric.Semiring.ZeroProduct
 [45 of 72] Compiling Numeric.Algebra.Unital.UnitNormalForm
 [46 of 72] Compiling Numeric.Domain.Internal
-
-src/Numeric/Domain/Internal.hs:28:1: warning: [-Wsimplifiable-class-constraints]
+src/Numeric/Domain/Internal.hs:28:1: warning: [GHC-62412] [-Wsimplifiable-class-constraints]
     • The constraint ‘Domain d’ matches
         instance (ZeroProductSemiring d, Ring d) => Domain d
           -- Defined at src/Numeric/Domain/Internal.hs:25:10
@@ -118,6 +119,14 @@ src/Numeric/Domain/Internal.hs:28:1: warning: [-Wsimplifiable-class-constraints]
    |
 28 | class (Domain d, Commutative d) => IntegralDomain d where
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+src/Numeric/Domain/Internal.hs:66:16: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+66 |     egcd a b = P.head (euclid a b)
+   |                ^^^^^^
 
 src/Numeric/Domain/Internal.hs:110:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
@@ -135,6 +144,14 @@ src/Numeric/Domain/Internal.hs:112:7: warning: [GHC-62161] [-Wincomplete-uni-pat
 112 |       Just s   = recipUnit uf
     |       ^^^^^^^^^^^^^^^^^^^^^^^
 
+src/Numeric/Domain/Internal.hs:116:21: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+116 |       | isZero r' = P.tail acc
+    |                     ^^^^^^
+
 src/Numeric/Domain/Internal.hs:120:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -142,10 +159,18 @@ src/Numeric/Domain/Internal.hs:120:13: warning: [GHC-62161] [-Wincomplete-uni-pa
     |
 120 |             Just u    = recipUnit ur
     |             ^^^^^^^^^^^^^^^^^^^^^^^^
+
 [47 of 72] Compiling Numeric.Domain.UFD
 [48 of 72] Compiling Numeric.Domain.PID
 [49 of 72] Compiling Numeric.Domain.Integral
 [50 of 72] Compiling Numeric.Domain.Euclidean
+src/Numeric/Domain/Euclidean.hs:14:21: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+14 |       | isZero r' = P.tail acc
+   |                     ^^^^^^
 
 src/Numeric/Domain/Euclidean.hs:30:38: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
@@ -154,12 +179,12 @@ src/Numeric/Domain/Euclidean.hs:30:38: warning: [GHC-62161] [-Wincomplete-uni-pa
    |
 30 |                                , let (_, s, _) : _ = euclid n mi
    |                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [51 of 72] Compiling Numeric.Field.Class
 [52 of 72] Compiling Numeric.Algebra
 [53 of 72] Compiling Numeric.Rng.Zero
 [54 of 72] Compiling Numeric.Ring.Rng
-
-src/Numeric/Ring/Rng.hs:46:10: warning: [-Wsimplifiable-class-constraints]
+src/Numeric/Ring/Rng.hs:46:10: warning: [GHC-62412] [-Wsimplifiable-class-constraints]
     • The constraint ‘Rng r’ matches
         instance (Group r, Semiring r) => Rng r
           -- Defined at src/Numeric/Rng/Class.hs:12:10
@@ -170,7 +195,7 @@ src/Numeric/Ring/Rng.hs:46:10: warning: [-Wsimplifiable-class-constraints]
 46 | instance Rng r => Multiplicative (RngRing r) where
    |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Numeric/Ring/Rng.hs:49:10: warning: [-Wsimplifiable-class-constraints]
+src/Numeric/Ring/Rng.hs:49:10: warning: [GHC-62412] [-Wsimplifiable-class-constraints]
     • The constraint ‘Rng r’ matches
         instance (Group r, Semiring r) => Rng r
           -- Defined at src/Numeric/Rng/Class.hs:12:10
@@ -181,7 +206,7 @@ src/Numeric/Ring/Rng.hs:49:10: warning: [-Wsimplifiable-class-constraints]
 49 | instance (Commutative r, Rng r) => Commutative (RngRing r)
    |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Numeric/Ring/Rng.hs:51:10: warning: [-Wsimplifiable-class-constraints]
+src/Numeric/Ring/Rng.hs:51:10: warning: [GHC-62412] [-Wsimplifiable-class-constraints]
     • The constraint ‘Rng s’ matches
         instance (Group r, Semiring r) => Rng r
           -- Defined at src/Numeric/Rng/Class.hs:12:10
@@ -193,7 +218,7 @@ src/Numeric/Ring/Rng.hs:51:10: warning: [-Wsimplifiable-class-constraints]
 51 | instance Rng s => LeftModule (RngRing s) (RngRing s) where
    |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Numeric/Ring/Rng.hs:54:10: warning: [-Wsimplifiable-class-constraints]
+src/Numeric/Ring/Rng.hs:54:10: warning: [GHC-62412] [-Wsimplifiable-class-constraints]
     • The constraint ‘Rng s’ matches
         instance (Group r, Semiring r) => Rng r
           -- Defined at src/Numeric/Rng/Class.hs:12:10
@@ -205,7 +230,7 @@ src/Numeric/Ring/Rng.hs:54:10: warning: [-Wsimplifiable-class-constraints]
 54 | instance Rng s => RightModule (RngRing s) (RngRing s) where
    |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Numeric/Ring/Rng.hs:57:10: warning: [-Wsimplifiable-class-constraints]
+src/Numeric/Ring/Rng.hs:57:10: warning: [GHC-62412] [-Wsimplifiable-class-constraints]
     • The constraint ‘Rng r’ matches
         instance (Group r, Semiring r) => Rng r
           -- Defined at src/Numeric/Rng/Class.hs:12:10
@@ -216,7 +241,7 @@ src/Numeric/Ring/Rng.hs:57:10: warning: [-Wsimplifiable-class-constraints]
 57 | instance Rng r => Unital (RngRing r) where
    |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Numeric/Ring/Rng.hs:60:10: warning: [-Wsimplifiable-class-constraints]
+src/Numeric/Ring/Rng.hs:60:10: warning: [GHC-62412] [-Wsimplifiable-class-constraints]
     • The constraint ‘Rng r’ matches
         instance (Group r, Semiring r) => Rng r
           -- Defined at src/Numeric/Rng/Class.hs:12:10
@@ -227,7 +252,7 @@ src/Numeric/Ring/Rng.hs:60:10: warning: [-Wsimplifiable-class-constraints]
 60 | instance (Rng r, Division r) => Division (RngRing r) where
    |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Numeric/Ring/Rng.hs:63:10: warning: [-Wsimplifiable-class-constraints]
+src/Numeric/Ring/Rng.hs:63:10: warning: [GHC-62412] [-Wsimplifiable-class-constraints]
     • The constraint ‘Rng r’ matches
         instance (Group r, Semiring r) => Rng r
           -- Defined at src/Numeric/Rng/Class.hs:12:10
@@ -238,7 +263,7 @@ src/Numeric/Ring/Rng.hs:63:10: warning: [-Wsimplifiable-class-constraints]
 63 | instance Rng r => Semiring (RngRing r) 
    |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Numeric/Ring/Rng.hs:65:10: warning: [-Wsimplifiable-class-constraints]
+src/Numeric/Ring/Rng.hs:65:10: warning: [GHC-62412] [-Wsimplifiable-class-constraints]
     • The constraint ‘Rng r’ matches
         instance (Group r, Semiring r) => Rng r
           -- Defined at src/Numeric/Rng/Class.hs:12:10
@@ -249,7 +274,7 @@ src/Numeric/Ring/Rng.hs:65:10: warning: [-Wsimplifiable-class-constraints]
 65 | instance Rng r => Rig (RngRing r)
    |          ^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Numeric/Ring/Rng.hs:67:10: warning: [-Wsimplifiable-class-constraints]
+src/Numeric/Ring/Rng.hs:67:10: warning: [GHC-62412] [-Wsimplifiable-class-constraints]
     • The constraint ‘Rng r’ matches
         instance (Group r, Semiring r) => Rng r
           -- Defined at src/Numeric/Rng/Class.hs:12:10
@@ -259,125 +284,135 @@ src/Numeric/Ring/Rng.hs:67:10: warning: [-Wsimplifiable-class-constraints]
    |
 67 | instance Rng r => Ring (RngRing r)
    |          ^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [55 of 72] Compiling Numeric.Ring.Opposite
 [56 of 72] Compiling Numeric.Ring.Endomorphism
-
-src/Numeric/Ring/Endomorphism.hs:22:3: warning: [-Wnoncanonical-monoid-instances]
+src/Numeric/Ring/Endomorphism.hs:22:3: warning: [GHC-50928] [-Wnoncanonical-monoid-instances]
     Noncanonical ‘mappend’ definition detected
     in the instance declaration for ‘Monoid (End r)’.
     ‘mappend’ will eventually be removed in favour of ‘(<>)’
-    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    Suggested fix:
+      Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
    |
 22 |   mappend (End a) (End b) = End (a . b)
    |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[57 of 72] Compiling Numeric.Map
 
-src/Numeric/Map.hs:74:3: warning: [-Wnoncanonical-monad-instances]
+[57 of 72] Compiling Numeric.Map
+src/Numeric/Map.hs:74:3: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad (Map r b)’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
    |
 74 |   return a = Map $ \k _ -> k a
    |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [58 of 72] Compiling Numeric.Log
 [59 of 72] Compiling Numeric.Exp
 [60 of 72] Compiling Numeric.Decidable.Nilpotent
 [61 of 72] Compiling Numeric.Coalgebra.Trigonometric
-
-src/Numeric/Coalgebra/Trigonometric.hs:91:3: warning: [-Wnoncanonical-monad-instances]
+src/Numeric/Coalgebra/Trigonometric.hs:91:3: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad Trig’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
    |
 91 |   return = pureRep
    |   ^^^^^^^^^^^^^^^^
-[62 of 72] Compiling Numeric.Coalgebra.Quaternion
 
-src/Numeric/Coalgebra/Quaternion.hs:101:3: warning: [-Wnoncanonical-monad-instances]
+[62 of 72] Compiling Numeric.Coalgebra.Quaternion
+src/Numeric/Coalgebra/Quaternion.hs:101:3: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad Quaternion'’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 101 |   return = pureRep
     |   ^^^^^^^^^^^^^^^^
-[63 of 72] Compiling Numeric.Coalgebra.Hyperbolic
 
-src/Numeric/Coalgebra/Hyperbolic.hs:66:3: warning: [-Wnoncanonical-monad-instances]
+[63 of 72] Compiling Numeric.Coalgebra.Hyperbolic
+src/Numeric/Coalgebra/Hyperbolic.hs:66:3: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad Hyper’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
    |
 66 |   return = pureRep
    |   ^^^^^^^^^^^^^^^^
+
 [64 of 72] Compiling Numeric.Coalgebra.Geometric
 [65 of 72] Compiling Numeric.Coalgebra.Dual
-
-src/Numeric/Coalgebra/Dual.hs:73:3: warning: [-Wnoncanonical-monad-instances]
+src/Numeric/Coalgebra/Dual.hs:73:3: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad Dual'’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
    |
 73 |   return = pureRep
    |   ^^^^^^^^^^^^^^^^
-[66 of 72] Compiling Numeric.Algebra.Quaternion
 
-src/Numeric/Algebra/Quaternion.hs:101:3: warning: [-Wnoncanonical-monad-instances]
+[66 of 72] Compiling Numeric.Algebra.Quaternion
+src/Numeric/Algebra/Quaternion.hs:101:3: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad Quaternion’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 101 |   return = pureRep
     |   ^^^^^^^^^^^^^^^^
-[67 of 72] Compiling Numeric.Algebra.Hyperbolic
 
-src/Numeric/Algebra/Hyperbolic.hs:65:3: warning: [-Wnoncanonical-monad-instances]
+[67 of 72] Compiling Numeric.Algebra.Hyperbolic
+src/Numeric/Algebra/Hyperbolic.hs:65:3: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad Hyper'’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
    |
 65 |   return = pureRep
    |   ^^^^^^^^^^^^^^^^
-[68 of 72] Compiling Numeric.Algebra.Dual
 
-src/Numeric/Algebra/Dual.hs:74:3: warning: [-Wnoncanonical-monad-instances]
+[68 of 72] Compiling Numeric.Algebra.Dual
+src/Numeric/Algebra/Dual.hs:74:3: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad Dual’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
    |
 74 |   return = pureRep
    |   ^^^^^^^^^^^^^^^^
-[69 of 72] Compiling Numeric.Algebra.Complex
 
-src/Numeric/Algebra/Complex.hs:88:3: warning: [-Wnoncanonical-monad-instances]
+[69 of 72] Compiling Numeric.Algebra.Complex
+src/Numeric/Algebra/Complex.hs:88:3: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad Complex’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
    |
 88 |   return = pureRep
    |   ^^^^^^^^^^^^^^^^
+
 [70 of 72] Compiling Numeric.Domain.Class
 [71 of 72] Compiling Numeric.Domain.GCD
 [72 of 72] Compiling Numeric.Field.Fraction
-
 src/Numeric/Field/Fraction.hs:53:25: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -392,3 +427,4 @@ src/Numeric/Field/Fraction.hs:77:25: warning: [GHC-62161] [-Wincomplete-uni-patt
    |
 77 |       | otherwise = let (recipUnit -> Just u, p') = splitUnit p in
    |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

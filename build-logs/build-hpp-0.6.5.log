@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - hpp-0.6.5 (lib) (first run)
  - hpp-0.6.5 (exe:hpp) (first run)
@@ -11,12 +12,42 @@ Building library for hpp-0.6.5...
 [ 3 of 16] Compiling Hpp.String
 [ 4 of 16] Compiling Hpp.StringSig
 [ 5 of 16] Compiling Hpp.Tokens
+src/Hpp/Tokens.hs:9:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Foldable’ is redundant
+      except perhaps to import instances from ‘Data.Foldable’
+    To import instances alone, use: import Data.Foldable()
+  |
+9 | import Data.Foldable (foldl')
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [ 6 of 16] Compiling Hpp.Expr
+src/Hpp/Expr.hs:9:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.List’ is redundant
+      except perhaps to import instances from ‘Data.List’
+    To import instances alone, use: import Data.List()
+  |
+9 | import Data.List (foldl')
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [ 7 of 16] Compiling Hpp.Types
 [ 8 of 16] Compiling Hpp.Preprocessing
 [ 9 of 16] Compiling Hpp.Parser
 [10 of 16] Compiling Hpp.Macro
+src/Hpp/Macro.hs:36:36: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+36 |           body = trimUnimportant . tail $ dropWhile (/= Important ")") toks
+   |                                    ^^^^
+
 [11 of 16] Compiling Hpp.Expansion
+src/Hpp/Expansion.hs:8:23: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘foldl'’ from module ‘Data.Foldable’ is redundant
+  |
+8 | import Data.Foldable (foldl', traverse_)
+  |                       ^^^^^^
+
 [12 of 16] Compiling Hpp.Conditional
 [13 of 16] Compiling Hpp.Directive
 [14 of 16] Compiling Hpp.RunHpp
@@ -26,9 +57,9 @@ Configuring executable 'hpp' for hpp-0.6.5...
 Preprocessing executable 'hpp' for hpp-0.6.5...
 Building executable 'hpp' for hpp-0.6.5...
 [1 of 1] Compiling Main
-[2 of 2] Linking /tmp/workdir-hpp/hpp-0.6.5/dist-newstyle/build/x86_64-linux/ghc-9.6.5/hpp-0.6.5/x/hpp/build/hpp/hpp
+[2 of 2] Linking /tmp/workdir-hpp/hpp-0.6.5/dist-newstyle/build/x86_64-linux/ghc-9.10.2/hpp-0.6.5/x/hpp/build/hpp/hpp
 Configuring test suite 'aslib' for hpp-0.6.5...
 Preprocessing test suite 'aslib' for hpp-0.6.5...
 Building test suite 'aslib' for hpp-0.6.5...
 [1 of 1] Compiling Main
-[2 of 2] Linking /tmp/workdir-hpp/hpp-0.6.5/dist-newstyle/build/x86_64-linux/ghc-9.6.5/hpp-0.6.5/t/aslib/build/aslib/aslib
+[2 of 2] Linking /tmp/workdir-hpp/hpp-0.6.5/dist-newstyle/build/x86_64-linux/ghc-9.10.2/hpp-0.6.5/t/aslib/build/aslib/aslib

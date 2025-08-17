@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - hs-GeoIP-0.3 (lib:hs-GeoIP) (first run)
 Warning: hs-GeoIP.cabal:41:19: version operators used. To use version
@@ -7,8 +8,7 @@ Configuring hs-GeoIP-0.3...
 Preprocessing library for hs-GeoIP-0.3...
 Building library for hs-GeoIP-0.3...
 [1 of 1] Compiling Data.Geolocation.GeoIP
-
-src/Data/Geolocation/GeoIP.hsc:31:1: warning: [-Wunused-imports]
+src/Data/Geolocation/GeoIP.hsc:31:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
@@ -16,7 +16,7 @@ src/Data/Geolocation/GeoIP.hsc:31:1: warning: [-Wunused-imports]
 31 | import Control.Applicative
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Data/Geolocation/GeoIP.hsc:37:1: warning: [-Wunused-imports]
+src/Data/Geolocation/GeoIP.hsc:37:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Foreign.Ptr’ is redundant
       except perhaps to import instances from ‘Foreign.Ptr’
     To import instances alone, use: import Foreign.Ptr()
@@ -24,8 +24,8 @@ src/Data/Geolocation/GeoIP.hsc:37:1: warning: [-Wunused-imports]
 37 | import Foreign.Ptr 
    | ^^^^^^^^^^^^^^^^^^
 
-src/Data/Geolocation/GeoIP.hsc:49:25: warning: [-Wunused-top-binds]
-    Defined but not used: ‘unGeoDB’
+src/Data/Geolocation/GeoIP.hsc:49:25: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: record field of GeoDB ‘unGeoDB’
    |
 49 | newtype GeoDB = GeoDB { unGeoDB :: ForeignPtr GeoIP }
    |                         ^^^^^^^
@@ -49,14 +49,15 @@ src/Data/Geolocation/GeoIP.hsc:132:5: warning: [GHC-62161] [-Wincomplete-uni-pat
 132 |     a : b : c : d : _ = map (read . unpack) parts
     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Data/Geolocation/GeoIP.hsc:202:1: warning: [-Wunused-top-binds]
+src/Data/Geolocation/GeoIP.hsc:202:1: warning: [GHC-40910] [-Wunused-top-binds]
     Defined but not used: ‘c_GeoIP_new’
     |
 202 | foreign import ccall safe "GeoIP.h GeoIP_new"
     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
-src/Data/Geolocation/GeoIP.hsc:232:1: warning: [-Wunused-top-binds]
+src/Data/Geolocation/GeoIP.hsc:232:1: warning: [GHC-40910] [-Wunused-top-binds]
     Defined but not used: ‘c_GeoIPRecord_delete_funPtr’
     |
 232 | foreign import ccall safe "GeoIPCity.h &GeoIPRecord_delete"
     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+

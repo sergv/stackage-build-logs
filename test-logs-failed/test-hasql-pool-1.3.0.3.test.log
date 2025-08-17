@@ -1,0 +1,130 @@
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - hasql-pool-1.3.0.3 (test:test) (ephemeral targets)
+Preprocessing test suite 'test' for hasql-pool-1.3.0.3...
+Building test suite 'test' for hasql-pool-1.3.0.3...
+Running 1 test suites...
+Test suite test: RUNNING...
+
+Main[41:11]
+  Releases a spot in the pool when there is a query error [✘]
+  Simulation of connection error works [✘]
+  Connection errors cause eviction of connection [✘]
+  Connection gets returned to the pool after normal use [✘]
+  Connection gets returned to the pool after non-connection error [✘]
+  The pool remains usable after release [✘]
+  Getting and setting session variables works [✘]
+  Session variables stay set when a connection gets reused [✘]
+  Releasing the pool resets session variables [✘]
+  Times out connection acquisition [✘]
+  Passively times out old connections (maxLifetime) [✘]
+  Counts active connections [✘]
+  Actively times out old connections (maxLifetime) [✘]
+  Times out old connections (maxIdletime) [✘]
+
+Failures:
+
+  src/test/Main.hs:44:33: 
+  1) Main[41:11] Releases a spot in the pool when there is a query error
+       expected: Right 1
+        but got: Left (ConnectionUsageError (Just "connection to server at \"localhost\" (::1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\nconnection to server at \"localhost\" (127.0.0.1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\n"))
+
+  To rerun use: --match "/Main[41:11]/Releases a spot in the pool when there is a query error/" --seed 1113194767
+
+  src/test/Main.hs:47:7: 
+  2) Main[41:11] Simulation of connection error works
+       predicate failed on: Left (ConnectionUsageError (Just "connection to server at \"localhost\" (::1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\nconnection to server at \"localhost\" (127.0.0.1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\n"))
+
+  To rerun use: --match "/Main[41:11]/Simulation of connection error works/" --seed 1113194767
+
+  src/test/Main.hs:55:7: 
+  3) Main[41:11] Connection errors cause eviction of connection
+       predicate failed on: Left (ConnectionUsageError (Just "connection to server at \"localhost\" (::1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\nconnection to server at \"localhost\" (127.0.0.1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\n"))
+
+  To rerun use: --match "/Main[41:11]/Connection errors cause eviction of connection/" --seed 1113194767
+
+  src/test/Main.hs:62:7: 
+  4) Main[41:11] Connection gets returned to the pool after normal use
+       predicate failed on: Left (ConnectionUsageError (Just "connection to server at \"localhost\" (::1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\nconnection to server at \"localhost\" (127.0.0.1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\n"))
+
+  To rerun use: --match "/Main[41:11]/Connection gets returned to the pool after normal use/" --seed 1113194767
+
+  src/test/Main.hs:69:7: 
+  5) Main[41:11] Connection gets returned to the pool after non-connection error
+       predicate failed on: Left (ConnectionUsageError (Just "connection to server at \"localhost\" (::1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\nconnection to server at \"localhost\" (127.0.0.1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\n"))
+
+  To rerun use: --match "/Main[41:11]/Connection gets returned to the pool after non-connection error/" --seed 1113194767
+
+  src/test/Main.hs:74:7: 
+  6) Main[41:11] The pool remains usable after release
+       predicate failed on: Left (ConnectionUsageError (Just "connection to server at \"localhost\" (::1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\nconnection to server at \"localhost\" (127.0.0.1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\n"))
+
+  To rerun use: --match "/Main[41:11]/The pool remains usable after release/" --seed 1113194767
+
+  src/test/Main.hs:77:11: 
+  7) Main[41:11] Getting and setting session variables works
+       expected: Right Nothing
+        but got: Left (ConnectionUsageError (Just "connection to server at \"localhost\" (::1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\nconnection to server at \"localhost\" (127.0.0.1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\n"))
+
+  To rerun use: --match "/Main[41:11]/Getting and setting session variables works/" --seed 1113194767
+
+  src/test/Main.hs:84:11: 
+  8) Main[41:11] Session variables stay set when a connection gets reused
+       expected: Right ()
+        but got: Left (ConnectionUsageError (Just "connection to server at \"localhost\" (::1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\nconnection to server at \"localhost\" (127.0.0.1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\n"))
+
+  To rerun use: --match "/Main[41:11]/Session variables stay set when a connection gets reused/" --seed 1113194767
+
+  src/test/Main.hs:89:11: 
+  9) Main[41:11] Releasing the pool resets session variables
+       expected: Right ()
+        but got: Left (ConnectionUsageError (Just "connection to server at \"localhost\" (::1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\nconnection to server at \"localhost\" (127.0.0.1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\n"))
+
+  To rerun use: --match "/Main[41:11]/Releasing the pool resets session variables/" --seed 1113194767
+
+  src/test/Main.hs:113:13: 
+  10) Main[41:11] Times out connection acquisition
+       expected: Right (Left AcquisitionTimeoutUsageError)
+        but got: Left (Left (ConnectionUsageError (Just "connection to server at \"localhost\" (::1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\nconnection to server at \"localhost\" (127.0.0.1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\n")))
+
+  To rerun use: --match "/Main[41:11]/Times out connection acquisition/" --seed 1113194767
+
+  src/test/Main.hs:121:13: 
+  11) Main[41:11] Passively times out old connections (maxLifetime)
+       expected: Right ()
+        but got: Left (ConnectionUsageError (Just "connection to server at \"localhost\" (::1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\nconnection to server at \"localhost\" (127.0.0.1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\n"))
+
+  To rerun use: --match "/Main[41:11]/Passively times out old connections (maxLifetime)/" --seed 1113194767
+
+  src/test/Main.hs:131:13: 
+  12) Main[41:11] Counts active connections
+       expected: Right 1
+        but got: Left (ConnectionUsageError (Just "connection to server at \"localhost\" (::1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\nconnection to server at \"localhost\" (127.0.0.1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\n"))
+
+  To rerun use: --match "/Main[41:11]/Counts active connections/" --seed 1113194767
+
+  src/test/Main.hs:138:15: 
+  13) Main[41:11] Actively times out old connections (maxLifetime)
+       expected: Right 1
+        but got: Left (ConnectionUsageError (Just "connection to server at \"localhost\" (::1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\nconnection to server at \"localhost\" (127.0.0.1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\n"))
+
+  To rerun use: --match "/Main[41:11]/Actively times out old connections (maxLifetime)/" --seed 1113194767
+
+  src/test/Main.hs:148:13: 
+  14) Main[41:11] Times out old connections (maxIdletime)
+       expected: Right ()
+        but got: Left (ConnectionUsageError (Just "connection to server at \"localhost\" (::1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\nconnection to server at \"localhost\" (127.0.0.1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\n"))
+
+  To rerun use: --match "/Main[41:11]/Times out old connections (maxIdletime)/" --seed 1113194767
+
+Randomized with seed 1113194767
+
+Finished in 0.0134 seconds
+14 examples, 14 failures
+Test suite test: FAIL
+Test suite logged to:
+/tmp/workdir-hasql-pool/hasql-pool-1.3.0.3/dist-newstyle/build/x86_64-linux/ghc-9.10.2/hasql-pool-1.3.0.3/t/test/test/hasql-pool-1.3.0.3-test.log
+0 of 1 test suites (0 of 1 test cases) passed.
+Error: [Cabal-7125]
+Tests failed for test:test from hasql-pool-1.3.0.3.
+

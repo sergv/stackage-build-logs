@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - hmatrix-0.20.2 (lib) (first run)
 Warning: hmatrix.cabal:22:28: Packages with 'cabal-version: 1.12' or later
@@ -13,9 +14,32 @@ Building library for hmatrix-0.20.2...
 [ 4 of 27] Compiling Internal.Matrix
 [ 5 of 27] Compiling Internal.ST
 [ 6 of 27] Compiling Internal.IO
-[ 7 of 27] Compiling Internal.Element
-[ 8 of 27] Compiling Internal.Conversion
+src/Internal/IO.hs:110:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+110 |     . unwords . lines .  tail . dropWhile (not . (`elem` " \n"))
+    |                          ^^^^
 
+src/Internal/IO.hs:124:94: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+124 |     where f = unlines . intersperse "\\\\" . map unwords . map (intersperse " & " . words) . tail . lines
+    |                                                                                              ^^^^
+
+[ 7 of 27] Compiling Internal.Element
+src/Internal/Element.hs:81:23: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+81 | breakAt c l = (a++[c],tail b) where
+   |                       ^^^^
+
+[ 8 of 27] Compiling Internal.Conversion
 src/Internal/Conversion.hs:83:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -26,9 +50,25 @@ src/Internal/Conversion.hs:83:5: warning: [GHC-62161] [-Wincomplete-uni-patterns
    |
 83 |     [r,i] = toColumns $ reshape 2 $ asReal z
    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[ 9 of 27] Compiling Internal.LAPACK
-[10 of 27] Compiling Internal.Numeric
 
+[ 9 of 27] Compiling Internal.LAPACK
+src/Internal/LAPACK.hs:509:16: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+509 |         dl' <- head . toRows <$> copy ColumnMajor (fromRows [dl])
+    |                ^^^^
+
+src/Internal/LAPACK.hs:510:16: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+510 |         du' <- head . toRows <$> copy ColumnMajor (fromRows [du])
+    |                ^^^^
+
+[10 of 27] Compiling Internal.Numeric
 src/Internal/Numeric.hs:34:27: warning: [GHC-39567] [-Wstar-is-type]
     Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
     relies on the StarIsType extension, which will become
@@ -126,10 +166,10 @@ src/Internal/Numeric.hs:878:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     |
 878 |     [c', l', e', t'] = conformVs [fromInt c,l,e,t]
     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [11 of 27] Compiling Internal.Sparse
 [12 of 27] Compiling Internal.Chain
 [13 of 27] Compiling Internal.Algorithms
-
 src/Internal/Algorithms.hs:60:17: warning: [GHC-58520] [-Wtype-equality-requires-operators]
     The use of ‘~’ without TypeOperators
     will become an error in a future GHC release.
@@ -144,9 +184,25 @@ src/Internal/Algorithms.hs:736:5: warning: [GHC-62161] [-Wincomplete-uni-pattern
     |
 736 |     sl@(g:_) = toList s
     |     ^^^^^^^^^^^^^^^^^^^
+
+src/Internal/Algorithms.hs:881:20: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+881 | rcond m = last s / head s
+    |                    ^^^^
+
+src/Internal/Algorithms.hs:924:14: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+924 | geps delta = head [ k | (k,g) <- epslist, g<delta]
+    |              ^^^^
+
 [14 of 27] Compiling Internal.Random
 [15 of 27] Compiling Internal.Container
-
 src/Internal/Container.hs:302:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -157,30 +213,38 @@ src/Internal/Container.hs:302:5: warning: [GHC-62161] [-Wincomplete-uni-patterns
     |
 302 |     [i',j'] = conformMs [i,j]
     |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [16 of 27] Compiling Internal.Convolution
 [17 of 27] Compiling Numeric.LinearAlgebra.Devel
 [18 of 27] Compiling Numeric.Matrix
-
-src/Numeric/Matrix.hs:103:5: warning: [-Wnoncanonical-monoid-instances]
+src/Numeric/Matrix.hs:103:5: warning: [GHC-50928] [-Wnoncanonical-monoid-instances]
     Noncanonical ‘(<>) = mappend’ definition detected
     in the instance declaration for ‘Semigroup (Matrix t)’.
-    Move definition from ‘mappend’ to ‘(<>)’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    Suggested fix:
+      Move definition from ‘mappend’ to ‘(<>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
     |
 103 |     (<>) = mappend
     |     ^^^^^^^^^^^^^^
 
-src/Numeric/Matrix.hs:109:5: warning: [-Wnoncanonical-monoid-instances]
+src/Numeric/Matrix.hs:109:5: warning: [GHC-50928] [-Wnoncanonical-monoid-instances]
     Noncanonical ‘mappend’ definition detected
     in the instance declaration for ‘Monoid (Matrix t)’.
     ‘mappend’ will eventually be removed in favour of ‘(<>)’
-    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    Suggested fix:
+      Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
     |
 109 |     mappend = adaptScalarM scale mXm (flip scale)
     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [19 of 27] Compiling Numeric.Vector
 [20 of 27] Compiling Internal.Util
+src/Internal/Util.hs:81:37: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘foldl'’ from module ‘Data.List’ is redundant
+   |
+81 | import Data.List(intercalate,sortBy,foldl')
+   |                                     ^^^^^^
 
 src/Internal/Util.hs:253:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
@@ -219,6 +283,14 @@ src/Internal/Util.hs:520:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
 520 |     [ [a,_,b]
     |     ^^^^^^^^^...
 
+src/Internal/Util.hs:536:19: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+536 |     vsep = map g (head auxm3)
+    |                   ^^^^
+
 src/Internal/Util.hs:568:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -245,10 +317,51 @@ src/Internal/Util.hs:655:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     |
 655 |     y:ys = redu' (n,xs)
     |     ^^^^^^^^^^^^^^^^^^^
+
 [21 of 27] Compiling Internal.Modular
 [22 of 27] Compiling Numeric.LinearAlgebra.Data
 [23 of 27] Compiling Internal.CG
 [24 of 27] Compiling Numeric.LinearAlgebra
 [25 of 27] Compiling Numeric.LinearAlgebra.HMatrix
 [26 of 27] Compiling Internal.Static
+src/Internal/Static.hs:168:32: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+168 |     | not (null rest) && null (tail rest) = abort (show xs')
+    |                                ^^^^
+
+src/Internal/Static.hs:187:32: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+187 |     | not (null rest) && null (tail rest) = abort (show xs')
+    |                                ^^^^
+
+src/Internal/Static.hs:562:32: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+562 |         putStr "R " >> putStr (tail . dropWhile (/='x') $ su)
+    |                                ^^^^
+
+src/Internal/Static.hs:568:32: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+568 |         putStr "C " >> putStr (tail . dropWhile (/='x') $ su)
+    |                                ^^^^
+
 [27 of 27] Compiling Numeric.LinearAlgebra.Static
+src/Numeric/LinearAlgebra/Static.hs:186:15: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+186 | unrow = mkR . head . LA.toRows . ud2
+    |               ^^^^
+

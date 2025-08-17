@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - enumset-0.1 (lib) (first run)
 Configuring library for enumset-0.1...
@@ -6,8 +7,7 @@ Preprocessing library for enumset-0.1...
 Building library for enumset-0.1...
 [1 of 4] Compiling Data.EnumBitSet.Utility
 [2 of 4] Compiling Data.EnumBitSet
-
-src/Data/EnumBitSet.hs:40:1: warning: [-Wunused-imports]
+src/Data/EnumBitSet.hs:40:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
@@ -15,7 +15,7 @@ src/Data/EnumBitSet.hs:40:1: warning: [-Wunused-imports]
 40 | import Data.Monoid (Monoid(mempty, mappend), )
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Data/EnumBitSet.hs:41:1: warning: [-Wunused-imports]
+src/Data/EnumBitSet.hs:41:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Semigroup’ is redundant
       except perhaps to import instances from ‘Data.Semigroup’
     To import instances alone, use: import Data.Semigroup()
@@ -23,18 +23,19 @@ src/Data/EnumBitSet.hs:41:1: warning: [-Wunused-imports]
 41 | import Data.Semigroup (Semigroup((<>)), )
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Data/EnumBitSet.hs:72:4: warning: [-Wnoncanonical-monoid-instances]
+src/Data/EnumBitSet.hs:72:4: warning: [GHC-50928] [-Wnoncanonical-monoid-instances]
     Noncanonical ‘mappend’ definition detected
     in the instance declaration for ‘Monoid (T w a)’.
     ‘mappend’ will eventually be removed in favour of ‘(<>)’
-    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    Suggested fix:
+      Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
    |
 72 |    mappend = (.|.)
    |    ^^^^^^^^^^^^^^^
-[3 of 4] Compiling Data.FlagSet
 
-src/Data/FlagSet.hs:17:1: warning: [-Wunused-imports]
+[3 of 4] Compiling Data.FlagSet
+src/Data/FlagSet.hs:17:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
@@ -42,11 +43,12 @@ src/Data/FlagSet.hs:17:1: warning: [-Wunused-imports]
 17 | import Data.Monoid (Monoid(mempty, mappend, mconcat), )
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Data/FlagSet.hs:18:1: warning: [-Wunused-imports]
+src/Data/FlagSet.hs:18:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Semigroup’ is redundant
       except perhaps to import instances from ‘Data.Semigroup’
     To import instances alone, use: import Data.Semigroup()
    |
 18 | import Data.Semigroup (Semigroup((<>)), )
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [4 of 4] Compiling Data.FlagSet.PackedRecord

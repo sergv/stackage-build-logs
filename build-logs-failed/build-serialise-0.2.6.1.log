@@ -1,0 +1,90 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - serialise-0.2.6.1 (lib) (first run)
+ - serialise-0.2.6.1 (test:tests) (first run)
+Configuring library for serialise-0.2.6.1...
+Preprocessing library for serialise-0.2.6.1...
+Building library for serialise-0.2.6.1...
+[1 of 8] Compiling Codec.Serialise.Decoding
+[2 of 8] Compiling Codec.Serialise.Encoding
+[3 of 8] Compiling Codec.Serialise.Internal.GeneralisedUTF8
+src/Codec/Serialise/Internal/GeneralisedUTF8.hs:78:15: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘sizeofMutableByteArray’
+    (imported from Data.Primitive.ByteArray):
+    Deprecated: "use getSizeofMutableByteArray instead"
+   |
+78 |         cap = sizeofMutableByteArray ba
+   |               ^^^^^^^^^^^^^^^^^^^^^^
+
+[4 of 8] Compiling Codec.Serialise.Class
+src/Codec/Serialise/Class.hs:1370:1: warning: [GHC-53633] [-Woverlapping-patterns]
+    Pattern match is redundant
+    In an equation for ‘encodeTypeRep’:
+        encodeTypeRep (Fun arg res) = ...
+     |
+1370 | encodeTypeRep (Fun arg res)
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+[5 of 8] Compiling Codec.Serialise
+[6 of 8] Compiling Codec.Serialise.IO
+[7 of 8] Compiling Codec.Serialise.Properties
+[8 of 8] Compiling Codec.Serialise.Tutorial
+Configuring test suite 'tests' for serialise-0.2.6.1...
+Preprocessing test suite 'tests' for serialise-0.2.6.1...
+Building test suite 'tests' for serialise-0.2.6.1...
+[ 1 of 14] Compiling Tests.Deriving
+[ 2 of 14] Compiling Tests.GeneralisedUTF8
+[ 3 of 14] Compiling Tests.IO
+[ 4 of 14] Compiling Tests.Negative
+[ 5 of 14] Compiling Tests.Orphanage
+[ 6 of 14] Compiling Tests.Regress.Issue106
+tests/Tests/Regress/Issue106.hs:3:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Word’ is redundant
+      except perhaps to import instances from ‘Data.Word’
+    To import instances alone, use: import Data.Word()
+  |
+3 | import           Data.Word (Word) -- needed for GHC 7.8.4
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[ 7 of 14] Compiling Tests.Regress.Issue13
+tests/Tests/Regress/Issue13.hs:9:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+  |
+9 | import           Data.Monoid                         ((<>))
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[ 8 of 14] Compiling Tests.Regress.Issue135
+[ 9 of 14] Compiling Tests.Regress.Issue67
+[10 of 14] Compiling Tests.Regress.Issue80
+[11 of 14] Compiling Tests.Regress
+[12 of 14] Compiling Tests.Serialise.Canonical
+[13 of 14] Compiling Tests.Serialise
+tests/Tests/Serialise.hs:283:9: error: [GHC-43085]
+    • Overlapping instances for Arbitrary (Vector.Primitive.Vector Int)
+        arising from a use of ‘mkTest’
+      Matching instances:
+        instance (Vector.Primitive.Prim a, Arbitrary a) =>
+                 Arbitrary (Vector.Primitive.Vector a)
+          -- Defined in ‘Test.QuickCheck.Instances.Vector’
+        instance (Vector.Primitive.Prim a, Arbitrary a) =>
+                 Arbitrary (Vector.Primitive.Vector a)
+          -- Defined at tests/Tests/Orphanage.hs:198:10
+    • In the expression: mkTest (T :: T (Vector.Primitive.Vector Int))
+      In the second argument of ‘testGroup’, namely
+        ‘[mkTest (T :: T ()), mkTest (T :: T Bool), mkTest (T :: T Int),
+          mkTest (T :: T Int8), ....]’
+      In the expression:
+        testGroup
+          "Simple instance invariants"
+          [mkTest (T :: T ()), mkTest (T :: T Bool), mkTest (T :: T Int),
+           mkTest (T :: T Int8), ....]
+    |
+283 |       , mkTest (T :: T (Vector.Primitive.Vector Int))
+    |         ^^^^^^
+
+Error: [Cabal-7125]
+Failed to build test:tests from serialise-0.2.6.1.
+

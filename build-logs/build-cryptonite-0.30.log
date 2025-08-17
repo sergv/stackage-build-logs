@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - cryptonite-0.30 (lib) (first run)
  - cryptonite-0.30 (test:test-cryptonite) (first run)
@@ -6,6 +7,14 @@ Configuring library for cryptonite-0.30...
 Preprocessing library for cryptonite-0.30...
 Building library for cryptonite-0.30...
 [  1 of 137] Compiling Crypto.Cipher.DES.Primitive
+Crypto/Cipher/DES/Primitive.hs:100:15: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+100 |        res' = tail $ iterate (trans 6) ([], res)
+    |               ^^^^
+
 [  2 of 137] Compiling Crypto.Data.Padding
 [  3 of 137] Compiling Crypto.Error.Types
 [  4 of 137] Compiling Crypto.Error
@@ -45,6 +54,14 @@ Building library for cryptonite-0.30...
 [ 38 of 137] Compiling Crypto.Cipher.Types.Block
 [ 39 of 137] Compiling Crypto.Cipher.Types
 [ 40 of 137] Compiling Crypto.ConstructHash.MiyaguchiPreneel
+Crypto/ConstructHash/MiyaguchiPreneel.hs:17:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.List’ is redundant
+      except perhaps to import instances from ‘Data.List’
+    To import instances alone, use: import Data.List()
+   |
+17 | import           Data.List (foldl')
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [ 41 of 137] Compiling Crypto.Cipher.Utils
 [ 42 of 137] Compiling Crypto.Cipher.TripleDES
 [ 43 of 137] Compiling Crypto.Cipher.DES
@@ -61,6 +78,13 @@ Building library for cryptonite-0.30...
 [ 54 of 137] Compiling Crypto.Hash
 [ 55 of 137] Compiling Crypto.Internal.WordArray
 [ 56 of 137] Compiling Crypto.Cipher.Twofish.Primitive
+Crypto/Cipher/Twofish/Primitive.hs:16:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.List’ is redundant
+      except perhaps to import instances from ‘Data.List’
+    To import instances alone, use: import Data.List()
+   |
+16 | import           Data.List
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Crypto/Cipher/Twofish/Primitive.hs:84:19: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
@@ -113,6 +137,7 @@ Crypto/Cipher/Twofish/Primitive.hs:258:11: warning: [GHC-62161] [-Wincomplete-un
     |
 258 |           [y0, y1, y2, y3] = take 4 input
     |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [ 57 of 137] Compiling Crypto.Cipher.Twofish
 [ 58 of 137] Compiling Crypto.Cipher.CAST5.Primitive
 [ 59 of 137] Compiling Crypto.Cipher.CAST5
@@ -125,6 +150,30 @@ Crypto/Cipher/Twofish/Primitive.hs:258:11: warning: [GHC-62161] [-Wincomplete-un
 [ 66 of 137] Compiling Crypto.KDF.Argon2
 [ 67 of 137] Compiling Crypto.KDF.BCryptPBKDF
 [ 68 of 137] Compiling Crypto.MAC.CMAC
+Crypto/MAC/CMAC.hs:21:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.List’ is redundant
+      except perhaps to import instances from ‘Data.List’
+    To import instances alone, use: import Data.List()
+   |
+21 | import           Data.List (foldl')
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Crypto/MAC/CMAC.hs:130:32: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+130 |     setB i ws =  hd ++ setBit (head tl) r : tail tl  where
+    |                                ^^^^
+
+Crypto/MAC/CMAC.hs:130:45: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+130 |     setB i ws =  hd ++ setBit (head tl) r : tail tl  where
+    |                                             ^^^^
+
 [ 69 of 137] Compiling Crypto.MAC.HMAC
 [ 70 of 137] Compiling Crypto.KDF.PBKDF2
 [ 71 of 137] Compiling Crypto.KDF.Scrypt
@@ -133,7 +182,6 @@ Crypto/Cipher/Twofish/Primitive.hs:258:11: warning: [GHC-62161] [-Wincomplete-un
 [ 74 of 137] Compiling Crypto.MAC.Poly1305
 [ 75 of 137] Compiling Crypto.Cipher.ChaChaPoly1305
 [ 76 of 137] Compiling Crypto.Number.Compat
-
 Crypto/Number/Compat.hs:57:22: warning: [GHC-68441] [-Wdeprecations]
     In the use of ‘gcdExtInteger’
     (imported from GHC.Integer.GMP.Internals):
@@ -205,9 +253,18 @@ Crypto/Number/Compat.hs:189:5: warning: [GHC-68441] [-Wdeprecations]
     |
 189 |     importIntegerFromAddr addr (int2Word# n) 0#
     |     ^^^^^^^^^^^^^^^^^^^^^
+
 [ 77 of 137] Compiling Crypto.Number.Basic
 [ 78 of 137] Compiling Crypto.ECC.Simple.Types
 [ 79 of 137] Compiling Crypto.Number.F2m
+Crypto/Number/F2m.hs:27:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.List’ is redundant
+      except perhaps to import instances from ‘Data.List’
+    To import instances alone, use: import Data.List()
+   |
+27 | import Data.List
+   | ^^^^^^^^^^^^^^^^
+
 [ 80 of 137] Compiling Crypto.Number.ModArithmetic
 [ 81 of 137] Compiling Crypto.Number.Nat
 [ 82 of 137] Compiling Crypto.Number.Serialize.Internal
@@ -217,6 +274,14 @@ Crypto/Number/Compat.hs:189:5: warning: [GHC-68441] [-Wdeprecations]
 [ 86 of 137] Compiling Crypto.OTP
 [ 87 of 137] Compiling Crypto.PubKey.ECC.Types
 [ 88 of 137] Compiling Crypto.PubKey.Internal
+Crypto/PubKey/Internal.hs:16:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.List’ is redundant
+      except perhaps to import instances from ‘Data.List’
+    To import instances alone, use: import Data.List()
+   |
+16 | import Data.List (foldl')
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [ 89 of 137] Compiling Crypto.PubKey.MaskGenFunction
 [ 90 of 137] Compiling Crypto.PubKey.RSA.Types
 [ 91 of 137] Compiling Crypto.PubKey.RSA.Prim
@@ -240,7 +305,6 @@ Crypto/Number/Compat.hs:189:5: warning: [GHC-68441] [-Wdeprecations]
 [109 of 137] Compiling Crypto.KDF.BCrypt
 [110 of 137] Compiling Crypto.ECC.Edwards25519
 [111 of 137] Compiling Crypto.Cipher.AESGCMSIV
-
 Crypto/Cipher/AESGCMSIV.hs:193:23: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -248,6 +312,7 @@ Crypto/Cipher/AESGCMSIV.hs:193:23: warning: [GHC-62161] [-Wincomplete-uni-patter
     |
 193 |   where toIV bs = let Just iv = makeIV (bs :: Bytes) in iv
     |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [112 of 137] Compiling Crypto.Number.Generate
 [113 of 137] Compiling Crypto.PubKey.ECC.Prim
 [114 of 137] Compiling Crypto.PubKey.ECC.ECDSA
@@ -259,6 +324,14 @@ Crypto/Cipher/AESGCMSIV.hs:193:23: warning: [GHC-62161] [-Wincomplete-uni-patter
 [120 of 137] Compiling Crypto.PubKey.Rabin.RW
 [121 of 137] Compiling Crypto.PubKey.Rabin.Modified
 [122 of 137] Compiling Crypto.PubKey.Rabin.Basic
+Crypto/PubKey/Rabin/Basic.hs:125:21: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+125 |         else Just $ head solutions
+    |                     ^^^^
+
 [123 of 137] Compiling Crypto.PubKey.RSA
 [124 of 137] Compiling Crypto.PubKey.RSA.PSS
 [125 of 137] Compiling Crypto.PubKey.RSA.PKCS15
@@ -266,17 +339,16 @@ Crypto/Cipher/AESGCMSIV.hs:193:23: warning: [GHC-62161] [-Wincomplete-uni-patter
 [127 of 137] Compiling Crypto.PubKey.DH
 [128 of 137] Compiling Crypto.PubKey.ElGamal
 [129 of 137] Compiling Crypto.PubKey.ECC.DH
-
 Crypto/PubKey/ECC/DH.hs:47:5: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding: Patterns of type ‘Point’ not matched: PointO
    |
 47 |     Point x _ = pointMul curve db qa
    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [130 of 137] Compiling Crypto.ECC.Simple.Prim
 [131 of 137] Compiling Crypto.ECC
 [132 of 137] Compiling Crypto.PubKey.EdDSA
-
 Crypto/PubKey/EdDSA.hs:110:45: warning: [GHC-58520] [-Wtype-equality-requires-operators]
     The use of ‘~’ without TypeOperators
     will become an error in a future GHC release.
@@ -396,6 +468,7 @@ Crypto/PubKey/EdDSA.hs:313:42: warning: [GHC-58520] [-Wtype-equality-requires-op
     |
 313 |                    , HashDigestSize hash ~ CurveDigestSize curve
     |                                          ^
+
 [133 of 137] Compiling Crypto.PubKey.ECIES
 [134 of 137] Compiling Crypto.PubKey.ECDSA
 [135 of 137] Compiling Crypto.Data.AFIS
@@ -423,7 +496,6 @@ Building test suite 'test-cryptonite' for cryptonite-0.30...
 [17 of 57] Compiling Number
 [18 of 57] Compiling KAT_PubKey.Rabin
 [19 of 57] Compiling KAT_PubKey.RSA
-
 tests/KAT_PubKey/RSA.hs:95:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -431,15 +503,23 @@ tests/KAT_PubKey/RSA.hs:95:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
    |
 95 |           Right bs = sig vector
    |           ^^^^^^^^^^^^^^^^^^^^^
+
 [20 of 57] Compiling KAT_PubKey.PSS
 [21 of 57] Compiling KAT_PubKey.P256
 [22 of 57] Compiling KAT_PubKey.OAEP
 [23 of 57] Compiling KAT_PubKey.ECDSA
 [24 of 57] Compiling KAT_PubKey.ECC
+tests/KAT_PubKey/ECC.hs:210:102: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+210 |                 Just [qx,qy,res] -> VectorPoint undefined (valueHexInteger qx) (valueHexInteger qy) (head res /= 'F')
+    |                                                                                                      ^^^^
+
 [25 of 57] Compiling KAT_PubKey.DSA
 [26 of 57] Compiling KAT_PubKey
 [27 of 57] Compiling KAT_OTP
-
 tests/KAT_OTP.hs:76:1: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -466,12 +546,12 @@ tests/KAT_OTP.hs:78:1: warning: [GHC-62161] [-Wincomplete-uni-patterns]
    |
 78 | Right totpSHA512Params = mkTOTPParams SHA512 0 30 OTP8 TwoSteps
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [28 of 57] Compiling KAT_MiyaguchiPreneel
 [29 of 57] Compiling KAT_KMAC
 [30 of 57] Compiling KAT_HMAC
 [31 of 57] Compiling KAT_HKDF
 [32 of 57] Compiling KAT_EdDSA
-
 tests/KAT_EdDSA.hs:18:34: warning: [GHC-58520] [-Wtype-equality-requires-operators]
     The use of ‘~’ without TypeOperators
     will become an error in a future GHC release.
@@ -479,6 +559,7 @@ tests/KAT_EdDSA.hs:18:34: warning: [GHC-58520] [-Wtype-equality-requires-operato
    |
 18 |            , HashDigestSize hash ~ EdDSA.CurveDigestSize curve
    |                                  ^
+
 [33 of 57] Compiling KAT_Ed448
 [34 of 57] Compiling KAT_Ed25519
 [35 of 57] Compiling KAT_Curve448
@@ -489,7 +570,6 @@ tests/KAT_EdDSA.hs:18:34: warning: [GHC-58520] [-Wtype-equality-requires-operato
 [40 of 57] Compiling KAT_AESGCMSIV
 [41 of 57] Compiling Hash
 [42 of 57] Compiling ECDSA
-
 tests/ECDSA.hs:54:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -506,9 +586,9 @@ tests/ECDSA.hs:55:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
    |
 55 |             Just sigECDSA = ECDSA.signWith prx kECDSA privECDSA hashAlg msg
    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [43 of 57] Compiling ECC.Edwards25519
 [44 of 57] Compiling ECC
-
 tests/ECC.hs:273:29: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -525,6 +605,7 @@ tests/ECC.hs:288:17: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     |
 288 |                 CryptoPassed public = ECC.decodePoint prx $ vpEncodedPoint vector
     |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [45 of 57] Compiling ChaChaPoly1305
 [46 of 57] Compiling ChaCha
 [47 of 57] Compiling BlockCipher
@@ -538,4 +619,4 @@ tests/ECC.hs:288:17: warning: [GHC-62161] [-Wincomplete-uni-patterns]
 [55 of 57] Compiling BCrypt
 [56 of 57] Compiling XSalsa
 [57 of 57] Compiling Main
-[58 of 58] Linking /tmp/workdir-cryptonite/cryptonite-0.30/dist-newstyle/build/x86_64-linux/ghc-9.6.5/cryptonite-0.30/t/test-cryptonite/build/test-cryptonite/test-cryptonite
+[58 of 58] Linking /tmp/workdir-cryptonite/cryptonite-0.30/dist-newstyle/build/x86_64-linux/ghc-9.10.2/cryptonite-0.30/t/test-cryptonite/build/test-cryptonite/test-cryptonite

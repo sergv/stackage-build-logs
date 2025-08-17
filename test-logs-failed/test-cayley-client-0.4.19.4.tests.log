@@ -1,0 +1,89 @@
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - cayley-client-0.4.19.4 (test:tests) (ephemeral targets)
+Preprocessing test suite 'tests' for cayley-client-0.4.19.4...
+Building test suite 'tests' for cayley-client-0.4.19.4...
+Running 1 test suites...
+Test suite tests: RUNNING...
+
+write
+  writes a quad to Cayley server [✘]
+query
+  query Cayley server [✘]
+shape
+  returns the description of the last query executed [✘]
+writeNQuadFile
+  writes quads from a file to Cayley server [✘]
+
+Failures:
+
+  tests/hspec.hs:21:114: 
+  1) write writes a quad to Cayley server
+       expected: Just (Object (fromList [("result",String "Successfully wrote 1 quads.")]))
+        but got: Just (Object (fromList [("error",String "HttpExceptionRequest Request {\n  host                 = \"localhost\"\n  port                 = 64210\n  secure               = False\n  requestHeaders       = []\n  path                 = \"/api/v1/write\"\n  queryString          = \"\"\n  method               = \"POST\"\n  proxy                = Nothing\n  rawBody              = False\n  redirectCount        = 10\n  responseTimeout      = ResponseTimeoutDefault\n  requestVersion       = HTTP/1.1\n  proxySecureMode      = ProxySecureWithConnect\n}\n (ConnectionFailure Network.Socket.connect: <socket: 8>: does not exist (Connection refused))")]))
+
+  To rerun use: --match "/write/writes a quad to Cayley server/" --seed 1302711503
+
+  tests/hspec.hs:29:13: 
+  2) query query Cayley server
+       uncaught exception: IOException of type UserError
+       user error (Pattern match failure in 'do' block at tests/hspec.hs:29:13-19)
+
+  To rerun use: --match "/query/query Cayley server/" --seed 1302711503
+
+  tests/hspec.hs:35:74: 
+  3) shape returns the description of the last query executed
+       expected: Right Shape {
+                   nodes = [Node {
+                   id = 4,
+                   tags = Nothing,
+                   values = Just ["<sandy>"],
+                   isLinkNode = False,
+                   isFixed = True
+                 }, Node {
+                   id = 8,
+                   tags = Nothing,
+                   values = Just ["<follows>"],
+                   isLinkNode = False,
+                   isFixed = True
+                 }, Node {
+                   id = 2,
+                   tags = Nothing,
+                   values = Nothing,
+                   isLinkNode = True,
+                   isFixed = False
+                 }, Node {
+                   id = 1,
+                   tags = Just ["id"],
+                   values = Nothing,
+                   isLinkNode = False,
+                   isFixed = False
+                 }],
+                   links = [Link {
+                   source = 1,
+                   target = 4,
+                   linkNode = 2
+                 }]
+                 }
+        but got: Left "Not a shape (\"key \"nodes\" not found\")"
+
+  To rerun use: --match "/shape/returns the description of the last query executed/" --seed 1302711503
+
+  tests/hspec.hs:40:66: 
+  4) writeNQuadFile writes quads from a file to Cayley server
+       expected: Right 15
+        but got: Left "\"HttpExceptionRequest Request {\\n  host                 = \\\"localhost\\\"\\n  port                 = 64210\\n  secure               = False\\n  requestHeaders       = [(\\\"Content-Type\\\",\\\"multipart/form-data; boundary=----WebKitFormBoundaryCewryBvgB9K5G16j\\\")]\\n  path                 = \\\"/api/v1/write/file/nquad\\\"\\n  queryString          = \\\"\\\"\\n  method               = \\\"POST\\\"\\n  proxy                = Nothing\\n  rawBody              = False\\n  redirectCount        = 10\\n  responseTimeout      = ResponseTimeoutDefault\\n  requestVersion       = HTTP/1.1\\n  proxySecureMode      = ProxySecureWithConnect\\n}\\n (ConnectionFailure Network.Socket.connect: <socket: 8>: does not exist (Connection refused))\""
+
+  To rerun use: --match "/writeNQuadFile/writes quads from a file to Cayley server/" --seed 1302711503
+
+Randomized with seed 1302711503
+
+Finished in 1.0184 seconds
+4 examples, 4 failures
+Test suite tests: FAIL
+Test suite logged to:
+/tmp/workdir-cayley-client/cayley-client-0.4.19.4/dist-newstyle/build/x86_64-linux/ghc-9.10.2/cayley-client-0.4.19.4/t/tests/test/cayley-client-0.4.19.4-tests.log
+0 of 1 test suites (0 of 1 test cases) passed.
+Error: [Cabal-7125]
+Tests failed for test:tests from cayley-client-0.4.19.4.
+

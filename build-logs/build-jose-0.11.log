@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - jose-0.11 (lib) (first run)
  - jose-0.11 (test:tests) (first run)
@@ -17,7 +18,6 @@ Building library for jose-0.11...
 [ 9 of 18] Compiling Crypto.JOSE.JWA.JWK
 [10 of 18] Compiling Crypto.JOSE.Types.URI
 [11 of 18] Compiling Crypto.JOSE.JWK
-
 src/Crypto/JOSE/JWK.hs:351:15: warning: [GHC-30606] [-Wredundant-constraints]
     Redundant constraint: Functor f
     In the type signature for:
@@ -25,14 +25,14 @@ src/Crypto/JOSE/JWK.hs:351:15: warning: [GHC-30606] [-Wredundant-constraints]
     |
 351 | thumbprint :: HashAlgorithm a => Getter JWK (Digest a)
     |               ^^^^^^^^^^^^^^^
+
 [12 of 18] Compiling Crypto.JOSE.JWK.Store
 [13 of 18] Compiling Crypto.JOSE.JWA.JWE
 [14 of 18] Compiling Crypto.JOSE.Header
 [15 of 18] Compiling Crypto.JOSE.JWS
 [16 of 18] Compiling Crypto.JOSE
 [17 of 18] Compiling Crypto.JOSE.JWE
-
-src/Crypto/JOSE/JWE.hs:86:1: warning: [-Wunused-top-binds]
+src/Crypto/JOSE/JWE.hs:86:1: warning: [GHC-40910] [-Wunused-top-binds]
     Defined but not used: ‘newJWEHeader’
    |
 86 | newJWEHeader alg enc =
@@ -46,7 +46,7 @@ src/Crypto/JOSE/JWE.hs:86:14: warning: [GHC-63397] [-Wname-shadowing]
 86 | newJWEHeader alg enc =
    |              ^^^
 
-src/Crypto/JOSE/JWE.hs:108:21: warning: [-Wunused-matches]
+src/Crypto/JOSE/JWE.hs:108:21: warning: [GHC-40910] [-Wunused-matches]
     Defined but not used: ‘alg’
     |
 108 |   params (JWEHeader alg enc zip' jku jwk kid x5u x5c x5t x5tS256 typ cty crit) =
@@ -140,7 +140,7 @@ src/Crypto/JOSE/JWE.hs:108:74: warning: [GHC-63397] [-Wname-shadowing]
 108 |   params (JWEHeader alg enc zip' jku jwk kid x5u x5c x5t x5tS256 typ cty crit) =
     |                                                                          ^^^^
 
-src/Crypto/JOSE/JWE.hs:183:1: warning: [-Wunused-top-binds]
+src/Crypto/JOSE/JWE.hs:183:1: warning: [GHC-40910] [-Wunused-top-binds]
     Defined but not used: ‘wrap’
     |
 183 | wrap alg@RSA_OAEP (RSAKeyMaterial k) m = bimap RSAError (alg,) <$>
@@ -162,23 +162,24 @@ src/Crypto/JOSE/JWE.hs:186:6: warning: [GHC-63397] [-Wname-shadowing]
 186 | wrap alg@RSA_OAEP_256 (RSAKeyMaterial k) m = bimap RSAError (alg,) <$>
     |      ^^^
 
-src/Crypto/JOSE/JWE.hs:205:1: warning: [-Wunused-top-binds]
+src/Crypto/JOSE/JWE.hs:205:1: warning: [GHC-40910] [-Wunused-top-binds]
     Defined but not used: ‘wrapAESKW’
     |
 205 | wrapAESKW cipher m = case cipher of
     | ^^^^^^^^^
 
-src/Crypto/JOSE/JWE.hs:216:1: warning: [-Wunused-top-binds]
+src/Crypto/JOSE/JWE.hs:216:1: warning: [GHC-40910] [-Wunused-top-binds]
     Defined but not used: ‘wrapAESGCM’
     |
 216 | wrapAESGCM f enc (OctKeyMaterial (OctKeyParameters (Types.Base64Octets k))) m =
     | ^^^^^^^^^^
 
-src/Crypto/JOSE/JWE.hs:228:1: warning: [-Wunused-top-binds]
+src/Crypto/JOSE/JWE.hs:228:1: warning: [GHC-40910] [-Wunused-top-binds]
     Defined but not used: ‘encrypt’
     |
 228 | encrypt A128CBC_HS256 k m a = case B.length k of
     | ^^^^^^^
+
 [18 of 18] Compiling Crypto.JWT
 Configuring test suite 'tests' for jose-0.11...
 Preprocessing test suite 'tests' for jose-0.11...
@@ -188,27 +189,27 @@ Building test suite 'tests' for jose-0.11...
 [3 of 8] Compiling JWK
 [4 of 8] Compiling JWS
 [5 of 8] Compiling JWT
-
 test/JWT.hs:83:5: warning: [GHC-68441] [-Wdeprecations]
     In the use of ‘addClaim’ (imported from Crypto.JWT):
     Deprecated: "use a [subtype](#g:subtypes) to define additional claims"
    |
 83 |   & addClaim "http://example.com/is_root" (Bool True)
    |     ^^^^^^^^
-[6 of 8] Compiling Properties
 
-test/Properties.hs:24:1: warning: [-Wunused-imports]
+[6 of 8] Compiling Properties
+test/Properties.hs:24:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
    |
 24 | import Control.Applicative (liftA2)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [7 of 8] Compiling Types
 [8 of 8] Compiling Main
-[9 of 9] Linking /tmp/workdir-jose/jose-0.11/dist-newstyle/build/x86_64-linux/ghc-9.6.5/jose-0.11/t/tests/build/tests/tests
+[9 of 9] Linking /tmp/workdir-jose/jose-0.11/dist-newstyle/build/x86_64-linux/ghc-9.10.2/jose-0.11/t/tests/build/tests/tests
 Configuring test suite 'perf' for jose-0.11...
 Preprocessing test suite 'perf' for jose-0.11...
 Building test suite 'perf' for jose-0.11...
 [1 of 1] Compiling Main
-[2 of 2] Linking /tmp/workdir-jose/jose-0.11/dist-newstyle/build/x86_64-linux/ghc-9.6.5/jose-0.11/t/perf/build/perf/perf
+[2 of 2] Linking /tmp/workdir-jose/jose-0.11/dist-newstyle/build/x86_64-linux/ghc-9.10.2/jose-0.11/t/perf/build/perf/perf

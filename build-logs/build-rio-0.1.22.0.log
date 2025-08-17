@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - rio-0.1.22.0 (lib) (first run)
  - rio-0.1.22.0 (test:spec) (first run)
@@ -17,6 +18,22 @@ Building library for rio-0.1.22.0...
 [10 of 62] Compiling RIO.HashSet
 [11 of 62] Compiling RIO.Lens
 [12 of 62] Compiling RIO.List
+src/RIO/List.hs:257:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+257 | headMaybe = safeListCall Data.List.head
+    |                          ^^^^^^^^^^^^^^
+
+src/RIO/List.hs:265:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+265 | tailMaybe = safeListCall Data.List.tail
+    |                          ^^^^^^^^^^^^^^
+
 [13 of 62] Compiling RIO.List.Partial
 [14 of 62] Compiling RIO.Map
 [15 of 62] Compiling RIO.Map.Partial
@@ -38,16 +55,17 @@ Building library for rio-0.1.22.0...
 [31 of 62] Compiling RIO.Deque
 [32 of 62] Compiling RIO.Prelude.URef
 [33 of 62] Compiling RIO.Prelude.RIO
-
-src/RIO/Prelude/RIO.hs:46:3: warning: [-Wnoncanonical-monoid-instances]
+src/RIO/Prelude/RIO.hs:46:3: warning: [GHC-50928] [-Wnoncanonical-monoid-instances]
     Noncanonical ‘mappend’ definition detected
     in the instance declaration for ‘Monoid (RIO env a)’.
     ‘mappend’ will eventually be removed in favour of ‘(<>)’
-    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    Suggested fix:
+      Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
    |
 46 |   mappend = liftA2 mappend
    |   ^^^^^^^^^^^^^^^^^^^^^^^^
+
 [34 of 62] Compiling RIO.Process
 [35 of 62] Compiling RIO.Prelude.Simple
 [36 of 62] Compiling RIO.Seq
@@ -60,6 +78,20 @@ src/RIO/Prelude/RIO.hs:46:3: warning: [-Wnoncanonical-monoid-instances]
 [43 of 62] Compiling RIO
 [44 of 62] Compiling RIO.ByteString.Lazy
 [45 of 62] Compiling RIO.ByteString
+src/RIO/ByteString.hs:37:18: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘getLine’ (imported from Data.ByteString):
+    Deprecated: "Deprecated since @bytestring-0.12@. Use 'Data.ByteString.Char8.getLine' instead. (Functions that rely on ASCII encodings belong in "Data.ByteString.Char8")"
+   |
+37 | getLine = liftIO B.getLine
+   |                  ^^^^^^^^^
+
+src/RIO/ByteString.hs:65:21: warning: [GHC-68441] [-Wdeprecations]
+    In the use of ‘hGetLine’ (imported from Data.ByteString):
+    Deprecated: "Deprecated since @bytestring-0.12@. Use 'Data.ByteString.Char8.hGetLine' instead. (Functions that rely on ASCII encodings belong in "Data.ByteString.Char8")"
+   |
+65 | hGetLine = liftIO . B.hGetLine
+   |                     ^^^^^^^^^^
+
 [46 of 62] Compiling RIO.Text.Lazy
 [47 of 62] Compiling RIO.Text.Lazy.Partial
 [48 of 62] Compiling RIO.Text.Partial
@@ -92,4 +124,4 @@ Building test suite 'spec' for rio-0.1.22.0...
 [10 of 12] Compiling RIO.PreludeSpec
 [11 of 12] Compiling RIO.TextSpec
 [12 of 12] Compiling Main
-[13 of 13] Linking /tmp/workdir-rio/rio-0.1.22.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/rio-0.1.22.0/t/spec/build/spec/spec
+[13 of 13] Linking /tmp/workdir-rio/rio-0.1.22.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/rio-0.1.22.0/t/spec/build/spec/spec

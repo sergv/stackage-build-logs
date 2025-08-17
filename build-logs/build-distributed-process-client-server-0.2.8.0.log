@@ -1,0 +1,638 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - distributed-process-client-server-0.2.8.0 (lib) (first run)
+ - distributed-process-client-server-0.2.8.0 (test:PrioritisedProcessTests) (first run)
+ - distributed-process-client-server-0.2.8.0 (test:ManagedProcessTests) (first run)
+Configuring library for distributed-process-client-server-0.2.8.0...
+Preprocessing library for distributed-process-client-server-0.2.8.0...
+Building library for distributed-process-client-server-0.2.8.0...
+[ 1 of 11] Compiling Control.Distributed.Process.ManagedProcess.Internal.PriorityQueue
+[ 2 of 11] Compiling Control.Distributed.Process.ManagedProcess.Timer
+[ 3 of 11] Compiling Control.Distributed.Process.ManagedProcess.Internal.Types
+src/Control/Distributed/Process/ManagedProcess/Internal/Types.hs:468:7: warning: [GHC-82712] [-Wpartial-fields]
+    Use of partial record field selector: ‘apiFilter’
+    |
+468 |       apiFilter :: s -> Message a b -> Process (Filter s)
+    |       ^^^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Internal/Types.hs:473:7: warning: [GHC-82712] [-Wpartial-fields]
+    Use of partial record field selector: ‘anyFilter’
+    |
+473 |       anyFilter :: s -> a -> Process (Filter s)
+    |       ^^^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Internal/Types.hs:477:7: warning: [GHC-82712] [-Wpartial-fields]
+    Use of partial record field selector: ‘rawFilter’
+    |
+477 |       rawFilter :: s -> P.Message -> Process (Maybe (Filter s))
+    |       ^^^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Internal/Types.hs:481:7: warning: [GHC-82712] [-Wpartial-fields]
+    Use of partial record field selector: ‘stateFilter’
+    |
+481 |       stateFilter :: s -> Process (Maybe (Filter s))
+    |       ^^^^^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Internal/Types.hs:495:7: warning: [GHC-82712] [-Wpartial-fields]
+    Use of partial record field selector: ‘dispatchIf’
+    |
+495 |     , dispatchIf :: s -> Message a b -> Bool
+    |       ^^^^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Internal/Types.hs:503:7: warning: [GHC-82712] [-Wpartial-fields]
+    Use of partial record field selector: ‘channel’
+    |
+503 |       channel      :: ReceivePort (Message a b)
+    |       ^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Internal/Types.hs:504:7: warning: [GHC-82712] [-Wpartial-fields]
+    Use of partial record field selector: ‘dispatchChan’
+    |
+504 |     , dispatchChan :: s -> Message a b -> Process (ProcessAction s)
+    |       ^^^^^^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Internal/Types.hs:509:7: warning: [GHC-82712] [-Wpartial-fields]
+    Use of partial record field selector: ‘stmAction’
+    |
+509 |       stmAction   :: STM a
+    |       ^^^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Internal/Types.hs:510:7: warning: [GHC-82712] [-Wpartial-fields]
+    Use of partial record field selector: ‘dispatchStm’
+    |
+510 |     , dispatchStm :: s -> a -> Process (ProcessAction s)
+    |       ^^^^^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Internal/Types.hs:511:7: warning: [GHC-82712] [-Wpartial-fields]
+    Use of partial record field selector: ‘matchStm’
+    |
+511 |     , matchStm    :: Match P.Message
+    |       ^^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Internal/Types.hs:512:7: warning: [GHC-82712] [-Wpartial-fields]
+    Use of partial record field selector: ‘matchAnyStm’
+    |
+512 |     , matchAnyStm :: forall m . (P.Message -> m) -> Match m
+    |       ^^^^^^^^^^^
+
+[ 4 of 11] Compiling Control.Distributed.Process.ManagedProcess.Server
+src/Control/Distributed/Process/ManagedProcess/Server.hs:102:26: warning: [GHC-30606] [-Wredundant-constraints]
+    Redundant constraints: (Serializable a, Serializable b)
+    In the type signature for:
+         condition :: forall a b.
+                      (Serializable a, Serializable b) =>
+                      (a -> b -> Bool) -> Condition a b
+    |
+102 | condition :: forall a b. (Serializable a, Serializable b)
+    |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Server.hs:110:22: warning: [GHC-30606] [-Wredundant-constraints]
+    Redundant constraint: Serializable m
+    In the type signature for:
+         state :: forall s m. Serializable m => (s -> Bool) -> Condition s m
+    |
+110 | state :: forall s m. (Serializable m) => (s -> Bool) -> Condition s m
+    |                      ^^^^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Server.hs:116:22: warning: [GHC-30606] [-Wredundant-constraints]
+    Redundant constraint: Serializable m
+    In the type signature for:
+         input :: forall s m. Serializable m => (m -> Bool) -> Condition s m
+    |
+116 | input :: forall s m. (Serializable m) => (m -> Bool) -> Condition s m
+    |                      ^^^^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Server.hs:132:14: warning: [GHC-30606] [-Wredundant-constraints]
+    Redundant constraint: Serializable r
+    In the type signature for:
+         replyWith :: forall r s.
+                      Serializable r =>
+                      r -> ProcessAction s -> Reply r s
+    |
+132 | replyWith :: (Serializable r)
+    |              ^^^^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Server.hs:139:12: warning: [GHC-30606] [-Wredundant-constraints]
+    Redundant constraint: Serializable r
+    In the type signature for:
+         noReply :: forall r s.
+                    Serializable r =>
+                    ProcessAction s -> Reply r s
+    |
+139 | noReply :: (Serializable r) => ProcessAction s -> Reply r s
+    |            ^^^^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Server.hs:221:27: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘tag’ shadows the existing binding
+      imported from ‘Control.Distributed.Process.ManagedProcess.Internal.Types’ at src/Control/Distributed/Process/ManagedProcess/Server.hs:81:1-86
+      (and originally defined
+         at src/Control/Distributed/Process/ManagedProcess/Internal/Types.hs:150:1-3)
+    |
+221 | replyTo cRef@(CallRef (_, tag)) msg = sendTo cRef $ CallResponse msg tag
+    |                           ^^^
+
+src/Control/Distributed/Process/ManagedProcess/Server.hs:257:20: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘s’, ‘Message a b’ not matched:
+            _ (CastMessage _)
+            _ (ChanMessage _ _)
+    |
+257 |       dispatch   = \s (CallMessage p c) -> handler p >>= mkCallReply c s
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Server.hs:263:24: warning: [GHC-30606] [-Wredundant-constraints]
+    • Redundant constraint: Serializable b
+      In the type signature for:
+           mkCallReply :: Serializable b =>
+                          CallRef b -> s -> b -> Process (ProcessAction s)
+    • In an equation for ‘handleCallIf_’:
+          handleCallIf_ cond handler
+            = DispatchIf
+                {dispatch = \ s (CallMessage p c) -> handler p >>= mkCallReply c s,
+                 dispatchIf = checkCall cond}
+            where
+                mkCallReply ::
+                  (Serializable b) =>
+                  CallRef b -> s -> b -> Process (ProcessAction s)
+                mkCallReply c s m
+                  = let ... in sendTo c' (CallResponse m t) >> continue s
+    |
+263 |         mkCallReply :: (Serializable b)
+    |                        ^^^^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Server.hs:293:20: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘s’, ‘Message a b’ not matched:
+            _ (CastMessage _)
+            _ (ChanMessage _ _)
+    |
+293 |     { dispatch   = \s (CallMessage p c) -> handler s p >>= mkReply c
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Server.hs:312:20: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘s’, ‘Message a b’ not matched:
+            _ (CastMessage _)
+            _ (ChanMessage _ _)
+    |
+312 |       dispatch   = \_ (CallMessage p c) -> handler c p >>= mkReply c
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Server.hs:337:20: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘s’, ‘Message a b’ not matched:
+            _ (CastMessage _)
+            _ (ChanMessage _ _)
+    |
+337 |       dispatch   = \s (CallMessage p c) -> handler c s p >>= mkReply c
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Server.hs:360:20: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘s’, ‘Message a b’ not matched:
+            _ (CastMessage _)
+            _ (CallMessage _ _)
+    |
+360 |       dispatch   = \s (ChanMessage p c) -> handler c s p
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Server.hs:379:31: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘s’, ‘Message a b’ not matched:
+            _ (CastMessage _)
+            _ (CallMessage _ _)
+    |
+379 |   = DispatchIf { dispatch   = \s ((ChanMessage m p) :: Message a b) -> h p m s
+    |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Server.hs:404:20: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘s’, ‘Message a ()’ not matched:
+            _ (CallMessage _ _)
+            _ (ChanMessage _ _)
+    |
+404 |       dispatch   = \s ((CastMessage p) :: Message a ()) -> h s p
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Server.hs:485:33: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘s’, ‘Message a ()’ not matched:
+            _ (CallMessage _ _)
+            _ (ChanMessage _ _)
+    |
+485 |                , dispatchChan = \s ((CastMessage p) :: Message a ()) -> h s p
+    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Server.hs:496:33: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘s’, ‘Message a ()’ not matched:
+            _ (CallMessage _ _)
+            _ (ChanMessage _ _)
+    |
+496 |                , dispatchChan = \s ((CastMessage p) :: Message a ()) -> h p s
+    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Server.hs:514:31: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘s’, ‘Message a ()’ not matched:
+            _ (CallMessage _ _)
+            _ (ChanMessage _ _)
+    |
+514 |   = DispatchIf { dispatch   = \s ((CastMessage p) :: Message a ()) -> h p $ s
+    |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Server.hs:556:21: warning: [GHC-30606] [-Wredundant-constraints]
+    • Redundant constraint: Serializable a
+      In the type signature for:
+           doHandle :: Serializable a =>
+                       ActionHandler s a -> s -> Message a () -> Process (ProcessAction s)
+    • In an equation for ‘handleDispatchIf’:
+          handleDispatchIf cond handler
+            = DispatchIf {dispatch = doHandle handler, dispatchIf = check cond}
+            where
+                doHandle ::
+                  (Serializable a) =>
+                  ActionHandler s a -> s -> Message a () -> Process (ProcessAction s)
+                doHandle h s msg
+                  = case msg of
+                      (CallMessage p _) -> h s p
+                      (CastMessage p) -> h s p
+                      (ChanMessage p _) -> h s p
+    |
+556 |   where doHandle :: (Serializable a)
+    |                     ^^^^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Server.hs:631:5: warning: [GHC-53633] [-Woverlapping-patterns]
+    Pattern match is redundant
+    In an equation for ‘mkReply’: mkReply cRef act | otherwise = ...
+    |
+631 |   | otherwise                    = die $ ExitOther "mkReply.InvalidState"
+    |     ^^^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Server.hs:635:25: warning: [GHC-30606] [-Wredundant-constraints]
+    Redundant constraint: Serializable m
+    In the type signature for:
+         check :: forall s m a.
+                  Serializable m =>
+                  Condition s m -> s -> Message m a -> Bool
+    |
+635 | check :: forall s m a . (Serializable m)
+    |                         ^^^^^^^^^^^^^^^^
+
+[ 5 of 11] Compiling Control.Distributed.Process.ManagedProcess.Server.Restricted
+src/Control/Distributed/Process/ManagedProcess/Server/Restricted.hs:133:23: warning: [GHC-30606] [-Wredundant-constraints]
+    Redundant constraint: Serializable r
+    In the type signature for:
+         reply :: forall s r.
+                  Serializable r =>
+                  r -> RestrictedProcess s (Result r)
+    |
+133 | reply :: forall s r . (Serializable r) => r -> RestrictedProcess s (Result r)
+    |                       ^^^^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Server/Restricted.hs:138:25: warning: [GHC-30606] [-Wredundant-constraints]
+    Redundant constraint: Serializable r
+    In the type signature for:
+         noReply :: forall s r.
+                    Serializable r =>
+                    Result r -> RestrictedProcess s (Result r)
+    |
+138 | noReply :: forall s r . (Serializable r)
+    |                         ^^^^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Server/Restricted.hs:243:29: warning: [GHC-30606] [-Wredundant-constraints]
+    Redundant constraint: Serializable a
+    In the type signature for:
+         wrapHandler :: forall s a.
+                        Serializable a =>
+                        (a -> RestrictedProcess s RestrictedAction) -> ActionHandler s a
+    |
+243 | wrapHandler :: forall s a . (Serializable a)
+    |                             ^^^^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Server/Restricted.hs:254:28: warning: [GHC-30606] [-Wredundant-constraints]
+    Redundant constraint: Serializable a
+    In the type signature for:
+         wrapCall :: forall s a b.
+                     (Serializable a, Serializable b) =>
+                     (a -> RestrictedProcess s (Result b)) -> CallHandler s a b
+    |
+254 | wrapCall :: forall s a b . (Serializable a, Serializable b)
+    |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[ 6 of 11] Compiling Control.Distributed.Process.ManagedProcess.Client
+src/Control/Distributed/Process/ManagedProcess/Client.hs:141:25: warning: [GHC-30606] [-Wredundant-constraints]
+    • Redundant constraint: Serializable b
+      In the type signature for:
+           decodeResult :: Serializable b =>
+                           Maybe (Either ExitReason b) -> Process (Maybe b)
+    • In an equation for ‘callTimeout’:
+          callTimeout s m d
+            = initCall s m >>= waitResponse (Just d) >>= decodeResult
+            where
+                decodeResult ::
+                  (Serializable b) =>
+                  Maybe (Either ExitReason b) -> Process (Maybe b)
+                decodeResult Nothing = return Nothing
+                decodeResult (Just (Right result)) = return $ Just result
+                decodeResult (Just (Left reason)) = die reason
+    |
+141 |   where decodeResult :: (Serializable b)
+    |                         ^^^^^^^^^^^^^^^^
+
+[ 7 of 11] Compiling Control.Distributed.Process.ManagedProcess.Internal.GenProcess
+src/Control/Distributed/Process/ManagedProcess/Internal/GenProcess.hs:43:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+   |
+43 | import Control.Applicative (liftA2)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Internal/GenProcess.hs:150:34: warning: [GHC-83475] [-Wunused-record-wildcards]
+    No variables bound in the record wildcard match are used
+    Suggested fix: Omit the ‘..’
+    |
+150 |   modifyState $ \st@ProcessState{..} -> st { procState = st' }
+    |                                  ^^
+
+src/Control/Distributed/Process/ManagedProcess/Internal/GenProcess.hs:154:52: warning: [GHC-83475] [-Wunused-record-wildcards]
+    No variables bound in the record wildcard match are used
+    Suggested fix: Omit the ‘..’
+    |
+154 | setDrainTimeout t = modifyState $ \st@ProcessState{..} -> st { sysTimeout = t }
+    |                                                    ^^
+
+src/Control/Distributed/Process/ManagedProcess/Internal/GenProcess.hs:160:34: warning: [GHC-83475] [-Wunused-record-wildcards]
+    No variables bound in the record wildcard match are used
+    Suggested fix: Omit the ‘..’
+    |
+160 |   modifyState $ \st@ProcessState{..} -> st { usrTimeout = d }
+    |                                  ^^
+
+src/Control/Distributed/Process/ManagedProcess/Internal/GenProcess.hs:183:34: warning: [GHC-83475] [-Wunused-record-wildcards]
+    No variables bound in the record wildcard match are used
+    Suggested fix: Omit the ‘..’
+    |
+183 |   modifyState $ \st@ProcessState{..} -> st { usrTimers = ut }
+    |                                  ^^
+
+src/Control/Distributed/Process/ManagedProcess/Internal/GenProcess.hs:442:42: warning: [GHC-83475] [-Wunused-record-wildcards]
+    No variables bound in the record wildcard match are used
+    Suggested fix: Omit the ‘..’
+    |
+442 |           modifyState $ \st@ProcessState{..} -> st { procDef = pd', procState = ps' }
+    |                                          ^^
+
+src/Control/Distributed/Process/ManagedProcess/Internal/GenProcess.hs:445:9: warning: [GHC-53633] [-Woverlapping-patterns]
+    Pattern match is redundant
+    In an equation for ‘nextAction’: nextAction ac | otherwise = ...
+    |
+445 |       | otherwise {- compiler foo -}   = return $ ExitOther "IllegalState"
+    |         ^^^^^^^^^
+
+[ 8 of 11] Compiling Control.Distributed.Process.ManagedProcess.Server.Priority
+src/Control/Distributed/Process/ManagedProcess/Server/Priority.hs:82:5: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘GenProcess’
+    from module ‘Control.Distributed.Process.ManagedProcess.Internal.GenProcess’ is redundant
+   |
+82 |   , GenProcess
+   |     ^^^^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Server/Priority.hs:102:7: warning: [GHC-82712] [-Wpartial-fields]
+    Use of partial record field selector: ‘pureCheck’
+    |
+102 |       pureCheck :: s -> m -> Process Bool
+    |       ^^^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Server/Priority.hs:103:7: warning: [GHC-82712] [-Wpartial-fields]
+    Use of partial record field selector: ‘handler’
+    |
+103 |     , handler :: s -> m -> Process (Filter s)
+    |       ^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Server/Priority.hs:108:7: warning: [GHC-82712] [-Wpartial-fields]
+    Use of partial record field selector: ‘apiCheck’
+    |
+108 |       apiCheck :: s -> m -> Process Bool
+    |       ^^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Server/Priority.hs:109:7: warning: [GHC-82712] [-Wpartial-fields]
+    Use of partial record field selector: ‘apiHandler’
+    |
+109 |     , apiHandler :: s -> Message m b -> Process (Filter s)
+    |       ^^^^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Server/Priority.hs:113:7: warning: [GHC-82712] [-Wpartial-fields]
+    Use of partial record field selector: ‘rawCheck’
+    |
+113 |       rawCheck :: s -> P.Message -> Process Bool
+    |       ^^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Server/Priority.hs:114:7: warning: [GHC-82712] [-Wpartial-fields]
+    Use of partial record field selector: ‘rawHandler’
+    |
+114 |     , rawHandler :: s -> P.Message -> Process (Maybe (Filter s))
+    |       ^^^^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Server/Priority.hs:116:19: warning: [GHC-82712] [-Wpartial-fields]
+    Use of partial record field selector: ‘stateHandler’
+    |
+116 |   | HandleState { stateHandler :: s -> Process (Maybe (Filter s)) }
+    |                   ^^^^^^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Server/Priority.hs:119:7: warning: [GHC-82712] [-Wpartial-fields]
+    Use of partial record field selector: ‘safeCheck’
+    |
+119 |       safeCheck :: s -> P.Message -> Process Bool
+    |       ^^^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Server/Priority.hs:136:40: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘s’, ‘Message m b’ not matched:
+            _ (CastMessage _)
+            _ (ChanMessage _ _)
+    |
+136 |   | HandleApi{..}   <- h = FilterApi $ \s m@(CallMessage m' _) -> do
+    |                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+src/Control/Distributed/Process/ManagedProcess/Server/Priority.hs:240:31: warning: [GHC-30606] [-Wredundant-constraints]
+    Redundant constraints: (Serializable m, Serializable b)
+    In the type signature for:
+         rejectApi :: forall s m b r.
+                      (Show r, Serializable m, Serializable b) =>
+                      r -> s -> Message m b -> Process (Filter s)
+    |
+240 | rejectApi :: forall s m b r . (Show r, Serializable m, Serializable b)
+    |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[ 9 of 11] Compiling Control.Distributed.Process.ManagedProcess.Server.Gen
+src/Control/Distributed/Process/ManagedProcess/Server/Gen.hs:133:27: warning: [GHC-30606] [-Wredundant-constraints]
+    Redundant constraint: Serializable r
+    In the type signature for:
+         replyWith :: forall r s.
+                      Serializable r =>
+                      r -> ProcessAction s -> GenProcess s (ProcessReply r s)
+    |
+133 | replyWith :: forall r s . (Serializable r)
+    |                           ^^^^^^^^^^^^^^^^
+
+src/Control/Distributed/Process/ManagedProcess/Server/Gen.hs:140:12: warning: [GHC-30606] [-Wredundant-constraints]
+    Redundant constraint: Serializable r
+    In the type signature for:
+         noReply :: forall r s.
+                    Serializable r =>
+                    ProcessAction s -> GenProcess s (ProcessReply r s)
+    |
+140 | noReply :: (Serializable r) => ProcessAction s -> GenProcess s (ProcessReply r s)
+    |            ^^^^^^^^^^^^^^^^
+
+[10 of 11] Compiling Control.Distributed.Process.ManagedProcess
+[11 of 11] Compiling Control.Distributed.Process.ManagedProcess.UnsafeClient
+src/Control/Distributed/Process/ManagedProcess/UnsafeClient.hs:144:25: warning: [GHC-30606] [-Wredundant-constraints]
+    • Redundant constraint: NFSerializable b
+      In the type signature for:
+           decodeResult :: NFSerializable b =>
+                           Maybe (Either ExitReason b) -> Process (Maybe b)
+    • In an equation for ‘callTimeout’:
+          callTimeout s m d
+            = unsafeInitCall s m >>= waitResponse (Just d) >>= decodeResult
+            where
+                decodeResult ::
+                  (NFSerializable b) =>
+                  Maybe (Either ExitReason b) -> Process (Maybe b)
+                decodeResult Nothing = return Nothing
+                decodeResult (Just (Right result)) = return $ Just result
+                decodeResult (Just (Left reason)) = die reason
+    |
+144 |   where decodeResult :: (NFSerializable b)
+    |                         ^^^^^^^^^^^^^^^^^^
+
+Configuring test suite 'PrioritisedProcessTests' for distributed-process-client-server-0.2.8.0...
+Preprocessing test suite 'PrioritisedProcessTests' for distributed-process-client-server-0.2.8.0...
+Building test suite 'PrioritisedProcessTests' for distributed-process-client-server-0.2.8.0...
+[1 of 3] Compiling TestUtils
+[2 of 3] Compiling ManagedProcessCommon
+tests/ManagedProcessCommon.hs:62:30: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘()’, ‘(String, ProcessId)’ not matched:
+            _ ([], _)
+            _ ((p:_), _) where p is not one of {'p'}
+            _ (['p'], _)
+            _ (('p':p:_), _) where p is not one of {'i'}
+            ...
+   |
+62 |             , handleCast    (\s' ("ping", pid :: ProcessId) ->
+   |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+tests/ManagedProcessCommon.hs:65:30: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘(String, Delay)’ not matched:
+            ([], _)
+            ((p:_), _) where p is not one of {'t'}
+            (['t'], _)
+            (('t':p:_), _) where p is not one of {'i'}
+            ...
+   |
+65 |                             (\("timeout", d) -> timeoutAfter_ d)
+   |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/ManagedProcessCommon.hs:67:30: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘(String, TimeInterval)’ not matched:
+            ([], _)
+            ((p:_), _) where p is not one of {'h'}
+            (['h'], _)
+            (('h':p:_), _) where p is not one of {'i'}
+            ...
+   |
+67 |             , handleCast_   (\("hibernate", d :: TimeInterval) -> hibernate_ d)
+   |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[3 of 3] Compiling Main
+tests/TestPrioritisedProcess.hs:487:8: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+487 |   case head st of
+    |        ^^^^
+
+[4 of 4] Linking /tmp/workdir-distributed-process-client-server/distributed-process-client-server-0.2.8.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/distributed-process-client-server-0.2.8.0/t/PrioritisedProcessTests/build/PrioritisedProcessTests/PrioritisedProcessTests
+Configuring test suite 'ManagedProcessTests' for distributed-process-client-server-0.2.8.0...
+Preprocessing test suite 'ManagedProcessTests' for distributed-process-client-server-0.2.8.0...
+Building test suite 'ManagedProcessTests' for distributed-process-client-server-0.2.8.0...
+[1 of 6] Compiling Counter
+[2 of 6] Compiling MathsDemo
+tests/MathsDemo.hs:51:26: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘String’ not matched:
+            []
+            (p:_) where p is not one of {'s'}
+            ['s']
+            ('s':p:_) where p is not one of {'t'}
+            ...
+   |
+51 |         , action        (\("stop") -> stop_ ExitNormal)
+   |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[3 of 6] Compiling SafeCounter
+[4 of 6] Compiling TestUtils
+[5 of 6] Compiling ManagedProcessCommon
+tests/ManagedProcessCommon.hs:62:30: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘()’, ‘(String, ProcessId)’ not matched:
+            _ ([], _)
+            _ ((p:_), _) where p is not one of {'p'}
+            _ (['p'], _)
+            _ (('p':p:_), _) where p is not one of {'i'}
+            ...
+   |
+62 |             , handleCast    (\s' ("ping", pid :: ProcessId) ->
+   |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+tests/ManagedProcessCommon.hs:65:30: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘(String, Delay)’ not matched:
+            ([], _)
+            ((p:_), _) where p is not one of {'t'}
+            (['t'], _)
+            (('t':p:_), _) where p is not one of {'i'}
+            ...
+   |
+65 |                             (\("timeout", d) -> timeoutAfter_ d)
+   |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/ManagedProcessCommon.hs:67:30: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘(String, TimeInterval)’ not matched:
+            ([], _)
+            ((p:_), _) where p is not one of {'h'}
+            (['h'], _)
+            (('h':p:_), _) where p is not one of {'i'}
+            ...
+   |
+67 |             , handleCast_   (\("hibernate", d :: TimeInterval) -> hibernate_ d)
+   |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[6 of 6] Compiling Main
+[7 of 7] Linking /tmp/workdir-distributed-process-client-server/distributed-process-client-server-0.2.8.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/distributed-process-client-server-0.2.8.0/t/ManagedProcessTests/build/ManagedProcessTests/ManagedProcessTests

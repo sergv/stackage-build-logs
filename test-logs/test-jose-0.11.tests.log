@@ -1,4 +1,4 @@
-Build profile: -w ghc-9.6.5 -O1
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - jose-0.11 (test:tests) (ephemeral targets)
 Preprocessing test suite 'tests' for jose-0.11...
@@ -11,7 +11,7 @@ Tests
       Base64Octets
         can be read from JSON:                                                        OK
       Base64Integer
-        parses from JSON correctly:                                                   OK
+        parses from JSON correctly:                                                   OK (0.06s)
         formats to JSON correctly:                                                    OK
         rejects empty string:                                                         OK
         rejects leading zero:                                                         OK
@@ -24,7 +24,7 @@ Tests
         parses from JSON correctly and encodes to input string:                       OK
     JWK
       RFC 7517 §3. Example JWK
-        successfully decodes the examples:                                            OK (0.04s)
+        successfully decodes the examples:                                            OK
       RFC 7517 A.1.  Example Public Keys
         successfully decodes the examples:                                            OK
       RFC 7517 A.2.  Example Private Keys
@@ -49,7 +49,7 @@ Tests
           corresponds to A.1. private key:                                            OK
       JWK Thumbprint
         RFC 7638 §3.1.  Example JWK Thumbprint Computation
-          correctly computes thumbprint of RSA key:                                   OK (0.08s)
+          correctly computes thumbprint of RSA key:                                   OK
         RFC 8037 A.3.  JWK Thumbprint Canonicalization
           correctly computes thumbprint of Ed25519 key:                               OK
     JWS
@@ -98,8 +98,8 @@ Tests
     JWT
       JWT Claims Set
         parses from JSON correctly:                                                   OK
-        JWT round-trip (sign, serialise, decode, verify):                             OK (0.05s)
-        JWT round-trip (sign, serialise, decode, verify) [extended payload type]:     OK (0.07s)
+        JWT round-trip (sign, serialise, decode, verify):                             OK (0.07s)
+        JWT round-trip (sign, serialise, decode, verify) [extended payload type]:     OK (0.05s)
         formats to a parsable and equal value:                                        OK
         with an Expiration Time claim
           when the current time is prior to the Expiration Time
@@ -188,33 +188,33 @@ Tests
   Properties
     SizedBase64Integer round-trip:                                                    OK
         ✓ SizedBase64Integer round-trip passed 100 tests.
-    JWK round-trip:                                                                   OK (0.07s)
+    JWK round-trip:                                                                   OK (0.05s)
         ✓ JWK round-trip passed 100 tests.
-    RSA gen, sign and verify:                                                         OK (34.20s)
+    RSA gen, sign and verify:                                                         OK (32.82s)
         ✓ RSA gen, sign and verify passed 100 tests.
-          PS256 15% ███·················
-          PS384 14% ██▊·················
-          PS512 18% ███▌················
-          RS256  9% █▊··················
-          RS384 28% █████▌··············
-          RS512 16% ███▏················
-    gen, sign with best alg, verify:                                                  OK (7.15s)
+          PS256 24% ████▊···············
+          PS384 19% ███▊················
+          PS512 10% ██··················
+          RS256 14% ██▊·················
+          RS384 20% ████················
+          RS512 13% ██▌·················
+    gen, sign with best alg, verify:                                                  OK (7.36s)
         ✓ gen, sign with best alg, verify passed 100 tests.
-          ES256  11% ██▏·················
-          ES256K 10% ██··················
-          ES384   7% █▍··················
-          ES512   4% ▊···················
-          EdDSA  14% ██▊·················
-          HS256   4% ▊···················
-          HS384   9% █▊··················
+          ES256   6% █▏··················
+          ES256K  3% ▌···················
+          ES384  10% ██··················
+          ES512  10% ██··················
+          EdDSA  12% ██▍·················
+          HS256   5% █···················
+          HS384  12% ██▍·················
           HS512  15% ███·················
-          PS512  26% █████▏··············
+          PS512  27% █████▍··············
   AESKW
     AESKW round-trip:                                                                 OK (0.01s)
         ✓ AESKW round-trip passed 100 tests.
 
-All 113 tests passed (41.70s)
+All 113 tests passed (40.44s)
 Test suite tests: PASS
 Test suite logged to:
-/tmp/workdir-jose/jose-0.11/dist-newstyle/build/x86_64-linux/ghc-9.6.5/jose-0.11/t/tests/test/jose-0.11-tests.log
+/tmp/workdir-jose/jose-0.11/dist-newstyle/build/x86_64-linux/ghc-9.10.2/jose-0.11/t/tests/test/jose-0.11-tests.log
 1 of 1 test suites (1 of 1 test cases) passed.

@@ -1,0 +1,83 @@
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - aeson-jsonpath-0.3.0.2 (test:spec) (ephemeral targets)
+Preprocessing test suite 'spec' for aeson-jsonpath-0.3.0.2...
+Building test suite 'spec' for aeson-jsonpath-0.3.0.2...
+Running 1 test suites...
+Test suite spec: RUNNING...
+
+Run all tests
+  Parse query string
+    parses query: $ [✔]
+    parses query: $.store [✔]
+    parses query: $['store'] [✔]
+    parses query: $.store.books [✔]
+    parses query: $.store.books[0] [✔]
+    parses query: $.store.books[0,2] [✔]
+    parses query: $.store.books[1:3] [✔]
+    parses query: $.store.books[1:4:2] [✔]
+    parses query: $.store.books[-1:-4:-2] [✔]
+    parses query: $.store.books[1:3, 0, 1] [✔]
+    parses query: $.* [✔]
+    parses query: $[*] [✔]
+    parses query: $..* [✔]
+    parses query: $..[*] [✔]
+    fails with $.1startsWithNum [✔]
+    parses query $.©®±×÷Ωπ•€→∀∃∈≠≤≥✓λ [✔]
+    parses query: $._ [✔]
+    parses query: $.underscore_key [✔]
+    parses query: $[0,TAB/LINEFEED/RETURN/SPACE1] [✔]
+    parses JSPFilter Query
+      $[?@.category == 'reference'] [✔]
+      test expr: $..books[?@.price].title [✔]
+      and expr: $[?@.price < 20 && @.price > 10] [✔]
+      or expr: $[?@.price < 20 || @.price > 10] [✔]
+      root filter: $..books[?$.price].title [✔]
+      not expr: $[?!(@.price < 20 && @.price > 10)] [✔]
+      scientific: $.store.books[?@.price < -1e20] [✔]
+      double: $.store.books[?@.price < 0.01] [✔]
+      bool: $.store.books[?@.is_available == true] [✔]
+      null: $.store.books[?@.is_available == null] [✔]
+  test query
+    returns root document when query is $ [✔]
+    returns store object when queryQQ is $.store [✔]
+    returns store object when queryQQ is $['store'] [✔]
+    returns books array when queryQQ is $.store.books [✔]
+    returns 0-index book item when queryQQ is $.store.books[0] [✔]
+    returns 0-index book item when queryQQ is $.store.books[-4] [✔]
+    returns 0,2-index item when queryQQ is $.store.books[0,2] [✔]
+    returns 1To3-index when queryQQ is $.store.books[1:3] [✔]
+    returns 1To3-index and 0,1-index when queryQQ is $.store.books[1:3,0,1] [✔]
+    returns slice with queryQQ $[5:] [✔]
+    returns slice with queryQQ $[1:5:2] [✔]
+    returns slice with queryQQ $[5:1:-2] [✔]
+    returns slice with queryQQ $[::-1] [✔]
+    returns root with queryQQ $.* [✔]
+    returns root with queryQQ $[*] [✔]
+    returns descendants with queryQQ $..* [✔]
+    returns descendants with queryQQ $..[*] [✔]
+    returns with filtering: number comparison [✔]
+    returns with filtering: not operator [✔]
+    returns with filtering: true value [✔]
+    returns with filtering: false value [✔]
+    returns with filtering: null value [✔]
+    returns with filtering: string comparison [✔]
+    returns with filtering: test expression [✔]
+    returns with filtering with spaced out segments: test expression [✔]
+    returns with filtering: test expr gives empty with non-existent key [✔]
+  test queryLocated
+    returns root document when query is $ [✔]
+    returns store object when queryQQ is $.store [✔]
+    returns store object when queryQQ is $['store'] [✔]
+    returns books array when queryQQ is $.store.books [✔]
+    returns 0-index book item, $.store.books[0] [✔]
+    returns 0-index book item, $.store.books[-4] [✔]
+
+Finished in 0.0019 seconds
+61 examples, 0 failures
+Total tests: 61
+Failures: 0
+Test suite spec: PASS
+Test suite logged to:
+/tmp/workdir-aeson-jsonpath/aeson-jsonpath-0.3.0.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/aeson-jsonpath-0.3.0.2/t/spec/test/aeson-jsonpath-0.3.0.2-spec.log
+1 of 1 test suites (1 of 1 test cases) passed.

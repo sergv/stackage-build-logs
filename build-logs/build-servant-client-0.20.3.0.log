@@ -1,0 +1,105 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - servant-client-0.20.3.0 (lib) (first run)
+ - servant-client-0.20.3.0 (test:spec) (first run)
+ - servant-client-0.20.3.0 (test:readme) (first run)
+Configuring library for servant-client-0.20.3.0...
+Preprocessing library for servant-client-0.20.3.0...
+Building library for servant-client-0.20.3.0...
+[1 of 4] Compiling Servant.Client.Internal.HttpClient
+[2 of 4] Compiling Servant.Client
+[3 of 4] Compiling Servant.Client.Internal.HttpClient.Streaming
+[4 of 4] Compiling Servant.Client.Streaming
+Configuring test suite 'spec' for servant-client-0.20.3.0...
+Preprocessing test suite 'spec' for servant-client-0.20.3.0...
+Building test suite 'spec' for servant-client-0.20.3.0...
+[ 1 of 13] Compiling Servant.ClientTestUtils
+[ 2 of 13] Compiling Servant.BrokenSpec
+[ 3 of 13] Compiling Servant.BasicAuthSpec
+[ 4 of 13] Compiling Servant.ConnectionErrorSpec
+[ 5 of 13] Compiling Servant.FailSpec
+[ 6 of 13] Compiling Servant.GenAuthSpec
+[ 7 of 13] Compiling Servant.GenericSpec
+[ 8 of 13] Compiling Servant.HoistClientSpec
+[ 9 of 13] Compiling Servant.MiddlewareSpec
+test/Servant/MiddlewareSpec.hs:85:51: warning: [GHC-18042] [-Wtype-defaults]
+    • Defaulting the type variable ‘a0’ to type ‘String’ in the following constraints
+        (ghc-internal-9.1002.0:GHC.Internal.Data.String.IsString a0)
+          arising from the literal ‘"req1"’
+          at test/Servant/MiddlewareSpec.hs:85:51-56
+        (Show a0)
+          arising from a use of ‘shouldBe’
+          at test/Servant/MiddlewareSpec.hs:115:9-18
+        (Eq a0)
+          arising from a use of ‘shouldBe’
+          at test/Servant/MiddlewareSpec.hs:115:9-18
+    • In the expression: "req1"
+      In the second argument of ‘(<>)’, namely ‘["req1"]’
+      In the expression: xs <> ["req1"]
+   |
+85 |           liftIO $ modifyIORef ref (\xs -> xs <> ["req1"])
+   |                                                   ^^^^^^
+
+[10 of 13] Compiling Servant.StreamSpec
+test/Servant/StreamSpec.hs:62:29: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: ‘getGetALot’
+   |
+62 | getGetNL :<|> getGetNS :<|> getGetALot :<|> getStreamBody = client api
+   |                             ^^^^^^^^^^
+
+test/Servant/StreamSpec.hs:103:39: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘Either
+                            ClientError (SourceIO Person)’ not matched:
+            Left _
+    |
+103 |         withClient getGetNL baseUrl $ \(Right res) ->
+    |                                       ^^^^^^^^^^^^^^^...
+
+test/Servant/StreamSpec.hs:107:39: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘Either
+                            ClientError (SourceIO Person)’ not matched:
+            Left _
+    |
+107 |         withClient getGetNS baseUrl $ \(Right res) ->
+    |                                       ^^^^^^^^^^^^^^^...
+
+test/Servant/StreamSpec.hs:111:61: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘Either
+                            ClientError (SourceIO BS.ByteString)’ not matched:
+            Left _
+    |
+111 |         withClient (getStreamBody (source input)) baseUrl $ \(Right res) ->
+    |                                                             ^^^^^^^^^^^^^^^...
+
+[11 of 13] Compiling Servant.SuccessSpec
+[12 of 13] Compiling Servant.WrappedApiSpec
+[13 of 13] Compiling Main
+[14 of 14] Linking /tmp/workdir-servant-client/servant-client-0.20.3.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/servant-client-0.20.3.0/t/spec/build/spec/spec
+Configuring test suite 'readme' for servant-client-0.20.3.0...
+Preprocessing test suite 'readme' for servant-client-0.20.3.0...
+Building test suite 'readme' for servant-client-0.20.3.0...
+<no location info>: warning: [GHC-42258] [-Wunused-packages]
+    The following packages were specified via -package or -package-id flags,
+    but were not needed for compilation:
+      - markdown-unlit-0.6.0 (exposed by flag -package-id markdown-unlit-0.6.0-c34483af73d3a034f0211111ebab6ac9465758df996ef4a549cab4bab5a86ff7)
+
+[1 of 1] Compiling Main
+README.lhs:31:19: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: ‘postNewBook’
+   |
+31 | (getAllBooks :<|> postNewBook) = client myApi
+   |                   ^^^^^^^^^^^
+
+<no location info>: warning: [GHC-42258] [-Wunused-packages]
+    The following packages were specified via -package or -package-id flags,
+    but were not needed for compilation:
+      - markdown-unlit-0.6.0 (exposed by flag -package-id markdown-unlit-0.6.0-c34483af73d3a034f0211111ebab6ac9465758df996ef4a549cab4bab5a86ff7)
+
+[2 of 2] Linking /tmp/workdir-servant-client/servant-client-0.20.3.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/servant-client-0.20.3.0/t/readme/build/readme/readme

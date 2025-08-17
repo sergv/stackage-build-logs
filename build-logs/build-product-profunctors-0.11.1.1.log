@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - product-profunctors-0.11.1.1 (lib) (first run)
  - product-profunctors-0.11.1.1 (test:test) (first run)
@@ -7,7 +8,6 @@ Preprocessing library for product-profunctors-0.11.1.1...
 Building library for product-profunctors-0.11.1.1...
 [ 1 of 13] Compiling Data.Profunctor.Product.Class
 [ 2 of 13] Compiling Data.Profunctor.Product.Default.Class
-
 Data/Profunctor/Product/Default/Class.hs:67:30: warning: [GHC-39567] [-Wstar-is-type]
     Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
     relies on the StarIsType extension, which will become
@@ -61,16 +61,56 @@ Data/Profunctor/Product/Default/Class.hs:104:54: warning: [GHC-39567] [-Wstar-is
     |
 104 | type family GDefPCnstr (p :: * -> * -> *) (f :: * -> *) :: Constraint
     |                                                      ^
+
 [ 3 of 13] Compiling Data.Profunctor.Product.Newtype
 [ 4 of 13] Compiling Data.Profunctor.Product.Tuples.TH
-
-Data/Profunctor/Product/Tuples/TH.hs:18:1: warning: [-Wunused-imports]
+Data/Profunctor/Product/Tuples/TH.hs:18:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
    |
 18 | import Control.Applicative (pure)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Data/Profunctor/Product/Tuples/TH.hs:30:18: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+30 |       1 -> varT (head allNames)
+   |                  ^^^^
+
+Data/Profunctor/Product/Tuples/TH.hs:31:34: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+31 |       _ -> tupleT 2 `appT` varT (head allNames) `appT` applyT (n - 1)
+   |                                  ^^^^
+
+Data/Profunctor/Product/Tuples/TH.hs:32:78: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+32 |     applyT n' = foldl (\t v -> t `appT` varT v) (conT (tyName n')) (take n' (tail allNames))
+   |                                                                              ^^^^
+
+Data/Profunctor/Product/Tuples/TH.hs:132:18: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+132 |       1 -> mkPT (head as) (head bs)
+    |                  ^^^^
+
+Data/Profunctor/Product/Tuples/TH.hs:132:28: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+132 |       1 -> mkPT (head as) (head bs)
+    |                            ^^^^
 
 Data/Profunctor/Product/Tuples/TH.hs:181:24: warning: [GHC-58520] [-Wtype-equality-requires-operators]
     The use of ‘~’ without TypeOperators
@@ -79,10 +119,10 @@ Data/Profunctor/Product/Tuples/TH.hs:181:24: warning: [GHC-58520] [-Wtype-equali
     |
 181 |     t1 ~~ t2 = [t| $t1 ~ $t2 |]
     |                        ^
+
 [ 5 of 13] Compiling Data.Profunctor.Product.Tuples
 [ 6 of 13] Compiling Data.Profunctor.Product.Flatten
 [ 7 of 13] Compiling Data.Profunctor.Product
-
 Data/Profunctor/Product.hs:21:33: warning: [GHC-47854] [-Wduplicate-exports]
     ‘defaultPoint’ is exported by ‘module Data.Profunctor.Product’ and ‘defaultPoint’
    |
@@ -113,22 +153,22 @@ Data/Profunctor/Product.hs:21:33: warning: [GHC-47854] [-Wduplicate-exports]
 21 |                                 module Data.Profunctor.Product) where
    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Data/Profunctor/Product.hs:30:1: warning: [-Wunused-imports]
+Data/Profunctor/Product.hs:30:1: warning: [GHC-38856] [-Wunused-imports]
     The import of ‘<$>, <*>, Applicative, liftA2, pure’
     from module ‘Control.Applicative’ is redundant
    |
 30 | import Control.Applicative (Applicative, liftA2, pure, (<*>), Alternative, (<|>), (<$>))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Data/Profunctor/Product.hs:32:1: warning: [-Wunused-imports]
+Data/Profunctor/Product.hs:32:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 32 | import Data.Monoid (Monoid, mempty)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[ 8 of 13] Compiling Data.Profunctor.Product.Internal.Adaptor
 
+[ 8 of 13] Compiling Data.Profunctor.Product.Internal.Adaptor
 Data/Profunctor/Product/Internal/Adaptor.hs:89:23: warning: [GHC-39567] [-Wstar-is-type]
     Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
     relies on the StarIsType extension, which will become
@@ -191,9 +231,9 @@ Data/Profunctor/Product/Internal/Adaptor.hs:98:56: warning: [GHC-39567] [-Wstar-
    |
 98 | type family GUnzip (z :: Select) (f :: * -> *) :: * -> *
    |                                                        ^
+
 [ 9 of 13] Compiling Data.Profunctor.Product.Adaptor
 [10 of 13] Compiling Data.Profunctor.Product.Default
-
 Data/Profunctor/Product/Default.hs:71:1: warning: [GHC-58520] [-Wtype-equality-requires-operators]
     The use of ‘~’ without TypeOperators
     will become an error in a future GHC release.
@@ -1185,9 +1225,9 @@ Data/Profunctor/Product/Default.hs:71:1: warning: [GHC-58520] [-Wtype-equality-r
    |
 71 | mkDefaultNs (0:[2..maxTupleSize])
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [11 of 13] Compiling Data.Profunctor.Product.Internal.TH
-
-Data/Profunctor/Product/Internal/TH.hs:24:1: warning: [-Wunused-imports]
+Data/Profunctor/Product/Internal/TH.hs:24:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
@@ -1210,10 +1250,10 @@ Data/Profunctor/Product/Internal/TH.hs:170:42: warning: [GHC-58520] [-Wtype-equa
     |
 170 |             Just (Right ()) -> ([ [t| $x ~ $tyName1 |] ], tyName0, x)
     |                                          ^
+
 [12 of 13] Compiling Data.Profunctor.Product.TH
 [13 of 13] Compiling Data.Profunctor.Product.Examples
-
-Data/Profunctor/Product/Examples.hs:12:1: warning: [-Wunused-imports]
+Data/Profunctor/Product/Examples.hs:12:1: warning: [GHC-38856] [-Wunused-imports]
     The import of ‘<*>, Applicative, liftA2, pure’
     from module ‘Control.Applicative’ is redundant
    |
@@ -1227,11 +1267,11 @@ Data/Profunctor/Product/Examples.hs:142:12: warning: [GHC-58520] [-Wtype-equalit
     |
 142 | instance a ~ b => D.Default Zipper [a] b where
     |            ^
+
 Configuring test suite 'test' for product-profunctors-0.11.1.1...
 Preprocessing test suite 'test' for product-profunctors-0.11.1.1...
 Building test suite 'test' for product-profunctors-0.11.1.1...
 [1 of 4] Compiling Definitions
-
 Test/Definitions.hs:66:2: warning: [GHC-58520] [-Wtype-equality-requires-operators]
     The use of ‘~’ without TypeOperators
     will become an error in a future GHC release.
@@ -1279,7 +1319,8 @@ Test/Definitions.hs:98:31: warning: [GHC-58520] [-Wtype-equality-requires-operat
    |
 98 | instance {-# INCOHERENT #-} a ~ Unit => Default Arrow a Unit where
    |                               ^
+
 [2 of 4] Compiling DefinitionsUndecidable
 [3 of 4] Compiling CheckTypes
 [4 of 4] Compiling Main
-[5 of 5] Linking /tmp/workdir-product-profunctors/product-profunctors-0.11.1.1/dist-newstyle/build/x86_64-linux/ghc-9.6.5/product-profunctors-0.11.1.1/t/test/build/test/test
+[5 of 5] Linking /tmp/workdir-product-profunctors/product-profunctors-0.11.1.1/dist-newstyle/build/x86_64-linux/ghc-9.10.2/product-profunctors-0.11.1.1/t/test/build/test/test

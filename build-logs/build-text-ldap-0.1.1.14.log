@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - text-ldap-0.1.1.14 (lib) (first run)
  - text-ldap-0.1.1.14 (test:pp) (first run)
@@ -8,61 +9,69 @@ Preprocessing library for text-ldap-0.1.1.14...
 Building library for text-ldap-0.1.1.14...
 [1 of 4] Compiling Text.LDAP.Data
 [2 of 4] Compiling Text.LDAP.InternalParser
-
-src/Text/LDAP/InternalParser.hs:18:1: warning: [-Wunused-imports]
+src/Text/LDAP/InternalParser.hs:18:1: warning: [GHC-38856] [-Wunused-imports]
     The import of ‘<$>, <*>’
     from module ‘Control.Applicative’ is redundant
    |
 18 | import Control.Applicative ((<$>), (<*>), many)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[3 of 4] Compiling Text.LDAP.Parser
 
-src/Text/LDAP/Parser.hs:26:1: warning: [-Wunused-imports]
+[3 of 4] Compiling Text.LDAP.Parser
+src/Text/LDAP/Parser.hs:26:1: warning: [GHC-38856] [-Wunused-imports]
     The import of ‘*>, <$>, <*, <*>, pure’
     from module ‘Control.Applicative’ is redundant
    |
 26 | import Control.Applicative
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
-src/Text/LDAP/Parser.hs:29:1: warning: [-Wunused-imports]
+src/Text/LDAP/Parser.hs:29:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 29 | import Data.Monoid ((<>))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^
-[4 of 4] Compiling Text.LDAP.Printer
 
-src/Text/LDAP/Printer.hs:33:1: warning: [-Wunused-imports]
+src/Text/LDAP/Parser.hs:97:27: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+97 |     | otherwise  =  fst $ head rs
+   |                           ^^^^
+
+[4 of 4] Compiling Text.LDAP.Printer
+src/Text/LDAP/Printer.hs:33:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
    |
 33 | import Control.Applicative ((<*))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Configuring test suite 'pp' for text-ldap-0.1.1.14...
 Preprocessing test suite 'pp' for text-ldap-0.1.1.14...
 Building test suite 'pp' for text-ldap-0.1.1.14...
 [1 of 1] Compiling Main
-
-test/printParse.hs:9:1: warning: [-Wunused-imports]
+test/printParse.hs:9:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
   |
 9 | import Control.Applicative ((<$>), (<*>))
   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[2 of 2] Linking /tmp/workdir-text-ldap/text-ldap-0.1.1.14/dist-newstyle/build/x86_64-linux/ghc-9.6.5/text-ldap-0.1.1.14/t/pp/build/pp/pp
+
+[2 of 2] Linking /tmp/workdir-text-ldap/text-ldap-0.1.1.14/dist-newstyle/build/x86_64-linux/ghc-9.10.2/text-ldap-0.1.1.14/t/pp/build/pp/pp
 Configuring executable 'parseTest' for text-ldap-0.1.1.14...
 Preprocessing executable 'parseTest' for text-ldap-0.1.1.14...
 Building executable 'parseTest' for text-ldap-0.1.1.14...
 [1 of 1] Compiling Main
-
-mains/parseTest.hs:3:1: warning: [-Wunused-imports]
+mains/parseTest.hs:3:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
   |
 3 | import Control.Applicative ((<$>))
   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[2 of 2] Linking /tmp/workdir-text-ldap/text-ldap-0.1.1.14/dist-newstyle/build/x86_64-linux/ghc-9.6.5/text-ldap-0.1.1.14/x/parseTest/build/parseTest/parseTest
+
+[2 of 2] Linking /tmp/workdir-text-ldap/text-ldap-0.1.1.14/dist-newstyle/build/x86_64-linux/ghc-9.10.2/text-ldap-0.1.1.14/x/parseTest/build/parseTest/parseTest

@@ -1,0 +1,138 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - copilot-language-4.5 (lib) (first run)
+ - copilot-language-4.5 (test:unit-tests) (first run)
+Configuring library for copilot-language-4.5...
+Preprocessing library for copilot-language-4.5...
+Building library for copilot-language-4.5...
+[ 1 of 26] Compiling Copilot.Language.Error
+[ 2 of 26] Compiling Copilot.Language.Prelude
+[ 3 of 26] Compiling Copilot.Language.Stream
+src/Copilot/Language/Stream.hs:30:16: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+30 | data Stream :: * -> * where
+   |                ^
+
+src/Copilot/Language/Stream.hs:30:21: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+   |
+30 | data Stream :: * -> * where
+   |                     ^
+
+[ 4 of 26] Compiling Copilot.Language.Spec
+[ 5 of 26] Compiling Copilot.Language.Operators.Temporal
+[ 6 of 26] Compiling Copilot.Language.Operators.Projection
+[ 7 of 26] Compiling Copilot.Language.Operators.Struct
+[ 8 of 26] Compiling Copilot.Language.Operators.Ord
+[ 9 of 26] Compiling Copilot.Language.Operators.Mux
+[10 of 26] Compiling Copilot.Language.Operators.Local
+[11 of 26] Compiling Copilot.Language.Operators.Label
+[12 of 26] Compiling Copilot.Language.Operators.Extern
+[13 of 26] Compiling Copilot.Language.Operators.Eq
+[14 of 26] Compiling Copilot.Language.Operators.Constant
+[15 of 26] Compiling Copilot.Language.Operators.Cast
+[16 of 26] Compiling Copilot.Language.Operators.Boolean
+[17 of 26] Compiling Copilot.Language.Operators.Propositional
+[18 of 26] Compiling Copilot.Language.Operators.BitWise
+[19 of 26] Compiling Copilot.Language.Operators.Integral
+[20 of 26] Compiling Copilot.Language.Operators.Array
+[21 of 26] Compiling System.Mem.StableName.Dynamic
+[22 of 26] Compiling System.Mem.StableName.Map
+[23 of 26] Compiling Copilot.Language.Analyze
+src/Copilot/Language/Analyze.hs:120:19: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: data constructor ‘SeenFun’
+    |
+120 |                 | SeenFun
+    |                   ^^^^^^^
+
+src/Copilot/Language/Analyze.hs:121:19: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: data constructor ‘SeenArr’
+    |
+121 |                 | SeenArr
+    |                   ^^^^^^^
+
+src/Copilot/Language/Analyze.hs:122:19: warning: [GHC-40910] [-Wunused-top-binds]
+    Defined but not used: data constructor ‘SeenStruct’
+    |
+122 |                 | SeenStruct
+    |                   ^^^^^^^^^^
+
+src/Copilot/Language/Analyze.hs:270:13: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+270 |            (head grp) -- should be typesafe, since this is from groupBy
+    |             ^^^^
+
+[24 of 26] Compiling Copilot.Language.Reify
+src/Copilot/Language/Reify.hs:30:23: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘liftM’ from module ‘Control.Monad’ is redundant
+   |
+30 | import Control.Monad (liftM, unless)
+   |                       ^^^^^
+
+src/Copilot/Language/Reify.hs:121:34: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘prop’ shadows the existing binding
+      imported from ‘Copilot.Language.Spec’ at src/Copilot/Language/Reify.hs:20:1-28
+      (and originally defined at src/Copilot/Language/Spec.hs:189:1-4)
+    |
+121 | mkProp refMkId refStreams refMap prop =
+    |                                  ^^^^
+
+src/Copilot/Language/Reify.hs:206:3: warning: [GHC-40910] [-Wunused-local-binds]
+    Defined but not used: ‘mkFunArg’
+    |
+206 |   mkFunArg (Arg e) = do
+    |   ^^^^^^^^
+
+src/Copilot/Language/Reify.hs:211:3: warning: [GHC-40910] [-Wunused-local-binds]
+    Defined but not used: ‘mkStrArg’
+    |
+211 |   mkStrArg (name, Arg e) = do
+    |   ^^^^^^^^
+
+src/Copilot/Language/Reify.hs:227:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a pattern binding:
+        Patterns of type ‘Stream a’ not matched:
+            Const _
+            Drop _ _
+            Extern _ _
+            Local _ _
+            ...
+    |
+227 |   let Append buf _ e = e0 -- avoids warning
+    |       ^^^^^^^^^^^^^^^^^^^
+
+[25 of 26] Compiling Copilot.Language.Interpret
+[26 of 26] Compiling Copilot.Language
+src/Copilot/Language.hs:65:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Copilot.Language.Reify’ is redundant
+      except perhaps to import instances from ‘Copilot.Language.Reify’
+    To import instances alone, use: import Copilot.Language.Reify()
+   |
+65 | import Copilot.Language.Reify
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Configuring test suite 'unit-tests' for copilot-language-4.5...
+Preprocessing test suite 'unit-tests' for copilot-language-4.5...
+Building test suite 'unit-tests' for copilot-language-4.5...
+[1 of 3] Compiling Test.Extra
+[2 of 3] Compiling Test.Copilot.Language.Reify
+tests/Test/Copilot/Language/Reify.hs:722:35: warning: [GHC-40910] [-Wunused-matches]
+    Defined but not used: ‘expr’
+    |
+722 | semanticsShowK steps (SemanticsP (expr, exprList)) =
+    |                                   ^^^^
+
+[3 of 3] Compiling Main
+[4 of 4] Linking /tmp/workdir-copilot-language/copilot-language-4.5/dist-newstyle/build/x86_64-linux/ghc-9.10.2/copilot-language-4.5/t/unit-tests/build/unit-tests/unit-tests

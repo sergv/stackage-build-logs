@@ -1,10 +1,18 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - primes-0.2.1.0 (lib:primes) (first run)
 Configuring primes-0.2.1.0...
 Preprocessing library for primes-0.2.1.0...
 Building library for primes-0.2.1.0...
 [1 of 1] Compiling Data.Numbers.Primes
+Data/Numbers/Primes.hs:48:34: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+48 | wheelSieve k = reverse ps ++ map head (sieve p (cycle ns))
+   |                                  ^^^^
 
 Data/Numbers/Primes.hs:49:8: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
@@ -28,3 +36,4 @@ Data/Numbers/Primes.hs:196:8: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     |
 196 |  where (y:ys) = cycle xs
     |        ^^^^^^^^^^^^^^^^^
+

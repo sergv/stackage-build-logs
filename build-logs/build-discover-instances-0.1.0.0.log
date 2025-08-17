@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - discover-instances-0.1.0.0 (lib) (first run)
  - discover-instances-0.1.0.0 (test:discover-instances-test) (first run)
@@ -6,7 +7,6 @@ Configuring library for discover-instances-0.1.0.0...
 Preprocessing library for discover-instances-0.1.0.0...
 Building library for discover-instances-0.1.0.0...
 [1 of 2] Compiling DiscoverInstances
-
 src/DiscoverInstances.hs:82:35: warning: [GHC-88464] [-Wpartial-type-signatures]
     • Found type wildcard ‘_’ standing for ‘k’
       Where: ‘k’ is a rigid type variable bound by
@@ -20,6 +20,7 @@ src/DiscoverInstances.hs:82:35: warning: [GHC-88464] [-Wpartial-type-signatures]
    |
 82 | discoverInstances :: forall (c :: _ -> Constraint) . (Typeable c) => SpliceQ [SomeDict c]
    |                                   ^
+
 [2 of 2] Compiling Paths_discover_instances
 Configuring test suite 'discover-instances-test' for discover-instances-0.1.0.0...
 Preprocessing test suite 'discover-instances-test' for discover-instances-0.1.0.0...
@@ -29,61 +30,92 @@ test/Spec.hs:20:13-29: Splicing expression
     discoverInstances
   ======>
     concat
-      [[SomeDictOf (Proxy :: Proxy Control.Exception.Handler)],
-       [SomeDictOf (Proxy :: Proxy Proxy)],
-       [SomeDictOf (Proxy :: Proxy ((,) a_a3BP))],
-       [SomeDictOf (Proxy :: Proxy ((,,) a_a3BR b_a3BS))],
-       [SomeDictOf (Proxy :: Proxy ((,,,) a_a3BV b_a3BW c_a3BX))],
-       [SomeDictOf (Proxy :: Proxy ((,,,,) a_a3C1 b_a3C2 c_a3C3 d_a3C4))],
-       [SomeDictOf
-          (Proxy :: Proxy ((,,,,,) a_a3C9 b_a3Ca c_a3Cb d_a3Cc e_a3Cd))],
-       [SomeDictOf
-          (Proxy ::
-             Proxy ((,,,,,,) a_a3Cj b_a3Ck c_a3Cl d_a3Cm e_a3Cn f_a3Co))],
-       [SomeDictOf (Proxy :: Proxy ((->) r_a3Cv))],
+      [[SomeDictOf (Proxy :: Proxy ((->) r_a3Fg))],
        [SomeDictOf (Proxy :: Proxy IO)], [SomeDictOf (Proxy :: Proxy [])],
        [SomeDictOf (Proxy :: Proxy Maybe)],
-       [SomeDictOf (Proxy :: Proxy GHC.Base.NonEmpty)],
+       [SomeDictOf
+          (Proxy :: Proxy ghc-internal:GHC.Internal.Base.NonEmpty)],
        [SomeDictOf (Proxy :: Proxy Solo)],
+       [SomeDictOf (Proxy :: Proxy ((,) a_a3Fk))],
+       [SomeDictOf (Proxy :: Proxy ((,,) a_a3Fm b_a3Fn))],
+       [SomeDictOf (Proxy :: Proxy ((,,,) a_a3Fq b_a3Fr c_a3Fs))],
+       [SomeDictOf (Proxy :: Proxy ((,,,,) a_a3Fw b_a3Fx c_a3Fy d_a3Fz))],
+       [SomeDictOf
+          (Proxy :: Proxy ((,,,,,) a_a3FE b_a3FF c_a3FG d_a3FH e_a3FI))],
+       [SomeDictOf
+          (Proxy ::
+             Proxy ((,,,,,,) a_a3FO b_a3FP c_a3FQ d_a3FR e_a3FS f_a3FT))],
+       [], [SomeDictOf (Proxy :: Proxy Proxy)],
        [SomeDictOf (Proxy :: Proxy Language.Haskell.TH.Syntax.Q)],
-       [SomeDictOf (Proxy :: Proxy Language.Haskell.TH.Syntax.TyVarBndr)],
-       []]
+       [SomeDictOf (Proxy :: Proxy Language.Haskell.TH.Syntax.TyVarBndr)]]
 test/Spec.hs:17:8-26: Splicing expression
     discoverInstances
   ======>
     concat
-      [[SomeDictOf (Proxy :: Proxy Data.Version.Version)],
-       [SomeDictOf (Proxy :: Proxy (Proxy s_a3JR))], [],
-       [SomeDictOf (Proxy :: Proxy GHC.Base.Void)],
-       [SomeDictOf (Proxy :: Proxy ())], [], [], [], [], [], [], [], [],
-       [], [], [], [], [], [], [SomeDictOf (Proxy :: Proxy Bool)],
+      [[],
+       [SomeDictOf (Proxy :: Proxy ghc-internal:GHC.Internal.Base.Void)],
+       [SomeDictOf
+          (Proxy :: Proxy ghc-internal:GHC.Internal.IO.MaskingState)],
+       [SomeDictOf
+          (Proxy ::
+             Proxy ghc-internal:GHC.Internal.Exception.Type.ArithException)],
+       [SomeDictOf
+          (Proxy :: Proxy ghc-internal:GHC.Internal.Data.Version.Version)],
+       [SomeDictOf (Proxy :: Proxy Bool)],
        [SomeDictOf (Proxy :: Proxy Char)],
        [SomeDictOf (Proxy :: Proxy Double)],
        [SomeDictOf (Proxy :: Proxy Float)],
        [SomeDictOf (Proxy :: Proxy Int)], [],
        [SomeDictOf (Proxy :: Proxy ghc-prim:GHC.Types.Module)],
        [SomeDictOf (Proxy :: Proxy Ordering)], [],
-       [SomeDictOf (Proxy :: Proxy ghc-prim:GHC.Types.TrName)],
+       [SomeDictOf (Proxy :: Proxy ghc-prim:GHC.Types.TrName)], [], [],
+       [], [], [], [], [], [], [], [], [], [], [], [],
        [SomeDictOf (Proxy :: Proxy TyCon)],
+       [SomeDictOf (Proxy :: Proxy ())],
        [SomeDictOf (Proxy :: Proxy Word)],
-       [SomeDictOf (Proxy :: Proxy GHC.IO.MaskingState)],
-       [SomeDictOf (Proxy :: Proxy GHC.IO.Exception.ArrayException)],
-       [SomeDictOf (Proxy :: Proxy GHC.IO.Exception.AsyncException)],
-       [SomeDictOf (Proxy :: Proxy GHC.IO.Exception.ExitCode)],
-       [SomeDictOf (Proxy :: Proxy GHC.IO.Exception.IOErrorType)],
-       [SomeDictOf (Proxy :: Proxy GHC.IO.Exception.IOException)],
-       [SomeDictOf (Proxy :: Proxy Integer)],
-       [SomeDictOf (Proxy :: Proxy GHC.Stack.Types.SrcLoc)],
-       [SomeDictOf (Proxy :: Proxy GHC.Exception.Type.ArithException)],
        [SomeDictOf
-          (Proxy :: Proxy base:Data.Typeable.Internal.SomeTypeRep)],
+          (Proxy :: Proxy ghc-internal:GHC.Internal.Stack.Types.SrcLoc)],
        [SomeDictOf
-          (Proxy :: Proxy (base:Data.Typeable.Internal.TypeRep a_a3Qt))],
-       [],
-       [SomeDictOf (Proxy :: Proxy GHC.IO.Encoding.Types.CodingProgress)],
+          (Proxy ::
+             Proxy ghc-internal:GHC.Internal.Data.Typeable.Internal.SomeTypeRep)],
+       [SomeDictOf
+          (Proxy ::
+             Proxy (ghc-internal:GHC.Internal.Data.Typeable.Internal.TypeRep a_a3UN))],
+       [SomeDictOf
+          (Proxy ::
+             Proxy ghc-internal:GHC.Internal.IO.Exception.ArrayException)],
+       [SomeDictOf
+          (Proxy ::
+             Proxy ghc-internal:GHC.Internal.IO.Exception.AsyncException)],
+       [SomeDictOf
+          (Proxy :: Proxy ghc-internal:GHC.Internal.IO.Exception.ExitCode)],
+       [SomeDictOf
+          (Proxy ::
+             Proxy ghc-internal:GHC.Internal.IO.Exception.IOErrorType)],
+       [SomeDictOf
+          (Proxy ::
+             Proxy ghc-internal:GHC.Internal.IO.Exception.IOException)],
+       [SomeDictOf (Proxy :: Proxy (Proxy s_a3Vi))],
+       [SomeDictOf (Proxy :: Proxy Integer)], [],
+       [SomeDictOf
+          (Proxy ::
+             Proxy ghc-internal:GHC.Internal.IO.Encoding.Types.CodingProgress)],
+       [SomeDictOf (Proxy :: Proxy ((:~:) a_a3Vs b_a3Vt))],
+       [SomeDictOf (Proxy :: Proxy ((:~~:) a_a3VC b_a3VD))],
+       [SomeDictOf
+          (Proxy ::
+             Proxy ghc-internal:GHC.Internal.Fingerprint.Type.Fingerprint)],
+       [SomeDictOf
+          (Proxy :: Proxy ghc-internal:GHC.Internal.Word.Word16)],
+       [SomeDictOf
+          (Proxy :: Proxy ghc-internal:GHC.Internal.Word.Word32)],
+       [SomeDictOf
+          (Proxy :: Proxy ghc-internal:GHC.Internal.Word.Word64)],
+       [SomeDictOf (Proxy :: Proxy ghc-internal:GHC.Internal.Word.Word8)],
        [SomeDictOf (Proxy :: Proxy Language.Haskell.TH.Syntax.AnnLookup)],
        [SomeDictOf (Proxy :: Proxy Language.Haskell.TH.Syntax.AnnTarget)],
        [SomeDictOf (Proxy :: Proxy Language.Haskell.TH.Syntax.Bang)],
+       [SomeDictOf (Proxy :: Proxy Language.Haskell.TH.Syntax.BndrVis)],
        [SomeDictOf (Proxy :: Proxy Language.Haskell.TH.Syntax.Body)],
        [SomeDictOf (Proxy :: Proxy Language.Haskell.TH.Syntax.Bytes)],
        [SomeDictOf (Proxy :: Proxy Language.Haskell.TH.Syntax.Callconv)],
@@ -121,6 +153,8 @@ test/Spec.hs:17:8-26: Splicing expression
        [SomeDictOf
           (Proxy :: Proxy Language.Haskell.TH.Syntax.NameFlavour)],
        [SomeDictOf (Proxy :: Proxy Language.Haskell.TH.Syntax.NameSpace)],
+       [SomeDictOf
+          (Proxy :: Proxy Language.Haskell.TH.Syntax.NamespaceSpecifier)],
        [SomeDictOf (Proxy :: Proxy Language.Haskell.TH.Syntax.OccName)],
        [SomeDictOf (Proxy :: Proxy Language.Haskell.TH.Syntax.Overlap)],
        [SomeDictOf (Proxy :: Proxy Language.Haskell.TH.Syntax.Pat)],
@@ -146,29 +180,27 @@ test/Spec.hs:17:8-26: Splicing expression
        [SomeDictOf (Proxy :: Proxy Language.Haskell.TH.Syntax.TySynEqn)],
        [], [SomeDictOf (Proxy :: Proxy Language.Haskell.TH.Syntax.Type)],
        [SomeDictOf
-          (Proxy :: Proxy Language.Haskell.TH.Syntax.TypeFamilyHead)],
-       [SomeDictOf (Proxy :: Proxy ((:~:) a_a3V6 b_a3V7))],
-       [SomeDictOf (Proxy :: Proxy ((:~~:) a_a3Vg b_a3Vh))],
-       [SomeDictOf (Proxy :: Proxy GHC.Fingerprint.Type.Fingerprint)],
-       [SomeDictOf (Proxy :: Proxy GHC.TypeNats.SomeNat)],
-       [SomeDictOf (Proxy :: Proxy GHC.Word.Word16)],
-       [SomeDictOf (Proxy :: Proxy GHC.Word.Word32)],
-       [SomeDictOf (Proxy :: Proxy GHC.Word.Word64)],
-       [SomeDictOf (Proxy :: Proxy GHC.Word.Word8)],
-       [SomeDictOf (Proxy :: Proxy GHC.Num.Natural.Natural)],
-       [SomeDictOf (Proxy :: Proxy GHC.Num.BigNat.BigNat)]]
+          (Proxy :: Proxy Language.Haskell.TH.Syntax.TypeFamilyHead)]]
 test/Spec.hs:14:10-34: Splicing expression
     discoverInstances @Show
   ======>
     concat
-      [[SomeDictOf (Proxy :: Proxy Data.Version.Version)],
-       [SomeDictOf (Proxy :: Proxy (Proxy s_a4mD))],
-       [SomeDictOf (Proxy :: Proxy Double)],
+      [[SomeDictOf (Proxy :: Proxy Double)],
        [SomeDictOf (Proxy :: Proxy Float)],
-       [SomeDictOf (Proxy :: Proxy GHC.IO.MaskingState)],
-       [SomeDictOf (Proxy :: Proxy ())], [], [], [], [], [], [], [], [],
-       [], [], [], [], [], [], [SomeDictOf (Proxy :: Proxy Bool)],
-       [SomeDictOf (Proxy :: Proxy GHC.Stack.Types.CallStack)],
+       [SomeDictOf
+          (Proxy :: Proxy ghc-internal:GHC.Internal.IO.MaskingState)],
+       [SomeDictOf
+          (Proxy ::
+             Proxy ghc-internal:GHC.Internal.Exception.Type.ArithException)],
+       [], [],
+       [SomeDictOf
+          (Proxy ::
+             Proxy ghc-internal:GHC.Internal.Exception.Type.SomeException)],
+       [SomeDictOf
+          (Proxy :: Proxy ghc-internal:GHC.Internal.Data.Version.Version)],
+       [SomeDictOf (Proxy :: Proxy Bool)],
+       [SomeDictOf
+          (Proxy :: Proxy ghc-internal:GHC.Internal.Stack.Types.CallStack)],
        [SomeDictOf (Proxy :: Proxy Char)],
        [SomeDictOf (Proxy :: Proxy Int)],
        [SomeDictOf (Proxy :: Proxy Integer)],
@@ -178,41 +210,83 @@ test/Spec.hs:14:10-34: Splicing expression
        [SomeDictOf (Proxy :: Proxy GHC.Num.Natural.Natural)], [],
        [SomeDictOf (Proxy :: Proxy Ordering)],
        [SomeDictOf (Proxy :: Proxy ghc-prim:GHC.Types.RuntimeRep)], [],
-       [SomeDictOf (Proxy :: Proxy GHC.Stack.Types.SrcLoc)],
-       [SomeDictOf (Proxy :: Proxy ghc-prim:GHC.Types.TrName)],
+       [SomeDictOf
+          (Proxy :: Proxy ghc-internal:GHC.Internal.Stack.Types.SrcLoc)],
+       [SomeDictOf (Proxy :: Proxy ghc-prim:GHC.Types.TrName)], [], [],
+       [], [], [], [], [], [], [], [], [], [], [], [],
        [SomeDictOf (Proxy :: Proxy TyCon)],
        [SomeDictOf (Proxy :: Proxy ghc-prim:GHC.Types.TypeLitSort)],
+       [SomeDictOf (Proxy :: Proxy ())],
        [SomeDictOf (Proxy :: Proxy ghc-prim:GHC.Types.VecCount)],
        [SomeDictOf (Proxy :: Proxy ghc-prim:GHC.Types.VecElem)],
-       [SomeDictOf (Proxy :: Proxy GHC.Base.Void)],
+       [SomeDictOf (Proxy :: Proxy ghc-internal:GHC.Internal.Base.Void)],
        [SomeDictOf (Proxy :: Proxy Word)],
        [SomeDictOf
-          (Proxy :: Proxy GHC.IO.Exception.AllocationLimitExceeded)],
-       [SomeDictOf (Proxy :: Proxy GHC.IO.Exception.ArrayException)],
-       [SomeDictOf (Proxy :: Proxy GHC.IO.Exception.AssertionFailed)],
-       [SomeDictOf (Proxy :: Proxy GHC.IO.Exception.AsyncException)],
+          (Proxy ::
+             Proxy ghc-internal:GHC.Internal.Data.Typeable.Internal.SomeTypeRep)],
        [SomeDictOf
-          (Proxy :: Proxy GHC.IO.Exception.BlockedIndefinitelyOnMVar)],
+          (Proxy ::
+             Proxy (ghc-internal:GHC.Internal.Data.Typeable.Internal.TypeRep a_a4Lk))],
        [SomeDictOf
-          (Proxy :: Proxy GHC.IO.Exception.BlockedIndefinitelyOnSTM)],
-       [SomeDictOf (Proxy :: Proxy GHC.IO.Exception.CompactionFailed)],
-       [SomeDictOf (Proxy :: Proxy GHC.IO.Exception.Deadlock)],
-       [SomeDictOf (Proxy :: Proxy GHC.IO.Exception.ExitCode)],
-       [SomeDictOf (Proxy :: Proxy GHC.IO.Exception.FixIOException)],
-       [SomeDictOf (Proxy :: Proxy GHC.IO.Exception.IOErrorType)],
-       [SomeDictOf (Proxy :: Proxy GHC.IO.Exception.IOException)],
-       [SomeDictOf (Proxy :: Proxy GHC.IO.Exception.SomeAsyncException)],
-       [SomeDictOf (Proxy :: Proxy GHC.Exception.Type.ArithException)],
-       [SomeDictOf (Proxy :: Proxy GHC.Exception.Type.SomeException)],
+          (Proxy ::
+             Proxy ghc-internal:GHC.Internal.IO.Exception.AllocationLimitExceeded)],
        [SomeDictOf
-          (Proxy :: Proxy base:Data.Typeable.Internal.SomeTypeRep)],
+          (Proxy ::
+             Proxy ghc-internal:GHC.Internal.IO.Exception.ArrayException)],
        [SomeDictOf
-          (Proxy :: Proxy (base:Data.Typeable.Internal.TypeRep a_a4sN))],
-       [SomeDictOf (Proxy :: Proxy GHC.IO.Encoding.Types.CodingProgress)],
-       [SomeDictOf (Proxy :: Proxy GHC.IO.Encoding.Types.TextEncoding)],
+          (Proxy ::
+             Proxy ghc-internal:GHC.Internal.IO.Exception.AssertionFailed)],
+       [SomeDictOf
+          (Proxy ::
+             Proxy ghc-internal:GHC.Internal.IO.Exception.AsyncException)],
+       [SomeDictOf
+          (Proxy ::
+             Proxy ghc-internal:GHC.Internal.IO.Exception.BlockedIndefinitelyOnMVar)],
+       [SomeDictOf
+          (Proxy ::
+             Proxy ghc-internal:GHC.Internal.IO.Exception.BlockedIndefinitelyOnSTM)],
+       [SomeDictOf
+          (Proxy ::
+             Proxy ghc-internal:GHC.Internal.IO.Exception.CompactionFailed)],
+       [SomeDictOf
+          (Proxy :: Proxy ghc-internal:GHC.Internal.IO.Exception.Deadlock)],
+       [SomeDictOf
+          (Proxy :: Proxy ghc-internal:GHC.Internal.IO.Exception.ExitCode)],
+       [SomeDictOf
+          (Proxy ::
+             Proxy ghc-internal:GHC.Internal.IO.Exception.FixIOException)],
+       [SomeDictOf
+          (Proxy ::
+             Proxy ghc-internal:GHC.Internal.IO.Exception.IOErrorType)],
+       [SomeDictOf
+          (Proxy ::
+             Proxy ghc-internal:GHC.Internal.IO.Exception.IOException)],
+       [SomeDictOf
+          (Proxy ::
+             Proxy ghc-internal:GHC.Internal.IO.Exception.SomeAsyncException)],
+       [SomeDictOf (Proxy :: Proxy (Proxy s_a4M1))],
+       [SomeDictOf
+          (Proxy ::
+             Proxy ghc-internal:GHC.Internal.IO.Encoding.Types.CodingProgress)],
+       [SomeDictOf
+          (Proxy ::
+             Proxy ghc-internal:GHC.Internal.IO.Encoding.Types.TextEncoding)],
+       [SomeDictOf (Proxy :: Proxy ((:~:) a_a4M5 b_a4M6))],
+       [SomeDictOf (Proxy :: Proxy ((:~~:) a_a4Mc b_a4Md))],
+       [SomeDictOf
+          (Proxy ::
+             Proxy ghc-internal:GHC.Internal.Fingerprint.Type.Fingerprint)],
+       [SomeDictOf
+          (Proxy :: Proxy ghc-internal:GHC.Internal.Word.Word16)],
+       [SomeDictOf
+          (Proxy :: Proxy ghc-internal:GHC.Internal.Word.Word32)],
+       [SomeDictOf
+          (Proxy :: Proxy ghc-internal:GHC.Internal.Word.Word64)],
+       [SomeDictOf (Proxy :: Proxy ghc-internal:GHC.Internal.Word.Word8)],
        [SomeDictOf (Proxy :: Proxy Language.Haskell.TH.Syntax.AnnLookup)],
        [SomeDictOf (Proxy :: Proxy Language.Haskell.TH.Syntax.AnnTarget)],
        [SomeDictOf (Proxy :: Proxy Language.Haskell.TH.Syntax.Bang)],
+       [SomeDictOf (Proxy :: Proxy Language.Haskell.TH.Syntax.BndrVis)],
        [SomeDictOf (Proxy :: Proxy Language.Haskell.TH.Syntax.Body)],
        [SomeDictOf (Proxy :: Proxy Language.Haskell.TH.Syntax.Bytes)],
        [SomeDictOf (Proxy :: Proxy Language.Haskell.TH.Syntax.Callconv)],
@@ -250,6 +324,8 @@ test/Spec.hs:14:10-34: Splicing expression
        [SomeDictOf
           (Proxy :: Proxy Language.Haskell.TH.Syntax.NameFlavour)],
        [SomeDictOf (Proxy :: Proxy Language.Haskell.TH.Syntax.NameSpace)],
+       [SomeDictOf
+          (Proxy :: Proxy Language.Haskell.TH.Syntax.NamespaceSpecifier)],
        [SomeDictOf (Proxy :: Proxy Language.Haskell.TH.Syntax.OccName)],
        [SomeDictOf (Proxy :: Proxy Language.Haskell.TH.Syntax.Overlap)],
        [SomeDictOf (Proxy :: Proxy Language.Haskell.TH.Syntax.Pat)],
@@ -275,15 +351,6 @@ test/Spec.hs:14:10-34: Splicing expression
        [SomeDictOf (Proxy :: Proxy Language.Haskell.TH.Syntax.TySynEqn)],
        [], [SomeDictOf (Proxy :: Proxy Language.Haskell.TH.Syntax.Type)],
        [SomeDictOf
-          (Proxy :: Proxy Language.Haskell.TH.Syntax.TypeFamilyHead)],
-       [SomeDictOf (Proxy :: Proxy ((:~:) a_a4t6 b_a4t7))],
-       [SomeDictOf (Proxy :: Proxy ((:~~:) a_a4te b_a4tf))],
-       [SomeDictOf (Proxy :: Proxy GHC.Fingerprint.Type.Fingerprint)],
-       [SomeDictOf (Proxy :: Proxy (GHC.TypeNats.SNat n_a4tl))],
-       [SomeDictOf (Proxy :: Proxy GHC.TypeNats.SomeNat)],
-       [SomeDictOf (Proxy :: Proxy GHC.Word.Word16)],
-       [SomeDictOf (Proxy :: Proxy GHC.Word.Word32)],
-       [SomeDictOf (Proxy :: Proxy GHC.Word.Word64)],
-       [SomeDictOf (Proxy :: Proxy GHC.Word.Word8)]]
+          (Proxy :: Proxy Language.Haskell.TH.Syntax.TypeFamilyHead)]]
 [2 of 2] Compiling Paths_discover_instances
-[3 of 3] Linking /tmp/workdir-discover-instances/discover-instances-0.1.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/discover-instances-0.1.0.0/t/discover-instances-test/build/discover-instances-test/discover-instances-test
+[3 of 3] Linking /tmp/workdir-discover-instances/discover-instances-0.1.0.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/discover-instances-0.1.0.0/t/discover-instances-test/build/discover-instances-test/discover-instances-test

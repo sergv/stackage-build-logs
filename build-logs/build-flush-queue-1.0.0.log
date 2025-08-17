@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - flush-queue-1.0.0 (lib) (first run)
  - flush-queue-1.0.0 (test:tests) (first run)
@@ -12,6 +13,54 @@ Configuring test suite 'tests' for flush-queue-1.0.0...
 Preprocessing test suite 'tests' for flush-queue-1.0.0...
 Building test suite 'tests' for flush-queue-1.0.0...
 [1 of 3] Compiling Control.Concurrent.BFQueueSpec
+test/Control/Concurrent/BFQueueSpec.hs:53:13: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+53 |     return (head xs === x' .&&. tail xs === xs' .&&. counterexample "Queue is non-empty" isEmpty)
+   |             ^^^^
+
+test/Control/Concurrent/BFQueueSpec.hs:53:33: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+53 |     return (head xs === x' .&&. tail xs === xs' .&&. counterexample "Queue is non-empty" isEmpty)
+   |                                 ^^^^
+
 [2 of 3] Compiling Control.Concurrent.STM.TBFQueueSpec
+test/Control/Concurrent/STM/TBFQueueSpec.hs:58:13: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+58 |     return (head xs === x' .&&. tail xs === xs' .&&. counterexample "Queue is non-empty" isEmpty)
+   |             ^^^^
+
+test/Control/Concurrent/STM/TBFQueueSpec.hs:58:33: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+58 |     return (head xs === x' .&&. tail xs === xs' .&&. counterexample "Queue is non-empty" isEmpty)
+   |                                 ^^^^
+
+test/Control/Concurrent/STM/TBFQueueSpec.hs:70:13: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+70 |     return (head xs === x' .&&. tail xs === xs' .&&. y === y')
+   |             ^^^^
+
+test/Control/Concurrent/STM/TBFQueueSpec.hs:70:33: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+70 |     return (head xs === x' .&&. tail xs === xs' .&&. y === y')
+   |                                 ^^^^
+
 [3 of 3] Compiling Main
-[4 of 4] Linking /tmp/workdir-flush-queue/flush-queue-1.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/flush-queue-1.0.0/t/tests/build/tests/tests
+[4 of 4] Linking /tmp/workdir-flush-queue/flush-queue-1.0.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/flush-queue-1.0.0/t/tests/build/tests/tests

@@ -1,4 +1,4 @@
-Build profile: -w ghc-9.6.5 -O1
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - valida-1.1.0 (test:valida-test) (ephemeral targets)
 Preprocessing test suite 'valida-test' for valida-1.1.0...
@@ -23,14 +23,14 @@ Test suite
     Test relationship between primitive NonEmpty and Unit combinators
       (QC) failureIf p err = label (const (neSingleton err)) (failureIf' p):                                       OK
         +++ OK, passed 100 tests:
-        51% Significant
-        49% Trivial
+        51% Trivial
+        49% Significant
       (SC) failureIf p err = label (const (neSingleton err)) (failureIf' p):                                       OK
         88 tests completed
       (QC) failureUnless p err = label (const (neSingleton err)) (failureUnless' p):                               OK
         +++ OK, passed 100 tests:
-        52% Significant
-        48% Trivial
+        52% Trivial
+        48% Significant
       (SC) failureUnless p err = label (const (neSingleton err)) (failureUnless' p):                               OK
         88 tests completed
     Test relationship between primitive 'if' and 'unless' combinators
@@ -38,7 +38,7 @@ Test suite
         +++ OK, passed 100 tests.
       (SC) failureIf' p = failureUnless' (not . p):                                                                OK
         8 tests completed
-      (QC) failureIf p err = negateV (neSingleton err) (failureUnless' p):                                         OK
+      (QC) failureIf p err = negateV (neSingleton err) (failureUnless' p):                                         OK (0.01s)
         +++ OK, passed 100 tests.
       (SC) failureIf p err = negateV (neSingleton err) (failureUnless' p):                                         OK
         40 tests completed
@@ -59,7 +59,7 @@ Test suite
         6 tests completed
       (QC) Associativity: validator1 </> (validator2 </> validator3) = (validator1 </> validator2) </> validator3: OK
         +++ OK, passed 100 tests.
-      (SC) Associativity: validator1 </> (validator2 </> validator3) = (validator1 </> validator2) </> validator3: OK (0.03s)
+      (SC) Associativity: validator1 </> (validator2 </> validator3) = (validator1 </> validator2) </> validator3: OK (0.05s)
         8192 tests completed
       (QC) Identity: validator </> failV = failV </> validator = validator:                                        OK
         +++ OK, passed 100 tests.
@@ -80,7 +80,7 @@ Test suite
         6 tests completed
       (QC) Associativity: validator1 <> (validator2 <> validator3) = (validator1 <> validator2) <> validator3:     OK
         +++ OK, passed 100 tests.
-      (SC) Associativity: validator1 <> (validator2 <> validator3) = (validator1 <> validator2) <> validator3:     OK (0.03s)
+      (SC) Associativity: validator1 <> (validator2 <> validator3) = (validator1 <> validator2) <> validator3:     OK (0.05s)
         8192 tests completed
       (QC) Identity: validator <> mempty = mempty <> validator = validator:                                        OK
         +++ OK, passed 100 tests.
@@ -92,7 +92,7 @@ Test suite
         120 tests completed
       (QC) Complement: validator <> (negateV e validator) = (negateV e validator) <> validator = Failure:          OK
         +++ OK, passed 100 tests.
-      (SC) Complement: validator <> (negateV e validator) = (negateV e validator) <> validator = Failure:          OK (0.03s)
+      (SC) Complement: validator <> (negateV e validator) = (negateV e validator) <> validator = Failure:          OK (0.04s)
         1800 tests completed
       (QC) Idempotence: validator <> validator = validator:                                                        OK
         +++ OK, passed 100 tests.
@@ -154,15 +154,15 @@ Test suite
       +++ OK, passed 100 tests.
     (QC) either (const f) (const g) (toEither v) == validationConst f g v:                                         OK
       +++ OK, passed 100 tests.
-    (SC) either (const f) (const g) (toEither v) == validationConst f g v:                                         OK (2.89s)
+    (SC) either (const f) (const g) (toEither v) == validationConst f g v:                                         OK (4.08s)
       297052 tests completed
     (QC) validationConst f g (fromEither e) == either (const f) (const g) e:                                       OK
       +++ OK, passed 100 tests.
-    (SC) validationConst f g (fromEither e) == either (const f) (const g) e:                                       OK (2.90s)
+    (SC) validationConst f g (fromEither e) == either (const f) (const g) e:                                       OK (3.53s)
       297052 tests completed
     (QC) validationConst f g v == validation (const f) (const g) v:                                                OK
       +++ OK, passed 100 tests.
-    (SC) validationConst f g v == validation (const f) (const g) v:                                                OK (2.90s)
+    (SC) validationConst f g v == validation (const f) (const g) v:                                                OK (3.65s)
       297052 tests completed
     (QC) partitionValidations xs = (failures xs, successes xs):                                                    OK
       +++ OK, passed 100 tests.
@@ -171,14 +171,14 @@ Test suite
   Test Validator relabeling
     (QC) Validator should yield relabeled Bool error upon failure:                                                 OK
       +++ OK, passed 100 tests.
-    (SC) Validator should yield relabeled Bool error upon failure:                                                 OK (0.07s)
+    (SC) Validator should yield relabeled Bool error upon failure:                                                 OK (0.10s)
       15996 tests completed
   Test Validator error grouping
-    (SC) All errors from all validators should be combined upon failure:                                           OK (0.05s)
+    (SC) All errors from all validators should be combined upon failure:                                           OK (0.06s)
       1500 tests completed
 
-All 81 tests passed (2.90s)
+All 81 tests passed (4.08s)
 Test suite valida-test: PASS
 Test suite logged to:
-/tmp/workdir-valida/valida-1.1.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/valida-1.1.0/t/valida-test/test/valida-1.1.0-valida-test.log
+/tmp/workdir-valida/valida-1.1.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/valida-1.1.0/t/valida-test/test/valida-1.1.0-valida-test.log
 1 of 1 test suites (1 of 1 test cases) passed.

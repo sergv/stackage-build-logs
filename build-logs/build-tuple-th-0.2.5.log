@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - tuple-th-0.2.5 (lib:tuple-th) (first run)
 Warning: tuple-th.cabal:21:30: version operators used. To use version
@@ -7,8 +8,7 @@ Configuring tuple-th-0.2.5...
 Preprocessing library for tuple-th-0.2.5...
 Building library for tuple-th-0.2.5...
 [1 of 1] Compiling TupleTH
-
-TupleTH.hs:36:1: warning: [-Wunused-imports]
+TupleTH.hs:36:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
@@ -16,7 +16,7 @@ TupleTH.hs:36:1: warning: [-Wunused-imports]
 36 | import Control.Applicative ( Applicative((<*>), pure) )
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-TupleTH.hs:39:1: warning: [-Wunused-imports]
+TupleTH.hs:39:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Functor’ is redundant
       except perhaps to import instances from ‘Data.Functor’
     To import instances alone, use: import Data.Functor()
@@ -24,13 +24,61 @@ TupleTH.hs:39:1: warning: [-Wunused-imports]
 39 | import Data.Functor((<$>))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-TupleTH.hs:44:1: warning: [-Wunused-imports]
+TupleTH.hs:44:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.List’ is redundant
       except perhaps to import instances from ‘Data.List’
     To import instances alone, use: import Data.List()
    |
 44 | import Data.List
    | ^^^^^^^^^^^^^^^^
+
+TupleTH.hs:343:65: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+343 |                          [| $(conE $ tupleDataName n) `liftM` $(head xes) |]
+    |                                                                 ^^^^
+
+TupleTH.hs:344:27: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+344 |                          (tail xes)))
+    |                           ^^^^
+
+TupleTH.hs:353:61: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+353 |                          [| $(conE $ tupleDataName n) <$> $(head xes) |]
+    |                                                             ^^^^
+
+TupleTH.hs:354:27: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+354 |                          (tail xes)))
+    |                           ^^^^
+
+TupleTH.hs:361:45: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+361 |                                       i <- [head is+1,head is+2 .. n-1] ]
+    |                                             ^^^^
+
+TupleTH.hs:361:55: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+361 |                                       i <- [head is+1,head is+2 .. n-1] ]
+    |                                                       ^^^^
 
 TupleTH.hs:507:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
@@ -39,3 +87,4 @@ TupleTH.hs:507:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     |
 507 |       (start, x:xs) = splitAt element xes
     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

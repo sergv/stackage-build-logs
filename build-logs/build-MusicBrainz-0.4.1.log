@@ -1,35 +1,51 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - MusicBrainz-0.4.1 (lib) (first run)
 Configuring library for MusicBrainz-0.4.1...
 Preprocessing library for MusicBrainz-0.4.1...
 Building library for MusicBrainz-0.4.1...
 [1 of 4] Compiling Network.Protocol.MusicBrainz.Types
-
-Network/Protocol/MusicBrainz/Types.hs:25:1: warning: [-Wunused-imports]
+Network/Protocol/MusicBrainz/Types.hs:25:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
    |
 25 | import Control.Applicative ((<$>), (<*>))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [2 of 4] Compiling Network.Protocol.MusicBrainz.JSON.WebService
 [3 of 4] Compiling Network.Protocol.MusicBrainz.Utils
-
-Network/Protocol/MusicBrainz/Utils.hs:8:36: warning: [-Wunused-imports]
+Network/Protocol/MusicBrainz/Utils.hs:8:36: warning: [GHC-38856] [-Wunused-imports]
     The import of ‘liftA2’
     from module ‘Control.Applicative’ is redundant
   |
 8 | import Control.Applicative ((<|>), liftA2)
   |                                    ^^^^^^
-[4 of 4] Compiling Network.Protocol.MusicBrainz.XML2.WebService
 
-Network/Protocol/MusicBrainz/XML2/WebService.hs:11:29: warning: [-Wunused-imports]
+[4 of 4] Compiling Network.Protocol.MusicBrainz.XML2.WebService
+Network/Protocol/MusicBrainz/XML2/WebService.hs:11:29: warning: [GHC-38856] [-Wunused-imports]
     The import of ‘liftA2’
     from module ‘Control.Applicative’ is redundant
    |
 11 | import Control.Applicative (liftA2, (<|>))
    |                             ^^^^^^
+
+Network/Protocol/MusicBrainz/XML2/WebService.hs:56:14: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+56 |     return $ head rs
+   |              ^^^^
+
+Network/Protocol/MusicBrainz/XML2/WebService.hs:62:14: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+62 |     return $ head rs
+   |              ^^^^
 
 Network/Protocol/MusicBrainz/XML2/WebService.hs:96:17: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
@@ -38,3 +54,4 @@ Network/Protocol/MusicBrainz/XML2/WebService.hs:96:17: warning: [GHC-62161] [-Wi
    |
 96 | forceReadDec = (\(Right (d, _)) -> d) . TR.decimal
    |                 ^^^^^^^^^^^^^^^^^^^^
+

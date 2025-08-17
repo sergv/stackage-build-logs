@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - matrices-0.5.0 (lib) (first run)
  - matrices-0.5.0 (test:test) (first run)
@@ -7,7 +8,6 @@ Preprocessing library for matrices-0.5.0...
 Building library for matrices-0.5.0...
 [ 1 of 13] Compiling Data.Matrix.Class.Mutable
 [ 2 of 13] Compiling Data.Matrix.Class
-
 src/Data/Matrix/Class.hs:35:28: warning: [GHC-39567] [-Wstar-is-type]
     Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
     relies on the StarIsType extension, which will become
@@ -97,35 +97,51 @@ src/Data/Matrix/Class.hs:35:77: warning: [GHC-39567] [-Wstar-is-type]
    |
 35 | type family Mutable (m :: (* -> *) -> * -> *) :: (* -> * -> *) -> * -> * -> *
    |                                                                             ^
+
+src/Data/Matrix/Class.hs:147:18: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+147 |     c = length . head $ xs
+    |                  ^^^^
+
+src/Data/Matrix/Class.hs:156:20: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+156 |     c = G.length . head $ xs
+    |                    ^^^^
+
 [ 3 of 13] Compiling Data.Matrix.Generic.Mutable
 [ 4 of 13] Compiling Data.Matrix.Generic
 [ 5 of 13] Compiling Data.Matrix.Mutable
 [ 6 of 13] Compiling Data.Matrix
-
-src/Data/Matrix.hs:107:1: warning: [-Wunused-imports]
+src/Data/Matrix.hs:107:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Foldable’ is redundant
       except perhaps to import instances from ‘Data.Foldable’
     To import instances alone, use: import Data.Foldable()
     |
 107 | import Data.Foldable (Foldable)
     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [ 7 of 13] Compiling Data.Matrix.Sparse.Generic
 [ 8 of 13] Compiling Data.Matrix.Storable.Mutable
 [ 9 of 13] Compiling Data.Matrix.Storable
-
-src/Data/Matrix/Storable.hs:104:1: warning: [-Wunused-imports]
+src/Data/Matrix/Storable.hs:104:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Foldable’ is redundant
       except perhaps to import instances from ‘Data.Foldable’
     To import instances alone, use: import Data.Foldable()
     |
 104 | import Data.Foldable (Foldable)
     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [10 of 13] Compiling Data.Matrix.Symmetric.Generic.Mutable
 [11 of 13] Compiling Data.Matrix.Symmetric.Generic
 [12 of 13] Compiling Data.Matrix.Unboxed.Mutable
 [13 of 13] Compiling Data.Matrix.Unboxed
-
-src/Data/Matrix/Unboxed.hs:104:1: warning: [-Wunused-imports]
+src/Data/Matrix/Unboxed.hs:104:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Foldable’ is redundant
       except perhaps to import instances from ‘Data.Foldable’
     To import instances alone, use: import Data.Foldable()
@@ -133,7 +149,7 @@ src/Data/Matrix/Unboxed.hs:104:1: warning: [-Wunused-imports]
 104 | import Data.Foldable (Foldable)
     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Data/Matrix/Unboxed.hs:307:8: warning: [-Wsimplifiable-class-constraints]
+src/Data/Matrix/Unboxed.hs:307:8: warning: [GHC-62412] [-Wsimplifiable-class-constraints]
     • The constraint ‘Unbox (a, b)’ matches
         instance (Unbox a, Unbox b) => Unbox (a, b)
           -- Defined in ‘Data.Vector.Unboxed.Base’
@@ -146,7 +162,7 @@ src/Data/Matrix/Unboxed.hs:307:8: warning: [-Wsimplifiable-class-constraints]
 307 | zip :: ( Context a, Context b
     |        ^^^^^^^^^^^^^^^^^^^^^^...
 
-src/Data/Matrix/Unboxed.hs:312:9: warning: [-Wsimplifiable-class-constraints]
+src/Data/Matrix/Unboxed.hs:312:9: warning: [GHC-62412] [-Wsimplifiable-class-constraints]
     • The constraint ‘Unbox (a, b, c)’ matches
         instance (Unbox a, Unbox b, Unbox c) => Unbox (a, b, c)
           -- Defined in ‘Data.Vector.Unboxed.Base’
@@ -159,7 +175,7 @@ src/Data/Matrix/Unboxed.hs:312:9: warning: [-Wsimplifiable-class-constraints]
 312 | zip3 :: ( Context a, Context b, Context c
     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
-src/Data/Matrix/Unboxed.hs:317:9: warning: [-Wsimplifiable-class-constraints]
+src/Data/Matrix/Unboxed.hs:317:9: warning: [GHC-62412] [-Wsimplifiable-class-constraints]
     • The constraint ‘Unbox (a, b, c, d)’ matches
         instance (Unbox a, Unbox b, Unbox c, Unbox d) => Unbox (a, b, c, d)
           -- Defined in ‘Data.Vector.Unboxed.Base’
@@ -176,7 +192,7 @@ src/Data/Matrix/Unboxed.hs:317:9: warning: [-Wsimplifiable-class-constraints]
 317 | zip4 :: ( Context a, Context b, Context c, Context d
     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
-src/Data/Matrix/Unboxed.hs:322:9: warning: [-Wsimplifiable-class-constraints]
+src/Data/Matrix/Unboxed.hs:322:9: warning: [GHC-62412] [-Wsimplifiable-class-constraints]
     • The constraint ‘Unbox (a, b, c, d, e)’ matches
         instance (Unbox a, Unbox b, Unbox c, Unbox d, Unbox e) =>
                  Unbox (a, b, c, d, e)
@@ -197,7 +213,7 @@ src/Data/Matrix/Unboxed.hs:322:9: warning: [-Wsimplifiable-class-constraints]
 322 | zip5 :: ( Context a, Context b, Context c, Context d, Context e
     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
-src/Data/Matrix/Unboxed.hs:328:9: warning: [-Wsimplifiable-class-constraints]
+src/Data/Matrix/Unboxed.hs:328:9: warning: [GHC-62412] [-Wsimplifiable-class-constraints]
     • The constraint ‘Unbox (a, b, c, d, e, f)’ matches
         instance (Unbox a, Unbox b, Unbox c, Unbox d, Unbox e, Unbox f) =>
                  Unbox (a, b, c, d, e, f)
@@ -220,7 +236,7 @@ src/Data/Matrix/Unboxed.hs:328:9: warning: [-Wsimplifiable-class-constraints]
 328 | zip6 :: ( Context a, Context b, Context c, Context d, Context e, Context f
     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
-src/Data/Matrix/Unboxed.hs:342:10: warning: [-Wsimplifiable-class-constraints]
+src/Data/Matrix/Unboxed.hs:342:10: warning: [GHC-62412] [-Wsimplifiable-class-constraints]
     • The constraint ‘Unbox (a, b)’ matches
         instance (Unbox a, Unbox b) => Unbox (a, b)
           -- Defined in ‘Data.Vector.Unboxed.Base’
@@ -233,7 +249,7 @@ src/Data/Matrix/Unboxed.hs:342:10: warning: [-Wsimplifiable-class-constraints]
 342 | unzip :: (Context a, Context b, Context (a,b))
     |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
-src/Data/Matrix/Unboxed.hs:346:11: warning: [-Wsimplifiable-class-constraints]
+src/Data/Matrix/Unboxed.hs:346:11: warning: [GHC-62412] [-Wsimplifiable-class-constraints]
     • The constraint ‘Unbox (a, b, c)’ matches
         instance (Unbox a, Unbox b, Unbox c) => Unbox (a, b, c)
           -- Defined in ‘Data.Vector.Unboxed.Base’
@@ -246,7 +262,7 @@ src/Data/Matrix/Unboxed.hs:346:11: warning: [-Wsimplifiable-class-constraints]
 346 | unzip3 :: ( Context a, Context b, Context c
     |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
-src/Data/Matrix/Unboxed.hs:351:11: warning: [-Wsimplifiable-class-constraints]
+src/Data/Matrix/Unboxed.hs:351:11: warning: [GHC-62412] [-Wsimplifiable-class-constraints]
     • The constraint ‘Unbox (a, b, c, d)’ matches
         instance (Unbox a, Unbox b, Unbox c, Unbox d) => Unbox (a, b, c, d)
           -- Defined in ‘Data.Vector.Unboxed.Base’
@@ -263,7 +279,7 @@ src/Data/Matrix/Unboxed.hs:351:11: warning: [-Wsimplifiable-class-constraints]
 351 | unzip4 :: ( Context a, Context b, Context c, Context d
     |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
-src/Data/Matrix/Unboxed.hs:356:11: warning: [-Wsimplifiable-class-constraints]
+src/Data/Matrix/Unboxed.hs:356:11: warning: [GHC-62412] [-Wsimplifiable-class-constraints]
     • The constraint ‘Unbox (a, b, c, d, e)’ matches
         instance (Unbox a, Unbox b, Unbox c, Unbox d, Unbox e) =>
                  Unbox (a, b, c, d, e)
@@ -283,7 +299,7 @@ src/Data/Matrix/Unboxed.hs:356:11: warning: [-Wsimplifiable-class-constraints]
 356 | unzip5 :: ( Context a, Context b, Context c, Context d, Context e
     |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
-src/Data/Matrix/Unboxed.hs:362:11: warning: [-Wsimplifiable-class-constraints]
+src/Data/Matrix/Unboxed.hs:362:11: warning: [GHC-62412] [-Wsimplifiable-class-constraints]
     • The constraint ‘Unbox (a, b, c, d, e, f)’ matches
         instance (Unbox a, Unbox b, Unbox c, Unbox d, Unbox e, Unbox f) =>
                  Unbox (a, b, c, d, e, f)
@@ -303,8 +319,9 @@ src/Data/Matrix/Unboxed.hs:362:11: warning: [-Wsimplifiable-class-constraints]
     |
 362 | unzip6 :: ( Context a, Context b, Context c, Context d, Context e, Context f
     |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
 Configuring test suite 'test' for matrices-0.5.0...
 Preprocessing test suite 'test' for matrices-0.5.0...
 Building test suite 'test' for matrices-0.5.0...
 [1 of 1] Compiling Main
-[2 of 2] Linking /tmp/workdir-matrices/matrices-0.5.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/matrices-0.5.0/t/test/build/test/test
+[2 of 2] Linking /tmp/workdir-matrices/matrices-0.5.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/matrices-0.5.0/t/test/build/test/test

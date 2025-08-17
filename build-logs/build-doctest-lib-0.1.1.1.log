@@ -1,13 +1,21 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - doctest-lib-0.1.1.1 (lib) (first run)
 Configuring library for doctest-lib-0.1.1.1...
 Preprocessing library for doctest-lib-0.1.1.1...
 Building library for doctest-lib-0.1.1.1...
 [1 of 3] Compiling Test.DocTest.Base
-[2 of 3] Compiling Test.DocTest.Location
+src/Test/DocTest/Base.hs:44:76: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+44 |       | any (not . isSafe) $ concat (expectedAsString ++ actual_) = init . tail . show . stripEnd
+   |                                                                            ^^^^
 
-src/Test/DocTest/Location.hs:3:1: warning: [-Wunused-imports]
+[2 of 3] Compiling Test.DocTest.Location
+src/Test/DocTest/Location.hs:3:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Traversable’ is redundant
       except perhaps to import instances from ‘Data.Traversable’
     To import instances alone, use: import Data.Traversable()
@@ -15,17 +23,18 @@ src/Test/DocTest/Location.hs:3:1: warning: [-Wunused-imports]
 3 | import Data.Traversable (Traversable, traverse)
   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Test/DocTest/Location.hs:4:1: warning: [-Wunused-imports]
+src/Test/DocTest/Location.hs:4:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Foldable’ is redundant
       except perhaps to import instances from ‘Data.Foldable’
     To import instances alone, use: import Data.Foldable()
   |
 4 | import Data.Foldable (Foldable, foldMap)
   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[3 of 3] Compiling Test.DocTest.Parse
 
-src/Test/DocTest/Parse.hs:17:29: warning: [-Wunused-imports]
+[3 of 3] Compiling Test.DocTest.Parse
+src/Test/DocTest/Parse.hs:17:29: warning: [GHC-38856] [-Wunused-imports]
     The import of ‘<$>’ from module ‘Control.Applicative’ is redundant
    |
 17 | import Control.Applicative ((<$>), (<|>))
    |                             ^^^^^
+

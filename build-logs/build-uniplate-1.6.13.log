@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - uniplate-1.6.13 (lib) (first run)
 Warning: uniplate.cabal:1:28: Packages with 'cabal-version: 1.12' or later
@@ -13,6 +14,14 @@ Building library for uniplate-1.6.13...
 [ 4 of 21] Compiling Data.Generics.Str
 [ 5 of 21] Compiling Data.Generics.Uniplate.Internal.DataOnlyOperations
 [ 6 of 21] Compiling Data.Generics.Uniplate.Internal.Data
+Data/Generics/Uniplate/Internal/Data.hs:336:81: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+336 |             [ (i, IntMap.fromAscList [(j, slice i j ts) | (j,ts) <- zip [i..n] (tail $ inits ts)])
+    |                                                                                 ^^^^
+
 [ 7 of 21] Compiling Data.Generics.Uniplate.DataOnly
 [ 8 of 21] Compiling Data.Generics.Uniplate.Operations
 [ 9 of 21] Compiling Data.Generics.Uniplate.Direct

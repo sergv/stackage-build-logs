@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - c2hs-0.28.8 (exe:c2hs) (first run)
  - c2hs-0.28.8 (test:test-system) (first run)
@@ -10,8 +11,7 @@ Building executable 'c2hs' for c2hs-0.28.8...
 [ 2 of 26] Compiling C2HS.Config
 [ 3 of 26] Compiling C2HS.Switches
 [ 4 of 26] Compiling Control.StateTrans
-
-src/Control/StateTrans.hs:77:1: warning: [-Wunused-imports]
+src/Control/StateTrans.hs:77:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
@@ -19,35 +19,37 @@ src/Control/StateTrans.hs:77:1: warning: [-Wunused-imports]
 77 | import Control.Applicative (Applicative(..))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Control/StateTrans.hs:80:1: warning: [-Wdodgy-imports]
-    Module ‘Prelude’ does not export ‘catch’
+src/Control/StateTrans.hs:80:24: warning: [GHC-61689] [-Wdodgy-imports]
+    Module ‘Prelude’ does not export ‘catch’.
    |
 80 | import Prelude hiding (catch)
-   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |                        ^^^^^
 
-src/Control/StateTrans.hs:109:3: warning: [-Wnoncanonical-monad-instances]
+src/Control/StateTrans.hs:109:3: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘pure = return’ definition detected
     in the instance declaration for ‘Applicative (STB bs gs)’.
-    Move definition from ‘return’ to ‘pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Move definition from ‘return’ to ‘pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 109 |   pure  = return
     |   ^^^^^^^^^^^^^^
 
-src/Control/StateTrans.hs:113:3: warning: [-Wnoncanonical-monad-instances]
+src/Control/StateTrans.hs:113:3: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad (STB bs gs)’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 113 |   return = yield
     |   ^^^^^^^^^^^^^^
+
 [ 5 of 26] Compiling Data.Errors
 [ 6 of 26] Compiling Data.Attributes
 [ 7 of 26] Compiling Control.StateBase
-
-src/Control/StateBase.hs:59:1: warning: [-Wunused-imports]
+src/Control/StateBase.hs:59:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
@@ -55,7 +57,7 @@ src/Control/StateBase.hs:59:1: warning: [-Wunused-imports]
 59 | import Control.Applicative (Applicative(..))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Control/StateBase.hs:61:1: warning: [-Wunused-imports]
+src/Control/StateBase.hs:61:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Monad.Fail’ is redundant
       except perhaps to import instances from ‘Control.Monad.Fail’
     To import instances alone, use: import Control.Monad.Fail()
@@ -63,24 +65,27 @@ src/Control/StateBase.hs:61:1: warning: [-Wunused-imports]
 61 | import Control.Monad.Fail (MonadFail (..))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Control/StateBase.hs:94:3: warning: [-Wnoncanonical-monad-instances]
+src/Control/StateBase.hs:94:3: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘pure = return’ definition detected
     in the instance declaration for ‘Applicative (PreCST e s)’.
-    Move definition from ‘return’ to ‘pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Move definition from ‘return’ to ‘pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
    |
 94 |   pure  = return
    |   ^^^^^^^^^^^^^^
 
-src/Control/StateBase.hs:98:3: warning: [-Wnoncanonical-monad-instances]
+src/Control/StateBase.hs:98:3: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad (PreCST e s)’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
    |
 98 |   return = yield
    |   ^^^^^^^^^^^^^^
+
 [ 8 of 26] Compiling Data.NameSpaces
 [ 9 of 26] Compiling C2HS.C.Attrs
 [10 of 26] Compiling C2HS.C.Builtin
@@ -90,7 +95,6 @@ src/Control/StateBase.hs:98:3: warning: [-Wnoncanonical-monad-instances]
 [14 of 26] Compiling Control.State
 [15 of 26] Compiling C2HS.State
 [16 of 26] Compiling C2HS.C.Trav
-
 src/C2HS/C/Trav.hs:471:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -102,11 +106,51 @@ src/C2HS/C/Trav.hs:471:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     |
 471 |   let CDecl _ [(Just declr, _, _)] _ = ide `simplifyDecl` decl
     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/C2HS/C/Trav.hs:606:8: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+606 |   case head [ts | CTypeSpec ts <- specs] of
+    |        ^^^^
+
+src/C2HS/C/Trav.hs:612:8: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+612 |   case head [ts | CTypeSpec ts <- specs] of
+    |        ^^^^
+
+src/C2HS/C/Trav.hs:761:18: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+761 |             case head [ts | CTypeSpec ts <- specs] of
+    |                  ^^^^
+
 [17 of 26] Compiling C2HS.C.Names
 [18 of 26] Compiling C2HS.C
 [19 of 26] Compiling Text.Lexers
-[20 of 26] Compiling C2HS.CHS.Lexer
+src/Text/Lexers.hs:461:57: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+461 |                               "The character " ++ show (head cs)
+    |                                                         ^^^^
 
+src/Text/Lexers.hs:464:40: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+464 |                  (Just (Left err), l, (tail cs, incPos pos 1, s))
+    |                                        ^^^^
+
+[20 of 26] Compiling C2HS.CHS.Lexer
 src/C2HS/CHS/Lexer.hs:534:33: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding: Patterns of type ‘[Name]’ not matched: []
@@ -123,6 +167,14 @@ src/C2HS/CHS/Lexer.hs:700:14: warning: [GHC-62161] [-Wincomplete-uni-patterns]
 700 |              \t@(ld:spdir) pos s ->      -- strip off the "\n" or "\0"
     |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
+src/C2HS/CHS/Lexer.hs:728:38: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+728 |     fname'          | null str''' || head str''' /= '"' = fname
+    |                                      ^^^^
+
 src/C2HS/CHS/Lexer.hs:927:27: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a lambda abstraction:
@@ -130,7 +182,39 @@ src/C2HS/CHS/Lexer.hs:927:27: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     |
 927 |               `lexaction` \(_:ds) pos -> Just (con pos (read ds))
     |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/C2HS/CHS/Lexer.hs:933:65: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+933 |           `lexaction` \cs pos -> Just (CHSTokString pos (init . tail $ cs))
+    |                                                                 ^^^^
+
+src/C2HS/CHS/Lexer.hs:939:65: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+939 |           `lexaction` \cs pos -> Just (CHSTokHSVerb pos (init . tail $ cs))
+    |                                                                 ^^^^
+
+src/C2HS/CHS/Lexer.hs:945:65: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+945 |           `lexaction` \cs pos -> Just (CHSTokHSQuot pos (init . tail $ cs))
+    |                                                                 ^^^^
+
 [21 of 26] Compiling C2HS.CHS
+src/C2HS/CHS.hs:529:62: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+529 |                            (state == Wait && not (null s) && head s == '\n')
+    |                                                              ^^^^
 
 src/C2HS/CHS.hs:841:24: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
@@ -146,9 +230,41 @@ src/C2HS/CHS.hs:851:24: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     |
 851 |                    let Just (myMajor, myMinor) = majorMinor version
     |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[22 of 26] Compiling C2HS.Gen.Monad
-[23 of 26] Compiling C2HS.Gen.Wrapper
 
+src/C2HS/CHS.hs:891:57: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+891 |                        (minor, _   ) = break (== '.') . tail $ rest
+    |                                                         ^^^^
+
+src/C2HS/CHS.hs:1169:48: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+     |
+1169 |     when (isParmWrapped parm) $ errorOutWrap $ head toks'9
+     |                                                ^^^^
+
+[22 of 26] Compiling C2HS.Gen.Monad
+src/C2HS/Gen/Monad.hs:281:30: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+281 |                            . tail
+    |                              ^^^^
+
+src/C2HS/Gen/Monad.hs:286:50: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+286 |       else (internalIdent ideChars, (chopIdent . tail) rest)
+    |                                                  ^^^^
+
+[23 of 26] Compiling C2HS.Gen.Wrapper
 src/C2HS/Gen/Wrapper.hs:117:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -162,10 +278,80 @@ src/C2HS/Gen/Wrapper.hs:117:7: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     |
 117 |   let (CDecl specs [(Just decl, Nothing, Nothing)] n) = fixEmpty din idx
     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[24 of 26] Compiling C2HS.Gen.Header
-[25 of 26] Compiling C2HS.Gen.Bind
 
-src/C2HS/Gen/Bind.hs:146:1: warning: [-Wunused-imports]
+[24 of 26] Compiling C2HS.Gen.Header
+src/C2HS/Gen/Header.hs:101:15: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+101 |   \supply -> (tail supply, "C2HS_COND_SENTRY_" ++ (show.nameId) (head supply))
+    |               ^^^^
+
+src/C2HS/Gen/Header.hs:101:66: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+101 |   \supply -> (tail supply, "C2HS_COND_SENTRY_" ++ (show.nameId) (head supply))
+    |                                                                  ^^^^
+
+src/C2HS/Gen/Header.hs:181:30: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+181 |                  \supply -> (tail supply, "__c2hs_enum__" ++
+    |                              ^^^^
+
+src/C2HS/Gen/Header.hs:182:58: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+182 |                                           show (nameId $ head supply))
+    |                                                          ^^^^
+
+src/C2HS/Gen/Header.hs:184:30: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+184 |                  \supply -> (tail supply, "__c2hs_enr__" ++
+    |                              ^^^^
+
+src/C2HS/Gen/Header.hs:185:58: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+185 |                                           show (nameId $ head supply))
+    |                                                          ^^^^
+
+src/C2HS/Gen/Header.hs:211:17: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+211 |     \supply -> (tail supply, "__c2hs__const__" ++ show (nameId $ head supply))
+    |                 ^^^^
+
+src/C2HS/Gen/Header.hs:211:66: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+211 |     \supply -> (tail supply, "__c2hs__const__" ++ show (nameId $ head supply))
+    |                                                                  ^^^^
+
+[25 of 26] Compiling C2HS.Gen.Bind
+src/C2HS/Gen/Bind.hs:126:59: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘foldl'’ from module ‘Data.List’ is redundant
+    |
+126 |                       intercalate, isPrefixOf, isInfixOf, foldl')
+    |                                                           ^^^^^^
+
+src/C2HS/Gen/Bind.hs:146:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘C2HS.Switches’ is redundant
       except perhaps to import instances from ‘C2HS.Switches’
     To import instances alone, use: import C2HS.Switches()
@@ -190,6 +376,30 @@ src/C2HS/Gen/Bind.hs:998:25: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     |
 998 |     let enumVals = map (\(Just i, e) -> (i, e)) $ filter (isJust . fst) $
     |                         ^^^^^^^^^^^^^^^^^^^^^^
+
+src/C2HS/Gen/Bind.hs:1086:28: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+     |
+1086 |                           (tail idents)
+     |                            ^^^^
+
+src/C2HS/Gen/Bind.hs:1097:28: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+     |
+1097 |                           (tail aliases)
+     |                            ^^^^
+
+src/C2HS/Gen/Bind.hs:1099:39: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+     |
+1099 |                   firsts = concatFor (head aliases) $ \i ->
+     |                                       ^^^^
 
 src/C2HS/Gen/Bind.hs:1295:22: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
@@ -223,8 +433,8 @@ src/C2HS/Gen/Bind.hs:2516:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
      |
 2516 |       let CDecl specs [(declr, init', _)] at = ide `simplifyDecl` cdecl'
      |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[26 of 26] Compiling Main
 
+[26 of 26] Compiling Main
 src/Main.hs:576:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -236,32 +446,33 @@ src/Main.hs:576:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     |
 576 |         [versMajor, versMinor, versRev] = map show $ DV.versionBranch versnum
     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[27 of 27] Linking /tmp/workdir-c2hs/c2hs-0.28.8/dist-newstyle/build/x86_64-linux/ghc-9.6.5/c2hs-0.28.8/x/c2hs/build/c2hs/c2hs
+
+[27 of 27] Linking /tmp/workdir-c2hs/c2hs-0.28.8/dist-newstyle/build/x86_64-linux/ghc-9.10.2/c2hs-0.28.8/x/c2hs/build/c2hs/c2hs
 Configuring test suite 'test-system' for c2hs-0.28.8...
 Preprocessing test suite 'test-system' for c2hs-0.28.8...
 Building test suite 'test-system' for c2hs-0.28.8...
-
 <no location info>: warning: [GHC-32850] [-Wmissing-home-modules]
     These modules are needed for compilation but not listed in your .cabal file's other-modules for ‘c2hs-0.28.8-inplace-test-system’ :
         Paths_c2hs
+
 [1 of 2] Compiling Paths_c2hs
 [2 of 2] Compiling Main
-
 <no location info>: warning: [GHC-32850] [-Wmissing-home-modules]
     These modules are needed for compilation but not listed in your .cabal file's other-modules for ‘c2hs-0.28.8-inplace-test-system’ :
         Paths_c2hs
-[3 of 3] Linking /tmp/workdir-c2hs/c2hs-0.28.8/dist-newstyle/build/x86_64-linux/ghc-9.6.5/c2hs-0.28.8/t/test-system/build/test-system/test-system
+
+[3 of 3] Linking /tmp/workdir-c2hs/c2hs-0.28.8/dist-newstyle/build/x86_64-linux/ghc-9.10.2/c2hs-0.28.8/t/test-system/build/test-system/test-system
 Configuring test suite 'test-bugs' for c2hs-0.28.8...
 Preprocessing test suite 'test-bugs' for c2hs-0.28.8...
 Building test suite 'test-bugs' for c2hs-0.28.8...
-
 <no location info>: warning: [GHC-32850] [-Wmissing-home-modules]
     These modules are needed for compilation but not listed in your .cabal file's other-modules for ‘c2hs-0.28.8-inplace-test-bugs’ :
         Paths_c2hs
+
 [1 of 2] Compiling Paths_c2hs
 [2 of 2] Compiling Main
-
 <no location info>: warning: [GHC-32850] [-Wmissing-home-modules]
     These modules are needed for compilation but not listed in your .cabal file's other-modules for ‘c2hs-0.28.8-inplace-test-bugs’ :
         Paths_c2hs
-[3 of 3] Linking /tmp/workdir-c2hs/c2hs-0.28.8/dist-newstyle/build/x86_64-linux/ghc-9.6.5/c2hs-0.28.8/t/test-bugs/build/test-bugs/test-bugs
+
+[3 of 3] Linking /tmp/workdir-c2hs/c2hs-0.28.8/dist-newstyle/build/x86_64-linux/ghc-9.10.2/c2hs-0.28.8/t/test-bugs/build/test-bugs/test-bugs

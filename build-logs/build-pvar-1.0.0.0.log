@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - pvar-1.0.0.0 (lib) (first run)
  - pvar-1.0.0.0 (test:tests) (first run)
@@ -13,7 +14,15 @@ Preprocessing test suite 'tests' for pvar-1.0.0.0...
 Building test suite 'tests' for pvar-1.0.0.0...
 hspec-discover: WARNING - The `--no-main' option is deprecated and will be removed in a future release!
 [1 of 3] Compiling Test.Primitive.PVarSpec
+tests/Test/Primitive/PVarSpec.hs:101:40: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+101 |       mba <- newByteArray (n * sizeOf (head xs))
+    |                                        ^^^^
+
 [2 of 3] Compiling Spec
 [3 of 3] Compiling Main
 hspec-discover: WARNING - The `--no-main' option is deprecated and will be removed in a future release!
-[4 of 4] Linking /tmp/workdir-pvar/pvar-1.0.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/pvar-1.0.0.0/t/tests/build/tests/tests
+[4 of 4] Linking /tmp/workdir-pvar/pvar-1.0.0.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/pvar-1.0.0.0/t/tests/build/tests/tests

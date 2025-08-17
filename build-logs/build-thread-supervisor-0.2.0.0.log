@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - thread-supervisor-0.2.0.0 (lib) (first run)
  - thread-supervisor-0.2.0.0 (test:thread-supervisor-test) (first run)
@@ -7,6 +8,12 @@ Preprocessing library for thread-supervisor-0.2.0.0...
 Building library for thread-supervisor-0.2.0.0...
 [1 of 4] Compiling Data.DelayedQueue
 [2 of 4] Compiling Control.Concurrent.SupervisorInternal
+src/Control/Concurrent/SupervisorInternal.hs:20:39: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘foldl'’ from module ‘Data.Foldable’ is redundant
+   |
+20 | import           Data.Foldable       (foldl', for_, traverse_)
+   |                                       ^^^^^^
+
 [3 of 4] Compiling Control.Concurrent.Supervisor
 [4 of 4] Compiling Paths_thread_supervisor
 Configuring test suite 'thread-supervisor-test' for thread-supervisor-0.2.0.0...
@@ -14,7 +21,293 @@ Preprocessing test suite 'thread-supervisor-test' for thread-supervisor-0.2.0.0.
 Building test suite 'thread-supervisor-test' for thread-supervisor-0.2.0.0...
 [1 of 5] Compiling Control.Concurrent.SupervisorInternalSpec
 [2 of 5] Compiling Control.Concurrent.SupervisorSpec
+test/Control/Concurrent/SupervisorSpec.hs:618:29: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+618 |                 castFinish (head childQs)
+    |                             ^^^^
+
+test/Control/Concurrent/SupervisorSpec.hs:619:38: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+619 |                 report1 <- takeMVar (head childMons)
+    |                                      ^^^^
+
+test/Control/Concurrent/SupervisorSpec.hs:623:29: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+623 |                 castFinish (head childQs)
+    |                             ^^^^
+
+test/Control/Concurrent/SupervisorSpec.hs:624:38: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+624 |                 report2 <- takeMVar (head childMons)
+    |                                      ^^^^
+
+test/Control/Concurrent/SupervisorSpec.hs:642:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+642 |                 putMVar (head triggers) ()
+    |                          ^^^^
+
+test/Control/Concurrent/SupervisorSpec.hs:643:39: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+643 |                 report1 <- takeMVar $ head childMons
+    |                                       ^^^^
+
+test/Control/Concurrent/SupervisorSpec.hs:646:35: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+646 |                 rs2 <- takeMVar $ head markers
+    |                                   ^^^^
+
+test/Control/Concurrent/SupervisorSpec.hs:666:30: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+666 |                 killThread $ head tids
+    |                              ^^^^
+
+test/Control/Concurrent/SupervisorSpec.hs:667:39: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+667 |                 report1 <- takeMVar $ head childMons
+    |                                       ^^^^
+
+test/Control/Concurrent/SupervisorSpec.hs:670:38: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+670 |                 rs2 <- isEmptyMVar $ head markers
+    |                                      ^^^^
+
+test/Control/Concurrent/SupervisorSpec.hs:672:36: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+672 |                 tid2 <- takeMVar $ head markers
+    |                                    ^^^^
+
+test/Control/Concurrent/SupervisorSpec.hs:674:39: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+674 |                 report2 <- takeMVar $ head childMons
+    |                                       ^^^^
+
+test/Control/Concurrent/SupervisorSpec.hs:713:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+713 |                 putMVar (head triggers) ()
+    |                          ^^^^
+
+test/Control/Concurrent/SupervisorSpec.hs:714:39: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+714 |                 report1 <- takeMVar $ head childMons
+    |                                       ^^^^
+
+test/Control/Concurrent/SupervisorSpec.hs:717:35: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+717 |                 rs2 <- takeMVar $ head markers
+    |                                   ^^^^
+
+test/Control/Concurrent/SupervisorSpec.hs:737:30: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+737 |                 killThread $ head tids
+    |                              ^^^^
+
+test/Control/Concurrent/SupervisorSpec.hs:738:39: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+738 |                 report1 <- takeMVar $ head childMons
+    |                                       ^^^^
+
+test/Control/Concurrent/SupervisorSpec.hs:741:38: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+741 |                 rs2 <- isEmptyMVar $ head markers
+    |                                      ^^^^
+
+test/Control/Concurrent/SupervisorSpec.hs:743:36: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+743 |                 tid2 <- takeMVar $ head markers
+    |                                    ^^^^
+
+test/Control/Concurrent/SupervisorSpec.hs:745:39: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+745 |                 report2 <- takeMVar $ head childMons
+    |                                       ^^^^
+
+test/Control/Concurrent/SupervisorSpec.hs:900:29: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+900 |                 castFinish (head childQs)
+    |                             ^^^^
+
+test/Control/Concurrent/SupervisorSpec.hs:921:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+921 |                 putMVar (head triggers) ()
+    |                          ^^^^
+
+test/Control/Concurrent/SupervisorSpec.hs:922:44: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+922 |                 (reason1, _) <- takeMVar $ head childMons
+    |                                            ^^^^
+
+test/Control/Concurrent/SupervisorSpec.hs:946:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+946 |                 putMVar (head triggers) ()
+    |                          ^^^^
+
+test/Control/Concurrent/SupervisorSpec.hs:952:30: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+952 |                 killThread $ head tids
+    |                              ^^^^
+
+test/Control/Concurrent/SupervisorSpec.hs:1026:62: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+     |
+1026 |                 _ <- async $ threadDelay 1000 *> castFinish (head childQs)
+     |                                                              ^^^^
+
+test/Control/Concurrent/SupervisorSpec.hs:1029:20: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+     |
+1029 |             (fst . head) reports `shouldBe` Normal
+     |                    ^^^^
+
+test/Control/Concurrent/SupervisorSpec.hs:1030:13: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+     |
+1030 |             tail reports `shouldSatisfy` all ((==) Killed . fst)
+     |             ^^^^
+
+test/Control/Concurrent/SupervisorSpec.hs:1046:29: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+     |
+1046 |                 castFinish (head childQs)
+     |                             ^^^^
+
+test/Control/Concurrent/SupervisorSpec.hs:1051:29: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+     |
+1051 |                 castFinish (head childQs)
+     |                             ^^^^
+
+test/Control/Concurrent/SupervisorSpec.hs:1070:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+     |
+1070 |                 putMVar (head triggers) ()
+     |                          ^^^^
+
+test/Control/Concurrent/SupervisorSpec.hs:1096:30: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+     |
+1096 |                 killThread $ head tids
+     |                              ^^^^
+
+test/Control/Concurrent/SupervisorSpec.hs:1102:36: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+     |
+1102 |                 tid2 <- takeMVar $ head markers
+     |                                    ^^^^
+
+test/Control/Concurrent/SupervisorSpec.hs:1143:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+     |
+1143 |                 putMVar (head triggers) ()
+     |                          ^^^^
+
+test/Control/Concurrent/SupervisorSpec.hs:1169:30: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+     |
+1169 |                 killThread $ head tids1
+     |                              ^^^^
+
 [3 of 5] Compiling Data.DelayedQueueSpec
+test/Data/DelayedQueueSpec.hs:5:41: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘foldl'’ from module ‘Data.List’ is redundant
+  |
+5 | import           Data.List             (foldl', unfoldr)
+  |                                         ^^^^^^
+
 [4 of 5] Compiling Main
 [5 of 5] Compiling Paths_thread_supervisor
-[6 of 6] Linking /tmp/workdir-thread-supervisor/thread-supervisor-0.2.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/thread-supervisor-0.2.0.0/t/thread-supervisor-test/build/thread-supervisor-test/thread-supervisor-test
+[6 of 6] Linking /tmp/workdir-thread-supervisor/thread-supervisor-0.2.0.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/thread-supervisor-0.2.0.0/t/thread-supervisor-test/build/thread-supervisor-test/thread-supervisor-test

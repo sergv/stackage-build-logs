@@ -1,0 +1,39 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - cgi-3001.5.1.0 (lib) (first run)
+Configuring library for cgi-3001.5.1.0...
+Preprocessing library for cgi-3001.5.1.0...
+Building library for cgi-3001.5.1.0...
+[1 of 5] Compiling Network.CGI.Accept
+[2 of 5] Compiling Network.CGI.Cookie
+[3 of 5] Compiling Network.CGI.Protocol
+[4 of 5] Compiling Network.CGI.Monad
+src/Network/CGI/Monad.hs:62:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
+    Noncanonical ‘return’ definition detected
+    in the instance declaration for ‘Monad (CGIT m)’.
+    ‘return’ will eventually be removed in favour of ‘pure’
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+   |
+62 |     return = CGIT . return
+   |     ^^^^^^^^^^^^^^^^^^^^^^
+
+[5 of 5] Compiling Network.CGI
+src/Network/CGI.hs:334:38: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+334 |   where slash s = if not (null s) && head s /= '/' then '/':s else s
+    |                                      ^^^^
+
+src/Network/CGI.hs:589:25: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+589 |     where sortNub = map head . group . sort
+    |                         ^^^^
+

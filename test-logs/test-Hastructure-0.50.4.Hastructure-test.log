@@ -1,0 +1,474 @@
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - Hastructure-0.50.4 (test:Hastructure-test) (ephemeral targets)
+Preprocessing test suite 'Hastructure-test' for Hastructure-0.50.4...
+Building test suite 'Hastructure-test' for Hastructure-0.50.4...
+Running 1 test suites...
+Test suite Hastructure-test: RUNNING...
+pool run resp[((1000.00,2023-08-01,Nothing)
++------------++---------+-----------+----------+------------+------------+---------+----------+------+----------+-------------+-------------------+----------------------------------------+
+|            || Balance | Principal | Interest | Prepayment | Delinquent | Default | Recovery | Loss |    IRate | BorrowerNum | PrepaymentPenalty |                         CumulativeStat |
++============++=========+===========+==========+============+============+=========+==========+======+==========+=============+===================+========================================+
+| 2023-09-01 ||  995.66 |      0.00 |     0.00 |       0.00 |       4.34 |    0.00 |     0.00 | 0.00 | 0.080000 |     Nothing |           Nothing |   Just (0.00,0.00,4.34,0.00,0.00,0.00) |
++------------++---------+-----------+----------+------------+------------+---------+----------+------+----------+-------------+-------------------+----------------------------------------+
+| 2023-10-01 ||  493.66 |    497.82 |     0.00 |       0.00 |       4.18 |    0.00 |     0.00 | 0.00 | 0.080000 |     Nothing |           Nothing | Just (497.82,0.00,8.52,0.00,0.00,0.00) |
++------------++---------+-----------+----------+------------+------------+---------+----------+------+----------+-------------+-------------------+----------------------------------------+
+| 2023-10-31 ||  493.66 |      0.00 |     0.00 |       0.00 |       0.00 |    0.00 |     0.00 | 0.00 | 0.000000 |     Nothing |           Nothing | Just (497.82,0.00,8.52,0.00,0.00,0.00) |
++------------++---------+-----------+----------+------------+------------+---------+----------+------+----------+-------------+-------------------+----------------------------------------+
+| 2023-11-30 ||  493.66 |      0.00 |     0.00 |       0.00 |       0.00 |    0.00 |     0.00 | 0.00 | 0.000000 |     Nothing |           Nothing | Just (497.82,0.00,8.52,0.00,0.00,0.00) |
++------------++---------+-----------+----------+------------+------------+---------+----------+------+----------+-------------+-------------------+----------------------------------------+
+| 2023-12-31 ||  493.66 |      0.00 |     0.00 |       0.00 |       0.00 |    0.00 |     0.00 | 0.00 | 0.000000 |     Nothing |           Nothing | Just (497.82,0.00,8.52,0.00,0.00,0.00) |
++------------++---------+-----------+----------+------------+------------+---------+----------+------+----------+-------------+-------------------+----------------------------------------+
+| 2024-01-31 ||  499.61 |      0.00 |     0.00 |       0.00 |       0.00 |    1.30 |     0.00 | 1.30 | 0.000952 |     Nothing |           Nothing | Just (497.82,0.00,8.52,1.30,0.00,1.30) |
++------------++---------+-----------+----------+------------+------------+---------+----------+------+----------+-------------+-------------------+----------------------------------------+
+| 2024-02-29 ||  496.64 |      2.97 |     0.00 |       0.00 |       0.00 |    1.25 |     0.00 | 1.25 | 0.000480 |     Nothing |           Nothing | Just (500.79,0.00,8.52,2.55,0.00,2.55) |
++------------++---------+-----------+----------+------------+------------+---------+----------+------+----------+-------------+-------------------+----------------------------------------+
+,fromList [(HistoryDefaults,0.00),(HistoryDelinquency,0.00),(HistoryLoss,0.00)])]
+Tests
+  Mortgage cashflow Tests
+    Fix rate mortgage:                                        OK
+    first Date:                                               OK
+    Even Principal Type of Mortgage:                          OK
+    Default asset won't have cashflow if no assumption:       OK
+    Balloon Mortgage test 1:                                  OK
+    Balloon Mortgage test 2:                                  OK
+    Balloon Mortgage test 3:                                  OK
+    Balloon Mortgage test 4:                                  OK
+    Balloon Mortgage test 5:                                  OK
+  Mortgage Calc Test
+    Calc Pmt 1:                                               OK
+    Calc Pmt 2:                                               OK
+  Buy to let Mortgage Projection
+    :                                                         OK
+    extend 1st flow:                                          OK
+    extend 1st flow:                                          OK
+  Loan cashflow Tests
+    Loan 1:                                                   OK
+  Lease CF Test
+    1 year Regular Lease sum of rentals/dates:                OK
+    1 year Regular Lease sum of rentals/dates:                OK
+    1 year Regular Lease sum of rentals/first:                OK
+    1 year Regular Lease sum of rentals/last:                 OK
+    1 year Regular Lease sum of rentals:                      OK
+    1 year Regular Lease first pay date:                      OK
+    1 year Stepup lease first pay:                            OK
+    1 year Stepup lease:                                      OK
+    1 year Stepup lease:                                      OK
+    1 year Stepup Curve lease:                                OK
+    1 year Stepup Curve lease:                                OK
+    1 year Stepup Curve lease:                                OK
+    Lease with Assumptions:                                   OK
+  Installment cashflow Tests
+    Loan 1:                                                   OK
+    Loan 1 (on schedule):                                     OK
+    Stressed Loan 1:                                          OK
+    Loan 2 with aging(on schedule):                           OK
+    Stress Loan 2 with aging:                                 OK
+    First No Fee Loan at first period:                        OK
+    First No Fee Loan at first period:                        OK
+    First No Fee Loan at first period:                        OK
+  ARM cashflow tests
+    ARM case 1/ cf length:                                    OK
+    ARM case 1/ first cash:                                   OK
+    ARM case 1/ frist reset:                                  OK
+    ARM case 1/periodic reset :                               OK
+    ARM case 1/remains same before next reset:                OK
+    ARM case 1:                                               OK
+    ARM case 1:                                               OK
+    ARM case 1:                                               OK
+    ARM case 1:                                               OK
+  Prepay Penalty tests
+    ppy case 1:                                               OK
+    ppy case 1:                                               OK
+    ppy case 2:                                               OK
+    ppy case 2 1_0:                                           OK
+    ppy case 2 1:                                             OK
+    ppy case 3:                                               OK
+    ppy case 3 1_0:                                           OK
+    ppy case 3 1:                                             OK
+    ppy case 4:                                               OK
+    ppy case 4 1:                                             OK
+    ppy case 5:                                               OK
+    ppy case 5 1:                                             OK
+  delinq run on schedule flow
+    case 01:                                                  OK
+    case 01_Dates:                                            OK
+    case 02:                                                  OK
+    case 03:                                                  OK
+    case 04:                                                  OK
+    case 05:                                                  OK
+    case 06:                                                  OK
+    case with prepay assump:                                  OK
+  Mortgage Delinq Projection
+    :                                                         OK
+    first row:                                                OK
+    second row:                                               OK
+    last row:                                                 OK
+    extend 1st flow:                                          OK
+  Non Payment Mortgage Projection
+    NonPay:                                                   OK
+    first accured:                                            OK
+    first amort:                                              OK
+    IO:                                                       OK
+    first accured:                                            OK
+    first amort:                                              OK
+  Invoice CF test
+    Plain Receivable:                                         OK
+    Fix Fee:                                                  OK
+    Defaulted invoice:                                        OK
+  fixed Asset Test
+    StraightLine:init Asset: size:                            OK
+    StraightLine:init Asset with ext :                        OK
+    StraightLine:init Asset with diff cur balance :           OK
+    StraightLine:init Asset with diff cur balance :           OK
+    StraightLine:init Asset with diff cur balance :           OK
+    Double Decline:size:                                      OK
+    Double Decline:first row with full cur bal:               OK
+    Double Decline:init Asset :last:                          OK
+    Double Decline:init Asset: with ext periods:              OK
+  Cashflow Utils
+    Cashflow Aggregation only one return:                     OK
+    Cashflow Aggregation agg correct amount:                  OK
+    Cashflow Aggregation Sum up:                              OK
+    Cashflow Aggregation agg correct amount:                  OK
+    Cashflow Aggregation with two dates:                      OK
+    Cashflow Aggregation agg correct amount:                  OK
+    Cashflow Aggregation with two flows at second cutoff:     OK
+    Cashflow Aggregation:                                     OK
+    Get Latest Cashflow 1:                                    OK
+    Get Latest Cashflow 2:                                    OK
+    Get Latest Cashflow 3:                                    OK
+  Slice Time Series
+    Cashflow:                                                 OK
+    Cashflow:                                                 OK
+    Cashflow:                                                 OK
+    Cashflow:                                                 OK
+    Cashflow:                                                 OK
+    Cashflow:                                                 OK
+    Range of Ts:                                              OK
+    Range of Ts:                                              OK
+    Range of Ts:                                              OK
+    Range of Ts:                                              OK
+  Merge Cashflow Test from two entities
+    Merge Cashflow Test 1:                                    OK
+    Merge Cashflow with same begin date 1:                    OK
+    Merge Cashflow with diff begin date 2:                    OK
+  Combine Cashflow Test
+    No overlap combine:                                       OK
+    Overlap combine:                                          OK
+    Intersection:                                             OK
+  Test on Haircut
+    Haircut of Nothing:                                       OK
+    Haircut on principal:                                     OK
+    Haircut on interest:                                      OK
+    Haircut on prepayment:                                    OK
+    Haircut on recoveries:                                    OK
+    Haircut on prepay penalty:                                OK
+    Haircut on mix:                                           OK
+  Merge Two CF from two entities
+    txn1 + txn 2:                                             OK
+    txn1 + txn 2/3:                                           OK
+    txn1/4 + txn 2/3:                                         OK
+    txn1/2 + txn 1/2:                                         OK
+    txn1/2/3 + txn 1/2:                                       OK
+  Test on calc CumStat
+    MortDelinq CumStat:                                       OK
+    Sum on pool fields-prin:                                  OK
+    Sum on pool fields-int:                                   OK
+    Sum on pool fields-ppy:                                   OK
+    Sum on pool fields-delinq:                                OK
+    Sum on pool fields-default:                               OK
+    Sum on pool fields-recovery:                              OK
+    Sum on pool fields-loss:                                  OK
+    Sum on pool fields-cash:                                  OK
+    Sum on pool fields-prepay penalty:                        OK
+    Patch Cumulative 0:                                       OK
+  test on interest claw
+    claw in first:                                            OK
+    claw in second:                                           OK
+    claw in all:                                              OK
+  test on combine cashflow with stats
+    combineCF one extra row:                                  OK
+    pool agg with init default=100:                           OK
+    pool agg with init default=100 and projected cf default:  OK
+    pool agg with init default=100 and projected cf default2: OK
+  Pricing Tests
+    PV test:                                                  OK
+    PV test with curve change in middle:                      OK
+    flat rate discount :                                      OK
+     discount curve with two rate points :                    OK
+    pay prin to a bond:                                       OK
+    pay int to 2 bonds:                                       OK
+    Z spread test:                                            OK
+  Bond consoliation & patchtesting
+    test on patching bond factor:                             OK
+    merge txn with two drawdowns:                             OK
+    merge txn with one drawdown at begin:                     OK
+    merge txn with one drawdown at end:                       OK
+    merge txn with one drawdown at end:                       OK
+  write off on bond
+    write off on bond 1:                                      OK
+    over write off on bond 1:                                 OK
+  Curve Tests
+    Query interst rate curve by date:                         OK
+    Pricing Curve Test1:                                      OK
+    Pricing Curve Test2:                                      OK
+    Pricing Curve Test3:                                      OK
+  Period Curve Tests
+    Query period curve by period:Future:                      OK
+    Query period curve by period:Future:                      OK
+    Query period curve by period:Past :                       OK
+    Query period curve by period:Past :                       OK
+  PV test
+    PV 6 months:                                              OK
+    PV 1 Y:                                                   OK
+  seq fun test
+    clear:even:                                               OK
+    shortfall:                                                OK
+    over :                                                    OK
+  date related 
+    1 Month:                                                  OK
+    zero extra:                                               OK
+  prorata Test
+    3 bals:                                                   OK
+    2 bals:                                                   OK
+  operation on ts
+    split ts by date:                                         OK
+    split ts by date on left 1:                               OK
+    split ts by date on right 2:                              OK
+    split ts by date on left 3:                               OK
+  Expense Tests
+    calc on diff same period for recur fee:                   OK
+    test on Custom Fee Type:                                  OK
+  deal stat query Tests
+    query current assets in defaulted status:                 OK
+  Trigger Tests
+    deal becomes revolving:                                   OK
+  Deal Tests
+    Dates pattern:                                            OK
+  Liq provider test
+    Liq Provider Int test:                                    OK
+  pool cashflow test
+    pool begin flow:                                          OK
+    total principal bal:                                      OK
+    last bond A payment date:                                 OK
+  Deal Group Test
+    group bond balance:                                       OK
+    view viewDealAllBonds :                                   OK
+    total bond balance:                                       OK
+    original bond balance:                                    OK
+  Day Count Tests 1
+    Act/Act:                                                  OK
+    Act/365F:                                                 OK
+    Act/360:                                                  OK
+    Act/365A:                                                 OK
+    Act/365L:                                                 OK
+    NL/365:                                                   OK
+    30 360 ISDA:                                              OK
+    30E 360:                                                  OK
+    30Ep 360:                                                 OK
+    30 360 German:                                            OK
+    30 360 US:                                                OK
+  Day Count Tests 2
+    Act/Act:                                                  OK
+    Act/365F:                                                 OK
+    Act/360:                                                  OK
+    Act/365A:                                                 OK
+    Act/365L:                                                 OK
+    NL/365:                                                   OK
+    30 360 ISDA:                                              OK
+    30E 360:                                                  OK
+    30Ep 360:                                                 OK
+    30 360 German:                                            OK
+    30 360 US:                                                OK
+  Day Count Tests 3
+    Act/Act:                                                  OK
+    Act/365F:                                                 OK
+    Act/360:                                                  OK
+    Act/365A:                                                 OK
+    Act/365L:                                                 OK
+    NL/365:                                                   OK
+    30 360 ISDA:                                              OK
+    30E 360:                                                  OK
+    30Ep 360:                                                 OK
+    30 360 German:                                            OK
+    30 360 US:                                                OK
+  Day Count Tests 4
+    Act/Act:                                                  OK
+    Act/365F:                                                 OK
+    Act/360:                                                  OK
+    Act/365A:                                                 OK
+    Act/365L:                                                 OK
+    NL/365:                                                   OK
+    30 360 ISDA:                                              OK
+    30E 360:                                                  OK
+    30Ep 360:                                                 OK
+    30 360 German:                                            OK
+    30 360 US:                                                OK
+  Test Trigger Factor Curve
+    :                                                         OK
+    FactorCurveClosed:                                        OK
+    FactorCurveClosed:                                        OK
+    FactorCurveClosed:                                        OK
+    FactorCurveClosed:                                        OK
+    Multiply Ts:                                              OK
+  Test Trigger Threshold Curve
+    :                                                         OK
+    :                                                         OK
+    :                                                         OK
+    :                                                         OK
+  curve update test
+    shift curve:                                              OK
+  Test on Date Vector generation
+    :                                                         OK
+    Week Day Test:                                            OK
+    Week Day Test:                                            OK
+    :                                                         OK
+    First Date in Pattern:                                    OK
+    Custom Dates:                                             OK
+    Custom Dates:                                             OK
+    Mutiple Date Pattern:                                     OK
+    :                                                         OK
+    exclude dates:                                            OK
+    offset by dates:                                          OK
+    No Inclusive or Exclusive:                                OK
+    No Inclusive or Exclusive:                                OK
+    No Inclusive or Exclusive:                                OK
+    No Inclusive or Exclusive:                                OK
+    starts :                                                  OK
+    starts :                                                  OK
+    ends :                                                    OK
+    ends :                                                    OK
+    ends :                                                    OK
+  padding
+    :                                                         OK
+    :                                                         OK
+  slice dates
+    sliceAfterkeepPrevious:                                   OK
+    sliceAfterkeepPrevious:                                   OK
+  Cap Test
+    Cap with 2:                                               OK
+    No Cap:                                                   OK
+  rounding by test
+    Rounding on Rate:                                         OK
+    Rounding on Rate:                                         OK
+    Rounding on Rate:                                         OK
+    Rounding on Balance:                                      OK
+    Rounding on Balance:                                      OK
+    Rounding on Balance:                                      OK
+  sliceTest
+    slice 1:                                                  OK
+    slice 2:                                                  OK
+    slice 2:                                                  OK
+    slice 3:                                                  OK
+  split times series test
+    split before earliest:                                    OK
+    split after latest:                                       OK
+    split in middle,inclusive:                                OK
+    split in middle,exclusive:                                OK
+  lookup table down
+    down & inclusive:                                         OK
+    down & exclusive:                                         OK
+    up & inclusive:                                           OK
+    up & exclusive:                                           OK
+    table interval:                                           OK
+    table interval 1:                                         OK
+    table interval 2:                                         OK
+  test on last of on list
+    on non empty:                                             OK
+  write off on bond
+    write off on bond 1:                                      OK
+    write off on bond 2:                                      OK
+    write off on all bonds :                                  OK
+  scale list test
+    :                                                         OK
+    :                                                         OK
+  Interest on Bank Account Test
+    Build EarnIntAction:                                      OK
+    Build EarnIntAction Same Year:                            OK
+    Validate Interest Calculation 1:                          OK
+    Validate Interest Calculation 2:                          OK
+  Interest on Invest Account Test
+    Validate Interest Calculation 1:                          OK
+    Validate Interest Calculation 2:                          OK
+  Test On Reserve Acc
+    Test on Pct Reserve:                                      OK
+    Test on fix Reserve:                                      OK
+    test on reserve account gap:                              OK
+    test on reserve account gap:                              OK
+  
+    Query Interest Collected:                                 OK
+  Txn test
+    Weight Average Balance :                                  OK
+    Weight Average Balance :                                  OK
+    Weight Average Balance :                                  OK
+    Get Txn As Of:                                            OK
+    Get Txn As Of:                                            OK
+    Get Txn As Of:                                            OK
+    Test View balance as of :                                 OK
+    weight Average Balance 0 ' :                              OK
+    weight Average Balance 1:                                 OK
+    weight Average Balance 2:                                 OK
+    weight Average Balance 3:                                 OK
+    weight Average Balance 4:                                 OK
+     view balance test:                                       OK
+     view balance test:                                       OK
+     view balance test:                                       OK
+     view balance test:                                       OK
+  ARM reset curve test
+    no adj rate:                                              OK
+    cap at first period:                                      OK
+    cap at second period:                                     OK
+    cap at life cap:                                          OK
+    life floor:                                               OK
+  Interest Rounding
+    rounding by 0.005:                                        OK
+  Calc WAL
+    WAL by Month:                                             OK
+    WAL by Year:                                              OK
+  Duration Test
+    Duration 1:                                               OK
+    Duration 2:                                               OK
+    Duration 3:                                               OK
+    Convexity 1:                                              OK
+  FV Test
+    FV2 test:                                                 OK
+    FV2 test:                                                 OK
+  Pricing on Asset
+    Loan Pricing(Inc Int):                                    OK
+    Loan Pricing(Exc Int):                                    OK
+  Irr Test
+    required Amount with 8%:                                  OK
+    IRR with 8%:                                              OK
+    IRR with custom:                                          OK
+  Survivor Test
+    Survivor 1:                                               OK
+    Survivor 2:                                               OK
+  Base Deal Test
+    empty pool flow:                                          OK
+    pool current balance (run time):                          OK
+    pool current balance (run time 1):                        OK
+    pool current balance (run time 2):                        OK
+    pool current balance (run time 60):                       OK
+  Revolving: Single Pool
+    Asset: Loan:                                              OK
+    empty pool flow:                                          OK
+  Multi Pool Deal Test
+    pool current balance (run time):                          OK
+    pool current balance (run time):                          OK
+    pool current balance (run time):                          OK
+    pool current balance (run time):                          OK
+  Cap Rate Tests
+    Accure out of scope:                                      OK
+    Accure out of scope:                                      OK
+    Accrue on flat curve:                                     OK
+  Pricing Tests
+    First Accure:                                             OK
+    Accure on unused balance:                                 OK
+    Accure on unused balance :                                OK
+
+All 366 tests passed (0.01s)
+Test suite Hastructure-test: PASS
+Test suite logged to:
+/tmp/workdir-Hastructure/Hastructure-0.50.4/dist-newstyle/build/x86_64-linux/ghc-9.10.2/Hastructure-0.50.4/t/Hastructure-test/test/Hastructure-0.50.4-Hastructure-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

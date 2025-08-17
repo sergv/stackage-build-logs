@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - getopt-generics-0.13.1.0 (lib) (first run)
  - getopt-generics-0.13.1.0 (test:spec) (first run)
@@ -8,12 +9,35 @@ Building library for getopt-generics-0.13.1.0...
 [ 1 of 12] Compiling Paths_getopt_generics
 [ 2 of 12] Compiling WithCli.Argument
 [ 3 of 12] Compiling WithCli.Flag
+src/WithCli/Flag.hs:9:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.List’ is redundant
+      except perhaps to import instances from ‘Data.List’
+    To import instances alone, use: import Data.List()
+  |
+9 | import           Data.List
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [ 4 of 12] Compiling WithCli.Modifier.Types
 [ 5 of 12] Compiling WithCli.Normalize
 [ 6 of 12] Compiling WithCli.Result
 [ 7 of 12] Compiling WithCli.Parser
 [ 8 of 12] Compiling WithCli.Modifier
+src/WithCli/Modifier.hs:28:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.List’ is redundant
+      except perhaps to import instances from ‘Data.List’
+    To import instances alone, use: import Data.List()
+   |
+28 | import           Data.List (foldl')
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [ 9 of 12] Compiling WithCli.HasArguments
+src/WithCli/HasArguments.hs:30:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.List.Compat’ is redundant
+      except perhaps to import instances from ‘Data.List.Compat’
+    To import instances alone, use: import Data.List.Compat()
+   |
+30 | import           Data.List.Compat
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 src/WithCli/HasArguments.hs:175:38: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
@@ -30,6 +54,7 @@ src/WithCli/HasArguments.hs:262:39: warning: [GHC-62161] [-Wincomplete-uni-patte
     |
 262 |       (NonOptionsParser "BOOL" False (\ (s : r) -> (, r) <$> maybe (parseError "BOOL" Nothing s) (return . const . Just) (parseBool s))),
     |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [10 of 12] Compiling WithCli.Pure.Internal
 [11 of 12] Compiling WithCli.Pure
 [12 of 12] Compiling WithCli
@@ -41,13 +66,36 @@ Building test suite 'spec' for getopt-generics-0.13.1.0...
 [ 3 of 36] Compiling WithCli.Argument
 [ 4 of 36] Compiling WithCli.ArgumentSpec
 [ 5 of 36] Compiling WithCli.Flag
+src/WithCli/Flag.hs:9:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.List’ is redundant
+      except perhaps to import instances from ‘Data.List’
+    To import instances alone, use: import Data.List()
+  |
+9 | import           Data.List
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [ 6 of 36] Compiling WithCli.Modifier.Types
 [ 7 of 36] Compiling WithCli.Normalize
 [ 8 of 36] Compiling WithCli.NormalizeSpec
 [ 9 of 36] Compiling WithCli.Result
 [10 of 36] Compiling WithCli.Parser
 [11 of 36] Compiling WithCli.Modifier
+src/WithCli/Modifier.hs:28:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.List’ is redundant
+      except perhaps to import instances from ‘Data.List’
+    To import instances alone, use: import Data.List()
+   |
+28 | import           Data.List (foldl')
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [12 of 36] Compiling WithCli.HasArguments
+src/WithCli/HasArguments.hs:30:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.List.Compat’ is redundant
+      except perhaps to import instances from ‘Data.List.Compat’
+    To import instances alone, use: import Data.List.Compat()
+   |
+30 | import           Data.List.Compat
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 src/WithCli/HasArguments.hs:175:38: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
@@ -64,12 +112,12 @@ src/WithCli/HasArguments.hs:262:39: warning: [GHC-62161] [-Wincomplete-uni-patte
     |
 262 |       (NonOptionsParser "BOOL" False (\ (s : r) -> (, r) <$> maybe (parseError "BOOL" Nothing s) (return . const . Just) (parseBool s))),
     |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [13 of 36] Compiling WithCli.Pure.Internal
 [14 of 36] Compiling WithCli.Pure
 [15 of 36] Compiling WithCli.PureSpec
 [16 of 36] Compiling Util
 [17 of 36] Compiling WithCli.Pure.RecordSpec
-
 test/WithCli/Pure/RecordSpec.hs:64:13: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -197,8 +245,8 @@ test/WithCli/Pure/RecordSpec.hs:191:13: warning: [GHC-62161] [-Wincomplete-uni-p
     |
 191 |         let OutputAndExit output = parse "--help" :: Result WithoutSelectors
     |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[18 of 36] Compiling WithCli.ParserSpec
 
+[18 of 36] Compiling WithCli.ParserSpec
 test/WithCli/ParserSpec.hs:24:47: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a lambda abstraction:
@@ -214,8 +262,8 @@ test/WithCli/ParserSpec.hs:26:29: warning: [GHC-62161] [-Wincomplete-uni-pattern
    |
 26 |             parserConvert = \ (Just x) -> return x
    |                             ^^^^^^^^^^^^^^^^^^^^^^
-[19 of 36] Compiling ModifiersSpec.RenameOptionsSpec
 
+[19 of 36] Compiling ModifiersSpec.RenameOptionsSpec
 test/ModifiersSpec/RenameOptionsSpec.hs:45:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -225,8 +273,8 @@ test/ModifiersSpec/RenameOptionsSpec.hs:45:11: warning: [GHC-62161] [-Wincomplet
    |
 45 |       let Errors errs = modsParse
    |           ^^^^^^^^^^^^^^^^^^^^^^^...
-[20 of 36] Compiling ModifiersSpec
 
+[20 of 36] Compiling ModifiersSpec
 test/ModifiersSpec.hs:27:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -306,6 +354,7 @@ test/ModifiersSpec.hs:85:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
    |
 85 |           OutputAndExit output =
    |           ^^^^^^^^^^^^^^^^^^^^^^...
+
 [21 of 36] Compiling WithCli.HasArgumentsSpec
 [22 of 36] Compiling WithCli
 [23 of 36] Compiling WithCli.ModifierSpec
@@ -316,7 +365,6 @@ test/ModifiersSpec.hs:85:11: warning: [GHC-62161] [-Wincomplete-uni-patterns]
 [28 of 36] Compiling Simple
 [29 of 36] Compiling RecordType
 [30 of 36] Compiling ModifiersSpec.UseForPositionalArgumentsSpec
-
 test/ModifiersSpec/UseForPositionalArgumentsSpec.hs:58:9: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     Pattern match(es) are non-exhaustive
     In a pattern binding:
@@ -326,10 +374,11 @@ test/ModifiersSpec/UseForPositionalArgumentsSpec.hs:58:9: warning: [GHC-62161] [
    |
 58 |     let OutputAndExit output = modsParse
    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
 [31 of 36] Compiling CustomOptionRecord
 [32 of 36] Compiling CustomOption
 [33 of 36] Compiling DocsSpec
 [34 of 36] Compiling WithCli.ResultSpec
 [35 of 36] Compiling WithCliSpec
 [36 of 36] Compiling Main
-[37 of 37] Linking /tmp/workdir-getopt-generics/getopt-generics-0.13.1.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/getopt-generics-0.13.1.0/t/spec/build/spec/spec
+[37 of 37] Linking /tmp/workdir-getopt-generics/getopt-generics-0.13.1.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/getopt-generics-0.13.1.0/t/spec/build/spec/spec

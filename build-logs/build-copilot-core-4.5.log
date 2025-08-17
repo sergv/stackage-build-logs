@@ -1,0 +1,114 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - copilot-core-4.5 (lib) (first run)
+ - copilot-core-4.5 (test:unit-tests) (first run)
+Configuring library for copilot-core-4.5...
+Preprocessing library for copilot-core-4.5...
+Building library for copilot-core-4.5...
+[1 of 6] Compiling Copilot.Core.Type.Array
+src/Copilot/Core/Type/Array.hs:56:21: warning: [GHC-40910] [-Wunused-matches]
+    Defined but not used: ‘x’
+   |
+56 | arrayUpdate (Array (x:xs)) 0 y = Array (y:xs)
+   |                     ^
+
+src/Copilot/Core/Type/Array.hs:64:17: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘x’ shadows the existing binding
+      bound at src/Copilot/Core/Type/Array.hs:58:21
+   |
+64 |     arrayAppend x (Array xs) = Array (x:xs)
+   |                 ^
+
+src/Copilot/Core/Type/Array.hs:64:26: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘xs’ shadows the existing binding
+      bound at src/Copilot/Core/Type/Array.hs:58:23
+   |
+64 |     arrayAppend x (Array xs) = Array (x:xs)
+   |                          ^^
+
+[2 of 6] Compiling Copilot.Core.Type
+src/Copilot/Core/Type.hs:142:14: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+    |
+142 | data Type :: * -> * where
+    |              ^
+
+src/Copilot/Core/Type.hs:142:19: warning: [GHC-39567] [-Wstar-is-type]
+    Using ‘*’ (or its Unicode variant) to mean ‘Data.Kind.Type’
+    relies on the StarIsType extension, which will become
+    deprecated in the future.
+    Suggested fix: Use ‘Type’ from ‘Data.Kind’ instead.
+    |
+142 | data Type :: * -> * where
+    |                   ^
+
+src/Copilot/Core/Type.hs:166:1: warning: [GHC-62161] [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In an equation for ‘typeSize’:
+        Patterns of type ‘Type (Array n t)’ not matched: Struct _
+    |
+166 | typeSize ty@(Array ty'@(Array _)) = typeLength ty * typeSize ty'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+src/Copilot/Core/Type.hs:289:3: warning: [GHC-62161] [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In an equation for ‘simpleType’:
+        Patterns of type ‘Type (Array n t)’ not matched: Struct _
+    |
+289 |   simpleType (Array t) = SArray t
+    |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[3 of 6] Compiling Copilot.Core.Operators
+[4 of 6] Compiling Copilot.Core.Expr
+[5 of 6] Compiling Copilot.Core.Spec
+[6 of 6] Compiling Copilot.Core
+Configuring test suite 'unit-tests' for copilot-core-4.5...
+Preprocessing test suite 'unit-tests' for copilot-core-4.5...
+Building test suite 'unit-tests' for copilot-core-4.5...
+[1 of 4] Compiling Test.Copilot.Core.Type
+tests/Test/Copilot/Core/Type.hs:10:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.Maybe’ is redundant
+      except perhaps to import instances from ‘Data.Maybe’
+    To import instances alone, use: import Data.Maybe()
+   |
+10 | import Data.Maybe                           (isJust)
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/Test/Copilot/Core/Type.hs:139:39: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[SimpleType]’ not matched: []
+    |
+139 |   forAllBlind (shuffle simpleTypes) $ \(t:ts) ->
+    |                                       ^^^^^^^^^^...
+
+[2 of 4] Compiling Test.Copilot.Core.Type.Array
+tests/Test/Copilot/Core/Type/Array.hs:144:32: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘length’ shadows the existing binding
+      imported from ‘Prelude’ at tests/Test/Copilot/Core/Type/Array.hs:4:8-35
+      (and originally defined in ‘ghc-internal-9.1002.0:GHC.Internal.Data.Foldable’)
+    |
+144 |     forAll wrongLength      $ \length ->
+    |                                ^^^^^^
+
+tests/Test/Copilot/Core/Type/Array.hs:150:13: warning: [GHC-63397] [-Wname-shadowing]
+    This binding for ‘length’ shadows the existing binding
+      imported from ‘Prelude’ at tests/Test/Copilot/Core/Type/Array.hs:4:8-35
+      (and originally defined in ‘ghc-internal-9.1002.0:GHC.Internal.Data.Foldable’)
+    |
+150 |     xsInt64 length = vectorOf length arbitrary
+    |             ^^^^^^
+
+tests/Test/Copilot/Core/Type/Array.hs:160:24: warning: [GHC-40910] [-Wunused-matches]
+    Defined but not used: ‘v’
+    |
+160 |     forAll xInt64   $ \v ->
+    |                        ^
+
+[3 of 4] Compiling Main
+[4 of 4] Compiling Test.Extra
+[5 of 5] Linking /tmp/workdir-copilot-core/copilot-core-4.5/dist-newstyle/build/x86_64-linux/ghc-9.10.2/copilot-core-4.5/t/unit-tests/build/unit-tests/unit-tests

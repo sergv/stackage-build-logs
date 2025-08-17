@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - qchas-1.1.0.1 (lib) (first run)
  - qchas-1.1.0.1 (test:qchas-test) (first run)
@@ -11,6 +12,22 @@ Building library for qchas-1.1.0.1...
 [3 of 7] Compiling Core.QOperationsInternal
 [4 of 7] Compiling Operations.QuantumOperations
 [5 of 7] Compiling Core.MeasureProcessInternal
+src/Core/MeasureProcessInternal.hs:38:27: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+38 |                 in [if x==head index then 1.0:+0.0 else 0.0:+0.0 | x<-[0.. (length complexList)-1]]
+   |                           ^^^^
+
+src/Core/MeasureProcessInternal.hs:54:21: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+54 | getRandomValue seed=head (randoms (mkStdGen seed)::[Double])
+   |                     ^^^^
+
 [6 of 7] Compiling Quantum.MeasurementPerformer
 [7 of 7] Compiling QC
 Configuring test suite 'qchas-test' for qchas-1.1.0.1...
@@ -21,11 +38,11 @@ Building test suite 'qchas-test' for qchas-1.1.0.1...
 [3 of 5] Compiling QuantumOperations
 [4 of 5] Compiling QubitsTest
 [5 of 5] Compiling Main
-[6 of 6] Linking /tmp/workdir-qchas/qchas-1.1.0.1/dist-newstyle/build/x86_64-linux/ghc-9.6.5/qchas-1.1.0.1/t/qchas-test/build/qchas-test/qchas-test
+[6 of 6] Linking /tmp/workdir-qchas/qchas-1.1.0.1/dist-newstyle/build/x86_64-linux/ghc-9.10.2/qchas-1.1.0.1/t/qchas-test/build/qchas-test/qchas-test
 Configuring executable 'qchas-exe' for qchas-1.1.0.1...
 Preprocessing executable 'qchas-exe' for qchas-1.1.0.1...
 Building executable 'qchas-exe' for qchas-1.1.0.1...
 [1 of 3] Compiling DeutschsAlgorithm
 [2 of 3] Compiling GroversAlgorithm
 [3 of 3] Compiling Main
-[4 of 4] Linking /tmp/workdir-qchas/qchas-1.1.0.1/dist-newstyle/build/x86_64-linux/ghc-9.6.5/qchas-1.1.0.1/x/qchas-exe/build/qchas-exe/qchas-exe
+[4 of 4] Linking /tmp/workdir-qchas/qchas-1.1.0.1/dist-newstyle/build/x86_64-linux/ghc-9.10.2/qchas-1.1.0.1/x/qchas-exe/build/qchas-exe/qchas-exe

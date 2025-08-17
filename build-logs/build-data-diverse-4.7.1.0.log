@@ -1,16 +1,17 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - data-diverse-4.7.1.0 (lib) (first run)
  - data-diverse-4.7.1.0 (test:data-diverse-test) (first run)
 Configuring library for data-diverse-4.7.1.0...
 Preprocessing library for data-diverse-4.7.1.0...
 Building library for data-diverse-4.7.1.0...
-
-src/Data/Diverse/TypeLevel.hs:11:14: warning: [-Wdeprecated-flags]
+src/Data/Diverse/TypeLevel.hs:11:14: warning: [GHC-53692] [-Wdeprecated-flags]
     -XTypeInType is deprecated: use -XDataKinds and -XPolyKinds instead
    |
 11 | {-# LANGUAGE TypeInType #-}
    |              ^^^^^^^^^^
+
 [ 1 of 16] Compiling Data.Diverse.AFoldable
 [ 2 of 16] Compiling Data.Diverse.Reduce
 [ 3 of 16] Compiling Data.Diverse.TypeLevel.Internal
@@ -20,7 +21,6 @@ src/Data/Diverse/TypeLevel.hs:11:14: warning: [-Wdeprecated-flags]
 [ 7 of 16] Compiling Data.Diverse.CaseIxed
 [ 8 of 16] Compiling Data.Diverse.CaseFunc
 [ 9 of 16] Compiling Data.Diverse.ATraversable
-
 src/Data/Diverse/ATraversable.hs:23:18: warning: [GHC-58520] [-Wtype-equality-requires-operators]
     The use of ‘~’ without TypeOperators
     will become an error in a future GHC release.
@@ -28,10 +28,10 @@ src/Data/Diverse/ATraversable.hs:23:18: warning: [GHC-58520] [-Wtype-equality-re
    |
 23 |            , xs' ~ (TraverseResults c m xs)
    |                  ^
+
 [10 of 16] Compiling Data.Diverse.AFunctor
 [11 of 16] Compiling Data.Diverse.Many.Internal
-
-src/Data/Diverse/Many/Internal.hs:112:1: warning: [-Wunused-imports]
+src/Data/Diverse/Many/Internal.hs:112:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Semigroup’ is redundant
       except perhaps to import instances from ‘Data.Semigroup’
     To import instances alone, use: import Data.Semigroup()
@@ -39,36 +39,159 @@ src/Data/Diverse/Many/Internal.hs:112:1: warning: [-Wunused-imports]
 112 | import Data.Semigroup (Semigroup(..))
     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/Data/Diverse/Many/Internal.hs:1101:5: warning: [-Wnoncanonical-monoid-instances]
+src/Data/Diverse/Many/Internal.hs:392:35: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+392 | front_ (Many_ xs) = unsafeCoerce (Partial.head xs)
+    |                                   ^^^^^^^^^^^^
+
+src/Data/Diverse/Many/Internal.hs:405:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+405 | aft_ (Many_ xs) = Many_ (Partial.tail xs)
+    |                          ^^^^^^^^^^^^
+
+src/Data/Diverse/Many/Internal.hs:567:12: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+567 |        x = Partial.head xs
+    |            ^^^^^^^^^^^^
+
+src/Data/Diverse/Many/Internal.hs:568:14: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+568 |        xs' = Partial.tail xs
+    |              ^^^^^^^^^^^^
+
+src/Data/Diverse/Many/Internal.hs:592:12: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+592 |        x = Partial.head xs
+    |            ^^^^^^^^^^^^
+
+src/Data/Diverse/Many/Internal.hs:593:14: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+593 |        xs' = Partial.tail xs
+    |              ^^^^^^^^^^^^
+
+src/Data/Diverse/Many/Internal.hs:623:27: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+623 |        v = unsafeCoerce $ Partial.head xs
+    |                           ^^^^^^^^^^^^
+
+src/Data/Diverse/Many/Internal.hs:624:14: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+624 |        xs' = Partial.tail xs
+    |              ^^^^^^^^^^^^
+
+src/Data/Diverse/Many/Internal.hs:648:27: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+648 |         a = unsafeCoerce (Partial.head as)
+    |                           ^^^^^^^^^^^^
+
+src/Data/Diverse/Many/Internal.hs:649:15: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+649 |         as' = Partial.tail as
+    |               ^^^^^^^^^^^^
+
+src/Data/Diverse/Many/Internal.hs:674:27: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+674 |         a = unsafeCoerce (Partial.head as)
+    |                           ^^^^^^^^^^^^
+
+src/Data/Diverse/Many/Internal.hs:675:15: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+675 |         as' = Partial.tail as
+    |               ^^^^^^^^^^^^
+
+src/Data/Diverse/Many/Internal.hs:728:27: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+728 |        v = unsafeCoerce $ Partial.head xs
+    |                           ^^^^^^^^^^^^
+
+src/Data/Diverse/Many/Internal.hs:729:14: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+729 |        xs' = Partial.tail xs
+    |              ^^^^^^^^^^^^
+
+src/Data/Diverse/Many/Internal.hs:1101:5: warning: [GHC-50928] [-Wnoncanonical-monoid-instances]
     Noncanonical ‘mappend’ definition detected
     in the instance declaration for ‘Monoid (Many_ (x ': xs))’.
     ‘mappend’ will eventually be removed in favour of ‘(<>)’
-    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    Suggested fix:
+      Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
      |
 1101 |     Many_ (a : as) `mappend` Many_ (b : bs) = Many_ (c : cs)
      |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
-src/Data/Diverse/Many/Internal.hs:1109:5: warning: [-Wnoncanonical-monoid-instances]
+src/Data/Diverse/Many/Internal.hs:1109:5: warning: [GHC-50928] [-Wnoncanonical-monoid-instances]
     Noncanonical ‘mappend’ definition detected
     in the instance declaration for ‘Monoid (Many xs)’.
     ‘mappend’ will eventually be removed in favour of ‘(<>)’
-    Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
+    Suggested fix:
+      Either remove definition for ‘mappend’ (recommended) or define as ‘mappend = (<>)’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/semigroup-monoid
      |
 1109 |     as `mappend` bs = fromMany_ (toMany_ as `mappend` toMany_ bs)
      |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Data/Diverse/Many/Internal.hs:1127:27: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+     |
+1127 |         v = unsafeCoerce (Partial.head xs) :: x
+     |                           ^^^^^^^^^^^^
+
 [12 of 16] Compiling Data.Diverse.Many
 [13 of 16] Compiling Data.Diverse.Cases
 [14 of 16] Compiling Data.Diverse.Which.Internal
-
-src/Data/Diverse/Which/Internal.hs:100:1: warning: [-Wunused-imports]
+src/Data/Diverse/Which/Internal.hs:100:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Semigroup’ is redundant
       except perhaps to import instances from ‘Data.Semigroup’
     To import instances alone, use: import Data.Semigroup()
     |
 100 | import Data.Semigroup (Semigroup(..))
     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [15 of 16] Compiling Data.Diverse.Which
 [16 of 16] Compiling Data.Diverse
 Configuring test suite 'data-diverse-test' for data-diverse-4.7.1.0...
@@ -78,4 +201,4 @@ Building test suite 'data-diverse-test' for data-diverse-4.7.1.0...
 [2 of 4] Compiling Data.Diverse.TypeSpec
 [3 of 4] Compiling Data.Diverse.WhichSpec
 [4 of 4] Compiling Main
-[5 of 5] Linking /tmp/workdir-data-diverse/data-diverse-4.7.1.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/data-diverse-4.7.1.0/t/data-diverse-test/build/data-diverse-test/data-diverse-test
+[5 of 5] Linking /tmp/workdir-data-diverse/data-diverse-4.7.1.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/data-diverse-4.7.1.0/t/data-diverse-test/build/data-diverse-test/data-diverse-test

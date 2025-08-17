@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - cryptohash-sha256-0.11.102.1 (lib) (first run)
  - cryptohash-sha256-0.11.102.1 (test:test-sha256) (first run)
@@ -8,7 +9,6 @@ Building library for cryptohash-sha256-0.11.102.1...
 [1 of 3] Compiling Compat
 [2 of 3] Compiling Crypto.Hash.SHA256.FFI
 [3 of 3] Compiling Crypto.Hash.SHA256
-
 src/Crypto/Hash/SHA256.hs:144:19: warning: [GHC-68441] [-Wdeprecations]
     In the use of ‘memcpy’
     (imported from Data.ByteString.Internal, but defined in Data.ByteString.Internal.Type):
@@ -24,8 +24,17 @@ src/Crypto/Hash/SHA256.hs:336:53: warning: [GHC-68441] [-Wdeprecations]
     |
 336 |                    withByteStringPtr t' $ \tptr' -> memcpy p tptr' 32
     |                                                     ^^^^^^
+
 Configuring test suite 'test-sha256' for cryptohash-sha256-0.11.102.1...
 Preprocessing test suite 'test-sha256' for cryptohash-sha256-0.11.102.1...
 Building test suite 'test-sha256' for cryptohash-sha256-0.11.102.1...
 [1 of 1] Compiling Main
-[2 of 2] Linking /tmp/workdir-cryptohash-sha256/cryptohash-sha256-0.11.102.1/dist-newstyle/build/x86_64-linux/ghc-9.6.5/cryptohash-sha256-0.11.102.1/t/test-sha256/build/test-sha256/test-sha256
+src-tests/test-sha256.hs:202:48: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+202 |         go bs = zipWith B.append (B.inits bs) (tail $ B.tails bs)
+    |                                                ^^^^
+
+[2 of 2] Linking /tmp/workdir-cryptohash-sha256/cryptohash-sha256-0.11.102.1/dist-newstyle/build/x86_64-linux/ghc-9.10.2/cryptohash-sha256-0.11.102.1/t/test-sha256/build/test-sha256/test-sha256

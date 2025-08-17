@@ -1,0 +1,65 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - probability-polynomial-1.0.0.1 (lib) (first run)
+ - probability-polynomial-1.0.0.1 (test:test) (first run)
+Configuring library for probability-polynomial-1.0.0.1...
+Preprocessing library for probability-polynomial-1.0.0.1...
+Building library for probability-polynomial-1.0.0.1...
+[1 of 7] Compiling Data.Function.Class
+[2 of 7] Compiling Numeric.Function.Piecewise
+[3 of 7] Compiling Numeric.Polynomial.Simple
+src/Numeric/Polynomial/Simple.hs:588:48: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+588 |         else getRoot precision (lower, upper) (head rootFactors)
+    |                                                ^^^^
+
+src/Numeric/Polynomial/Simple.hs:599:31: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+599 |         | degp == 1 = Just (-(head ps / last ps)) -- p0 + p1x = 0 => x = -p0/p1
+    |                               ^^^^
+
+[4 of 7] Compiling Numeric.Measure.Discrete
+src/Numeric/Measure/Discrete.hs:110:13: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+110 |     steps = tail $ scanl' (+) 0 $ map snd diracs
+    |             ^^^^
+
+[5 of 7] Compiling Numeric.Measure.Finite.Mixed
+src/Numeric/Measure/Finite/Mixed.hs:148:27: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+148 |         ps -> Just (fst $ head ps, fst $ last ps)
+    |                           ^^^^
+
+src/Numeric/Measure/Finite/Mixed.hs:234:18: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+234 |     totalJumps = tail $ scanl' (+) 0 $ map snd jumps
+    |                  ^^^^
+
+[6 of 7] Compiling Numeric.Probability.Moments
+[7 of 7] Compiling Numeric.Measure.Probability
+Configuring test suite 'test' for probability-polynomial-1.0.0.1...
+Preprocessing test suite 'test' for probability-polynomial-1.0.0.1...
+Building test suite 'test' for probability-polynomial-1.0.0.1...
+[1 of 6] Compiling Numeric.Function.PiecewiseSpec
+[2 of 6] Compiling Numeric.Measure.DiscreteSpec
+[3 of 6] Compiling Numeric.Polynomial.SimpleSpec
+[4 of 6] Compiling Numeric.Measure.ProbabilitySpec
+[5 of 6] Compiling Numeric.Measure.Finite.MixedSpec
+[6 of 6] Compiling Main
+[7 of 7] Linking /tmp/workdir-probability-polynomial/probability-polynomial-1.0.0.1/dist-newstyle/build/x86_64-linux/ghc-9.10.2/probability-polynomial-1.0.0.1/t/test/build/test/test

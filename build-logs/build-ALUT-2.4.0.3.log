@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - ALUT-2.4.0.3 (lib) (first run)
 Configuring library for ALUT-2.4.0.3...
@@ -8,6 +9,22 @@ Building library for ALUT-2.4.0.3...
 [2 of 8] Compiling Sound.ALUT.Constants
 [3 of 8] Compiling Sound.ALUT.Errors
 [4 of 8] Compiling Sound.ALUT.Initialization
+src/Sound/ALUT/Initialization.hs:55:22: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+55 |    result <- action (head argv) (tail argv)
+   |                      ^^^^
+
+src/Sound/ALUT/Initialization.hs:55:34: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+55 |    result <- action (head argv) (tail argv)
+   |                                  ^^^^
+
 [5 of 8] Compiling Sound.ALUT.Loaders
 [6 of 8] Compiling Sound.ALUT.Sleep
 [7 of 8] Compiling Sound.ALUT.Version

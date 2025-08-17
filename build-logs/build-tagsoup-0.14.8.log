@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - tagsoup-0.14.8 (lib) (first run)
  - tagsoup-0.14.8 (test:test-tagsoup) (first run)
@@ -12,14 +13,70 @@ Building library for tagsoup-0.14.8...
 [ 2 of 13] Compiling Text.StringLike
 [ 3 of 13] Compiling Text.HTML.TagSoup.Type
 [ 4 of 13] Compiling Text.HTML.TagSoup.Match
+src/Text/HTML/TagSoup/Match.hs:197:4: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+197 |    head . sections (tagOpenLit name pAttrs)
+    |    ^^^^
+
+src/Text/HTML/TagSoup/Match.hs:198:36: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+198 |     where sections p = filter (p . head) . init . tails
+    |                                    ^^^^
+
 [ 5 of 13] Compiling Text.HTML.TagSoup.Render
 [ 6 of 13] Compiling Text.HTML.TagSoup.Options
 [ 7 of 13] Compiling Text.HTML.TagSoup.Implementation
+src/Text/HTML/TagSoup/Implementation.hs:51:48: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+51 |                  ,tl = expand (positionChar p (head text)) (tail text)
+   |                                                ^^^^
+
+src/Text/HTML/TagSoup/Implementation.hs:51:61: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+51 |                  ,tl = expand (positionChar p (head text)) (tail text)
+   |                                                             ^^^^
+
+src/Text/HTML/TagSoup/Implementation.hs:52:52: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+52 |                  ,hd = if null text then '\0' else head text
+   |                                                    ^^^^
+
+src/Text/HTML/TagSoup/Implementation.hs:146:46: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+146 |               | isEntityHex x = chr_ $ fst $ head $ readHex s
+    |                                              ^^^^
+
 [ 8 of 13] Compiling Text.HTML.TagSoup.Specification
 [ 9 of 13] Compiling Text.HTML.TagSoup.Manual
 [10 of 13] Compiling Text.HTML.TagSoup.Generated
 [11 of 13] Compiling Text.HTML.TagSoup.Parser
 [12 of 13] Compiling Text.HTML.TagSoup
+src/Text/HTML/TagSoup.hs:110:26: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+110 | sections p = filter (p . head) . init . tails
+    |                          ^^^^
+
 [13 of 13] Compiling Text.HTML.TagSoup.Tree
 Warning: tagsoup.cabal:1:24: Packages with 'cabal-version: 1.12' or later
 should specify a specific version of the Cabal spec of the form
@@ -28,7 +85,47 @@ Configuring test suite 'test-tagsoup' for tagsoup-0.14.8...
 Preprocessing test suite 'test-tagsoup' for tagsoup-0.14.8...
 Building test suite 'test-tagsoup' for tagsoup-0.14.8...
 [1 of 4] Compiling TagSoup.Benchmark
+test/TagSoup/Benchmark.hs:145:22: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+145 | delay2 xs = map (map head) xs : (if all (null . tail) (concat xs) then [] else delay2 $ map (map tl) xs)
+    |                      ^^^^
+
+test/TagSoup/Benchmark.hs:145:49: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+145 | delay2 xs = map (map head) xs : (if all (null . tail) (concat xs) then [] else delay2 $ map (map tl) xs)
+    |                                                 ^^^^
+
 [2 of 4] Compiling TagSoup.Sample
+test/TagSoup/Sample.hs:89:55: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+89 |         f = dequote . unwords . words . fromTagText . head . filter isTagText
+   |                                                       ^^^^
+
 [3 of 4] Compiling TagSoup.Test
+test/TagSoup/Test.hs:38:58: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+38 |     shrink (HTML x) = map HTML $ zipWith (++) (inits x) (tail $ tails x)
+   |                                                          ^^^^
+
 [4 of 4] Compiling Main
-[5 of 5] Linking /tmp/workdir-tagsoup/tagsoup-0.14.8/dist-newstyle/build/x86_64-linux/ghc-9.6.5/tagsoup-0.14.8/t/test-tagsoup/build/test-tagsoup/test-tagsoup
+test/Main.hs:50:39: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+50 |     case (args, lookup (map toLower $ head args) $ map (\(a,_,c) -> (a,c)) actions) of
+   |                                       ^^^^
+
+[5 of 5] Linking /tmp/workdir-tagsoup/tagsoup-0.14.8/dist-newstyle/build/x86_64-linux/ghc-9.10.2/tagsoup-0.14.8/t/test-tagsoup/build/test-tagsoup/test-tagsoup

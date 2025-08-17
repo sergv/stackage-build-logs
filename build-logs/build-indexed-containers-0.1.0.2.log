@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - indexed-containers-0.1.0.2 (lib) (first run)
  - indexed-containers-0.1.0.2 (test:hspec) (first run)
@@ -6,9 +7,25 @@ Configuring library for indexed-containers-0.1.0.2...
 Preprocessing library for indexed-containers-0.1.0.2...
 Building library for indexed-containers-0.1.0.2...
 [1 of 1] Compiling Data.NList
+src/Data/NList.hs:145:18: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+145 | head (List xs) = List.head xs
+    |                  ^^^^^^^^^
+
+src/Data/NList.hs:160:24: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+160 | tail (List xs) = List (List.tail xs)
+    |                        ^^^^^^^^^
+
 Configuring test suite 'hspec' for indexed-containers-0.1.0.2...
 Preprocessing test suite 'hspec' for indexed-containers-0.1.0.2...
 Building test suite 'hspec' for indexed-containers-0.1.0.2...
 [1 of 2] Compiling Data.NListSpec
 [2 of 2] Compiling Main
-[3 of 3] Linking /tmp/workdir-indexed-containers/indexed-containers-0.1.0.2/dist-newstyle/build/x86_64-linux/ghc-9.6.5/indexed-containers-0.1.0.2/t/hspec/build/hspec/hspec
+[3 of 3] Linking /tmp/workdir-indexed-containers/indexed-containers-0.1.0.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/indexed-containers-0.1.0.2/t/hspec/build/hspec/hspec

@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - bitarray-0.0.1.1 (lib:bitarray) (first run)
 Warning: bitarray.cabal:19:36: version operators used. To use version
@@ -8,26 +9,25 @@ Preprocessing library for bitarray-0.0.1.1...
 Building library for bitarray-0.0.1.1...
 [1 of 4] Compiling Data.BitArray.Immutable
 [2 of 4] Compiling Data.BitArray.IO
-
 Data/BitArray/IO.hs:49:5: warning: [GHC-63397] [-Wname-shadowing]
     This binding for ‘words’ shadows the existing binding
       imported from ‘Prelude’ at Data/BitArray/IO.hs:4:8-23
-      (and originally defined in ‘base-4.18.2.1:Data.OldList’)
+      (and originally defined in ‘ghc-internal-9.1002.0:GHC.Internal.Data.OldList’)
    |
 49 |     words <- newArray (0,k-1) w
    |     ^^^^^
-[3 of 4] Compiling Data.BitArray.ST
 
+[3 of 4] Compiling Data.BitArray.ST
 Data/BitArray/ST.hs:51:5: warning: [GHC-63397] [-Wname-shadowing]
     This binding for ‘words’ shadows the existing binding
       imported from ‘Prelude’ at Data/BitArray/ST.hs:4:8-23
-      (and originally defined in ‘base-4.18.2.1:Data.OldList’)
+      (and originally defined in ‘ghc-internal-9.1002.0:GHC.Internal.Data.OldList’)
    |
 51 |     words <- newArray (0,k-1) w
    |     ^^^^^
-[4 of 4] Compiling Data.BitArray
 
-Data/BitArray.hs:28:1: warning: [-Wunused-imports]
+[4 of 4] Compiling Data.BitArray
+Data/BitArray.hs:28:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Word’ is redundant
       except perhaps to import instances from ‘Data.Word’
     To import instances alone, use: import Data.Word()
@@ -36,7 +36,7 @@ Data/BitArray.hs:28:1: warning: [-Wunused-imports]
    | ^^^^^^^^^^^^^^^^
 
 Data/BitArray.hs:37:1: warning: [GHC-90177] [-Worphans]
-    Orphan instance: instance Eq BitArray
+    Orphan class instance: instance Eq BitArray
     Suggested fix:
       Move the instance declaration to the module of the class or of the type, or
       wrap the type with a newtype and declare the instance on the new type.
@@ -45,7 +45,7 @@ Data/BitArray.hs:37:1: warning: [GHC-90177] [-Worphans]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 Data/BitArray.hs:40:1: warning: [GHC-90177] [-Worphans]
-    Orphan instance: instance Ord BitArray
+    Orphan class instance: instance Ord BitArray
     Suggested fix:
       Move the instance declaration to the module of the class or of the type, or
       wrap the type with a newtype and declare the instance on the new type.
@@ -54,7 +54,7 @@ Data/BitArray.hs:40:1: warning: [GHC-90177] [-Worphans]
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 Data/BitArray.hs:43:1: warning: [GHC-90177] [-Worphans]
-    Orphan instance: instance Show BitArray
+    Orphan class instance: instance Show BitArray
     Suggested fix:
       Move the instance declaration to the module of the class or of the type, or
       wrap the type with a newtype and declare the instance on the new type.
@@ -81,3 +81,4 @@ Data/BitArray.hs:87:11: warning: [GHC-63397] [-Wname-shadowing]
    |
 87 |   convert bs = fst $ foldl f (0,1) bs
    |           ^^
+

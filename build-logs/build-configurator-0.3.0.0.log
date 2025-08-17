@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - configurator-0.3.0.0 (lib) (first run)
  - configurator-0.3.0.0 (test:tests) (first run)
@@ -8,8 +9,7 @@ Building library for configurator-0.3.0.0...
 [1 of 5] Compiling Data.Configurator.Types.Internal
 [2 of 5] Compiling Data.Configurator.Types
 [3 of 5] Compiling Data.Configurator.Parser
-
-Data/Configurator/Parser.hs:19:1: warning: [-Wunused-imports]
+Data/Configurator/Parser.hs:19:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
@@ -17,16 +17,16 @@ Data/Configurator/Parser.hs:19:1: warning: [-Wunused-imports]
 19 | import Control.Applicative
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Data/Configurator/Parser.hs:26:1: warning: [-Wunused-imports]
+Data/Configurator/Parser.hs:26:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 26 | import Data.Monoid (Monoid(..))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[4 of 5] Compiling Data.Configurator.Instances
 
-Data/Configurator/Instances.hs:6:1: warning: [-Wunused-imports]
+[4 of 5] Compiling Data.Configurator.Instances
+Data/Configurator/Instances.hs:6:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
@@ -34,14 +34,14 @@ Data/Configurator/Instances.hs:6:1: warning: [-Wunused-imports]
 6 | import Control.Applicative
   | ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Data/Configurator/Instances.hs:13:19: warning: [-Wunused-imports]
+Data/Configurator/Instances.hs:13:19: warning: [GHC-38856] [-Wunused-imports]
     The import of ‘Word’ from module ‘Data.Word’ is redundant
    |
 13 | import Data.Word (Word, Word8, Word16, Word32, Word64)
    |                   ^^^^
-[5 of 5] Compiling Data.Configurator
 
-Data/Configurator.hs:63:1: warning: [-Wunused-imports]
+[5 of 5] Compiling Data.Configurator
+Data/Configurator.hs:63:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
@@ -49,7 +49,7 @@ Data/Configurator.hs:63:1: warning: [-Wunused-imports]
 63 | import Control.Applicative ((<$>))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Data/Configurator.hs:73:1: warning: [-Wunused-imports]
+Data/Configurator.hs:73:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
@@ -57,18 +57,18 @@ Data/Configurator.hs:73:1: warning: [-Wunused-imports]
 73 | import Data.Monoid (mconcat)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Data/Configurator.hs:145:33: warning: [-Wunused-record-wildcards]
+Data/Configurator.hs:145:33: warning: [GHC-83475] [-Wunused-record-wildcards]
     No variables bound in the record wildcard match are used
-      Possible fix: omit the ‘..’
+    Suggested fix: Omit the ‘..’
     |
 145 | reload (Config _ cfg@BaseConfig{..}) = reloadBase cfg
     |                                 ^^
+
 Configuring test suite 'tests' for configurator-0.3.0.0...
 Preprocessing test suite 'tests' for configurator-0.3.0.0...
 Building test suite 'tests' for configurator-0.3.0.0...
 [1 of 1] Compiling Main
-
-tests/Test.hs:14:1: warning: [-Wunused-imports]
+tests/Test.hs:14:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Functor’ is redundant
       except perhaps to import instances from ‘Data.Functor’
     To import instances alone, use: import Data.Functor()
@@ -86,4 +86,5 @@ tests/Test.hs:189:35: warning: [GHC-62161] [-Wincomplete-uni-patterns]
     |
 189 |   withReload "pathological.cfg" $ \[Just f] cfg -> do
     |                                   ^^^^^^^^^^^^^^^^^^^...
-[2 of 2] Linking /tmp/workdir-configurator/configurator-0.3.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/configurator-0.3.0.0/t/tests/build/tests/tests
+
+[2 of 2] Linking /tmp/workdir-configurator/configurator-0.3.0.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/configurator-0.3.0.0/t/tests/build/tests/tests

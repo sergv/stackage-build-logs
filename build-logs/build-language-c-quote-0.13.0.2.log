@@ -1,0 +1,90 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - language-c-quote-0.13.0.2 (lib) (first run)
+ - language-c-quote-0.13.0.2 (test:unit) (first run)
+Configuring library for language-c-quote-0.13.0.2...
+Preprocessing library for language-c-quote-0.13.0.2...
+unused terminals: 1
+Building library for language-c-quote-0.13.0.2...
+[ 1 of 16] Compiling Language.C.Syntax
+[ 2 of 16] Compiling Language.C.Pretty
+[ 3 of 16] Compiling Language.C.Parser.Tokens
+Language/C/Parser/Tokens.hs:20:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.List’ is redundant
+      except perhaps to import instances from ‘Data.List’
+    To import instances alone, use: import Data.List()
+   |
+20 | import Data.List (foldl')
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[ 4 of 16] Compiling Language.C.Parser.Monad
+Language/C/Parser/Monad.hs:95:1: warning: [GHC-66111] [-Wunused-imports]
+    The import of ‘Data.List’ is redundant
+      except perhaps to import instances from ‘Data.List’
+    To import instances alone, use: import Data.List()
+   |
+95 | import Data.List (foldl')
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Language/C/Parser/Monad.hs:211:24: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+211 |         s { lexState = tail (lexState s) }
+    |                        ^^^^
+
+Language/C/Parser/Monad.hs:215:21: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+215 | getLexState = gets (head . lexState)
+    |                     ^^^^
+
+Language/C/Parser/Monad.hs:264:23: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+264 |     s { scopes     = (tail . scopes) s
+    |                       ^^^^
+
+Language/C/Parser/Monad.hs:265:29: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+265 |       , typedefs   = (fst . head . scopes) s
+    |                             ^^^^
+
+Language/C/Parser/Monad.hs:266:29: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+266 |       , classdefs  = (snd . head . scopes) s
+    |                             ^^^^
+
+[ 5 of 16] Compiling Language.C.Parser.Lexer
+[ 6 of 16] Compiling Language.C.Parser.Parser
+[ 7 of 16] Compiling Language.C.Parser
+[ 8 of 16] Compiling Language.C.Quote.Base
+[ 9 of 16] Compiling Language.C.Quote.OpenCL
+[10 of 16] Compiling Language.C.Quote.ObjC
+[11 of 16] Compiling Language.C.Quote.GCC
+[12 of 16] Compiling Language.C.Quote.CUDA
+[13 of 16] Compiling Language.C.Quote.C
+[14 of 16] Compiling Language.C.Smart
+[15 of 16] Compiling Language.C.Quote
+[16 of 16] Compiling Language.C
+Configuring test suite 'unit' for language-c-quote-0.13.0.2...
+Preprocessing test suite 'unit' for language-c-quote-0.13.0.2...
+Building test suite 'unit' for language-c-quote-0.13.0.2...
+[1 of 5] Compiling CUDA
+[2 of 5] Compiling GCC
+[3 of 5] Compiling MainCPP
+[4 of 5] Compiling Objc
+[5 of 5] Compiling Main
+[6 of 6] Linking /tmp/workdir-language-c-quote/language-c-quote-0.13.0.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/language-c-quote-0.13.0.2/t/unit/build/unit/unit

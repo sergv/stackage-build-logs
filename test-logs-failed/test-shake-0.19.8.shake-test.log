@@ -1,4 +1,4 @@
-Build profile: -w ghc-9.6.5 -O1
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - shake-0.19.8 (test:shake-test) (ephemeral targets)
 Preprocessing test suite 'shake-test' for shake-0.19.8...
@@ -8,7 +8,7 @@ Test suite shake-test: RUNNING...
 ******************************************************************
 ** Running shake test suite, run with '--help' to see arguments **
 ******************************************************************
-Longest file modification time lag was 2ms
+Longest file modification time lag was 1ms
 ## BUILD basic test
 ## TESTING basic
 ## BUILD basic clean
@@ -78,7 +78,7 @@ Build completed in 0.10s
 
 getProcessorCount returned 32
 ## BUILD basic 5.par 6.par -j0
-Build completed in 0.12s
+Build completed in 0.13s
 
 ## BUILD basic unsafe1.par unsafe2.par -j2
 Build completed in 0.10s
@@ -133,8 +133,8 @@ Build completed in 0.00s
 ## BUILD batch test
 ## TESTING batch
 ## BUILD batch --sleep -j2
-Building batch: 5.out 2.out 6.out
-Building batch: 4.out 1.out 3.out
+Building batch: 5.out 4.out 1.out
+Building batch: 2.out 6.out 3.out
 Build completed in 0.00s
 
 ## BUILD batch
@@ -208,7 +208,7 @@ Build completed in 0.00s
 Build completed in 0.01s
 
 ## BUILD batch batch_profile.1 batch_profile.2
-Build completed in 5.01s
+Build completed in 5.00s
 
 ## BUILD batch --report=report.json --no-build
 Warning: No want/action statements, nothing to do
@@ -220,7 +220,7 @@ Build completed in 0.00s
 ## TESTING benchmark
 ## BUILD benchmark clean
 ## BUILD benchmark
-Build completed in 0.93s
+Build completed in 1.00s
 
 ## BUILD benchmark
 Build completed in 0.28s
@@ -250,11 +250,11 @@ Build completed in 0.00s
 ## BUILD c --abbrev=output=$OUT -j3 --report
 # gcc (for main.c.o)
 # gcc (for constants.c.o)
-# gcc (for main.c.o)
 # gcc (for constants.c.o)
+# gcc (for main.c.o)
 # gcc (for Main.exe)
 Writing report to report.html
-Build completed in 0.13s
+Build completed in 0.15s
 
 ## BUILD c --no-build --report=-
 Warning: No want/action statements, nothing to do
@@ -262,9 +262,9 @@ Writing report to -
 * This database has tracked 1 runs.
 * There are 8 rules (8 rebuilt in the last run).
 * Building required 6 traced commands (6 in the last run).
-* The total (unparallelised) time is 0.10s of which 0.10s is traced commands.
-* The longest rule takes 0.05s (constants.c.o), and the longest traced command takes 0.02s (gcc).
-* Last run gave an average parallelism of 1.58 times over 0.07s.
+* The total (unparallelised) time is 0.12s of which 0.12s is traced commands.
+* The longest rule takes 0.06s (main.c.o), and the longest traced command takes 0.03s (gcc).
+* Last run gave an average parallelism of 1.67 times over 0.07s.
 Build completed in 0.00s
 
 ## BUILD c
@@ -309,51 +309,51 @@ Build completed in 0.00s
 ## TESTING closefilehandles
 ## BUILD closefilehandles -j4
 # ghc (for helper/close_file_handles_helper close_file_handles_helper.hi close_file_handles_helper.o)
-Loaded package environment from /tmp/workdir-shake/shake-0.19.8/.ghc.environment.x86_64-linux-9.6.5
+Loaded package environment from /tmp/workdir-shake/shake-0.19.8/.ghc.environment.x86_64-linux-9.10.2
 [1 of 2] Compiling Main             ( close_file_handles_helper.hs, close_file_handles_helper.o )
 [2 of 2] Linking helper/close_file_handles_helper
 # close_file_handles_helper (for defaultbehaviour)
 # close_file_handles_helper (for closing)
-Build completed in 1.08s
+Build completed in 0.64s
 
 ## FINISHED TESTING closefilehandles
 ## BUILD command test
 ## TESTING command
 ## BUILD command -j4
 # ghc (for helper/shake_helper shake_helper.o shake_helper.hi)
-Loaded package environment from /tmp/workdir-shake/shake-0.19.8/.ghc.environment.x86_64-linux-9.6.5
+Loaded package environment from /tmp/workdir-shake/shake-0.19.8/.ghc.environment.x86_64-linux-9.10.2
 [1 of 2] Compiling Main             ( shake_helper.hs, shake_helper.o )
 [2 of 2] Linking helper/shake_helper
 # shake_helper (for capture)
-# shake_helper (for space)
+# shake_helper (for timeout1)
 # shake_helper (for cwd)
-# shake_helper (for space)
-# shake_helper (for file)
-# shake_helper (for space)
-# shake_helper (for binary)
-# shake_helper (for binary)
 # shake_helper (for env)
+# shake_helper (for space)
+# shake_helper (for space)
+# shake_helper (for space)
+# shake_helper (for large)
+# shake_helper (for failure)
+# shake_helper (for file)
+# shake_helper (for timer)
+Command helper/shake_helper took 2.0277849e-2 seconds
+# shake_helper (for async)
+# shake_helper (for large)
+# shake_helper (for large)
+Capturing 10Mb takes: String = 0.58s,ByteString = 0.02s,File = 0.03s
+# shake_helper (for binary)
+# shake_helper (for binary)
 # shake_helper (for path)
 # shake_helper (for path)
 # shake_helper (for path)
 # shake_helper (for path)
 # shake_helper (for stdin)
-# shake_helper (for async)
 Timed out in 2.01s
-# shake_helper (for large)
-Timed out in 2.01s
-Timed out in 2.08s
-# shake_helper (for timeout1)
-# shake_helper (for failure)
-# shake_helper (for large)
-# shake_helper (for timer)
-# shake_helper (for large)
-Command helper/shake_helper took 1.53185e-2 seconds
-Capturing 10Mb takes: String = 0.47s,ByteString = 0.03s,File = 0.02s
-Timed out in 2.01s
-Timed out in 2.03s
+Timed out in 2.00s
+Timed out in 2.00s
+Timed out in 2.00s
+Timed out in 2.00s
 /bin/sh: 1: not_a_process: not found
-Build completed in 5.03s
+Build completed in 4.60s
 
 ## BUILD command throws --quiet
 ## FINISHED TESTING command
@@ -522,23 +522,24 @@ Build completed in 0.00s
 ## TESTING docs
 ## BUILD docs --abbrev=output=$OUT -j3 --report
 # ghc (for dist/setup.exe)
-Loaded package environment from /tmp/workdir-shake/shake-0.19.8/.ghc.environment.x86_64-linux-9.6.5
+Loaded package environment from /tmp/workdir-shake/shake-0.19.8/.ghc.environment.x86_64-linux-9.10.2
 [1 of 2] Compiling Main             ( Setup.hs, /tmp/workdir-shake/shake-0.19.8/output/docs/dist/Main.o )
 [2 of 2] Linking /tmp/workdir-shake/shake-0.19.8/output/docs/dist/setup.exe
 # setup (for dist/setup-config)
 Configuring shake-0.19.8...
-Error: setup.exe: Encountered missing or private dependencies:
-extra >=1.6.19,
-filepattern,
-hashable >=1.1.2.3,
-heaps >=0.3.6.1,
-js-dgtable,
-js-flot,
-js-jquery,
-primitive,
-random,
-unordered-containers >=0.2.7,
-utf8-string >=0.3
+Error: [Cabal-8010]
+Encountered missing or private dependencies:
+    extra >=1.6.19,
+    filepattern,
+    hashable >=1.1.2.3,
+    heaps >=0.3.6.1,
+    js-dgtable,
+    js-flot,
+    js-jquery,
+    primitive,
+    random,
+    unordered-containers >=0.2.7,
+    utf8-string >=0.3
 
 Error when running Shake build system:
   at want, called at src/Test/Docs.hs:19:5 in shake-0.19.8-inplace-shake-test:Test.Docs
@@ -557,18 +558,20 @@ Command line: /tmp/workdir-shake/shake-0.19.8/output/docs/dist/setup.exe configu
 Current directory: /tmp/workdir-shake/shake-0.19.8
 Exit code: 1
 Stderr:
-Error: setup.exe: Encountered missing or private dependencies:
-extra >=1.6.19,
-filepattern,
-hashable >=1.1.2.3,
-heaps >=0.3.6.1,
-js-dgtable,
-js-flot,
-js-jquery,
-primitive,
-random,
-unordered-containers >=0.2.7,
-utf8-string >=0.3
+Error: [Cabal-8010]
+Encountered missing or private dependencies:
+    extra >=1.6.19,
+    filepattern,
+    hashable >=1.1.2.3,
+    heaps >=0.3.6.1,
+    js-dgtable,
+    js-flot,
+    js-jquery,
+    primitive,
+    random,
+    unordered-containers >=0.2.7,
+    utf8-string >=0.3
+
 
 
 
@@ -576,7 +579,7 @@ utf8-string >=0.3
 TESTS FAILED
 Test suite shake-test: FAIL
 Test suite logged to:
-/tmp/workdir-shake/shake-0.19.8/dist-newstyle/build/x86_64-linux/ghc-9.6.5/shake-0.19.8/t/shake-test/test/shake-0.19.8-shake-test.log
+/tmp/workdir-shake/shake-0.19.8/dist-newstyle/build/x86_64-linux/ghc-9.10.2/shake-0.19.8/t/shake-test/test/shake-0.19.8-shake-test.log
 0 of 1 test suites (0 of 1 test cases) passed.
 Error: [Cabal-7125]
 Tests failed for test:shake-test from shake-0.19.8.

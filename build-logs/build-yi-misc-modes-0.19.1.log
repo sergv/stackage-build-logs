@@ -1,0 +1,64 @@
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - yi-misc-modes-0.19.1 (lib) (first run)
+Configuring library for yi-misc-modes-0.19.1...
+Preprocessing library for yi-misc-modes-0.19.1...
+Building library for yi-misc-modes-0.19.1...
+[ 1 of 28] Compiling Paths_yi_misc_modes
+[ 2 of 28] Compiling Yi.Lexer.Abella
+[ 3 of 28] Compiling Yi.Lexer.BasicTemplate
+[ 4 of 28] Compiling Yi.Lexer.C
+[ 5 of 28] Compiling Yi.Lexer.Cabal
+[ 6 of 28] Compiling Yi.Lexer.Clojure
+[ 7 of 28] Compiling Yi.Lexer.Cplusplus
+[ 8 of 28] Compiling Yi.Lexer.GNUMake
+[ 9 of 28] Compiling Yi.Lexer.GitCommit
+[10 of 28] Compiling Yi.Lexer.JSON
+[11 of 28] Compiling Yi.Lexer.Java
+[12 of 28] Compiling Yi.Lexer.Latex
+[13 of 28] Compiling Yi.Lexer.OCaml
+[14 of 28] Compiling Yi.Lexer.ObjectiveC
+[15 of 28] Compiling Yi.Lexer.Ott
+[16 of 28] Compiling Yi.Lexer.Perl
+[17 of 28] Compiling Yi.Lexer.Python
+[18 of 28] Compiling Yi.Lexer.R
+[19 of 28] Compiling Yi.Lexer.Ruby
+[20 of 28] Compiling Yi.Lexer.SVNCommit
+[21 of 28] Compiling Yi.Lexer.Srmc
+[22 of 28] Compiling Yi.Lexer.Whitespace
+[23 of 28] Compiling Yi.Mode.Abella
+[24 of 28] Compiling Yi.Mode.Buffers
+[25 of 28] Compiling Yi.Modes
+[26 of 28] Compiling Yi.Config.Default.MiscModes
+[27 of 28] Compiling Yi.Syntax.Latex
+src/Yi/Syntax/Latex.hs:18:50-53: warning: [GHC-38856] [-Wunused-imports]
+    The import of ‘<>’ from module ‘Data.Monoid’ is redundant
+   |
+18 | import           Data.Monoid         (Endo (..), (<>))
+   |                                                  ^^^^
+
+src/Yi/Syntax/Latex.hs:49:36-56: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘[Tree t]’ not matched:
+            []
+            (_:_:_)
+   |
+49 |     uniplate (Paren l g r) = ([g], \[g'] -> Paren l g' r)
+   |                                    ^^^^^^^^^^^^^^^^^^^^^
+
+src/Yi/Syntax/Latex.hs:77:33-120: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+    Pattern match(es) are non-exhaustive
+    In a lambda abstraction:
+        Patterns of type ‘Tok Token’ not matched:
+            Tok Comment _ _
+            Tok Text _ _
+            Tok (Special _) _ _
+            Tok (Command _) _ _
+            ...
+   |
+77 |       pBlock = sym' isBegin >>= \beg@Tok {tokT = Begin env} -> Paren <$> pure beg <*> pExpr True <*> pleaseSym (End env)
+   |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[28 of 28] Compiling Yi.Mode.Latex

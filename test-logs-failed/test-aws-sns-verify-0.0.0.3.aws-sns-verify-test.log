@@ -1,0 +1,94 @@
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - aws-sns-verify-0.0.0.3 (test:aws-sns-verify-test) (ephemeral targets)
+Preprocessing test suite 'aws-sns-verify-test' for aws-sns-verify-0.0.0.3...
+Building test suite 'aws-sns-verify-test' for aws-sns-verify-0.0.0.3...
+Running 1 test suites...
+Test suite aws-sns-verify-test: RUNNING...
+
+Amazon.SNS.Verify
+  verifySNSMessage
+    successfully validates an SNS notification [✘]
+    successfully confirms a subscription [✘]
+Amazon.SNS.Verify.Validate
+  validateSnsMessage
+    successfully validates an SNS notification [✘]
+    fails to validate a currupt SNS notification [✘]
+    fails to validate a bad PEM [✘]
+    fails to validate an unexpected url [✔]
+    successfully validates an SNS subscription [✘]
+    successfully validates an SNS unsubscribe [✘]
+Amazon.SNS.Verify.ValidURI
+  verifySNSMessage
+    validates a prod schema [✔]
+    validates a prod schema [✔]
+    validates a prod schema [✔]
+
+Failures:
+
+  tests/Amazon/SNS/VerifySpec.hs:15:5: 
+  1) Amazon.SNS.Verify.verifySNSMessage successfully validates an SNS notification
+       uncaught exception: SNSNotificationValidationError
+       BadUri "http://localhost:3000"
+
+  To rerun use: --match "/Amazon.SNS.Verify/verifySNSMessage/successfully validates an SNS notification/" --seed 1044536876
+
+  tests/Amazon/SNS/VerifySpec.hs:51:9: 
+  2) Amazon.SNS.Verify.verifySNSMessage successfully confirms a subscription
+       predicate failed on expected exception: SNSNotificationValidationError
+       BadUri "http://localhost:3000"
+
+  To rerun use: --match "/Amazon.SNS.Verify/verifySNSMessage/successfully confirms a subscription/" --seed 1044536876
+
+  tests/Amazon/SNS/Verify/ValidateSpec.hs:36:9: 
+  3) Amazon.SNS.Verify.Validate.validateSnsMessage successfully validates an SNS notification
+       expected: Right (SNSMessage "Some message")
+        but got: Left (BadUri "http://localhost:3000")
+
+  To rerun use: --match "/Amazon.SNS.Verify.Validate/validateSnsMessage/successfully validates an SNS notification/" --seed 1044536876
+
+  tests/Amazon/SNS/Verify/ValidateSpec.hs:59:10: 
+  4) Amazon.SNS.Verify.Validate.validateSnsMessage fails to validate a currupt SNS notification
+       expected: Left (InvalidPayload SignatureInvalid)
+        but got: Left (BadUri "http://localhost:3000")
+
+  To rerun use: --match "/Amazon.SNS.Verify.Validate/validateSnsMessage/fails to validate a currupt SNS notification/" --seed 1044536876
+
+  tests/Amazon/SNS/Verify/ValidateSpec.hs:82:10: 
+  5) Amazon.SNS.Verify.Validate.validateSnsMessage fails to validate a bad PEM
+       expected: Left (BadPem "Empty List")
+        but got: Left (BadUri "http://localhost:3000/404")
+
+  To rerun use: --match "/Amazon.SNS.Verify.Validate/validateSnsMessage/fails to validate a bad PEM/" --seed 1044536876
+
+  tests/Amazon/SNS/Verify/ValidateSpec.hs:132:9: 
+  6) Amazon.SNS.Verify.Validate.validateSnsMessage successfully validates an SNS subscription
+       expected: Right (SNSSubscribe SNSSubscription {
+                   snsToken = "2336412f37...",
+                   snsSubscribeURL = "https://sns.us-west-2.amazonaws.com/?Action=ConfirmSubscription&TopicArn=arn:aws:sns:us-west-2:123456789012:MyTopic&Token=2336412f37..."
+                 })
+        but got: Left (BadUri "http://localhost:3000")
+
+  To rerun use: --match "/Amazon.SNS.Verify.Validate/validateSnsMessage/successfully validates an SNS subscription/" --seed 1044536876
+
+  tests/Amazon/SNS/Verify/ValidateSpec.hs:159:9: 
+  7) Amazon.SNS.Verify.Validate.validateSnsMessage successfully validates an SNS unsubscribe
+       expected: Right (SNSUnsubscribe SNSSubscription {
+                   snsToken = "2336412f37...",
+                   snsSubscribeURL = "https://sns.us-west-2.amazonaws.com/?Action=ConfirmSubscription&TopicArn=arn:aws:sns:us-west-2:123456789012:MyTopic&Token=2336412f37..."
+                 })
+        but got: Left (BadUri "http://localhost:3000")
+
+  To rerun use: --match "/Amazon.SNS.Verify.Validate/validateSnsMessage/successfully validates an SNS unsubscribe/" --seed 1044536876
+
+Randomized with seed 1044536876
+
+Finished in 0.0062 seconds
+11 examples, 7 failures
+Test suite aws-sns-verify-test: FAIL
+Test suite logged to:
+/tmp/workdir-aws-sns-verify/aws-sns-verify-0.0.0.3/dist-newstyle/build/x86_64-linux/ghc-9.10.2/aws-sns-verify-0.0.0.3/t/aws-sns-verify-test/test/aws-sns-verify-0.0.0.3-aws-sns-verify-test.log
+0 of 1 test suites (0 of 1 test cases) passed.
+Error: [Cabal-7125]
+Tests failed for test:aws-sns-verify-test from aws-sns-verify-0.0.0.3.
+

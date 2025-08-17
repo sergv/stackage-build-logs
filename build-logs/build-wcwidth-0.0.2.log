@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - wcwidth-0.0.2 (lib:wcwidth) (first run)
 Warning: wcwidth.cabal:47:45: version operators used. To use version operators
@@ -9,3 +10,19 @@ Configuring wcwidth-0.0.2...
 Preprocessing library for wcwidth-0.0.2...
 Building library for wcwidth-0.0.2...
 [1 of 1] Compiling Data.Char.WCWidth
+Data/Char/WCWidth.hs:57:66: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+57 | ranges                       =  reverse (foldl' aggregate start (tail widths))
+   |                                                                  ^^^^
+
+Data/Char/WCWidth.hs:59:47: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Data.List, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+59 |   start                      =  aggregate [] (head widths)
+   |                                               ^^^^
+

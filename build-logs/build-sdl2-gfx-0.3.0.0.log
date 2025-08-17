@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - sdl2-gfx-0.3.0.0 (lib) (first run)
  - sdl2-gfx-0.3.0.0 (exe:sdl2-gfx-example) (first run)
@@ -9,8 +10,23 @@ Preprocessing library for sdl2-gfx-0.3.0.0...
 Building library for sdl2-gfx-0.3.0.0...
 [ 1 of 10] Compiling Paths_sdl2_gfx
 [ 2 of 10] Compiling SDL.Raw.Helper
-[ 3 of 10] Compiling SDL.Raw.Framerate
+src/SDL/Raw/Helper.hs:95:22: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+95 | applyTo f es = loop (tail es) . AppE (VarE f) $ head es
+   |                      ^^^^
 
+src/SDL/Raw/Helper.hs:95:49: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+95 | applyTo f es = loop (tail es) . AppE (VarE f) $ head es
+   |                                                 ^^^^
+
+[ 3 of 10] Compiling SDL.Raw.Framerate
 src/SDL/Raw/Framerate.hsc:45:1: warning: [GHC-38417] [-Wmissing-exported-pattern-synonym-signatures]
     Pattern synonym with no type signature:
       pattern FPS_DEFAULT :: forall {a}. (Eq a, Num a) => a
@@ -38,8 +54,8 @@ src/SDL/Raw/Framerate.hsc:49:1: warning: [GHC-38417] [-Wmissing-kind-signatures]
    |
 49 | data Manager = Manager
    | ^^^^^^^^^^^^^^^^^^^^^^...
-[ 4 of 10] Compiling SDL.Framerate
 
+[ 4 of 10] Compiling SDL.Framerate
 src/SDL/Framerate.hs:40:1: warning: [GHC-38417] [-Wmissing-kind-signatures]
     Top-level type constructor with no standalone kind signature or CUSK:
       type Manager :: *
@@ -53,10 +69,10 @@ src/SDL/Framerate.hs:44:1: warning: [GHC-38417] [-Wmissing-kind-signatures]
    |
 44 | type Framerate = Int
    | ^^^^^^^^^^^^^^^^^^^^
+
 [ 5 of 10] Compiling SDL.Raw.ImageFilter
 [ 6 of 10] Compiling SDL.ImageFilter
 [ 7 of 10] Compiling SDL.Raw.Primitive
-
 src/SDL/Raw/Primitive.hsc:70:1: warning: [GHC-38417] [-Wmissing-kind-signatures]
     Top-level type constructor with no standalone kind signature or CUSK:
       type X :: *
@@ -133,8 +149,8 @@ src/SDL/Raw/Primitive.hsc:166:1: warning: [GHC-38417] [-Wmissing-kind-signatures
     |
 166 | type N = CInt
     | ^^^^^^^^^^^^^
-[ 8 of 10] Compiling SDL.Primitive
 
+[ 8 of 10] Compiling SDL.Primitive
 src/SDL/Primitive.hs:78:1: warning: [GHC-38417] [-Wmissing-kind-signatures]
     Top-level type constructor with no standalone kind signature or CUSK:
       type Pos :: *
@@ -190,8 +206,8 @@ src/SDL/Primitive.hs:408:1: warning: [GHC-38417] [-Wmissing-kind-signatures]
     |
 408 | type Steps = CInt
     | ^^^^^^^^^^^^^^^^^
-[ 9 of 10] Compiling SDL.Raw.Rotozoom
 
+[ 9 of 10] Compiling SDL.Raw.Rotozoom
 src/SDL/Raw/Rotozoom.hsc:42:1: warning: [GHC-38417] [-Wmissing-exported-pattern-synonym-signatures]
     Pattern synonym with no type signature:
       pattern SMOOTHING_OFF :: forall {a}. (Eq a, Num a) => a
@@ -205,8 +221,8 @@ src/SDL/Raw/Rotozoom.hsc:43:1: warning: [GHC-38417] [-Wmissing-exported-pattern-
    |
 43 | pattern SMOOTHING_ON  = (#const SMOOTHING_ON)
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[10 of 10] Compiling SDL.Rotozoom
 
+[10 of 10] Compiling SDL.Rotozoom
 src/SDL/Rotozoom.hs:44:1: warning: [GHC-38417] [-Wmissing-kind-signatures]
     Top-level type constructor with no standalone kind signature or CUSK:
       type Angle :: *
@@ -234,16 +250,17 @@ src/SDL/Rotozoom.hs:86:1: warning: [GHC-38417] [-Wmissing-kind-signatures]
    |
 86 | type Size = V2 CInt
    | ^^^^^^^^^^^^^^^^^^^
+
 Warning: sdl2-gfx.cabal:58:3: The field "autogen-modules" is available only
 since the Cabal specification version 2.0. This field will be ignored.
 Configuring executable 'sdl2-gfx-example' for sdl2-gfx-0.3.0.0...
 Preprocessing executable 'sdl2-gfx-example' for sdl2-gfx-0.3.0.0...
 Building executable 'sdl2-gfx-example' for sdl2-gfx-0.3.0.0...
 [1 of 2] Compiling Main
-
 example/Main.hs: warning: [-Wmissed-specialisations]
     Could not specialise imported function ‘Data.Vector.Storable.Mutable.$fMVectorMVectora’
       when specialising ‘Data.Vector.Generic.New.unstream’
     Probable fix: add INLINABLE pragma on ‘Data.Vector.Storable.Mutable.$fMVectorMVectora’
+
 [2 of 2] Compiling Paths_sdl2_gfx
-[3 of 3] Linking /tmp/workdir-sdl2-gfx/sdl2-gfx-0.3.0.0/dist-newstyle/build/x86_64-linux/ghc-9.6.5/sdl2-gfx-0.3.0.0/x/sdl2-gfx-example/build/sdl2-gfx-example/sdl2-gfx-example
+[3 of 3] Linking /tmp/workdir-sdl2-gfx/sdl2-gfx-0.3.0.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/sdl2-gfx-0.3.0.0/x/sdl2-gfx-example/build/sdl2-gfx-example/sdl2-gfx-example

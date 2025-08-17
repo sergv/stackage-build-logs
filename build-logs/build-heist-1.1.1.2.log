@@ -1,4 +1,5 @@
-Build profile: -w ghc-9.6.5 -O1
+Resolving dependencies...
+Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
  - heist-1.1.1.2 (lib) (first run)
  - heist-1.1.1.2 (test:testsuite) (first run)
@@ -7,34 +8,44 @@ Preprocessing library for heist-1.1.1.2...
 Building library for heist-1.1.1.2...
 [ 1 of 20] Compiling Data.HeterogeneousEnvironment
 [ 2 of 20] Compiling Heist.Internal.Types.HeistState
-
-src/Heist/Internal/Types/HeistState.hs:389:5: warning: [-Wnoncanonical-monad-instances]
+src/Heist/Internal/Types/HeistState.hs:389:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘pure = return’ definition detected
     in the instance declaration for ‘Applicative (HeistT n m)’.
-    Move definition from ‘return’ to ‘pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Move definition from ‘return’ to ‘pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 389 |     pure = return
     |     ^^^^^^^^^^^^^
 
-src/Heist/Internal/Types/HeistState.hs:396:5: warning: [-Wnoncanonical-monad-instances]
+src/Heist/Internal/Types/HeistState.hs:396:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad (HeistT n m)’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 396 |     return a = HeistT (\_ s -> return (a, s))
     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[ 3 of 20] Compiling Heist.Common
 
-src/Heist/Common.hs:23:1: warning: [-Wunused-imports]
+[ 3 of 20] Compiling Heist.Common
+src/Heist/Common.hs:23:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 23 | import           Data.Monoid              ((<>))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Heist/Common.hs:225:22: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+225 |     traversePath tm (tail path) name
+    |                      ^^^^
+
 [ 4 of 20] Compiling Heist.Compiled.Internal
 [ 5 of 20] Compiling Heist.Compiled.LowLevel
 [ 6 of 20] Compiling Heist.Compiled
@@ -45,7 +56,27 @@ src/Heist/Common.hs:23:1: warning: [-Wunused-imports]
 [11 of 20] Compiling Heist.Splices.Bind
 [12 of 20] Compiling Heist.Splices.BindStrict
 [13 of 20] Compiling Heist.Splices.Cache
+src/Heist/Splices/Cache.hs:203:37: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘Node’ not matched:
+            TextNode _
+            Comment _
+    |
+203 |     return $ [setAttribute "id" i $ node { elementChildren = newChildren }]
+    |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [14 of 20] Compiling Heist.Splices.Html
+src/Heist/Splices/Html.hs:27:41: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘X.Node’ not matched:
+            X.TextNode _
+            X.Comment _
+   |
+27 |     let (heads, mnode) = extractHeads $ node { X.elementChildren = children }
+   |                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [15 of 20] Compiling Heist.Splices.Ignore
 [16 of 20] Compiling Heist.Splices.Json
 [17 of 20] Compiling Heist.Splices.Markdown
@@ -55,7 +86,6 @@ src/Heist/Common.hs:23:1: warning: [-Wunused-imports]
 Configuring test suite 'testsuite' for heist-1.1.1.2...
 Preprocessing test suite 'testsuite' for heist-1.1.1.2...
 Building test suite 'testsuite' for heist-1.1.1.2...
-
 <no location info>: warning: [GHC-32850] [-Wmissing-home-modules]
     These modules are needed for compilation but not listed in your .cabal file's other-modules for ‘heist-1.1.1.2-inplace-testsuite’ :
         Data.HeterogeneousEnvironment
@@ -83,36 +113,47 @@ Building test suite 'testsuite' for heist-1.1.1.2...
         Heist.Tutorial.AttributeSplices
         Heist.Tutorial.CompiledSplices
         Heist.Tutorial.Imports
+
 [ 1 of 26] Compiling Data.HeterogeneousEnvironment
 [ 2 of 26] Compiling Heist.Internal.Types.HeistState
-
-src/Heist/Internal/Types/HeistState.hs:389:5: warning: [-Wnoncanonical-monad-instances]
+src/Heist/Internal/Types/HeistState.hs:389:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘pure = return’ definition detected
     in the instance declaration for ‘Applicative (HeistT n m)’.
-    Move definition from ‘return’ to ‘pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Move definition from ‘return’ to ‘pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 389 |     pure = return
     |     ^^^^^^^^^^^^^
 
-src/Heist/Internal/Types/HeistState.hs:396:5: warning: [-Wnoncanonical-monad-instances]
+src/Heist/Internal/Types/HeistState.hs:396:5: warning: [GHC-22705] [-Wnoncanonical-monad-instances]
     Noncanonical ‘return’ definition detected
     in the instance declaration for ‘Monad (HeistT n m)’.
     ‘return’ will eventually be removed in favour of ‘pure’
-    Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
-    See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
+    Suggested fix:
+      Either remove definition for ‘return’ (recommended) or define as ‘return = pure’
+      See also: https://gitlab.haskell.org/ghc/ghc/-/wikis/proposal/monad-of-no-return
     |
 396 |     return a = HeistT (\_ s -> return (a, s))
     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[ 3 of 26] Compiling Heist.Common
 
-src/Heist/Common.hs:23:1: warning: [-Wunused-imports]
+[ 3 of 26] Compiling Heist.Common
+src/Heist/Common.hs:23:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 23 | import           Data.Monoid              ((<>))
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/Heist/Common.hs:225:22: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+225 |     traversePath tm (tail path) name
+    |                      ^^^^
+
 [ 4 of 26] Compiling Heist.Compiled.Internal
 [ 5 of 26] Compiling Heist.Compiled
 [ 6 of 26] Compiling Heist.Interpreted.Internal
@@ -121,7 +162,27 @@ src/Heist/Common.hs:23:1: warning: [-Wunused-imports]
 [ 9 of 26] Compiling Heist.Splices.Apply
 [10 of 26] Compiling Heist.Splices.Bind
 [11 of 26] Compiling Heist.Splices.Cache
+src/Heist/Splices/Cache.hs:203:37: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘Node’ not matched:
+            TextNode _
+            Comment _
+    |
+203 |     return $ [setAttribute "id" i $ node { elementChildren = newChildren }]
+    |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [12 of 26] Compiling Heist.Splices.Html
+src/Heist/Splices/Html.hs:27:41: warning: [GHC-62161] [-Wincomplete-record-updates]
+    Pattern match(es) are non-exhaustive
+    In a record update:
+        Patterns of type ‘X.Node’ not matched:
+            X.TextNode _
+            X.Comment _
+   |
+27 |     let (heads, mnode) = extractHeads $ node { X.elementChildren = children }
+   |                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 [13 of 26] Compiling Heist.Splices.Ignore
 [14 of 26] Compiling Heist.Splices.Json
 [15 of 26] Compiling Heist.Splices.Markdown
@@ -129,36 +190,51 @@ src/Heist/Common.hs:23:1: warning: [-Wunused-imports]
 [17 of 26] Compiling Heist
 [18 of 26] Compiling Heist.TemplateDirectory
 [19 of 26] Compiling Heist.TestCommon
-
-test/suite/Heist/TestCommon.hs:11:1: warning: [-Wunused-imports]
+test/suite/Heist/TestCommon.hs:11:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 11 | import           Data.Monoid
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[20 of 26] Compiling Heist.Interpreted.Tests
 
-test/suite/Heist/Interpreted/Tests.hs:23:1: warning: [-Wunused-imports]
+[20 of 26] Compiling Heist.Interpreted.Tests
+test/suite/Heist/Interpreted/Tests.hs:23:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
    |
 23 | import           Data.Monoid
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/suite/Heist/Interpreted/Tests.hs:496:49: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+496 |   shrink (X.Element n as cs) = [X.Element n as (tail cs), X.Element n (tail as) cs]
+    |                                                 ^^^^
+
+test/suite/Heist/Interpreted/Tests.hs:496:72: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+496 |   shrink (X.Element n as cs) = [X.Element n as (tail cs), X.Element n (tail as) cs]
+    |                                                                        ^^^^
+
 [21 of 26] Compiling Heist.Tutorial.Imports
 [22 of 26] Compiling Heist.Tutorial.CompiledSplices
-
-test/suite/Heist/Tutorial/CompiledSplices.lhs:30:3: warning: [-Wunused-imports]
+test/suite/Heist/Tutorial/CompiledSplices.lhs:30:3: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
    |
 30 | > import           Control.Applicative
    |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[23 of 26] Compiling Heist.Compiled.Tests
 
-test/suite/Heist/Compiled/Tests.hs:7:1: warning: [-Wunused-imports]
+[23 of 26] Compiling Heist.Compiled.Tests
+test/suite/Heist/Compiled/Tests.hs:7:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
@@ -166,7 +242,7 @@ test/suite/Heist/Compiled/Tests.hs:7:1: warning: [-Wunused-imports]
 7 | import           Control.Applicative
   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-test/suite/Heist/Compiled/Tests.hs:19:1: warning: [-Wunused-imports]
+test/suite/Heist/Compiled/Tests.hs:19:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
@@ -174,7 +250,15 @@ test/suite/Heist/Compiled/Tests.hs:19:1: warning: [-Wunused-imports]
 19 | import           Data.Monoid
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-test/suite/Heist/Compiled/Tests.hs:354:20: warning: [-Wunused-matches]
+test/suite/Heist/Compiled/Tests.hs:320:57: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+    |
+320 |     nsFilter = (/=) (fromIntegral $ ord '_') . B.head . head
+    |                                                         ^^^^
+
+test/suite/Heist/Compiled/Tests.hs:354:20: warning: [GHC-40910] [-Wunused-matches]
     Defined but not used: ‘ls’
     |
 354 |                  l:ls -> Right l
@@ -192,10 +276,10 @@ test/suite/Heist/Compiled/Tests.hs:395:5: warning: [GHC-62161] [-Wincomplete-pat
     |
 395 |     splices [r1, r2, r3, r4, r5] = do
     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
 [24 of 26] Compiling Heist.Tutorial.AttributeSplices
 [25 of 26] Compiling Heist.Tests
-
-test/suite/Heist/Tests.hs:16:1: warning: [-Wunused-imports]
+test/suite/Heist/Tests.hs:16:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
@@ -203,15 +287,15 @@ test/suite/Heist/Tests.hs:16:1: warning: [-Wunused-imports]
 16 | import           Data.Monoid
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-test/suite/Heist/Tests.hs:24:1: warning: [-Wunused-imports]
+test/suite/Heist/Tests.hs:24:1: warning: [GHC-66111] [-Wunused-imports]
     The import of ‘Heist’ is redundant
       except perhaps to import instances from ‘Heist’
     To import instances alone, use: import Heist()
    |
 24 | import           Heist
    | ^^^^^^^^^^^^^^^^^^^^^^
-[26 of 26] Compiling Main
 
+[26 of 26] Compiling Main
 <no location info>: warning: [GHC-32850] [-Wmissing-home-modules]
     These modules are needed for compilation but not listed in your .cabal file's other-modules for ‘heist-1.1.1.2-inplace-testsuite’ :
         Data.HeterogeneousEnvironment
@@ -239,4 +323,5 @@ test/suite/Heist/Tests.hs:24:1: warning: [-Wunused-imports]
         Heist.Tutorial.AttributeSplices
         Heist.Tutorial.CompiledSplices
         Heist.Tutorial.Imports
-[27 of 27] Linking /tmp/workdir-heist/heist-1.1.1.2/dist-newstyle/build/x86_64-linux/ghc-9.6.5/heist-1.1.1.2/t/testsuite/build/testsuite/testsuite
+
+[27 of 27] Linking /tmp/workdir-heist/heist-1.1.1.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/heist-1.1.1.2/t/testsuite/build/testsuite/testsuite
