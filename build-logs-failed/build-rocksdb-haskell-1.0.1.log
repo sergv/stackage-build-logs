@@ -4,6 +4,9 @@ In order, the following will be built (use -v for more details):
  - rocksdb-haskell-1.0.1 (lib) (first run)
  - rocksdb-haskell-1.0.1 (test:rocksdb-tests) (first run)
 Configuring library for rocksdb-haskell-1.0.1...
+Warning: [git-protocol] Cloning over git:// might lead to an arbitrary code
+execution vulnerability. Furthermore, popular forges like GitHub do not
+support it. Use https:// or ssh:// instead.
 Preprocessing library for rocksdb-haskell-1.0.1...
 Building library for rocksdb-haskell-1.0.1...
 [1 of 6] Compiling Database.RocksDB.C
@@ -45,21 +48,29 @@ src/Database/RocksDB/Base.hs:247:15: warning: [GHC-63394] [-Wx-partial]
 
 [6 of 6] Compiling Database.RocksDB
 Configuring test suite 'rocksdb-tests' for rocksdb-haskell-1.0.1...
+Warning: [git-protocol] Cloning over git:// might lead to an arbitrary code
+execution vulnerability. Furthermore, popular forges like GitHub do not
+support it. Use https:// or ssh:// instead.
 Preprocessing test suite 'rocksdb-tests' for rocksdb-haskell-1.0.1...
 Building test suite 'rocksdb-tests' for rocksdb-haskell-1.0.1...
 [1 of 1] Compiling Main
-[2 of 2] Linking /tmp/workdir-rocksdb-haskell/rocksdb-haskell-1.0.1/dist-newstyle/build/x86_64-linux/ghc-9.10.2/rocksdb-haskell-1.0.1/t/rocksdb-tests/build/rocksdb-tests/rocksdb-tests
+[2 of 2] Linking dist-newstyle/build/x86_64-linux/ghc-9.10.2/rocksdb-haskell-1.0.1/t/rocksdb-tests/build/rocksdb-tests/rocksdb-tests
 /tmp/workdir-rocksdb-haskell/rocksdb-haskell-1.0.1/dist-newstyle/build/x86_64-linux/ghc-9.10.2/rocksdb-haskell-1.0.1/build/libHSrocksdb-haskell-1.0.1-inplace-ghc9.10.2.so: error: undefined reference to 'rocksdb_filterpolicy_create'
 collect2: error: ld returned 1 exit status
 ghc-9.10.2: `gcc' failed in phase `Linker'. (Exit code: 1)
 HasCallStack backtrace:
   collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception
   toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/IO.hs:260:11 in ghc-internal:GHC.Internal.IO
-  throwIO, called at libraries/exceptions/src/Control/Monad/Catch.hs:308:12 in exceptions-0.10.9-6126:Control.Monad.Catch
-  throwM, called at libraries/exceptions/src/Control/Monad/Catch.hs:797:84 in exceptions-0.10.9-6126:Control.Monad.Catch
-  onException, called at compiler/GHC/Driver/Make.hs:2983:23 in ghc-9.10.2-997f:GHC.Driver.Make
+  throwIO, called at libraries/exceptions/src/Control/Monad/Catch.hs:308:12 in exceptions-0.10.9-inplace:Control.Monad.Catch
+  throwM, called at libraries/exceptions/src/Control/Monad/Catch.hs:797:84 in exceptions-0.10.9-inplace:Control.Monad.Catch
+  onException, called at compiler/GHC/Driver/Make.hs:2983:23 in ghc-9.10.2-inplace:GHC.Driver.Make
 
 
 Error: [Cabal-7125]
 Failed to build test:rocksdb-tests from rocksdb-haskell-1.0.1.
+
+HasCallStack backtrace:
+  collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception
+  toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/IO.hs:260:11 in ghc-internal:GHC.Internal.IO
+  throwIO, called at libraries/ghc-internal/src/GHC/Internal/Control/Exception/Base.hs:195:43 in ghc-internal:GHC.Internal.Control.Exception.Base
 

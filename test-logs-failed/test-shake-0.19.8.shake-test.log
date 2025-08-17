@@ -8,7 +8,7 @@ Test suite shake-test: RUNNING...
 ******************************************************************
 ** Running shake test suite, run with '--help' to see arguments **
 ******************************************************************
-Longest file modification time lag was 1ms
+Longest file modification time lag was 2ms
 ## BUILD basic test
 ## TESTING basic
 ## BUILD basic clean
@@ -78,7 +78,7 @@ Build completed in 0.10s
 
 getProcessorCount returned 32
 ## BUILD basic 5.par 6.par -j0
-Build completed in 0.13s
+Build completed in 0.12s
 
 ## BUILD basic unsafe1.par unsafe2.par -j2
 Build completed in 0.10s
@@ -133,8 +133,8 @@ Build completed in 0.00s
 ## BUILD batch test
 ## TESTING batch
 ## BUILD batch --sleep -j2
-Building batch: 5.out 4.out 1.out
-Building batch: 2.out 6.out 3.out
+Building batch: 3.out 6.out 4.out
+Building batch: 5.out 2.out 1.out
 Build completed in 0.00s
 
 ## BUILD batch
@@ -208,7 +208,7 @@ Build completed in 0.00s
 Build completed in 0.01s
 
 ## BUILD batch batch_profile.1 batch_profile.2
-Build completed in 5.00s
+Build completed in 5.01s
 
 ## BUILD batch --report=report.json --no-build
 Warning: No want/action statements, nothing to do
@@ -223,7 +223,7 @@ Build completed in 0.00s
 Build completed in 1.00s
 
 ## BUILD benchmark
-Build completed in 0.28s
+Build completed in 0.30s
 
 ## FINISHED TESTING benchmark
 ## BUILD builtin test
@@ -248,13 +248,13 @@ Build completed in 0.00s
 ## BUILD c test
 ## TESTING c
 ## BUILD c --abbrev=output=$OUT -j3 --report
-# gcc (for main.c.o)
-# gcc (for constants.c.o)
 # gcc (for constants.c.o)
 # gcc (for main.c.o)
+# gcc (for main.c.o)
+# gcc (for constants.c.o)
 # gcc (for Main.exe)
 Writing report to report.html
-Build completed in 0.15s
+Build completed in 0.14s
 
 ## BUILD c --no-build --report=-
 Warning: No want/action statements, nothing to do
@@ -262,9 +262,9 @@ Writing report to -
 * This database has tracked 1 runs.
 * There are 8 rules (8 rebuilt in the last run).
 * Building required 6 traced commands (6 in the last run).
-* The total (unparallelised) time is 0.12s of which 0.12s is traced commands.
-* The longest rule takes 0.06s (main.c.o), and the longest traced command takes 0.03s (gcc).
-* Last run gave an average parallelism of 1.67 times over 0.07s.
+* The total (unparallelised) time is 0.11s of which 0.11s is traced commands.
+* The longest rule takes 0.05s (constants.c.o), and the longest traced command takes 0.03s (gcc).
+* Last run gave an average parallelism of 1.65 times over 0.07s.
 Build completed in 0.00s
 
 ## BUILD c
@@ -314,7 +314,7 @@ Loaded package environment from /tmp/workdir-shake/shake-0.19.8/.ghc.environment
 [2 of 2] Linking helper/close_file_handles_helper
 # close_file_handles_helper (for defaultbehaviour)
 # close_file_handles_helper (for closing)
-Build completed in 0.64s
+Build completed in 0.71s
 
 ## FINISHED TESTING closefilehandles
 ## BUILD command test
@@ -325,35 +325,35 @@ Loaded package environment from /tmp/workdir-shake/shake-0.19.8/.ghc.environment
 [1 of 2] Compiling Main             ( shake_helper.hs, shake_helper.o )
 [2 of 2] Linking helper/shake_helper
 # shake_helper (for capture)
-# shake_helper (for timeout1)
-# shake_helper (for cwd)
+# shake_helper (for async)
+# shake_helper (for stdin)
 # shake_helper (for env)
-# shake_helper (for space)
-# shake_helper (for space)
-# shake_helper (for space)
+# shake_helper (for timeout1)
 # shake_helper (for large)
 # shake_helper (for failure)
 # shake_helper (for file)
+# shake_helper (for path)
+# shake_helper (for path)
+# shake_helper (for path)
+# shake_helper (for path)
+# shake_helper (for cwd)
+# shake_helper (for large)
+# shake_helper (for large)
+Capturing 10Mb takes: String = 0.61s,ByteString = 0.03s,File = 0.03s
 # shake_helper (for timer)
-Command helper/shake_helper took 2.0277849e-2 seconds
-# shake_helper (for async)
-# shake_helper (for large)
-# shake_helper (for large)
-Capturing 10Mb takes: String = 0.58s,ByteString = 0.02s,File = 0.03s
-# shake_helper (for binary)
-# shake_helper (for binary)
-# shake_helper (for path)
-# shake_helper (for path)
-# shake_helper (for path)
-# shake_helper (for path)
-# shake_helper (for stdin)
-Timed out in 2.01s
+Command helper/shake_helper took 1.4917399000000001e-2 seconds
+# shake_helper (for space)
+# shake_helper (for space)
+# shake_helper (for space)
+Timed out in 2.03s
 Timed out in 2.00s
+# shake_helper (for binary)
+# shake_helper (for binary)
 Timed out in 2.00s
 Timed out in 2.00s
 Timed out in 2.00s
 /bin/sh: 1: not_a_process: not found
-Build completed in 4.60s
+Build completed in 4.69s
 
 ## BUILD command throws --quiet
 ## FINISHED TESTING command
@@ -369,7 +369,7 @@ Build completed in 0.00s
 ## FINISHED TESTING config
 ## BUILD database test
 ## TESTING database
-* This database has tracked 3 runs.
+* This database has tracked 2 runs.
 * There are 5 rules (1 rebuilt in the last run).
 * Building required 1 traced commands (1 in the last run).
 * The total (unparallelised) time is 0.00s of which 0.00s is traced commands.
@@ -583,4 +583,10 @@ Test suite logged to:
 0 of 1 test suites (0 of 1 test cases) passed.
 Error: [Cabal-7125]
 Tests failed for test:shake-test from shake-0.19.8.
+
+HasCallStack backtrace:
+  collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception
+  toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/IO.hs:260:11 in ghc-internal:GHC.Internal.IO
+  throwIO, called at src/Distribution/Simple/Utils.hs:445:3 in Cabal-3.17.0.0-53ebf9405f6485269412f2afda26457728679de3c53d4063272ccd1d333df04e:Distribution.Simple.Utils
+  dieWithException, called at src/Distribution/Client/ProjectOrchestration.hs:1380:21 in cabal-install-3.17.0.0-978433ac00bba1fbf2bb7ceb68e8f37852e35b9f8412260606c7e7d5fef0562a:Distribution.Client.ProjectOrchestration
 

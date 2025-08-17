@@ -12,31 +12,31 @@ All
         Eq
           ==:                              OK (0.01s)
             +++ OK, passed 100 tests.
-          /=:                              OK
+          /=:                              OK (0.02s)
             +++ OK, passed 100 tests.
         Ord
-          compare reflexive:               OK (0.02s)
+          compare reflexive:               OK
             +++ OK, passed 100 tests.
-          compare transitive:              OK (0.01s)
+          compare transitive:              OK (0.02s)
             +++ OK, passed 100 tests.
-          compare antisymmetric:           OK
+          compare antisymmetric:           OK (0.01s)
             +++ OK, passed 100 tests.
           Ord => Eq:                       OK (0.01s)
             +++ OK, passed 100 tests.
-        Read/Show:                         OK (0.11s)
+        Read/Show:                         OK (0.13s)
           +++ OK, passed 100 tests.
-        Functor:                           OK (0.04s)
+        Functor:                           OK (0.02s)
           +++ OK, passed 100 tests.
         Foldable:                          OK
           +++ OK, passed 100 tests.
         Bifoldable
-          bifoldMap:                       OK
+          bifoldMap:                       OK (0.01s)
             +++ OK, passed 100 tests.
-          bifoldr:                         OK
+          bifoldr:                         OK (0.01s)
             +++ OK, passed 100 tests.
-          bifoldl:                         OK (0.01s)
+          bifoldl:                         OK
             +++ OK, passed 100 tests.
-        Hashable:                          OK (0.02s)
+        Hashable:                          OK
           +++ OK, passed 100 tests.
       empty
         valid:                             OK
@@ -44,13 +44,247 @@ All
       singleton
         valid:                             OK
           +++ OK, passed 100 tests.
-      size:                                OK
+      size:                                OK (0.01s)
         +++ OK, passed 100 tests.
       member:                              OK
         +++ OK, passed 100 tests.
       lookup:                              OK
         +++ OK, passed 100 tests.
       !?:                                  OK
+        +++ OK, passed 100 tests.
+      insert
+        model:                             OK (0.01s)
+          +++ OK, passed 100 tests.
+        valid:                             OK
+          +++ OK, passed 100 tests.
+      insertWith
+        insertWith:                        OK (0.01s)
+          +++ OK, passed 100 tests.
+        valid:                             OK
+          +++ OK, passed 100 tests.
+      delete
+        model:                             OK (0.02s)
+          +++ OK, passed 100 tests.
+        valid:                             OK
+          +++ OK, passed 100 tests.
+      adjust
+        model:                             OK
+          +++ OK, passed 100 tests.
+        valid:                             OK
+          +++ OK, passed 100 tests.
+      update
+        model:                             OK (0.01s)
+          +++ OK, passed 100 tests.
+        valid:                             OK (0.01s)
+          +++ OK, passed 100 tests.
+      alter
+        model:                             OK (0.01s)
+          +++ OK, passed 100 tests.
+        valid:                             OK
+          +++ OK, passed 100 tests.
+      alterF
+        model
+          []:                              OK (0.05s)
+            +++ OK, passed 100 tests.
+          adjust:                          OK (0.01s)
+            +++ OK, passed 100 tests.
+          insert:                          OK (0.01s)
+            +++ OK, passed 100 tests.
+          insertWith:                      OK
+            +++ OK, passed 100 tests.
+          delete:                          OK
+            +++ OK, passed 100 tests.
+          lookup:                          OK
+            +++ OK, passed 100 tests.
+        valid:                             OK (0.04s)
+          +++ OK, passed 100 tests.
+      isSubmapOf
+        model:                             OK
+          +++ OK, passed 100 tests.
+        m ⊆ m:                             OK
+          +++ OK, passed 100 tests.
+        m1 ⊆ m1 ∪ m2:                      OK (0.01s)
+          +++ OK, passed 100 tests.
+        m1 ⊈ m2  ⇒  m1 ∪ m2 ⊈ m1:          OK
+          +++ OK, passed 100 tests; 16 discarded.
+        m1\m2 ⊆ m1:                        OK (0.01s)
+          +++ OK, passed 100 tests.
+        m1 ∩ m2 ≠ ∅  ⇒  m1 ⊈ m1\m2 :       OK (0.02s)
+          +++ OK, passed 100 tests; 177 discarded.
+        delete k m ⊆ m:                    OK
+          +++ OK, passed 100 tests; 15 discarded.
+        m ⊈ delete k m :                   OK
+          +++ OK, passed 100 tests; 16 discarded.
+        k ∉ m  ⇒  m ⊆ insert k v m:        OK
+          +++ OK, passed 100 tests; 9 discarded.
+        k ∉ m  ⇒  insert k v m ⊈ m:        OK
+          +++ OK, passed 100 tests; 7 discarded.
+      union
+        model:                             OK (0.02s)
+          +++ OK, passed 100 tests.
+        valid:                             OK
+          +++ OK, passed 100 tests.
+      unionWith
+        model:                             OK (0.02s)
+          +++ OK, passed 100 tests.
+        valid:                             OK
+          +++ OK, passed 100 tests.
+      unionWithKey
+        model:                             OK (0.02s)
+          +++ OK, passed 100 tests.
+        valid:                             OK
+          +++ OK, passed 100 tests.
+      unions
+        model:                             OK (0.56s)
+          +++ OK, passed 100 tests.
+        valid:                             OK (0.40s)
+          +++ OK, passed 100 tests.
+      difference
+        model:                             OK (0.01s)
+          +++ OK, passed 100 tests.
+        valid:                             OK
+          +++ OK, passed 100 tests.
+      differenceWith
+        model:                             OK (0.02s)
+          +++ OK, passed 100 tests.
+        valid:                             OK
+          +++ OK, passed 100 tests.
+      intersection
+        model:                             OK
+          +++ OK, passed 100 tests.
+        valid:                             OK
+          +++ OK, passed 100 tests.
+      intersectionWith
+        model:                             OK (0.01s)
+          +++ OK, passed 100 tests.
+        valid:                             OK (0.01s)
+          +++ OK, passed 100 tests.
+      intersectionWithKey
+        model:                             OK (0.03s)
+          +++ OK, passed 100 tests.
+        valid:                             OK
+          +++ OK, passed 100 tests.
+      compose
+        valid:                             OK (0.02s)
+          +++ OK, passed 100 tests.
+      map
+        model:                             OK (0.03s)
+          +++ OK, passed 100 tests.
+        valid:                             OK
+          +++ OK, passed 100 tests.
+      traverseWithKey
+        model:                             OK (0.29s)
+          +++ OK, passed 100 tests.
+        valid:                             OK
+          +++ OK, passed 100 tests.
+      mapKeys
+        model:                             OK (0.02s)
+          +++ OK, passed 100 tests.
+        valid:                             OK (0.19s)
+          +++ OK, passed 100 tests.
+      foldr:                               OK
+        +++ OK, passed 100 tests.
+      foldl:                               OK
+        +++ OK, passed 100 tests.
+      foldrWithKey:                        OK
+        +++ OK, passed 100 tests.
+      foldlWithKey:                        OK (0.01s)
+        +++ OK, passed 100 tests.
+      foldrWithKey':                       OK
+        +++ OK, passed 100 tests.
+      foldlWithKey':                       OK
+        +++ OK, passed 100 tests.
+      foldl':                              OK (0.01s)
+        +++ OK, passed 100 tests.
+      foldr':                              OK
+        +++ OK, passed 100 tests.
+      foldMapWithKey:                      OK
+        +++ OK, passed 100 tests.
+      filter
+        model:                             OK (0.04s)
+          +++ OK, passed 100 tests.
+        valid:                             OK (0.02s)
+          +++ OK, passed 100 tests.
+      filterWithKey
+        model:                             OK (0.56s)
+          +++ OK, passed 100 tests.
+        valid:                             OK (0.35s)
+          +++ OK, passed 100 tests.
+      mapMaybe
+        model:                             OK (0.03s)
+          +++ OK, passed 100 tests.
+        valid:                             OK (0.01s)
+          +++ OK, passed 100 tests.
+      mapMaybeWithKey
+        model:                             OK (0.49s)
+          +++ OK, passed 100 tests.
+        valid:                             OK (0.26s)
+          +++ OK, passed 100 tests.
+      elems:                               OK
+        +++ OK, passed 100 tests.
+      keys:                                OK
+        +++ OK, passed 100 tests.
+      fromList
+        model:                             OK
+          +++ OK, passed 100 tests.
+        valid:                             OK
+          +++ OK, passed 100 tests.
+      fromListWith
+        model:                             OK (0.01s)
+          +++ OK, passed 100 tests.
+        valid:                             OK
+          +++ OK, passed 100 tests.
+      fromListWithKey
+        model:                             OK (0.01s)
+          +++ OK, passed 100 tests.
+        valid:                             OK
+          +++ OK, passed 100 tests.
+      toList:                              OK (0.01s)
+        +++ OK, passed 100 tests.
+    Data.HashMap.Strict
+      instances
+        Eq
+          ==:                              OK (0.02s)
+            +++ OK, passed 100 tests.
+          /=:                              OK (0.01s)
+            +++ OK, passed 100 tests.
+        Ord
+          compare reflexive:               OK
+            +++ OK, passed 100 tests.
+          compare transitive:              OK (0.02s)
+            +++ OK, passed 100 tests.
+          compare antisymmetric:           OK (0.02s)
+            +++ OK, passed 100 tests.
+          Ord => Eq:                       OK (0.01s)
+            +++ OK, passed 100 tests.
+        Read/Show:                         OK (0.18s)
+          +++ OK, passed 100 tests.
+        Functor:                           OK (0.05s)
+          +++ OK, passed 100 tests.
+        Foldable:                          OK
+          +++ OK, passed 100 tests.
+        Bifoldable
+          bifoldMap:                       OK (0.01s)
+            +++ OK, passed 100 tests.
+          bifoldr:                         OK
+            +++ OK, passed 100 tests.
+          bifoldl:                         OK (0.02s)
+            +++ OK, passed 100 tests.
+        Hashable:                          OK
+          +++ OK, passed 100 tests.
+      empty
+        valid:                             OK
+          +++ OK, passed 1 test.
+      singleton
+        valid:                             OK
+          +++ OK, passed 100 tests.
+      size:                                OK (0.01s)
+        +++ OK, passed 100 tests.
+      member:                              OK
+        +++ OK, passed 100 tests.
+      lookup:                              OK (0.02s)
+        +++ OK, passed 100 tests.
+      !?:                                  OK (0.01s)
         +++ OK, passed 100 tests.
       insert
         model:                             OK
@@ -63,362 +297,128 @@ All
         valid:                             OK
           +++ OK, passed 100 tests.
       delete
-        model:                             OK
-          +++ OK, passed 100 tests.
-        valid:                             OK
-          +++ OK, passed 100 tests.
-      adjust
-        model:                             OK
-          +++ OK, passed 100 tests.
-        valid:                             OK
-          +++ OK, passed 100 tests.
-      update
         model:                             OK (0.01s)
           +++ OK, passed 100 tests.
         valid:                             OK
           +++ OK, passed 100 tests.
-      alter
+      adjust
         model:                             OK (0.02s)
+          +++ OK, passed 100 tests.
+        valid:                             OK
+          +++ OK, passed 100 tests.
+      update
+        model:                             OK
+          +++ OK, passed 100 tests.
+        valid:                             OK
+          +++ OK, passed 100 tests.
+      alter
+        model:                             OK (0.01s)
           +++ OK, passed 100 tests.
         valid:                             OK
           +++ OK, passed 100 tests.
       alterF
         model
-          []:                              OK (0.06s)
+          []:                              OK (0.13s)
             +++ OK, passed 100 tests.
           adjust:                          OK (0.01s)
-            +++ OK, passed 100 tests.
-          insert:                          OK
-            +++ OK, passed 100 tests.
-          insertWith:                      OK
-            +++ OK, passed 100 tests.
-          delete:                          OK
-            +++ OK, passed 100 tests.
-          lookup:                          OK
-            +++ OK, passed 100 tests.
-        valid:                             OK (0.02s)
-          +++ OK, passed 100 tests.
-      isSubmapOf
-        model:                             OK (0.01s)
-          +++ OK, passed 100 tests.
-        m ⊆ m:                             OK
-          +++ OK, passed 100 tests.
-        m1 ⊆ m1 ∪ m2:                      OK
-          +++ OK, passed 100 tests.
-        m1 ⊈ m2  ⇒  m1 ∪ m2 ⊈ m1:          OK
-          +++ OK, passed 100 tests; 16 discarded.
-        m1\m2 ⊆ m1:                        OK
-          +++ OK, passed 100 tests.
-        m1 ∩ m2 ≠ ∅  ⇒  m1 ⊈ m1\m2 :       OK (0.01s)
-          +++ OK, passed 100 tests; 163 discarded.
-        delete k m ⊆ m:                    OK
-          +++ OK, passed 100 tests; 16 discarded.
-        m ⊈ delete k m :                   OK
-          +++ OK, passed 100 tests; 24 discarded.
-        k ∉ m  ⇒  m ⊆ insert k v m:        OK
-          +++ OK, passed 100 tests; 13 discarded.
-        k ∉ m  ⇒  insert k v m ⊈ m:        OK
-          +++ OK, passed 100 tests; 11 discarded.
-      union
-        model:                             OK
-          +++ OK, passed 100 tests.
-        valid:                             OK (0.01s)
-          +++ OK, passed 100 tests.
-      unionWith
-        model:                             OK (0.02s)
-          +++ OK, passed 100 tests.
-        valid:                             OK (0.01s)
-          +++ OK, passed 100 tests.
-      unionWithKey
-        model:                             OK (0.04s)
-          +++ OK, passed 100 tests.
-        valid:                             OK
-          +++ OK, passed 100 tests.
-      unions
-        model:                             OK (0.62s)
-          +++ OK, passed 100 tests.
-        valid:                             OK (0.44s)
-          +++ OK, passed 100 tests.
-      difference
-        model:                             OK (0.01s)
-          +++ OK, passed 100 tests.
-        valid:                             OK
-          +++ OK, passed 100 tests.
-      differenceWith
-        model:                             OK (0.02s)
-          +++ OK, passed 100 tests.
-        valid:                             OK (0.02s)
-          +++ OK, passed 100 tests.
-      intersection
-        model:                             OK
-          +++ OK, passed 100 tests.
-        valid:                             OK
-          +++ OK, passed 100 tests.
-      intersectionWith
-        model:                             OK (0.02s)
-          +++ OK, passed 100 tests.
-        valid:                             OK
-          +++ OK, passed 100 tests.
-      intersectionWithKey
-        model:                             OK (0.03s)
-          +++ OK, passed 100 tests.
-        valid:                             OK (0.02s)
-          +++ OK, passed 100 tests.
-      compose
-        valid:                             OK (0.02s)
-          +++ OK, passed 100 tests.
-      map
-        model:                             OK (0.03s)
-          +++ OK, passed 100 tests.
-        valid:                             OK
-          +++ OK, passed 100 tests.
-      traverseWithKey
-        model:                             OK (0.32s)
-          +++ OK, passed 100 tests.
-        valid:                             OK (0.02s)
-          +++ OK, passed 100 tests.
-      mapKeys
-        model:                             OK (0.01s)
-          +++ OK, passed 100 tests.
-        valid:                             OK (0.30s)
-          +++ OK, passed 100 tests.
-      foldr:                               OK
-        +++ OK, passed 100 tests.
-      foldl:                               OK
-        +++ OK, passed 100 tests.
-      foldrWithKey:                        OK
-        +++ OK, passed 100 tests.
-      foldlWithKey:                        OK
-        +++ OK, passed 100 tests.
-      foldrWithKey':                       OK (0.01s)
-        +++ OK, passed 100 tests.
-      foldlWithKey':                       OK
-        +++ OK, passed 100 tests.
-      foldl':                              OK
-        +++ OK, passed 100 tests.
-      foldr':                              OK
-        +++ OK, passed 100 tests.
-      foldMapWithKey:                      OK (0.02s)
-        +++ OK, passed 100 tests.
-      filter
-        model:                             OK (0.05s)
-          +++ OK, passed 100 tests.
-        valid:                             OK (0.05s)
-          +++ OK, passed 100 tests.
-      filterWithKey
-        model:                             OK (0.62s)
-          +++ OK, passed 100 tests.
-        valid:                             OK (0.38s)
-          +++ OK, passed 100 tests.
-      mapMaybe
-        model:                             OK (0.07s)
-          +++ OK, passed 100 tests.
-        valid:                             OK (0.01s)
-          +++ OK, passed 100 tests.
-      mapMaybeWithKey
-        model:                             OK (0.55s)
-          +++ OK, passed 100 tests.
-        valid:                             OK (0.45s)
-          +++ OK, passed 100 tests.
-      elems:                               OK (0.01s)
-        +++ OK, passed 100 tests.
-      keys:                                OK (0.01s)
-        +++ OK, passed 100 tests.
-      fromList
-        model:                             OK (0.02s)
-          +++ OK, passed 100 tests.
-        valid:                             OK
-          +++ OK, passed 100 tests.
-      fromListWith
-        model:                             OK (0.02s)
-          +++ OK, passed 100 tests.
-        valid:                             OK
-          +++ OK, passed 100 tests.
-      fromListWithKey
-        model:                             OK (0.01s)
-          +++ OK, passed 100 tests.
-        valid:                             OK
-          +++ OK, passed 100 tests.
-      toList:                              OK
-        +++ OK, passed 100 tests.
-    Data.HashMap.Strict
-      instances
-        Eq
-          ==:                              OK (0.01s)
-            +++ OK, passed 100 tests.
-          /=:                              OK (0.02s)
-            +++ OK, passed 100 tests.
-        Ord
-          compare reflexive:               OK
-            +++ OK, passed 100 tests.
-          compare transitive:              OK (0.04s)
-            +++ OK, passed 100 tests.
-          compare antisymmetric:           OK (0.03s)
-            +++ OK, passed 100 tests.
-          Ord => Eq:                       OK (0.02s)
-            +++ OK, passed 100 tests.
-        Read/Show:                         OK (0.17s)
-          +++ OK, passed 100 tests.
-        Functor:                           OK (0.07s)
-          +++ OK, passed 100 tests.
-        Foldable:                          OK (0.02s)
-          +++ OK, passed 100 tests.
-        Bifoldable
-          bifoldMap:                       OK (0.02s)
-            +++ OK, passed 100 tests.
-          bifoldr:                         OK (0.03s)
-            +++ OK, passed 100 tests.
-          bifoldl:                         OK (0.02s)
-            +++ OK, passed 100 tests.
-        Hashable:                          OK (0.02s)
-          +++ OK, passed 100 tests.
-      empty
-        valid:                             OK
-          +++ OK, passed 1 test.
-      singleton
-        valid:                             OK
-          +++ OK, passed 100 tests.
-      size:                                OK
-        +++ OK, passed 100 tests.
-      member:                              OK
-        +++ OK, passed 100 tests.
-      lookup:                              OK (0.01s)
-        +++ OK, passed 100 tests.
-      !?:                                  OK (0.01s)
-        +++ OK, passed 100 tests.
-      insert
-        model:                             OK (0.02s)
-          +++ OK, passed 100 tests.
-        valid:                             OK
-          +++ OK, passed 100 tests.
-      insertWith
-        insertWith:                        OK (0.02s)
-          +++ OK, passed 100 tests.
-        valid:                             OK (0.01s)
-          +++ OK, passed 100 tests.
-      delete
-        model:                             OK (0.02s)
-          +++ OK, passed 100 tests.
-        valid:                             OK
-          +++ OK, passed 100 tests.
-      adjust
-        model:                             OK (0.02s)
-          +++ OK, passed 100 tests.
-        valid:                             OK
-          +++ OK, passed 100 tests.
-      update
-        model:                             OK (0.02s)
-          +++ OK, passed 100 tests.
-        valid:                             OK
-          +++ OK, passed 100 tests.
-      alter
-        model:                             OK (0.01s)
-          +++ OK, passed 100 tests.
-        valid:                             OK (0.01s)
-          +++ OK, passed 100 tests.
-      alterF
-        model
-          []:                              OK (0.08s)
-            +++ OK, passed 100 tests.
-          adjust:                          OK
             +++ OK, passed 100 tests.
           insert:                          OK (0.01s)
             +++ OK, passed 100 tests.
           insertWith:                      OK (0.01s)
             +++ OK, passed 100 tests.
-          delete:                          OK
+          delete:                          OK (0.02s)
             +++ OK, passed 100 tests.
-          lookup:                          OK (0.02s)
+          lookup:                          OK
             +++ OK, passed 100 tests.
-        valid:                             OK (0.04s)
+        valid:                             OK (0.03s)
           +++ OK, passed 100 tests.
       isSubmapOf
-        model:                             OK (0.02s)
+        model:                             OK (0.01s)
           +++ OK, passed 100 tests.
         m ⊆ m:                             OK (0.01s)
           +++ OK, passed 100 tests.
         m1 ⊆ m1 ∪ m2:                      OK (0.01s)
           +++ OK, passed 100 tests.
-        m1 ⊈ m2  ⇒  m1 ∪ m2 ⊈ m1:          OK (0.02s)
-          +++ OK, passed 100 tests; 16 discarded.
-        m1\m2 ⊆ m1:                        OK (0.02s)
+        m1 ⊈ m2  ⇒  m1 ∪ m2 ⊈ m1:          OK (0.01s)
+          +++ OK, passed 100 tests; 11 discarded.
+        m1\m2 ⊆ m1:                        OK (0.01s)
           +++ OK, passed 100 tests.
-        m1 ∩ m2 ≠ ∅  ⇒  m1 ⊈ m1\m2 :       OK (0.04s)
-          +++ OK, passed 100 tests; 195 discarded.
+        m1 ∩ m2 ≠ ∅  ⇒  m1 ⊈ m1\m2 :       OK (0.03s)
+          +++ OK, passed 100 tests; 162 discarded.
         delete k m ⊆ m:                    OK
-          +++ OK, passed 100 tests; 14 discarded.
-        m ⊈ delete k m :                   OK (0.01s)
-          +++ OK, passed 100 tests; 14 discarded.
+          +++ OK, passed 100 tests; 15 discarded.
+        m ⊈ delete k m :                   OK
+          +++ OK, passed 100 tests; 16 discarded.
         k ∉ m  ⇒  m ⊆ insert k v m:        OK
-          +++ OK, passed 100 tests; 6 discarded.
-        k ∉ m  ⇒  insert k v m ⊈ m:        OK (0.02s)
-          +++ OK, passed 100 tests; 6 discarded.
+          +++ OK, passed 100 tests; 10 discarded.
+        k ∉ m  ⇒  insert k v m ⊈ m:        OK (0.01s)
+          +++ OK, passed 100 tests; 5 discarded.
       union
-        model:                             OK (0.02s)
+        model:                             OK (0.04s)
           +++ OK, passed 100 tests.
         valid:                             OK (0.02s)
           +++ OK, passed 100 tests.
       unionWith
-        model:                             OK (0.03s)
+        model:                             OK (0.06s)
           +++ OK, passed 100 tests.
-        valid:                             OK (0.03s)
+        valid:                             OK (0.02s)
           +++ OK, passed 100 tests.
       unionWithKey
-        model:                             OK (0.04s)
+        model:                             OK (0.05s)
           +++ OK, passed 100 tests.
-        valid:                             OK (0.03s)
+        valid:                             OK (0.06s)
           +++ OK, passed 100 tests.
       unions
-        model:                             OK (0.62s)
+        model:                             OK (0.54s)
           +++ OK, passed 100 tests.
-        valid:                             OK (0.42s)
+        valid:                             OK (0.41s)
           +++ OK, passed 100 tests.
       difference
-        model:                             OK (0.02s)
+        model:                             OK (0.03s)
           +++ OK, passed 100 tests.
-        valid:                             OK (0.03s)
+        valid:                             OK
           +++ OK, passed 100 tests.
       differenceWith
-        model:                             OK (0.02s)
-          +++ OK, passed 100 tests.
-        valid:                             OK (0.03s)
-          +++ OK, passed 100 tests.
-      intersection
-        model:                             OK (0.02s)
-          +++ OK, passed 100 tests.
-        valid:                             OK (0.01s)
-          +++ OK, passed 100 tests.
-      intersectionWith
         model:                             OK (0.05s)
           +++ OK, passed 100 tests.
         valid:                             OK (0.02s)
           +++ OK, passed 100 tests.
-      intersectionWithKey
+      intersection
+        model:                             OK (0.02s)
+          +++ OK, passed 100 tests.
+        valid:                             OK
+          +++ OK, passed 100 tests.
+      intersectionWith
         model:                             OK (0.04s)
           +++ OK, passed 100 tests.
-        valid:                             OK (0.05s)
+        valid:                             OK
+          +++ OK, passed 100 tests.
+      intersectionWithKey
+        model:                             OK (0.05s)
+          +++ OK, passed 100 tests.
+        valid:                             OK (0.02s)
           +++ OK, passed 100 tests.
       compose
-        valid:                             OK (0.03s)
+        valid:                             OK (0.02s)
           +++ OK, passed 100 tests.
       map
-        model:                             OK (0.08s)
+        model:                             OK (0.04s)
           +++ OK, passed 100 tests.
-        valid:                             OK (0.04s)
+        valid:                             OK (0.03s)
           +++ OK, passed 100 tests.
       traverseWithKey
         model:                             OK (0.19s)
           +++ OK, passed 100 tests.
-        valid:                             OK (0.03s)
+        valid:                             OK (0.02s)
           +++ OK, passed 100 tests.
       mapKeys
         model:                             OK (0.02s)
           +++ OK, passed 100 tests.
-        valid:                             OK (0.32s)
+        valid:                             OK (0.26s)
           +++ OK, passed 100 tests.
-      foldr:                               OK (0.03s)
+      foldr:                               OK (0.02s)
         +++ OK, passed 100 tests.
-      foldl:                               OK
+      foldl:                               OK (0.02s)
         +++ OK, passed 100 tests.
       foldrWithKey:                        OK (0.02s)
         +++ OK, passed 100 tests.
@@ -426,117 +426,117 @@ All
         +++ OK, passed 100 tests.
       foldrWithKey':                       OK
         +++ OK, passed 100 tests.
-      foldlWithKey':                       OK (0.02s)
+      foldlWithKey':                       OK
         +++ OK, passed 100 tests.
-      foldl':                              OK (0.02s)
+      foldl':                              OK
         +++ OK, passed 100 tests.
-      foldr':                              OK (0.01s)
+      foldr':                              OK (0.02s)
         +++ OK, passed 100 tests.
-      foldMapWithKey:                      OK (0.01s)
+      foldMapWithKey:                      OK (0.02s)
         +++ OK, passed 100 tests.
       filter
-        model:                             OK (0.07s)
+        model:                             OK (0.08s)
           +++ OK, passed 100 tests.
-        valid:                             OK (0.03s)
+        valid:                             OK (0.05s)
           +++ OK, passed 100 tests.
       filterWithKey
-        model:                             OK (0.56s)
+        model:                             OK (0.50s)
           +++ OK, passed 100 tests.
-        valid:                             OK (0.36s)
+        valid:                             OK (0.34s)
           +++ OK, passed 100 tests.
       mapMaybe
-        model:                             OK (0.05s)
+        model:                             OK (0.09s)
           +++ OK, passed 100 tests.
         valid:                             OK (0.03s)
           +++ OK, passed 100 tests.
       mapMaybeWithKey
-        model:                             OK (0.56s)
+        model:                             OK (0.49s)
           +++ OK, passed 100 tests.
-        valid:                             OK (0.39s)
+        valid:                             OK (0.31s)
           +++ OK, passed 100 tests.
       elems:                               OK (0.02s)
         +++ OK, passed 100 tests.
-      keys:                                OK (0.01s)
+      keys:                                OK (0.02s)
         +++ OK, passed 100 tests.
       fromList
         model:                             OK (0.01s)
           +++ OK, passed 100 tests.
-        valid:                             OK
+        valid:                             OK (0.01s)
           +++ OK, passed 100 tests.
       fromListWith
-        model:                             OK (0.01s)
+        model:                             OK (0.02s)
           +++ OK, passed 100 tests.
         valid:                             OK (0.02s)
           +++ OK, passed 100 tests.
       fromListWithKey
-        model:                             OK
+        model:                             OK (0.02s)
           +++ OK, passed 100 tests.
-        valid:                             OK (0.03s)
+        valid:                             OK (0.02s)
           +++ OK, passed 100 tests.
       toList:                              OK (0.02s)
         +++ OK, passed 100 tests.
     Data.HashSet
       instances
         Eq
-          ==:                              OK (0.02s)
+          ==:                              OK (0.03s)
             +++ OK, passed 100 tests.
-          == permutations:                 OK (0.02s)
+          == permutations:                 OK (0.03s)
             +++ OK, passed 100 tests.
-          /=:                              OK (0.02s)
+          /=:                              OK (0.03s)
             +++ OK, passed 100 tests.
         Ord
           compare reflexive:               OK (0.01s)
             +++ OK, passed 100 tests.
-          compare transitive:              OK (0.04s)
+          compare transitive:              OK (0.03s)
             +++ OK, passed 100 tests.
-          compare antisymmetric:           OK (0.02s)
+          compare antisymmetric:           OK (0.01s)
             +++ OK, passed 100 tests.
-          Ord => Eq:                       OK (0.01s)
+          Ord => Eq:                       OK (0.02s)
             +++ OK, passed 100 tests.
-        Read/Show:                         OK (0.18s)
+        Read/Show:                         OK (0.17s)
           +++ OK, passed 100 tests.
         Foldable:                          OK (0.02s)
           +++ OK, passed 100 tests.
-        Hashable:                          OK (0.03s)
+        Hashable:                          OK (0.01s)
           +++ OK, passed 100 tests.
-      size:                                OK (0.02s)
+      size:                                OK
         +++ OK, passed 100 tests.
-      member:                              OK (0.02s)
+      member:                              OK (0.01s)
         +++ OK, passed 100 tests.
-      insert:                              OK (0.02s)
+      insert:                              OK (0.01s)
         +++ OK, passed 100 tests.
-      delete:                              OK (0.01s)
+      delete:                              OK
         +++ OK, passed 100 tests.
-      union:                               OK (0.03s)
+      union:                               OK (0.04s)
         +++ OK, passed 100 tests.
-      map:                                 OK (0.42s)
+      map:                                 OK (0.40s)
         +++ OK, passed 100 tests.
-      foldr:                               OK
+      foldr:                               OK (0.01s)
         +++ OK, passed 100 tests.
-      foldl':                              OK (0.02s)
+      foldl':                              OK
         +++ OK, passed 100 tests.
-      filter:                              OK (0.39s)
+      filter:                              OK (0.33s)
         +++ OK, passed 100 tests.
-      toList:                              OK (0.02s)
+      toList:                              OK (0.03s)
         +++ OK, passed 100 tests.
     Data.HashMap.Internal.List
       isPermutationBy:                     OK (0.02s)
         +++ OK, passed 100 tests.
       isPermutationBy of different length: OK
-        +++ OK, passed 100 tests; 16 discarded.
-      pUnorderedCompare:                   OK (0.06s)
+        +++ OK, passed 100 tests; 15 discarded.
+      pUnorderedCompare:                   OK (0.04s)
         +++ OK, passed 100 tests.
       modelUnorderedCompare
-        reflexive:                         OK (0.02s)
+        reflexive:                         OK (0.01s)
           +++ OK, passed 100 tests.
-        anti-symmetric:                    OK (0.01s)
+        anti-symmetric:                    OK
           +++ OK, passed 100 tests.
-        transitive:                        OK (0.02s)
+        transitive:                        OK
           +++ OK, passed 100 tests.
   Regression tests
     issue32:                               OK
     issue39a:                              OK
-    issue39b:                              OK
+    issue39b:                              OK (0.02s)
       +++ OK, passed 100 tests.
     issue254 lazy:                         OK
     issue254 strict:                       OK
@@ -571,7 +571,7 @@ All
         +++ OK, passed 100 tests.
       adjust is key-strict:                OK
         +++ OK, passed 100 tests.
-      adjust is value-strict:              OK (0.01s)
+      adjust is value-strict:              OK (0.02s)
         +++ OK, passed 100 tests.
       insert is key-strict:                OK
         +++ OK, passed 100 tests.
@@ -579,7 +579,7 @@ All
         +++ OK, passed 100 tests.
       insertWith is key-strict:            OK
         +++ OK, passed 100 tests.
-      insertWith is value-strict:          OK
+      insertWith is value-strict:          OK (0.02s)
         +++ OK, passed 100 tests.
       fromList is key-strict:              OK
         +++ OK, passed 100 tests.
@@ -590,7 +590,7 @@ All
       fromListWith is value-strict:        OK
         +++ OK, passed 100 tests.
 
-All 256 tests passed (0.70s)
+All 256 tests passed (0.60s)
 Test suite unordered-containers-tests: PASS
 Test suite logged to:
 /tmp/workdir-unordered-containers/unordered-containers-0.2.20/dist-newstyle/build/x86_64-linux/ghc-9.10.2/unordered-containers-0.2.20/t/unordered-containers-tests/test/unordered-containers-0.2.20-unordered-containers-tests.log

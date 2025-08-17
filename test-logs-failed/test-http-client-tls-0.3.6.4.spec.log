@@ -38,18 +38,18 @@ Failures:
        }
         (InternalException (HandshakeFailed (Error_Protocol "peer does not support Extended Main Secret" HandshakeFailure)))
 
-  To rerun use: --match "/BadSSL: we do have case-insensitivity though/" --seed 1475786235
+  To rerun use: --match "/BadSSL: we do have case-insensitivity though/" --seed 792647241
 
   test/Spec.hs:55:25: 
   2) accepts TLS settings
        uncaught exception: RecConError
        test/Spec.hs:(55,25)-(59,13): Missing field in record construction settingClientSupported
 
-  To rerun use: --match "/accepts TLS settings/" --seed 1475786235
+  To rerun use: --match "/accepts TLS settings/" --seed 792647241
 
-Randomized with seed 1475786235
+Randomized with seed 792647241
 
-Finished in 3.8096 seconds
+Finished in 2.0027 seconds
 9 examples, 2 failures
 Test suite spec: FAIL
 Test suite logged to:
@@ -57,4 +57,10 @@ Test suite logged to:
 0 of 1 test suites (0 of 1 test cases) passed.
 Error: [Cabal-7125]
 Tests failed for test:spec from http-client-tls-0.3.6.4.
+
+HasCallStack backtrace:
+  collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception
+  toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/IO.hs:260:11 in ghc-internal:GHC.Internal.IO
+  throwIO, called at src/Distribution/Simple/Utils.hs:445:3 in Cabal-3.17.0.0-53ebf9405f6485269412f2afda26457728679de3c53d4063272ccd1d333df04e:Distribution.Simple.Utils
+  dieWithException, called at src/Distribution/Client/ProjectOrchestration.hs:1380:21 in cabal-install-3.17.0.0-978433ac00bba1fbf2bb7ceb68e8f37852e35b9f8412260606c7e7d5fef0562a:Distribution.Client.ProjectOrchestration
 

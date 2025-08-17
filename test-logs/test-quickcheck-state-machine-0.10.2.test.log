@@ -1,0 +1,1281 @@
+Build profile: -w ghc-9.10.2 -O1
+In order, the following will be built (use -v for more details):
+ - quickcheck-state-machine-0.10.2 (test:test) (ephemeral targets)
+Preprocessing test suite 'test' for quickcheck-state-machine-0.10.2...
+Building test suite 'test' for quickcheck-state-machine-0.10.2...
+Running 1 test suites...
+Test suite test: RUNNING...
+Tests
+  Doctest:                                                         
+[0;37mModel [][0m
+
+   == Create ==> Created (Reference (Concrete Opaque)) [ 0 ]
+
+Model [[0;97;42m+_×_ (Reference Opaque) 0[0m]
+
+   == Write (Reference (Concrete Opaque)) 5 ==> Written [ 0 ]
+
+Model [_×_ [0;37m(Reference Opaque)[0m [0;97;41m-0[0m [0;97;42m+5[0m]
+
+   == Read (Reference (Concrete Opaque)) ==> ReadValue 6 [ 0 ]
+
+[0;37mModel [_×_ (Reference Opaque) 5][0m
+
+Saved counterexample in: /tmp/2025-08-17_17:31:41
+
+
+[0;37m[[1, 2, 3], [], []][0m
+
+   == Move ( 0 , 2 ) ==> Done [ 0 ]
+
+[[[0;97;41m-1[0m, [0;37m2[0m, [0;37m3[0m], [0;37m[][0m, [[0;97;42m+1[0m]]
+
+   == Move ( 0 , 1 ) ==> Done [ 0 ]
+
+[[[0;97;41m-2[0m, [0;37m3[0m], [[0;97;42m+2[0m], [0;37m[1][0m]
+
+   == Move ( 2 , 0 ) ==> Done [ 0 ]
+
+[[[0;97;42m+1[0m, [0;37m3[0m], [0;37m[2][0m, [[0;97;41m-1[0m]]
+
+   == Move ( 1 , 2 ) ==> Done [ 0 ]
+
+[[0;37m[1, 3][0m, [[0;97;41m-2[0m], [[0;97;42m+2[0m]]
+
+   == Move ( 2 , 1 ) ==> Done [ 0 ]
+
+[[0;37m[1, 3][0m, [[0;97;42m+2[0m], [[0;97;41m-2[0m]]
+
+   == Move ( 0 , 2 ) ==> Done [ 0 ]
+
+[[[0;97;41m-1[0m, [0;37m3[0m], [0;37m[2][0m, [[0;97;42m+1[0m]]
+
+   == Move ( 2 , 1 ) ==> Done [ 0 ]
+
+[[0;37m[3][0m, [[0;97;42m+1[0m, [0;37m2[0m], [[0;97;41m-1[0m]]
+
+   == Move ( 0 , 2 ) ==> Done [ 0 ]
+
+[[[0;97;41m-3[0m], [0;37m[1, 2][0m, [[0;97;42m+3[0m]]
+
+   == Move ( 1 , 0 ) ==> Done [ 0 ]
+
+[[[0;97;42m+1[0m], [[0;97;41m-1[0m, [0;37m2[0m], [0;37m[3][0m]
+
+   == Move ( 1 , 2 ) ==> Done [ 0 ]
+
+[[0;37m[1][0m, [[0;97;41m-2[0m], [[0;97;42m+2[0m, [0;37m3[0m]]
+
+   == Move ( 0 , 2 ) ==> Done [ 0 ]
+
+[[[0;97;41m-1[0m], [0;37m[][0m, [[0;97;42m+1[0m, [0;37m2[0m, [0;37m3[0m]]
+
+
+[0;37mModel {bigJug = 0,smallJug = 0}[0m
+
+   == FillBig ==> Done [ 0 ]
+
+Model {bigJug = [0;97;41m-0[0m [0;97;42m+5[0m,smallJug = [0;37m0[0m}
+
+   == BigIntoSmall ==> Done [ 0 ]
+
+Model {bigJug = [0;97;41m-5[0m [0;97;42m+2[0m,smallJug = [0;97;41m-0[0m [0;97;42m+3[0m}
+
+   == EmptySmall ==> Done [ 0 ]
+
+Model {bigJug = [0;37m2[0m,smallJug = [0;97;41m-3[0m [0;97;42m+0[0m}
+
+   == BigIntoSmall ==> Done [ 0 ]
+
+Model {bigJug = [0;97;41m-2[0m [0;97;42m+0[0m,smallJug = [0;97;41m-0[0m [0;97;42m+2[0m}
+
+   == FillBig ==> Done [ 0 ]
+
+Model {bigJug = [0;97;41m-0[0m [0;97;42m+5[0m,smallJug = [0;37m2[0m}
+
+   == BigIntoSmall ==> Done [ 0 ]
+
+Model {bigJug = [0;97;41m-5[0m [0;97;42m+4[0m,smallJug = [0;97;41m-2[0m [0;97;42m+3[0m}
+
+
+┌──────────────────────────────────────────────────────────────────────────────────────────┐
+│ [Var 0] ← Create                                                                         │
+│                                                  → Created (Reference (Concrete Opaque)) │
+└──────────────────────────────────────────────────────────────────────────────────────────┘
+                                               │ ┌─────────────────────────────────────────┐
+                                               │ │ [] ← Read (Reference (Concrete Opaque)) │
+┌────────────────────────────────────────────┐ │ │                                         │
+│ [] ← Write (Reference (Concrete Opaque)) 0 │ │ │                                         │
+│                              → Exception 0 │ │ │                                         │
+└────────────────────────────────────────────┘ │ │                                         │
+                                               │ │                           → ReadValue 1 │
+                                               │ └─────────────────────────────────────────┘
+│                                  → Written │ │                                            
+└────────────────────────────────────────────┘ │                                            
+
+Exception 0:
+  Crash after writing!
+  CallStack (from HasCallStack):
+    error, called at test/MemoryReference.hs:160:9 in quickcheck-state-machine-0.10.2-inplace-test:MemoryReference
+  HasCallStack backtrace:
+    collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception
+    toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:204:5 in ghc-internal:GHC.Internal.Exception
+    error, called at test/MemoryReference.hs:160:9 in quickcheck-state-machine-0.10.2-inplace-test:MemoryReference
+
+
+
+EitherC (AnnotateC "Read" (PredicateC (1 :/= 0))) (AnnotateC "Read" (PredicateC (1 :/= 0)))
+
+[0;37mModel {counter = 0
+  ,files = Map.fromList []
+  ,ref = Opaque
+  ,semanticsCounter = Opaque
+  ,value = 0}[0m
+
+   == Create "file0" ==> Created (Reference (Concrete Opaque)) [ 0 ]
+
+Model {counter = [0;97;41m-0[0m [0;97;42m+1[0m
+  ,files = Map.fromList [[0;97;42m+_×_ (Reference Opaque) "file0"[0m]
+  ,ref = [0;37mOpaque[0m
+  ,semanticsCounter = [0;37mOpaque[0m
+  ,value = [0;37m0[0m}
+
+   == Create "file1" ==> Created (Reference (Concrete Opaque)) [ 0 ]
+
+Model {counter = [0;97;41m-1[0m [0;97;42m+2[0m
+  ,files = Map.fromList [ [0;37m_×_ (Reference Opaque) "file0"[0m
+             , [0;97;42m+_×_ (Reference Opaque) "file1"[0m ]
+  ,ref = [0;37mOpaque[0m
+  ,semanticsCounter = [0;37mOpaque[0m
+  ,value = [0;37m0[0m}
+
+   == Create "file2" ==> Created (Reference (Concrete Opaque)) [ 0 ]
+
+Model {counter = [0;97;41m-2[0m [0;97;42m+3[0m
+  ,files = Map.fromList [ [0;37m_×_ (Reference Opaque) "file0"[0m
+             , [0;37m_×_ (Reference Opaque) "file1"[0m
+             , [0;97;42m+_×_ (Reference Opaque) "file2"[0m ]
+  ,ref = [0;37mOpaque[0m
+  ,semanticsCounter = [0;37mOpaque[0m
+  ,value = [0;37m0[0m}
+
+   == Create "file3" ==> Created (Reference (Concrete Opaque)) [ 0 ]
+
+Model {counter = [0;97;41m-3[0m [0;97;42m+4[0m
+  ,files = Map.fromList [ [0;37m_×_ (Reference Opaque) "file0"[0m
+             , [0;37m_×_ (Reference Opaque) "file1"[0m
+             , [0;37m_×_ (Reference Opaque) "file2"[0m
+             , [0;97;42m+_×_ (Reference Opaque) "file3"[0m ]
+  ,ref = [0;37mOpaque[0m
+  ,semanticsCounter = [0;37mOpaque[0m
+  ,value = [0;37m0[0m}
+
+   == Create "file4" ==> user error (semantics injected bug)
+HasCallStack backtrace:
+  collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception
+  toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/IO.hs:260:11 in ghc-internal:GHC.Internal.IO
+  throwIO, called at libraries/ghc-internal/src/GHC/Internal/Control/Exception/Base.hs:195:43 in ghc-internal:GHC.Internal.Control.Exception.Base
+
+ [ 0 ]
+
+[0;37mModel {counter = 0
+  ,files = Map.fromList []
+  ,ref = Opaque
+  ,semanticsCounter = Opaque
+  ,value = 0}[0m
+
+   == Create "file0" ==> Created (Reference (Concrete Opaque)) [ 0 ]
+
+Model {counter = [0;97;41m-0[0m [0;97;42m+1[0m
+  ,files = Map.fromList [[0;97;42m+_×_ (Reference Opaque) "file0"[0m]
+  ,ref = [0;37mOpaque[0m
+  ,semanticsCounter = [0;37mOpaque[0m
+  ,value = [0;37m0[0m}
+
+   == Create "file1" ==> Created (Reference (Concrete Opaque)) [ 0 ]
+
+Model {counter = [0;97;41m-1[0m [0;97;42m+2[0m
+  ,files = Map.fromList [ [0;37m_×_ (Reference Opaque) "file0"[0m
+             , [0;97;42m+_×_ (Reference Opaque) "file1"[0m ]
+  ,ref = [0;37mOpaque[0m
+  ,semanticsCounter = [0;37mOpaque[0m
+  ,value = [0;37m0[0m}
+
+   == Create "file2" ==> Created (Reference (Concrete Opaque)) [ 0 ]
+
+Model {counter = [0;97;41m-2[0m [0;97;42m+3[0m
+  ,files = Map.fromList [ [0;37m_×_ (Reference Opaque) "file0"[0m
+             , [0;37m_×_ (Reference Opaque) "file1"[0m
+             , [0;97;42m+_×_ (Reference Opaque) "file2"[0m ]
+  ,ref = [0;37mOpaque[0m
+  ,semanticsCounter = [0;37mOpaque[0m
+  ,value = [0;37m0[0m}
+
+   == Create "file3" ==> Created (Reference (Concrete Opaque)) [ 0 ]
+
+Model {counter = [0;97;41m-3[0m [0;97;42m+4[0m
+  ,files = Map.fromList [ [0;37m_×_ (Reference Opaque) "file0"[0m
+             , [0;37m_×_ (Reference Opaque) "file1"[0m
+             , [0;37m_×_ (Reference Opaque) "file2"[0m
+             , [0;97;42m+_×_ (Reference Opaque) "file3"[0m ]
+  ,ref = [0;37mOpaque[0m
+  ,semanticsCounter = [0;37mOpaque[0m
+  ,value = [0;37m0[0m}
+
+   == Create "file4" ==> user error (semantics injected bug)
+HasCallStack backtrace:
+  collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception
+  toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/IO.hs:260:11 in ghc-internal:GHC.Internal.IO
+  throwIO, called at libraries/ghc-internal/src/GHC/Internal/Control/Exception/Base.hs:195:43 in ghc-internal:GHC.Internal.Control.Exception.Base
+
+ [ 0 ]
+
+AnnotateC "Read" (PredicateC (1 :/= 2))
+
+AnnotateC "Read" (PredicateC (1 :/= 2))
+
+AnnotateC "Read" (PredicateC (1 :/= 3))
+Examples: 19  Tried: 19  Errors: 0  Failures: 0
+OK (2.37s)
+  Shrinking properties
+    Sanity check: standard sequential test:                        OK (0.87s)
+      +++ OK, passed 100 tests.
+      
+      Commands (269 in total):
+      36.1% CreateRef
+      32.0% Incr
+      32.0% Read
+    Sanity check: standard parallel test:                          
+┌───────────────────────────────────────────────────────────────────────────────────────────────┐
+│ [Var 0] ← Create                                                                              │
+│                                                       → Created (Reference (Concrete Opaque)) │
+└───────────────────────────────────────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────┐ │                                               
+│ [] ← Increment (Reference (Concrete Opaque)) │ │                                               
+│                                              │ │ ┌────────────────────────────────────────────┐
+│                                              │ │ │ [] ← Write (Reference (Concrete Opaque)) 2 │
+│                                              │ │ │                                  → Written │
+│                                              │ │ └────────────────────────────────────────────┘
+│                                → Incremented │ │                                               
+└──────────────────────────────────────────────┘ │                                               
+                                                 │ ┌────────────────────────────────────────────┐
+                                                 │ │ [] ← Read (Reference (Concrete Opaque))    │
+                                                 │ │                              → ReadValue 1 │
+                                                 │ └────────────────────────────────────────────┘
+
+AnnotateC "Read" (PredicateC (1 :/= 2))
+Models are not equivalent: 
+Model
+  { files = fromList []
+  , counter = 0
+  , semanticsCounter = Opaque
+  , ref = Opaque
+  , value = 3
+  } 
+and 
+Model
+  { files = fromList []
+  , counter = 0
+  , semanticsCounter = Opaque
+  , ref = Opaque
+  , value = 2
+  }
+Models are not equivalent: 
+Model
+  { files = fromList []
+  , counter = 0
+  , semanticsCounter = Opaque
+  , ref = Opaque
+  , value = 10
+  } 
+and 
+Model
+  { files = fromList []
+  , counter = 0
+  , semanticsCounter = Opaque
+  , ref = Opaque
+  , value = 3
+  }
+
+PredicateC (True :/= False)
+Error running utility program: Unable to create overflow-4-test-output.png
+Unable to call the command  dot  with the arguments: " -Tpng " because of:  dot: runInteractiveProcess: posix_spawnp: does not exist (No such file or directory)
+
+PredicateC (Just 0 :/= Just 1)
+
+┌───────────────────────────────────────┐
+│ [] ← Reset                            │
+│                             → ResetOk │
+└───────────────────────────────────────┘
+                    │ ┌─────────────────┐
+                    │ │ [] ← TakeTicket │
+┌─────────────────┐ │ │                 │
+│ [] ← TakeTicket │ │ │                 │
+│                 │ │ │   → GotTicket 1 │
+│                 │ │ └─────────────────┘
+│   → GotTicket 1 │ │                    
+└─────────────────┘ │                    
+
+PredicateC (Just 1 :/= Just 2)
+
+[0;37mModel [][0m
+
+   == New 1 ==> NewR (Reference (Concrete Opaque)) [ 0 ]
+
+Model [[0;97;42m+_×_ (Reference Opaque) SpecBuffer {specContents = [],specSize = 1}[0m]
+
+   == Put 0 (Reference (Concrete Opaque)) ==> PutR [ 0 ]
+
+Model [_×_ [0;37m(Reference Opaque)[0m SpecBuffer {specContents = [[0;97;42m+0[0m],specSize = [0;37m1[0m}]
+
+   == Put 1 (Reference (Concrete Opaque)) ==> PutR [ 0 ]
+
+Model [_×_ [0;37m(Reference Opaque)[0m SpecBuffer {specContents = [[0;97;42m+1[0m, [0;37m0[0m],specSize = [0;37m1[0m}]
+
+   == Get (Reference (Concrete Opaque)) ==> GetR 1 [ 0 ]
+
+Model [_×_ [0;37m(Reference Opaque)[0m SpecBuffer {specContents = [[0;37m1[0m, [0;97;41m-0[0m],specSize = [0;37m1[0m}]
+
+
+[0;37mModel [][0m
+
+   == New 5 ==> NewR (Reference (Concrete Opaque)) [ 0 ]
+
+Model [[0;97;42m+_×_ (Reference Opaque) SpecBuffer {specContents = [],specSize = 5}[0m]
+
+   == Put 0 (Reference (Concrete Opaque)) ==> PutR [ 0 ]
+
+Model [_×_ [0;37m(Reference Opaque)[0m SpecBuffer {specContents = [[0;97;42m+0[0m],specSize = [0;37m5[0m}]
+
+   == Put 0 (Reference (Concrete Opaque)) ==> PutR [ 0 ]
+
+Model [_×_ [0;37m(Reference Opaque)[0m SpecBuffer {specContents = [[0;97;42m+0[0m, [0;37m0[0m],specSize = [0;37m5[0m}]
+
+   == Put 0 (Reference (Concrete Opaque)) ==> PutR [ 0 ]
+
+Model [ _×_ [0;37m(Reference Opaque)[0m
+          SpecBuffer {specContents = [[0;97;42m+0[0m, [0;37m0[0m, [0;37m0[0m],specSize = [0;37m5[0m} ]
+
+   == Put 0 (Reference (Concrete Opaque)) ==> PutR [ 0 ]
+
+Model [ _×_ [0;37m(Reference Opaque)[0m
+          SpecBuffer {specContents = [[0;97;42m+0[0m, [0;37m0[0m, [0;37m0[0m, [0;37m0[0m],specSize = [0;37m5[0m} ]
+
+   == Put 0 (Reference (Concrete Opaque)) ==> PutR [ 0 ]
+
+Model [ _×_ [0;37m(Reference Opaque)[0m
+          SpecBuffer {specContents = [[0;97;42m+0[0m, [0;37m0[0m, [0;37m0[0m, [0;37m0[0m, [0;37m0[0m],specSize = [0;37m5[0m} ]
+
+   == Len (Reference (Concrete Opaque)) ==> LenR 0 [ 0 ]
+
+[0;37mModel [ _×_ (Reference Opaque)
+          SpecBuffer {specContents = [0, 0, 0, 0, 0],specSize = 5} ][0m
+
+
+[0;37mModel [][0m
+
+   == New 2 ==> NewR (Reference (Concrete Opaque)) [ 0 ]
+
+Model [[0;97;42m+_×_ (Reference Opaque) SpecBuffer {specContents = [],specSize = 2}[0m]
+
+   == Put 0 (Reference (Concrete Opaque)) ==> PutR [ 0 ]
+
+Model [_×_ [0;37m(Reference Opaque)[0m SpecBuffer {specContents = [[0;97;42m+0[0m],specSize = [0;37m2[0m}]
+
+   == Get (Reference (Concrete Opaque)) ==> GetR 0 [ 0 ]
+
+Model [_×_ [0;37m(Reference Opaque)[0m SpecBuffer {specContents = [[0;97;41m-0[0m],specSize = [0;37m2[0m}]
+
+   == Put 0 (Reference (Concrete Opaque)) ==> PutR [ 0 ]
+
+Model [_×_ [0;37m(Reference Opaque)[0m SpecBuffer {specContents = [[0;97;42m+0[0m],specSize = [0;37m2[0m}]
+
+   == Put 0 (Reference (Concrete Opaque)) ==> PutR [ 0 ]
+
+Model [_×_ [0;37m(Reference Opaque)[0m SpecBuffer {specContents = [[0;97;42m+0[0m, [0;37m0[0m],specSize = [0;37m2[0m}]
+
+   == Len (Reference (Concrete Opaque)) ==> LenR (-1) [ 0 ]
+
+[0;37mModel [_×_ (Reference Opaque) SpecBuffer {specContents = [0, 0],specSize = 2}][0m
+
+
+[0;37mModel [][0m
+
+   == New 6 ==> NewR (Reference (Concrete Opaque)) [ 0 ]
+
+Model [[0;97;42m+_×_ (Reference Opaque) SpecBuffer {specContents = [],specSize = 6}[0m]
+
+   == Put 0 (Reference (Concrete Opaque)) ==> PutR [ 0 ]
+
+Model [_×_ [0;37m(Reference Opaque)[0m SpecBuffer {specContents = [[0;97;42m+0[0m],specSize = [0;37m6[0m}]
+
+   == Put 0 (Reference (Concrete Opaque)) ==> PutR [ 0 ]
+
+Model [_×_ [0;37m(Reference Opaque)[0m SpecBuffer {specContents = [[0;97;42m+0[0m, [0;37m0[0m],specSize = [0;37m6[0m}]
+
+   == Put 0 (Reference (Concrete Opaque)) ==> PutR [ 0 ]
+
+Model [ _×_ [0;37m(Reference Opaque)[0m
+          SpecBuffer {specContents = [[0;97;42m+0[0m, [0;37m0[0m, [0;37m0[0m],specSize = [0;37m6[0m} ]
+
+   == Put 0 (Reference (Concrete Opaque)) ==> PutR [ 0 ]
+
+Model [ _×_ [0;37m(Reference Opaque)[0m
+          SpecBuffer {specContents = [[0;97;42m+0[0m, [0;37m0[0m, [0;37m0[0m, [0;37m0[0m],specSize = [0;37m6[0m} ]
+
+   == Put 0 (Reference (Concrete Opaque)) ==> PutR [ 0 ]
+
+Model [ _×_ [0;37m(Reference Opaque)[0m
+          SpecBuffer {specContents = [[0;97;42m+0[0m, [0;37m0[0m, [0;37m0[0m, [0;37m0[0m, [0;37m0[0m],specSize = [0;37m6[0m} ]
+
+   == Get (Reference (Concrete Opaque)) ==> GetR 0 [ 0 ]
+
+Model [ _×_ [0;37m(Reference Opaque)[0m
+          SpecBuffer {specContents = [[0;97;41m-0[0m, [0;37m0[0m, [0;37m0[0m, [0;37m0[0m, [0;37m0[0m],specSize = [0;37m6[0m} ]
+
+   == Put 0 (Reference (Concrete Opaque)) ==> PutR [ 0 ]
+
+Model [ _×_ [0;37m(Reference Opaque)[0m
+          SpecBuffer {specContents = [[0;97;42m+0[0m, [0;37m0[0m, [0;37m0[0m, [0;37m0[0m, [0;37m0[0m],specSize = [0;37m6[0m} ]
+
+   == Put 0 (Reference (Concrete Opaque)) ==> PutR [ 0 ]
+
+Model [ _×_ [0;37m(Reference Opaque)[0m
+          SpecBuffer {specContents = [[0;97;42m+0[0m, [0;37m0[0m, [0;37m0[0m, [0;37m0[0m, [0;37m0[0m, [0;37m0[0m],specSize = [0;37m6[0m} ]
+
+   == Len (Reference (Concrete Opaque)) ==> LenR 1 [ 0 ]
+
+[0;37mModel [ _×_ (Reference Opaque)
+          SpecBuffer {specContents = [0, 0, 0, 0, 0, 0],specSize = 6} ][0m
+
+
+┌───────────────────────────────────────┐
+│ Create "file0"                        │
+│ → Created (Reference (Concrete Opaque)) │
+└───────────────────────────────────────┘
+┌───────────────────────────────────────┐
+│ Create "file1"                        │
+│ → Created (Reference (Concrete Opaque)) │
+└───────────────────────────────────────┘
+┌───────────────────────────────────────┐
+│ Create "file2"                        │
+│ → Created (Reference (Concrete Opaque)) │
+└───────────────────────────────────────┘
+┌───────────────────────────────────────┐
+│ Create "file3"                        │
+│ → Created (Reference (Concrete Opaque)) │
+└───────────────────────────────────────┘
+┌───────────────────────────────────────┐
+│ Create "file4"                        │
+│                         → Exception 0 │
+└───────────────────────────────────────┘
+
+Exception 0:
+  user error (semantics injected bug)
+  HasCallStack backtrace:
+    collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception
+    toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/IO.hs:260:11 in ghc-internal:GHC.Internal.IO
+    throwIO, called at libraries/ghc-internal/src/GHC/Internal/Control/Exception/Base.hs:195:43 in ghc-internal:GHC.Internal.Control.Exception.Base
+
+
+
+AnnotateC "ExceptionThrown \"user error (semantics injected bug)\\nHasCallStack backtrace:\\n  collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception\\n  toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/IO.hs:260:11 in ghc-internal:GHC.Internal.IO\\n  throwIO, called at libraries/ghc-internal/src/GHC/Internal/Control/Exception/Base.hs:195:43 in ghc-internal:GHC.Internal.Control.Exception.Base\\n\\n\"" BotC
+
+AnnotateC "ExceptionThrown \"user error (semantics injected bug)\\nHasCallStack backtrace:\\n  collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception\\n  toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/IO.hs:260:11 in ghc-internal:GHC.Internal.IO\\n  throwIO, called at libraries/ghc-internal/src/GHC/Internal/Control/Exception/Base.hs:195:43 in ghc-internal:GHC.Internal.Control.Exception.Base\\n\\n\"" BotC
+
+AnnotateC "ExceptionThrown \"user error (semantics injected bug)\\nHasCallStack backtrace:\\n  collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception\\n  toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/IO.hs:260:11 in ghc-internal:GHC.Internal.IO\\n  throwIO, called at libraries/ghc-internal/src/GHC/Internal/Control/Exception/Base.hs:195:43 in ghc-internal:GHC.Internal.Control.Exception.Base\\n\\n\"" BotC
+
+┌───────────────────────────────────────┐
+│ Create "file0"                        │
+│ → Created (Reference (Concrete Opaque)) │
+└───────────────────────────────────────┘
+┌───────────────────────────────────────┐
+│ Create "file1"                        │
+│ → Created (Reference (Concrete Opaque)) │
+└───────────────────────────────────────┘
+┌───────────────────────────────────────┐
+│ Create "file2"                        │
+│ → Created (Reference (Concrete Opaque)) │
+└───────────────────────────────────────┘
+┌───────────────────────────────────────┐
+│ Create "file3"                        │
+│ → Created (Reference (Concrete Opaque)) │
+└───────────────────────────────────────┘
+┌───────────────────────────────────────┐
+│ Create "file4"                        │
+│                         → Exception 0 │
+└───────────────────────────────────────┘
+
+Exception 0:
+  user error (semantics injected bug)
+  HasCallStack backtrace:
+    collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception
+    toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/IO.hs:260:11 in ghc-internal:GHC.Internal.IO
+    throwIO, called at libraries/ghc-internal/src/GHC/Internal/Control/Exception/Base.hs:195:43 in ghc-internal:GHC.Internal.Control.Exception.Base
+
+
+
+AnnotateC "ExceptionThrown \"user error (semantics injected bug)\\nHasCallStack backtrace:\\n  collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception\\n  toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/IO.hs:260:11 in ghc-internal:GHC.Internal.IO\\n  throwIO, called at libraries/ghc-internal/src/GHC/Internal/Control/Exception/Base.hs:195:43 in ghc-internal:GHC.Internal.Control.Exception.Base\\n\\n\"" BotC
+OK (35.24s)
+      +++ OK, passed 100 tests.
+    Sanity check: standard 3-parallel test:                        OK (28.76s)
+      +++ OK, passed 100 tests.
+    Correct references after sequential shrinking:                 OK (13.95s)
+      +++ OK, passed 100 tests.
+    Correct references after parallel shrinking:                   OK (29.75s)
+      +++ OK, passed 100 tests.
+    Correct references after 3-parallel shrinking:                 OK (35.24s)
+      +++ OK, passed 100 tests.
+    Correct references after parallel shrinking (buggyShrinkCmds): OK
+      +++ OK, passed 100 tests.
+    Sequential shrinker provides correct model:                    OK (13.70s)
+      +++ OK, passed 100 tests.
+    Parallel shrinker provides correct model:                      OK (32.57s)
+      +++ OK, passed 100 tests.
+    2-Parallel shrinker provides correct model:                    OK (35.27s)
+      +++ OK, passed 100 tests.
+    3-Parallel shrinker provides correct model:                    OK (35.46s)
+      +++ OK, passed 100 tests.
+    1-Parallel is equivalent to sequential:                        OK (1.21s)
+      +++ OK, passed 100 tests.
+    2 Threads equivalence:                                         OK (47.25s)
+      +++ OK, passed 100 tests.
+    shrink round trips:                                            OK (0.17s)
+      +++ OK, passed 100 tests.
+  TowersOfHanoi:                                                   OK (0.07s)
+    +++ OK, failed as expected. Falsified (after 55 tests and 5 shrinks):
+    Commands
+      { unCommands =
+          [ Command (Move ( 0 , 2 )) Done []
+          , Command (Move ( 0 , 1 )) Done []
+          , Command (Move ( 2 , 0 )) Done []
+          , Command (Move ( 1 , 2 )) Done []
+          , Command (Move ( 2 , 1 )) Done []
+          , Command (Move ( 0 , 2 )) Done []
+          , Command (Move ( 2 , 1 )) Done []
+          , Command (Move ( 0 , 2 )) Done []
+          , Command (Move ( 1 , 0 )) Done []
+          , Command (Move ( 1 , 2 )) Done []
+          , Command (Move ( 0 , 2 )) Done []
+          ]
+      }
+    PostconditionFailed "PredicateC (3 :== 3)" /= Ok
+  DieHard:                                                         OK (0.17s)
+    +++ OK, failed as expected. Falsified (after 485 tests and 11 shrinks):
+    Commands
+      { unCommands =
+          [ Command FillBig Done []
+          , Command BigIntoSmall Done []
+          , Command EmptySmall Done []
+          , Command BigIntoSmall Done []
+          , Command FillBig Done []
+          , Command BigIntoSmall Done []
+          ]
+      }
+    PostconditionFailed "PredicateC (4 :== 4)" /= Ok
+  MemoryReference
+    NoBugSeq:                                                      OK (0.08s)
+      +++ OK, passed 100 tests (73% coverage).
+      
+      Commands (334 in total):
+      27.8% Create
+      24.9% Read
+      24.3% Write
+      23.1% Increment
+    LogicBug:                                                      OK (0.07s)
+      +++ OK, failed as expected. Falsified (after 32 tests and 10 shrinks):
+      Commands
+        { unCommands =
+            [ Command Create (Created (Reference (Symbolic (Var 0)))) [ Var 0 ]
+            , Command (Write (Reference (Symbolic (Var 0))) 5) Written []
+            , Command (Read (Reference (Symbolic (Var 0)))) (ReadValue 5) []
+            ]
+        }
+      PostconditionFailed "AnnotateC \"Read\" (PredicateC (6 :/= 5))" /= Ok
+    RaceBugSequential:                                             OK (3.67s)
+      +++ OK, passed 100 tests (79% coverage).
+      
+      Commands (349 in total):
+      27.2% Create
+      24.6% Read
+      24.4% Write
+      23.8% Increment
+    NoBugParallel:                                                 OK (1.55s)
+      +++ OK, passed 100 tests.
+      
+      Commands (3560 in total):
+      26.69% Create
+      24.72% Increment
+      24.44% Read
+      24.16% Write
+    RaceBugParallel:                                               OK (2.89s)
+      +++ OK, failed as expected. Falsified (after 13 tests and 12 shrinks):
+      ParallelCommands
+        { prefix =
+            Commands
+              { unCommands =
+                  [ Command Create (Created (Reference (Symbolic (Var 0)))) [ Var 0 ]
+                  ]
+              }
+        , suffixes =
+            [ Pair
+                { proj1 =
+                    Commands
+                      { unCommands =
+                          [ Command (Increment (Reference (Symbolic (Var 0)))) Incremented []
+                          ]
+                      }
+                , proj2 =
+                    Commands
+                      { unCommands =
+                          [ Command (Write (Reference (Symbolic (Var 0))) 2) Written [] ]
+                      }
+                }
+            , Pair
+                { proj1 = Commands { unCommands = [] }
+                , proj2 =
+                    Commands
+                      { unCommands =
+                          [ Command (Read (Reference (Symbolic (Var 0)))) (ReadValue 2) [] ]
+                      }
+                }
+            ]
+        }
+    CrashBugParallel:                                              OK (0.52s)
+      +++ OK, passed 100 tests.
+    CrashAndLogicBugParallel:                                      OK (0.31s)
+      +++ OK, failed as expected. Falsified (after 45 tests and 10 shrinks):
+      ParallelCommands
+        { prefix =
+            Commands
+              { unCommands =
+                  [ Command Create (Created (Reference (Symbolic (Var 0)))) [ Var 0 ]
+                  ]
+              }
+        , suffixes =
+            [ Pair
+                { proj1 = Commands { unCommands = [] }
+                , proj2 = Commands { unCommands = [] }
+                }
+            , Pair
+                { proj1 =
+                    Commands
+                      { unCommands =
+                          [ Command (Write (Reference (Symbolic (Var 0))) 0) Written [] ]
+                      }
+                , proj2 =
+                    Commands
+                      { unCommands =
+                          [ Command (Read (Reference (Symbolic (Var 0)))) (ReadValue 0) [] ]
+                      }
+                }
+            ]
+        }
+    PreconditionFailed:                                            OK
+      +++ OK, passed 1 test.
+    ExistsCommands:                                                OK
+      +++ OK, passed 1 test.
+      
+      Commands (4 in total):
+      25% Create
+      25% Increment
+      25% Read
+      25% Write
+    NoBug 1 thread:                                                OK (1.03s)
+      +++ OK, passed 100 tests (77% coverage).
+      
+      Commands (3480 in total):
+      27.30% Create
+      24.43% Increment
+      24.43% Read
+      23.85% Write
+    NoBug 2 threads:                                               OK (1.70s)
+      +++ OK, passed 100 tests (75% coverage).
+      
+      Commands (3560 in total):
+      27.25% Create
+      24.72% Increment
+      24.16% Read
+      23.88% Write
+    NoBug 3 threads:                                               OK (1.56s)
+      +++ OK, passed 80 tests (75% coverage).
+      
+      Commands (2760 in total):
+      26.81% Create
+      25.72% Write
+      24.28% Increment
+      23.19% Read
+    NoBug 4 threads:                                               OK (1.11s)
+      +++ OK, passed 40 tests (78% coverage).
+      
+      Commands (1370 in total):
+      27.01% Create
+      24.82% Write
+      24.09% Increment
+      24.09% Read
+    RaceBugParalleel 1 thread:                                     OK (31.54s)
+      +++ OK, passed 100 tests (78% coverage).
+      
+      Commands (3530 in total):
+      27.20% Create
+      24.65% Write
+      24.36% Read
+      23.80% Increment
+    RaceBugParalleel 2 threads:                                    OK (2.30s)
+      +++ OK, failed as expected. Falsified (after 11 tests and 11 shrinks):
+      ParallelCommands
+        { prefix =
+            Commands
+              { unCommands =
+                  [ Command Create (Created (Reference (Symbolic (Var 0)))) [ Var 0 ]
+                  ]
+              }
+        , suffixes =
+            [ [ Commands
+                  { unCommands =
+                      [ Command (Increment (Reference (Symbolic (Var 0)))) Incremented []
+                      , Command (Read (Reference (Symbolic (Var 0)))) (ReadValue 1) []
+                      ]
+                  }
+              , Commands
+                  { unCommands =
+                      [ Command (Write (Reference (Symbolic (Var 0))) 3) Written [] ]
+                  }
+              ]
+            ]
+        }
+    RaceBugParalleel 3 threads:                                    OK (1.62s)
+      +++ OK, failed as expected. Falsified (after 14 tests and 3 shrinks):
+      ParallelCommands
+        { prefix =
+            Commands
+              { unCommands =
+                  [ Command Create (Created (Reference (Symbolic (Var 0)))) [ Var 0 ]
+                  ]
+              }
+        , suffixes =
+            [ [ Commands
+                  { unCommands =
+                      [ Command (Increment (Reference (Symbolic (Var 0)))) Incremented []
+                      , Command (Read (Reference (Symbolic (Var 0)))) (ReadValue 1) []
+                      ]
+                  }
+              , Commands { unCommands = [] }
+              , Commands
+                  { unCommands =
+                      [ Command (Increment (Reference (Symbolic (Var 0)))) Incremented []
+                      ]
+                  }
+              ]
+            ]
+        }
+    RaceBugParalleel 4 threads:                                    OK (1.71s)
+      +++ OK, failed as expected. Falsified (after 18 tests and 3 shrinks):
+      ParallelCommands
+        { prefix =
+            Commands
+              { unCommands =
+                  [ Command Create (Created (Reference (Symbolic (Var 0)))) [ Var 0 ]
+                  ]
+              }
+        , suffixes =
+            [ [ Commands { unCommands = [] }
+              , Commands { unCommands = [] }
+              , Commands
+                  { unCommands =
+                      [ Command (Increment (Reference (Symbolic (Var 0)))) Incremented []
+                      ]
+                  }
+              , Commands
+                  { unCommands =
+                      [ Command (Increment (Reference (Symbolic (Var 0)))) Incremented []
+                      , Command (Read (Reference (Symbolic (Var 0)))) (ReadValue 1) []
+                      ]
+                  }
+              ]
+            ]
+        }
+    ShrinkParallelEquivalence:                                     OK (2.26s)
+      +++ OK, passed 100 tests.
+    ShrinkAndValidateParallelEquivalence:                          OK (0.80s)
+      +++ OK, passed 100 tests.
+    ShrinkPairsEquialence:                                         OK (0.92s)
+      +++ OK, passed 100 tests.
+  Overflow
+    2-threads:                                                     OK (32.90s)
+      +++ OK, passed 100 tests.
+    3-threads:                                                     OK (34.58s)
+      +++ OK, passed 100 tests.
+    4-threads:                                                     OK (4.99s)
+      +++ OK, failed as expected. Falsified (after 21 tests and 4 shrinks):
+      ParallelCommands
+        { prefix =
+            Commands
+              { unCommands =
+                  [ Command Create (Created (Reference (Symbolic (Var 0)))) [ Var 0 ]
+                  ]
+              }
+        , suffixes =
+            [ [ Commands
+                  { unCommands =
+                      [ Command (BackAndForth 38 (Reference (Symbolic (Var 0)))) Unit []
+                      ]
+                  }
+              , Commands
+                  { unCommands =
+                      [ Command
+                          (Check (Reference (Symbolic (Var 0)))) (IsNegative False) []
+                      ]
+                  }
+              , Commands
+                  { unCommands =
+                      [ Command (BackAndForth 59 (Reference (Symbolic (Var 0)))) Unit []
+                      ]
+                  }
+              , Commands
+                  { unCommands =
+                      [ Command (BackAndForth 31 (Reference (Symbolic (Var 0)))) Unit []
+                      ]
+                  }
+              ]
+            ]
+        }
+  Cleanup
+    seqRegularNoOp:                                                OK (0.33s)
+      +++ OK, passed 100 tests.
+      
+      Commands (372 in total):
+      25.3% Create
+      20.7% Delete
+      19.4% Write
+      17.7% Ls
+      16.9% Increment
+    seqRegular:                                                    OK (0.29s)
+      +++ OK, passed 100 tests.
+      
+      Commands (390 in total):
+      23.3% Create
+      21.0% Delete
+      19.0% Increment
+      18.7% Write
+      17.9% Ls
+    seqRegularExcNoOp:                                             OK (0.06s)
+      +++ OK, failed as expected. Falsified (after 14 tests and 4 shrinks):
+      Commands
+        { unCommands =
+            [ Command
+                (Create "file0") (Created (Reference (Symbolic (Var 0)))) [ Var 0 ]
+            , Command
+                (Create "file1") (Created (Reference (Symbolic (Var 1)))) [ Var 1 ]
+            , Command
+                (Create "file2") (Created (Reference (Symbolic (Var 2)))) [ Var 2 ]
+            , Command
+                (Create "file3") (Created (Reference (Symbolic (Var 3)))) [ Var 3 ]
+            , Command
+                (Create "file4") (Created (Reference (Symbolic (Var 4)))) [ Var 4 ]
+            ]
+        }
+      ExceptionThrown "user error (semantics injected bug)\nHasCallStack backtrace:\n  collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception\n  toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/IO.hs:260:11 in ghc-internal:GHC.Internal.IO\n  throwIO, called at libraries/ghc-internal/src/GHC/Internal/Control/Exception/Base.hs:195:43 in ghc-internal:GHC.Internal.Control.Exception.Base\n\n" /= Ok
+    seqRegularExc:                                                 OK (0.02s)
+      +++ OK, failed as expected. Falsified (after 10 tests and 2 shrinks):
+      Commands
+        { unCommands =
+            [ Command
+                (Create "file0") (Created (Reference (Symbolic (Var 0)))) [ Var 0 ]
+            , Command
+                (Create "file1") (Created (Reference (Symbolic (Var 1)))) [ Var 1 ]
+            , Command
+                (Create "file2") (Created (Reference (Symbolic (Var 2)))) [ Var 2 ]
+            , Command
+                (Create "file3") (Created (Reference (Symbolic (Var 3)))) [ Var 3 ]
+            , Command
+                (Create "file4") (Created (Reference (Symbolic (Var 4)))) [ Var 4 ]
+            ]
+        }
+      ExceptionThrown "user error (semantics injected bug)\nHasCallStack backtrace:\n  collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception\n  toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/IO.hs:260:11 in ghc-internal:GHC.Internal.IO\n  throwIO, called at libraries/ghc-internal/src/GHC/Internal/Control/Exception/Base.hs:195:43 in ghc-internal:GHC.Internal.Control.Exception.Base\n\n" /= Ok
+    seqFilesNoOp:                                                  OK (0.55s)
+      +++ OK, passed 100 tests.
+    seqFiles:                                                      OK (0.68s)
+      +++ OK, passed 100 tests.
+    seqFilesExcNoOp:                                               OK (0.24s)
+      +++ OK, passed 100 tests.
+    seqFilesExc:                                                   OK (0.26s)
+      +++ OK, passed 100 tests.
+    seqFilesExcAfterNoOp:                                          OK (0.45s)
+      +++ OK, passed 100 tests.
+    seqFilesExcAfterReDo:                                          OK (0.41s)
+      +++ OK, passed 100 tests.
+    seqEquivNoOp:                                                  OK (0.95s)
+      +++ OK, passed 100 tests.
+    2-threadsRegularExc:                                           OK (8.15s)
+      +++ OK, failed as expected. Falsified (after 7 tests and 7 shrinks):
+      ParallelCommands
+        { prefix =
+            Commands
+              { unCommands =
+                  [ Command
+                      (Create "file0") (Created (Reference (Symbolic (Var 0)))) [ Var 0 ]
+                  , Command
+                      (Create "file1") (Created (Reference (Symbolic (Var 1)))) [ Var 1 ]
+                  , Command
+                      (Create "file2") (Created (Reference (Symbolic (Var 2)))) [ Var 2 ]
+                  , Command
+                      (Create "file3") (Created (Reference (Symbolic (Var 3)))) [ Var 3 ]
+                  , Command
+                      (Create "file4") (Created (Reference (Symbolic (Var 4)))) [ Var 4 ]
+                  ]
+              }
+        , suffixes = []
+        }
+    2-threadsRegularExc:                                           OK (11.68s)
+      +++ OK, failed as expected. Falsified (after 10 tests and 10 shrinks):
+      ParallelCommands
+        { prefix =
+            Commands
+              { unCommands =
+                  [ Command
+                      (Create "file0") (Created (Reference (Symbolic (Var 0)))) [ Var 0 ]
+                  , Command
+                      (Create "file1") (Created (Reference (Symbolic (Var 1)))) [ Var 1 ]
+                  , Command
+                      (Create "file2") (Created (Reference (Symbolic (Var 2)))) [ Var 2 ]
+                  , Command
+                      (Create "file3") (Created (Reference (Symbolic (Var 3)))) [ Var 3 ]
+                  , Command
+                      (Create "file4") (Created (Reference (Symbolic (Var 4)))) [ Var 4 ]
+                  ]
+              }
+        , suffixes = []
+        }
+    2-threadsFilesExc:                                             OK (8.91s)
+      +++ OK, failed as expected. Exception: 'cleanup-test-folder-8052993154637246915/file2: removeLink: does not exist (No such file or directory)' (after 26 tests and 9 shrinks):
+      ParallelCommands
+        { prefix = Commands { unCommands = [] }
+        , suffixes =
+            [ Pair
+                { proj1 = Commands { unCommands = [] }
+                , proj2 =
+                    Commands
+                      { unCommands =
+                          [ Command
+                              (Create "file1") (Created (Reference (Symbolic (Var 0)))) [ Var 0 ]
+                          ]
+                      }
+                }
+            , Pair
+                { proj1 =
+                    Commands
+                      { unCommands =
+                          [ Command
+                              (Create "file2") (Created (Reference (Symbolic (Var 1)))) [ Var 1 ]
+                          ]
+                      }
+                , proj2 =
+                    Commands
+                      { unCommands =
+                          [ Command
+                              (Create "file3") (Created (Reference (Symbolic (Var 2)))) [ Var 2 ]
+                          ]
+                      }
+                }
+            , Pair
+                { proj1 =
+                    Commands
+                      { unCommands =
+                          [ Command (Delete (Reference (Symbolic (Var 1)))) Deleted [] ]
+                      }
+                , proj2 =
+                    Commands
+                      { unCommands =
+                          [ Command
+                              (Create "file5") (Created (Reference (Symbolic (Var 3)))) [ Var 3 ]
+                          , Command
+                              (Create "file6") (Created (Reference (Symbolic (Var 4)))) [ Var 4 ]
+                          ]
+                      }
+                }
+            ]
+        }
+    2-threadsEquivFailingNoOp:                                     OK (3.60s)
+      +++ OK, failed as expected. Falsified (after 19 tests and 6 shrinks):
+      ParallelCommands
+        { prefix = Commands { unCommands = [] }
+        , suffixes =
+            [ Pair
+                { proj1 =
+                    Commands
+                      { unCommands = [ Command (Write 10) (ChangedValue 10) [] ] }
+                , proj2 =
+                    Commands { unCommands = [ Command (Write 3) (ChangedValue 3) [] ] }
+                }
+            ]
+        }
+    3-threadsRegularNoOp:                                          OK (22.44s)
+      +++ OK, passed 100 tests.
+    3-threadsRegular:                                              OK (22.84s)
+      +++ OK, passed 100 tests.
+    3-threadsRegularExc:                                           OK (10.51s)
+      +++ OK, failed as expected. Falsified (after 11 tests and 8 shrinks):
+      ParallelCommands
+        { prefix =
+            Commands
+              { unCommands =
+                  [ Command
+                      (Create "file0") (Created (Reference (Symbolic (Var 0)))) [ Var 0 ]
+                  , Command
+                      (Create "file1") (Created (Reference (Symbolic (Var 1)))) [ Var 1 ]
+                  , Command
+                      (Create "file2") (Created (Reference (Symbolic (Var 2)))) [ Var 2 ]
+                  , Command
+                      (Create "file3") (Created (Reference (Symbolic (Var 3)))) [ Var 3 ]
+                  , Command
+                      (Create "file4") (Created (Reference (Symbolic (Var 4)))) [ Var 4 ]
+                  ]
+              }
+        , suffixes = []
+        }
+    3-threadsRegularExc:                                           OK (10.40s)
+      +++ OK, failed as expected. Falsified (after 11 tests and 9 shrinks):
+      ParallelCommands
+        { prefix =
+            Commands
+              { unCommands =
+                  [ Command
+                      (Create "file0") (Created (Reference (Symbolic (Var 0)))) [ Var 0 ]
+                  , Command
+                      (Create "file1") (Created (Reference (Symbolic (Var 1)))) [ Var 1 ]
+                  , Command
+                      (Create "file2") (Created (Reference (Symbolic (Var 2)))) [ Var 2 ]
+                  , Command
+                      (Create "file3") (Created (Reference (Symbolic (Var 3)))) [ Var 3 ]
+                  , Command
+                      (Create "file4") (Created (Reference (Symbolic (Var 4)))) [ Var 4 ]
+                  ]
+              }
+        , suffixes = []
+        }
+    3-threadsFilesNoOp:                                            OK (22.20s)
+      +++ OK, passed 100 tests.
+    3-threadsFiles:                                                OK (22.13s)
+      +++ OK, passed 100 tests.
+    3-threadsFilesExcNoOp:                                         OK (12.80s)
+      +++ OK, passed 100 tests.
+    3-threadsFilesExc:                                             OK (8.80s)
+      +++ OK, failed as expected. Exception: 'cleanup-test-folder-10040626860287971820/file0: removeLink: does not exist (No such file or directory)' (after 27 tests and 5 shrinks):
+      ParallelCommands
+        { prefix =
+            Commands
+              { unCommands =
+                  [ Command
+                      (Create "file0") (Created (Reference (Symbolic (Var 0)))) [ Var 0 ]
+                  , Command
+                      (Create "file1") (Created (Reference (Symbolic (Var 1)))) [ Var 1 ]
+                  , Command
+                      (Create "file2") (Created (Reference (Symbolic (Var 2)))) [ Var 2 ]
+                  , Command
+                      (Create "file3") (Created (Reference (Symbolic (Var 3)))) [ Var 3 ]
+                  ]
+              }
+        , suffixes =
+            [ [ Commands { unCommands = [] }
+              , Commands
+                  { unCommands =
+                      [ Command
+                          (Create "file5") (Created (Reference (Symbolic (Var 4)))) [ Var 4 ]
+                      ]
+                  }
+              , Commands
+                  { unCommands =
+                      [ Command (Delete (Reference (Symbolic (Var 0)))) Deleted []
+                      , Command (Write 6) (ChangedValue 6) []
+                      ]
+                  }
+              ]
+            ]
+        }
+    3-threadsFilesExcAfter:                                        OK (13.73s)
+      +++ OK, passed 100 tests.
+    3-threadsEquivNoOp:                                            OK (21.87s)
+      +++ OK, passed 100 tests.
+    3-threadsEquivFailingNoOp:                                     OK (2.29s)
+      +++ OK, failed as expected. Falsified (after 10 tests and 4 shrinks):
+      ParallelCommands
+        { prefix = Commands { unCommands = [] }
+        , suffixes =
+            [ [ Commands
+                  { unCommands = [ Command (Write 2) (ChangedValue 2) [] ] }
+              , Commands
+                  { unCommands = [ Command Increment (ChangedValue 1) [] ] }
+              , Commands { unCommands = [] }
+              ]
+            ]
+        }
+  SQLite
+    Parallel:                                                      OK (4.62s)
+      +++ OK, passed 100 tests.
+  ErrorEncountered
+    Sequential:                                                    OK
+      +++ OK, passed 100 tests.
+      
+      Commands (239 in total):
+      38.5% Create
+      34.7% Write
+      26.8% Read
+    Parallel:                                                      OK (0.06s)
+      +++ OK, passed 100 tests.
+    2-Parallel:                                                    OK (0.06s)
+      +++ OK, passed 100 tests.
+    3-Parallel:                                                    OK (0.10s)
+      +++ OK, passed 100 tests.
+    4-Parallel:                                                    OK (0.08s)
+      +++ OK, passed 100 tests.
+  CrudWebserver
+    No docker or running on CI, skipping: NoBug:                   OK
+    No docker or running on CI, skipping: LogicBug:                OK
+    No docker or running on CI, skipping: NoRaceBug:               OK
+    No docker or running on CI, skipping: RaceBug:                 OK
+  Bookstore
+    No docker, skipping: NoBug:                                    OK
+    No docker, skipping: SqlStatementBug:                          OK
+    No docker, skipping: InputValidationBug:                       OK
+  TicketDispenser
+    Sequential:                                                    OK (1.25s)
+      +++ OK, passed 100 tests.
+      
+      Commands (187 in total):
+      51.3% Reset
+      48.7% TakeTicket
+    ParallelWithExclusiveLock:                                     OK (23.67s)
+      +++ OK, passed 30 tests.
+    ParallelWithSharedLock:                                        OK (3.98s)
+      +++ OK, failed as expected. Falsified (after 6 tests):
+      ParallelCommands
+        { prefix = Commands { unCommands = [ Command Reset ResetOk [] ] }
+        , suffixes =
+            [ Pair
+                { proj1 =
+                    Commands { unCommands = [ Command TakeTicket (GotTicket 0) [] ] }
+                , proj2 =
+                    Commands { unCommands = [ Command TakeTicket (GotTicket 1) [] ] }
+                }
+            ]
+        }
+    2-ParallelWithExclusiveLock:                                   OK (15.45s)
+      +++ OK, passed 100 tests.
+    3-ParallelWithExclusiveLock:                                   OK (15.84s)
+      +++ OK, passed 100 tests.
+    4-ParallelWithExclusiveLock:                                   OK (14.85s)
+      +++ OK, passed 100 tests.
+    3-ParallelWithSharedLock:                                      OK (0.66s)
+      +++ OK, failed as expected. Falsified (after 5 tests and 3 shrinks):
+      ParallelCommands
+        { prefix = Commands { unCommands = [ Command Reset ResetOk [] ] }
+        , suffixes =
+            [ [ Commands { unCommands = [] }
+              , Commands { unCommands = [ Command TakeTicket (GotTicket 0) [] ] }
+              , Commands { unCommands = [ Command Reset ResetOk [] ] }
+              ]
+            ]
+        }
+  Mock
+    sequential:                                                    OK
+      +++ OK, passed 100 tests.
+    parallel:                                                      OK (0.56s)
+      +++ OK, passed 100 tests.
+    nparallel:                                                     OK (0.66s)
+      +++ OK, passed 100 tests.
+  CircularBuffer
+    unpropNoSizeCheck:                                             OK
+      +++ OK, failed as expected. Falsified (after 47 tests and 18 shrinks):
+      Commands
+        { unCommands =
+            [ Command (New 1) (NewR (Reference (Symbolic (Var 0)))) [ Var 0 ]
+            , Command (Put 0 (Reference (Symbolic (Var 0)))) PutR []
+            , Command (Put 1 (Reference (Symbolic (Var 0)))) PutR []
+            , Command (Get (Reference (Symbolic (Var 0)))) (GetR 1) []
+            ]
+        }
+      PostconditionFailed "PredicateC (1 :/= 0)" /= Ok
+    unpropFullIsEmpty:                                             OK
+      +++ OK, failed as expected. Falsified (after 25 tests and 15 shrinks):
+      Commands
+        { unCommands =
+            [ Command (New 5) (NewR (Reference (Symbolic (Var 0)))) [ Var 0 ]
+            , Command (Put 0 (Reference (Symbolic (Var 0)))) PutR []
+            , Command (Put 0 (Reference (Symbolic (Var 0)))) PutR []
+            , Command (Put 0 (Reference (Symbolic (Var 0)))) PutR []
+            , Command (Put 0 (Reference (Symbolic (Var 0)))) PutR []
+            , Command (Put 0 (Reference (Symbolic (Var 0)))) PutR []
+            , Command (Len (Reference (Symbolic (Var 0)))) (LenR 5) []
+            ]
+        }
+      PostconditionFailed "PredicateC (0 :/= 5)" /= Ok
+    unpropBadRem:                                                  OK
+      +++ OK, failed as expected. Falsified (after 47 tests and 8 shrinks):
+      Commands
+        { unCommands =
+            [ Command (New 2) (NewR (Reference (Symbolic (Var 0)))) [ Var 0 ]
+            , Command (Put 0 (Reference (Symbolic (Var 0)))) PutR []
+            , Command (Get (Reference (Symbolic (Var 0)))) (GetR 0) []
+            , Command (Put 0 (Reference (Symbolic (Var 0)))) PutR []
+            , Command (Put 0 (Reference (Symbolic (Var 0)))) PutR []
+            , Command (Len (Reference (Symbolic (Var 0)))) (LenR 2) []
+            ]
+        }
+      PostconditionFailed "PredicateC ((-1) :/= 2)" /= Ok
+    unpropStillBadRem:                                             OK (0.02s)
+      +++ OK, failed as expected. Falsified (after 58 tests and 21 shrinks):
+      Commands
+        { unCommands =
+            [ Command (New 6) (NewR (Reference (Symbolic (Var 0)))) [ Var 0 ]
+            , Command (Put 0 (Reference (Symbolic (Var 0)))) PutR []
+            , Command (Put 0 (Reference (Symbolic (Var 0)))) PutR []
+            , Command (Put 0 (Reference (Symbolic (Var 0)))) PutR []
+            , Command (Put 0 (Reference (Symbolic (Var 0)))) PutR []
+            , Command (Put 0 (Reference (Symbolic (Var 0)))) PutR []
+            , Command (Get (Reference (Symbolic (Var 0)))) (GetR 0) []
+            , Command (Put 0 (Reference (Symbolic (Var 0)))) PutR []
+            , Command (Put 0 (Reference (Symbolic (Var 0)))) PutR []
+            , Command (Len (Reference (Symbolic (Var 0)))) (LenR 6) []
+            ]
+        }
+      PostconditionFailed "PredicateC (1 :/= 6)" /= Ok
+    prop_circularBuffer:                                           OK (0.02s)
+      +++ OK, passed 100 tests.
+      
+      Commands (341 in total):
+      27.9% New
+      24.6% Len
+      24.6% Put
+      22.9% Get
+  Echo
+    Sequential:                                                    OK (0.03s)
+      +++ OK, passed 100 tests.
+    Parallel:                                                      OK (0.56s)
+      +++ OK, passed 100 tests.
+    2-Parallel:                                                    OK (0.52s)
+      +++ OK, passed 100 tests.
+    3-Parallel:                                                    OK (0.71s)
+      +++ OK, passed 100 tests.
+  UnionFind
+    Sequential:                                                    OK (0.04s)
+      +++ OK, passed 100 tests.
+      
+      Commands (253 in total):
+      38.3% New
+      36.0% Find
+      25.7% Union
+  Lockstep
+    IORefs_Sequential:                                             OK (2.00s)
+      +++ OK, passed 100 tests.
+      
+      Tags (2510 in total):
+      35.62% TagNew
+      33.47% TagUpdate
+      30.92% TagRead
+
+All 100 tests passed (47.25s)
+Test suite test: PASS
+Test suite logged to:
+/tmp/workdir-quickcheck-state-machine/quickcheck-state-machine-0.10.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/quickcheck-state-machine-0.10.2/t/test/test/quickcheck-state-machine-0.10.2-test.log
+1 of 1 test suites (1 of 1 test cases) passed.

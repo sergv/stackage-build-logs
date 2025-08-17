@@ -4,6 +4,9 @@ In order, the following will be built (use -v for more details):
  - hweblib-0.6.3 (lib) (first run)
  - hweblib-0.6.3 (test:testsuite) (first run)
 Configuring library for hweblib-0.6.3...
+Warning: [git-protocol] Cloning over git:// might lead to an arbitrary code
+execution vulnerability. Furthermore, popular forges like GitHub do not
+support it. Use https:// or ssh:// instead.
 Warning: [option-prof] 'ghc-prof-options: -prof' is not necessary and will
 lead to problems when used on a library. Use the configure flag
 --enable-library-profiling and/or --enable-profiling.
@@ -778,6 +781,9 @@ src/Network/Parser/Rfc2616.hs:146:15: warning: [GHC-40910] [-Wunused-matches]
     |               ^^^^^^
 
 Configuring test suite 'testsuite' for hweblib-0.6.3...
+Warning: [git-protocol] Cloning over git:// might lead to an arbitrary code
+execution vulnerability. Furthermore, popular forges like GitHub do not
+support it. Use https:// or ssh:// instead.
 Warning: [option-prof] 'ghc-prof-options: -prof' is not necessary and will
 lead to problems when used on a library. Use the configure flag
 --enable-library-profiling and/or --enable-profiling.
@@ -799,4 +805,9 @@ src/Network/Parser/Mime.hs:1:1: error:
 
 Error: [Cabal-7125]
 Failed to build test:testsuite from hweblib-0.6.3.
+
+HasCallStack backtrace:
+  collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception
+  toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/IO.hs:260:11 in ghc-internal:GHC.Internal.IO
+  throwIO, called at libraries/ghc-internal/src/GHC/Internal/Control/Exception/Base.hs:195:43 in ghc-internal:GHC.Internal.Control.Exception.Base
 

@@ -9,14 +9,14 @@ all
   Completion
     properties
       infixUptoEndMatch needle (pre <> needle <> post) == Just (needle <> post) if needle and post not empty and needle not in pre: OK (0.02s)
-        +++ OK, passed 100 tests; 22 discarded.
+        +++ OK, passed 100 tests; 28 discarded.
       infixUptoEndMatch "" x == Just x:                                                                                             OK
         +++ OK, passed 100 tests.
       isJust (infixUptoEndMatch needle haystack) == needle `Data.Text.isInfixOf` haystack:                                          OK
         +++ OK, passed 100 tests.
   CompletionTree
     properties
-      CT.toList . CT.fromList == nub . sort:                                                                                        OK (0.10s)
+      CT.toList . CT.fromList == nub . sort:                                                                                        OK (0.14s)
         +++ OK, passed 100 tests.
       update (fromList [a]) a == fromList [mempty] (a is a non-empty string):                                                       OK
         +++ OK, passed 100 tests.
@@ -55,7 +55,7 @@ all
         ignores noise and spaces:                                                                                                   OK
         parser fails correctly:                                                                                                     OK
 
-All 25 tests passed (0.24s)
+All 25 tests passed (0.28s)
 Test suite tasty: PASS
 Test suite logged to:
 /tmp/workdir-yi-core/yi-core-0.19.4/dist-newstyle/build/x86_64-linux/ghc-9.10.2/yi-core-0.19.4/t/tasty/test/yi-core-0.19.4-tasty.log

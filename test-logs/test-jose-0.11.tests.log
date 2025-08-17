@@ -11,7 +11,7 @@ Tests
       Base64Octets
         can be read from JSON:                                                        OK
       Base64Integer
-        parses from JSON correctly:                                                   OK (0.06s)
+        parses from JSON correctly:                                                   OK
         formats to JSON correctly:                                                    OK
         rejects empty string:                                                         OK
         rejects leading zero:                                                         OK
@@ -73,7 +73,7 @@ Tests
         computes the HMAC correctly:                                                  OK
         validates the JWS correctly:                                                  OK
       RFC 7515 A.2. Example JWS using RSASSA-PKCS-v1_5 SHA-256
-        computes the signature correctly:                                             OK
+        computes the signature correctly:                                             OK (0.04s)
         validates the signature correctly:                                            OK
         prohibits signing with 1024-bit key:                                          OK
       RFC 7515 A.3.  Example JWS using ECDSA P-256 SHA-256
@@ -98,8 +98,8 @@ Tests
     JWT
       JWT Claims Set
         parses from JSON correctly:                                                   OK
-        JWT round-trip (sign, serialise, decode, verify):                             OK (0.07s)
-        JWT round-trip (sign, serialise, decode, verify) [extended payload type]:     OK (0.05s)
+        JWT round-trip (sign, serialise, decode, verify):                             OK (1.10s)
+        JWT round-trip (sign, serialise, decode, verify) [extended payload type]:     OK (1.22s)
         formats to a parsable and equal value:                                        OK
         with an Expiration Time claim
           when the current time is prior to the Expiration Time
@@ -188,32 +188,32 @@ Tests
   Properties
     SizedBase64Integer round-trip:                                                    OK
         ✓ SizedBase64Integer round-trip passed 100 tests.
-    JWK round-trip:                                                                   OK (0.05s)
+    JWK round-trip:                                                                   OK (0.48s)
         ✓ JWK round-trip passed 100 tests.
-    RSA gen, sign and verify:                                                         OK (32.82s)
+    RSA gen, sign and verify:                                                         OK (564.07s)
         ✓ RSA gen, sign and verify passed 100 tests.
-          PS256 24% ████▊···············
-          PS384 19% ███▊················
-          PS512 10% ██··················
+          PS256 25% █████···············
+          PS384 13% ██▌·················
+          PS512 13% ██▌·················
           RS256 14% ██▊·················
-          RS384 20% ████················
-          RS512 13% ██▌·················
-    gen, sign with best alg, verify:                                                  OK (7.36s)
+          RS384 21% ████▏···············
+          RS512 14% ██▊·················
+    gen, sign with best alg, verify:                                                  OK (263.06s)
         ✓ gen, sign with best alg, verify passed 100 tests.
-          ES256   6% █▏··················
-          ES256K  3% ▌···················
-          ES384  10% ██··················
-          ES512  10% ██··················
-          EdDSA  12% ██▍·················
-          HS256   5% █···················
-          HS384  12% ██▍·················
-          HS512  15% ███·················
-          PS512  27% █████▍··············
+          ES256  11% ██▏·················
+          ES256K  8% █▌··················
+          ES384   8% █▌··················
+          ES512   5% █···················
+          EdDSA  10% ██··················
+          HS256   7% █▍··················
+          HS384   9% █▊··················
+          HS512  10% ██··················
+          PS512  32% ██████▍·············
   AESKW
     AESKW round-trip:                                                                 OK (0.01s)
         ✓ AESKW round-trip passed 100 tests.
 
-All 113 tests passed (40.44s)
+All 113 tests passed (830.00s)
 Test suite tests: PASS
 Test suite logged to:
 /tmp/workdir-jose/jose-0.11/dist-newstyle/build/x86_64-linux/ghc-9.10.2/jose-0.11/t/tests/test/jose-0.11-tests.log

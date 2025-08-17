@@ -144,13 +144,16 @@ Data.Astro.Coordinate:
     EcC 4.875 139.6861 on 2009-07-06 to EC1: [OK]
     EC1 19.535 9.581 to EcC on 2009-07-06: [OK]
     property: [Failed]
-*** Failed! Falsified (after 7 tests and 6 shrinks):
-(0.0,0.1,0.0)
-(used seed -3209053762791222111)
+*** Failed! Falsified (after 7 tests and 2 shrinks):
+(0.0,3.0,0.0)
+(used seed 3627788773042989016)
   Galactic <-> Equatorial:
     EC 10.053 10.35 -> GC: [OK]
     GC 51.122 232.247 -> EC: [OK]
-    property: [OK, passed 100 tests]
+    property: [Failed]
+*** Failed! Falsified (after 5 tests and 5 shrinks):
+(0.2,0.0)
+(used seed 3268377479072679226)
 Data.Astro.Types:
   DecimalDegrees <-> DecimalHours:
     12.03 H -> 180.45 D: [OK]
@@ -424,8 +427,8 @@ Data.Astro.Moon:
     at 2016-08-28 00:00:00: [OK]
 
          Properties  Test Cases  Total 
- Passed  26          299         325   
- Failed  1           0           1     
+ Passed  25          299         324   
+ Failed  2           0           2     
  Total   27          299         326   
 Test suite astro-test: FAIL
 Test suite logged to:
@@ -433,4 +436,10 @@ Test suite logged to:
 0 of 1 test suites (0 of 1 test cases) passed.
 Error: [Cabal-7125]
 Tests failed for test:astro-test from astro-0.4.3.0.
+
+HasCallStack backtrace:
+  collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception
+  toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/IO.hs:260:11 in ghc-internal:GHC.Internal.IO
+  throwIO, called at src/Distribution/Simple/Utils.hs:445:3 in Cabal-3.17.0.0-53ebf9405f6485269412f2afda26457728679de3c53d4063272ccd1d333df04e:Distribution.Simple.Utils
+  dieWithException, called at src/Distribution/Client/ProjectOrchestration.hs:1380:21 in cabal-install-3.17.0.0-978433ac00bba1fbf2bb7ceb68e8f37852e35b9f8412260606c7e7d5fef0562a:Distribution.Client.ProjectOrchestration
 

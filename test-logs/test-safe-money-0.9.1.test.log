@@ -140,7 +140,7 @@ root
         +++ OK, passed 100 tests.
       denseFromDecimal: Same as rationalFromDecimal:                                  OK
         +++ OK, passed 100 tests.
-      denseToDecimal/denseFromDiscrete: Lossy roundtrip:                              OK (0.07s)
+      denseToDecimal/denseFromDiscrete: Lossy roundtrip:                              OK (0.08s)
         +++ OK, passed 5000 tests.
       AdditiveGroup: zeroV:                                                           OK
       AdditiveGroup: negateV:                                                         OK
@@ -294,7 +294,7 @@ root
       fromSomeDiscrete . someDiscrete == Just:                                        OK
         +++ OK, passed 100 tests.
       fromSomeDiscrete works only for same currency and scale:                        OK
-        +++ OK, passed 100 tests; 14 discarded.
+        +++ OK, passed 100 tests; 16 discarded.
       withSomeDiscrete:                                                               OK
         +++ OK, passed 100 tests.
       discreteCurrency:                                                               OK
@@ -404,7 +404,7 @@ root
       fromSomeDiscrete . someDiscrete == Just:                                        OK
         +++ OK, passed 100 tests.
       fromSomeDiscrete works only for same currency and scale:                        OK
-        +++ OK, passed 100 tests; 12 discarded.
+        +++ OK, passed 100 tests; 17 discarded.
       withSomeDiscrete:                                                               OK
         +++ OK, passed 100 tests.
       discreteCurrency:                                                               OK
@@ -459,7 +459,7 @@ root
       fromSomeDiscrete . someDiscrete == Just:                                        OK
         +++ OK, passed 100 tests.
       fromSomeDiscrete works only for same currency and scale:                        OK
-        +++ OK, passed 100 tests; 14 discarded.
+        +++ OK, passed 100 tests; 16 discarded.
       withSomeDiscrete:                                                               OK
         +++ OK, passed 100 tests.
       discreteCurrency:                                                               OK
@@ -597,7 +597,7 @@ root
       discreteToDecimal/discreteFromDecimal: roundtrip:                               OK (0.02s)
         +++ OK, passed 5000 tests.
     Discrete (scale base 10)
-      discreteToDecimal/discreteFromDecimal: roundtrip:                               OK
+      discreteToDecimal/discreteFromDecimal: roundtrip:                               OK (0.01s)
         +++ OK, passed 5000 tests.
     Discrete (scale base 10)
       discreteToDecimal/discreteFromDecimal: roundtrip:                               OK (0.02s)
@@ -623,202 +623,7 @@ root
       read . show . Just == Just:                                                     OK
         +++ OK, passed 100 tests.
       flipExchangeRate . flipExchangeRate == id:                                      OK
-        +++ OK, passed 100 tests; 2 discarded.
-      exchange (flipExchangeRate x) . exchange x == id:                               OK
-        +++ OK, passed 100 tests.
-      x == 1 ==> exchange x == id:                                                    OK
-        +++ OK, passed 100 tests.
-      x /= 1 ==> exchange x /= id:                                                    OK
-        +++ OK, passed 100 tests; 13 discarded.
-      fromSomeExchangeRate . someExchangeRate == Just:                                OK
-        +++ OK, passed 100 tests.
-      fromSomeExchangeRate works only for same currencies:                            OK
-        +++ OK, passed 100 tests.
-      withSomeExchangeRate:                                                           OK
-        +++ OK, passed 100 tests.
-      exchangeRateToDecimal: Same as rationalToDecimal:                               OK
-        +++ OK, passed 100 tests.
-      exchangeRateFromDecimal: Same as rationalFromDecimal:                           OK
-        +++ OK, passed 100 tests; 141 discarded.
-      Binary encoding roundtrip:                                                      OK
-        +++ OK, passed 100 tests.
-      Binary encoding roundtrip (SomeExchangeRate):                                   OK
-        +++ OK, passed 100 tests.
-      Binary encoding roundtrip (ExchangeRate through SomeExchangeRate):              OK
-        +++ OK, passed 100 tests.
-      Binary encoding roundtrip (SomeExchangeRate through ExchangeRate):              OK
-        +++ OK, passed 100 tests.
-    ExchangeRate "BTC" "USD"
-      Category: left identity:                                                        OK
-        +++ OK, passed 100 tests.
-      Category: right identity:                                                       OK
-        +++ OK, passed 100 tests.
-      Category: composition with inverse:                                             OK
-        +++ OK, passed 100 tests.
-      Category: composition with other:                                               OK
-        +++ OK, passed 100 tests.
-      read . show == id:                                                              OK
-        +++ OK, passed 100 tests.
-      read . show . Just == Just:                                                     OK
-        +++ OK, passed 100 tests.
-      flipExchangeRate . flipExchangeRate == id:                                      OK
-        +++ OK, passed 100 tests; 7 discarded.
-      exchange (flipExchangeRate x) . exchange x == id:                               OK
-        +++ OK, passed 100 tests.
-      x == 1 ==> exchange x == id:                                                    OK
-        +++ OK, passed 100 tests.
-      x /= 1 ==> exchange x /= id:                                                    OK
-        +++ OK, passed 100 tests; 13 discarded.
-      fromSomeExchangeRate . someExchangeRate == Just:                                OK
-        +++ OK, passed 100 tests.
-      fromSomeExchangeRate works only for same currencies:                            OK
-        +++ OK, passed 100 tests.
-      withSomeExchangeRate:                                                           OK
-        +++ OK, passed 100 tests.
-      exchangeRateToDecimal: Same as rationalToDecimal:                               OK
-        +++ OK, passed 100 tests.
-      exchangeRateFromDecimal: Same as rationalFromDecimal:                           OK
-        +++ OK, passed 100 tests; 96 discarded.
-      Binary encoding roundtrip:                                                      OK
-        +++ OK, passed 100 tests.
-      Binary encoding roundtrip (SomeExchangeRate):                                   OK
-        +++ OK, passed 100 tests.
-      Binary encoding roundtrip (ExchangeRate through SomeExchangeRate):              OK
-        +++ OK, passed 100 tests.
-      Binary encoding roundtrip (SomeExchangeRate through ExchangeRate):              OK
-        +++ OK, passed 100 tests.
-    ExchangeRate "BTC" "VUV"
-      Category: left identity:                                                        OK
-        +++ OK, passed 100 tests.
-      Category: right identity:                                                       OK
-        +++ OK, passed 100 tests.
-      Category: composition with inverse:                                             OK
-        +++ OK, passed 100 tests.
-      Category: composition with other:                                               OK
-        +++ OK, passed 100 tests.
-      read . show == id:                                                              OK
-        +++ OK, passed 100 tests.
-      read . show . Just == Just:                                                     OK
-        +++ OK, passed 100 tests.
-      flipExchangeRate . flipExchangeRate == id:                                      OK
-        +++ OK, passed 100 tests; 2 discarded.
-      exchange (flipExchangeRate x) . exchange x == id:                               OK
-        +++ OK, passed 100 tests.
-      x == 1 ==> exchange x == id:                                                    OK
-        +++ OK, passed 100 tests.
-      x /= 1 ==> exchange x /= id:                                                    OK
-        +++ OK, passed 100 tests; 18 discarded.
-      fromSomeExchangeRate . someExchangeRate == Just:                                OK
-        +++ OK, passed 100 tests.
-      fromSomeExchangeRate works only for same currencies:                            OK
-        +++ OK, passed 100 tests.
-      withSomeExchangeRate:                                                           OK
-        +++ OK, passed 100 tests.
-      exchangeRateToDecimal: Same as rationalToDecimal:                               OK
-        +++ OK, passed 100 tests.
-      exchangeRateFromDecimal: Same as rationalFromDecimal:                           OK
-        +++ OK, passed 100 tests; 106 discarded.
-      Binary encoding roundtrip:                                                      OK
-        +++ OK, passed 100 tests.
-      Binary encoding roundtrip (SomeExchangeRate):                                   OK
-        +++ OK, passed 100 tests.
-      Binary encoding roundtrip (ExchangeRate through SomeExchangeRate):              OK
-        +++ OK, passed 100 tests.
-      Binary encoding roundtrip (SomeExchangeRate through ExchangeRate):              OK
-        +++ OK, passed 100 tests.
-    ExchangeRate "BTC" "XAU"
-      Category: left identity:                                                        OK
-        +++ OK, passed 100 tests.
-      Category: right identity:                                                       OK
-        +++ OK, passed 100 tests.
-      Category: composition with inverse:                                             OK
-        +++ OK, passed 100 tests.
-      Category: composition with other:                                               OK
-        +++ OK, passed 100 tests.
-      read . show == id:                                                              OK
-        +++ OK, passed 100 tests.
-      read . show . Just == Just:                                                     OK
-        +++ OK, passed 100 tests.
-      flipExchangeRate . flipExchangeRate == id:                                      OK
-        +++ OK, passed 100 tests; 1 discarded.
-      exchange (flipExchangeRate x) . exchange x == id:                               OK
-        +++ OK, passed 100 tests.
-      x == 1 ==> exchange x == id:                                                    OK
-        +++ OK, passed 100 tests.
-      x /= 1 ==> exchange x /= id:                                                    OK
-        +++ OK, passed 100 tests; 11 discarded.
-      fromSomeExchangeRate . someExchangeRate == Just:                                OK
-        +++ OK, passed 100 tests.
-      fromSomeExchangeRate works only for same currencies:                            OK
-        +++ OK, passed 100 tests.
-      withSomeExchangeRate:                                                           OK
-        +++ OK, passed 100 tests.
-      exchangeRateToDecimal: Same as rationalToDecimal:                               OK
-        +++ OK, passed 100 tests.
-      exchangeRateFromDecimal: Same as rationalFromDecimal:                           OK
-        +++ OK, passed 100 tests; 134 discarded.
-      Binary encoding roundtrip:                                                      OK
-        +++ OK, passed 100 tests.
-      Binary encoding roundtrip (SomeExchangeRate):                                   OK
-        +++ OK, passed 100 tests.
-      Binary encoding roundtrip (ExchangeRate through SomeExchangeRate):              OK
-        +++ OK, passed 100 tests.
-      Binary encoding roundtrip (SomeExchangeRate through ExchangeRate):              OK
-        +++ OK, passed 100 tests.
-    ExchangeRate "USD" "BTC"
-      Category: left identity:                                                        OK
-        +++ OK, passed 100 tests.
-      Category: right identity:                                                       OK
-        +++ OK, passed 100 tests.
-      Category: composition with inverse:                                             OK
-        +++ OK, passed 100 tests.
-      Category: composition with other:                                               OK
-        +++ OK, passed 100 tests.
-      read . show == id:                                                              OK
-        +++ OK, passed 100 tests.
-      read . show . Just == Just:                                                     OK
-        +++ OK, passed 100 tests.
-      flipExchangeRate . flipExchangeRate == id:                                      OK
-        +++ OK, passed 100 tests; 6 discarded.
-      exchange (flipExchangeRate x) . exchange x == id:                               OK
-        +++ OK, passed 100 tests.
-      x == 1 ==> exchange x == id:                                                    OK
-        +++ OK, passed 100 tests.
-      x /= 1 ==> exchange x /= id:                                                    OK
-        +++ OK, passed 100 tests; 25 discarded.
-      fromSomeExchangeRate . someExchangeRate == Just:                                OK
-        +++ OK, passed 100 tests.
-      fromSomeExchangeRate works only for same currencies:                            OK
-        +++ OK, passed 100 tests.
-      withSomeExchangeRate:                                                           OK
-        +++ OK, passed 100 tests.
-      exchangeRateToDecimal: Same as rationalToDecimal:                               OK
-        +++ OK, passed 100 tests.
-      exchangeRateFromDecimal: Same as rationalFromDecimal:                           OK
-        +++ OK, passed 100 tests; 114 discarded.
-      Binary encoding roundtrip:                                                      OK
-        +++ OK, passed 100 tests.
-      Binary encoding roundtrip (SomeExchangeRate):                                   OK
-        +++ OK, passed 100 tests.
-      Binary encoding roundtrip (ExchangeRate through SomeExchangeRate):              OK
-        +++ OK, passed 100 tests.
-      Binary encoding roundtrip (SomeExchangeRate through ExchangeRate):              OK
-        +++ OK, passed 100 tests.
-    ExchangeRate "USD" "USD"
-      Category: left identity:                                                        OK
-        +++ OK, passed 100 tests.
-      Category: right identity:                                                       OK
-        +++ OK, passed 100 tests.
-      Category: composition with inverse:                                             OK
-        +++ OK, passed 100 tests.
-      Category: composition with other:                                               OK
-        +++ OK, passed 100 tests.
-      read . show == id:                                                              OK
-        +++ OK, passed 100 tests.
-      read . show . Just == Just:                                                     OK
-        +++ OK, passed 100 tests.
-      flipExchangeRate . flipExchangeRate == id:                                      OK
-        +++ OK, passed 100 tests; 4 discarded.
+        +++ OK, passed 100 tests; 3 discarded.
       exchange (flipExchangeRate x) . exchange x == id:                               OK
         +++ OK, passed 100 tests.
       x == 1 ==> exchange x == id:                                                    OK
@@ -834,7 +639,7 @@ root
       exchangeRateToDecimal: Same as rationalToDecimal:                               OK
         +++ OK, passed 100 tests.
       exchangeRateFromDecimal: Same as rationalFromDecimal:                           OK
-        +++ OK, passed 100 tests; 103 discarded.
+        +++ OK, passed 100 tests; 101 discarded.
       Binary encoding roundtrip:                                                      OK
         +++ OK, passed 100 tests.
       Binary encoding roundtrip (SomeExchangeRate):                                   OK
@@ -843,85 +648,7 @@ root
         +++ OK, passed 100 tests.
       Binary encoding roundtrip (SomeExchangeRate through ExchangeRate):              OK
         +++ OK, passed 100 tests.
-    ExchangeRate "USD" "VUV"
-      Category: left identity:                                                        OK
-        +++ OK, passed 100 tests.
-      Category: right identity:                                                       OK
-        +++ OK, passed 100 tests.
-      Category: composition with inverse:                                             OK
-        +++ OK, passed 100 tests.
-      Category: composition with other:                                               OK
-        +++ OK, passed 100 tests.
-      read . show == id:                                                              OK
-        +++ OK, passed 100 tests.
-      read . show . Just == Just:                                                     OK
-        +++ OK, passed 100 tests.
-      flipExchangeRate . flipExchangeRate == id:                                      OK
-        +++ OK, passed 100 tests; 9 discarded.
-      exchange (flipExchangeRate x) . exchange x == id:                               OK
-        +++ OK, passed 100 tests.
-      x == 1 ==> exchange x == id:                                                    OK
-        +++ OK, passed 100 tests.
-      x /= 1 ==> exchange x /= id:                                                    OK
-        +++ OK, passed 100 tests; 13 discarded.
-      fromSomeExchangeRate . someExchangeRate == Just:                                OK
-        +++ OK, passed 100 tests.
-      fromSomeExchangeRate works only for same currencies:                            OK
-        +++ OK, passed 100 tests.
-      withSomeExchangeRate:                                                           OK
-        +++ OK, passed 100 tests.
-      exchangeRateToDecimal: Same as rationalToDecimal:                               OK
-        +++ OK, passed 100 tests.
-      exchangeRateFromDecimal: Same as rationalFromDecimal:                           OK
-        +++ OK, passed 100 tests; 127 discarded.
-      Binary encoding roundtrip:                                                      OK
-        +++ OK, passed 100 tests.
-      Binary encoding roundtrip (SomeExchangeRate):                                   OK
-        +++ OK, passed 100 tests.
-      Binary encoding roundtrip (ExchangeRate through SomeExchangeRate):              OK
-        +++ OK, passed 100 tests.
-      Binary encoding roundtrip (SomeExchangeRate through ExchangeRate):              OK
-        +++ OK, passed 100 tests.
-    ExchangeRate "USD" "XAU"
-      Category: left identity:                                                        OK
-        +++ OK, passed 100 tests.
-      Category: right identity:                                                       OK
-        +++ OK, passed 100 tests.
-      Category: composition with inverse:                                             OK
-        +++ OK, passed 100 tests.
-      Category: composition with other:                                               OK
-        +++ OK, passed 100 tests.
-      read . show == id:                                                              OK
-        +++ OK, passed 100 tests.
-      read . show . Just == Just:                                                     OK
-        +++ OK, passed 100 tests.
-      flipExchangeRate . flipExchangeRate == id:                                      OK
-        +++ OK, passed 100 tests; 1 discarded.
-      exchange (flipExchangeRate x) . exchange x == id:                               OK
-        +++ OK, passed 100 tests.
-      x == 1 ==> exchange x == id:                                                    OK
-        +++ OK, passed 100 tests.
-      x /= 1 ==> exchange x /= id:                                                    OK
-        +++ OK, passed 100 tests; 12 discarded.
-      fromSomeExchangeRate . someExchangeRate == Just:                                OK
-        +++ OK, passed 100 tests.
-      fromSomeExchangeRate works only for same currencies:                            OK
-        +++ OK, passed 100 tests.
-      withSomeExchangeRate:                                                           OK
-        +++ OK, passed 100 tests.
-      exchangeRateToDecimal: Same as rationalToDecimal:                               OK
-        +++ OK, passed 100 tests.
-      exchangeRateFromDecimal: Same as rationalFromDecimal:                           OK
-        +++ OK, passed 100 tests; 121 discarded.
-      Binary encoding roundtrip:                                                      OK
-        +++ OK, passed 100 tests.
-      Binary encoding roundtrip (SomeExchangeRate):                                   OK
-        +++ OK, passed 100 tests.
-      Binary encoding roundtrip (ExchangeRate through SomeExchangeRate):              OK
-        +++ OK, passed 100 tests.
-      Binary encoding roundtrip (SomeExchangeRate through ExchangeRate):              OK
-        +++ OK, passed 100 tests.
-    ExchangeRate "VUV" "BTC"
+    ExchangeRate "BTC" "USD"
       Category: left identity:                                                        OK
         +++ OK, passed 100 tests.
       Category: right identity:                                                       OK
@@ -951,7 +678,7 @@ root
       exchangeRateToDecimal: Same as rationalToDecimal:                               OK
         +++ OK, passed 100 tests.
       exchangeRateFromDecimal: Same as rationalFromDecimal:                           OK
-        +++ OK, passed 100 tests; 81 discarded.
+        +++ OK, passed 100 tests; 134 discarded.
       Binary encoding roundtrip:                                                      OK
         +++ OK, passed 100 tests.
       Binary encoding roundtrip (SomeExchangeRate):                                   OK
@@ -960,46 +687,7 @@ root
         +++ OK, passed 100 tests.
       Binary encoding roundtrip (SomeExchangeRate through ExchangeRate):              OK
         +++ OK, passed 100 tests.
-    ExchangeRate "VUV" "USD"
-      Category: left identity:                                                        OK
-        +++ OK, passed 100 tests.
-      Category: right identity:                                                       OK
-        +++ OK, passed 100 tests.
-      Category: composition with inverse:                                             OK
-        +++ OK, passed 100 tests.
-      Category: composition with other:                                               OK
-        +++ OK, passed 100 tests.
-      read . show == id:                                                              OK
-        +++ OK, passed 100 tests.
-      read . show . Just == Just:                                                     OK
-        +++ OK, passed 100 tests.
-      flipExchangeRate . flipExchangeRate == id:                                      OK
-        +++ OK, passed 100 tests; 7 discarded.
-      exchange (flipExchangeRate x) . exchange x == id:                               OK
-        +++ OK, passed 100 tests.
-      x == 1 ==> exchange x == id:                                                    OK
-        +++ OK, passed 100 tests.
-      x /= 1 ==> exchange x /= id:                                                    OK
-        +++ OK, passed 100 tests; 17 discarded.
-      fromSomeExchangeRate . someExchangeRate == Just:                                OK
-        +++ OK, passed 100 tests.
-      fromSomeExchangeRate works only for same currencies:                            OK
-        +++ OK, passed 100 tests.
-      withSomeExchangeRate:                                                           OK
-        +++ OK, passed 100 tests.
-      exchangeRateToDecimal: Same as rationalToDecimal:                               OK
-        +++ OK, passed 100 tests.
-      exchangeRateFromDecimal: Same as rationalFromDecimal:                           OK
-        +++ OK, passed 100 tests; 116 discarded.
-      Binary encoding roundtrip:                                                      OK
-        +++ OK, passed 100 tests.
-      Binary encoding roundtrip (SomeExchangeRate):                                   OK
-        +++ OK, passed 100 tests.
-      Binary encoding roundtrip (ExchangeRate through SomeExchangeRate):              OK
-        +++ OK, passed 100 tests.
-      Binary encoding roundtrip (SomeExchangeRate through ExchangeRate):              OK
-        +++ OK, passed 100 tests.
-    ExchangeRate "VUV" "VUV"
+    ExchangeRate "BTC" "VUV"
       Category: left identity:                                                        OK
         +++ OK, passed 100 tests.
       Category: right identity:                                                       OK
@@ -1019,123 +707,6 @@ root
       x == 1 ==> exchange x == id:                                                    OK
         +++ OK, passed 100 tests.
       x /= 1 ==> exchange x /= id:                                                    OK
-        +++ OK, passed 100 tests; 11 discarded.
-      fromSomeExchangeRate . someExchangeRate == Just:                                OK
-        +++ OK, passed 100 tests.
-      fromSomeExchangeRate works only for same currencies:                            OK
-        +++ OK, passed 100 tests.
-      withSomeExchangeRate:                                                           OK
-        +++ OK, passed 100 tests.
-      exchangeRateToDecimal: Same as rationalToDecimal:                               OK
-        +++ OK, passed 100 tests.
-      exchangeRateFromDecimal: Same as rationalFromDecimal:                           OK
-        +++ OK, passed 100 tests; 120 discarded.
-      Binary encoding roundtrip:                                                      OK
-        +++ OK, passed 100 tests.
-      Binary encoding roundtrip (SomeExchangeRate):                                   OK
-        +++ OK, passed 100 tests.
-      Binary encoding roundtrip (ExchangeRate through SomeExchangeRate):              OK
-        +++ OK, passed 100 tests.
-      Binary encoding roundtrip (SomeExchangeRate through ExchangeRate):              OK
-        +++ OK, passed 100 tests.
-    ExchangeRate "VUV" "XAU"
-      Category: left identity:                                                        OK
-        +++ OK, passed 100 tests.
-      Category: right identity:                                                       OK
-        +++ OK, passed 100 tests.
-      Category: composition with inverse:                                             OK
-        +++ OK, passed 100 tests.
-      Category: composition with other:                                               OK
-        +++ OK, passed 100 tests.
-      read . show == id:                                                              OK
-        +++ OK, passed 100 tests.
-      read . show . Just == Just:                                                     OK
-        +++ OK, passed 100 tests.
-      flipExchangeRate . flipExchangeRate == id:                                      OK
-        +++ OK, passed 100 tests; 5 discarded.
-      exchange (flipExchangeRate x) . exchange x == id:                               OK
-        +++ OK, passed 100 tests.
-      x == 1 ==> exchange x == id:                                                    OK
-        +++ OK, passed 100 tests.
-      x /= 1 ==> exchange x /= id:                                                    OK
-        +++ OK, passed 100 tests; 24 discarded.
-      fromSomeExchangeRate . someExchangeRate == Just:                                OK
-        +++ OK, passed 100 tests.
-      fromSomeExchangeRate works only for same currencies:                            OK
-        +++ OK, passed 100 tests.
-      withSomeExchangeRate:                                                           OK
-        +++ OK, passed 100 tests.
-      exchangeRateToDecimal: Same as rationalToDecimal:                               OK
-        +++ OK, passed 100 tests.
-      exchangeRateFromDecimal: Same as rationalFromDecimal:                           OK
-        +++ OK, passed 100 tests; 138 discarded.
-      Binary encoding roundtrip:                                                      OK
-        +++ OK, passed 100 tests.
-      Binary encoding roundtrip (SomeExchangeRate):                                   OK
-        +++ OK, passed 100 tests.
-      Binary encoding roundtrip (ExchangeRate through SomeExchangeRate):              OK
-        +++ OK, passed 100 tests.
-      Binary encoding roundtrip (SomeExchangeRate through ExchangeRate):              OK
-        +++ OK, passed 100 tests.
-    ExchangeRate "XAU" "BTC"
-      Category: left identity:                                                        OK
-        +++ OK, passed 100 tests.
-      Category: right identity:                                                       OK
-        +++ OK, passed 100 tests.
-      Category: composition with inverse:                                             OK
-        +++ OK, passed 100 tests.
-      Category: composition with other:                                               OK
-        +++ OK, passed 100 tests.
-      read . show == id:                                                              OK
-        +++ OK, passed 100 tests.
-      read . show . Just == Just:                                                     OK
-        +++ OK, passed 100 tests.
-      flipExchangeRate . flipExchangeRate == id:                                      OK
-        +++ OK, passed 100 tests; 1 discarded.
-      exchange (flipExchangeRate x) . exchange x == id:                               OK
-        +++ OK, passed 100 tests.
-      x == 1 ==> exchange x == id:                                                    OK
-        +++ OK, passed 100 tests.
-      x /= 1 ==> exchange x /= id:                                                    OK
-        +++ OK, passed 100 tests; 13 discarded.
-      fromSomeExchangeRate . someExchangeRate == Just:                                OK
-        +++ OK, passed 100 tests.
-      fromSomeExchangeRate works only for same currencies:                            OK
-        +++ OK, passed 100 tests.
-      withSomeExchangeRate:                                                           OK
-        +++ OK, passed 100 tests.
-      exchangeRateToDecimal: Same as rationalToDecimal:                               OK
-        +++ OK, passed 100 tests.
-      exchangeRateFromDecimal: Same as rationalFromDecimal:                           OK
-        +++ OK, passed 100 tests; 125 discarded.
-      Binary encoding roundtrip:                                                      OK
-        +++ OK, passed 100 tests.
-      Binary encoding roundtrip (SomeExchangeRate):                                   OK
-        +++ OK, passed 100 tests.
-      Binary encoding roundtrip (ExchangeRate through SomeExchangeRate):              OK
-        +++ OK, passed 100 tests.
-      Binary encoding roundtrip (SomeExchangeRate through ExchangeRate):              OK
-        +++ OK, passed 100 tests.
-    ExchangeRate "XAU" "USD"
-      Category: left identity:                                                        OK
-        +++ OK, passed 100 tests.
-      Category: right identity:                                                       OK
-        +++ OK, passed 100 tests.
-      Category: composition with inverse:                                             OK
-        +++ OK, passed 100 tests.
-      Category: composition with other:                                               OK
-        +++ OK, passed 100 tests.
-      read . show == id:                                                              OK
-        +++ OK, passed 100 tests.
-      read . show . Just == Just:                                                     OK
-        +++ OK, passed 100 tests.
-      flipExchangeRate . flipExchangeRate == id:                                      OK
-        +++ OK, passed 100 tests; 1 discarded.
-      exchange (flipExchangeRate x) . exchange x == id:                               OK
-        +++ OK, passed 100 tests.
-      x == 1 ==> exchange x == id:                                                    OK
-        +++ OK, passed 100 tests.
-      x /= 1 ==> exchange x /= id:                                                    OK
         +++ OK, passed 100 tests; 25 discarded.
       fromSomeExchangeRate . someExchangeRate == Just:                                OK
         +++ OK, passed 100 tests.
@@ -1146,7 +717,7 @@ root
       exchangeRateToDecimal: Same as rationalToDecimal:                               OK
         +++ OK, passed 100 tests.
       exchangeRateFromDecimal: Same as rationalFromDecimal:                           OK
-        +++ OK, passed 100 tests; 109 discarded.
+        +++ OK, passed 100 tests; 115 discarded.
       Binary encoding roundtrip:                                                      OK
         +++ OK, passed 100 tests.
       Binary encoding roundtrip (SomeExchangeRate):                                   OK
@@ -1155,7 +726,85 @@ root
         +++ OK, passed 100 tests.
       Binary encoding roundtrip (SomeExchangeRate through ExchangeRate):              OK
         +++ OK, passed 100 tests.
-    ExchangeRate "XAU" "VUV"
+    ExchangeRate "BTC" "XAU"
+      Category: left identity:                                                        OK
+        +++ OK, passed 100 tests.
+      Category: right identity:                                                       OK
+        +++ OK, passed 100 tests.
+      Category: composition with inverse:                                             OK
+        +++ OK, passed 100 tests.
+      Category: composition with other:                                               OK
+        +++ OK, passed 100 tests.
+      read . show == id:                                                              OK
+        +++ OK, passed 100 tests.
+      read . show . Just == Just:                                                     OK
+        +++ OK, passed 100 tests.
+      flipExchangeRate . flipExchangeRate == id:                                      OK
+        +++ OK, passed 100 tests; 2 discarded.
+      exchange (flipExchangeRate x) . exchange x == id:                               OK
+        +++ OK, passed 100 tests.
+      x == 1 ==> exchange x == id:                                                    OK
+        +++ OK, passed 100 tests.
+      x /= 1 ==> exchange x /= id:                                                    OK
+        +++ OK, passed 100 tests; 26 discarded.
+      fromSomeExchangeRate . someExchangeRate == Just:                                OK
+        +++ OK, passed 100 tests.
+      fromSomeExchangeRate works only for same currencies:                            OK
+        +++ OK, passed 100 tests.
+      withSomeExchangeRate:                                                           OK
+        +++ OK, passed 100 tests.
+      exchangeRateToDecimal: Same as rationalToDecimal:                               OK
+        +++ OK, passed 100 tests.
+      exchangeRateFromDecimal: Same as rationalFromDecimal:                           OK
+        +++ OK, passed 100 tests; 102 discarded.
+      Binary encoding roundtrip:                                                      OK
+        +++ OK, passed 100 tests.
+      Binary encoding roundtrip (SomeExchangeRate):                                   OK
+        +++ OK, passed 100 tests.
+      Binary encoding roundtrip (ExchangeRate through SomeExchangeRate):              OK
+        +++ OK, passed 100 tests.
+      Binary encoding roundtrip (SomeExchangeRate through ExchangeRate):              OK
+        +++ OK, passed 100 tests.
+    ExchangeRate "USD" "BTC"
+      Category: left identity:                                                        OK
+        +++ OK, passed 100 tests.
+      Category: right identity:                                                       OK
+        +++ OK, passed 100 tests.
+      Category: composition with inverse:                                             OK
+        +++ OK, passed 100 tests.
+      Category: composition with other:                                               OK
+        +++ OK, passed 100 tests.
+      read . show == id:                                                              OK
+        +++ OK, passed 100 tests.
+      read . show . Just == Just:                                                     OK
+        +++ OK, passed 100 tests.
+      flipExchangeRate . flipExchangeRate == id:                                      OK
+        +++ OK, passed 100 tests; 1 discarded.
+      exchange (flipExchangeRate x) . exchange x == id:                               OK
+        +++ OK, passed 100 tests.
+      x == 1 ==> exchange x == id:                                                    OK
+        +++ OK, passed 100 tests.
+      x /= 1 ==> exchange x /= id:                                                    OK
+        +++ OK, passed 100 tests; 16 discarded.
+      fromSomeExchangeRate . someExchangeRate == Just:                                OK
+        +++ OK, passed 100 tests.
+      fromSomeExchangeRate works only for same currencies:                            OK
+        +++ OK, passed 100 tests.
+      withSomeExchangeRate:                                                           OK
+        +++ OK, passed 100 tests.
+      exchangeRateToDecimal: Same as rationalToDecimal:                               OK
+        +++ OK, passed 100 tests.
+      exchangeRateFromDecimal: Same as rationalFromDecimal:                           OK
+        +++ OK, passed 100 tests; 79 discarded.
+      Binary encoding roundtrip:                                                      OK
+        +++ OK, passed 100 tests.
+      Binary encoding roundtrip (SomeExchangeRate):                                   OK
+        +++ OK, passed 100 tests.
+      Binary encoding roundtrip (ExchangeRate through SomeExchangeRate):              OK
+        +++ OK, passed 100 tests.
+      Binary encoding roundtrip (SomeExchangeRate through ExchangeRate):              OK
+        +++ OK, passed 100 tests.
+    ExchangeRate "USD" "USD"
       Category: left identity:                                                        OK
         +++ OK, passed 100 tests.
       Category: right identity:                                                       OK
@@ -1185,7 +834,358 @@ root
       exchangeRateToDecimal: Same as rationalToDecimal:                               OK
         +++ OK, passed 100 tests.
       exchangeRateFromDecimal: Same as rationalFromDecimal:                           OK
-        +++ OK, passed 100 tests; 141 discarded.
+        +++ OK, passed 100 tests; 139 discarded.
+      Binary encoding roundtrip:                                                      OK
+        +++ OK, passed 100 tests.
+      Binary encoding roundtrip (SomeExchangeRate):                                   OK
+        +++ OK, passed 100 tests.
+      Binary encoding roundtrip (ExchangeRate through SomeExchangeRate):              OK
+        +++ OK, passed 100 tests.
+      Binary encoding roundtrip (SomeExchangeRate through ExchangeRate):              OK
+        +++ OK, passed 100 tests.
+    ExchangeRate "USD" "VUV"
+      Category: left identity:                                                        OK
+        +++ OK, passed 100 tests.
+      Category: right identity:                                                       OK
+        +++ OK, passed 100 tests.
+      Category: composition with inverse:                                             OK
+        +++ OK, passed 100 tests.
+      Category: composition with other:                                               OK
+        +++ OK, passed 100 tests.
+      read . show == id:                                                              OK
+        +++ OK, passed 100 tests.
+      read . show . Just == Just:                                                     OK
+        +++ OK, passed 100 tests.
+      flipExchangeRate . flipExchangeRate == id:                                      OK
+        +++ OK, passed 100 tests; 1 discarded.
+      exchange (flipExchangeRate x) . exchange x == id:                               OK
+        +++ OK, passed 100 tests.
+      x == 1 ==> exchange x == id:                                                    OK
+        +++ OK, passed 100 tests.
+      x /= 1 ==> exchange x /= id:                                                    OK
+        +++ OK, passed 100 tests; 15 discarded.
+      fromSomeExchangeRate . someExchangeRate == Just:                                OK
+        +++ OK, passed 100 tests.
+      fromSomeExchangeRate works only for same currencies:                            OK
+        +++ OK, passed 100 tests.
+      withSomeExchangeRate:                                                           OK
+        +++ OK, passed 100 tests.
+      exchangeRateToDecimal: Same as rationalToDecimal:                               OK
+        +++ OK, passed 100 tests.
+      exchangeRateFromDecimal: Same as rationalFromDecimal:                           OK
+        +++ OK, passed 100 tests; 137 discarded.
+      Binary encoding roundtrip:                                                      OK
+        +++ OK, passed 100 tests.
+      Binary encoding roundtrip (SomeExchangeRate):                                   OK
+        +++ OK, passed 100 tests.
+      Binary encoding roundtrip (ExchangeRate through SomeExchangeRate):              OK
+        +++ OK, passed 100 tests.
+      Binary encoding roundtrip (SomeExchangeRate through ExchangeRate):              OK
+        +++ OK, passed 100 tests.
+    ExchangeRate "USD" "XAU"
+      Category: left identity:                                                        OK
+        +++ OK, passed 100 tests.
+      Category: right identity:                                                       OK
+        +++ OK, passed 100 tests.
+      Category: composition with inverse:                                             OK
+        +++ OK, passed 100 tests.
+      Category: composition with other:                                               OK
+        +++ OK, passed 100 tests.
+      read . show == id:                                                              OK
+        +++ OK, passed 100 tests.
+      read . show . Just == Just:                                                     OK
+        +++ OK, passed 100 tests.
+      flipExchangeRate . flipExchangeRate == id:                                      OK
+        +++ OK, passed 100 tests; 1 discarded.
+      exchange (flipExchangeRate x) . exchange x == id:                               OK
+        +++ OK, passed 100 tests.
+      x == 1 ==> exchange x == id:                                                    OK
+        +++ OK, passed 100 tests.
+      x /= 1 ==> exchange x /= id:                                                    OK
+        +++ OK, passed 100 tests; 14 discarded.
+      fromSomeExchangeRate . someExchangeRate == Just:                                OK
+        +++ OK, passed 100 tests.
+      fromSomeExchangeRate works only for same currencies:                            OK
+        +++ OK, passed 100 tests.
+      withSomeExchangeRate:                                                           OK
+        +++ OK, passed 100 tests.
+      exchangeRateToDecimal: Same as rationalToDecimal:                               OK
+        +++ OK, passed 100 tests.
+      exchangeRateFromDecimal: Same as rationalFromDecimal:                           OK
+        +++ OK, passed 100 tests; 127 discarded.
+      Binary encoding roundtrip:                                                      OK
+        +++ OK, passed 100 tests.
+      Binary encoding roundtrip (SomeExchangeRate):                                   OK
+        +++ OK, passed 100 tests.
+      Binary encoding roundtrip (ExchangeRate through SomeExchangeRate):              OK
+        +++ OK, passed 100 tests.
+      Binary encoding roundtrip (SomeExchangeRate through ExchangeRate):              OK
+        +++ OK, passed 100 tests.
+    ExchangeRate "VUV" "BTC"
+      Category: left identity:                                                        OK
+        +++ OK, passed 100 tests.
+      Category: right identity:                                                       OK
+        +++ OK, passed 100 tests.
+      Category: composition with inverse:                                             OK
+        +++ OK, passed 100 tests.
+      Category: composition with other:                                               OK
+        +++ OK, passed 100 tests.
+      read . show == id:                                                              OK
+        +++ OK, passed 100 tests.
+      read . show . Just == Just:                                                     OK
+        +++ OK, passed 100 tests.
+      flipExchangeRate . flipExchangeRate == id:                                      OK
+        +++ OK, passed 100 tests; 2 discarded.
+      exchange (flipExchangeRate x) . exchange x == id:                               OK
+        +++ OK, passed 100 tests.
+      x == 1 ==> exchange x == id:                                                    OK
+        +++ OK, passed 100 tests.
+      x /= 1 ==> exchange x /= id:                                                    OK
+        +++ OK, passed 100 tests; 14 discarded.
+      fromSomeExchangeRate . someExchangeRate == Just:                                OK
+        +++ OK, passed 100 tests.
+      fromSomeExchangeRate works only for same currencies:                            OK
+        +++ OK, passed 100 tests.
+      withSomeExchangeRate:                                                           OK
+        +++ OK, passed 100 tests.
+      exchangeRateToDecimal: Same as rationalToDecimal:                               OK
+        +++ OK, passed 100 tests.
+      exchangeRateFromDecimal: Same as rationalFromDecimal:                           OK
+        +++ OK, passed 100 tests; 110 discarded.
+      Binary encoding roundtrip:                                                      OK
+        +++ OK, passed 100 tests.
+      Binary encoding roundtrip (SomeExchangeRate):                                   OK
+        +++ OK, passed 100 tests.
+      Binary encoding roundtrip (ExchangeRate through SomeExchangeRate):              OK
+        +++ OK, passed 100 tests.
+      Binary encoding roundtrip (SomeExchangeRate through ExchangeRate):              OK
+        +++ OK, passed 100 tests.
+    ExchangeRate "VUV" "USD"
+      Category: left identity:                                                        OK
+        +++ OK, passed 100 tests.
+      Category: right identity:                                                       OK
+        +++ OK, passed 100 tests.
+      Category: composition with inverse:                                             OK
+        +++ OK, passed 100 tests.
+      Category: composition with other:                                               OK
+        +++ OK, passed 100 tests.
+      read . show == id:                                                              OK
+        +++ OK, passed 100 tests.
+      read . show . Just == Just:                                                     OK
+        +++ OK, passed 100 tests.
+      flipExchangeRate . flipExchangeRate == id:                                      OK
+        +++ OK, passed 100 tests; 1 discarded.
+      exchange (flipExchangeRate x) . exchange x == id:                               OK
+        +++ OK, passed 100 tests.
+      x == 1 ==> exchange x == id:                                                    OK
+        +++ OK, passed 100 tests.
+      x /= 1 ==> exchange x /= id:                                                    OK
+        +++ OK, passed 100 tests; 10 discarded.
+      fromSomeExchangeRate . someExchangeRate == Just:                                OK
+        +++ OK, passed 100 tests.
+      fromSomeExchangeRate works only for same currencies:                            OK
+        +++ OK, passed 100 tests.
+      withSomeExchangeRate:                                                           OK
+        +++ OK, passed 100 tests.
+      exchangeRateToDecimal: Same as rationalToDecimal:                               OK
+        +++ OK, passed 100 tests.
+      exchangeRateFromDecimal: Same as rationalFromDecimal:                           OK
+        +++ OK, passed 100 tests; 107 discarded.
+      Binary encoding roundtrip:                                                      OK
+        +++ OK, passed 100 tests.
+      Binary encoding roundtrip (SomeExchangeRate):                                   OK
+        +++ OK, passed 100 tests.
+      Binary encoding roundtrip (ExchangeRate through SomeExchangeRate):              OK
+        +++ OK, passed 100 tests.
+      Binary encoding roundtrip (SomeExchangeRate through ExchangeRate):              OK
+        +++ OK, passed 100 tests.
+    ExchangeRate "VUV" "VUV"
+      Category: left identity:                                                        OK
+        +++ OK, passed 100 tests.
+      Category: right identity:                                                       OK
+        +++ OK, passed 100 tests.
+      Category: composition with inverse:                                             OK
+        +++ OK, passed 100 tests.
+      Category: composition with other:                                               OK
+        +++ OK, passed 100 tests.
+      read . show == id:                                                              OK
+        +++ OK, passed 100 tests.
+      read . show . Just == Just:                                                     OK
+        +++ OK, passed 100 tests.
+      flipExchangeRate . flipExchangeRate == id:                                      OK
+        +++ OK, passed 100 tests; 6 discarded.
+      exchange (flipExchangeRate x) . exchange x == id:                               OK
+        +++ OK, passed 100 tests.
+      x == 1 ==> exchange x == id:                                                    OK
+        +++ OK, passed 100 tests.
+      x /= 1 ==> exchange x /= id:                                                    OK
+        +++ OK, passed 100 tests; 14 discarded.
+      fromSomeExchangeRate . someExchangeRate == Just:                                OK
+        +++ OK, passed 100 tests.
+      fromSomeExchangeRate works only for same currencies:                            OK
+        +++ OK, passed 100 tests.
+      withSomeExchangeRate:                                                           OK
+        +++ OK, passed 100 tests.
+      exchangeRateToDecimal: Same as rationalToDecimal:                               OK
+        +++ OK, passed 100 tests.
+      exchangeRateFromDecimal: Same as rationalFromDecimal:                           OK
+        +++ OK, passed 100 tests; 95 discarded.
+      Binary encoding roundtrip:                                                      OK
+        +++ OK, passed 100 tests.
+      Binary encoding roundtrip (SomeExchangeRate):                                   OK
+        +++ OK, passed 100 tests.
+      Binary encoding roundtrip (ExchangeRate through SomeExchangeRate):              OK
+        +++ OK, passed 100 tests.
+      Binary encoding roundtrip (SomeExchangeRate through ExchangeRate):              OK
+        +++ OK, passed 100 tests.
+    ExchangeRate "VUV" "XAU"
+      Category: left identity:                                                        OK
+        +++ OK, passed 100 tests.
+      Category: right identity:                                                       OK
+        +++ OK, passed 100 tests.
+      Category: composition with inverse:                                             OK
+        +++ OK, passed 100 tests.
+      Category: composition with other:                                               OK
+        +++ OK, passed 100 tests.
+      read . show == id:                                                              OK
+        +++ OK, passed 100 tests.
+      read . show . Just == Just:                                                     OK
+        +++ OK, passed 100 tests.
+      flipExchangeRate . flipExchangeRate == id:                                      OK
+        +++ OK, passed 100 tests; 4 discarded.
+      exchange (flipExchangeRate x) . exchange x == id:                               OK
+        +++ OK, passed 100 tests.
+      x == 1 ==> exchange x == id:                                                    OK
+        +++ OK, passed 100 tests.
+      x /= 1 ==> exchange x /= id:                                                    OK
+        +++ OK, passed 100 tests; 13 discarded.
+      fromSomeExchangeRate . someExchangeRate == Just:                                OK
+        +++ OK, passed 100 tests.
+      fromSomeExchangeRate works only for same currencies:                            OK
+        +++ OK, passed 100 tests.
+      withSomeExchangeRate:                                                           OK
+        +++ OK, passed 100 tests.
+      exchangeRateToDecimal: Same as rationalToDecimal:                               OK
+        +++ OK, passed 100 tests.
+      exchangeRateFromDecimal: Same as rationalFromDecimal:                           OK
+        +++ OK, passed 100 tests; 132 discarded.
+      Binary encoding roundtrip:                                                      OK
+        +++ OK, passed 100 tests.
+      Binary encoding roundtrip (SomeExchangeRate):                                   OK
+        +++ OK, passed 100 tests.
+      Binary encoding roundtrip (ExchangeRate through SomeExchangeRate):              OK
+        +++ OK, passed 100 tests.
+      Binary encoding roundtrip (SomeExchangeRate through ExchangeRate):              OK
+        +++ OK, passed 100 tests.
+    ExchangeRate "XAU" "BTC"
+      Category: left identity:                                                        OK
+        +++ OK, passed 100 tests.
+      Category: right identity:                                                       OK
+        +++ OK, passed 100 tests.
+      Category: composition with inverse:                                             OK
+        +++ OK, passed 100 tests.
+      Category: composition with other:                                               OK
+        +++ OK, passed 100 tests.
+      read . show == id:                                                              OK
+        +++ OK, passed 100 tests.
+      read . show . Just == Just:                                                     OK
+        +++ OK, passed 100 tests.
+      flipExchangeRate . flipExchangeRate == id:                                      OK
+        +++ OK, passed 100 tests; 4 discarded.
+      exchange (flipExchangeRate x) . exchange x == id:                               OK
+        +++ OK, passed 100 tests.
+      x == 1 ==> exchange x == id:                                                    OK
+        +++ OK, passed 100 tests.
+      x /= 1 ==> exchange x /= id:                                                    OK
+        +++ OK, passed 100 tests; 21 discarded.
+      fromSomeExchangeRate . someExchangeRate == Just:                                OK
+        +++ OK, passed 100 tests.
+      fromSomeExchangeRate works only for same currencies:                            OK
+        +++ OK, passed 100 tests.
+      withSomeExchangeRate:                                                           OK
+        +++ OK, passed 100 tests.
+      exchangeRateToDecimal: Same as rationalToDecimal:                               OK
+        +++ OK, passed 100 tests.
+      exchangeRateFromDecimal: Same as rationalFromDecimal:                           OK
+        +++ OK, passed 100 tests; 149 discarded.
+      Binary encoding roundtrip:                                                      OK
+        +++ OK, passed 100 tests.
+      Binary encoding roundtrip (SomeExchangeRate):                                   OK
+        +++ OK, passed 100 tests.
+      Binary encoding roundtrip (ExchangeRate through SomeExchangeRate):              OK
+        +++ OK, passed 100 tests.
+      Binary encoding roundtrip (SomeExchangeRate through ExchangeRate):              OK
+        +++ OK, passed 100 tests.
+    ExchangeRate "XAU" "USD"
+      Category: left identity:                                                        OK
+        +++ OK, passed 100 tests.
+      Category: right identity:                                                       OK
+        +++ OK, passed 100 tests.
+      Category: composition with inverse:                                             OK
+        +++ OK, passed 100 tests.
+      Category: composition with other:                                               OK
+        +++ OK, passed 100 tests.
+      read . show == id:                                                              OK
+        +++ OK, passed 100 tests.
+      read . show . Just == Just:                                                     OK
+        +++ OK, passed 100 tests.
+      flipExchangeRate . flipExchangeRate == id:                                      OK
+        +++ OK, passed 100 tests; 3 discarded.
+      exchange (flipExchangeRate x) . exchange x == id:                               OK
+        +++ OK, passed 100 tests.
+      x == 1 ==> exchange x == id:                                                    OK
+        +++ OK, passed 100 tests.
+      x /= 1 ==> exchange x /= id:                                                    OK
+        +++ OK, passed 100 tests; 12 discarded.
+      fromSomeExchangeRate . someExchangeRate == Just:                                OK
+        +++ OK, passed 100 tests.
+      fromSomeExchangeRate works only for same currencies:                            OK
+        +++ OK, passed 100 tests.
+      withSomeExchangeRate:                                                           OK
+        +++ OK, passed 100 tests.
+      exchangeRateToDecimal: Same as rationalToDecimal:                               OK
+        +++ OK, passed 100 tests.
+      exchangeRateFromDecimal: Same as rationalFromDecimal:                           OK
+        +++ OK, passed 100 tests; 112 discarded.
+      Binary encoding roundtrip:                                                      OK
+        +++ OK, passed 100 tests.
+      Binary encoding roundtrip (SomeExchangeRate):                                   OK
+        +++ OK, passed 100 tests.
+      Binary encoding roundtrip (ExchangeRate through SomeExchangeRate):              OK
+        +++ OK, passed 100 tests.
+      Binary encoding roundtrip (SomeExchangeRate through ExchangeRate):              OK
+        +++ OK, passed 100 tests.
+    ExchangeRate "XAU" "VUV"
+      Category: left identity:                                                        OK
+        +++ OK, passed 100 tests.
+      Category: right identity:                                                       OK
+        +++ OK, passed 100 tests.
+      Category: composition with inverse:                                             OK
+        +++ OK, passed 100 tests.
+      Category: composition with other:                                               OK
+        +++ OK, passed 100 tests.
+      read . show == id:                                                              OK
+        +++ OK, passed 100 tests.
+      read . show . Just == Just:                                                     OK
+        +++ OK, passed 100 tests.
+      flipExchangeRate . flipExchangeRate == id:                                      OK
+        +++ OK, passed 100 tests; 8 discarded.
+      exchange (flipExchangeRate x) . exchange x == id:                               OK
+        +++ OK, passed 100 tests.
+      x == 1 ==> exchange x == id:                                                    OK
+        +++ OK, passed 100 tests.
+      x /= 1 ==> exchange x /= id:                                                    OK
+        +++ OK, passed 100 tests; 16 discarded.
+      fromSomeExchangeRate . someExchangeRate == Just:                                OK
+        +++ OK, passed 100 tests.
+      fromSomeExchangeRate works only for same currencies:                            OK
+        +++ OK, passed 100 tests.
+      withSomeExchangeRate:                                                           OK
+        +++ OK, passed 100 tests.
+      exchangeRateToDecimal: Same as rationalToDecimal:                               OK
+        +++ OK, passed 100 tests.
+      exchangeRateFromDecimal: Same as rationalFromDecimal:                           OK
+        +++ OK, passed 100 tests; 110 discarded.
       Binary encoding roundtrip:                                                      OK
         +++ OK, passed 100 tests.
       Binary encoding roundtrip (SomeExchangeRate):                                   OK
@@ -1208,13 +1208,13 @@ root
       read . show . Just == Just:                                                     OK
         +++ OK, passed 100 tests.
       flipExchangeRate . flipExchangeRate == id:                                      OK
-        +++ OK, passed 100 tests.
+        +++ OK, passed 100 tests; 1 discarded.
       exchange (flipExchangeRate x) . exchange x == id:                               OK
         +++ OK, passed 100 tests.
       x == 1 ==> exchange x == id:                                                    OK
         +++ OK, passed 100 tests.
       x /= 1 ==> exchange x /= id:                                                    OK
-        +++ OK, passed 100 tests; 17 discarded.
+        +++ OK, passed 100 tests; 18 discarded.
       fromSomeExchangeRate . someExchangeRate == Just:                                OK
         +++ OK, passed 100 tests.
       fromSomeExchangeRate works only for same currencies:                            OK
@@ -1224,7 +1224,7 @@ root
       exchangeRateToDecimal: Same as rationalToDecimal:                               OK
         +++ OK, passed 100 tests.
       exchangeRateFromDecimal: Same as rationalFromDecimal:                           OK
-        +++ OK, passed 100 tests; 110 discarded.
+        +++ OK, passed 100 tests; 116 discarded.
       Binary encoding roundtrip:                                                      OK
         +++ OK, passed 100 tests.
       Binary encoding roundtrip (SomeExchangeRate):                                   OK
@@ -1295,7 +1295,7 @@ root
     HalfEven: r6:                                                                     OK
     HalfEven: negate r6:                                                              OK
   rationalFromDecimal
-    Lossy roundtrip:                                                                  OK (0.01s)
+    Lossy roundtrip:                                                                  OK (0.02s)
       +++ OK, passed 1000 tests.
   mkSeparators
     Unsupported separators:                                                           OK

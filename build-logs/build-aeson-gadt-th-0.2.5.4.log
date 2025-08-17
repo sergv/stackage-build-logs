@@ -5,288 +5,297 @@ In order, the following will be built (use -v for more details):
  - aeson-gadt-th-0.2.5.4 (exe:readme) (first run)
  - aeson-gadt-th-0.2.5.4 (test:aeson-gadt-th-test) (first run)
 Configuring library for aeson-gadt-th-0.2.5.4...
+Warning: [git-protocol] Cloning over git:// might lead to an arbitrary code
+execution vulnerability. Furthermore, popular forges like GitHub do not
+support it. Use https:// or ssh:// instead.
 Preprocessing library for aeson-gadt-th-0.2.5.4...
 Building library for aeson-gadt-th-0.2.5.4...
 [1 of 1] Compiling Data.Aeson.GADT.TH
 Configuring executable 'readme' for aeson-gadt-th-0.2.5.4...
+Warning: [git-protocol] Cloning over git:// might lead to an arbitrary code
+execution vulnerability. Furthermore, popular forges like GitHub do not
+support it. Use https:// or ssh:// instead.
 Preprocessing executable 'readme' for aeson-gadt-th-0.2.5.4...
 Building executable 'readme' for aeson-gadt-th-0.2.5.4...
 [1 of 1] Compiling Main
 README.lhs:34:3-20: Splicing declarations
     deriveJSONGADT ''A
   ======>
-    instance ToJSON (A a_a8eX) where
+    instance ToJSON (A a_a8e9) where
       toJSON
         = \case
             A_a -> toJSON ("A_a" :: String, ())
-            A_b x_a8j7 -> toJSON ("A_b" :: String, toJSON x_a8j7)
+            A_b x_a8ii -> toJSON ("A_b" :: String, toJSON x_a8ii)
     instance FromJSON (Some A) where
-      parseJSON v_a9cG
-        = do (tag'_a9cH, _v'_a9cI) <- parseJSON v_a9cG
-             case tag'_a9cH :: String of
+      parseJSON v_a9bR
+        = do (tag'_a9bS, _v'_a9bT) <- parseJSON v_a9bR
+             case tag'_a9bS :: String of
                "A_a"
                  -> do () <- parseJSON _v'
                        return (Some A_a)
                "A_b"
-                 -> do x_a8O8 <- parseJSON _v'
-                       return (Some (A_b x_a8O8))
-               s_a8O6
+                 -> do x_a8Nj <- parseJSON _v'
+                       return (Some (A_b x_a8Nj))
+               s_a8Nh
                  -> (fail
                        $ ("Expected tag to be one of ["
-                            ++ ("A_a, A_b" ++ ("] but got: " ++ s_a8O6))))
+                            ++ ("A_a, A_b" ++ ("] but got: " ++ s_a8Nh))))
 README.lhs:35:3-17: Splicing declarations
     deriveGShow ''A
   ======>
-    instance some-1.0.6-7bf08b1afc0f3b300f53099ef0381b38d8062a8ed023ad6eb058ca5710971fcc:Data.GADT.Internal.GShow A where
-      some-1.0.6-7bf08b1afc0f3b300f53099ef0381b38d8062a8ed023ad6eb058ca5710971fcc:Data.GADT.Internal.gshowsPrec
+    instance some-1.0.6-dbf07cc29f6449fdb5eaf79f1c2ca8ddb3bf73a0350bb9c5b045031da40e16ed:Data.GADT.Internal.GShow A where
+      some-1.0.6-dbf07cc29f6449fdb5eaf79f1c2ca8ddb3bf73a0350bb9c5b045031da40e16ed:Data.GADT.Internal.gshowsPrec
         _
         A_a
         = showString "A_a"
-      some-1.0.6-7bf08b1afc0f3b300f53099ef0381b38d8062a8ed023ad6eb058ca5710971fcc:Data.GADT.Internal.gshowsPrec
-        prec_a9mA
-        (A_b x_a9mB)
+      some-1.0.6-dbf07cc29f6449fdb5eaf79f1c2ca8ddb3bf73a0350bb9c5b045031da40e16ed:Data.GADT.Internal.gshowsPrec
+        prec_a9lL
+        (A_b x_a9lM)
         = showParen
-            (prec_a9mA > 10)
-            (showString "A_b" . (showChar ' ' . (showsPrec 11 x_a9mB . id)))
+            (prec_a9lL > 10)
+            (showString "A_b" . (showChar ' ' . (showsPrec 11 x_a9lM . id)))
 README.lhs:41:3-20: Splicing declarations
     deriveJSONGADT ''B
   ======>
-    instance ToJSON c_a9xk => ToJSON (B c_a9xk a_a9Kf) where
+    instance ToJSON c_a9wv => ToJSON (B c_a9wv a_a9Jq) where
       toJSON
         = \case
-            B_a x_a9Nv x_a9Nw
-              -> toJSON ("B_a" :: String, (toJSON x_a9Nv, toJSON x_a9Nw))
+            B_a x_a9MG x_a9MH
+              -> toJSON ("B_a" :: String, (toJSON x_a9MG, toJSON x_a9MH))
             B_x -> toJSON ("B_x" :: String, ())
-    instance FromJSON c_a9xk => FromJSON (Some (B c_a9xk)) where
-      parseJSON v_a9Ol
-        = do (tag'_a9Om, _v'_a9On) <- parseJSON v_a9Ol
-             case tag'_a9Om :: String of
+    instance FromJSON c_a9wv => FromJSON (Some (B c_a9wv)) where
+      parseJSON v_a9Nw
+        = do (tag'_a9Nx, _v'_a9Ny) <- parseJSON v_a9Nw
+             case tag'_a9Nx :: String of
                "B_a"
-                 -> do (x_a9O9, Some x_a9Of) <- parseJSON _v'
-                       return (Some (B_a x_a9O9 x_a9Of))
+                 -> do (x_a9Nk, Some x_a9Nq) <- parseJSON _v'
+                       return (Some (B_a x_a9Nk x_a9Nq))
                "B_x"
                  -> do () <- parseJSON _v'
                        return (Some B_x)
-               s_a9O4
+               s_a9Nf
                  -> (fail
                        $ ("Expected tag to be one of ["
-                            ++ ("B_a, B_x" ++ ("] but got: " ++ s_a9O4))))
+                            ++ ("B_a, B_x" ++ ("] but got: " ++ s_a9Nf))))
 README.lhs:46:3-20: Splicing declarations
     deriveJSONGADT ''C
   ======>
-    instance ToJSON t_a9Oq => ToJSON (C t_a9Oq a_a9Pd) where
+    instance ToJSON t_a9NB => ToJSON (C t_a9NB a_a9Oo) where
       toJSON
-        = \case C_t x_abRv -> toJSON ("C_t" :: String, toJSON x_abRv)
-    instance FromJSON t_a9Oq => FromJSON (Some (C t_a9Oq)) where
-      parseJSON v_abRN
-        = do (tag'_abRO, _v'_abRP) <- parseJSON v_abRN
-             case tag'_abRO :: String of
+        = \case C_t x_abQI -> toJSON ("C_t" :: String, toJSON x_abQI)
+    instance FromJSON t_a9NB => FromJSON (Some (C t_a9NB)) where
+      parseJSON v_abR0
+        = do (tag'_abR1, _v'_abR2) <- parseJSON v_abR0
+             case tag'_abR1 :: String of
                "C_t"
-                 -> do x_abRH <- parseJSON _v'
-                       return (Some (C_t x_abRH))
-               s_abRF
+                 -> do x_abQU <- parseJSON _v'
+                       return (Some (C_t x_abQU))
+               s_abQS
                  -> (fail
                        $ ("Expected tag to be one of ["
-                            ++ ("C_t" ++ ("] but got: " ++ s_abRF))))
+                            ++ ("C_t" ++ ("] but got: " ++ s_abQS))))
 README.lhs:53:3-20: Splicing declarations
     deriveJSONGADT ''D
   ======>
-    instance (ToJSON t_abRU, ToJSON x_abRV) =>
-             ToJSON (D t_abRU x_abRV a_abT2) where
+    instance (ToJSON t_abR7, ToJSON x_abR8) =>
+             ToJSON (D t_abR7 x_abR8 a_abSf) where
       toJSON
         = \case
-            D_t x_abX6 -> toJSON ("D_t" :: String, toJSON x_abX6)
-            D_x x_abXd -> toJSON ("D_x" :: String, toJSON x_abXd)
-            D_i x_abXk -> toJSON ("D_i" :: String, toJSON x_abXk)
-    instance (FromJSON t_abRU, FromJSON x_abRV) =>
-             FromJSON (Some (D t_abRU x_abRV)) where
-      parseJSON v_abYe
-        = do (tag'_abYf, _v'_abYg) <- parseJSON v_abYe
-             case tag'_abYf :: String of
+            D_t x_abWj -> toJSON ("D_t" :: String, toJSON x_abWj)
+            D_x x_abWq -> toJSON ("D_x" :: String, toJSON x_abWq)
+            D_i x_abWx -> toJSON ("D_i" :: String, toJSON x_abWx)
+    instance (FromJSON t_abR7, FromJSON x_abR8) =>
+             FromJSON (Some (D t_abR7 x_abR8)) where
+      parseJSON v_abXr
+        = do (tag'_abXs, _v'_abXt) <- parseJSON v_abXr
+             case tag'_abXs :: String of
                "D_t"
-                 -> do x_abXZ <- parseJSON _v'
-                       return (Some (D_t x_abXZ))
+                 -> do x_abXc <- parseJSON _v'
+                       return (Some (D_t x_abXc))
                "D_x"
-                 -> do x_abY5 <- parseJSON _v'
-                       return (Some (D_x x_abY5))
+                 -> do x_abXi <- parseJSON _v'
+                       return (Some (D_x x_abXi))
                "D_i"
-                 -> do x_abYb <- parseJSON _v'
-                       return (Some (D_i x_abYb))
-               s_abXS
+                 -> do x_abXo <- parseJSON _v'
+                       return (Some (D_i x_abXo))
+               s_abX5
                  -> (fail
                        $ ("Expected tag to be one of ["
-                            ++ ("D_t, D_x, D_i" ++ ("] but got: " ++ s_abXS))))
+                            ++ ("D_t, D_x, D_i" ++ ("] but got: " ++ s_abX5))))
 README.lhs:58:3-23: Splicing declarations
     deriveJSONGADT ''Auth
   ======>
-    instance ToJSON Char => ToJSON (Auth token_abYj a_abYk) where
+    instance ToJSON Char => ToJSON (Auth token_abXw a_abXx) where
       toJSON
         = \case
-            Auth_Login x_ac3T x_ac3U
-              -> toJSON ("Auth_Login" :: String, (toJSON x_ac3T, toJSON x_ac3U))
-    instance FromJSON Char => FromJSON (Some (Auth token_abYj)) where
-      parseJSON v_ac4w
-        = do (tag'_ac4x, _v'_ac4y) <- parseJSON v_ac4w
-             case tag'_ac4x :: String of
+            Auth_Login x_ac36 x_ac37
+              -> toJSON ("Auth_Login" :: String, (toJSON x_ac36, toJSON x_ac37))
+    instance FromJSON Char => FromJSON (Some (Auth token_abXw)) where
+      parseJSON v_ac3J
+        = do (tag'_ac3K, _v'_ac3L) <- parseJSON v_ac3J
+             case tag'_ac3K :: String of
                "Auth_Login"
-                 -> do (x_ac4q, x_ac4t) <- parseJSON _v'
-                       return (Some (Auth_Login x_ac4q x_ac4t))
-               s_ac4g
+                 -> do (x_ac3D, x_ac3G) <- parseJSON _v'
+                       return (Some (Auth_Login x_ac3D x_ac3G))
+               s_ac3t
                  -> (fail
                        $ ("Expected tag to be one of ["
-                            ++ ("Auth_Login" ++ ("] but got: " ++ s_ac4g))))
+                            ++ ("Auth_Login" ++ ("] but got: " ++ s_ac3t))))
 README.lhs:84:3-36: Splicing declarations
     deriveJSONGADT ''LabelledGraphEdit
   ======>
-    instance (ToJSON v_ac6u, ToJSON vm_ac6v, ToJSON em_ac6w) =>
-             ToJSON (LabelledGraphEdit v_ac6u vm_ac6v em_ac6w a_ac8d) where
+    instance (ToJSON v_ac5H, ToJSON vm_ac5I, ToJSON em_ac5J) =>
+             ToJSON (LabelledGraphEdit v_ac5H vm_ac5I em_ac5J a_ac7q) where
       toJSON
         = \case
             LabelledGraphEdit_ClearAll
               -> toJSON ("LabelledGraphEdit_ClearAll" :: String, ())
-            LabelledGraphEdit_AddVertex x_acjv
-              -> toJSON ("LabelledGraphEdit_AddVertex" :: String, toJSON x_acjv)
-            LabelledGraphEdit_AddEdge x_acjC x_acjD x_acjE
+            LabelledGraphEdit_AddVertex x_aciI
+              -> toJSON ("LabelledGraphEdit_AddVertex" :: String, toJSON x_aciI)
+            LabelledGraphEdit_AddEdge x_aciP x_aciQ x_aciR
               -> toJSON
                    ("LabelledGraphEdit_AddEdge" :: String, 
-                  (toJSON x_acjC, toJSON x_acjD, toJSON x_acjE))
-            LabelledGraphEdit_SetVertexProperties x_acjX x_acjY
+                  (toJSON x_aciP, toJSON x_aciQ, toJSON x_aciR))
+            LabelledGraphEdit_SetVertexProperties x_acja x_acjb
               -> toJSON
                    ("LabelledGraphEdit_SetVertexProperties" :: String, 
-                  (toJSON x_acjX, toJSON x_acjY))
-            LabelledGraphEdit_SetEdgeProperties x_ackb x_ackc x_ackd
+                  (toJSON x_acja, toJSON x_acjb))
+            LabelledGraphEdit_SetEdgeProperties x_acjo x_acjp x_acjq
               -> toJSON
                    ("LabelledGraphEdit_SetEdgeProperties" :: String, 
-                  (toJSON x_ackb, toJSON x_ackc, toJSON x_ackd))
-    instance (FromJSON v_ac6u, FromJSON vm_ac6v, FromJSON em_ac6w) =>
-             FromJSON (Some (LabelledGraphEdit v_ac6u vm_ac6v em_ac6w)) where
-      parseJSON v_acnl
-        = do (tag'_acnm, _v'_acnn) <- parseJSON v_acnl
-             case tag'_acnm :: String of
+                  (toJSON x_acjo, toJSON x_acjp, toJSON x_acjq))
+    instance (FromJSON v_ac5H, FromJSON vm_ac5I, FromJSON em_ac5J) =>
+             FromJSON (Some (LabelledGraphEdit v_ac5H vm_ac5I em_ac5J)) where
+      parseJSON v_acmy
+        = do (tag'_acmz, _v'_acmA) <- parseJSON v_acmy
+             case tag'_acmz :: String of
                "LabelledGraphEdit_ClearAll"
                  -> do () <- parseJSON _v'
                        return (Some LabelledGraphEdit_ClearAll)
                "LabelledGraphEdit_AddVertex"
-                 -> do x_acmt <- parseJSON _v'
-                       return (Some (LabelledGraphEdit_AddVertex x_acmt))
+                 -> do x_aclG <- parseJSON _v'
+                       return (Some (LabelledGraphEdit_AddVertex x_aclG))
                "LabelledGraphEdit_AddEdge"
-                 -> do (x_acmz, x_acmF, x_acmL) <- parseJSON _v'
-                       return (Some (LabelledGraphEdit_AddEdge x_acmz x_acmF x_acmL))
+                 -> do (x_aclM, x_aclS, x_aclY) <- parseJSON _v'
+                       return (Some (LabelledGraphEdit_AddEdge x_aclM x_aclS x_aclY))
                "LabelledGraphEdit_SetVertexProperties"
-                 -> do (x_acmR, x_acmX) <- parseJSON _v'
-                       return (Some (LabelledGraphEdit_SetVertexProperties x_acmR x_acmX))
+                 -> do (x_acm4, x_acma) <- parseJSON _v'
+                       return (Some (LabelledGraphEdit_SetVertexProperties x_acm4 x_acma))
                "LabelledGraphEdit_SetEdgeProperties"
-                 -> do (x_acn3, x_acn9, x_acnf) <- parseJSON _v'
+                 -> do (x_acmg, x_acmm, x_acms) <- parseJSON _v'
                        return
-                         (Some (LabelledGraphEdit_SetEdgeProperties x_acn3 x_acn9 x_acnf))
-               s_acmd
+                         (Some (LabelledGraphEdit_SetEdgeProperties x_acmg x_acmm x_acms))
+               s_aclq
                  -> (fail
                        $ ("Expected tag to be one of ["
                             ++
                               ("LabelledGraphEdit_ClearAll, LabelledGraphEdit_AddVertex, LabelledGraphEdit_AddEdge, LabelledGraphEdit_SetVertexProperties, LabelledGraphEdit_SetEdgeProperties"
-                                 ++ ("] but got: " ++ s_acmd))))
+                                 ++ ("] but got: " ++ s_aclq))))
 README.lhs:85:3-36: Splicing declarations
     deriveJSONGADT ''PropertyGraphEdit
   ======>
-    instance (ToJSON (DMap vp_ac52 Identity),
-              ToJSON (DMap ep_ac53 Identity),
-              ToJSON (DSum vp_ac52 Identity),
-              ToJSON (DSum ep_ac53 Identity),
-              ToJSON v_ac51,
-              GCompare vp_ac52,
-              GCompare ep_ac53) =>
-             ToJSON (PropertyGraphEdit v_ac51 vp_ac52 ep_ac53 r_ac54) where
+    instance (ToJSON (DMap vp_ac4f Identity),
+              ToJSON (DMap ep_ac4g Identity),
+              ToJSON (DSum vp_ac4f Identity),
+              ToJSON (DSum ep_ac4g Identity),
+              ToJSON v_ac4e,
+              GCompare vp_ac4f,
+              GCompare ep_ac4g) =>
+             ToJSON (PropertyGraphEdit v_ac4e vp_ac4f ep_ac4g r_ac4h) where
       toJSON
         = \case
             PropertyGraphEdit_ClearAll
               -> toJSON ("PropertyGraphEdit_ClearAll" :: String, ())
-            PropertyGraphEdit_AddVertex x_acwS
-              -> toJSON ("PropertyGraphEdit_AddVertex" :: String, toJSON x_acwS)
-            PropertyGraphEdit_AddEdge x_acx0 x_acx1 x_acx2
+            PropertyGraphEdit_AddVertex x_acw5
+              -> toJSON ("PropertyGraphEdit_AddVertex" :: String, toJSON x_acw5)
+            PropertyGraphEdit_AddEdge x_acwd x_acwe x_acwf
               -> toJSON
                    ("PropertyGraphEdit_AddEdge" :: String, 
-                  (toJSON x_acx0, toJSON x_acx1, toJSON x_acx2))
-            PropertyGraphEdit_SetVertexProperty x_acxm x_acxn
+                  (toJSON x_acwd, toJSON x_acwe, toJSON x_acwf))
+            PropertyGraphEdit_SetVertexProperty x_acwz x_acwA
               -> toJSON
                    ("PropertyGraphEdit_SetVertexProperty" :: String, 
-                  (toJSON x_acxm, toJSON x_acxn))
-            PropertyGraphEdit_SetEdgeProperty x_acxB x_acxC x_acxD
+                  (toJSON x_acwz, toJSON x_acwA))
+            PropertyGraphEdit_SetEdgeProperty x_acwO x_acwP x_acwQ
               -> toJSON
                    ("PropertyGraphEdit_SetEdgeProperty" :: String, 
-                  (toJSON x_acxB, toJSON x_acxC, toJSON x_acxD))
-    instance (FromJSON (DMap vp_ac52 Identity),
-              FromJSON (DMap ep_ac53 Identity),
-              FromJSON (DSum vp_ac52 Identity),
-              FromJSON (DSum ep_ac53 Identity),
-              FromJSON v_ac51,
-              GCompare vp_ac52,
-              GCompare ep_ac53) =>
-             FromJSON (Some (PropertyGraphEdit v_ac51 vp_ac52 ep_ac53)) where
-      parseJSON v_acAQ
-        = do (tag'_acAR, _v'_acAS) <- parseJSON v_acAQ
-             case tag'_acAR :: String of
+                  (toJSON x_acwO, toJSON x_acwP, toJSON x_acwQ))
+    instance (FromJSON (DMap vp_ac4f Identity),
+              FromJSON (DMap ep_ac4g Identity),
+              FromJSON (DSum vp_ac4f Identity),
+              FromJSON (DSum ep_ac4g Identity),
+              FromJSON v_ac4e,
+              GCompare vp_ac4f,
+              GCompare ep_ac4g) =>
+             FromJSON (Some (PropertyGraphEdit v_ac4e vp_ac4f ep_ac4g)) where
+      parseJSON v_acA3
+        = do (tag'_acA4, _v'_acA5) <- parseJSON v_acA3
+             case tag'_acA4 :: String of
                "PropertyGraphEdit_ClearAll"
                  -> do () <- parseJSON _v'
                        return (Some PropertyGraphEdit_ClearAll)
                "PropertyGraphEdit_AddVertex"
-                 -> do x_aczU <- parseJSON _v'
-                       return (Some (PropertyGraphEdit_AddVertex x_aczU))
+                 -> do x_acz7 <- parseJSON _v'
+                       return (Some (PropertyGraphEdit_AddVertex x_acz7))
                "PropertyGraphEdit_AddEdge"
-                 -> do (x_acA1, x_acA7, x_acAd) <- parseJSON _v'
-                       return (Some (PropertyGraphEdit_AddEdge x_acA1 x_acA7 x_acAd))
+                 -> do (x_acze, x_aczk, x_aczq) <- parseJSON _v'
+                       return (Some (PropertyGraphEdit_AddEdge x_acze x_aczk x_aczq))
                "PropertyGraphEdit_SetVertexProperty"
-                 -> do (x_acAk, x_acAq) <- parseJSON _v'
-                       return (Some (PropertyGraphEdit_SetVertexProperty x_acAk x_acAq))
+                 -> do (x_aczx, x_aczD) <- parseJSON _v'
+                       return (Some (PropertyGraphEdit_SetVertexProperty x_aczx x_aczD))
                "PropertyGraphEdit_SetEdgeProperty"
-                 -> do (x_acAx, x_acAD, x_acAJ) <- parseJSON _v'
+                 -> do (x_aczK, x_aczQ, x_aczW) <- parseJSON _v'
                        return
-                         (Some (PropertyGraphEdit_SetEdgeProperty x_acAx x_acAD x_acAJ))
-               s_aczE
+                         (Some (PropertyGraphEdit_SetEdgeProperty x_aczK x_aczQ x_aczW))
+               s_acyR
                  -> (fail
                        $ ("Expected tag to be one of ["
                             ++
                               ("PropertyGraphEdit_ClearAll, PropertyGraphEdit_AddVertex, PropertyGraphEdit_AddEdge, PropertyGraphEdit_SetVertexProperty, PropertyGraphEdit_SetEdgeProperty"
-                                 ++ ("] but got: " ++ s_aczE))))
+                                 ++ ("] but got: " ++ s_acyR))))
 README.lhs:86:3-36: Splicing declarations
     deriveJSONGADT ''LabelledGraphView
   ======>
-    instance ToJSON v_ac4P =>
-             ToJSON (LabelledGraphView v_ac4P vm_ac4Q em_ac4R a_acdM) where
+    instance ToJSON v_ac42 =>
+             ToJSON (LabelledGraphView v_ac42 vm_ac43 em_ac44 a_accZ) where
       toJSON
         = \case
             LabelledGraphView_All
               -> toJSON ("LabelledGraphView_All" :: String, ())
-            LabelledGraphView_GetVertexProperties x_acR6
+            LabelledGraphView_GetVertexProperties x_acQe
               -> toJSON
-                   ("LabelledGraphView_GetVertexProperties" :: String, toJSON x_acR6)
-            LabelledGraphView_GetEdgeProperties x_acRd x_acRe
+                   ("LabelledGraphView_GetVertexProperties" :: String, toJSON x_acQe)
+            LabelledGraphView_GetEdgeProperties x_acQl x_acQm
               -> toJSON
                    ("LabelledGraphView_GetEdgeProperties" :: String, 
-                  (toJSON x_acRd, toJSON x_acRe))
-    instance FromJSON v_ac4P =>
-             FromJSON (Some (LabelledGraphView v_ac4P vm_ac4Q em_ac4R)) where
-      parseJSON v_acSC
-        = do (tag'_acSD, _v'_acSE) <- parseJSON v_acSC
-             case tag'_acSD :: String of
+                  (toJSON x_acQl, toJSON x_acQm))
+    instance FromJSON v_ac42 =>
+             FromJSON (Some (LabelledGraphView v_ac42 vm_ac43 em_ac44)) where
+      parseJSON v_acRK
+        = do (tag'_acRL, _v'_acRM) <- parseJSON v_acRK
+             case tag'_acRL :: String of
                "LabelledGraphView_All"
                  -> do () <- parseJSON _v'
                        return (Some LabelledGraphView_All)
                "LabelledGraphView_GetVertexProperties"
-                 -> do x_acSk <- parseJSON _v'
-                       return (Some (LabelledGraphView_GetVertexProperties x_acSk))
+                 -> do x_acRs <- parseJSON _v'
+                       return (Some (LabelledGraphView_GetVertexProperties x_acRs))
                "LabelledGraphView_GetEdgeProperties"
-                 -> do (x_acSq, x_acSw) <- parseJSON _v'
-                       return (Some (LabelledGraphView_GetEdgeProperties x_acSq x_acSw))
-               s_acSa
+                 -> do (x_acRy, x_acRE) <- parseJSON _v'
+                       return (Some (LabelledGraphView_GetEdgeProperties x_acRy x_acRE))
+               s_acRi
                  -> (fail
                        $ ("Expected tag to be one of ["
                             ++
                               ("LabelledGraphView_All, LabelledGraphView_GetVertexProperties, LabelledGraphView_GetEdgeProperties"
-                                 ++ ("] but got: " ++ s_acSa))))
-[2 of 2] Linking /tmp/workdir-aeson-gadt-th/aeson-gadt-th-0.2.5.4/dist-newstyle/build/x86_64-linux/ghc-9.10.2/aeson-gadt-th-0.2.5.4/x/readme/build/readme/readme
+                                 ++ ("] but got: " ++ s_acRi))))
+[2 of 2] Linking dist-newstyle/build/x86_64-linux/ghc-9.10.2/aeson-gadt-th-0.2.5.4/x/readme/build/readme/readme
 Configuring test suite 'aeson-gadt-th-test' for aeson-gadt-th-0.2.5.4...
+Warning: [git-protocol] Cloning over git:// might lead to an arbitrary code
+execution vulnerability. Furthermore, popular forges like GitHub do not
+support it. Use https:// or ssh:// instead.
 Preprocessing test suite 'aeson-gadt-th-test' for aeson-gadt-th-0.2.5.4...
 Building test suite 'aeson-gadt-th-test' for aeson-gadt-th-0.2.5.4...
 [1 of 2] Compiling Expectations
 [2 of 2] Compiling Main
-[3 of 3] Linking /tmp/workdir-aeson-gadt-th/aeson-gadt-th-0.2.5.4/dist-newstyle/build/x86_64-linux/ghc-9.10.2/aeson-gadt-th-0.2.5.4/t/aeson-gadt-th-test/build/aeson-gadt-th-test/aeson-gadt-th-test
+[3 of 3] Linking dist-newstyle/build/x86_64-linux/ghc-9.10.2/aeson-gadt-th-0.2.5.4/t/aeson-gadt-th-test/build/aeson-gadt-th-test/aeson-gadt-th-test

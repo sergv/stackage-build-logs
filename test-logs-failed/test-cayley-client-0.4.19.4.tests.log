@@ -20,16 +20,16 @@ Failures:
   tests/hspec.hs:21:114: 
   1) write writes a quad to Cayley server
        expected: Just (Object (fromList [("result",String "Successfully wrote 1 quads.")]))
-        but got: Just (Object (fromList [("error",String "HttpExceptionRequest Request {\n  host                 = \"localhost\"\n  port                 = 64210\n  secure               = False\n  requestHeaders       = []\n  path                 = \"/api/v1/write\"\n  queryString          = \"\"\n  method               = \"POST\"\n  proxy                = Nothing\n  rawBody              = False\n  redirectCount        = 10\n  responseTimeout      = ResponseTimeoutDefault\n  requestVersion       = HTTP/1.1\n  proxySecureMode      = ProxySecureWithConnect\n}\n (ConnectionFailure Network.Socket.connect: <socket: 8>: does not exist (Connection refused))")]))
+        but got: Just (Object (fromList [("error",String "HttpExceptionRequest Request {\n  host                 = \"localhost\"\n  port                 = 64210\n  secure               = False\n  requestHeaders       = []\n  path                 = \"/api/v1/write\"\n  queryString          = \"\"\n  method               = \"POST\"\n  proxy                = Nothing\n  rawBody              = False\n  redirectCount        = 10\n  responseTimeout      = ResponseTimeoutDefault\n  requestVersion       = HTTP/1.1\n  proxySecureMode      = ProxySecureWithConnect\n}\n (ConnectionFailure Network.Socket.connect: <socket: 10>: does not exist (Connection refused))")]))
 
-  To rerun use: --match "/write/writes a quad to Cayley server/" --seed 1302711503
+  To rerun use: --match "/write/writes a quad to Cayley server/" --seed 81878577
 
   tests/hspec.hs:29:13: 
   2) query query Cayley server
        uncaught exception: IOException of type UserError
        user error (Pattern match failure in 'do' block at tests/hspec.hs:29:13-19)
 
-  To rerun use: --match "/query/query Cayley server/" --seed 1302711503
+  To rerun use: --match "/query/query Cayley server/" --seed 81878577
 
   tests/hspec.hs:35:74: 
   3) shape returns the description of the last query executed
@@ -67,18 +67,18 @@ Failures:
                  }
         but got: Left "Not a shape (\"key \"nodes\" not found\")"
 
-  To rerun use: --match "/shape/returns the description of the last query executed/" --seed 1302711503
+  To rerun use: --match "/shape/returns the description of the last query executed/" --seed 81878577
 
   tests/hspec.hs:40:66: 
   4) writeNQuadFile writes quads from a file to Cayley server
        expected: Right 15
-        but got: Left "\"HttpExceptionRequest Request {\\n  host                 = \\\"localhost\\\"\\n  port                 = 64210\\n  secure               = False\\n  requestHeaders       = [(\\\"Content-Type\\\",\\\"multipart/form-data; boundary=----WebKitFormBoundaryCewryBvgB9K5G16j\\\")]\\n  path                 = \\\"/api/v1/write/file/nquad\\\"\\n  queryString          = \\\"\\\"\\n  method               = \\\"POST\\\"\\n  proxy                = Nothing\\n  rawBody              = False\\n  redirectCount        = 10\\n  responseTimeout      = ResponseTimeoutDefault\\n  requestVersion       = HTTP/1.1\\n  proxySecureMode      = ProxySecureWithConnect\\n}\\n (ConnectionFailure Network.Socket.connect: <socket: 8>: does not exist (Connection refused))\""
+        but got: Left "\"HttpExceptionRequest Request {\\n  host                 = \\\"localhost\\\"\\n  port                 = 64210\\n  secure               = False\\n  requestHeaders       = [(\\\"Content-Type\\\",\\\"multipart/form-data; boundary=----WebKitFormBoundaryuvzh8Vh1heY1dYIU\\\")]\\n  path                 = \\\"/api/v1/write/file/nquad\\\"\\n  queryString          = \\\"\\\"\\n  method               = \\\"POST\\\"\\n  proxy                = Nothing\\n  rawBody              = False\\n  redirectCount        = 10\\n  responseTimeout      = ResponseTimeoutDefault\\n  requestVersion       = HTTP/1.1\\n  proxySecureMode      = ProxySecureWithConnect\\n}\\n (ConnectionFailure Network.Socket.connect: <socket: 10>: does not exist (Connection refused))\""
 
-  To rerun use: --match "/writeNQuadFile/writes quads from a file to Cayley server/" --seed 1302711503
+  To rerun use: --match "/writeNQuadFile/writes quads from a file to Cayley server/" --seed 81878577
 
-Randomized with seed 1302711503
+Randomized with seed 81878577
 
-Finished in 1.0184 seconds
+Finished in 1.0242 seconds
 4 examples, 4 failures
 Test suite tests: FAIL
 Test suite logged to:
@@ -86,4 +86,10 @@ Test suite logged to:
 0 of 1 test suites (0 of 1 test cases) passed.
 Error: [Cabal-7125]
 Tests failed for test:tests from cayley-client-0.4.19.4.
+
+HasCallStack backtrace:
+  collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception
+  toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/IO.hs:260:11 in ghc-internal:GHC.Internal.IO
+  throwIO, called at src/Distribution/Simple/Utils.hs:445:3 in Cabal-3.17.0.0-53ebf9405f6485269412f2afda26457728679de3c53d4063272ccd1d333df04e:Distribution.Simple.Utils
+  dieWithException, called at src/Distribution/Client/ProjectOrchestration.hs:1380:21 in cabal-install-3.17.0.0-978433ac00bba1fbf2bb7ceb68e8f37852e35b9f8412260606c7e7d5fef0562a:Distribution.Client.ProjectOrchestration
 

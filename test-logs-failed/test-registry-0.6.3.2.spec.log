@@ -40,9 +40,9 @@ All
           36 ┃   valDescriptionToText (describeValue mod1) === "Test.Data.Registry.Internal.ReflectionSpec.Mod Int: Mod 1 \"hey\""
         
           This failure can be reproduced by running:
-          > recheckAt (Seed 1467204552763838967 2477487853784000533) "1:" show value for a nested types
+          > recheckAt (Seed 14983663870769930234 17302661822199230107) "1:" show value for a nested types
         
-      Use "--pattern '$NF ~ /show value for a nested types/' --hedgehog-replay '1: Seed 1467204552763838967 2477487853784000533'" to reproduce from the command-line.
+      Use "--pattern '$NF ~ /show value for a nested types/' --hedgehog-replay '1: Seed 14983663870769930234 17302661822199230107'" to reproduce from the command-line.
       
       Use -p '/show value for a nested types/' to rerun this test only.
     show simple functions:                                                                                            OK
@@ -106,11 +106,11 @@ All
   Test.Tasty.Extensions
     a dot graph can be generated from a registry:                                                                     OK
         ✓ a dot graph can be generated from a registry passed 100 tests.
-    generate just one employee:                                                                                       OK (0.01s)
+    generate just one employee:                                                                                       OK
         ✓ generate just one employee passed 100 tests.
-    generate both fixed and variable salaries:                                                                        OK (0.04s)
+    generate both fixed and variable salaries:                                                                        OK (0.03s)
         ✓ generate both fixed and variable salaries passed 100 tests.
-    making inputs when there's a cycle must be detected:                                                              OK (0.08s)
+    making inputs when there's a cycle must be detected:                                                              OK (0.06s)
         ✓ making inputs when there's a cycle must be detected passed 100 tests.
     no value can be found if nothing is stored in the registry:                                                       OK
         ✓ no value can be found if nothing is stored in the registry passed 100 tests.
@@ -122,9 +122,9 @@ All
         ✓ no constructor can be found if nothing is stored in the registry passed 100 tests.
     find a constructor in a list of constructors:                                                                     OK (0.02s)
         ✓ find a constructor in a list of constructors passed 100 tests.
-    a value can be stored in the list of values:                                                                      OK (0.01s)
+    a value can be stored in the list of values:                                                                      OK (0.02s)
         ✓ a value can be stored in the list of values passed 100 tests.
-    a value can be stored in the list of values but modified beforehand:                                              OK (0.01s)
+    a value can be stored in the list of values but modified beforehand:                                              OK (0.02s)
         ✓ a value can be stored in the list of values but modified beforehand passed 100 tests.
     modifiers are applied in a LIFO order:                                                                            OK (0.02s)
         ✓ modifiers are applied in a LIFO order passed 100 tests.
@@ -133,11 +133,17 @@ All
     no args constructors are considered as functions:                                                                 OK
         ✓ no args constructors are considered as functions passed 100 tests.
 
-1 out of 45 tests failed (0.08s)
+1 out of 45 tests failed (0.06s)
 Test suite spec: FAIL
 Test suite logged to:
 /tmp/workdir-registry/registry-0.6.3.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/registry-0.6.3.2/t/spec/test/registry-0.6.3.2-spec.log
 0 of 1 test suites (0 of 1 test cases) passed.
 Error: [Cabal-7125]
 Tests failed for test:spec from registry-0.6.3.2.
+
+HasCallStack backtrace:
+  collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception
+  toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/IO.hs:260:11 in ghc-internal:GHC.Internal.IO
+  throwIO, called at src/Distribution/Simple/Utils.hs:445:3 in Cabal-3.17.0.0-53ebf9405f6485269412f2afda26457728679de3c53d4063272ccd1d333df04e:Distribution.Simple.Utils
+  dieWithException, called at src/Distribution/Client/ProjectOrchestration.hs:1380:21 in cabal-install-3.17.0.0-978433ac00bba1fbf2bb7ceb68e8f37852e35b9f8412260606c7e7d5fef0562a:Distribution.Client.ProjectOrchestration
 

@@ -5,6 +5,9 @@ In order, the following will be built (use -v for more details):
  - postgresql-typed-0.6.2.5 (test:test) (first run)
  - postgresql-typed-0.6.2.5 (test:hdbc) (first run)
 Configuring library for postgresql-typed-0.6.2.5...
+Warning: [git-protocol] Cloning over git:// might lead to an arbitrary code
+execution vulnerability. Furthermore, popular forges like GitHub do not
+support it. Use https:// or ssh:// instead.
 Preprocessing library for postgresql-typed-0.6.2.5...
 Building library for postgresql-typed-0.6.2.5...
 [ 1 of 17] Compiling Database.PostgreSQL.Typed.ErrCodes
@@ -170,13 +173,16 @@ Database/PostgreSQL/Typed/HDBC.hs:233:10: warning: [GHC-62161] [-Wincomplete-uni
     |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 
 Configuring test suite 'test' for postgresql-typed-0.6.2.5...
+Warning: [git-protocol] Cloning over git:// might lead to an arbitrary code
+execution vulnerability. Furthermore, popular forges like GitHub do not
+support it. Use https:// or ssh:// instead.
 Preprocessing test suite 'test' for postgresql-typed-0.6.2.5...
 Building test suite 'test' for postgresql-typed-0.6.2.5...
 [1 of 2] Compiling Connect
 [2 of 2] Compiling Main
 test/Main.hs:1:1: error: [GHC-87897]
     Exception when trying to run compile-time code:
-      Network.Socket.connect: <socket: 28>: does not exist (No such file or directory)
+      Network.Socket.connect: <socket: 30>: does not exist (No such file or directory)
     Code: template-haskell-2.22.0.0:Language.Haskell.TH.Quote.quoteDec
             pgSQL "!CREATE TYPE myenum AS enum ('abc', 'DEF', 'XX_ye')"
   |
@@ -185,4 +191,9 @@ test/Main.hs:1:1: error: [GHC-87897]
 
 Error: [Cabal-7125]
 Failed to build test:test from postgresql-typed-0.6.2.5.
+
+HasCallStack backtrace:
+  collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception
+  toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/IO.hs:260:11 in ghc-internal:GHC.Internal.IO
+  throwIO, called at libraries/ghc-internal/src/GHC/Internal/Control/Exception/Base.hs:195:43 in ghc-internal:GHC.Internal.Control.Exception.Base
 

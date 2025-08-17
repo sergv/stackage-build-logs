@@ -8,7 +8,7 @@ Test suite spec: RUNNING...
 
 Cabal.Options
   replOnlyOptions
-    is the set of options that are unique to 'cabal repl' [✔]
+    is the set of options that are unique to 'cabal repl' [✘]
   rejectUnsupportedOptions
     produces error messages that are consistent with 'cabal repl' [✔]
     with --list-options
@@ -312,123 +312,228 @@ Util
 
 Failures:
 
+  test/Cabal/OptionsSpec.hs:25:34: 
+  1) Cabal.Options.replOnlyOptions is the set of options that are unique to 'cabal repl'
+       Actual list is not a permutation of expected list!
+         expected elements: ["--build-depends", "--disable-multi-repl", "--enable-multi-repl", "--ignore-project", "--no-transitive-deps", "--repl-multi-file", "--repl-no-load", "--repl-options", "--with-repl", "-b", "-z"]
+         actual elements:   ["--build-depends", "--disable-multi-repl", "--enable-multi-repl", "--ignore-project", "--keep-temp-files", "--no-transitive-deps", "--repl-multi-file", "--repl-no-load", "--repl-options", "-b", "-z"]
+         missing elements:  ["--with-repl"]
+         extra elements:    ["--keep-temp-files"]
+
+  To rerun use: --match "/Cabal.Options/replOnlyOptions/is the set of options that are unique to 'cabal repl'/" --seed 444834234
+
   test/Cabal/OptionsSpec.hs:44:38: 
-  1) Cabal.Options.rejectUnsupportedOptions, with --list-options, lists supported command-line options
+  2) Cabal.Options.rejectUnsupportedOptions, with --list-options, lists supported command-line options
        Actual list is not a permutation of expected list!
          expected elements: []
-         actual elements:   ["--disable-profiling-shared", "--enable-profiling-shared", "--haddock-resources-dir", "--haddock-use-unicode", "--ignore-build-tools"]
-         extra elements:    ["--disable-profiling-shared", "--enable-profiling-shared", "--haddock-resources-dir", "--haddock-use-unicode", "--ignore-build-tools"]
+         actual elements:   ["--haskell-suite"]
+         extra elements:    ["--haskell-suite"]
 
-  To rerun use: --match "/Cabal.Options/rejectUnsupportedOptions/with --list-options/lists supported command-line options/" --seed 1267287923
+  To rerun use: --match "/Cabal.Options/rejectUnsupportedOptions/with --list-options/lists supported command-line options/" --seed 444834234
 
   test/Cabal/ReplOptionsSpec.hs:39:15: 
-  2) Cabal.ReplOptions.options is the list of documented 'repl' options
-       expected: @@ 188 lines omitted @@
-                   optionArgument = NoArgument,
-                   optionHelp = "Disable Executable and library profiling"
-                 }, Option {
-                   optionName = "enable-executable-profiling",
-                   optionShortName = Nothing,
-                   optionArgument = NoArgument,
-                   optionHelp = "Enable Executable profiling (DEPRECATED)"
-                 @@ 233 lines omitted @@
-                   optionArgument = Argument "UNITID",
-                   optionHelp = "A list of unit-ids of libraries to include in the Haskell Program Coverage report."
-                 }, Option {
-                   optionName = "cabal-lib-version",
-                   optionShortName = Nothing,
-                   optionArgument = Argument "VERSION",
-                   optionHelp = "Select which version of the Cabal lib to use to build packages (useful for testing)."
-                 @@ 298 lines omitted @@
-                   optionArgument = Argument "URL",
-                   optionHelp = "Base URL for static files."
-                 }, Option {
-                   optionName = "haddock-lib",
-                   optionShortName = Nothing,
+  3) Cabal.ReplOptions.options is the list of documented 'repl' options
+       expected: @@ 13 lines omitted @@
                    optionArgument = Argument "DIR",
-                   optionHelp = "location of Haddocks static / auxiliary files"
-                 @@ 3 lines omitted @@
-                   optionArgument = Argument "DIR",
-                   optionHelp = "Generate haddock documentation into this directory. This flag is provided as a technology preview and is subject to change in the next releases."
+                   optionHelp = "The directory where Cabal puts generated build files (default dist)"
                  }, Option {
-                   optionName = "test-log",
+                   optionName = "keep-temp-files",
+                   optionShortName = Nothing,
+                   optionArgument = NoArgument,
+                   optionHelp = "Keep temporary files."
+                 }, Option {
+                   optionName = "ghc",
+                   optionShortName = Just 'g',
+                   optionArgument = NoArgument,
+                   optionHelp = "compile with GHC"
+                 }, Option {
+                   optionName = "ghcjs",
+                   optionShortName = Nothing,
+                   optionArgument = NoArgument,
+                   optionHelp = "compile with GHCJS"
+                 }, Option {
+                   optionName = "uhc",
+                   optionShortName = Nothing,
+                   optionArgument = NoArgument,
+                   optionHelp = "compile with UHC"
+                 }, Option {
+                   optionName = "with-compiler",
+                   optionShortName = Just 'w',
+                 @@ 758 lines omitted @@
+                   optionName = "test-options",
+                   optionShortName = Nothing,
+                   optionArgument = Argument "TEMPLATES",
+                   optionHelp = "give extra options to test executables (split on spaces, use \"\" to prevent splitting; name templates can use $pkgid, $compiler, $os, $arch, $test-suite)"
+                 }, Option {
+                   optionName = "test-option",
                    optionShortName = Nothing,
                    optionArgument = Argument "TEMPLATE",
-                   optionHelp = "Log all test suite results to file (name template can use $pkgid, $compiler, $os, $arch, $test-suite, $result)"
-                 @@ 101 lines omitted @@
-                 
-        but got: @@ 188 lines omitted @@
-                   optionArgument = NoArgument,
-                   optionHelp = "Disable Executable and library profiling"
+                   optionHelp = "give extra option to test executables (passed directly as a single argument; name template can use $pkgid, $compiler, $os, $arch, $test-suite)"
                  }, Option {
-                   optionName = "enable-profiling-shared",
+                   optionName = "benchmark-options",
                    optionShortName = Nothing,
-                   optionArgument = NoArgument,
-                   optionHelp = "Enable Build profiling shared libraries"
+                   optionArgument = Argument "TEMPLATES",
+                   optionHelp = "give extra options to benchmark executables (split on spaces, use \"\" to prevent splitting; name templates can use $pkgid, $compiler, $os, $arch, $benchmark)"
                  }, Option {
-                   optionName = "disable-profiling-shared",
-                   optionShortName = Nothing,
-                   optionArgument = NoArgument,
-                   optionHelp = "Disable Build profiling shared libraries"
-                 }, Option {
-                   optionName = "enable-executable-profiling",
-                   optionShortName = Nothing,
-                   optionArgument = NoArgument,
-                   optionHelp = "Enable Executable profiling (DEPRECATED)"
-                 @@ 233 lines omitted @@
-                   optionArgument = Argument "UNITID",
-                   optionHelp = "A list of unit-ids of libraries to include in the Haskell Program Coverage report."
-                 }, Option {
-                   optionName = "ignore-build-tools",
-                   optionShortName = Nothing,
-                   optionArgument = NoArgument,
-                   optionHelp = "Ignore build tool dependencies. If set, declared build tools needn't be found for compilation to proceed."
-                 }, Option {
-                   optionName = "cabal-lib-version",
-                   optionShortName = Nothing,
-                   optionArgument = Argument "VERSION",
-                   optionHelp = "Select which version of the Cabal lib to use to build packages (useful for testing)."
-                 @@ 298 lines omitted @@
-                   optionArgument = Argument "URL",
-                   optionHelp = "Base URL for static files."
-                 }, Option {
-                   optionName = "haddock-resources-dir",
-                   optionShortName = Nothing,
-                   optionArgument = Argument "DIR",
-                   optionHelp = "location of Haddocks static / auxiliary files"
-                 @@ 3 lines omitted @@
-                   optionArgument = Argument "DIR",
-                   optionHelp = "Generate haddock documentation into this directory. This flag is provided as a technology preview and is subject to change in the next releases."
-                 }, Option {
-                   optionName = "haddock-use-unicode",
-                   optionShortName = Nothing,
-                   optionArgument = NoArgument,
-                   optionHelp = "Pass --use-unicode option to haddock"
-                 }, Option {
-                   optionName = "test-log",
+                   optionName = "benchmark-option",
                    optionShortName = Nothing,
                    optionArgument = Argument "TEMPLATE",
-                   optionHelp = "Log all test suite results to file (name template can use $pkgid, $compiler, $os, $arch, $test-suite, $result)"
-                 @@ 101 lines omitted @@
-                 
+                   optionHelp = "give extra option to benchmark executables (passed directly as a single argument; name template can use $pkgid, $compiler, $os, $arch, $benchmark)"
+                 }, Option {
+                   optionName = "project-dir",
+                   optionShortName = Nothing,
+                 @@ 10 lines omitted @@
+                   optionArgument = NoArgument,
+                   optionHelp = "Ignore local project configuration (unless --project-dir or --project-file is also set)"
+                 }, Option {
+                   optionName = "project-file-parser",
+                   optionShortName = Nothing,
+                   optionArgument = Argument "PARSER",
+                   optionHelp = "Set the parser to use for the project file"
+                 }, Option {
+                   optionName = "repl-no-load",
+                   optionShortName = Nothing,
+                   optionArgument = NoArgument,
+                   optionHelp = "Disable loading of project modules at REPL startup."
+                 @@ 8 lines omitted @@
+                   optionArgument = Argument "DIR",
+                   optionHelp = "Write repl options to this directory rather than starting repl mode"
+                 }, Option {
+                   optionName = "with-repl",
+                   optionShortName = Nothing,
+                   optionArgument = Argument "PATH",
+                   optionHelp = "Give the path to a program to use for REPL"
+                 }, Option {
+                   optionName = "build-depends",
+                   optionShortName = Just 'b',
+                   optionArgument = Argument "DEPENDENCIES",
+                   optionHelp = "Include additional packages in the environment presented to GHCi."
+                 }, Option {
+                   optionName = "no-transitive-deps",
+                   optionShortName = Nothing,
+                   optionArgument = NoArgument,
+                   optionHelp = "Don't automatically include transitive dependencies of requested packages."
+                 }, Option {
+                   optionName = "enable-multi-repl",
+                   optionShortName = Nothing,
+                   optionArgument = NoArgument,
+                   optionHelp = "Enable multi-component repl sessions"
+                 }, Option {
+                   optionName = "disable-multi-repl",
+                   optionShortName = Nothing,
+                   optionArgument = NoArgument,
+                   optionHelp = "Disable multi-component repl sessions"
+                 }]
+        but got: @@ 13 lines omitted @@
+                   optionArgument = Argument "DIR",
+                   optionHelp = "The directory where Cabal puts generated build files (default dist)"
+                 }, Option {
+                   optionName = "ghc",
+                   optionShortName = Just 'g',
+                   optionArgument = NoArgument,
+                   optionHelp = "compile with GHC"
+                 }, Option {
+                   optionName = "ghcjs",
+                   optionShortName = Nothing,
+                   optionArgument = NoArgument,
+                   optionHelp = "compile with GHCJS"
+                 }, Option {
+                   optionName = "uhc",
+                   optionShortName = Nothing,
+                   optionArgument = NoArgument,
+                   optionHelp = "compile with UHC"
+                 }, Option {
+                   optionName = "haskell-suite",
+                   optionShortName = Nothing,
+                   optionArgument = NoArgument,
+                   optionHelp = "compile with a haskell-suite compiler"
+                 }, Option {
+                   optionName = "with-compiler",
+                   optionShortName = Just 'w',
+                 @@ 758 lines omitted @@
+                   optionName = "test-options",
+                   optionShortName = Nothing,
+                   optionArgument = Argument "TEMPLATES",
+                   optionHelp = "give extra options to test executables (name templates can use $pkgid, $compiler, $os, $arch, $test-suite)"
+                 }, Option {
+                   optionName = "test-option",
+                   optionShortName = Nothing,
+                   optionArgument = Argument "TEMPLATE",
+                   optionHelp = "give extra option to test executables (no need to quote options containing spaces, name template can use $pkgid, $compiler, $os, $arch, $test-suite)"
+                 }, Option {
+                   optionName = "benchmark-options",
+                   optionShortName = Nothing,
+                   optionArgument = Argument "TEMPLATES",
+                   optionHelp = "give extra options to benchmark executables (name templates can use $pkgid, $compiler, $os, $arch, $benchmark)"
+                 }, Option {
+                   optionName = "benchmark-option",
+                   optionShortName = Nothing,
+                   optionArgument = Argument "TEMPLATE",
+                   optionHelp = "give extra option to benchmark executables (no need to quote options containing spaces, name template can use $pkgid, $compiler, $os, $arch, $benchmark)"
+                 }, Option {
+                   optionName = "project-dir",
+                   optionShortName = Nothing,
+                 @@ 10 lines omitted @@
+                   optionArgument = NoArgument,
+                   optionHelp = "Ignore local project configuration (unless --project-dir or --project-file is also set)"
+                 }, Option {
+                   optionName = "repl-no-load",
+                   optionShortName = Nothing,
+                   optionArgument = NoArgument,
+                   optionHelp = "Disable loading of project modules at REPL startup."
+                 @@ 8 lines omitted @@
+                   optionArgument = Argument "DIR",
+                   optionHelp = "Write repl options to this directory rather than starting repl mode"
+                 }, Option {
+                   optionName = "build-depends",
+                   optionShortName = Just 'b',
+                   optionArgument = Argument "DEPENDENCIES",
+                   optionHelp = "Include additional packages in the environment presented to GHCi."
+                 }, Option {
+                   optionName = "no-transitive-deps",
+                   optionShortName = Nothing,
+                   optionArgument = NoArgument,
+                   optionHelp = "Don't automatically include transitive dependencies of requested packages."
+                 }, Option {
+                   optionName = "enable-multi-repl",
+                   optionShortName = Nothing,
+                   optionArgument = NoArgument,
+                   optionHelp = "Enable multi-component repl sessions"
+                 }, Option {
+                   optionName = "disable-multi-repl",
+                   optionShortName = Nothing,
+                   optionArgument = NoArgument,
+                   optionHelp = "Disable multi-component repl sessions"
+                 }, Option {
+                   optionName = "keep-temp-files",
+                   optionShortName = Nothing,
+                   optionArgument = NoArgument,
+                   optionHelp = "Keep temporary files"
+                 }]
 
-  To rerun use: --match "/Cabal.ReplOptions/options/is the list of documented 'repl' options/" --seed 1267287923
+  To rerun use: --match "/Cabal.ReplOptions/options/is the list of documented 'repl' options/" --seed 444834234
 
   test/Cabal/ReplOptionsSpec.hs:49:37: 
-  3) Cabal.ReplOptions.options is consistent with 'cabal repl --list-options'
-       expected: ["-h", "--help", "-v", "--verbose", "--builddir", "-g", "--ghc", "--ghcjs", "--uhc", "--haskell-suite", "-w", "--with-compiler", "--with-hc-pkg", "--prefix", "--bindir", "--libdir", "--libsubdir", "--dynlibdir", "--libexecdir", "--libexecsubdir", "--datadir", "--datasubdir", "--docdir", "--htmldir", "--haddockdir", "--sysconfdir", "--program-prefix", "--program-suffix", "--enable-library-vanilla", "--disable-library-vanilla", "-p", "--enable-library-profiling", "--disable-library-profiling", "--enable-shared", "--disable-shared", "--enable-static", "--disable-static", "--enable-executable-dynamic", "--disable-executable-dynamic", "--enable-executable-static", "--disable-executable-static", "--enable-profiling", "--disable-profiling", "--enable-executable-profiling", "--disable-executable-profiling", "--profiling-detail", "--library-profiling-detail", "-O", "--enable-optimization", "--disable-optimization", "--enable-debug-info", "--disable-debug-info", "--enable-build-info", "--disable-build-info", "--enable-library-for-ghci", "--disable-library-for-ghci", "--enable-split-sections", "--disable-split-sections", "--enable-split-objs", "--disable-split-objs", "--enable-executable-stripping", "--disable-executable-stripping", "--enable-library-stripping", "--disable-library-stripping", "--configure-option", "--user", "--global", "--package-db", "-f", "--flags", "--extra-include-dirs", "--enable-deterministic", "--disable-deterministic", "--ipid", "--cid", "--extra-lib-dirs", "--extra-lib-dirs-static", "--extra-framework-dirs", "--extra-prog-path", "--instantiate-with", "--enable-tests", "--disable-tests", "--enable-coverage", "--disable-coverage", "--enable-library-coverage", "--disable-library-coverage", "--enable-benchmarks", "--disable-benchmarks", "--enable-relocatable", "--disable-relocatable", "--disable-response-files", "--allow-depending-on-private-libs", "--coverage-for", "--cabal-lib-version", "--enable-append", "--disable-append", "--enable-backup", "--disable-backup", "-c", "--constraint", "--preference", "--solver", "--allow-older", "--allow-newer", "--write-ghc-environment-files", "--enable-documentation", "--disable-documentation", "--doc-index-file", "--dry-run", "--only-download", "--max-backjumps", "--reorder-goals", "--count-conflicts", "--fine-grained-conflicts", "--minimize-conflict-set", "--independent-goals", "--prefer-oldest", "--shadow-installed-packages", "--strong-flags", "--allow-boot-library-installs", "--reject-unconstrained-dependencies", "--reinstall", "--avoid-reinstalls", "--force-reinstalls", "--upgrade-dependencies", "--only-dependencies", "--dependencies-only", "--index-state", "--root-cmd", "--build-summary", "--build-log", "--remote-build-reporting", "--report-planning-failure", "--enable-per-component", "--disable-per-component", "--run-tests", "--semaphore", "-j", "--jobs", "--keep-going", "--offline", "--haddock-hoogle", "--haddock-html", "--haddock-html-location", "--haddock-for-hackage", "--haddock-executables", "--haddock-tests", "--haddock-benchmarks", "--haddock-all", "--haddock-internal", "--haddock-css", "--haddock-hyperlink-source", "--haddock-quickjump", "--haddock-hscolour-css", "--haddock-contents-location", "--haddock-base-url", "--haddock-lib", "--haddock-output-dir", "--test-log", "--test-machine-log", "--test-show-details", "--test-keep-tix-files", "--test-wrapper", "--test-fail-when-no-test-suites", "--test-options", "--test-option", "--benchmark-options", "--benchmark-option", "--project-dir", "--project-file", "-z", "--ignore-project", "--repl-no-load", "--repl-options", "--repl-multi-file", "-b", "--build-depends", "--no-transitive-deps", "--enable-multi-repl", "--disable-multi-repl", "--keep-temp-files"]
+  4) Cabal.ReplOptions.options is consistent with 'cabal repl --list-options'
+       expected: ["-h", "--help", "-v", "--verbose", "--builddir", "--keep-temp-files", "-g", "--ghc", "--ghcjs", "--uhc", "-w", "--with-compiler", "--with-hc-pkg", "--prefix", "--bindir", "--libdir", "--libsubdir", "--dynlibdir", "--libexecdir", "--libexecsubdir", "--datadir", "--datasubdir", "--docdir", "--htmldir", "--haddockdir", "--sysconfdir", "--program-prefix", "--program-suffix", "--enable-library-vanilla", "--disable-library-vanilla", "-p", "--enable-library-profiling", "--disable-library-profiling", "--enable-shared", "--disable-shared", "--enable-static", "--disable-static", "--enable-executable-dynamic", "--disable-executable-dynamic", "--enable-executable-static", "--disable-executable-static", "--enable-profiling", "--disable-profiling", "--enable-profiling-shared", "--disable-profiling-shared", "--enable-executable-profiling", "--disable-executable-profiling", "--profiling-detail", "--library-profiling-detail", "-O", "--enable-optimization", "--disable-optimization", "--enable-debug-info", "--disable-debug-info", "--enable-build-info", "--disable-build-info", "--enable-library-for-ghci", "--disable-library-for-ghci", "--enable-split-sections", "--disable-split-sections", "--enable-split-objs", "--disable-split-objs", "--enable-executable-stripping", "--disable-executable-stripping", "--enable-library-stripping", "--disable-library-stripping", "--configure-option", "--user", "--global", "--package-db", "-f", "--flags", "--extra-include-dirs", "--enable-deterministic", "--disable-deterministic", "--ipid", "--cid", "--extra-lib-dirs", "--extra-lib-dirs-static", "--extra-framework-dirs", "--extra-prog-path", "--instantiate-with", "--enable-tests", "--disable-tests", "--enable-coverage", "--disable-coverage", "--enable-library-coverage", "--disable-library-coverage", "--enable-benchmarks", "--disable-benchmarks", "--enable-relocatable", "--disable-relocatable", "--disable-response-files", "--allow-depending-on-private-libs", "--coverage-for", "--ignore-build-tools", "--cabal-lib-version", "--enable-append", "--disable-append", "--enable-backup", "--disable-backup", "-c", "--constraint", "--preference", "--solver", "--allow-older", "--allow-newer", "--write-ghc-environment-files", "--enable-documentation", "--disable-documentation", "--doc-index-file", "--dry-run", "--only-download", "--max-backjumps", "--reorder-goals", "--count-conflicts", "--fine-grained-conflicts", "--minimize-conflict-set", "--independent-goals", "--prefer-oldest", "--shadow-installed-packages", "--strong-flags", "--allow-boot-library-installs", "--reject-unconstrained-dependencies", "--reinstall", "--avoid-reinstalls", "--force-reinstalls", "--upgrade-dependencies", "--only-dependencies", "--dependencies-only", "--index-state", "--root-cmd", "--build-summary", "--build-log", "--remote-build-reporting", "--report-planning-failure", "--enable-per-component", "--disable-per-component", "--run-tests", "--semaphore", "-j", "--jobs", "--keep-going", "--offline", "--haddock-hoogle", "--haddock-html", "--haddock-html-location", "--haddock-for-hackage", "--haddock-executables", "--haddock-tests", "--haddock-benchmarks", "--haddock-all", "--haddock-internal", "--haddock-css", "--haddock-hyperlink-source", "--haddock-quickjump", "--haddock-hscolour-css", "--haddock-contents-location", "--haddock-base-url", "--haddock-resources-dir", "--haddock-output-dir", "--haddock-use-unicode", "--test-log", "--test-machine-log", "--test-show-details", "--test-keep-tix-files", "--test-wrapper", "--test-fail-when-no-test-suites", "--test-options", "--test-option", "--benchmark-options", "--benchmark-option", "--project-dir", "--project-file", "-z", "--ignore-project", "--project-file-parser", "--repl-no-load", "--repl-options", "--repl-multi-file", "--with-repl", "-b", "--build-depends", "--no-transitive-deps", "--enable-multi-repl", "--disable-multi-repl"]
         but got: ["-h", "--help", "-v", "--verbose", "--builddir", "-g", "--ghc", "--ghcjs", "--uhc", "--haskell-suite", "-w", "--with-compiler", "--with-hc-pkg", "--prefix", "--bindir", "--libdir", "--libsubdir", "--dynlibdir", "--libexecdir", "--libexecsubdir", "--datadir", "--datasubdir", "--docdir", "--htmldir", "--haddockdir", "--sysconfdir", "--program-prefix", "--program-suffix", "--enable-library-vanilla", "--disable-library-vanilla", "-p", "--enable-library-profiling", "--disable-library-profiling", "--enable-shared", "--disable-shared", "--enable-static", "--disable-static", "--enable-executable-dynamic", "--disable-executable-dynamic", "--enable-executable-static", "--disable-executable-static", "--enable-profiling", "--disable-profiling", "--enable-profiling-shared", "--disable-profiling-shared", "--enable-executable-profiling", "--disable-executable-profiling", "--profiling-detail", "--library-profiling-detail", "-O", "--enable-optimization", "--disable-optimization", "--enable-debug-info", "--disable-debug-info", "--enable-build-info", "--disable-build-info", "--enable-library-for-ghci", "--disable-library-for-ghci", "--enable-split-sections", "--disable-split-sections", "--enable-split-objs", "--disable-split-objs", "--enable-executable-stripping", "--disable-executable-stripping", "--enable-library-stripping", "--disable-library-stripping", "--configure-option", "--user", "--global", "--package-db", "-f", "--flags", "--extra-include-dirs", "--enable-deterministic", "--disable-deterministic", "--ipid", "--cid", "--extra-lib-dirs", "--extra-lib-dirs-static", "--extra-framework-dirs", "--extra-prog-path", "--instantiate-with", "--enable-tests", "--disable-tests", "--enable-coverage", "--disable-coverage", "--enable-library-coverage", "--disable-library-coverage", "--enable-benchmarks", "--disable-benchmarks", "--enable-relocatable", "--disable-relocatable", "--disable-response-files", "--allow-depending-on-private-libs", "--coverage-for", "--ignore-build-tools", "--cabal-lib-version", "--enable-append", "--disable-append", "--enable-backup", "--disable-backup", "-c", "--constraint", "--preference", "--solver", "--allow-older", "--allow-newer", "--write-ghc-environment-files", "--enable-documentation", "--disable-documentation", "--doc-index-file", "--dry-run", "--only-download", "--max-backjumps", "--reorder-goals", "--count-conflicts", "--fine-grained-conflicts", "--minimize-conflict-set", "--independent-goals", "--prefer-oldest", "--shadow-installed-packages", "--strong-flags", "--allow-boot-library-installs", "--reject-unconstrained-dependencies", "--reinstall", "--avoid-reinstalls", "--force-reinstalls", "--upgrade-dependencies", "--only-dependencies", "--dependencies-only", "--index-state", "--root-cmd", "--build-summary", "--build-log", "--remote-build-reporting", "--report-planning-failure", "--enable-per-component", "--disable-per-component", "--run-tests", "--semaphore", "-j", "--jobs", "--keep-going", "--offline", "--haddock-hoogle", "--haddock-html", "--haddock-html-location", "--haddock-for-hackage", "--haddock-executables", "--haddock-tests", "--haddock-benchmarks", "--haddock-all", "--haddock-internal", "--haddock-css", "--haddock-hyperlink-source", "--haddock-quickjump", "--haddock-hscolour-css", "--haddock-contents-location", "--haddock-base-url", "--haddock-resources-dir", "--haddock-output-dir", "--haddock-use-unicode", "--test-log", "--test-machine-log", "--test-show-details", "--test-keep-tix-files", "--test-wrapper", "--test-fail-when-no-test-suites", "--test-options", "--test-option", "--benchmark-options", "--benchmark-option", "--project-dir", "--project-file", "-z", "--ignore-project", "--repl-no-load", "--repl-options", "--repl-multi-file", "-b", "--build-depends", "--no-transitive-deps", "--enable-multi-repl", "--disable-multi-repl", "--keep-temp-files"]
 
-  To rerun use: --match "/Cabal.ReplOptions/options/is consistent with 'cabal repl --list-options'/" --seed 1267287923
+  To rerun use: --match "/Cabal.ReplOptions/options/is consistent with 'cabal repl --list-options'/" --seed 444834234
 
-Randomized with seed 1267287923
+Randomized with seed 444834234
 
-Finished in 45.5892 seconds
-207 examples, 3 failures
+Finished in 46.1676 seconds
+207 examples, 4 failures
 Test suite spec: FAIL
 Test suite logged to:
 /tmp/workdir-doctest/doctest-0.24.2/dist-newstyle/build/x86_64-linux/ghc-9.10.2/doctest-0.24.2/t/spec/test/doctest-0.24.2-spec.log
 0 of 1 test suites (0 of 1 test cases) passed.
 Error: [Cabal-7125]
 Tests failed for test:spec from doctest-0.24.2.
+
+HasCallStack backtrace:
+  collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception
+  toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/IO.hs:260:11 in ghc-internal:GHC.Internal.IO
+  throwIO, called at src/Distribution/Simple/Utils.hs:445:3 in Cabal-3.17.0.0-53ebf9405f6485269412f2afda26457728679de3c53d4063272ccd1d333df04e:Distribution.Simple.Utils
+  dieWithException, called at src/Distribution/Client/ProjectOrchestration.hs:1380:21 in cabal-install-3.17.0.0-978433ac00bba1fbf2bb7ceb68e8f37852e35b9f8412260606c7e7d5fef0562a:Distribution.Client.ProjectOrchestration
 

@@ -4,11 +4,17 @@ In order, the following will be built (use -v for more details):
  - yesod-gitrev-0.2.2 (lib) (first run)
  - yesod-gitrev-0.2.2 (test:examples) (first run)
 Configuring library for yesod-gitrev-0.2.2...
+Warning: [git-protocol] Cloning over git:// might lead to an arbitrary code
+execution vulnerability. Furthermore, popular forges like GitHub do not
+support it. Use https:// or ssh:// instead.
 Preprocessing library for yesod-gitrev-0.2.2...
 Building library for yesod-gitrev-0.2.2...
 [1 of 2] Compiling Yesod.GitRev.Data
 [2 of 2] Compiling Yesod.GitRev
 Configuring test suite 'examples' for yesod-gitrev-0.2.2...
+Warning: [git-protocol] Cloning over git:// might lead to an arbitrary code
+execution vulnerability. Furthermore, popular forges like GitHub do not
+support it. Use https:// or ssh:// instead.
 Preprocessing test suite 'examples' for yesod-gitrev-0.2.2...
 Building test suite 'examples' for yesod-gitrev-0.2.2...
 [1 of 3] Compiling ExampleTH
@@ -24,4 +30,9 @@ examples/ExampleMain.hs:34:28: error: [GHC-87897]
 
 Error: [Cabal-7125]
 Failed to build test:examples from yesod-gitrev-0.2.2.
+
+HasCallStack backtrace:
+  collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception
+  toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/IO.hs:260:11 in ghc-internal:GHC.Internal.IO
+  throwIO, called at libraries/ghc-internal/src/GHC/Internal/Control/Exception/Base.hs:195:43 in ghc-internal:GHC.Internal.Control.Exception.Base
 

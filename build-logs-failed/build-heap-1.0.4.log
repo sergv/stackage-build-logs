@@ -4,6 +4,9 @@ In order, the following will be built (use -v for more details):
  - heap-1.0.4 (lib) (first run)
  - heap-1.0.4 (test:heap-tests) (first run)
 Configuring library for heap-1.0.4...
+Warning: [git-protocol] Cloning over git:// might lead to an arbitrary code
+execution vulnerability. Furthermore, popular forges like GitHub do not
+support it. Use https:// or ssh:// instead.
 Preprocessing library for heap-1.0.4...
 Building library for heap-1.0.4...
 [1 of 3] Compiling Data.Heap.Internal
@@ -61,6 +64,9 @@ Data/Heap/Item.hs:188:11: warning: [GHC-87502] [-Winline-rule-shadowing]
 
 [3 of 3] Compiling Data.Heap
 Configuring test suite 'heap-tests' for heap-1.0.4...
+Warning: [git-protocol] Cloning over git:// might lead to an arbitrary code
+execution vulnerability. Furthermore, popular forges like GitHub do not
+support it. Use https:// or ssh:// instead.
 Preprocessing test suite 'heap-tests' for heap-1.0.4...
 Building test suite 'heap-tests' for heap-1.0.4...
 [1 of 8] Compiling Data.Heap.Internal
@@ -193,4 +199,9 @@ Test.hs:15:10: error: [GHC-27346]
 
 Error: [Cabal-7125]
 Failed to build test:heap-tests from heap-1.0.4.
+
+HasCallStack backtrace:
+  collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception
+  toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/IO.hs:260:11 in ghc-internal:GHC.Internal.IO
+  throwIO, called at libraries/ghc-internal/src/GHC/Internal/Control/Exception/Base.hs:195:43 in ghc-internal:GHC.Internal.Control.Exception.Base
 

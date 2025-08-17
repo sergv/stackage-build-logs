@@ -31,35 +31,35 @@ Failures:
        uncaught exception: SNSNotificationValidationError
        BadUri "http://localhost:3000"
 
-  To rerun use: --match "/Amazon.SNS.Verify/verifySNSMessage/successfully validates an SNS notification/" --seed 1044536876
+  To rerun use: --match "/Amazon.SNS.Verify/verifySNSMessage/successfully validates an SNS notification/" --seed 1624548870
 
   tests/Amazon/SNS/VerifySpec.hs:51:9: 
   2) Amazon.SNS.Verify.verifySNSMessage successfully confirms a subscription
        predicate failed on expected exception: SNSNotificationValidationError
        BadUri "http://localhost:3000"
 
-  To rerun use: --match "/Amazon.SNS.Verify/verifySNSMessage/successfully confirms a subscription/" --seed 1044536876
+  To rerun use: --match "/Amazon.SNS.Verify/verifySNSMessage/successfully confirms a subscription/" --seed 1624548870
 
   tests/Amazon/SNS/Verify/ValidateSpec.hs:36:9: 
   3) Amazon.SNS.Verify.Validate.validateSnsMessage successfully validates an SNS notification
        expected: Right (SNSMessage "Some message")
         but got: Left (BadUri "http://localhost:3000")
 
-  To rerun use: --match "/Amazon.SNS.Verify.Validate/validateSnsMessage/successfully validates an SNS notification/" --seed 1044536876
+  To rerun use: --match "/Amazon.SNS.Verify.Validate/validateSnsMessage/successfully validates an SNS notification/" --seed 1624548870
 
   tests/Amazon/SNS/Verify/ValidateSpec.hs:59:10: 
   4) Amazon.SNS.Verify.Validate.validateSnsMessage fails to validate a currupt SNS notification
        expected: Left (InvalidPayload SignatureInvalid)
         but got: Left (BadUri "http://localhost:3000")
 
-  To rerun use: --match "/Amazon.SNS.Verify.Validate/validateSnsMessage/fails to validate a currupt SNS notification/" --seed 1044536876
+  To rerun use: --match "/Amazon.SNS.Verify.Validate/validateSnsMessage/fails to validate a currupt SNS notification/" --seed 1624548870
 
   tests/Amazon/SNS/Verify/ValidateSpec.hs:82:10: 
   5) Amazon.SNS.Verify.Validate.validateSnsMessage fails to validate a bad PEM
        expected: Left (BadPem "Empty List")
         but got: Left (BadUri "http://localhost:3000/404")
 
-  To rerun use: --match "/Amazon.SNS.Verify.Validate/validateSnsMessage/fails to validate a bad PEM/" --seed 1044536876
+  To rerun use: --match "/Amazon.SNS.Verify.Validate/validateSnsMessage/fails to validate a bad PEM/" --seed 1624548870
 
   tests/Amazon/SNS/Verify/ValidateSpec.hs:132:9: 
   6) Amazon.SNS.Verify.Validate.validateSnsMessage successfully validates an SNS subscription
@@ -69,7 +69,7 @@ Failures:
                  })
         but got: Left (BadUri "http://localhost:3000")
 
-  To rerun use: --match "/Amazon.SNS.Verify.Validate/validateSnsMessage/successfully validates an SNS subscription/" --seed 1044536876
+  To rerun use: --match "/Amazon.SNS.Verify.Validate/validateSnsMessage/successfully validates an SNS subscription/" --seed 1624548870
 
   tests/Amazon/SNS/Verify/ValidateSpec.hs:159:9: 
   7) Amazon.SNS.Verify.Validate.validateSnsMessage successfully validates an SNS unsubscribe
@@ -79,11 +79,11 @@ Failures:
                  })
         but got: Left (BadUri "http://localhost:3000")
 
-  To rerun use: --match "/Amazon.SNS.Verify.Validate/validateSnsMessage/successfully validates an SNS unsubscribe/" --seed 1044536876
+  To rerun use: --match "/Amazon.SNS.Verify.Validate/validateSnsMessage/successfully validates an SNS unsubscribe/" --seed 1624548870
 
-Randomized with seed 1044536876
+Randomized with seed 1624548870
 
-Finished in 0.0062 seconds
+Finished in 0.0060 seconds
 11 examples, 7 failures
 Test suite aws-sns-verify-test: FAIL
 Test suite logged to:
@@ -91,4 +91,10 @@ Test suite logged to:
 0 of 1 test suites (0 of 1 test cases) passed.
 Error: [Cabal-7125]
 Tests failed for test:aws-sns-verify-test from aws-sns-verify-0.0.0.3.
+
+HasCallStack backtrace:
+  collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception
+  toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/IO.hs:260:11 in ghc-internal:GHC.Internal.IO
+  throwIO, called at src/Distribution/Simple/Utils.hs:445:3 in Cabal-3.17.0.0-53ebf9405f6485269412f2afda26457728679de3c53d4063272ccd1d333df04e:Distribution.Simple.Utils
+  dieWithException, called at src/Distribution/Client/ProjectOrchestration.hs:1380:21 in cabal-install-3.17.0.0-978433ac00bba1fbf2bb7ceb68e8f37852e35b9f8412260606c7e7d5fef0562a:Distribution.Client.ProjectOrchestration
 

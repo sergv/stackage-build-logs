@@ -11,13 +11,13 @@ All tests
       *** Failed! Falsified (after 1 test):
       []
       Right (Right []) /= Left (Just "connection to server at \"localhost\" (::1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\nconnection to server at \"localhost\" (127.0.0.1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\n")
-      Use --quickcheck-replay="(SMGen 4552729007813796676 13344652606660079661,0)" to reproduce.
+      Use --quickcheck-replay="(SMGen 8436307718388747664 1336306411983361519,0)" to reproduce.
       Use -p '/Roundtrips.Array/' to rerun this test only.
     2D Array:                                          FAIL
       *** Failed! Falsified (after 1 test and 2 shrinks):
       [0]
       Right (Right [[0],[0],[0]]) /= Left (Just "connection to server at \"localhost\" (::1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\nconnection to server at \"localhost\" (127.0.0.1), port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\n")
-      Use --quickcheck-replay="(SMGen 4889908154804157336 13815651641392911757,1)" to reproduce.
+      Use --quickcheck-replay="(SMGen 14122500076054414665 3148639816830288527,1)" to reproduce.
       Use -p '/2D Array/' to rerun this test only.
   Failed query:                                        FAIL
     tasty/Main.hs:58:
@@ -136,4 +136,10 @@ Test suite logged to:
 0 of 1 test suites (0 of 1 test cases) passed.
 Error: [Cabal-7125]
 Tests failed for test:tasty from hasql-1.9.2.
+
+HasCallStack backtrace:
+  collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception
+  toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/IO.hs:260:11 in ghc-internal:GHC.Internal.IO
+  throwIO, called at src/Distribution/Simple/Utils.hs:445:3 in Cabal-3.17.0.0-53ebf9405f6485269412f2afda26457728679de3c53d4063272ccd1d333df04e:Distribution.Simple.Utils
+  dieWithException, called at src/Distribution/Client/ProjectOrchestration.hs:1380:21 in cabal-install-3.17.0.0-978433ac00bba1fbf2bb7ceb68e8f37852e35b9f8412260606c7e7d5fef0562a:Distribution.Client.ProjectOrchestration
 

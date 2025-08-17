@@ -1,11 +1,8 @@
 Build profile: -w ghc-9.10.2 -O1
 In order, the following will be built (use -v for more details):
- - network-3.2.7.0 (ephemeral targets)
-Preprocessing library for network-3.2.7.0...
-Building library for network-3.2.7.0...
+ - network-3.2.7.0 (test:spec) (ephemeral targets)
 Preprocessing test suite 'spec' for network-3.2.7.0...
 Building test suite 'spec' for network-3.2.7.0...
-[6 of 6] Linking /tmp/workdir-network/network-3.2.7.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/network-3.2.7.0/build/spec/spec [Library changed]
 Running 1 test suites...
 Test suite spec: RUNNING...
 
@@ -146,16 +143,22 @@ Failures:
        uncaught exception: IOException of type NoSuchThing
        Network.Socket.getAddrInfo (called with preferred socket type/protocol: AddrInfo {addrFlags = [AI_NUMERICHOST,AI_ADDRCONFIG], addrFamily = AF_UNSPEC, addrSocketType = NoSocketType, addrProtocol = 0, addrAddress = 0.0.0.0:0, addrCanonName = Nothing}, host name: "2001:0db8:85a3:0000:0000:8a2e:0370:7334", service name: Nothing): does not exist (Address family for hostname not supported)
 
-  To rerun use: --match "/Network.Socket/getAddrInfo/works for IPv6 address/" --seed 19151794
+  To rerun use: --match "/Network.Socket/getAddrInfo/works for IPv6 address/" --seed 1067040807
 
-Randomized with seed 19151794
+Randomized with seed 1067040807
 
-Finished in 0.2327 seconds
+Finished in 0.2331 seconds
 87 examples, 1 failure
 Test suite spec: FAIL
 Test suite logged to:
-/tmp/workdir-network/network-3.2.7.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/network-3.2.7.0/test/network-3.2.7.0-spec.log
+/tmp/workdir-network/network-3.2.7.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/network-3.2.7.0/t/spec/test/network-3.2.7.0-spec.log
 0 of 1 test suites (0 of 1 test cases) passed.
 Error: [Cabal-7125]
-Tests failed for network-3.2.7.0.
+Tests failed for test:spec from network-3.2.7.0.
+
+HasCallStack backtrace:
+  collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception
+  toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/IO.hs:260:11 in ghc-internal:GHC.Internal.IO
+  throwIO, called at src/Distribution/Simple/Utils.hs:445:3 in Cabal-3.17.0.0-53ebf9405f6485269412f2afda26457728679de3c53d4063272ccd1d333df04e:Distribution.Simple.Utils
+  dieWithException, called at src/Distribution/Client/ProjectOrchestration.hs:1380:21 in cabal-install-3.17.0.0-978433ac00bba1fbf2bb7ceb68e8f37852e35b9f8412260606c7e7d5fef0562a:Distribution.Client.ProjectOrchestration
 

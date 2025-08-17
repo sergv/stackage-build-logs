@@ -10,7 +10,7 @@ matrix tests
     +++ OK, passed 100 tests.
   identity * m = m * identity = m:                                                     OK
     +++ OK, passed 100 tests.
-  a * (b * c) = (a * b) * c:                                                           OK (0.01s)
+  a * (b * c) = (a * b) * c:                                                           OK (0.02s)
     +++ OK, passed 100 tests.
   multStd a b = multStd2 a b:                                                          OK
     +++ OK, passed 100 tests.
@@ -40,28 +40,28 @@ matrix tests
     +++ OK, passed 100 tests.
   detLaplace (fromList 3 3 $ repeat 1) = 0:                                            OK
     +++ OK, passed 100 tests.
-  if (u,l,p,d) = luDecomp m then (p*m = l*u) && (detLaplace p = d):                    OK (2.95s)
+  if (u,l,p,d) = luDecomp m then (p*m = l*u) && (detLaplace p = d):                    OK (5.25s)
     +++ OK, passed 100 tests; 10 discarded.
-  detLaplace m = detLU m:                                                              OK (1.81s)
+  detLaplace m = detLU m:                                                              OK (2.14s)
     +++ OK, passed 100 tests.
-  if (u,l,p,q,d,e) = luDecomp' m then (p*m*q = l*u) && (detLU p = d) && (detLU q = e): OK (0.03s)
+  if (u,l,p,q,d,e) = luDecomp' m then (p*m*q = l*u) && (detLU p = d) && (detLU q = e): OK (0.07s)
     +++ OK, passed 100 tests; 11 discarded.
-  detLU (scaleRow k i m) = k * detLU m:                                                OK (0.01s)
+  detLU (scaleRow k i m) = k * detLU m:                                                OK (0.03s)
     +++ OK, passed 100 tests.
-  let n = nrows m in detLU (switchRows i j m) = detLU (permMatrix n i j) * detLU m:    OK (0.01s)
+  let n = nrows m in detLU (switchRows i j m) = detLU (permMatrix n i j) * detLU m:    OK (0.03s)
     +++ OK, passed 100 tests.
   fromList n m . toList = id:                                                          OK
     +++ OK, passed 100 tests.
   fromLists . toLists = id:                                                            OK
     +++ OK, passed 100 tests.
-  inv m * m = Right identity:                                                          OK (0.07s)
+  inv m * m = Right identity:                                                          OK (0.53s)
     +++ OK, passed 100 tests; 10 discarded.
-  inv . inv == id:                                                                     OK (0.06s)
+  inv . inv == id:                                                                     OK (0.34s)
     +++ OK, passed 100 tests; 10 discarded.
-  rref . fromSquare = const (identity):                                                OK (0.01s)
+  rref . fromSquare = const (identity):                                                OK (0.05s)
     +++ OK, passed 100 tests; 10 discarded.
 
-All 27 tests passed (4.99s)
+All 27 tests passed (8.48s)
 Test suite matrix-test: PASS
 Test suite logged to:
 /tmp/workdir-matrix/matrix-0.3.6.4/dist-newstyle/build/x86_64-linux/ghc-9.10.2/matrix-0.3.6.4/t/matrix-test/test/matrix-0.3.6.4-matrix-test.log

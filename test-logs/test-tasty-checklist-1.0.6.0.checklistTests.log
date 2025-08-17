@@ -15,11 +15,15 @@ Checklist testing
     HasCallStack backtrace:
       collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception
       toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/IO.hs:260:11 in ghc-internal:GHC.Internal.IO
-      throwIO, called at libraries/exceptions/src/Control/Monad/Catch.hs:308:12 in exceptions-0.10.9-6126:Control.Monad.Catch
+      throwIO, called at libraries/exceptions/src/Control/Monad/Catch.hs:308:12 in exceptions-0.10.9-inplace:Control.Monad.Catch
       throwM, called at src/Test/Tasty/Checklist.hs:144:7 in tasty-checklist-1.0.6.0-inplace:Test.Tasty.Checklist
     
      (expected failure)
   simple checklist with retraction:     FAIL (expected: 2 failed checks)
+
+        WARN Failed check 'one' with: 1
+        WARN Failed check 'two' with: 2
+        WARN Failed check 'three' with: 3
     Exception: ERROR: simple retracted
       2 checks failed in this checklist:
       -Failed check 'one' with: 1
@@ -27,15 +31,11 @@ Checklist testing
     HasCallStack backtrace:
       collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception
       toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/IO.hs:260:11 in ghc-internal:GHC.Internal.IO
-      throwIO, called at libraries/exceptions/src/Control/Monad/Catch.hs:308:12 in exceptions-0.10.9-6126:Control.Monad.Catch
+      throwIO, called at libraries/exceptions/src/Control/Monad/Catch.hs:308:12 in exceptions-0.10.9-inplace:Control.Monad.Catch
       throwM, called at src/Test/Tasty/Checklist.hs:144:7 in tasty-checklist-1.0.6.0-inplace:Test.Tasty.Checklist
     
      (expected failure)
-  simple checklist and assert:          
-        WARN Failed check 'one' with: 1
-        WARN Failed check 'two' with: 2
-        WARN Failed check 'three' with: 3
-FAIL (expected: 3 failed checks and assert)
+  simple checklist and assert:          FAIL (expected: 3 failed checks and assert)
     test/TestChecklist.hs:52:
     expected: 3
      but got: 4 (expected failure)
@@ -53,11 +53,11 @@ FAIL (expected: 3 failed checks and assert)
     HasCallStack backtrace:
       collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception
       toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/IO.hs:260:11 in ghc-internal:GHC.Internal.IO
-      throwIO, called at libraries/exceptions/src/Control/Monad/Catch.hs:308:12 in exceptions-0.10.9-6126:Control.Monad.Catch
+      throwIO, called at libraries/exceptions/src/Control/Monad/Catch.hs:308:12 in exceptions-0.10.9-inplace:Control.Monad.Catch
       throwM, called at src/Test/Tasty/Checklist.hs:144:7 in tasty-checklist-1.0.6.0-inplace:Test.Tasty.Checklist
     
      (expected failure)
-  normal assert failure:                
+  normal assert failure:                FAIL (expected: assertion)
         WARN -- Input for below: The answer to the universe is 18?
         WARN Failed check: foo
         expected:    42
@@ -65,7 +65,7 @@ FAIL (expected: 3 failed checks and assert)
         WARN Failed check: shown
         expected:    "The answer to the universe is 42!"
         failed with: "The answer to the universe is 18?"
-FAIL (expected: assertion)
+
     test/TestChecklist.hs:79:
     expected: 3
      but got: 5 (expected failure)
@@ -84,7 +84,7 @@ FAIL (expected: assertion)
     HasCallStack backtrace:
       collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception
       toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/IO.hs:260:11 in ghc-internal:GHC.Internal.IO
-      throwIO, called at libraries/exceptions/src/Control/Monad/Catch.hs:308:12 in exceptions-0.10.9-6126:Control.Monad.Catch
+      throwIO, called at libraries/exceptions/src/Control/Monad/Catch.hs:308:12 in exceptions-0.10.9-inplace:Control.Monad.Catch
       throwM, called at src/Test/Tasty/Checklist.hs:144:7 in tasty-checklist-1.0.6.0-inplace:Test.Tasty.Checklist
     
      (expected failure)
@@ -118,12 +118,12 @@ FAIL (expected: assertion)
     HasCallStack backtrace:
       collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception
       toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/IO.hs:260:11 in ghc-internal:GHC.Internal.IO
-      throwIO, called at libraries/exceptions/src/Control/Monad/Catch.hs:308:12 in exceptions-0.10.9-6126:Control.Monad.Catch
+      throwIO, called at libraries/exceptions/src/Control/Monad/Catch.hs:308:12 in exceptions-0.10.9-inplace:Control.Monad.Catch
       throwM, called at src/Test/Tasty/Checklist.hs:144:7 in tasty-checklist-1.0.6.0-inplace:Test.Tasty.Checklist
     
      (expected failure)
 
-All 11 tests passed (0.01s)
+All 11 tests passed (0.00s)
 Test suite checklistTests: PASS
 Test suite logged to:
 /tmp/workdir-tasty-checklist/tasty-checklist-1.0.6.0/dist-newstyle/build/x86_64-linux/ghc-9.10.2/tasty-checklist-1.0.6.0/t/checklistTests/test/tasty-checklist-1.0.6.0-checklistTests.log
